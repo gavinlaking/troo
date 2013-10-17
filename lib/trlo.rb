@@ -1,5 +1,7 @@
-require "trlo/version"
+require "singleton"
+require "yaml"
 
-module Trlo
-  # Your code goes here...
-end
+require_relative "./trlo/configuration"
+require_relative "./trlo/version"
+
+module Trlo; end
