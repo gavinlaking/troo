@@ -1,6 +1,6 @@
 # Trlo
 
-TODO: Write a gem description
+CLI interface for Trello.
 
 ## Installation
 
