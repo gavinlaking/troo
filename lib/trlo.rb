@@ -1,4 +1,5 @@
 require "singleton"
+require "trello"
 require "yaml"
 
 require_relative "./trlo/configuration"
