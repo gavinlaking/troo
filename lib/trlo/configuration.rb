@@ -22,6 +22,14 @@ module Trlo
       @secret ||= configuration.fetch('secret')
     end
 
+    def oauth_token
+      @oauth_token ||= configuration.fetch('oauth_token')
+    end
+
+    def oauth_token_secret
+      @oauth_token_secret ||= configuration.fetch('oauth_token_secret')
+    end
+
     private
 
     attr_reader :configuration
