@@ -1,3 +1,4 @@
+require "pry"
 require "singleton"
 require "trello"
 require "yaml"
