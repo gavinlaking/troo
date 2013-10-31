@@ -25,6 +25,10 @@ TODO: Write usage instructions here
 - Write cucumber integration tests.
 - Consider caching.
 
+## Known Issues
+
+- Between the time of retrieving boards, lists or cards, they could have changed state already (e.g. gone away) therefore your command will not work as expected.
+
 ## Contributing
 
 1. Fork it
