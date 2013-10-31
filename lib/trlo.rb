@@ -6,6 +6,7 @@ require "trello"
 require "yaml"
 
 require_relative "trlo/board_decorator"
+require_relative "trlo/screen"
 require_relative "trlo/configuration"
 require_relative "trlo/version"
 
