@@ -20,6 +20,11 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+## Todo
+
+- Write cucumber integration tests.
+- Consider caching.
+
 ## Contributing
 
 1. Fork it
