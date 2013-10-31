@@ -16,6 +16,14 @@ module Trlo
         BoardDecorator.new(board).name.must_equal "Development Board"
       end
     end
+
+    describe "#to_hash" do
+      it "returns a hash containing data from the board" do
+        BoardDecorator.new(board).
+          to_hash.must_equal({ id:   "some_24bit_string",
+                               name: "Development Board" })
+      end
+    end
   end
 end
 

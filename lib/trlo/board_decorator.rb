@@ -12,6 +12,10 @@ module Trlo
       board.name
     end
 
+    def to_hash
+      { id: id, name: name }
+    end
+
     private
     attr_reader :board
   end
