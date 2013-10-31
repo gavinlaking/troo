@@ -1,5 +1,7 @@
+require "hirb"
 require "pry"
 require "singleton"
+require "slop"
 require "trello"
 require "yaml"
 
