@@ -13,7 +13,6 @@ module Trlo
       options.each do |option|
         case option
         when :all
-          # puts "Not implemented yet."
           board_id = arguments.first
           ListPresenter.all(board_id)
         end
