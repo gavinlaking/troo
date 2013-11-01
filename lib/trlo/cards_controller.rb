@@ -12,7 +12,10 @@ module Trlo
     def dispatch
       options.each do |option|
         case option
-        when :add
+        when :all
+          list_id = arguments.first
+          CardPresenter.all(list_id)
+        when :create
           puts "Not implemented yet."
         when :delete
           puts "Not implemented yet."
