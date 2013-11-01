@@ -1,3 +1,4 @@
+require "highline/import"
 require "hirb"
 require "pry"
 require "singleton"
