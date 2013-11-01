@@ -36,7 +36,7 @@ module Trlo
         let(:options) { { comment: true } }
 
         it "comments on a card" do
-          proc { subject }.must_output "Not implemented yet.\n"
+          skip("Please write spec.")
         end
       end
 
