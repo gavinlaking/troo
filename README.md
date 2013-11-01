@@ -18,7 +18,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+You will need user authentication tokens to access your Trello account.
+
+1) Create your developer key at Trello:
+
+    https://trello.com/1/appKey/generate
+
+2) Go to
+
+    https://trello.com/1/connect?key=your_key_here&name=trlo&response_type=token&scope=read,write
+
 
 ## Todo
 
