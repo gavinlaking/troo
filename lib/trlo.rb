@@ -20,6 +20,8 @@ require_relative "trlo/list_decorator"
 require_relative "trlo/list_presenter"
 require_relative "trlo/lists_controller"
 
+require_relative "trlo/card_decorator"
+require_relative "trlo/card_presenter"
 require_relative "trlo/cards_controller"
 
 module Trlo
@@ -56,20 +58,24 @@ module Trlo
       end
     end
 
-    # command 'cards' do
-    #   on :a, :all,     'Show all cards for a <list_id>'
+    command 'cards' do
+      on :a, :all,     'Show all cards for a <list_id>'
     #   on :c, :create,  'Add a new card to list <list_id> <name>'
     #   on :d, :delete,  'Delete a card from list <list_id> <id>'
     #   on :s, :show,    'Show a card from list <list_id>'
     #   on :c, :comment, 'Comment on a card with <card_id> <comment>'
     #   on :m, :move,    'Move a card from list <list_id> to list <list_id>'
 
-    #   run do |opts, args|
-    #     options = opts.to_hash
-    #     CardsController.dispatch!(options, args)
-    #   end
-    # end
+      run do |opts, args|
+        options = opts.to_hash
+        CardsController.dispatch!(options, args)
+      end
+    end
   end
+
+rescue => exception
+  $stderr.puts "trlo: error: #{exception.message}"
+  exit 1
 
   # Some debugging code
   # puts "-----------------------------------------"
