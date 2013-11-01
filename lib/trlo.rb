@@ -43,7 +43,6 @@ module Trlo
 
     command 'boards' do
       on :a, :all,   'Show all boards'
-      #on :s, :show,  'Show all lists and cards for a <board_id>'
 
       run do |opts, args|
         options = opts.to_hash
@@ -62,9 +61,6 @@ module Trlo
 
     command 'cards' do
       on :a, :all,     'Show all cards for a <list_id>'
-    #   on :c, :create,  'Add a new card to list <list_id> <name>'
-    #   on :d, :delete,  'Delete a card from list <list_id> <id>'
-    #   on :s, :show,    'Show a card from list <list_id>'
       on :c, :comment, 'Comment on a card with <card_id> <comment>'
     #   on :m, :move,    'Move a card from list <list_id> to list <list_id>'
 
@@ -80,22 +76,4 @@ rescue => exception
   $stderr.puts "stack trace:\n"
   $stderr.puts "#{exception.backtrace.join("\n")}\n"
   exit 1
-
-  # Some debugging code
-  # puts "-----------------------------------------"
-  # BoardsController.new.all
-  # puts "-----------------------------------------"
-  # BoardsController.new.show("51239ff5469f1b1460000188")
-  # puts "-----------------------------------------"
-  # board_id = "51239ff5469f1b1460000188"
-  # ListsController.new.all(board_id)
-  # puts "-----------------------------------------"
-  # list_id = "51239ff5469f1b1460000189"
-  # ListsController.new.show(list_id)
-  # puts "-----------------------------------------"
-  # CardsController.new.all(list_id)
-  # puts "-----------------------------------------"
-  # card_id = "5260fb1895e4fba368001520"
-  # CardsController.new.show(card_id)
-  # puts "-----------------------------------------"
 end
