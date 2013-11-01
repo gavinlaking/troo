@@ -10,11 +10,11 @@ module Trlo
     end
 
     def dispatch
+      id = arguments.first
       options.each do |option|
         case option
         when :all
-          board_id = arguments.first
-          ListPresenter.all(board_id)
+          ListPresenter.all(id)
         end
       end
     end

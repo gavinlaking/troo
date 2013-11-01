@@ -10,11 +10,11 @@ module Trlo
     end
 
     def dispatch
+      id = arguments.first
       options.each do |option|
         case option
         when :all
-          list_id = arguments.first
-          CardPresenter.all(list_id)
+          CardPresenter.all(id)
         when :create
           puts "Not implemented yet."
         when :delete
@@ -22,8 +22,7 @@ module Trlo
         when :show
           puts "Not implemented yet."
         when :comment
-          card_id = arguments.first
-          CreateComment.for(card_id)
+          CreateComment.for(id)
         when :move
           puts "Not implemented yet."
         end
