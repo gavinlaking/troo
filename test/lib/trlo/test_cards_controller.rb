@@ -44,7 +44,7 @@ module Trlo
         let(:options) { { move: true } }
 
         it "moves a card from a list to another list" do
-          proc { subject }.must_output "Not implemented yet.\n"
+          skip("Please write spec.")
         end
       end
 

@@ -25,6 +25,7 @@ require_relative "trlo/card_decorator"
 require_relative "trlo/card_presenter"
 require_relative "trlo/cards_controller"
 require_relative "trlo/actions/create_comment"
+require_relative "trlo/actions/move_card"
 
 module Trlo
   Configuration.load!(File.dirname(__FILE__) + "/../configuration.yml")
@@ -62,7 +63,7 @@ module Trlo
     command 'cards' do
       on :a, :all,     'Show all cards for a <list_id>'
       on :c, :comment, 'Comment on a card with <card_id> <comment>'
-    #   on :m, :move,    'Move a card from list <list_id> to list <list_id>'
+      on :m, :move,    'Move a card <card_id> to list <list_id>'
 
       run do |opts, args|
         options = opts.to_hash
@@ -70,10 +71,10 @@ module Trlo
       end
     end
   end
-
 rescue => exception
   $stderr.puts "trlo: error: #{exception.message}\n"
   $stderr.puts "stack trace:\n"
   $stderr.puts "#{exception.backtrace.join("\n")}\n"
   exit 1
 end
+

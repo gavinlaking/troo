@@ -24,7 +24,9 @@ module Trlo
         when :comment
           CreateComment.for(id)
         when :move
-          puts "Not implemented yet."
+          card_id = arguments.first
+          list_id = arguments[1]
+          MoveCard.with(card_id, list_id)
         end
       end
     end
