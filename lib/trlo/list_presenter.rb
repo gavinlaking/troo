@@ -1,6 +1,7 @@
 module Trlo
   class ListPresenter
     def initialize(board_id)
+      raise BoardNotFound, "No board specified, no lists found." if board_id.nil?
       @board_id = board_id
     end
 
