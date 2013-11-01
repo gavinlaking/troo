@@ -23,6 +23,7 @@ require_relative "trlo/lists_controller"
 require_relative "trlo/card_decorator"
 require_relative "trlo/card_presenter"
 require_relative "trlo/cards_controller"
+require_relative "trlo/actions/create_comment"
 
 module Trlo
   Configuration.load!(File.dirname(__FILE__) + "/../configuration.yml")
@@ -63,7 +64,7 @@ module Trlo
     #   on :c, :create,  'Add a new card to list <list_id> <name>'
     #   on :d, :delete,  'Delete a card from list <list_id> <id>'
     #   on :s, :show,    'Show a card from list <list_id>'
-    #   on :c, :comment, 'Comment on a card with <card_id> <comment>'
+      on :c, :comment, 'Comment on a card with <card_id> <comment>'
     #   on :m, :move,    'Move a card from list <list_id> to list <list_id>'
 
       run do |opts, args|
@@ -74,7 +75,9 @@ module Trlo
   end
 
 rescue => exception
-  $stderr.puts "trlo: error: #{exception.message}"
+  $stderr.puts "trlo: error: #{exception.message}\n"
+  $stderr.puts "stack trace:\n"
+  $stderr.puts "#{exception.backtrace.join("\n")}\n"
   exit 1
 
   # Some debugging code

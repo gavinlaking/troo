@@ -22,7 +22,8 @@ module Trlo
         when :show
           puts "Not implemented yet."
         when :comment
-          puts "Not implemented yet."
+          card_id = arguments.first
+          CreateComment.for(card_id)
         when :move
           puts "Not implemented yet."
         end
