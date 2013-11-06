@@ -17,7 +17,7 @@ module Trlo
     attr_reader :list_id
 
     def all_cards_header
-      { id: "ID", name: "Name" }
+      { short_id: "ID", name: "Name" }
     end
 
     def all_cards_content

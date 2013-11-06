@@ -11,8 +11,12 @@ module Trlo
 
       describe "all" do
         let(:list)      { OpenStruct.new(id: list_id) }
-        let(:card_1)    { OpenStruct.new(id: "some_24bit_string1", name: "Finish Trlo") }
-        let(:card_2)    { OpenStruct.new(id: "some_24bit_string2", name: "Drink Beer") }
+        let(:card_1)    { OpenStruct.new(id: "some_24bit_string1",
+                                         short_id: "17",
+                                         name: "Finish Trlo") }
+        let(:card_2)    { OpenStruct.new(id: "some_24bit_string2",
+                                         short_id: "18",
+                                         name: "Drink Beer") }
         let(:card_hash) { [card_1, card_2] }
 
         before do
@@ -22,12 +26,12 @@ module Trlo
 
         it "shows all the cards for the specified list" do
           proc { subject }.must_output <<-TABLE.gsub(/^ {12}/, "")
-            +--------------------+-------------+
-            | ID                 | Name        |
-            +--------------------+-------------+
-            | some_24bit_string1 | Finish Trlo |
-            | some_24bit_string2 | Drink Beer  |
-            +--------------------+-------------+
+            +----+-------------+
+            | ID | Name        |
+            +----+-------------+
+            | 17 | Finish Trlo |
+            | 18 | Drink Beer  |
+            +----+-------------+
           TABLE
         end
       end
@@ -45,30 +49,6 @@ module Trlo
 
         it "moves a card from a list to another list" do
           skip("Please write spec.")
-        end
-      end
-
-      describe "create" do
-        let(:options) { { create: true } }
-
-        it "adds a new card" do
-          proc { subject }.must_output "Not implemented yet.\n"
-        end
-      end
-
-      describe "delete" do
-        let(:options) { { delete: true } }
-
-        it "deletes a card" do
-          proc { subject }.must_output "Not implemented yet.\n"
-        end
-      end
-
-      describe "show" do
-        let(:options) { { show: true } }
-
-        it "shows a card's details" do
-          proc { subject }.must_output "Not implemented yet.\n"
         end
       end
     end

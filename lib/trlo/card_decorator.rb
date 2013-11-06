@@ -4,6 +4,10 @@ module Trlo
       @card = card
     end
 
+    def short_id
+      card.short_id
+    end
+
     def id
       card.id
     end
@@ -13,7 +17,7 @@ module Trlo
     end
 
     def to_hash
-      { id: id, name: name }
+      { id: id, short_id: short_id, name: name }
     end
 
     private
