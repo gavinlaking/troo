@@ -17,8 +17,6 @@ require_relative "trlo/boards_controller"
 require_relative "trlo/lists_controller"
 require_relative "trlo/cards_controller"
 
-require_relative "trlo/actions/move_card"
-
 module Trlo
   Configuration.load!(File.dirname(__FILE__) + "/../configuration.yml")
 
