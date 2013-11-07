@@ -13,18 +13,15 @@ require_relative "trlo/input"
 require_relative "trlo/screen"
 require_relative "trlo/version"
 
-require_relative "trlo/board_decorator"
 require_relative "trlo/board_presenter"
 require_relative "trlo/boards_controller"
 
-require_relative "trlo/list_decorator"
 require_relative "trlo/list_presenter"
 require_relative "trlo/lists_controller"
 
-require_relative "trlo/card_decorator"
 require_relative "trlo/card_presenter"
 require_relative "trlo/cards_controller"
-require_relative "trlo/actions/create_comment"
+
 require_relative "trlo/actions/move_card"
 
 module Trlo
