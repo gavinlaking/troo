@@ -3,10 +3,9 @@ require_relative "../../test_helper"
 module Trlo
   describe Output do
     describe "#render" do
-      let(:header)  { { key: "Key", value: "Value" } }
-      let(:content) { [ { key: "1", value: "Hello" },
-                        { key: "2", value: "World" } ] }
-      subject { Output.new(header, content).render }
+      let(:content) { [ { key: "1", value: "Hello", header: { key: "Key", value: "Value" } },
+                        { key: "2", value: "World", header: { key: "Key", value: "Value" } } ] }
+      subject { Output.new(content).render }
 
       it "renders a table to the screen" do
         proc { subject }.must_output <<-OUTPUT.gsub(/^ {10}/, "")

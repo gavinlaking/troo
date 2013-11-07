@@ -13,7 +13,7 @@ module Trlo
       options.each do |option|
         case option
         when :all
-          BoardPresenter.all
+          Output.new(FindBoards.all).render
         when :show
           puts "Not implemented yet."
         end

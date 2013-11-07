@@ -13,6 +13,12 @@ require_relative "trlo/input"
 require_relative "trlo/output"
 require_relative "trlo/version"
 
+require_relative "trlo/models/board"
+require_relative "trlo/models/card"
+require_relative "trlo/models/comment"
+require_relative "trlo/models/list"
+require_relative "trlo/models/member"
+
 require_relative "trlo/boards_controller"
 require_relative "trlo/lists_controller"
 require_relative "trlo/cards_controller"

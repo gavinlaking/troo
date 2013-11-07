@@ -10,21 +10,18 @@ module Trlo
     end
 
     def dispatch
-      id = arguments.first
       options.each do |option|
         case option
         when :all
-          CardPresenter.all(id)
-        when :create
-          puts "Not implemented yet."
-        when :delete
-          puts "Not implemented yet."
+          list_id = arguments[0]
+          Output.new(FindCards.for(list_id)).render
         when :show
           puts "Not implemented yet."
         when :comment
-          CreateComment.for(id)
+          list_id = arguments[0]
+          CreateComment.for(list_id)
         when :move
-          card_id = arguments.first
+          card_id = arguments[0]
           list_id = arguments[1]
           MoveCard.with(card_id, list_id)
         end
