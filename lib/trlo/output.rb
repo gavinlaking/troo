@@ -1,5 +1,5 @@
 module Trlo
-  class Screen
+  class Output
     def initialize(header, content)
       @header  = header
       @content = content

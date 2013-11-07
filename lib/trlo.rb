@@ -10,7 +10,7 @@ require "yaml"
 require_relative "trlo/configuration"
 require_relative "trlo/exceptions"
 require_relative "trlo/input"
-require_relative "trlo/screen"
+require_relative "trlo/output"
 require_relative "trlo/version"
 
 require_relative "trlo/boards_controller"
