@@ -15,8 +15,6 @@ module Trlo
         when :all
           list_id = arguments[0]
           Output.new(FindCards.for(list_id)).render
-        when :show
-          puts "Not implemented yet."
         when :comment
           list_id = arguments[0]
           CreateComment.for(list_id)

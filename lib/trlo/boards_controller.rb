@@ -14,8 +14,6 @@ module Trlo
         case option
         when :all
           Output.new(FindBoards.all).render
-        when :show
-          puts "Not implemented yet."
         end
       end
     end

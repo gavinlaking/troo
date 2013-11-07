@@ -28,14 +28,6 @@ module Trlo
           TABLE
         end
       end
-
-      describe ":show" do
-        let(:options) { { all: nil, show: true, lists: nil } }
-
-        it "shows all the lists and cards for a <board_id>" do
-          proc { subject }.must_output "Not implemented yet.\n"
-        end
-      end
     end
   end
 end
