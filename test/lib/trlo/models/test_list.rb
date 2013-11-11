@@ -48,11 +48,20 @@ module Trlo
   describe FindLists do
     describe "#all_lists" do
       let(:board_id) { "some_24bit_board_id" }
+      let(:board) { OpenStruct.new(id: "some_24bit_board_id",
+                                   name: "Development Board",
+                                   lists: [list, list]) }
+      let(:list) { OpenStruct.new(id: "some_24bit_list_id",
+                                  name: "Backlog") }
 
       subject { FindLists.for(board_id) }
 
+      before do
+        FindBoard.stubs(:with).returns(board)
+      end
+
       it "finds all the lists by board_id" do
-        skip("Please write spec.")
+        subject.size.must_equal 2
       end
     end
   end
