@@ -20,7 +20,7 @@ module Trlo
           board.stubs(:lists).returns(list_hash)
         end
 
-        it "shows all the lists for the specified board" do
+        it "shows all the lists for the board" do
           proc { subject }.must_output <<-TABLE.gsub(/^ {12}/, "")
             +--------------------+-------------+
             | ID                 | Name        |

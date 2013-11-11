@@ -1,18 +1,6 @@
 require_relative "../../../test_helper"
 
 module Trlo
-  describe FindList do
-    describe ".all" do
-      let(:board_id) { "some_24bit_board_id" }
-
-      subject { FindList.all(board_id) }
-
-      it "gets all lists for the specified board" do
-        skip("Please write spec.")
-      end
-    end
-  end
-
   describe List do
     let(:list) { OpenStruct.new(id:   "some_24bit_string",
                                 name: "Backlog") }
@@ -35,6 +23,30 @@ module Trlo
           decorate.must_equal({ id:     "some_24bit_string",
                                 name:   "Backlog",
                                 header: { id: "ID", name: "Name" } })
+      end
+    end
+  end
+
+  describe FindList do
+    describe "#find" do
+      let(:list_id) { "some_24bit_list_id" }
+
+      subject { FindList.with(list_id) }
+
+      it "finds the list by list_id" do
+        skip("Please write spec.")
+      end
+    end
+  end
+
+  describe FindLists do
+    describe "#all_lists" do
+      let(:board_id) { "some_24bit_board_id" }
+
+      subject { FindLists.for(board_id) }
+
+      it "finds all the lists by board_id" do
+        skip("Please write spec.")
       end
     end
   end

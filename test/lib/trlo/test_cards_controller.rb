@@ -24,7 +24,7 @@ module Trlo
           list.stubs(:cards).returns(card_hash)
         end
 
-        it "shows all the cards for the specified list" do
+        it "shows all the cards for the list" do
           proc { subject }.must_output <<-TABLE.gsub(/^ {12}/, "")
             +----+-------------+
             | ID | Name        |

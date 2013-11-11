@@ -2,25 +2,7 @@ require_relative "../../../test_helper"
 
 module Trlo
   describe Card do
-    describe ".all" do
-      subject { Card.all(list_id) }
-
-      it "gets all the cards for the specified list_id" do
-        skip("Please write spec.")
-      end
-    end
-
-    describe ".find" do
-      subject { Card.find(card_id) }
-
-      it "gets the card by card_id" do
-        skip("Please write spec.")
-      end
-    end
-  end
-
-  describe Card do
-    let(:card) { OpenStruct.new(id:   "some_24bit_string",
+    let(:card) { OpenStruct.new(id:   "some_24bit_card_id",
                                 short_id: "212",
                                 name: "Finish Trlo") }
 
@@ -32,7 +14,7 @@ module Trlo
 
     describe "#id" do
       it "returns the Trello ID of the card" do
-        Card.new(card).id.must_equal "some_24bit_string"
+        Card.new(card).id.must_equal "some_24bit_card_id"
       end
     end
 
@@ -45,11 +27,54 @@ module Trlo
     describe "#decorate" do
       it "returns a hash containing data from the card" do
         Card.new(card).
-          decorate.must_equal({ id:       "some_24bit_string",
+          decorate.must_equal({ id:       "some_24bit_card_id",
                                 short_id: "212",
                                 name:     "Finish Trlo",
                                 header:   { short_id: "ID", name: "Name" } })
       end
     end
   end
+
+  describe FindCard do
+    describe ".with" do
+      subject { FindCard.with(card_id) }
+
+      it "finds the card by card_id" do
+        skip("Please write spec.")
+      end
+    end
+  end
+
+  describe FindCards do
+    describe "#all_cards" do
+      subject { FindCards.for(list_id) }
+
+      it "finds the cards by list_id" do
+        skip("Please write spec.")
+      end
+    end
+  end
+
+  describe MoveCard do
+    describe "#move" do
+      subject { MoveCard.with(card_id, list_id) }
+
+      describe "when a list_id is supplied" do
+        it "moves the card to the specified list" do
+          skip("Please write spec.")
+        end
+      end
+
+      describe "when a list_id is not supplied" do
+        it "presents the user with a list of options" do
+          skip("Please write spec.")
+        end
+
+        it "moves the card to the specified lists" do
+          skip("Please write spec.")
+        end
+      end
+    end
+  end
 end
+
