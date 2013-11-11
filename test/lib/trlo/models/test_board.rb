@@ -30,21 +30,35 @@ module Trlo
   describe FindBoard do
     describe ".with" do
       let(:board_id) { "some_24bit_board_id" }
+      let(:board) { OpenStruct.new(id:   "some_24bit_board_id",
+                                   name: "Development Board") }
+
+      before do
+        Trello::Board.stubs(:find).returns(board)
+      end
 
       subject { FindBoard.with(board_id) }
 
       it "finds the board by specifed board_id" do
-        skip("Please write spec.")
+        subject.name.must_equal "Development Board"
       end
     end
   end
 
   describe FindBoards do
     describe ".all" do
+      let(:board) { OpenStruct.new(id:   "some_24bit_board_id",
+                                   name: "Development Board") }
+      let(:boards) { [board, board] }
+
       subject { FindBoards.all }
 
+      before do
+        Trello::Board.stubs(:all).returns(boards)
+      end
+
       it "returns all the boards for the authenticated user" do
-        skip("Please write spec.")
+        subject.size.must_equal 2
       end
     end
   end
