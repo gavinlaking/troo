@@ -17,7 +17,7 @@ module Trlo
     end
 
     def text
-      data.fetch["text", ""]
+      data.fetch("text", "")
     end
 
     def date
@@ -30,23 +30,6 @@ module Trlo
     def data
       comment.data
     end
-  end
-
-  class FindComment
-    def initialize(comment_id)
-      @comment_id = comment_id
-    end
-
-    def self.with(comment_id)
-      new(comment_id).find
-    end
-
-    def find
-      Trello::Comment.find(comment_id)
-    end
-
-    private
-    attr_reader :comment_id
   end
 
   class FindComments
