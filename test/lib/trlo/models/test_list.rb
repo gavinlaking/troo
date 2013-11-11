@@ -29,12 +29,18 @@ module Trlo
 
   describe FindList do
     describe "#find" do
+      let(:list) { OpenStruct.new(id:   "some_24bit_string",
+                                  name: "Backlog") }
       let(:list_id) { "some_24bit_list_id" }
 
       subject { FindList.with(list_id) }
 
+      before do
+        Trello::List.stubs(:find).returns(list)
+      end
+
       it "finds the list by list_id" do
-        skip("Please write spec.")
+        subject.must_equal list
       end
     end
   end
