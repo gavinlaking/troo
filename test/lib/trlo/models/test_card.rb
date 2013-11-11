@@ -2,9 +2,9 @@ require_relative "../../../test_helper"
 
 module Trlo
   describe Card do
-    let(:card) { OpenStruct.new(id:   "some_24bit_card_id",
+    let(:card) { OpenStruct.new(id:       "some_24bit_card_id",
                                 short_id: "212",
-                                name: "Finish Trlo") }
+                                name:     "Finish Trlo") }
 
     describe "#short_id" do
       it "returns the Trello short ID of the card" do
@@ -37,20 +37,40 @@ module Trlo
 
   describe FindCard do
     describe ".with" do
+      let(:card_id) { "some_24bit_card_id" }
+      let(:card) { OpenStruct.new(id:       "some_24bit_card_id",
+                                  short_id: "212",
+                                  name:     "Finish Trlo") }
       subject { FindCard.with(card_id) }
 
+      before do
+        Trello::Card.stubs(:find).returns(card)
+      end
+
       it "finds the card by card_id" do
-        skip("Please write spec.")
+        subject.must_equal card
       end
     end
   end
 
   describe FindCards do
     describe "#all_cards" do
+      let(:list_id) { "some_24bit_list_id" }
+      let(:card) { OpenStruct.new(id:       "some_24bit_card_id",
+                                  short_id: "212",
+                                  name:     "Finish Trlo") }
+      let(:cards) { [card, card] }
+      let(:list) { OpenStruct.new(id:    "some_24bit_list_id",
+                                  name:  "Development",
+                                  cards: cards) }
       subject { FindCards.for(list_id) }
 
+      before do
+        FindList.stubs(:with).returns(list)
+      end
+
       it "finds the cards by list_id" do
-        skip("Please write spec.")
+        subject.size.must_equal 2
       end
     end
   end
