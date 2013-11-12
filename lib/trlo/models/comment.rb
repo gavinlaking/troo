@@ -21,7 +21,7 @@ module Trlo
     end
 
     def date
-      comment.date
+      comment.date.to_s
     end
 
     private
@@ -51,8 +51,8 @@ module Trlo
     attr_reader :card_id
 
     def get_comments
-      FindCard.with(card_id).actions.collect   { |a| a if is_comment?(a) }.
-                                     delete_if { |a| a.nil? }
+      Trello::Card.find(card_id).actions.collect   { |a| a if is_comment?(a) }.
+                                         delete_if { |a| a.nil? }
     end
 
     def is_comment?(a)

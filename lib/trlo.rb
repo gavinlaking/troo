@@ -59,6 +59,7 @@ module Trlo
       on :a, :all,     'Show all cards for a <list_id>'
       on :c, :comment, 'Comment on a card with <card_id> <comment>'
       on :m, :move,    'Move a card <card_id> to list <list_id>'
+      on :s, :show,    'Show a card <card_id> (includes comments)'
 
       run do |opts, args|
         options = opts.to_hash

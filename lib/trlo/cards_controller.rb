@@ -22,6 +22,9 @@ module Trlo
           card_id = arguments[0]
           list_id = arguments[1]
           MoveCard.with(card_id, list_id)
+        when :show
+          card_id = arguments[0]
+          ShowCard.with(card_id)
         end
       end
     end

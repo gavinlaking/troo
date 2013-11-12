@@ -1,15 +1,22 @@
 module Trlo
   class Card
-    def initialize(card)
+    def initialize(card, comments = [])
       @card = card
+      @comments = comments
     end
 
-    def self.decorate(card)
-      new(card).decorate
+    def self.decorate(card, comments = [])
+      new(card, comments).decorate
     end
 
     def decorate
-      { id: id, short_id: short_id, name: name, header: header }
+      {
+        id: id,
+        short_id: short_id,
+        name: name,
+        header: header,
+        comments: comments
+      }
     end
 
     def short_id
@@ -25,7 +32,7 @@ module Trlo
     end
 
     private
-    attr_reader :card
+    attr_reader :card, :comments
 
     def header
       { short_id: "ID", name: "Name" }
@@ -93,6 +100,31 @@ module Trlo
 
     def card
       @card ||= FindCard.with(card_id)
+    end
+  end
+
+  class ShowCard
+    def initialize(card_id)
+      @card_id = card_id
+    end
+
+    def self.with(card_id)
+      new(card_id).show
+    end
+
+    def show
+      Card.decorate(card, comments)
+    end
+
+    private
+    attr_reader :card_id
+
+    def card
+      @card ||= FindCard.with(card_id)
+    end
+
+    def comments
+      @comments ||= FindComments.for(card_id)
     end
   end
 end
