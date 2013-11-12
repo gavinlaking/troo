@@ -14,7 +14,7 @@ module Trlo
         case option
         when :all
           board_id = arguments[0]
-          Output.new(FindLists.for(board_id)).render
+          Output.new(FindLists.for(board_id)).list_table
         end
       end
     end

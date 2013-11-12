@@ -13,7 +13,7 @@ module Trlo
       options.each do |option|
         case option
         when :all
-          Output.new(FindBoards.all).render
+          Output.new(FindBoards.all).list_table
         end
       end
     end

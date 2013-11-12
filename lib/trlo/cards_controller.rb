@@ -14,7 +14,7 @@ module Trlo
         case option
         when :all
           list_id = arguments[0]
-          Output.new(FindCards.for(list_id)).render
+          Output.new(FindCards.for(list_id)).list_table
         when :comment
           list_id = arguments[0]
           CreateComment.for(list_id)

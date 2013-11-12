@@ -4,7 +4,7 @@ module Trlo
       @content = content
     end
 
-    def render
+    def list_table
       puts Hirb::Helpers::AutoTable.
         render(content, { fields:      header.keys,
                           headers:     header,
