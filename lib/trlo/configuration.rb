@@ -43,3 +43,4 @@ module Trlo
     yield(configuration)
   end
 end
+

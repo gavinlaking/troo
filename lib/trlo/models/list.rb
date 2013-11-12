@@ -64,3 +64,4 @@ module Trlo
     attr_reader :board_id
   end
 end
+
