@@ -9,14 +9,14 @@ module Trlo
     end
 
     def decorate
-      { id: id, full_name: full_name, username: username }
+      { id: id, name: name, username: username }
     end
 
     def username
       member.username
     end
 
-    def full_name
+    def name
       member.full_name
     end
 
@@ -26,23 +26,6 @@ module Trlo
 
     private
     attr_reader :member
-  end
-
-  class FindMember
-    def initialize(member_id)
-      @member_id = member_id
-    end
-
-    def self.with(member_id)
-      new(member_id).find
-    end
-
-    def find
-      Trello::Member.find(member_id)
-    end
-
-    private
-    attr_reader :member_id
   end
 end
 
