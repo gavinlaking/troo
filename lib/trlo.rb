@@ -13,6 +13,8 @@ require_relative "trlo/output"
 require_relative "trlo/version"
 
 require_relative "trlo/models/board"
+require_relative "trlo/models/find_board"
+require_relative "trlo/models/find_boards"
 require_relative "trlo/models/card"
 require_relative "trlo/models/comment"
 require_relative "trlo/models/list"
