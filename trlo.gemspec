@@ -23,6 +23,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest", "4.7.5"
   spec.add_development_dependency "mocha"
   spec.add_development_dependency "pry"
+  spec.add_development_dependency "vcr"
+  spec.add_development_dependency "webmock"
 
   spec.add_dependency "highline"
   spec.add_dependency "hirb"
