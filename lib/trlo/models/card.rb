@@ -39,42 +39,6 @@ module Trlo
     end
   end
 
-  class FindCard
-    def initialize(card_id)
-      @card_id = card_id
-    end
-
-    def self.with(card_id)
-      new(card_id).find
-    end
-
-    def find
-      Trello::Card.find(card_id)
-    end
-
-    private
-    attr_reader :card_id
-  end
-
-  class FindCards
-    def initialize(list_id)
-      @list_id = list_id
-    end
-
-    def self.for(list_id)
-      new(list_id).all_cards
-    end
-
-    def all_cards
-      FindList.with(list_id).cards.map do |card|
-        Card.decorate(card)
-      end
-    end
-
-    private
-    attr_reader :list_id
-  end
-
   class MoveCard
     def initialize(card_id, list_id = nil)
       @card_id = card_id
