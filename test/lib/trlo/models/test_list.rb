@@ -26,44 +26,5 @@ module Trlo
       end
     end
   end
-
-  describe FindList do
-    describe "#find" do
-      let(:list) { OpenStruct.new(id:   "some_24bit_string",
-                                  name: "Backlog") }
-      let(:list_id) { "some_24bit_list_id" }
-
-      subject { FindList.with(list_id) }
-
-      before do
-        Trello::List.stubs(:find).returns(list)
-      end
-
-      it "finds the list by list_id" do
-        subject.must_equal list
-      end
-    end
-  end
-
-  describe FindLists do
-    describe "#all_lists" do
-      let(:board_id) { "some_24bit_board_id" }
-      let(:board) { OpenStruct.new(id: "some_24bit_board_id",
-                                   name: "Development Board",
-                                   lists: [list, list]) }
-      let(:list) { OpenStruct.new(id: "some_24bit_list_id",
-                                  name: "Backlog") }
-
-      subject { FindLists.for(board_id) }
-
-      before do
-        FindBoard.stubs(:with).returns(board)
-      end
-
-      it "finds all the lists by board_id" do
-        subject.size.must_equal 2
-      end
-    end
-  end
 end
 

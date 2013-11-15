@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/lists/526d8e130a14a9d846001d97
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - OAuth oauth_consumer_key="c9094b0383bddbbf9b822b007c615519", oauth_nonce="228ca722a911deb14989df606b74230f",
+        oauth_signature="GT9vLANT5SIxXOsqRP0sr54R6r8%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1384551839", oauth_token="d000b4c5b5202b77c90cdce06829df88dc9567b131e9ba28aa84ff850059d335",
+        oauth_version="1.0"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Server-Time:
+      - '1384551840304'
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Content-Length:
+      - '112'
+      Date:
+      - Fri, 15 Nov 2013 21:44:00 GMT
+    body:
+      encoding: UTF-8
+      string: '{"id":"526d8e130a14a9d846001d97","name":"To Do","closed":false,"idBoard":"526d8e130a14a9d846001d96","pos":16384}'
+    http_version: 
+  recorded_at: Fri, 15 Nov 2013 21:44:00 GMT
+recorded_with: VCR 2.7.0

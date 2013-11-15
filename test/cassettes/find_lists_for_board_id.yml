@@ -1,0 +1,112 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/boards/526d8e130a14a9d846001d96
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - OAuth oauth_consumer_key="c9094b0383bddbbf9b822b007c615519", oauth_nonce="8bd890b939f056f57cff1ab5ff81dc74",
+        oauth_signature="8ENDhiymOfW4NB%2FltcYqJJlGxSs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1384551840", oauth_token="d000b4c5b5202b77c90cdce06829df88dc9567b131e9ba28aa84ff850059d335",
+        oauth_version="1.0"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Server-Time:
+      - '1384551840961'
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Content-Length:
+      - '717'
+      Date:
+      - Fri, 15 Nov 2013 21:44:00 GMT
+    body:
+      encoding: UTF-8
+      string: '{"id":"526d8e130a14a9d846001d96","name":"Trlo App","desc":"","descData":null,"closed":false,"idOrganization":null,"pinned":true,"url":"https://trello.com/b/a3RnYKnD/trlo-app","shortUrl":"https://trello.com/b/a3RnYKnD","prefs":{"permissionLevel":"private","voting":"disabled","comments":"members","invitations":"members","selfJoin":false,"cardCovers":true,"cardAging":"regular","background":"blue","backgroundColor":"#205C7E","backgroundImage":null,"backgroundImageScaled":null,"backgroundTile":false,"backgroundBrightness":"unknown","canBePublic":true,"canBeOrg":true,"canBePrivate":true,"canInvite":true},"labelNames":{"yellow":"Analysis
+        Complete","red":"","purple":"","orange":"","green":"Ready to Pull","blue":""}}'
+    http_version: 
+  recorded_at: Fri, 15 Nov 2013 21:44:01 GMT
+- request:
+    method: get
+    uri: https://api.trello.com/1/boards/526d8e130a14a9d846001d96/lists?filter=open
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - OAuth oauth_consumer_key="c9094b0383bddbbf9b822b007c615519", oauth_nonce="36c680b5a57b0c1e2c2e0bec0d8cf148",
+        oauth_signature="4Emch2Ff2J7E81FM5JwhWXhCEKI%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1384551841", oauth_token="d000b4c5b5202b77c90cdce06829df88dc9567b131e9ba28aa84ff850059d335",
+        oauth_version="1.0"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Server-Time:
+      - '1384551841583'
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Content-Length:
+      - '396'
+      Date:
+      - Fri, 15 Nov 2013 21:44:01 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"id":"526d8e130a14a9d846001d97","name":"To Do","closed":false,"idBoard":"526d8e130a14a9d846001d96","pos":16384,"subscribed":false},{"id":"526d8e130a14a9d846001d98","name":"Doing","closed":false,"idBoard":"526d8e130a14a9d846001d96","pos":32768,"subscribed":false},{"id":"526d8e130a14a9d846001d99","name":"Done","closed":false,"idBoard":"526d8e130a14a9d846001d96","pos":49152,"subscribed":false}]'
+    http_version: 
+  recorded_at: Fri, 15 Nov 2013 21:44:01 GMT
+recorded_with: VCR 2.7.0
