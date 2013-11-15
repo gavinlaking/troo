@@ -29,36 +29,40 @@ module Trlo
 
   describe FindBoard do
     describe ".with" do
-      let(:board_id) { "some_24bit_board_id" }
-      let(:board) { OpenStruct.new(id:   "some_24bit_board_id",
-                                   name: "Development Board") }
+      subject { FindBoard.with("526d8e130a14a9d846001d96") }
 
       before do
-        Trello::Board.stubs(:find).returns(board)
+        VCR.insert_cassette(:find_board)
       end
 
-      subject { FindBoard.with(board_id) }
+      after do
+        VCR.eject_cassette
+      end
 
       it "finds the board by specifed board_id" do
-        subject.name.must_equal "Development Board"
+        subject.name.must_equal "Trlo App"
       end
     end
   end
 
   describe FindBoards do
     describe ".all" do
-      let(:board) { OpenStruct.new(id:   "some_24bit_board_id",
-                                   name: "Development Board") }
-      let(:boards) { [board, board] }
-
       subject { FindBoards.all }
 
       before do
-        Trello::Board.stubs(:all).returns(boards)
+        VCR.insert_cassette(:find_all_boards)
+      end
+
+      after do
+        VCR.eject_cassette
       end
 
       it "returns all the boards for the authenticated user" do
         subject.size.must_equal 2
+      end
+
+      it "decorates the returned boards" do
+        subject.last.fetch(:name).must_equal "Welcome Board"
       end
     end
   end
