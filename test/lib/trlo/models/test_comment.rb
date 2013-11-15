@@ -43,18 +43,6 @@ module Trlo
     end
   end
 
-  describe FindComments do
-    describe "#all_comments" do
-      let(:card_id) { "some_24bit_card_id" }
-
-      subject { FindComment.for(card_id) }
-
-      it "finds all the comments by card_id" do
-        skip("Please write spec.")
-      end
-    end
-  end
-
   describe CreateComment do
     describe "#create" do
       let(:card_id) { "some_24bit_card_id" }
