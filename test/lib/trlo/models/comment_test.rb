@@ -42,33 +42,5 @@ module Trlo
       end
     end
   end
-
-  describe CreateComment do
-    describe "#create" do
-      let(:card_id) { "some_24bit_card_id" }
-
-      subject { CreateComment.for(card_id, comment) }
-
-      describe "when a comment is supplied" do
-        let(:comment) { }
-
-        it "creates a comment on the specified card" do
-          skip("Please write spec.")
-        end
-      end
-
-      describe "when a comment is not supplied" do
-        let(:comment) { }
-
-        it "asks the user to provide a comment" do
-          skip("Please write spec.")
-        end
-
-        it "creates a comment on the specified card" do
-          skip("Please write spec.")
-        end
-      end
-    end
-  end
 end
 

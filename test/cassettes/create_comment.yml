@@ -1,0 +1,123 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/cards/526d8f19ddb279532e005259
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - OAuth oauth_consumer_key="c9094b0383bddbbf9b822b007c615519", oauth_nonce="f38e18562e6eaa217ef3cced1b9ecbb6",
+        oauth_signature="c8sMbHBrJDuiNCPqN%2FzXkxqMHi8%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1384558300", oauth_token="d000b4c5b5202b77c90cdce06829df88dc9567b131e9ba28aa84ff850059d335",
+        oauth_version="1.0"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Server-Time:
+      - '1384558301569'
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Content-Length:
+      - '687'
+      Date:
+      - Fri, 15 Nov 2013 23:31:41 GMT
+    body:
+      encoding: UTF-8
+      string: '{"id":"526d8f19ddb279532e005259","badges":{"votes":0,"viewingMemberVoted":false,"subscribed":false,"fogbugz":"","checkItems":0,"checkItemsChecked":0,"comments":2,"attachments":0,"description":false,"due":null},"checkItemStates":[],"closed":false,"dateLastActivity":"2013-11-12T21:10:30.111Z","desc":"","descData":null,"due":null,"idBoard":"526d8e130a14a9d846001d96","idChecklists":[],"idList":"526d8e130a14a9d846001d97","idMembers":["5195fdb5a8c01a2318004f5d"],"idShort":8,"idAttachmentCover":null,"manualCoverAttachment":false,"labels":[],"name":"lists
+        --show <list_id>","pos":589823,"shortUrl":"https://trello.com/c/UJBK7pil","url":"https://trello.com/c/UJBK7pil/8-lists-show-list-id"}'
+    http_version: 
+  recorded_at: Fri, 15 Nov 2013 23:31:41 GMT
+- request:
+    method: post
+    uri: https://api.trello.com/1/cards/526d8f19ddb279532e005259/actions/comments
+    body:
+      encoding: US-ASCII
+      string: text=This%20is%20a%20test%20comment.
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - OAuth oauth_consumer_key="c9094b0383bddbbf9b822b007c615519", oauth_nonce="af92fb52d392bc140ecf1c3755c6045a",
+        oauth_signature="gRe8qFnFvj5cBhAxd7TVVcNYCmk%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1384558301", oauth_token="d000b4c5b5202b77c90cdce06829df88dc9567b131e9ba28aa84ff850059d335",
+        oauth_version="1.0"
+      Content-Length:
+      - '36'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Server-Time:
+      - '1384558302388'
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Content-Length:
+      - '951'
+      Date:
+      - Fri, 15 Nov 2013 23:31:42 GMT
+    body:
+      encoding: UTF-8
+      string: '{"id":"5286aedec0d6534a410007c1","idMemberCreator":"5195fdb5a8c01a2318004f5d","data":{"text":"This
+        is a test comment.","textData":{"emoji":{}},"card":{"id":"526d8f19ddb279532e005259","name":"lists
+        --show <list_id>","idShort":8,"shortLink":"UJBK7pil"},"board":{"id":"526d8e130a14a9d846001d96","name":"Trlo
+        App","shortLink":"a3RnYKnD"}},"type":"commentCard","date":"2013-11-15T23:31:42.361Z","memberCreator":{"id":"5195fdb5a8c01a2318004f5d","avatarHash":"045fd924d84699c9ba451e181bba33a3","fullName":"Gavin
+        Laking","initials":"GL","username":"gavinlaking1"},"entities":[{"type":"member","id":"5195fdb5a8c01a2318004f5d","text":"Gavin
+        Laking"},{"type":"text","text":"on","hideIfContext":true,"idContext":"526d8f19ddb279532e005259"},{"type":"card","hideIfContext":true,"shortLink":"UJBK7pil","id":"526d8f19ddb279532e005259","text":"lists
+        --show <list_id>"},{"type":"comment","text":"This is a test comment.","textHtml":"<p>This
+        is a test comment.</p>\n"}]}'
+    http_version: 
+  recorded_at: Fri, 15 Nov 2013 23:31:42 GMT
+recorded_with: VCR 2.7.0
