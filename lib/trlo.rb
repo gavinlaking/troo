@@ -1,3 +1,4 @@
+require "digest"
 require "highline/import"
 require "hirb"
 require "pry"
