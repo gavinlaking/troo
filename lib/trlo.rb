@@ -1,3 +1,4 @@
+require "data_mapper"
 require "digest"
 require "highline/import"
 require "hirb"
@@ -35,6 +36,9 @@ require_relative "trlo/lists_controller"
 require_relative "trlo/cards_controller"
 
 module Trlo
+  DataMapper.setup(:default, "sqlite://#{File.expand_path(File.dirname(__FILE__))}/trlo.db")
+  DataMapper.finalize
+
   Configuration.load!(File.dirname(__FILE__) + "/../configuration.yml")
 
   Trello.configure do |config|

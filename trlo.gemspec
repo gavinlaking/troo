@@ -26,6 +26,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
 
+  spec.add_dependency "data_mapper"
+  spec.add_dependency "dm-sqlite-adapter"
   spec.add_dependency "highline"
   spec.add_dependency "hirb"
   spec.add_dependency "ruby-trello"
