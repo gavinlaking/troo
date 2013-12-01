@@ -24,6 +24,8 @@ require_relative "trlo/external/external_comment"
 require_relative "trlo/external/external_list"
 require_relative "trlo/external/external_member"
 
+require_relative "trlo/views/screen"
+
 require_relative "trlo/models/board"
 require_relative "trlo/models/card"
 require_relative "trlo/models/comment"

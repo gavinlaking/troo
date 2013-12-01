@@ -1,0 +1,28 @@
+
+<%= horizontal_line %>
+
+<%= title(@object.id, @object.name) %>
+
+<%= label("Description:") %>
+<%= @object.desc %>
+
+<%= label("Comments:") %>
+<% if @object.comments.any? -%>
+There are comments, but we aren't rendering them.
+<% else -%>
+There are no comments at this time.
+<% end -%>
+
+<%= label("Members:") %>
+<% if @object.members.any? -%>
+There are members, but we aren't rendering them.
+<% else -%>
+There are no members assigned to this card.
+<% end -%>
+
+<%= label("Metadata:") %>
+<%= Esc.cyan + "Board:" + Esc.reset %>   <%= @object.board %>
+<%= Esc.cyan + "List:" + Esc.reset %>    <%= @object.list %>
+<%= Esc.cyan + "Updated:" + Esc.reset %> <%= @object.date %>
+
+<%= horizontal_line %>
