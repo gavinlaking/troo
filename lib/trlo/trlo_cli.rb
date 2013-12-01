@@ -43,10 +43,10 @@ module Trlo
         SetCurrent.for Trlo::Card.retrieve(card_id)
       end
 
-      # desc "show", "Show a card <card_id> (includes comments)"
-      # def show(card_id)
-      #   ShowCard.with(card_id)
-      # end
+      desc "show <card_id>", "Show a card <card_id> (includes comments)"
+      def show(card_id)
+        Trlo::Screen.render(Trlo::CardDecorator.decorate(Trlo::Card.retrieve(card_id)))
+      end
 
       # option :editor
       # desc "comment", "Comment on a card with <card_id> <comment>"

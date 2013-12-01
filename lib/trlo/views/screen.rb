@@ -4,35 +4,20 @@ module Trlo
   end
 
   class Screen
-    def initialize
-      list = OpenStruct.new(name: "Totally Cool List")
-      members = [:a, :b]
-      comments = []
+    def initialize(object)
+      @object = object
+    end
 
-      desc = [
-        Esc.red     + "Some string" + Esc.reset + "\n",
-        Esc.green   + "Some string" + Esc.reset + "\n",
-        Esc.yellow  + "Some string" + Esc.reset + "\n",
-        Esc.blue    + "Some string" + Esc.reset + "\n",
-        Esc.magenta + "Some string" + Esc.reset + "\n",
-        Esc.cyan    + "Some string" + Esc.reset + "\n",
-        Esc.white   + "Some string" + Esc.reset + "\n"].join
-
-      name = "Some cool card you just wanna do..."
-
-      @object = OpenStruct.new(id: 217,
-                               name: name,
-                               board: "Live Support (5)",
-                               list: "Development (3)",
-                               members: members,
-                               comments: comments,
-                               date: Time.now,
-                               desc: desc)
+    def self.render(object)
+      new(object).render
     end
 
     def render
       puts parse_template
     end
+
+    private
+    attr_reader :object
 
     def horizontal_line
       "-" * width
@@ -42,19 +27,16 @@ module Trlo
       Esc.blue + Esc.underline + string + Esc.reset
     end
 
-    def title(id = nil, string = nil)
-      [Esc.green + "(" + id.to_s + ")" + Esc.reset + " ",
-       Esc.yellow + string + Esc.reset].join
+    def metadata(label, data)
+      Esc.cyan + label.rjust(9) + Esc.reset + " " + data
     end
-
-    private
 
     def parse_template
       ERB.new(load_template, nil, "-").result(binding)
     end
 
     def load_template
-      File.read(File.dirname(__FILE__) + "/show_card.erb")
+      File.read(File.dirname(__FILE__) + object.template_file)
     end
 
     def width

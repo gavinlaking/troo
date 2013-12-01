@@ -67,6 +67,10 @@ module Trlo
       end
     end
 
+    def members
+      []
+    end
+
     def content
       current = current? ? "* " : ""
       {
