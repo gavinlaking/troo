@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "hirb"
   spec.add_dependency "json", "1.7.7"
   spec.add_dependency "ruby-trello"
+  spec.add_dependency "term-ansicolor", "1.2.2"
   spec.add_dependency "thor"
 end
 
