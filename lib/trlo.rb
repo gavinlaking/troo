@@ -1,92 +1,49 @@
+require "celluloid/autostart"
 require "data_mapper"
 require "digest"
 require "highline/import"
 require "hirb"
 require "pry"
-require "singleton"
-require "slop"
 require "tempfile"
+require "thor"
 require "trello"
 require "yaml"
 
-require_relative "trlo/configuration"
 require_relative "trlo/input"
 require_relative "trlo/output"
+require_relative "trlo/refresh_all"
+require_relative "trlo/set_current"
+require_relative "trlo/trlo_cli"
 require_relative "trlo/version"
 
+require_relative "trlo/external/external_board"
+require_relative "trlo/external/external_card"
+require_relative "trlo/external/external_comment"
+require_relative "trlo/external/external_list"
+require_relative "trlo/external/external_member"
+
 require_relative "trlo/models/board"
-require_relative "trlo/models/find_board"
-require_relative "trlo/models/find_boards"
 require_relative "trlo/models/card"
-require_relative "trlo/models/find_card"
-require_relative "trlo/models/find_cards"
-require_relative "trlo/models/move_card"
-require_relative "trlo/models/show_card"
 require_relative "trlo/models/comment"
 require_relative "trlo/models/create_comment"
-require_relative "trlo/models/find_comments"
 require_relative "trlo/models/list"
-require_relative "trlo/models/find_list"
-require_relative "trlo/models/find_lists"
 require_relative "trlo/models/member"
-require_relative "trlo/models/find_member"
-
-require_relative "trlo/boards_controller"
-require_relative "trlo/lists_controller"
-require_relative "trlo/cards_controller"
+require_relative "trlo/models/move_card"
+require_relative "trlo/models/show_card"
 
 module Trlo
+  #Celluloid.logger = nil
+  DataMapper::Logger.new(STDOUT, :debug)
   DataMapper.setup(:default, "sqlite://#{File.expand_path(File.dirname(__FILE__))}/trlo.db")
+  DataMapper::Model.raise_on_save_failure = true
   DataMapper.finalize
+  DataMapper.auto_upgrade!
 
-  Configuration.load!(File.dirname(__FILE__) + "/../configuration.yml")
-
-  Trello.configure do |config|
-    config.consumer_key       = Configuration.instance.key
-    config.consumer_secret    = Configuration.instance.secret
-    config.oauth_token        = Configuration.instance.oauth_token
-    config.oauth_token_secret = Configuration.instance.oauth_token_secret
+  config = YAML.load_file(File.dirname(__FILE__) + "/../configuration.yml")
+  Trello.configure do |trello|
+    trello.consumer_key       = config.fetch("key")
+    trello.consumer_secret    = config.fetch("secret")
+    trello.oauth_token        = config.fetch("oauth_token")
+    trello.oauth_token_secret = config.fetch("oauth_token_secret")
   end
-
-  opts = Slop.parse(help: true) do
-    on '-v', 'Print the version' do
-      puts "trlo v#{Trlo::VERSION}"
-    end
-
-    command 'boards' do
-      on :a, :all,   'Show all boards'
-
-      run do |opts, args|
-        options = opts.to_hash
-        BoardsController.dispatch!(options, args)
-      end
-    end
-
-    command 'lists' do
-      on :a, :all,   'Show all lists for a <board_id>'
-
-      run do |opts, args|
-        options = opts.to_hash
-        ListsController.dispatch!(options, args)
-      end
-    end
-
-    command 'cards' do
-      on :a, :all,     'Show all cards for a <list_id>'
-      on :c, :comment, 'Comment on a card with <card_id> <comment>'
-      on :m, :move,    'Move a card <card_id> to list <list_id>'
-      on :s, :show,    'Show a card <card_id> (includes comments)'
-
-      run do |opts, args|
-        options = opts.to_hash
-        CardsController.dispatch!(options, args)
-      end
-    end
-  end
-rescue => exception
-  $stderr.puts "trlo: error: #{exception.message}\n"
-  $stderr.puts "stack trace:\n"
-  $stderr.puts "#{exception.backtrace.join("\n")}\n"
-  exit 1
 end
-

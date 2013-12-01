@@ -1,10 +1,14 @@
 module Trlo
   class Output
-    def initialize(content)
-      @content = content
+    def initialize(collection)
+      @collection = collection
     end
 
-    def list_table
+    def self.render(collection)
+      new(collection).render
+    end
+
+    def render
       puts Hirb::Helpers::AutoTable.
         render(content, { fields:      header.keys,
                           headers:     header,
@@ -12,10 +16,14 @@ module Trlo
     end
 
     private
-    attr_reader :content
+    attr_reader :collection
 
     def header
-      content.first.fetch(:header)
+      @header ||= collection.first.header
+    end
+
+    def content
+      collection.map(&:content)
     end
   end
 end

@@ -17,5 +17,6 @@ test/version_tmp
 tmp
 
 configuration.yml
+configuration.yml.otb
 lib/trlo.db
 tags

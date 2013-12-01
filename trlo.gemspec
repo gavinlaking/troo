@@ -18,19 +18,21 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "1.4.0.rc.1"
+  spec.add_development_dependency "bundler", "1.5.0.rc.1"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "minitest", "4.7.5"
   spec.add_development_dependency "mocha"
-  spec.add_development_dependency "pry"
+  spec.add_development_dependency "pry", "0.9.12.4"
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
 
+  spec.add_dependency "celluloid"
   spec.add_dependency "data_mapper"
   spec.add_dependency "dm-sqlite-adapter"
   spec.add_dependency "highline"
   spec.add_dependency "hirb"
+  spec.add_dependency "json", "1.7.7"
   spec.add_dependency "ruby-trello"
-  spec.add_dependency "slop"
+  spec.add_dependency "thor"
 end
 
