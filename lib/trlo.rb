@@ -36,8 +36,9 @@ require_relative "trlo/models/move_card"
 require_relative "trlo/models/show_card"
 
 module Trlo
-  #Celluloid.logger = nil
-  DataMapper::Logger.new(STDOUT, :debug)
+  Celluloid.logger = nil
+  #DataMapper::Logger.new(STDOUT, :debug)
+
   DataMapper.setup(:default, "sqlite://#{File.expand_path(File.dirname(__FILE__))}/trlo.db")
   DataMapper::Model.raise_on_save_failure = true
   DataMapper.finalize
