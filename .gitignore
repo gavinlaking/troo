@@ -18,5 +18,5 @@ tmp
 
 configuration.yml
 configuration.yml.otb
-lib/trlo.db
+trlo.db
 tags
