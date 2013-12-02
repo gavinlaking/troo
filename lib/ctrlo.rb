@@ -15,7 +15,7 @@ require_relative "ctrlo/input"
 require_relative "ctrlo/output"
 require_relative "ctrlo/refresh_all"
 require_relative "ctrlo/set_current"
-require_relative "ctrlo/trlo_cli"
+require_relative "ctrlo/ctrlo_cli"
 require_relative "ctrlo/version"
 
 require_relative "ctrlo/external/external_board"
