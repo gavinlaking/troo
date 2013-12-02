@@ -3,7 +3,7 @@ module Trlo
     include DataMapper::Resource
 
     property :id,                Serial
-    property :name,              String
+    property :name,              Text
     property :current,           Boolean, default: false
     property :closed,            Boolean, default: false
     property :external_board_id, String
