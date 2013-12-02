@@ -26,7 +26,9 @@ require_relative "ctrlo/external/external_list"
 require_relative "ctrlo/external/external_member"
 
 require_relative "ctrlo/views/screen"
+require_relative "ctrlo/views/template"
 require_relative "ctrlo/views/card_decorator"
+require_relative "ctrlo/views/comment_decorator"
 
 require_relative "ctrlo/models/board"
 require_relative "ctrlo/models/card"

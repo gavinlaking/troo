@@ -5,7 +5,11 @@ module Ctrlo
     end
 
     def self.decorate(card = nil)
-      new(card)
+      new(card).decorate
+    end
+
+    def decorate
+      Template.parse(self)
     end
 
     def title
@@ -53,7 +57,7 @@ module Ctrlo
 
     def card_comments
       if card.comments.any?
-        "There are some comments."
+        card.comments.map { |comment| CommentDecorator.decorate(comment) }.join
       else
         "There are no comments at this time."
       end
