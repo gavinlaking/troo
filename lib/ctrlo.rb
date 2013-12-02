@@ -4,6 +4,7 @@ require "digest"
 require "erb"
 require "highline/import"
 require "hirb"
+require "logger"
 require "pry"
 require "tempfile"
 require "term/ansicolor"
@@ -38,7 +39,12 @@ require_relative "ctrlo/models/show_card"
 
 module Ctrlo
   Celluloid.logger = nil
-  DataMapper::Logger.new(STDOUT, :debug)
+
+  if ARGV.include?("--debug")
+    ARGV.delete("--debug")
+    Celluloid.logger = Logger.new(STDERR)
+    DataMapper::Logger.new(STDOUT, :debug)
+  end
 
   DataMapper.setup(:default, "sqlite://#{File.expand_path(File.dirname(__FILE__))}/../ctrlo.db")
   DataMapper::Model.raise_on_save_failure = true

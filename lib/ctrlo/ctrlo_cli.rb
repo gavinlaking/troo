@@ -81,6 +81,8 @@ module Ctrlo
     end
 
     class Main < Thor
+      class_option :debug, type: :boolean, desc: "Enable debugging."
+
       desc "refresh", "Refresh all data"
       def refresh
         RefreshAll.perform
