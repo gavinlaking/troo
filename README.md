@@ -26,7 +26,7 @@ You will need user authentication tokens to access your Trello account.
 
 2) Go to
 
-    https://trello.com/1/connect?key=your_key_here&name=trlo&response_type=token&scope=read,write
+    https://trello.com/1/connect?key=your_key_here&name=ctrlo&response_type=token&scope=read,write
 
 
 ## Todo
