@@ -31,12 +31,9 @@ You will need user authentication tokens to access your Trello account.
 
 ## Todo
 
+- Fix multitude of sins.
 - Write cucumber integration tests.
 - Consider caching.
-
-## Known Issues
-
-- Between the time of retrieving boards, lists or cards, they could have changed state already (e.g. gone away) therefore your command will not work as expected.
 
 ## Contributing
 
