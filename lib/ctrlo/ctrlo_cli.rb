@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   module CLIErrors
     def error(message = nil)
       if message
@@ -15,12 +15,12 @@ module Trlo
 
       desc "all", "Show all the boards"
       def all
-        Output.render(Trlo::Board.retrieve_all)
+        Output.render(Ctrlo::Board.retrieve_all)
       end
 
       desc "current <board_id>", "Set the current board to <board_id>"
       def current(board_id)
-        SetCurrent.for Trlo::Board.retrieve(board_id)
+        SetCurrent.for Ctrlo::Board.retrieve(board_id)
       end
     end
 
@@ -30,9 +30,9 @@ module Trlo
       desc "all", "Show all the cards for the current list or for <list_id>"
       def all(list_id = nil)
         if list_id
-          Output.render(Trlo::List.retrieve(list_id).cards)
+          Output.render(Ctrlo::List.retrieve(list_id).cards)
         else
-          Output.render(Trlo::List.current.cards)
+          Output.render(Ctrlo::List.current.cards)
         end
       rescue => e
         error(e.message)
@@ -40,12 +40,12 @@ module Trlo
 
       desc "current <card_id>", "Set the current card to <card_id>"
       def current(card_id)
-        SetCurrent.for Trlo::Card.retrieve(card_id)
+        SetCurrent.for Ctrlo::Card.retrieve(card_id)
       end
 
       desc "show <card_id>", "Show a card <card_id> (includes comments)"
       def show(card_id)
-        Trlo::Screen.render(Trlo::CardDecorator.decorate(Trlo::Card.retrieve(card_id)))
+        Ctrlo::Screen.render(Ctrlo::CardDecorator.decorate(Ctrlo::Card.retrieve(card_id)))
       end
 
       # option :editor
@@ -66,9 +66,9 @@ module Trlo
       desc "all", "Show all the lists the current board or for <board_id>"
       def all(board_id = nil)
         if board_id
-          Output.render(Trlo::Board.retrieve(board_id).lists)
+          Output.render(Ctrlo::Board.retrieve(board_id).lists)
         else
-          Output.render(Trlo::Board.current.lists)
+          Output.render(Ctrlo::Board.current.lists)
         end
       rescue => e
         error(e.message)
@@ -76,7 +76,7 @@ module Trlo
 
       desc "current <list_id>", "Set the current list to <list_id>"
       def current(list_id)
-        SetCurrent.for Trlo::List.retrieve(list_id)
+        SetCurrent.for Ctrlo::List.retrieve(list_id)
       end
     end
 
@@ -93,17 +93,17 @@ module Trlo
 
       desc "version", "Print the version"
       def version
-        puts "trlo #{Trlo::VERSION}"
+        puts "ctrlo #{Ctrlo::VERSION}"
       end
 
       desc "board [SUBCOMMAND] <args>", "Operate on the board"
-      subcommand "board", Trlo::CLI::Board
+      subcommand "board", Ctrlo::CLI::Board
 
       desc "list [SUBCOMMAND] <args>", "Operate on the list"
-      subcommand "list", Trlo::CLI::List
+      subcommand "list", Ctrlo::CLI::List
 
       desc "card [SUBCOMMAND] <args>", "Operate on the card"
-      subcommand "card", Trlo::CLI::Card
+      subcommand "card", Ctrlo::CLI::Card
     end
 
   end

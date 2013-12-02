@@ -1,10 +1,10 @@
 require_relative "../../../test_helper"
 
-module Trlo
+module Ctrlo
   describe Card do
     let(:card) { OpenStruct.new(id:       "some_24bit_card_id",
                                 short_id: "212",
-                                name:     "Finish Trlo") }
+                                name:     "Finish Ctrlo") }
 
     describe "#short_id" do
       it "returns the Trello short ID of the card" do
@@ -20,7 +20,7 @@ module Trlo
 
     describe "#name" do
       it "returns the name of the list" do
-        Card.new(card).name.must_equal "Finish Trlo"
+        Card.new(card).name.must_equal "Finish Ctrlo"
       end
     end
 
@@ -29,7 +29,7 @@ module Trlo
         Card.new(card).
           decorate.must_equal({ id:       "some_24bit_card_id",
                                 short_id: "212",
-                                name:     "Finish Trlo",
+                                name:     "Finish Ctrlo",
                                 comments: [],
                                 header:   { short_id: "ID", name: "Name" } })
       end

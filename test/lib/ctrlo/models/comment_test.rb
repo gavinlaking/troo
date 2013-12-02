@@ -1,6 +1,6 @@
 require_relative "../../../test_helper"
 
-module Trlo
+module Ctrlo
   describe Comment do
     let(:comment) { OpenStruct.new(id:                "some_24bit_comment_id",
                                    member_creator_id: "some_24bit_member_id",

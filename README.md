@@ -1,4 +1,4 @@
-# Trlo
+# Ctrlo
 
 CLI interface for Trello.
 
@@ -6,7 +6,7 @@ CLI interface for Trello.
 
 Add this line to your application's Gemfile:
 
-    gem 'trlo'
+    gem 'ctrlo'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install trlo
+    $ gem install ctrlo
 
 ## Usage
 

@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class RefreshAll
     def self.perform
       RefreshBoards.all.map(&:external_board_id).map do |board_id|

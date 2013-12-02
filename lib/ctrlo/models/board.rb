@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class Board
     include DataMapper::Resource
 

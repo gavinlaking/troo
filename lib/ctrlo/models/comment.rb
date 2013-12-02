@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class Comment
     include DataMapper::Resource
 

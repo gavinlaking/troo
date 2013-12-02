@@ -1,6 +1,6 @@
 require_relative "../../../test_helper"
 
-module Trlo
+module Ctrlo
   describe List do
     let(:list) { OpenStruct.new(id:   "some_24bit_string",
                                 name: "Backlog") }

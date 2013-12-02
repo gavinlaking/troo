@@ -1,6 +1,6 @@
 require_relative "../../../test_helper"
 
-module Trlo
+module Ctrlo
   describe Member do
     let(:member) { OpenStruct.new(id:   "some_24bit_member_id",
                                  full_name: "Gavin Laking",

@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class ShowCard
     def initialize(card_id)
       @card_id = card_id

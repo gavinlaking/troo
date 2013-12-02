@@ -1,6 +1,6 @@
 require_relative "../../../test_helper"
 
-module Trlo
+module Ctrlo
   describe ShowCard do
     describe "#show" do
       let(:card_id)  { "some_24bit_card_id" }

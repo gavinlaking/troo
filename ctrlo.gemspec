@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'trlo/version'
+require 'ctrlo/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "trlo"
-  spec.version       = Trlo::VERSION
+  spec.name          = "ctrlo"
+  spec.version       = Ctrlo::VERSION
   spec.authors       = ["Gavin Laking"]
   spec.email         = ["gavin.laking@onthebeach.co.uk"]
   spec.description   = %q{CLI interface for Trello.}

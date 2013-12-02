@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class Input
     def initialize(id = nil)
       @id = id

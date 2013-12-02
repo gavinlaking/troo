@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class CardDecorator
     def initialize(card = nil)
       @card = card

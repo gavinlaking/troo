@@ -1,13 +1,13 @@
 require_relative "../../../test_helper"
 
-module Trlo
+module Ctrlo
   describe ExternalComment do
     # describe "when the is_comment_id option is set" do
     #   before { VCR.insert_cassette(:comment_singular) }
     #   after  { VCR.eject_cassette }
 
     #   it "returns an individual comment" do
-    #     Trlo::ExternalComment.request("526d8f19ddb279532e005259", {is_comment_id: true}).size must_equal 1
+    #     Ctrlo::ExternalComment.request("526d8f19ddb279532e005259", {is_comment_id: true}).size must_equal 1
     #   end
     # end
 
@@ -16,7 +16,7 @@ module Trlo
     #   after  { VCR.eject_cassette }
 
     #   it "returns a collection of comments" do
-    #     Trlo::ExternalComment.request("526d8e130a14a9d846001d96").size must_equal 17
+    #     Ctrlo::ExternalComment.request("526d8e130a14a9d846001d96").size must_equal 17
     #   end
     # end
   end

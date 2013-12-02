@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class ExternalBoard
     def initialize(external_board_id = nil)
       @external_board_id = external_board_id

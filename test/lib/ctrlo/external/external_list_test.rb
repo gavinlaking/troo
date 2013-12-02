@@ -1,13 +1,13 @@
 require_relative "../../../test_helper"
 
-module Trlo
+module Ctrlo
   describe ExternalList do
     # describe "when the is_list_id option is set" do
     #   before { VCR.insert_cassette(:list_singular) }
     #   after  { VCR.eject_cassette }
 
     #   it "returns an individual list" do
-    #     Trlo::ExternalList.request("526d8e130a14a9d846001d97", { is_list_id: true }).size must_equal 1
+    #     Ctrlo::ExternalList.request("526d8e130a14a9d846001d97", { is_list_id: true }).size must_equal 1
     #   end
     # end
 
@@ -16,7 +16,7 @@ module Trlo
     #   after  { VCR.eject_cassette }
 
     #   it "returns a collection of lists" do
-    #     Trlo::ExternalList.request("526d8e130a14a9d846001d96").size must_equal 3
+    #     Ctrlo::ExternalList.request("526d8e130a14a9d846001d96").size must_equal 3
     #   end
     # end
   end

@@ -1,6 +1,6 @@
 require_relative "../../test_helper"
 
-module Trlo
+module Ctrlo
   describe Output do
     describe "#list_table" do
       let(:content) { [ { key: "1", value: "Hello", header: { key: "Key", value: "Value" } },

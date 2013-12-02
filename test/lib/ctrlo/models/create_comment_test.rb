@@ -1,6 +1,6 @@
 require_relative "../../../test_helper"
 
-module Trlo
+module Ctrlo
   describe CreateComment do
     describe "#create" do
       subject { CreateComment.for("526d8f19ddb279532e005259", comment) }

@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class Output
     def initialize(collection)
       @collection = collection

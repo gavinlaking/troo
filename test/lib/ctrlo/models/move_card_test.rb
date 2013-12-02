@@ -1,6 +1,6 @@
 require_relative "../../../test_helper"
 
-module Trlo
+module Ctrlo
   describe MoveCard do
     describe "#move" do
       subject { MoveCard.with("526d8f19ddb279532e005259", list_id) }

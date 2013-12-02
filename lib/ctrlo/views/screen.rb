@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class Esc
     extend Term::ANSIColor
   end

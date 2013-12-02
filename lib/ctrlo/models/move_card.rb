@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class MoveCard
     def initialize(card_id, list_id = nil)
       @card_id = card_id

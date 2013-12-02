@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class Card
     include DataMapper::Resource
 

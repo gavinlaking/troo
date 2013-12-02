@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class CreateComment
     def initialize(card_id, comment = nil)
       @card_id = card_id

@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class ExternalCard
     def initialize(external_id, options = {})
       raise StandardError, "external_id expected, none given" if external_id.nil?

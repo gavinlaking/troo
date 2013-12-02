@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class Member
     include DataMapper::Resource
 

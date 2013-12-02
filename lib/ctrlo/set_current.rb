@@ -1,4 +1,4 @@
-module Trlo
+module Ctrlo
   class SetCurrent
     def initialize(entity)
       @entity = entity
