@@ -99,13 +99,13 @@ module Ctrlo
       end
 
       desc "board [SUBCOMMAND] <args>", "Operate on the board"
-      subcommand "board", Ctrlo::CLI::Board
+      subcommand :board, Ctrlo::CLI::Board
 
       desc "list [SUBCOMMAND] <args>", "Operate on the list"
-      subcommand "list", Ctrlo::CLI::List
+      subcommand :list, Ctrlo::CLI::List
 
       desc "card [SUBCOMMAND] <args>", "Operate on the card"
-      subcommand "card", Ctrlo::CLI::Card
+      subcommand :card, Ctrlo::CLI::Card
     end
 
   end
