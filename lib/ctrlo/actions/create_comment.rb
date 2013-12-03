@@ -10,7 +10,7 @@ module Ctrlo
     end
 
     def create
-      FindCard.with(card_id).add_comment(comment)
+      proxy_card.add_comment(comment)
     end
 
     private
@@ -23,5 +23,10 @@ module Ctrlo
     def user_input
       Input.get(card_id)
     end
+
+    def proxy_card
+      ProxyCard.for(Ctrlo::Card.retrieve(card_id))
+    end
+
   end
 end

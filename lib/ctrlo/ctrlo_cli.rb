@@ -48,11 +48,10 @@ module Ctrlo
         Ctrlo::Screen.render(Ctrlo::CardDecorator.decorate(Ctrlo::Card.retrieve(card_id)))
       end
 
-      # option :editor
-      # desc "comment", "Comment on a card with <card_id> <comment>"
-      # def comment(card_id, comment = nil)
-      #   CreateComment.for(list_id)
-      # end
+      desc "comment", "Comment on a card with <card_id> <comment>"
+      def comment(card_id, comment = nil)
+        Ctrlo::CreateComment.for(card_id, comment)
+      end
 
       # desc "move", "Move a card <card_id> to list <list_id>"
       # def move(card_id, list_id)
