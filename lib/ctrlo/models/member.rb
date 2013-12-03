@@ -13,7 +13,8 @@ module Ctrlo
     property :external_member_id, String
 
     # has n, :cards
-    # has n, :comments
+    has n, :comments, :parent_key => [ :external_member_id ],
+                      :child_key  => [ :external_member_id ]
 
     class << self
       def retrieve(id)
@@ -43,12 +44,6 @@ module Ctrlo
       def get_remote(external_member_id)
         persist ExternalMember.request(external_member_id, { is_member_id: true })
       end
-    end
-
-    def content
-    end
-
-    def header
     end
   end
 end

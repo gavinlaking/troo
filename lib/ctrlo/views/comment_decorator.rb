@@ -12,8 +12,9 @@ module Ctrlo
       Template.parse(self)
     end
 
-    def member
-      comment.external_member_id
+    def member_username
+      return comment.member_username unless comment.member_username.empty?
+      "Unknown"
     end
 
     def text

@@ -16,9 +16,9 @@ module Ctrlo
     belongs_to :card,   :parent_key => [ :external_card_id ],
                         :child_key  => [ :external_card_id ],
                         :required   => true
-    # belongs_to :member, :parent_key => [ :external_member_id ],
-    #                     :child_key  => [ :external_member_id ],
-    #                     :required   => true
+    belongs_to :member, :parent_key => [ :external_member_id ],
+                        :child_key  => [ :external_member_id ],
+                        :required   => true
 
     class << self
       def retrieve(id)
@@ -40,6 +40,10 @@ module Ctrlo
                                     text:                c.data["text"] })
         end
       end
+    end
+
+    def member_username
+      member.username
     end
 
     def content
