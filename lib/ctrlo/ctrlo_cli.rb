@@ -53,10 +53,16 @@ module Ctrlo
         Ctrlo::CreateComment.for(card_id, comment)
       end
 
-      # desc "move", "Move a card <card_id> to list <list_id>"
-      # def move(card_id, list_id)
-      #   MoveCard.with(card_id, list_id)
-      # end
+      desc "move", "Move a card <card_id> to list <list_id>"
+      def move(card_id, list_id = nil)
+        unless list_id
+          Output.render(Ctrlo::Board.current.lists)
+          error("Please choose a destination list. (Move a card <card_id> to list <list_id>)")
+          exit 1
+        end
+
+        MoveCard.with(card_id, list_id)
+      end
     end
 
     class List < Thor

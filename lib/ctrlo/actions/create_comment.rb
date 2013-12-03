@@ -1,8 +1,7 @@
 module Ctrlo
   class CreateComment
     def initialize(card_id, comment = nil)
-      @card_id = card_id
-      @comment = comment
+      @card_id, @comment = card_id, comment
     end
 
     def self.for(card_id, comment = nil)

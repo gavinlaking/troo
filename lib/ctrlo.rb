@@ -20,6 +20,7 @@ require_relative "ctrlo/ctrlo_cli"
 require_relative "ctrlo/version"
 
 require_relative "ctrlo/actions/create_comment"
+require_relative "ctrlo/actions/move_card"
 
 require_relative "ctrlo/external/external_board"
 require_relative "ctrlo/external/external_card"
@@ -38,7 +39,6 @@ require_relative "ctrlo/models/card"
 require_relative "ctrlo/models/comment"
 require_relative "ctrlo/models/list"
 require_relative "ctrlo/models/member"
-require_relative "ctrlo/models/move_card"
 
 module Ctrlo
   Celluloid.logger = nil
