@@ -14,7 +14,8 @@ module Ctrlo
                        :child_key  => [ :external_board_id ],
                        :required   => true
     has n,     :cards, :parent_key => [ :external_list_id ],
-                       :child_key  => [ :external_list_id ]
+                       :child_key  => [ :external_list_id ],
+                       :constraint => :destroy
 
     class << self
       def retrieve(id)
