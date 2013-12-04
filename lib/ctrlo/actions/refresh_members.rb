@@ -1,11 +1,12 @@
 module Ctrlo
   class RefreshMembers
-    def initialize(board_id)
+    def initialize(board_id, options = {})
       @board_id = board_id
+      @options  = options
     end
 
-    def self.for(board_id)
-      new(board_id).refresh
+    def self.for(board_id, options = {})
+      new(board_id, options).refresh
     end
 
     def refresh
