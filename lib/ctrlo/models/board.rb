@@ -10,10 +10,10 @@ module Ctrlo
 
     has n, :lists, :parent_key => [ :external_board_id ],
                    :child_key  => [ :external_board_id ],
-                   :constraint => :destroy
+                   :constraint => :skip
     has n, :cards, :parent_key => [ :external_board_id ],
                    :child_key  => [ :external_board_id ],
-                   :constraint => :destroy
+                   :constraint => :skip
     #has n, :members
 
     class << self

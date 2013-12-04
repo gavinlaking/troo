@@ -15,7 +15,7 @@ module Ctrlo
                        :required   => true
     has n,     :cards, :parent_key => [ :external_list_id ],
                        :child_key  => [ :external_list_id ],
-                       :constraint => :destroy
+                       :constraint => :skip
 
     class << self
       def retrieve(id)
