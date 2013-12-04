@@ -9,9 +9,11 @@ module Ctrlo
     property :external_board_id, String
 
     has n, :lists, :parent_key => [ :external_board_id ],
-                   :child_key  => [ :external_board_id ]
+                   :child_key  => [ :external_board_id ],
+                   :constraint => :destroy
     has n, :cards, :parent_key => [ :external_board_id ],
-                   :child_key  => [ :external_board_id ]
+                   :child_key  => [ :external_board_id ],
+                   :constraint => :destroy
     #has n, :members
 
     class << self
