@@ -27,15 +27,30 @@ module Ctrlo
 
       def persist(member_collection)
         member_collection.map do |m|
-          Member.first_or_create({ external_member_id: m.id },
-                                 { external_member_id: m.id,
-                                   username:           m.username,
-                                   email:              m.email,
-                                   full_name:          m.full_name,
-                                   initials:           m.initials,
-                                   avatar_id:          m.avatar_id,
-                                   bio:                m.bio,
-                                   url:                m.url })
+          incoming = { external_member_id: m.id,
+                       username:           m.username,
+                       email:              m.email,
+                       full_name:          m.full_name,
+                       initials:           m.initials,
+                       avatar_id:          m.avatar_id,
+                       bio:                m.bio,
+                       url:                m.url }
+
+          local = Member.first(external_member_id: m.id)
+          if local
+            puts "Local exists..."
+            if local.external_attributes == incoming
+              puts "Local identical..."
+              local
+            else
+              puts "Local updated..."
+              local.update(incoming)
+              local
+            end
+          else
+            puts "Local created..."
+            Member.create(incoming)
+          end
         end
       end
 
@@ -44,6 +59,14 @@ module Ctrlo
       def get_remote(external_member_id)
         persist ExternalMember.request(external_member_id, { is_member_id: true })
       end
+    end
+
+    def internal_attributes
+      self.attributes.keep_if   { |k, _| k == :id }
+    end
+
+    def external_attributes
+      self.attributes.delete_if { |k, _| k == :id }
     end
   end
 end

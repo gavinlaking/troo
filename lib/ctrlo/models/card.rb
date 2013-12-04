@@ -41,18 +41,33 @@ module Ctrlo
 
       def persist(card_collection)
         card_collection.map do |c|
-          Card.first_or_create({ external_card_id: c.id },
-                               { external_board_id:   c.board_id,
-                                 external_list_id:    c.list_id,
-                                 external_card_id:    c.id,
-                                 external_member_ids: c.member_ids,
-                                 short_id:            c.short_id,
-                                 name:                c.name,
-                                 desc:                c.desc,
-                                 url:                 c.url,
-                                 position:            c.pos,
-                                 last_activity_date:  c.last_activity_date,
-                                 closed:              c.closed })
+          incoming = { external_board_id:   c.board_id,
+                       external_list_id:    c.list_id,
+                       external_card_id:    c.id,
+                       external_member_ids: c.member_ids,
+                       short_id:            c.short_id,
+                       name:                c.name,
+                       desc:                c.desc,
+                       url:                 c.url,
+                       position:            c.pos,
+                       last_activity_date:  c.last_activity_date,
+                       closed:              c.closed }
+
+          local = Card.first(external_card_id: c.id)
+          if local
+            puts "Local exists..."
+            if local.external_attributes == incoming
+              puts "Local identical..."
+              local
+            else
+              puts "Local updated..."
+              local.update(incoming)
+              local
+            end
+          else
+            puts "Local created..."
+            Card.create(incoming)
+          end
         end
       end
 
@@ -83,6 +98,14 @@ module Ctrlo
 
     def header
       { id: "", name: list.name, comments: "Comments" }
+    end
+
+    def internal_attributes
+      self.attributes.keep_if   { |k, _| k == :id || k == :current }
+    end
+
+    def external_attributes
+      self.attributes.delete_if { |k, _| k == :id || k == :current }
     end
   end
 end

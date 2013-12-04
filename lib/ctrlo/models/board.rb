@@ -27,10 +27,25 @@ module Ctrlo
 
       def persist(board_collection)
         board_collection.map do |b|
-          Board.first_or_create({ external_board_id: b.id },
-                                { external_board_id: b.id,
-                                  name:              b.name,
-                                  closed:            b.closed })
+          incoming = { external_board_id: b.id,
+                       name:              b.name,
+                       closed:            b.closed }
+
+          local = Board.first(external_board_id: b.id)
+          if local
+            puts "Local exists..."
+            if local.external_attributes == incoming
+              puts "Local identical..."
+              local
+            else
+              puts "Local updated..."
+              local.update(incoming)
+              local
+            end
+          else
+            puts "Local created..."
+            Board.create(incoming)
+          end
         end
       end
 
@@ -53,6 +68,14 @@ module Ctrlo
 
     def header
       { id: "", name: "Name" }
+    end
+
+    def internal_attributes
+      self.attributes.keep_if   { |k, _| k == :id || k == :current }
+    end
+
+    def external_attributes
+      self.attributes.delete_if { |k, _| k == :id || k == :current }
     end
   end
 end

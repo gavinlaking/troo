@@ -28,12 +28,27 @@ module Ctrlo
 
       def persist(list_collection)
         list_collection.map do |l|
-          List.first_or_create({ external_list_id: l.id },
-                               { external_board_id: l.board_id,
-                                 external_list_id:  l.id,
-                                 name:              l.name,
-                                 position:          l.pos,
-                                 closed:            l.closed })
+          incoming = { external_board_id: l.board_id,
+                       external_list_id:  l.id,
+                       name:              l.name,
+                       position:          l.pos,
+                       closed:            l.closed }
+
+          local = List.first(external_list_id: l.id)
+          if local
+            puts "Local exists..."
+            if local.external_attributes == incoming
+              puts "Local identical..."
+              local
+            else
+              puts "Local updated..."
+              local.update(incoming)
+              local
+            end
+          else
+            puts "Local created..."
+            List.create(incoming)
+          end
         end
       end
 
@@ -56,6 +71,14 @@ module Ctrlo
 
     def header
       { id: "", name: board.name }
+    end
+
+    def internal_attributes
+      self.attributes.keep_if   { |k, _| k == :id || k == :current }
+    end
+
+    def external_attributes
+      self.attributes.delete_if { |k, _| k == :id || k == :current }
     end
   end
 end

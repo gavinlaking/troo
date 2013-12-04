@@ -31,13 +31,28 @@ module Ctrlo
 
       def persist(comment_collection)
         comment_collection.map do |c|
-          Comment.first_or_create({ external_comment_id: c.id },
-                                  { external_comment_id: c.id,
-                                    external_board_id:   c.data["board"]["id"],
-                                    external_card_id:    c.data["card"]["id"],
-                                    external_member_id:  c.member_creator_id,
-                                    date:                c.date,
-                                    text:                c.data["text"] })
+          incoming = { external_comment_id: c.id,
+                       external_board_id:   c.data["board"]["id"],
+                       external_card_id:    c.data["card"]["id"],
+                       external_member_id:  c.member_creator_id,
+                       date:                c.date,
+                       text:                c.data["text"] }
+
+          local = Comment.first(external_comment_id: c.id)
+          if local
+            puts "Local exists..."
+            if local.external_attributes == incoming
+              puts "Local identical..."
+              local
+            else
+              puts "Local updated..."
+              local.update(incoming)
+              local
+            end
+          else
+            puts "Local created..."
+            Comment.create(incoming)
+          end
         end
       end
     end
@@ -52,6 +67,14 @@ module Ctrlo
 
     def header
       { id: "ID", text: "Comment", date: "Date" }
+    end
+
+    def internal_attributes
+      self.attributes.keep_if   { |k, _| k == :id }
+    end
+
+    def external_attributes
+      self.attributes.delete_if { |k, _| k == :id }
     end
   end
 end
