@@ -2,29 +2,48 @@ require_relative "../../../test_helper"
 
 module Ctrlo
   describe List do
-  #   let(:list) { OpenStruct.new(id:   "some_24bit_string",
-  #                               name: "Backlog") }
+    describe ".retrieve" do
+      describe "local retrieval by database ID" do
+      end
 
-  #   describe "#id" do
-  #     it "returns the Trello ID of the list" do
-  #       List.new(list).id.must_equal "some_24bit_string"
-  #     end
-  #   end
+      describe "local retrieval by external ID" do
+      end
 
-  #   describe "#name" do
-  #     it "returns the name of the list" do
-  #       List.new(list).name.must_equal "Backlog"
-  #     end
-  #   end
+      describe "remote retrieval by either ID" do
+      end
+    end
 
-  #   describe "#decorate" do
-  #     it "returns a hash containing data from the list" do
-  #       List.new(list).
-  #         decorate.must_equal({ id:     "some_24bit_string",
-  #                               name:   "Backlog",
-  #                               header: { id: "ID", name: "Name" } })
-  #     end
-  #   end
+    describe ".retrieve_all" do
+      it "retrieves all locally stored lists" do
+      end
+    end
+
+    describe ".persist" do
+    end
+
+    describe "#current" do
+      describe "when there is a current list set" do
+      end
+
+      describe "when there is not a current list set" do
+      end
+    end
+
+    describe "#content" do
+    end
+
+    describe "#header" do
+      before do
+        @board = Board.create({ name: "My Test Board" })
+        @list  = @board.lists.create({ name: "My Test List" })
+      end
+
+      subject { @list.header }
+
+      it "returns a header" do
+        subject.must_equal({ id: "", name: "My Test Board" })
+      end
+    end
   end
 end
 
