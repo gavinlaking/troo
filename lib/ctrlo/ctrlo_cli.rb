@@ -1,5 +1,9 @@
 module Ctrlo
-  module CLIErrors
+  module Helpers
+    def notify(message = nil)
+      puts message
+    end
+
     def error(message = nil)
       if message
         puts message
@@ -11,7 +15,7 @@ module Ctrlo
 
   module CLI
     class Board < Thor
-      include CLIErrors
+      include Helpers
 
       desc "all", "Show all the boards"
       def all
@@ -25,7 +29,7 @@ module Ctrlo
     end
 
     class Card < Thor
-      include CLIErrors
+      include Helpers
 
       desc "all", "Show all the cards for the current list or for <list_id>"
       def all(list_id = nil)
@@ -66,7 +70,7 @@ module Ctrlo
     end
 
     class List < Thor
-      include CLIErrors
+      include Helpers
 
       desc "all", "Show all the lists the current board or for <board_id>"
       def all(board_id = nil)
@@ -86,6 +90,8 @@ module Ctrlo
     end
 
     class Main < Thor
+      include Helpers
+
       class_option :debug, type: :boolean, desc: "Enable debugging."
 
       desc "refresh", "Refresh all data"
@@ -96,6 +102,7 @@ module Ctrlo
       desc "cleanup", "Removes all local data"
       def cleanup
         DataMapper.auto_migrate!
+        notify "All local data has been removed."
       end
 
       desc "version", "Print the version"
