@@ -38,17 +38,9 @@ module Ctrlo
 
           local = Member.first(external_member_id: m.id)
           if local
-            puts "Local exists..."
-            if local.external_attributes == incoming
-              puts "Local identical..."
-              local
-            else
-              puts "Local updated..."
-              local.update(incoming)
-              local
-            end
+            local.update(incoming) unless local.external_attributes == incoming
+            local
           else
-            puts "Local created..."
             Member.create(incoming)
           end
         end

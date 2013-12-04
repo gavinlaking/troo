@@ -36,17 +36,9 @@ module Ctrlo
 
           local = List.first(external_list_id: l.id)
           if local
-            puts "Local exists..."
-            if local.external_attributes == incoming
-              puts "Local identical..."
-              local
-            else
-              puts "Local updated..."
-              local.update(incoming)
-              local
-            end
+            local.update(incoming) unless local.external_attributes == incoming
+            local
           else
-            puts "Local created..."
             List.create(incoming)
           end
         end

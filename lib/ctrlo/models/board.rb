@@ -33,17 +33,9 @@ module Ctrlo
 
           local = Board.first(external_board_id: b.id)
           if local
-            puts "Local exists..."
-            if local.external_attributes == incoming
-              puts "Local identical..."
-              local
-            else
-              puts "Local updated..."
-              local.update(incoming)
-              local
-            end
+            local.update(incoming) unless local.external_attributes == incoming
+            local
           else
-            puts "Local created..."
             Board.create(incoming)
           end
         end
