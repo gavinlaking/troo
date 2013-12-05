@@ -39,6 +39,7 @@ require_relative "ctrlo/views/template"
 require_relative "ctrlo/views/board_decorator"
 require_relative "ctrlo/views/card_decorator"
 require_relative "ctrlo/views/comment_decorator"
+require_relative "ctrlo/views/list_decorator"
 
 require_relative "ctrlo/models/board"
 require_relative "ctrlo/models/card"
