@@ -34,13 +34,13 @@ module Ctrlo
                        position:          l.pos,
                        closed:            l.closed }
 
-          local = List.first(external_list_id: l.id)
+          local = first(external_list_id: l.id)
           if local
             local.update(incoming) unless local.external_attributes == incoming
             local
           else
 
-            List.create(incoming)
+            create(incoming)
           end
         end
       end

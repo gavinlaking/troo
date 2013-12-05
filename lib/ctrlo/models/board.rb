@@ -31,12 +31,12 @@ module Ctrlo
                        name:              b.name,
                        closed:            b.closed }
 
-          local = Board.first(external_board_id: b.id)
+          local = first(external_board_id: b.id)
           if local
             local.update(incoming) unless local.external_attributes == incoming
             local
           else
-            Board.create(incoming)
+            create(incoming)
           end
         end
       end

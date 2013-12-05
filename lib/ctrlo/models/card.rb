@@ -53,12 +53,12 @@ module Ctrlo
                        last_activity_date:  c.last_activity_date,
                        closed:              c.closed }
 
-          local = Card.first(external_card_id: c.id)
+          local = first(external_card_id: c.id)
           if local
             local.update(incoming) unless local.external_attributes == incoming
             local
           else
-            Card.create(incoming)
+            create(incoming)
           end
         end
       end

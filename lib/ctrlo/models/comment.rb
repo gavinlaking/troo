@@ -38,12 +38,12 @@ module Ctrlo
                        date:                c.date,
                        text:                c.data["text"] }
 
-          local = Comment.first(external_comment_id: c.id)
+          local = first(external_comment_id: c.id)
           if local
             local.update(incoming) unless local.external_attributes == incoming
             local
           else
-            Comment.create(incoming)
+            create(incoming)
           end
         end
       end
