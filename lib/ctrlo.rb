@@ -36,6 +36,7 @@ require_relative "ctrlo/external/proxy_card"
 
 require_relative "ctrlo/views/screen"
 require_relative "ctrlo/views/template"
+require_relative "ctrlo/views/board_decorator"
 require_relative "ctrlo/views/card_decorator"
 require_relative "ctrlo/views/comment_decorator"
 
