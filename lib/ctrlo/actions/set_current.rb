@@ -11,6 +11,7 @@ module Ctrlo
     def set_current!
       entity.class.update(current: false)
       entity.update(current: true)
+      entity
     end
 
     private
