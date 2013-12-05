@@ -24,7 +24,9 @@ module Ctrlo
 
       desc "current <board_id>", "Set the current board to <board_id>"
       def current(board_id)
-        SetCurrent.for Ctrlo::Board.retrieve(board_id)
+        board = SetCurrent.for Ctrlo::Board.retrieve(board_id)
+      ensure
+        notify "'#{board.name}' set to current board."
       end
     end
 
@@ -44,7 +46,9 @@ module Ctrlo
 
       desc "current <card_id>", "Set the current card to <card_id>"
       def current(card_id)
-        SetCurrent.for Ctrlo::Card.retrieve(card_id)
+        card = SetCurrent.for Ctrlo::Card.retrieve(card_id)
+      ensure
+        notify "'#{card.name}' set to current card."
       end
 
       desc "show <card_id>", "Show a card <card_id> (includes comments)"
@@ -85,7 +89,9 @@ module Ctrlo
 
       desc "current <list_id>", "Set the current list to <list_id>"
       def current(list_id)
-        SetCurrent.for Ctrlo::List.retrieve(list_id)
+        list = SetCurrent.for Ctrlo::List.retrieve(list_id)
+      ensure
+        notify "'#{list.name}' set to current list."
       end
     end
 
@@ -97,12 +103,15 @@ module Ctrlo
       desc "refresh", "Refresh all data"
       def refresh
         RefreshAll.perform
+      ensure
+        notify "Local data is refreshed."
       end
 
       desc "cleanup", "Removes all local data"
       def cleanup
         DataMapper.auto_migrate!
-        notify "All local data has been removed."
+      ensure
+        notify "Local data is removed."
       end
 
       desc "version", "Print the version"
