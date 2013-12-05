@@ -80,7 +80,7 @@ module Ctrlo
     end
 
     def card_idstr
-      brackets(card.id.to_s)
+      brackets(card.id.to_s).ljust(6)
     end
 
     def board_name
