@@ -3,7 +3,7 @@ module Ctrlo
     include DataMapper::Resource
 
     property :id,                Serial
-    property :name,              String
+    property :name,              Text
     property :position,          Integer
     property :current,           Boolean, default: false
     property :closed,            Boolean, default: false
@@ -39,6 +39,7 @@ module Ctrlo
             local.update(incoming) unless local.external_attributes == incoming
             local
           else
+
             List.create(incoming)
           end
         end
