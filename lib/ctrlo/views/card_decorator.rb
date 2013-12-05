@@ -1,10 +1,10 @@
 module Ctrlo
   class CardDecorator
-    def initialize(card = nil)
+    def initialize(card)
       @card = card
     end
 
-    def self.decorate(card = nil)
+    def self.decorate(card)
       new(card).decorate
     end
 

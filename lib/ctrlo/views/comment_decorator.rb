@@ -1,10 +1,10 @@
 module Ctrlo
   class CommentDecorator
-    def initialize(comment = nil)
+    def initialize(comment)
       @comment = comment
     end
 
-    def self.decorate(comment = nil)
+    def self.decorate(comment)
       new(comment).decorate
     end
 
