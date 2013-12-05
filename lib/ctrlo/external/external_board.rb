@@ -2,37 +2,27 @@ module Ctrlo
   class ExternalBoard
     include Helpers
 
-    def initialize(external_board_id = nil)
-      @external_board_id = external_board_id
+    def initialize(external_id = nil)
+      @external_id = external_id
     end
 
-    def self.request(external_board_id = nil)
-      new(external_board_id).request
+    def self.fetch
+      new.fetch
     end
 
-    def request
-      collection? ? collection : singular
+    def self.fetch_by_external_id(external_id)
+      new(external_id).fetch_by_external_id
+    end
+
+    def fetch
+      Trello::Board.all
+    end
+
+    def fetch_by_external_id
+      [Trello::Board.find(external_id)]
     end
 
     private
-    attr_reader :external_board_id
-
-    def collection
-      Trello::Board.all
-    rescue Trello::Error => e
-      puts e.message
-      exit 1
-    end
-
-    def singular
-      [Trello::Board.find(external_board_id)]
-    rescue Trello::Error => e
-      puts e.message
-      exit 1
-    end
-
-    def collection?
-      external_board_id.nil?
-    end
+    attr_reader :external_id
   end
 end

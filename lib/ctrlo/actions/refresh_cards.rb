@@ -10,7 +10,7 @@ module Ctrlo
     end
 
     def refresh
-      Card.persist ExternalCard.request(board_id)
+      Card.persist ExternalCard.fetch_by_external_id(board_id, { mode: :board })
     end
 
     private

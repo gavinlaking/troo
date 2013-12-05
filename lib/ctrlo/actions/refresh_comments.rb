@@ -10,7 +10,7 @@ module Ctrlo
     end
 
     def refresh
-      Comment.persist ExternalComment.request(board_id)
+      Comment.persist ExternalComment.fetch_by_external_id(board_id, { mode: :board })
     end
 
     private

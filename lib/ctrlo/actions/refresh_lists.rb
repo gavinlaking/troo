@@ -10,7 +10,7 @@ module Ctrlo
     end
 
     def refresh
-      List.persist ExternalList.request(board_id)
+      List.persist ExternalList.fetch_by_external_id(board_id, { mode: :board })
     end
 
     private

@@ -29,10 +29,10 @@ module Ctrlo
 
     class << self
       def retrieve(id)
-        get(id) ||
-        all(short_id: id).first ||
-        all(external_card_id: id).first ||
-        get_remote(id).first
+        get(id)                     ||
+        first(short_id: id)         ||
+        first(external_card_id: id) ||
+        get_remote(id)
       end
 
       def retrieve_all
@@ -71,7 +71,7 @@ module Ctrlo
       private
 
       def get_remote(external_card_id)
-        persist ExternalCard.request(external_card_id, { is_card_id: true })
+        persist(ExternalCard.fetch_by_external_id(external_card_id, { mode: :card })).first
       end
     end
 

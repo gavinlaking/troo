@@ -3,44 +3,43 @@ module Ctrlo
     include Helpers
 
     def initialize(external_id, options = {})
-      raise StandardError, "external_id expected, none given" if external_id.nil?
       @external_id = external_id
       @options     = options
     end
 
-    def self.request(external_id, options = {})
-      new(external_id, options).request
+    def self.fetch_by_external_id(external_id, options = {})
+      new(external_id, options).fetch_by_external_id
     end
 
-    def request
-      #return singular? ? singular : collection
-      collection
+    def fetch_by_external_id
+      case options.fetch(:mode)
+      when :board then board_mode
+      when :card  then card_mode
+      end
     end
 
     private
-    attr_reader :external_id, :options
+    attr_reader :external_id
 
-    def collection
+    def options
+      defaults.merge!(@options)
+    end
+
+    def defaults
+      { mode: :board }
+    end
+
+    def board_mode
       Trello::Board.find(external_id).
           actions.collect   { |a| a if a.type == "commentCard" }.
                   delete_if { |a| a.nil? }
-    rescue Trello::Error => e
-      puts e.message
-      exit 1
     end
 
-    # def singular
-    #   Trello::Card.find(external_id).
-    #       actions.collect   { |a| a if a.type == "commentCard" }.
-    #               delete_if { |a| a.nil? }
-    # rescue Trello::Error => e
-    #   puts e.message
-    #   exit 1
-    # end
-
-    # def singular?
-    #   options.fetch(:by_comment_id, false)
-    # end
+    def card_mode
+      Trello::Card.find(external_id).
+          actions.collect   { |a| a if a.type == "commentCard" }.
+                  delete_if { |a| a.nil? }
+    end
 
   end
 end

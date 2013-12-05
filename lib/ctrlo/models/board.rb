@@ -18,7 +18,9 @@ module Ctrlo
 
     class << self
       def retrieve(id)
-        get(id) || all(external_board_id: id).first || get_remote(id).first
+        get(id)                      ||
+        first(external_board_id: id) ||
+        get_remote(id)
       end
 
       def retrieve_all
@@ -49,7 +51,7 @@ module Ctrlo
       private
 
       def get_remote(external_board_id)
-        persist ExternalBoard.request(external_board_id)
+        persist(ExternalBoard.fetch_by_external_id(external_board_id)).first
       end
     end
 

@@ -19,7 +19,9 @@ module Ctrlo
 
     class << self
       def retrieve(id)
-        get(id) || all(external_list_id: id).first || get_remote(id).first
+        get(id)                     ||
+        first(external_list_id: id) ||
+        get_remote(id)
       end
 
       def retrieve_all
@@ -53,7 +55,7 @@ module Ctrlo
       private
 
       def get_remote(external_list_id)
-        persist ExternalList.request(external_list_id, { by_list_id: true })
+        persist(ExternalList.fetch_by_external_id(external_list_id, { mode: :list })).first
       end
     end
 

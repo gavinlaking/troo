@@ -22,7 +22,8 @@ module Ctrlo
 
     class << self
       def retrieve(id)
-        get(id) || all(external_comment_id: id).first
+        get(id) ||
+        first(external_comment_id: id)
       end
 
       def retrieve_all

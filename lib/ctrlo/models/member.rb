@@ -18,7 +18,9 @@ module Ctrlo
 
     class << self
       def retrieve(id)
-        get(id) || all(external_member_id: id).first || get_remote(id).first
+        get(id)                       ||
+        first(external_member_id: id) ||
+        get_remote(id)
       end
 
       def retrieve_all
@@ -36,12 +38,12 @@ module Ctrlo
                        bio:                m.bio,
                        url:                m.url }
 
-          local = Member.first(external_member_id: m.id)
+          local = first(external_member_id: m.id)
           if local
             local.update(incoming) unless local.external_attributes == incoming
             local
           else
-            Member.create(incoming)
+            create(incoming)
           end
         end
       end
@@ -49,7 +51,7 @@ module Ctrlo
       private
 
       def get_remote(external_member_id)
-        persist ExternalMember.request(external_member_id, { is_member_id: true })
+        persist(ExternalMember.fetch_by_external_id(external_member_id, { mode: :member })).first
       end
     end
 
