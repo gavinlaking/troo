@@ -2,6 +2,8 @@ require_relative "../../../test_helper"
 
 module Ctrlo
   describe Card do
+    let(:described_class) { Card }
+
     describe ".retrieve" do
       describe "local retrieval by database ID" do
       end

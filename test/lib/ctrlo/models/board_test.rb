@@ -2,6 +2,8 @@ require_relative "../../../test_helper"
 
 module Ctrlo
   describe Board do
+    let(:described_class) { Board }
+
     describe ".retrieve" do
       describe "local retrieval by database ID" do
       end

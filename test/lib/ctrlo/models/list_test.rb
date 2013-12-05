@@ -2,6 +2,8 @@ require_relative "../../../test_helper"
 
 module Ctrlo
   describe List do
+    let(:described_class) { List }
+
     describe ".retrieve" do
       describe "local retrieval by database ID" do
       end

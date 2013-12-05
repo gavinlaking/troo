@@ -2,16 +2,18 @@ require_relative "../../../test_helper"
 
 module Ctrlo
   describe CommentDecorator do
+    let(:described_class) { CommentDecorator }
+
     describe "#initialize" do
       it "assigns the comment" do
       end
     end
 
     describe "#decorate" do
-
     end
 
     describe "#member_username" do
+      subject { }
       describe "when the member username is known" do
         it "returns the username" do
           subject.must_equal "gavinlaking1"
