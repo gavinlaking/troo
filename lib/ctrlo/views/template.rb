@@ -44,15 +44,26 @@ module Ctrlo
     end
 
     def width
-      terminal_size[0] || 80
+      terminal_size[0]
     end
 
     def height
-      terminal_size[1] || 25
+      terminal_size[1]
     end
 
     def terminal_size
-      @terminal_size ||= Hirb::Util.detect_terminal_size
+      @terminal_size ||= if (ENV['COLUMNS'] =~ /^\d+$/) && (ENV['LINES'] =~ /^\d+$/)
+        [ENV['COLUMNS'].to_i, ENV['LINES'].to_i]
+      elsif (RUBY_PLATFORM =~ /java/ || (!STDIN.tty? && ENV['TERM'])) && command_exists?('tput')
+        [`tput cols`.to_i, `tput lines`.to_i]
+      elsif STDIN.tty? && command_exists?('stty')
+        `stty size`.scan(/\d+/).map { |s| s.to_i }.reverse
+      else
+        [80, 25]
+      end
+    rescue
+      [80, 25]
     end
+
   end
 end
