@@ -1,5 +1,7 @@
 module Ctrlo
   class ExternalBoard
+    include Helpers
+
     def initialize(external_board_id = nil)
       @external_board_id = external_board_id
     end

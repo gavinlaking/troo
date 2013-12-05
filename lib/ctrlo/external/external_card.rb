@@ -1,5 +1,7 @@
 module Ctrlo
   class ExternalCard
+    include Helpers
+
     def initialize(external_id, options = {})
       raise StandardError, "external_id expected, none given" if external_id.nil?
       @external_id = external_id
