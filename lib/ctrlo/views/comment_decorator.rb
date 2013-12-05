@@ -13,8 +13,11 @@ module Ctrlo
     end
 
     def member_username
-      return comment.member_username unless comment.member_username.empty?
-      "Unknown"
+      if comment.member && comment.member.username
+        comment.member.username
+      else
+        "Unknown"
+      end
     end
 
     def text
