@@ -32,14 +32,20 @@ module Ctrlo
 
     def board_mode
       Trello::Board.find(external_id).cards
+    ensure
+      notify "Remote cards for board fetched."
     end
 
     def list_mode
       Trello::List.find(external_id).cards
+    ensure
+      notify "Remote cards for list fetched."
     end
 
     def card_mode
       [Trello::Card.find(external_id)]
+    ensure
+      notify "Remote card fetched."
     end
 
   end
