@@ -49,10 +49,6 @@ module Ctrlo
       end
     end
 
-    def member_username
-      member.username
-    end
-
     def content
       { id: id, text: text, date: date }
     end
