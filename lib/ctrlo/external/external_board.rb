@@ -16,10 +16,12 @@ module Ctrlo
 
     def fetch
       Trello::Board.all
+    rescue Trello::Error
     end
 
     def fetch_by_external_id
       [Trello::Board.find(external_id)]
+    rescue Trello::Error
     end
 
     private
