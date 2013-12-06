@@ -9,10 +9,10 @@ module Ctrlo
 
     def perform
       external_board_ids.map do |id|
-        ExternalList.refresh(id, { mode: :board })
-        ExternalCard.refresh(id, { mode: :board })
-        ExternalComment.refresh(id, { mode: :board })
-        ExternalMember.refresh(id, { mode: :board })
+        ExternalList.fetch(id, { mode: :board })
+        ExternalCard.fetch(id, { mode: :board })
+        ExternalComment.fetch(id, { mode: :board })
+        ExternalMember.fetch(id, { mode: :board })
       end
       true
     end

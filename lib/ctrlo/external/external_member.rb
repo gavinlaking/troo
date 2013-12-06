@@ -7,11 +7,7 @@ module Ctrlo
       @options     = options
     end
 
-    def self.fetch_by_external_id(external_id, options = {})
-      new(external_id, options).fetch_by_external_id
-    end
-
-    def self.refresh(external_id, options = {})
+    def self.fetch(external_id, options = {})
       Ctrlo::Member.persist new(external_id, options).fetch_by_external_id
     end
 

@@ -54,7 +54,7 @@ module Ctrlo
       private
 
       def get_remote(external_list_id)
-        ExternalList.refresh(external_list_id, { mode: :list }).first
+        ExternalList.fetch(external_list_id, { mode: :list }).first
       end
     end
 

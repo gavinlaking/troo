@@ -6,23 +6,23 @@ module Ctrlo
       @external_id = external_id
     end
 
-    def self.fetch
-      new.fetch
+    def self.fetch_all
+      new.fetch_all
     end
 
     def self.fetch_by_external_id(external_id)
       new(external_id).fetch_by_external_id
     end
 
-    def self.refresh(external_id, options = {})
+    def self.fetch(external_id, options = {})
       Ctrlo::Board.persist new(external_id, options).fetch_by_external_id
     end
 
     def self.refresh_all
-      Ctrlo::Board.persist new.fetch
+      Ctrlo::Board.persist new.fetch_all
     end
 
-    def fetch
+    def fetch_all
       Trello::Board.all
     rescue Trello::Error
     end

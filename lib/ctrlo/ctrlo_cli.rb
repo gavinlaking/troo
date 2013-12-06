@@ -60,8 +60,8 @@ module Ctrlo
       def comment(card_id, comment = nil)
         Ctrlo::CreateComment.for(card_id, comment)
 
-        Ctrlo::ExternalCard.refresh(card_id, { mode: :card })
-        Ctrlo::ExternalComments.refresh(card_id, { mode: :card })
+        Ctrlo::ExternalCard.fetch(card_id, { mode: :card })
+        Ctrlo::ExternalComments.fetch(card_id, { mode: :card })
       end
 
       desc "move", "Move a card <card_id> to list <list_id>"
@@ -74,9 +74,9 @@ module Ctrlo
 
         result = MoveCard.with(card_id, list_id)
 
-        Ctrlo::ExternalList.refresh(result.source_list_id, { mode: :list })
-        Ctrlo::ExternalList.refresh(result.destination_list_id, { mode: :list })
-        Ctrlo::ExternalCard.refresh(card_id, { mode: :card })
+        Ctrlo::ExternalList.fetch(result.source_list_id, { mode: :list })
+        Ctrlo::ExternalList.fetch(result.destination_list_id, { mode: :list })
+        Ctrlo::ExternalCard.fetch(card_id, { mode: :card })
       end
     end
 
@@ -105,7 +105,7 @@ module Ctrlo
       def add(board_id, name = nil)
         result = Ctrlo::CreateList.for(board_id, name)
 
-        Ctrlo::ExternalList.refresh(result.external_board_id, { mode: :board })
+        Ctrlo::ExternalList.fetch(result.external_board_id, { mode: :board })
       end
     end
 

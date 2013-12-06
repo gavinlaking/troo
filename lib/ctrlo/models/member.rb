@@ -51,7 +51,7 @@ module Ctrlo
       private
 
       def get_remote(external_member_id)
-        ExternalMember.refresh(external_member_id, { mode: :member }).first
+        ExternalMember.fetch(external_member_id, { mode: :member }).first
       end
     end
 
