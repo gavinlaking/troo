@@ -14,6 +14,14 @@ module Ctrlo
       new(external_id).fetch_by_external_id
     end
 
+    def self.refresh(external_id, options = {})
+      Ctrlo::Board.persist new(external_id, options).fetch_by_external_id
+    end
+
+    def self.refresh_all
+      Ctrlo::Board.persist new.fetch
+    end
+
     def fetch
       Trello::Board.all
     rescue Trello::Error

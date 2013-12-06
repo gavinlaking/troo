@@ -11,6 +11,11 @@ module Ctrlo
       new(external_id, options).fetch_by_external_id
     end
 
+    def self.refresh(external_id, options = {})
+      Ctrlo::Comment.persist new(external_id, options).fetch_by_external_id
+    end
+
+
     def fetch_by_external_id
       case options.fetch(:mode)
       when :board then board_mode

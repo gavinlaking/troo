@@ -41,7 +41,6 @@ module Ctrlo
             local.update(incoming) unless local.external_attributes == incoming
             local
           else
-
             create(incoming)
           end
         end
@@ -55,7 +54,7 @@ module Ctrlo
       private
 
       def get_remote(external_list_id)
-        persist(ExternalList.fetch_by_external_id(external_list_id, { mode: :list })).first
+        ExternalList.refresh(external_list_id, { mode: :list }).first
       end
     end
 

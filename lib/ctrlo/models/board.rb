@@ -51,7 +51,7 @@ module Ctrlo
       private
 
       def get_remote(external_board_id)
-        persist(ExternalBoard.fetch_by_external_id(external_board_id)).first
+        ExternalBoard.refresh(external_board_id, { mode: :board }).first
       end
     end
 

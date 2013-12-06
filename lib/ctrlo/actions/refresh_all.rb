@@ -9,10 +9,10 @@ module Ctrlo
 
     def perform
       external_board_ids.map do |id|
-        RefreshLists.for         id
-        RefreshCards.for         id
-        RefreshComments.for      id
-        RefreshMembers.for       id
+        ExternalList.refresh(id, { mode: :board })
+        ExternalCard.refresh(id, { mode: :board })
+        ExternalComment.refresh(id, { mode: :board })
+        ExternalMember.refresh(id, { mode: :board })
       end
       true
     end
@@ -28,7 +28,7 @@ module Ctrlo
     end
 
     def all_boards
-      @boards ||= RefreshBoards.all
+      @boards ||= ExternalBoard.refresh_all
     end
   end
 end

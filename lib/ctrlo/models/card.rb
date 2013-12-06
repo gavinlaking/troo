@@ -71,7 +71,7 @@ module Ctrlo
       private
 
       def get_remote(external_card_id)
-        persist(ExternalCard.fetch_by_external_id(external_card_id, { mode: :card })).first
+        ExternalCard.fetch_by_external_id(external_card_id, { mode: :card }).first
       end
     end
 
