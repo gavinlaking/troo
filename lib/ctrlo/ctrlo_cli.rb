@@ -59,6 +59,10 @@ module Ctrlo
       desc "comment", "Comment on a card with <card_id> <comment>"
       def comment(card_id, comment = nil)
         Ctrlo::CreateComment.for(card_id, comment)
+
+        Ctrlo::RefreshCards.for(card_id, { mode: :card })
+
+        Ctrlo::RefreshComments.for(card_id, { mode: :card })
       end
 
       desc "move", "Move a card <card_id> to list <list_id>"
