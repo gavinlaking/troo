@@ -101,6 +101,13 @@ module Ctrlo
       ensure
         notify "'#{list.name}' set to current list."
       end
+
+      desc "add <board_id>", "Add a new list to <board_id>"
+      def add(board_id, name = nil)
+        result = Ctrlo::CreateList.for(board_id, name)
+
+        RefreshLists.for(result.external_board_id, { mode: :board })
+      end
     end
 
     class Main < Thor
