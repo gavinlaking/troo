@@ -1,7 +1,7 @@
 module Ctrlo
   class RefreshBoards
     def initialize(external_id, options = {})
-      @enternal_id = external_id
+      @external_id = external_id
       @options     = options
     end
 
