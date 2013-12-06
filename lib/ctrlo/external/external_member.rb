@@ -31,14 +31,10 @@ module Ctrlo
 
     def board_mode
       Trello::Board.find(external_id).members
-    ensure
-      notify "Remote members for board fetched."
     end
 
     def member_mode
       [Trello::Member.find(external_id)]
-    ensure
-      notify "Remote member fetched."
     end
 
   end

@@ -31,14 +31,10 @@ module Ctrlo
 
     def board_mode
       Trello::Board.find(external_id).lists
-    ensure
-      notify "Remote lists for board fetched."
     end
 
     def list_mode
       [Trello::List.find(external_id)]
-    ensure
-      notify "Remote list fetched."
     end
 
   end

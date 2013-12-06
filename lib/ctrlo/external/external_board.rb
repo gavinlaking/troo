@@ -16,14 +16,10 @@ module Ctrlo
 
     def fetch
       Trello::Board.all
-    ensure
-      notify "Remote boards fetched."
     end
 
     def fetch_by_external_id
       [Trello::Board.find(external_id)]
-    ensure
-      notify "Remote board fetched."
     end
 
     private

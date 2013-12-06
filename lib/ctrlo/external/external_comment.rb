@@ -33,16 +33,12 @@ module Ctrlo
       Trello::Board.find(external_id).
           actions.collect   { |a| a if a.type == "commentCard" }.
                   delete_if { |a| a.nil? }
-    ensure
-      notify "Remote comments for board fetched."
     end
 
     def card_mode
       Trello::Card.find(external_id).
           actions.collect   { |a| a if a.type == "commentCard" }.
                   delete_if { |a| a.nil? }
-    ensure
-      notify "Remote comments for card fetched."
     end
 
   end
