@@ -5,19 +5,17 @@ module Ctrlo
     let(:described_class) { RefreshCards }
 
     describe ".initialize" do
-      let(:board_id) { "some_board_id" }
-      let(:options) { {} }
+      let(:external_id) { "526d8f19ddb279532e005259" }
+      let(:options)     { {} }
 
-      subject { described_class.new(board_id, options) }
+      subject { described_class.new(external_id, options) }
 
-      it "assigns the board_id" do
-        subject.instance_variable_get("@board_id").
-          must_equal("some_board_id")
+      it "assigns the external_id" do
+        subject.instance_variable_get("@external_id").must_equal(external_id)
       end
 
       it "assigns the options" do
-        subject.instance_variable_get("@options").
-          must_equal({})
+        subject.instance_variable_get("@options").must_equal({})
       end
     end
 
