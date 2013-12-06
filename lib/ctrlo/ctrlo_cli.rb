@@ -73,7 +73,11 @@ module Ctrlo
           exit 1
         end
 
-        MoveCard.with(card_id, list_id)
+        result = MoveCard.with(card_id, list_id)
+
+        RefreshLists.for(result.source_list_id, { mode: :list })
+        RefreshLists.for(result.destination_list_id, { mode: :list })
+        RefreshCards.for(card_id, { mode: :card })
       end
     end
 
