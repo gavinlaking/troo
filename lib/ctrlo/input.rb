@@ -4,6 +4,10 @@ module Ctrlo
       @id = id
     end
 
+    def self.get(id = nil)
+      new(id).get
+    end
+
     def get
       system [ENV['EDITOR'], path].join(" ")
       input
