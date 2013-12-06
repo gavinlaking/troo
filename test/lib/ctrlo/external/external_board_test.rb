@@ -13,13 +13,25 @@ module Ctrlo
     end
 
     describe "#fetch" do
-      before { VCR.insert_cassette(:boards_all) }
+      before { VCR.insert_cassette(:boards_all, :decode_compressed_response => true) }
       after  { VCR.eject_cassette }
+
+      subject { described_class.fetch }
+
+      it "returns multiple boards" do
+        skip
+      end
     end
 
     describe "#fetch_by_external_id" do
       before { VCR.insert_cassette(:board_by_id) }
       after  { VCR.eject_cassette }
+
+      subject { described.fetch_by_external_id("526d8e130a14a9d846001d96") }
+
+      it "returns a board with the board_id" do
+        skip
+      end
     end
   end
 end
