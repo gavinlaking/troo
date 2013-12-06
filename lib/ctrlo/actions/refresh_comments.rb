@@ -10,10 +10,22 @@ module Ctrlo
     end
 
     def refresh
-      Comment.persist ExternalComment.fetch_by_external_id(external_id, { mode: :board })
+      Comment.persist collection
     end
 
     private
     attr_reader :external_id
+
+    def collection
+      ExternalComment.fetch_by_external_id(external_id, options)
+    end
+
+    def options
+      defaults.merge!(@options)
+    end
+
+    def defaults
+      { mode: :board }
+    end
   end
 end

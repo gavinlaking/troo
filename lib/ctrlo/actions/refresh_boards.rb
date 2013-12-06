@@ -10,14 +10,22 @@ module Ctrlo
     end
 
     def self.all
-      Board.persist ExternalBoard.fetch
+      Board.persist collection
     end
 
     def refresh
-      Board.persist ExternalBoard.fetch_by_external_id(external_id)
+      Board.persist entity
     end
 
     private
     attr_reader :external_id
+
+    def collection
+      ExternalBoard.fetch
+    end
+
+    def entity
+      ExternalBoard.fetch_by_external_id(external_id)
+    end
   end
 end
