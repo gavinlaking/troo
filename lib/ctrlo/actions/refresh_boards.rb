@@ -1,12 +1,12 @@
 module Ctrlo
   class RefreshBoards
-    def initialize(board_id, options = {})
-      @board_id = board_id
-      @options  = options
+    def initialize(external_id, options = {})
+      @enternal_id = external_id
+      @options     = options
     end
 
-    def self.for(board_id, options = {})
-      new(board_id, options).refresh
+    def self.for(external_id, options = {})
+      new(external_id, options).refresh
     end
 
     def self.all
@@ -14,10 +14,10 @@ module Ctrlo
     end
 
     def refresh
-      Board.persist ExternalBoard.fetch_by_external_id(board_id)
+      Board.persist ExternalBoard.fetch_by_external_id(external_id)
     end
 
     private
-    attr_reader :board_id
+    attr_reader :external_id
   end
 end

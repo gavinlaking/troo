@@ -1,19 +1,19 @@
 module Ctrlo
   class RefreshLists
-    def initialize(board_id, options = {})
-      @board_id = board_id
+    def initialize(external_id, options = {})
+      @external_id = external_id
       @options  = options
     end
 
-    def self.for(board_id, options = {})
-      new(board_id, options).refresh
+    def self.for(external_id, options = {})
+      new(external_id, options).refresh
     end
 
     def refresh
-      List.persist ExternalList.fetch_by_external_id(board_id, { mode: :board })
+      List.persist ExternalList.fetch_by_external_id(external_id, { mode: :board })
     end
 
     private
-    attr_reader :board_id
+    attr_reader :external_id
   end
 end
