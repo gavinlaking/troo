@@ -45,7 +45,7 @@ module Ctrlo
 
       def current
         raise StandardError, "No board set to current." unless all(current: true).any?
-        all(current: true)
+        first(current: true)
       end
 
       private
