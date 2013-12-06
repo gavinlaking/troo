@@ -14,7 +14,7 @@ module Ctrlo
       end
     end
 
-    describe "#decorate" do
+    describe "#as_view" do
     end
 
     describe "#member_username" do

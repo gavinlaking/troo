@@ -4,11 +4,7 @@ module Ctrlo
       @card = card
     end
 
-    def self.decorate(card)
-      new(card).decorate
-    end
-
-    def decorate
+    def as_view
       Template.parse(self)
     end
 
@@ -57,7 +53,7 @@ module Ctrlo
 
     def card_comments
       if card.comments.any?
-        card.comments.map { |comment| CommentDecorator.decorate(comment) }.join
+        card.comments.map { |comment| CommentDecorator.new(comment).as_view }.join
       else
         "There are no comments at this time."
       end

@@ -4,11 +4,7 @@ module Ctrlo
       @list = list
     end
 
-    def self.decorate(list)
-      new(list).decorate
-    end
-
-    def decorate
+    def as_view
       Template.parse(self)
     end
 

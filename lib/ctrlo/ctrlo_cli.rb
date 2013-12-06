@@ -19,7 +19,7 @@ module Ctrlo
 
       desc "all", "Show all the boards"
       def all
-        Ctrlo::Screen.render(Ctrlo::Board.retrieve_all.map { |board| Ctrlo::BoardDecorator.decorate(board) }.join)
+        Ctrlo::Screen.render(Ctrlo::Board.retrieve_all.map { |board| Ctrlo::BoardDecorator.new(board).as_view }.join)
       end
 
       desc "current <board_id>", "Set the current board to <board_id>"

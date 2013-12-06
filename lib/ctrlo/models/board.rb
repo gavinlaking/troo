@@ -55,15 +55,6 @@ module Ctrlo
       end
     end
 
-    def content
-      current = current? ? "* " : ""
-      { id: [current, id].join.rjust(6), name: name }
-    end
-
-    def header
-      { id: "", name: "Name" }
-    end
-
     def internal_attributes
       self.attributes.keep_if   { |k, _| k == :id || k == :current }
     end

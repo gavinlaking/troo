@@ -4,11 +4,7 @@ module Ctrlo
       @comment = comment
     end
 
-    def self.decorate(comment)
-      new(comment).decorate
-    end
-
-    def decorate
+    def as_view
       Template.parse(self)
     end
 

@@ -4,11 +4,7 @@ module Ctrlo
       @board = board
     end
 
-    def self.decorate(board)
-      new(board).decorate
-    end
-
-    def decorate
+    def as_view
       Template.parse(self)
     end
 
