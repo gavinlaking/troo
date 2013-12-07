@@ -24,10 +24,6 @@ module Ctrlo
       comment.date.strftime("%a, %b %d at %H:%M")
     end
 
-    def template_file
-      "/comment_decorator.erb"
-    end
-
     private
     attr_reader :comment
   end

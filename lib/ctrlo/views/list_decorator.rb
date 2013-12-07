@@ -12,10 +12,6 @@ module Ctrlo
       [list_id, list_name].join
     end
 
-    def template_file
-      "/list_decorator.erb"
-    end
-
     private
     attr_reader :list
 

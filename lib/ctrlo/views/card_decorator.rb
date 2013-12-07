@@ -36,10 +36,6 @@ module Ctrlo
       card.last_activity_date.strftime("%a, %b %d at %H:%M")
     end
 
-    def template_file
-      "/card_decorator.erb"
-    end
-
     private
     attr_reader :card
 

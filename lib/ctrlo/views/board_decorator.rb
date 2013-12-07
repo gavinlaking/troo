@@ -12,10 +12,6 @@ module Ctrlo
       [board_id, board_name].join
     end
 
-    def template_file
-      "/board_decorator.erb"
-    end
-
     private
     attr_reader :board
 

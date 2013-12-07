@@ -59,13 +59,5 @@ module Ctrlo
         skip
       end
     end
-
-    describe "#template_file" do
-      subject { described_class.new(comment).template_file }
-
-      it "returns the template file to be used" do
-        subject.must_equal "/comment_decorator.erb"
-      end
-    end
   end
 end
