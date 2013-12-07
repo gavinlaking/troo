@@ -23,10 +23,10 @@ module Ctrlo
       let(:board_id) { "526d8e130a14a9d846001d96" }
       let(:options)  { { mode: :board } }
 
-      subject { described_class.fetch_by_external_id(board_id, options) }
+      subject { described_class.fetch(board_id, options) }
 
-      it "returns a member with the board_id" do
-        skip
+      it "returns multiple members" do
+        subject.size.must_equal(2)
       end
     end
 
@@ -35,12 +35,12 @@ module Ctrlo
       after  { VCR.eject_cassette }
 
       let(:member_id) { "5195fdb5a8c01a2318004f5d" }
-      let(:options)   { { mode: :board } }
+      let(:options)   { { mode: :member } }
 
-      subject { described_class.fetch_by_external_id(board_id, options) }
+      subject { described_class.fetch(member_id, options) }
 
       it "returns a member with the member_id" do
-        skip
+        subject.size.must_equal(1)
       end
     end
   end

@@ -23,10 +23,10 @@ module Ctrlo
       let(:board_id) { "526d8e130a14a9d846001d96" }
       let(:options)  { { mode: :board } }
 
-      subject { described_class.fetch_by_external_id(board_id, options) }
+      subject { described_class.fetch(board_id, options) }
 
-      it "returns a list with the board_id" do
-        skip
+      it "returns multiple lists" do
+        subject.size.must_equal(4)
       end
     end
 
@@ -37,10 +37,10 @@ module Ctrlo
       let(:list_id) { "526d8e130a14a9d846001d97" }
       let(:options) { { mode: :list } }
 
-      subject { described_class.fetch_by_external_id(list_id, options) }
+      subject { described_class.fetch(list_id, options) }
 
       it "returns a list with the list_id" do
-        skip
+        subject.size.must_equal(1)
       end
     end
   end

@@ -23,10 +23,10 @@ module Ctrlo
       let(:board_id) { "526d8e130a14a9d846001d96" }
       let(:options)  { { mode: :board } }
 
-      subject { described_class.fetch_by_external_id(board_id, options) }
+      subject { described_class.fetch(board_id, options) }
 
-      it "returns a comment with the list_id" do
-        skip
+      it "returns multiple comments" do
+        subject.size.must_equal(11)
       end
     end
 
@@ -37,10 +37,10 @@ module Ctrlo
       let(:card_id) { "526d8f19ddb279532e005259" }
       let(:options) { { mode: :card } }
 
-      subject { described_class.fetch_by_external_id(card_id, options) }
+      subject { described_class.fetch(card_id, options) }
 
       it "returns a comment with the card_id" do
-        skip
+        subject.size.must_equal(4)
       end
     end
   end

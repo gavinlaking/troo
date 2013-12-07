@@ -23,10 +23,10 @@ module Ctrlo
       let(:board_id) { "526d8e130a14a9d846001d96" }
       let(:options)  { { mode: :board } }
 
-      subject { described_class.fetch_by_external_id(board_id, options) }
+      subject { described_class.fetch(board_id, options) }
 
-      it "returns a card with the board_id" do
-        skip
+      it "returns multiple cards" do
+        subject.size.must_equal(9)
       end
     end
 
@@ -37,10 +37,10 @@ module Ctrlo
       let(:list_id) { "526d8e130a14a9d846001d97" }
       let(:options) { { mode: :list } }
 
-      subject { described_class.fetch_by_external_id(list_id, options) }
+      subject { described_class.fetch(list_id, options) }
 
-      it "returns a card with the list_id" do
-        skip
+      it "returns multiple cards" do
+        subject.size.must_equal(5)
       end
     end
 
@@ -51,10 +51,10 @@ module Ctrlo
       let(:card_id) { "526d8f19ddb279532e005259" }
       let(:options) { { mode: :card } }
 
-      subject { described_class.fetch_by_external_id(card_id, options) }
+      subject { described_class.fetch(card_id, options) }
 
-      it "returns a card with the card_id" do
-        skip
+      it "returns a single card" do
+        subject.size.must_equal(1)
       end
     end
   end
