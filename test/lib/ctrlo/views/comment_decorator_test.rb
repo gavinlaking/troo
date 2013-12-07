@@ -15,6 +15,9 @@ module Ctrlo
     end
 
     describe "#as_view" do
+      it "" do
+        skip
+      end
     end
 
     describe "#member_username" do
@@ -43,10 +46,18 @@ module Ctrlo
 
     describe "#text" do
       subject { described_class.new(comment).text }
+
+      it "" do
+        skip
+      end
     end
 
     describe "#date" do
       subject { described_class.new(comment).date }
+
+      it "" do
+        skip
+      end
     end
 
     describe "#template_file" do

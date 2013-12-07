@@ -3,24 +3,18 @@ require_relative "../../../test_helper"
 module Ctrlo
   describe ExternalBoard do
     let(:described_class) { ExternalBoard }
-    let(:board_id) { "526d8e130a14a9d846001d96" }
+    let(:board_id)        { "526d8e130a14a9d846001d96" }
+    let(:options)         { { } }
 
     describe ".initialize" do
-      subject { described_class.new(board_id) }
+      subject { described_class.new(board_id, options) }
 
       it "assigns the external_id" do
         subject.instance_variable_get("@external_id").must_equal(board_id)
       end
-    end
 
-    describe "#fetch" do
-      before { VCR.insert_cassette(:boards_all, :decode_compressed_response => true) }
-      after  { VCR.eject_cassette }
-
-      subject { described_class.fetch }
-
-      it "returns multiple boards" do
-        skip
+      it "assigns the options" do
+        subject.instance_variable_get("@options").must_equal(options)
       end
     end
 
@@ -28,9 +22,20 @@ module Ctrlo
       before { VCR.insert_cassette(:board_by_id) }
       after  { VCR.eject_cassette }
 
-      subject { described.fetch_by_external_id(board_id) }
+      subject { described_class.fetch_by_external_id(board_id, options) }
 
       it "returns a board with the board_id" do
+        skip
+      end
+    end
+
+    describe "#fetch_all" do
+      before { VCR.insert_cassette(:boards_all, :decode_compressed_response => true) }
+      after  { VCR.eject_cassette }
+
+      subject { described_class.refresh_all }
+
+      it "returns multiple boards" do
         skip
       end
     end

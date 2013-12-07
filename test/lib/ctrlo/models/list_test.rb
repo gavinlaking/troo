@@ -5,47 +5,84 @@ module Ctrlo
     let(:described_class) { List }
 
     describe ".retrieve" do
-      describe "local retrieval by database ID" do
+      describe "without an ID" do
+        subject { described_class.retrieve }
+
+        it "retrieves all locally stored " do
+          skip
+        end
       end
 
-      describe "local retrieval by external ID" do
-      end
+      describe "with an ID" do
+        subject { described_class.retrieve(id) }
 
-      describe "remote retrieval by either ID" do
-      end
-    end
+        let(:id) { }
 
-    describe ".retrieve_all" do
-      it "retrieves all locally stored lists" do
+        describe "local retrieval by database ID" do
+          it "" do
+            skip
+          end
+        end
+
+        describe "local retrieval by external ID" do
+          it "" do
+            skip
+          end
+        end
+
+        describe "remote retrieval by either ID" do
+          it "" do
+            skip
+          end
+        end
       end
     end
 
     describe ".persist" do
-    end
+      subject { described_class.persist(collection) }
 
-    describe "#current" do
-      describe "when there is a current list set" do
-      end
+      let(:collection) { [] }
 
-      describe "when there is not a current list set" do
-      end
-    end
-
-    describe "#content" do
-    end
-
-    describe "#header" do
-      before do
-        @board = Board.create({ name: "My Test Board" })
-        @list  = @board.lists.create({ name: "My Test List" })
-      end
-
-      subject { @list.header }
-
-      it "returns a header" do
-        subject.must_equal({ id: "", name: "My Test Board" })
+      it "" do
+        skip
       end
     end
+
+    describe ".current" do
+      subject { described_class.current }
+
+      describe "when current is set" do
+        it "" do
+          skip
+        end
+      end
+
+      describe "when current is not set" do
+        before do
+          described_class.stubs(:first) { nil }
+        end
+
+        it "raises an exception" do
+          proc { subject }.must_raise(StandardError)
+        end
+      end
+    end
+
+    describe "#internal_attributes" do
+      subject { described_class }
+
+      it "" do
+        skip
+      end
+    end
+
+    describe "#external_attributes" do
+      subject { described_class }
+
+      it "" do
+        skip
+      end
+    end
+
   end
 end
-

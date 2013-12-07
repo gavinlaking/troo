@@ -5,36 +5,94 @@ module Ctrlo
     let(:described_class) { Board }
 
     describe ".retrieve" do
-      describe "local retrieval by database ID" do
+      describe "without an ID" do
+        subject { described_class.retrieve }
+
+        it "retrieves all locally stored boards" do
+          skip
+        end
       end
 
-      describe "local retrieval by external ID" do
-      end
+      describe "with an ID" do
+        subject { described_class.retrieve(id) }
 
-      describe "remote retrieval by either ID" do
-      end
-    end
+        describe "local retrieval by database ID" do
+          let(:id) { }
 
-    describe ".retrieve_all" do
-      it "retrieves all locally stored boards" do
+          it "" do
+            skip
+          end
+        end
+
+        describe "local retrieval by external ID" do
+          let(:id) { "526d8f19ddb279532e005259" }
+
+          before do
+            Ctrlo::Board.stubs(:get) { nil }
+          end
+
+          it "" do
+            skip
+          end
+        end
+
+        describe "remote retrieval by either ID" do
+          let(:id) { "526d8f19ddb279532e005259" }
+
+          before do
+            Ctrlo::Board.stubs(:get) { nil }
+            Ctrlo::Board.stubs(:first) { nil }
+          end
+
+          it "" do
+            skip
+          end
+        end
       end
     end
 
     describe ".persist" do
-    end
+      subject { described_class.persist(collection) }
 
-    describe "#current" do
-      describe "when there is a current board set" do
-      end
-
-      describe "when there is not a current board set" do
+      it "" do
+        skip
       end
     end
 
-    describe "#content" do
+    describe ".current" do
+      subject { described_class.current }
+
+      describe "when current is set" do
+        it "" do
+          skip
+        end
+      end
+
+      describe "when current is not set" do
+        before do
+          described_class.stubs(:first) { nil }
+        end
+
+        it "raises an exception" do
+          proc { subject }.must_raise(StandardError)
+        end
+      end
     end
 
-    describe "#header" do
+    describe "#internal_attributes" do
+      subject { described_class.new.internal_attributes }
+
+      it "" do
+        skip
+      end
+    end
+
+    describe "#external_attributes" do
+      subject { described_class.new.external_attributes }
+
+      it "" do
+        skip
+      end
     end
   end
 end
