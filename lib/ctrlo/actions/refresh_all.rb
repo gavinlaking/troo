@@ -1,23 +1,32 @@
 module Ctrlo
   class RefreshAll
-    def initialize
+    def initialize(options = {})
+      @options = options
     end
 
-    def self.perform
-      new.perform
+    def self.perform(options = {})
+      new(options).perform
     end
 
     def perform
       external_board_ids.map do |id|
-        ExternalList.fetch(id, { mode: :board })
-        ExternalCard.fetch(id, { mode: :board })
-        ExternalComment.fetch(id, { mode: :board })
-        ExternalMember.fetch(id, { mode: :board })
+        ExternalList.fetch(id, options)
+        ExternalCard.fetch(id, options)
+        ExternalComment.fetch(id, options)
+        ExternalMember.fetch(id, options)
       end
       true
     end
 
     private
+
+    def options
+      defaults.merge!(@options)
+    end
+
+    def defaults
+      { mode: :board }
+    end
 
     def external_board_ids
       active_boards.map(&:external_board_id)
