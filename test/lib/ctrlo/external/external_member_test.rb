@@ -26,7 +26,7 @@ module Ctrlo
       subject { described_class.fetch(board_id, options) }
 
       it "returns multiple members" do
-        subject.size.must_equal(2)
+        subject.size.must_equal(1)
       end
     end
 
