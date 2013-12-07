@@ -20,3 +20,4 @@ configuration.yml
 configuration.yml.otb
 ctrlo.db
 tags
+test/cassettes/*
