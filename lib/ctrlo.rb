@@ -10,9 +10,10 @@ require "thor"
 require "trello"
 require "yaml"
 
-require_relative "ctrlo/input"
-require_relative "ctrlo/ctrlo_cli"
 require_relative "ctrlo/version"
+
+require_relative "ctrlo/helpers"
+require_relative "ctrlo/input"
 
 require_relative "ctrlo/actions/create_comment"
 require_relative "ctrlo/actions/create_list"
@@ -41,6 +42,12 @@ require_relative "ctrlo/models/card"
 require_relative "ctrlo/models/comment"
 require_relative "ctrlo/models/list"
 require_relative "ctrlo/models/member"
+
+require_relative "ctrlo/cli/board_cli"
+require_relative "ctrlo/cli/card_cli"
+require_relative "ctrlo/cli/list_cli"
+
+require_relative "ctrlo/cli/main_cli"
 
 module Ctrlo
   Celluloid.logger = nil
