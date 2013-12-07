@@ -14,15 +14,17 @@ module Ctrlo
     def fetch_by_external_id
       [Trello::Board.find(external_id)]
     rescue Trello::Error
+      []
     end
 
-    def self.refresh_all
+    def self.fetch_all
       Ctrlo::Board.persist new.fetch_all
     end
 
     def fetch_all
       Trello::Board.all
     rescue Trello::Error
+      []
     end
 
     private

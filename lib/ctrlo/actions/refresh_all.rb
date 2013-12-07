@@ -37,7 +37,7 @@ module Ctrlo
     end
 
     def all_boards
-      @boards ||= ExternalBoard.refresh_all
+      @boards ||= ExternalBoard.fetch_all
     end
   end
 end

@@ -18,25 +18,33 @@ module Ctrlo
       end
     end
 
-    describe "#fetch_by_external_id" do
+    describe ".fetch" do
       before { VCR.insert_cassette(:board_by_id) }
       after  { VCR.eject_cassette }
 
-      subject { described_class.fetch_by_external_id(board_id, options) }
+      subject { described_class.fetch(board_id, options) }
+
+      it "returns a single board" do
+        subject.size.must_equal(1)
+      end
 
       it "returns a board with the board_id" do
-        skip
+        subject.first.external_board_id.must_equal(board_id)
+      end
+
+      it "returns a board with the correct name" do
+        subject.first.name.must_equal("Ctrlo App")
       end
     end
 
-    describe "#fetch_all" do
-      before { VCR.insert_cassette(:boards_all, :decode_compressed_response => true) }
+    describe ".fetch_all" do
+      before { VCR.insert_cassette(:boards_all, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
-      subject { described_class.refresh_all }
+      subject { described_class.fetch_all }
 
       it "returns multiple boards" do
-        skip
+        subject.size.must_equal(2)
       end
     end
   end
