@@ -5,7 +5,7 @@ module Ctrlo
     end
 
     def as_view
-      Template.parse(self)
+      Template.parse(self, "/comment_decorator.erb")
     end
 
     def member_username

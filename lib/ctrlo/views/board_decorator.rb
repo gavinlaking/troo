@@ -5,10 +5,10 @@ module Ctrlo
     end
 
     def as_view
-      Template.parse(self)
+      Template.parse(self, "/board_decorator.erb")
     end
 
-    def formatted_row
+    def as_list_row
       [board_id, board_name].join
     end
 

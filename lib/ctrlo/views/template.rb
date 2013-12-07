@@ -4,12 +4,13 @@ module Ctrlo
   end
 
   class Template
-    def initialize(object)
-      @object = object
+    def initialize(object, template_file)
+      @object        = object
+      @template_file = template_file
     end
 
-    def self.parse(object)
-      new(object).parse
+    def self.parse(object, template_file)
+      new(object, template_file).parse
     end
 
     def parse
@@ -17,11 +18,11 @@ module Ctrlo
     end
 
     def load
-      File.read(File.dirname(__FILE__) + object.template_file)
+      File.read(File.dirname(__FILE__) + template_file)
     end
 
     private
-    attr_reader :object
+    attr_reader :object, :template_file
 
     def half_horizontal_line
       "-" * (width / 2).floor

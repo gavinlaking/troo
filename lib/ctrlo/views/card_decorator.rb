@@ -5,7 +5,7 @@ module Ctrlo
     end
 
     def as_view
-      Template.parse(self)
+      Template.parse(self, "/card_decorator.erb")
     end
 
     def title
