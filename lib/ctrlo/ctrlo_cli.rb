@@ -36,9 +36,9 @@ module Ctrlo
       desc "all", "Show all the cards for the current list or for <list_id>"
       def all(list_id = nil)
         if list_id
-          Output.render(Ctrlo::List.retrieve(list_id).cards)
+          #Output.render(Ctrlo::List.retrieve(list_id).cards)
         else
-          Output.render(Ctrlo::List.current.cards)
+          #Output.render(Ctrlo::List.current.cards)
         end
       rescue => e
         error(e.message)
@@ -67,7 +67,7 @@ module Ctrlo
       desc "move", "Move a card <card_id> to list <list_id>"
       def move(card_id, list_id = nil)
         unless list_id
-          Output.render(Ctrlo::Board.current.lists)
+          #Output.render(Ctrlo::Board.current.lists)
           error("Please choose a destination list. (Move a card <card_id> to list <list_id>)")
           exit 1
         end
@@ -86,9 +86,9 @@ module Ctrlo
       desc "all", "Show all the lists the current board or for <board_id>"
       def all(board_id = nil)
         if board_id
-          Output.render(Ctrlo::Board.retrieve(board_id).lists)
+          #Output.render(Ctrlo::Board.retrieve(board_id).lists)
         else
-          Output.render(Ctrlo::Board.current.lists)
+          #Output.render(Ctrlo::Board.current.lists)
         end
       rescue => e
         error(e.message)
