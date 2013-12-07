@@ -25,8 +25,8 @@ module Ctrlo
 
     def attributes
       {
-        :name     => name,
-        :board_id => external_board_id
+        name:     name,
+        board_id: external_board_id
       }
     end
 

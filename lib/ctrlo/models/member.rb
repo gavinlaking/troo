@@ -14,8 +14,8 @@ module Ctrlo
     property :external_member_id, String
 
     # has n, :cards
-    has n, :comments, :parent_key => [ :external_member_id ],
-                      :child_key  => [ :external_member_id ]
+    has n, :comments, parent_key: [ :external_member_id ],
+                      child_key:  [ :external_member_id ]
 
     class << self
       def retrieve(id = nil)

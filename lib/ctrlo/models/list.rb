@@ -11,12 +11,12 @@ module Ctrlo
     property :external_board_id, String
     property :external_list_id,  String
 
-    belongs_to :board, :parent_key => [ :external_board_id ],
-                       :child_key  => [ :external_board_id ],
-                       :required   => true
-    has n,     :cards, :parent_key => [ :external_list_id ],
-                       :child_key  => [ :external_list_id ],
-                       :constraint => :skip
+    belongs_to :board, parent_key: [ :external_board_id ],
+                       child_key:  [ :external_board_id ],
+                       required:   true
+    has n,     :cards, parent_key: [ :external_list_id ],
+                       child_key:  [ :external_list_id ],
+                       constraint: :skip
 
     class << self
       def retrieve(id = nil)
