@@ -1,6 +1,7 @@
 module Ctrlo
   class Comment
     include DataMapper::Resource
+    include ModelHelpers
 
     property :id,                  Serial
     property :text,                Text
@@ -21,17 +22,14 @@ module Ctrlo
                         :required   => true
 
     class << self
-      def retrieve(id)
+      def retrieve(id = nil)
+        return all unless id
         get(id) ||
         first(external_comment_id: id)
       end
 
-      def retrieve_all
-        all
-      end
-
-      def persist(comment_collection)
-        comment_collection.map do |c|
+      def persist(collection)
+        collection.map do |c|
           incoming = { external_comment_id: c.id,
                        external_board_id:   c.data["board"]["id"],
                        external_card_id:    c.data["card"]["id"],
@@ -48,22 +46,6 @@ module Ctrlo
           end
         end
       end
-    end
-
-    def content
-      { id: id, text: text, date: date }
-    end
-
-    def header
-      { id: "ID", text: "Comment", date: "Date" }
-    end
-
-    def internal_attributes
-      self.attributes.keep_if   { |k, _| k == :id }
-    end
-
-    def external_attributes
-      self.attributes.delete_if { |k, _| k == :id }
     end
   end
 end

@@ -1,6 +1,7 @@
 module Ctrlo
   class List
     include DataMapper::Resource
+    include ModelHelpers
 
     property :id,                Serial
     property :name,              Text
@@ -18,18 +19,15 @@ module Ctrlo
                        :constraint => :skip
 
     class << self
-      def retrieve(id)
+      def retrieve(id = nil)
+        return all unless id
         get(id)                     ||
         first(external_list_id: id) ||
         get_remote(id)
       end
 
-      def retrieve_all
-        all
-      end
-
-      def persist(list_collection)
-        list_collection.map do |l|
+      def persist(collection)
+        collection.map do |l|
           incoming = { external_board_id: l.board_id,
                        external_list_id:  l.id,
                        name:              l.name,
@@ -56,23 +54,6 @@ module Ctrlo
       def get_remote(external_list_id)
         ExternalList.fetch(external_list_id, { mode: :list }).first
       end
-    end
-
-    def content
-      current = current? ? "* " : ""
-      { id: [current, id].join.rjust(6), name: name }
-    end
-
-    def header
-      { id: "", name: board.name }
-    end
-
-    def internal_attributes
-      self.attributes.keep_if   { |k, _| k == :id || k == :current }
-    end
-
-    def external_attributes
-      self.attributes.delete_if { |k, _| k == :id || k == :current }
     end
   end
 end

@@ -1,6 +1,7 @@
 module Ctrlo
   class Board
     include DataMapper::Resource
+    include ModelHelpers
 
     property :id,                Serial
     property :name,              Text
@@ -17,18 +18,15 @@ module Ctrlo
     #has n, :members
 
     class << self
-      def retrieve(id)
+      def retrieve(id = nil)
+        return all unless id
         get(id)                      ||
         first(external_board_id: id) ||
         get_remote(id)
       end
 
-      def retrieve_all
-        all
-      end
-
-      def persist(board_collection)
-        board_collection.map do |b|
+      def persist(collection)
+        collection.map do |b|
           incoming = { external_board_id: b.id,
                        name:              b.name,
                        closed:            b.closed }
@@ -53,14 +51,6 @@ module Ctrlo
       def get_remote(external_board_id)
         ExternalBoard.fetch(external_board_id, { mode: :board }).first
       end
-    end
-
-    def internal_attributes
-      self.attributes.keep_if   { |k, _| k == :id || k == :current }
-    end
-
-    def external_attributes
-      self.attributes.delete_if { |k, _| k == :id || k == :current }
     end
   end
 end

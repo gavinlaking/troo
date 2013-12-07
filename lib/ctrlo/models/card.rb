@@ -1,6 +1,7 @@
 module Ctrlo
   class Card
     include DataMapper::Resource
+    include ModelHelpers
 
     property :id,                  Serial
     property :short_id,            Integer
@@ -28,19 +29,16 @@ module Ctrlo
                           :constraint => :skip
 
     class << self
-      def retrieve(id)
+      def retrieve(id = nil)
+        return all unless id
         get(id)                     ||
         first(short_id: id)         ||
         first(external_card_id: id) ||
         get_remote(id)
       end
 
-      def retrieve_all
-        all
-      end
-
-      def persist(card_collection)
-        card_collection.map do |c|
+      def persist(collection)
+        collection.map do |c|
           incoming = { external_board_id:   c.board_id,
                        external_list_id:    c.list_id,
                        external_card_id:    c.id,
@@ -77,27 +75,6 @@ module Ctrlo
 
     def members
       []
-    end
-
-    def content
-      current = current? ? "* " : ""
-      {
-        id:       [current, id].join.rjust(6),
-        name:     ["(", short_id, ") ", name].join,
-        comments: comments.size
-      }
-    end
-
-    def header
-      { id: "", name: list.name, comments: "Comments" }
-    end
-
-    def internal_attributes
-      self.attributes.keep_if   { |k, _| k == :id || k == :current }
-    end
-
-    def external_attributes
-      self.attributes.delete_if { |k, _| k == :id || k == :current }
     end
   end
 end
