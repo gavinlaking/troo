@@ -22,7 +22,7 @@ module Ctrlo
 
       desc "show <card_id>", "Show a card <card_id> (includes comments)"
       def show(card_id)
-        Ctrlo::Screen.render(Ctrlo::CardDecorator.decorate(Ctrlo::CardRetrieval.retrieve(card_id)))
+        Ctrlo::Screen.render(Ctrlo::CardDecorator.new(Ctrlo::Card.retrieve(card_id)).as_view)
       end
 
       desc "comment", "Comment on a card with <card_id> <comment>"
