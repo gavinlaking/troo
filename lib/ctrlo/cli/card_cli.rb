@@ -17,8 +17,6 @@ module Ctrlo
       desc "current <card_id>", "Set the current card to <card_id>"
       def current(card_id)
         card = SetCurrent.for Ctrlo::CardRetrieval.retrieve(card_id)
-      ensure
-        notify "'#{card.name}' set to current card."
       end
 
       desc "show <card_id>", "Show a card <card_id> (includes comments)"

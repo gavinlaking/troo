@@ -26,8 +26,6 @@ module Ctrlo
       desc "current <list_id>", "Set the current list to <list_id>"
       def current(list_id)
         list = SetCurrent.for Ctrlo::ListRetrieval.retrieve(list_id)
-      ensure
-        notify "'#{list.name}' set to current list."
       end
 
       desc "add <board_id>", "Add a new list to <board_id>"

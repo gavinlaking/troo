@@ -8,15 +8,11 @@ module Ctrlo
       desc "refresh", "Refresh all data"
       def refresh
         RefreshAll.perform
-      ensure
-        notify "Local data is refreshed."
       end
 
       desc "cleanup", "Removes all local data"
       def cleanup
         DataMapper.auto_migrate!
-      ensure
-        notify "Local data is removed."
       end
 
       desc "version", "Print the version"

@@ -11,8 +11,6 @@ module Ctrlo
       desc "current <board_id>", "Set the current board to <board_id>"
       def current(board_id)
         board = SetCurrent.for Ctrlo::BoardRetrieval.retrieve(board_id)
-      ensure
-        notify "'#{board.name}' set to current board."
       end
 
       desc "show <board_id>", "Show a board <board_id> (includes lists)"
