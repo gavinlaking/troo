@@ -10,8 +10,6 @@ module Ctrlo
         else
           #Output.render(Ctrlo::List.current.cards)
         end
-      rescue => e
-        error(e.message)
       end
 
       desc "current <card_id>", "Set the current card to <card_id>"

@@ -10,8 +10,6 @@ module Ctrlo
         else
           #Output.render(Ctrlo::Board.current.lists)
         end
-      rescue => e
-        error(e.message)
       end
 
       desc "cards", "Show all cards for the current list or for <list_id>"
