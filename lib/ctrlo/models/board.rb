@@ -17,11 +17,9 @@ module Ctrlo
                    constraint: :skip
     #has n, :members
 
-    class << self
-      def current
-        raise StandardError, "No board set to current." unless all(current: true).any?
-        first(current: true)
-      end
+    def self.current
+      raise StandardError, "No board set to current." unless first(current: true)
+      first(current: true)
     end
   end
 end

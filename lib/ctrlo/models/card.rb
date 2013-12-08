@@ -28,11 +28,9 @@ module Ctrlo
                           child_key:  [ :external_card_id ],
                           constraint: :skip
 
-    class << self
-      def current
-        raise StandardError, "No card set to current." unless all(current: true).any?
-        first(current: true)
-      end
+    def self.current
+      raise StandardError, "No card set to current." unless first(current: true)
+      first(current: true)
     end
 
     def members
