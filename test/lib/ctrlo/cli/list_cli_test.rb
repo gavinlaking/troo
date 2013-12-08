@@ -4,7 +4,7 @@ require "thor"
 module Ctrlo
   module CLI
     describe List do
-      let(:described_class) { Board }
+      let(:described_class) { List }
 
       describe "#all" do
         subject { described_class }
