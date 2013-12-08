@@ -13,8 +13,8 @@ module Ctrlo
 
     def fetch_by_external_id
       [Trello::Board.find(external_id)]
-    rescue Trello::Error
-      []
+    #rescue Trello::Error
+    # []
     end
 
     def self.fetch_all
@@ -23,8 +23,8 @@ module Ctrlo
 
     def fetch_all
       Trello::Board.all
-    rescue Trello::Error
-      []
+    # rescue Trello::Error
+    # []
     end
 
     private

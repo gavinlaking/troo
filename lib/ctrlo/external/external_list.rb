@@ -31,12 +31,12 @@ module Ctrlo
 
     def board_mode
       Trello::Board.find(external_id).lists
-    rescue Trello::Error
+    #rescue Trello::Error
     end
 
     def list_mode
       [Trello::List.find(external_id)]
-    rescue Trello::Error
+    #rescue Trello::Error
     end
 
   end

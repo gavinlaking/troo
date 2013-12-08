@@ -32,13 +32,13 @@ module Ctrlo
     def board_mode
       Trello::Board.find(external_id).actions.
         delete_if { |a| a.nil? || a.type != "commentCard" }
-    rescue Trello::Error
+    #rescue Trello::Error
     end
 
     def card_mode
       Trello::Card.find(external_id).actions.
         delete_if { |a| a.nil? || a.type != "commentCard" }
-    rescue Trello::Error
+    #rescue Trello::Error
     end
 
   end
