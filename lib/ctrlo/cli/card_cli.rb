@@ -15,6 +15,9 @@ module Ctrlo
       desc "current <card_id>", "Set the current card to <card_id>"
       def current(card_id)
         card = SetCurrent.for Ctrlo::CardRetrieval.retrieve(card_id)
+        puts "Card '#{card.name}' set to current."
+      rescue Trello::Error
+        puts "Card cannot be found."
       end
 
       desc "show <card_id>", "Show a card <card_id> (includes comments)"

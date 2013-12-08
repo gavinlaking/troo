@@ -15,10 +15,31 @@ module Ctrlo
       end
 
       describe "#current" do
-        subject { described_class }
+        let(:board_id) { "some_board_id" }
 
-        it "" do
-          skip
+        subject { described_class.new.current(board_id) }
+
+        describe "when the board_id cannot be found" do
+          before do
+            Ctrlo::BoardRetrieval.stubs(:retrieve).raises(Trello::Error)
+          end
+
+          it "rescues from the error" do
+            proc { subject }.must_output("Board cannot be found.\n")
+          end
+        end
+
+        describe "when the board_id was found" do
+          let(:board) { Ctrlo::Board.new(name: "My Board", current: false) }
+
+          before do
+            Ctrlo::BoardRetrieval.stubs(:retrieve)
+            SetCurrent.stubs(:for).returns(board)
+          end
+
+          it "reports success" do
+            proc { subject }.must_output("Board 'My Board' set to current.\n")
+          end
         end
       end
 
