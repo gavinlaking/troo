@@ -7,16 +7,20 @@ module Ctrlo
     describe ".current" do
       subject { described_class.current }
 
+      before do
+        described_class.stubs(:first).returns(current_board)
+      end
+
       describe "when current is set" do
-        it "" do
-          skip
+        let(:current_board) { Ctrlo::Board.new(current: true) }
+
+        it "returns the current board" do
+          subject.must_equal current_board
         end
       end
 
       describe "when current is not set" do
-        before do
-          described_class.stubs(:first) { nil }
-        end
+        let(:current_board) { nil }
 
         it "raises an exception" do
           proc { subject }.must_raise(StandardError)
