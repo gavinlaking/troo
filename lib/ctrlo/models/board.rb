@@ -25,22 +25,6 @@ module Ctrlo
         get_remote(id)
       end
 
-      def persist(collection)
-        collection.map do |b|
-          incoming = { external_board_id: b.id,
-                       name:              b.name,
-                       closed:            b.closed }
-
-          local = first(external_board_id: b.id)
-          if local
-            local.update(incoming) unless local.external_attributes == incoming
-            local
-          else
-            create(incoming)
-          end
-        end
-      end
-
       def current
         raise StandardError, "No board set to current." unless all(current: true).any?
         first(current: true)

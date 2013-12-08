@@ -38,6 +38,7 @@ require_relative "ctrlo/views/list_decorator"
 
 require_relative "ctrlo/models/model_helpers"
 require_relative "ctrlo/models/board"
+require_relative "ctrlo/models/board_persistence"
 require_relative "ctrlo/models/card"
 require_relative "ctrlo/models/comment"
 require_relative "ctrlo/models/list"
