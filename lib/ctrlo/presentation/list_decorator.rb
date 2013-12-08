@@ -5,7 +5,7 @@ module Ctrlo
     end
 
     def as_view
-      Template.parse(self, "/list_decorator.erb")
+      Template.parse(self, "/../views/list.erb")
     end
 
     def as_list_row
