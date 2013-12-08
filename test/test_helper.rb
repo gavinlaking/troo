@@ -7,8 +7,5 @@ require_relative "../lib/ctrlo.rb"
 # require "celluloid/test"
 # Celluloid.boot
 
-# DataMapper.setup(:default, 'sqlite::memory:')
-# DataMapper::Logger.new(STDOUT, :debug)
-
 require "mocha/setup"
 
