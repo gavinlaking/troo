@@ -28,6 +28,10 @@ module Ctrlo
       Ctrlo::Card.get(id)
     end
 
+    def by_short_id
+      Ctrlo::Card.first(short_id: id)
+    end
+
     def by_external_id
       Ctrlo::Card.first(external_card_id: id)
     end
