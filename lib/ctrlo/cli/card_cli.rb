@@ -6,7 +6,7 @@ module Ctrlo
       desc "all", "Show all the cards for the current list or for <list_id>"
       def all(list_id = nil)
         if list_id
-          #Output.render(Ctrlo::List.retrieve(list_id).cards)
+          #Output.render(Ctrlo::ListRetrieval.retrieve(list_id).cards)
         else
           #Output.render(Ctrlo::List.current.cards)
         end
@@ -16,14 +16,14 @@ module Ctrlo
 
       desc "current <card_id>", "Set the current card to <card_id>"
       def current(card_id)
-        card = SetCurrent.for Ctrlo::Card.retrieve(card_id)
+        card = SetCurrent.for Ctrlo::CardRetrieval.retrieve(card_id)
       ensure
         notify "'#{card.name}' set to current card."
       end
 
       desc "show <card_id>", "Show a card <card_id> (includes comments)"
       def show(card_id)
-        Ctrlo::Screen.render(Ctrlo::CardDecorator.decorate(Ctrlo::Card.retrieve(card_id)))
+        Ctrlo::Screen.render(Ctrlo::CardDecorator.decorate(Ctrlo::CardRetrieval.retrieve(card_id)))
       end
 
       desc "comment", "Comment on a card with <card_id> <comment>"

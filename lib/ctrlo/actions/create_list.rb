@@ -17,7 +17,7 @@ module Ctrlo
     end
 
     def external_board_id
-      @external_board_id ||= Ctrlo::Board.retrieve(board_id).external_board_id
+      @external_board_id ||= Ctrlo::BoardRetrieval.retrieve(board_id).external_board_id
     end
 
     private

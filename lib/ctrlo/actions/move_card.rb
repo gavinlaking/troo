@@ -30,11 +30,11 @@ module Ctrlo
     end
 
     def list
-      @list ||= Ctrlo::List.retrieve(list_id)
+      @list ||= Ctrlo::ListRetrieval.retrieve(list_id)
     end
 
     def card
-      @card ||= Ctrlo::Card.retrieve(card_id)
+      @card ||= Ctrlo::CardRetrieval.retrieve(card_id)
     end
   end
 end

@@ -1,5 +1,5 @@
 module Ctrlo
-  class BoardPersistence
+  class ListPersistence
 
     def initialize(resource)
       @resource = resource
@@ -19,7 +19,7 @@ module Ctrlo
     attr_reader :resource
 
     def created
-      Ctrlo::Board.create(resource_data)
+      Ctrlo::List.create(resource_data)
     end
 
     def updated
@@ -36,7 +36,7 @@ module Ctrlo
     end
 
     def local
-      @local ||= Ctrlo::Board.first(external_board_id: resource.id)
+      @local ||= Ctrlo::List.first(external_list_id: resource.id)
     end
 
     def local_data
@@ -44,8 +44,10 @@ module Ctrlo
     end
 
     def resource_data
-      { external_board_id: resource.id,
+      { external_board_id: resource.board_id,
+        external_list_id:  resource.id,
         name:              resource.name,
+        position:          resource.pos,
         closed:            resource.closed }
     end
   end

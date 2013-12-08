@@ -1,5 +1,5 @@
 module Ctrlo
-  class BoardPersistence
+  class MemberPersistence
 
     def initialize(resource)
       @resource = resource
@@ -19,7 +19,7 @@ module Ctrlo
     attr_reader :resource
 
     def created
-      Ctrlo::Board.create(resource_data)
+      Ctrlo::Member.create(resource_data)
     end
 
     def updated
@@ -36,7 +36,7 @@ module Ctrlo
     end
 
     def local
-      @local ||= Ctrlo::Board.first(external_board_id: resource.id)
+      @local ||= Ctrlo::Member.first(external_member_id: resource.id)
     end
 
     def local_data
@@ -44,9 +44,14 @@ module Ctrlo
     end
 
     def resource_data
-      { external_board_id: resource.id,
-        name:              resource.name,
-        closed:            resource.closed }
+      { external_member_id: resource.id,
+        username:           resource.username,
+        email:              resource.email,
+        full_name:          resource.full_name,
+        initials:           resource.initials,
+        avatar_id:          resource.avatar_id,
+        bio:                resource.bio,
+        url:                resource.url }
     end
   end
 end

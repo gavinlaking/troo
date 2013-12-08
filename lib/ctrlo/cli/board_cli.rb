@@ -5,12 +5,12 @@ module Ctrlo
 
       desc "all", "Show all the boards"
       def all
-        Ctrlo::Screen.render(Ctrlo::Board.retrieve.map { |board| Ctrlo::BoardDecorator.new(board).as_view }.join)
+        Ctrlo::Screen.render(Ctrlo::BoardRetrieval.retrieve.map { |board| Ctrlo::BoardDecorator.new(board).as_view }.join)
       end
 
       desc "current <board_id>", "Set the current board to <board_id>"
       def current(board_id)
-        board = SetCurrent.for Ctrlo::Board.retrieve(board_id)
+        board = SetCurrent.for Ctrlo::BoardRetrieval.retrieve(board_id)
       ensure
         notify "'#{board.name}' set to current board."
       end

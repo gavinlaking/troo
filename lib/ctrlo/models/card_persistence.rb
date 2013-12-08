@@ -1,5 +1,5 @@
 module Ctrlo
-  class BoardPersistence
+  class CardPersistence
 
     def initialize(resource)
       @resource = resource
@@ -19,7 +19,7 @@ module Ctrlo
     attr_reader :resource
 
     def created
-      Ctrlo::Board.create(resource_data)
+      Ctrlo::Card.create(resource_data)
     end
 
     def updated
@@ -36,7 +36,7 @@ module Ctrlo
     end
 
     def local
-      @local ||= Ctrlo::Board.first(external_board_id: resource.id)
+      @local ||= Ctrlo::Card.first(external_card_id: resource.id)
     end
 
     def local_data
@@ -44,9 +44,17 @@ module Ctrlo
     end
 
     def resource_data
-      { external_board_id: resource.id,
-        name:              resource.name,
-        closed:            resource.closed }
+      { external_board_id:   resource.board_id,
+        external_list_id:    resource.list_id,
+        external_card_id:    resource.id,
+        external_member_ids: resource.member_ids,
+        short_id:            resource.short_id,
+        name:                resource.name,
+        desc:                resource.desc,
+        url:                 resource.url,
+        position:            resource.pos,
+        last_activity_date:  resource.last_activity_date,
+        closed:              resource.closed }
     end
   end
 end

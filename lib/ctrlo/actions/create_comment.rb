@@ -25,7 +25,7 @@ module Ctrlo
     end
 
     def proxy_card
-      ProxyCard.for(Ctrlo::Card.retrieve(card_id))
+      ProxyCard.for(Ctrlo::CardRetrieval.retrieve(card_id))
     end
 
   end

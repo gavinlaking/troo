@@ -6,7 +6,7 @@ module Ctrlo
       desc "all", "Show all the lists for the current board or for <board_id>"
       def all(board_id = nil)
         if board_id
-          #Output.render(Ctrlo::Board.retrieve(board_id).lists)
+          #Output.render(Ctrlo::BoardRetrieval.retrieve(board_id).lists)
         else
           #Output.render(Ctrlo::Board.current.lists)
         end
@@ -25,7 +25,7 @@ module Ctrlo
 
       desc "current <list_id>", "Set the current list to <list_id>"
       def current(list_id)
-        list = SetCurrent.for Ctrlo::List.retrieve(list_id)
+        list = SetCurrent.for Ctrlo::ListRetrieval.retrieve(list_id)
       ensure
         notify "'#{list.name}' set to current list."
       end

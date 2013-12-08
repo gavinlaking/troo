@@ -8,7 +8,9 @@ module Ctrlo
     end
 
     def self.fetch(external_id, options = {})
-      Ctrlo::List.persist new(external_id, options).fetch_by_external_id
+      new(external_id, options).fetch_by_external_id.map do |resource|
+        Ctrlo::ListPersistence.for(resource)
+      end
     end
 
     def fetch_by_external_id
