@@ -17,7 +17,7 @@ module Ctrlo
       end
 
       desc "show <board_id>", "Show a board <board_id> (includes lists)"
-      def show
+      def show(board_id)
         puts "Not implemented yet."
       end
     end
