@@ -19,7 +19,6 @@ module Ctrlo
                        constraint: :skip
 
     def self.current
-      raise StandardError, "No list set to current." unless first(current: true)
       first(current: true)
     end
   end

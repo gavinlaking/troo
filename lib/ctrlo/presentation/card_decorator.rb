@@ -4,6 +4,15 @@ module Ctrlo
       @card = card
     end
 
+    def short
+      print Esc.underline + Esc.blue
+      print card.short_id.to_s
+      print Esc.reset
+      print " "
+      print card.name
+      print "\n"
+    end
+
     def as_view
       Template.parse(self, "/../views/card.erb")
     end

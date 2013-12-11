@@ -32,9 +32,11 @@ require_relative "ctrlo/external/proxy_list"
 require_relative "ctrlo/presentation/screen"
 require_relative "ctrlo/presentation/template"
 require_relative "ctrlo/presentation/board_decorator"
+require_relative "ctrlo/presentation/board_presenter"
 require_relative "ctrlo/presentation/card_decorator"
 require_relative "ctrlo/presentation/comment_decorator"
 require_relative "ctrlo/presentation/list_decorator"
+require_relative "ctrlo/presentation/list_presenter"
 
 require_relative "ctrlo/models/model_helpers"
 require_relative "ctrlo/models/board"
@@ -56,7 +58,7 @@ require_relative "ctrlo/models/member_persistence"
 require_relative "ctrlo/cli/board_cli"
 require_relative "ctrlo/cli/card_cli"
 require_relative "ctrlo/cli/list_cli"
-
+require_relative "ctrlo/cli/current_cli"
 require_relative "ctrlo/cli/main_cli"
 
 module Ctrlo

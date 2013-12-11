@@ -8,27 +8,28 @@ module Ctrlo
       Template.parse(self, "/../views/board.erb")
     end
 
-    def as_list_row
-      [board_id, board_name].join
+    def as_list
+      [Esc.underline, Esc.red, board_id, Esc.reset, " ", board_name].join
+    end
+
+    def short
+      print Esc.underline + Esc.red
+      print board_id
+      print Esc.reset
+      print " "
+      print board_name
+      print "\n"
+    end
+
+    def board_name
+      board.name || "N/A"
+    end
+
+    def board_id
+      board.id.to_s
     end
 
     private
     attr_reader :board
-
-    def board_name
-      [ Esc.yellow, board.name, Esc.reset ].join
-    end
-
-    def board_id
-      [ Esc.green, board_idstr, Esc.reset ].join
-    end
-
-    def board_idstr
-      brackets(board.id.to_s).ljust(6)
-    end
-
-    def brackets(string = nil)
-      "(" + string + ")"
-    end
   end
 end

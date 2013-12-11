@@ -12,23 +12,28 @@ module Ctrlo
       [list_id, list_name].join
     end
 
+    def short
+      print Esc.underline + Esc.yellow
+      print list_id
+      print Esc.reset
+      print " "
+      print list_name
+      print "\n"
+    end
+
     private
     attr_reader :list
 
     def list_name
-      [ Esc.yellow, list.name, Esc.reset ].join
+      if list.name
+        list.name.chomp
+      else
+        "N/A"
+      end
     end
 
     def list_id
-      [ Esc.green, list_idstr, Esc.reset ].join
-    end
-
-    def list_idstr
-      brackets(list.id.to_s).ljust(6)
-    end
-
-    def brackets(string = nil)
-      "(" + string + ")"
+      list.id.to_s
     end
   end
 end

@@ -18,7 +18,6 @@ module Ctrlo
     #has n, :members
 
     def self.current
-      raise StandardError, "No board set to current." unless first(current: true)
       first(current: true)
     end
   end
