@@ -1,4 +1,4 @@
-# Ctrlo
+# Troo
 
 CLI interface for Trello.
 
@@ -6,7 +6,7 @@ CLI interface for Trello.
 
 Add this line to your application's Gemfile:
 
-    gem 'ctrlo'
+    gem 'troo'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ctrlo
+    $ gem install troo
 
 ## Usage
 
@@ -26,7 +26,7 @@ You will need user authentication tokens to access your Trello account.
 
 2) Go to
 
-    https://trello.com/1/connect?key=your_key_here&name=ctrlo&response_type=token&scope=read,write
+    https://trello.com/1/connect?key=your_key_here&name=troo&response_type=token&scope=read,write
 
 
 ## Todo

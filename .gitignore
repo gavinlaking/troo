@@ -18,6 +18,6 @@ tmp
 
 configuration.yml
 configuration.yml.otb
-ctrlo.db
+troo.db
 tags
 test/cassettes/*

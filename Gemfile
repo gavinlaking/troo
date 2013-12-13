@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in ctrlo.gemspec
+# Specify your gem's dependencies in troo.gemspec
 gemspec
 
