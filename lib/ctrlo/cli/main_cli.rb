@@ -29,6 +29,9 @@ module Ctrlo
       desc "card [subcommand] <args>", "Operate on the card"
       subcommand :card, Ctrlo::CLI::Card
 
+      desc "add [board|list|card] <id>", "Add board, list, or card"
+      subcommand :add, Ctrlo::CLI::Add
+
       desc "current [board|list|card] <id>", "Set board, list or card to be current"
       subcommand :current, Ctrlo::CLI::Current
 

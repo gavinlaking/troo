@@ -58,6 +58,7 @@ require_relative "ctrlo/models/member_persistence"
 require_relative "ctrlo/cli/board_cli"
 require_relative "ctrlo/cli/card_cli"
 require_relative "ctrlo/cli/list_cli"
+require_relative "ctrlo/cli/add_cli"
 require_relative "ctrlo/cli/current_cli"
 require_relative "ctrlo/cli/main_cli"
 

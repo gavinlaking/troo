@@ -21,14 +21,6 @@ module Ctrlo
           skip
         end
       end
-
-      describe "#add" do
-        subject { described_class }
-
-        it "" do
-          skip
-        end
-      end
     end
   end
 end
