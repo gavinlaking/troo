@@ -4,6 +4,30 @@ module Troo
   describe BoardRetrieval do
     let(:described_class) { BoardRetrieval }
 
+    describe ".current" do
+      subject { described_class.current }
+
+      before do
+        Troo::Board.stubs(:first).returns(current_board)
+      end
+
+      describe "when current is set" do
+        let(:current_board) { Troo::Board.new(current: true) }
+
+        it "returns the current board" do
+          subject.must_equal current_board
+        end
+      end
+
+      describe "when current is not set" do
+        let(:current_board) { nil }
+
+        it "returns nil" do
+          subject.must_equal current_board
+        end
+      end
+    end
+
     describe ".retrieve" do
       describe "without an ID" do
         subject { described_class.retrieve }

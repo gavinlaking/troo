@@ -4,6 +4,10 @@ module Troo
       @id = id
     end
 
+    def self.current
+      Troo::Board.first(current: true)
+    end
+
     def self.retrieve(id = nil)
       new(id).retrieve
     end

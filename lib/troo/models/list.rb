@@ -18,8 +18,5 @@ module Troo
                        child_key:  [ :external_list_id ],
                        constraint: :skip
 
-    def self.current
-      first(current: true)
-    end
   end
 end

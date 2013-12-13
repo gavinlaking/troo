@@ -17,9 +17,6 @@ module Troo
                    constraint: :skip
     #has n, :members
 
-    def self.current
-      first(current: true)
-    end
   end
 end
 

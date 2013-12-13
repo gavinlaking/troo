@@ -28,10 +28,6 @@ module Troo
                           child_key:  [ :external_card_id ],
                           constraint: :skip
 
-    def self.current
-      first(current: true)
-    end
-
     def members
       []
     end
