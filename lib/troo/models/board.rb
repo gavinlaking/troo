@@ -1,22 +1,23 @@
 module Troo
-  class Board
-    include DataMapper::Resource
+  class Board < Ohm::Model
+    include Ohm::DataTypes
     include ModelHelpers
 
-    property :id,                Serial
-    property :name,              Text
-    property :current,           Boolean, default: false
-    property :closed,            Boolean, default: false
-    property :external_board_id, String
+    attribute :name
+    attribute :current, Type::Boolean
+    attribute :closed, Type::Boolean
+    attribute :external_board_id
 
-    has n, :lists, parent_key: [ :external_board_id ],
-                   child_key:  [ :external_board_id ],
-                   constraint: :skip
-    has n, :cards, parent_key: [ :external_board_id ],
-                   child_key:  [ :external_board_id ],
-                   constraint: :skip
-    #has n, :members
+    index :current
+    index :external_board_id
 
+    def lists
+      Troo::List.find(external_board_id: self.external_board_id)
+    end
+
+    def cards
+      Troo::Card.find(external_board_id: self.external_board_id)
+    end
   end
 end
 
