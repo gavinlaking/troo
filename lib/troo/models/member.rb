@@ -1,21 +1,18 @@
 module Troo
-  class Member
-    include DataMapper::Resource
+  class Member < Ohm::Model
+    include Ohm::DataTypes
     include ModelHelpers
 
-    property :id,                 Serial
-    property :username,           String
-    property :email,              String
-    property :full_name,          String
-    property :initials,           String
-    property :avatar_id,          String
-    property :bio,                Text
-    property :url,                String
-    property :external_member_id, String
+    attribute :username
+    attribute :email
+    attribute :full_name
+    attribute :initials
+    attribute :avatar_id
+    attribute :bio
+    attribute :url
+    attribute :external_member_id
 
-    # has n, :cards
-    has n, :comments, parent_key: [ :external_member_id ],
-                      child_key:  [ :external_member_id ]
+    index :external_member_id
   end
 end
 
