@@ -1,22 +1,25 @@
 module Troo
-  class List
-    include DataMapper::Resource
+  class List < Ohm::Model
+    include Ohm::DataTypes
     include ModelHelpers
 
-    property :id,                Serial
-    property :name,              Text
-    property :position,          Integer
-    property :current,           Boolean, default: false
-    property :closed,            Boolean, default: false
-    property :external_board_id, String
-    property :external_list_id,  String
+    attribute :name
+    attribute :position, Type::Integer
+    attribute :current, Type::Boolean
+    attribute :closed, Type::Boolean
+    attribute :external_board_id
+    attribute :external_list_id
 
-    belongs_to :board, parent_key: [ :external_board_id ],
-                       child_key:  [ :external_board_id ],
-                       required:   true
-    has n,     :cards, parent_key: [ :external_list_id ],
-                       child_key:  [ :external_list_id ],
-                       constraint: :skip
+    index :current
+    index :external_board_id
+    index :external_list_id
 
+    def board
+      Troo::Board.first(external_board_id: self.external_board_id)
+    end
+
+    def cards
+      Troo::Card.find(external_list_id: self.external_list_id)
+    end
   end
 end
