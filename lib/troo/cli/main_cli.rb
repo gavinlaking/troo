@@ -12,7 +12,7 @@ module Troo
 
       desc "cleanup", "Removes all local data"
       def cleanup
-        DataMapper.auto_migrate!
+        puts "Not implemented yet."
       end
 
       desc "version", "Print the version"

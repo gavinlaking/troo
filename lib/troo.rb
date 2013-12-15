@@ -1,8 +1,9 @@
 require "celluloid/autostart"
-require "data_mapper"
 require "digest"
 require "erb"
 require "logger"
+require "ohm"
+require "ohm/contrib"
 require "pry"
 require "tempfile"
 require "term/ansicolor"
@@ -68,13 +69,9 @@ module Troo
   if ARGV.include?("--debug")
     ARGV.delete("--debug")
     Celluloid.logger = Logger.new(STDERR)
-    DataMapper::Logger.new(STDOUT, :debug)
   end
 
-  DataMapper.setup(:default, "sqlite://#{File.expand_path(File.dirname(__FILE__))}/../troo.db")
-  DataMapper::Model.raise_on_save_failure = true
-  DataMapper.finalize
-  DataMapper.auto_upgrade!
+  Ohm.connect(db: 1)
 
   config = YAML.load_file(File.dirname(__FILE__) + "/../configuration.yml")
   Trello.configure do |trello|

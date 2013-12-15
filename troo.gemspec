@@ -27,9 +27,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock"
 
   spec.add_dependency "celluloid"
-  spec.add_dependency "data_mapper"
   spec.add_dependency "dm-sqlite-adapter"
   spec.add_dependency "json", "1.7.7"
+  spec.add_dependency "ohm"
+  spec.add_dependency "ohm-contrib"
   spec.add_dependency "ruby-trello"
   spec.add_dependency "term-ansicolor", "1.2.2"
   spec.add_dependency "thor"
