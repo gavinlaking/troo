@@ -29,7 +29,7 @@ module Troo
     end
 
     def by_id
-      Troo::Card.get(id)
+      Troo::Card[id]
     end
 
     def by_short_id

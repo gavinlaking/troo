@@ -25,7 +25,7 @@ module Troo
     end
 
     def by_id
-      Troo::Member.get(id)
+      Troo::Member[id]
     end
 
     def by_external_id

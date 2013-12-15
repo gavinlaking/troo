@@ -29,7 +29,7 @@ module Troo
     end
 
     def by_id
-      Troo::Board.get(id)
+      Troo::Board[id]
     end
 
     def by_external_id

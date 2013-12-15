@@ -25,7 +25,7 @@ module Troo
     end
 
     def by_id
-      Troo::Comment.get(id)
+      Troo::Comment[id]
     end
 
     def by_external_id
