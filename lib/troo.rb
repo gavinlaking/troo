@@ -71,8 +71,6 @@ module Troo
     Celluloid.logger = Logger.new(STDERR)
   end
 
-  Ohm.connect(db: 1)
-
   config = YAML.load_file(File.dirname(__FILE__) + "/../configuration.yml")
   Trello.configure do |trello|
     trello.consumer_key       = config.fetch("key")
@@ -80,4 +78,6 @@ module Troo
     trello.oauth_token        = config.fetch("oauth_token")
     trello.oauth_token_secret = config.fetch("oauth_token_secret")
   end
+
+  Ohm.connect(db: config.fetch("main_db", 1))
 end

@@ -8,7 +8,9 @@ require_relative "../lib/troo.rb"
 # Celluloid.boot
 
 # Test Database
-Ohm.connect(db: 2)
+
+config = YAML.load_file(File.dirname(__FILE__) + "/../configuration.yml")
+Ohm.connect(db: config.fetch("test_db", 2))
 
 require "mocha/setup"
 
