@@ -4,59 +4,89 @@ module Troo
   describe ListRetrieval do
     let(:described_class) { ListRetrieval }
 
+    before do
+      Ohm.redis.flushall
+    end
+
     describe ".current" do
       subject { described_class.current }
 
       before do
-        Troo::List.stubs(:first).returns(current_list)
+        @current = Troo::List.create(current: current)
+      end
+
+      after do
+        @current.delete
       end
 
       describe "when current is set" do
-        let(:current_list) { Troo::List.new(current: true) }
+        let(:current) { true }
 
-        it "returns the current list" do
-          subject.must_equal current_list
+        it "returns the current" do
+          subject.must_equal @current
         end
       end
 
       describe "when current is not set" do
-        let(:current_list) { nil }
+        let(:current) { false }
 
         it "returns nil" do
-          subject.must_equal current_list
+          subject.must_equal nil
         end
       end
     end
 
     describe ".retrieve" do
+      before do
+        @list = Troo::List.create({
+                  name:             "My Test List",
+                  external_list_id: "526d8e130a14a9d846001d97" })
+      end
+
+      after do
+        @list.delete
+      end
+
       describe "without an ID" do
         subject { described_class.retrieve }
 
-        it "retrieves all locally stored " do
-          skip
+        it "retrieves all locally stored lists" do
+          subject.size.must_equal 1
         end
       end
 
       describe "with an ID" do
         subject { described_class.retrieve(id) }
 
-        let(:id) { }
-
         describe "local retrieval by database ID" do
-          it "" do
-            skip
+          let(:id) { @list.id }
+
+          it "returns the correct list" do
+            subject.name.must_equal("My Test List")
           end
         end
 
         describe "local retrieval by external ID" do
-          it "" do
-            skip
+          let(:id) { "526d8e130a14a9d846001d97" }
+
+          it "returns the correct list" do
+            subject.name.must_equal("My Test List")
           end
         end
 
         describe "remote retrieval by either ID" do
-          it "" do
-            skip
+          before do
+            @list.delete
+            ExternalList.stubs(:fetch).returns(remote_list)
+          end
+
+          let(:id) { "526d_remote_list_005259" }
+          let(:remote_list) { [Troo::List.new({
+                                 name:             "My Remote Test List",
+                                 external_list_id: id })] }
+
+          it "returns the correct list" do
+            subject.name.must_equal("My Remote Test List")
           end
         end
       end

@@ -4,36 +4,54 @@ module Troo
   describe BoardRetrieval do
     let(:described_class) { BoardRetrieval }
 
+    before do
+      Ohm.redis.flushall
+    end
+
     describe ".current" do
       subject { described_class.current }
 
       before do
-        Troo::Board.stubs(:first).returns(current_board)
+        @current = Troo::Board.create(current: current)
+      end
+
+      after do
+        @current.delete
       end
 
       describe "when current is set" do
-        let(:current_board) { Troo::Board.new(current: true) }
+        let(:current) { true }
 
-        it "returns the current board" do
-          subject.must_equal current_board
+        it "returns the current" do
+          subject.must_equal @current
         end
       end
 
       describe "when current is not set" do
-        let(:current_board) { nil }
+        let(:current) { false }
 
         it "returns nil" do
-          subject.must_equal current_board
+          subject.must_equal nil
         end
       end
     end
 
     describe ".retrieve" do
+      before do
+        @board = Troo::Board.create({
+                  name:              "My Test Board",
+                  external_board_id: "526d8e130a14a9d846001d96" })
+      end
+
+      after do
+        @board.delete
+      end
+
       describe "without an ID" do
         subject { described_class.retrieve }
 
         it "retrieves all locally stored boards" do
-          skip
+          subject.size.must_equal 1
         end
       end
 
@@ -41,35 +59,34 @@ module Troo
         subject { described_class.retrieve(id) }
 
         describe "local retrieval by database ID" do
-          let(:id) { }
+          let(:id) { @board.id }
 
-          it "" do
-            skip
+          it "returns the correct board" do
+            subject.name.must_equal("My Test Board")
           end
         end
 
         describe "local retrieval by external ID" do
-          let(:id) { "526d8f19ddb279532e005259" }
+          let(:id) { "526d8e130a14a9d846001d96" }
 
-          before do
-            Troo::Board.stubs(:get) { nil }
-          end
-
-          it "" do
-            skip
+          it "returns the correct board" do
+            subject.name.must_equal("My Test Board")
           end
         end
 
         describe "remote retrieval by either ID" do
-          let(:id) { "526d8f19ddb279532e005259" }
-
           before do
-            Troo::Board.stubs(:get) { nil }
-            Troo::Board.stubs(:first) { nil }
+            @board.delete
+            ExternalBoard.stubs(:fetch).returns(remote_board)
           end
 
-          it "" do
-            skip
+          let(:id) { "526d_remote_board_005259" }
+          let(:remote_board) { [Troo::Board.new({
+                                 name:              "My Remote Test Board",
+                                 external_board_id: id })] }
+
+          it "returns the correct board" do
+            subject.name.must_equal("My Remote Test Board")
           end
         end
       end

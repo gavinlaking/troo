@@ -4,59 +4,99 @@ module Troo
   describe CardRetrieval do
     let(:described_class) { CardRetrieval }
 
+    before do
+      Ohm.redis.flushall
+    end
+
     describe ".current" do
       subject { described_class.current }
 
       before do
-        Troo::Card.stubs(:first).returns(current_card)
+        @current = Troo::Card.create(current: current)
+      end
+
+      after do
+        @current.delete
       end
 
       describe "when current is set" do
-        let(:current_card) { Troo::Card.new(current: true) }
+        let(:current) { true }
 
-        it "returns the current card" do
-          subject.must_equal current_card
+        it "returns the current" do
+          subject.must_equal @current
         end
       end
 
       describe "when current is not set" do
-        let(:current_card) { nil }
+        let(:current) { false }
 
         it "returns nil" do
-          subject.must_equal current_card
+          subject.must_equal nil
         end
       end
     end
 
     describe ".retrieve" do
+      before do
+        @card = Troo::Card.create({
+                  name:             "My Test Card",
+                  short_id:         17,
+                  external_card_id: "526d8f19ddb279532e005259" })
+      end
+
+      after do
+        @card.delete
+      end
+
       describe "without an ID" do
         subject { described_class.retrieve }
 
         it "retrieves all locally stored cards" do
-          skip
+          subject.size.must_equal 1
         end
       end
 
       describe "with an ID" do
         subject { described_class.retrieve(id) }
 
-        let(:id) { }
-
         describe "local retrieval by database ID" do
-          it "" do
-            skip
+          let(:id) { @card.id }
+
+          it "returns the correct card" do
+            subject.name.must_equal("My Test Card")
+          end
+        end
+
+        describe "local retrieval by short_id" do
+          let(:id) { 17 }
+
+          it "returns the correct card" do
+            subject.name.must_equal("My Test Card")
           end
         end
 
         describe "local retrieval by external ID" do
-          it "" do
-            skip
+          let(:id) { "526d8f19ddb279532e005259" }
+
+          it "returns the correct card" do
+            subject.name.must_equal("My Test Card")
           end
         end
 
         describe "remote retrieval by either ID" do
-          it "" do
-            skip
+          before do
+            @card.delete
+            ExternalCard.stubs(:fetch).returns(remote_card)
+          end
+
+          let(:id) { "526d_remote_card_005259" }
+          let(:remote_card) { [Troo::Card.new({
+                                 name:             "My Remote Test Card",
+                                 short_id:         66,
+                                 external_card_id: id })] }
+
+          it "returns the correct card" do
+            subject.name.must_equal("My Remote Test Card")
           end
         end
       end
