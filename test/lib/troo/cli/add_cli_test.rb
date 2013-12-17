@@ -7,20 +7,50 @@ module Troo
       let(:described_class) { Add }
 
       describe "#board" do
-        it "" do
-          skip
+        let(:board_name) { "somename" }
+
+        subject { described_class.new.board(board_name) }
+
+        it "does something" do
+          subject.must_equal("Not implemented yet.")
         end
       end
 
       describe "#card" do
-        it "" do
-          skip
+        let(:list_id) { "526d8e130a14a9d846001d97" }
+        let(:card_name) { "somename" }
+
+        subject { described_class.new.card(list_id, card_name) }
+
+        describe "when the name is provided" do
+          it "does something" do
+            subject.must_equal("Not implemented yet.")
+          end
+        end
+
+        describe "when the name is not provided" do
+          it "does something" do
+            subject.must_equal("Not implemented yet.")
+          end
         end
       end
 
       describe "#list" do
-        it "" do
-          skip
+        let(:board_id) { "526d8e130a14a9d846001d96" }
+        let(:list_name) { "somename" }
+
+        subject { described_class.new.list(board_id, list_name) }
+
+        describe "when the name is provided" do
+          it "does something" do
+            subject.must_equal("Not implemented yet.")
+          end
+        end
+
+        describe "when the name is not provided" do
+          it "does something" do
+            subject.must_equal("Not implemented yet.")
+          end
         end
       end
     end

@@ -5,17 +5,19 @@ module Troo
 
       desc "refresh", "Refresh all data"
       def refresh
-        RefreshAll.perform
+        # RefreshAll.perform
+        "Not implemented yet."
       end
 
       desc "cleanup", "Removes all local data"
       def cleanup
-        puts "Not implemented yet."
+        "Not implemented yet."
       end
 
       desc "version", "Print the version"
       def version
-        puts "troo #{Troo::VERSION}"
+        # puts "troo #{Troo::VERSION}"
+        "Not implemented yet."
       end
 
       desc "board [subcommand] <args>", "Operate on the board"
@@ -35,25 +37,27 @@ module Troo
 
       desc "comment <card_id> (<comment>)", "Comment on a card with <card_id> <comment>"
       def comment(card_id, comment = nil)
-        Troo::CreateComment.for(card_id, comment)
+        # Troo::CreateComment.for(card_id, comment)
 
-        Troo::ExternalCard.fetch(card_id, { mode: :card })
-        Troo::ExternalComments.fetch(card_id, { mode: :card })
+        # Troo::ExternalCard.fetch(card_id, { mode: :card })
+        # Troo::ExternalComments.fetch(card_id, { mode: :card })
+        "Not implemented yet."
       end
 
       desc "move <card_id> <list_id>", "Move a card <card_id> to list <list_id>"
       def move(card_id, list_id = nil)
-        unless list_id
-          #Output.render(Troo::Board.current.lists)
-          puts "Please choose a destination list. (Move a card <card_id> to list <list_id>)"
-          exit 1
-        end
+        # unless list_id
+        #   #Output.render(Troo::Board.current.lists)
+        #   puts "Please choose a destination list. (Move a card <card_id> to list <list_id>)"
+        #   exit 1
+        # end
 
-        result = MoveCard.with(card_id, list_id)
+        # result = MoveCard.with(card_id, list_id)
 
-        Troo::ExternalList.fetch(result.source_list_id, { mode: :list })
-        Troo::ExternalList.fetch(result.destination_list_id, { mode: :list })
-        Troo::ExternalCard.fetch(card_id, { mode: :card })
+        # Troo::ExternalList.fetch(result.source_list_id, { mode: :list })
+        # Troo::ExternalList.fetch(result.destination_list_id, { mode: :list })
+        # Troo::ExternalCard.fetch(card_id, { mode: :card })
+        "Not implemented yet."
       end
     end
   end
