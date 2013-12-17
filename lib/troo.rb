@@ -12,8 +12,6 @@ require "trello"
 require "yaml"
 
 require_relative "troo/version"
-
-require_relative "troo/helpers"
 require_relative "troo/input"
 
 require_relative "troo/actions/create_comment"

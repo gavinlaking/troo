@@ -1,8 +1,6 @@
 module Troo
   module CLI
     class Add < Thor
-      include Troo::Helpers
-
       desc "board", "Add a new board"
       def board(name = nil)
         puts "Not implemented yet."

@@ -1,8 +1,6 @@
 module Troo
   module CLI
     class Main < Thor
-      include Troo::Helpers
-
       class_option :debug, type: :boolean, desc: "Enable debugging."
 
       desc "refresh", "Refresh all data"

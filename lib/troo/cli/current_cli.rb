@@ -1,8 +1,6 @@
 module Troo
   module CLI
     class Current < Thor
-      include Troo::Helpers
-
       desc "board <board_id>", "Set the board <board_id> to current."
       def board(board_id)
         board = SetCurrent.for Troo::BoardRetrieval.retrieve(board_id)

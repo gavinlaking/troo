@@ -1,8 +1,6 @@
 module Troo
   module CLI
     class Board < Thor
-      include Troo::Helpers
-
       desc "all", "Show all the boards"
       def all
         boards = Troo::BoardRetrieval.retrieve || []

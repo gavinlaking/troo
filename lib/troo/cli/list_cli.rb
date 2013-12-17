@@ -1,8 +1,6 @@
 module Troo
   module CLI
     class List < Thor
-      include Troo::Helpers
-
       desc "all <board_id>", "Show all the lists for board <board_id>"
       def all(board_id)
         Troo::CLI::Board.new.lists(board_id)

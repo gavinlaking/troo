@@ -1,7 +1,5 @@
 module Troo
   class ExternalComment
-    include Helpers
-
     def initialize(external_id, options = {})
       @external_id = external_id
       @options     = options

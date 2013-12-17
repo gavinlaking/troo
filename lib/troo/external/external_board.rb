@@ -1,7 +1,5 @@
 module Troo
   class ExternalBoard
-    include Helpers
-
     def initialize(external_id = nil, options = {})
       @external_id = external_id
       @options     = options
