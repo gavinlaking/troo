@@ -1,7 +1,5 @@
 module Troo
   class CreateList
-    attr_reader :name
-
     def initialize(board_id, name = nil)
       @board_id = board_id
       @name     = name
@@ -20,6 +18,10 @@ module Troo
       @external_board_id ||= Troo::BoardRetrieval.retrieve(board_id).external_board_id
     end
 
+    def name
+      @name ||= user_input
+    end
+
     private
     attr_reader :board_id
 
@@ -30,13 +32,8 @@ module Troo
       }
     end
 
-    def name
-      @name || user_input
-    end
-
     def user_input
       Input.get(board_id)
     end
-
   end
 end
