@@ -35,13 +35,13 @@ module Troo
         #   end
         # end
 
-        describe "when there are boards" do
+        context "when there are boards" do
           it "does something" do
             subject.must_equal("Not implemented yet.")
           end
         end
 
-        describe "when there are no boards" do
+        context "when there are no boards" do
           it "does something" do
             subject.must_equal("Not implemented yet.")
           end
@@ -53,7 +53,7 @@ module Troo
 
         subject { described_class.new.show(board_id) }
 
-        describe "when the board exists" do
+        context "when the board exists" do
           # let(:lists) { [ Troo::List.new(id: 1, name: "My Test List 1", cards: cards) ] }
           # let(:cards) { [ Troo::Card.new(id: 1, name: "My Test Card 1") ] }
           # let(:board) { Troo::Board.new(id: 1, name: "My Test Board 1", lists: lists) }
@@ -76,7 +76,7 @@ module Troo
           end
         end
 
-        describe "when the board does not exist" do
+        context "when the board does not exist" do
           # let(:board) { nil }
 
           # before do

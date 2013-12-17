@@ -22,13 +22,13 @@ module Troo
 
         subject { described_class.new.card(list_id, card_name) }
 
-        describe "when the name is provided" do
+        context "when the name is provided" do
           it "does something" do
             subject.must_equal("Not implemented yet.")
           end
         end
 
-        describe "when the name is not provided" do
+        context "when the name is not provided" do
           it "does something" do
             subject.must_equal("Not implemented yet.")
           end
@@ -41,13 +41,13 @@ module Troo
 
         subject { described_class.new.list(board_id, list_name) }
 
-        describe "when the name is provided" do
+        context "when the name is provided" do
           it "does something" do
             subject.must_equal("Not implemented yet.")
           end
         end
 
-        describe "when the name is not provided" do
+        context "when the name is not provided" do
           it "does something" do
             subject.must_equal("Not implemented yet.")
           end

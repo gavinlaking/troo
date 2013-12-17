@@ -19,7 +19,7 @@ module Troo
         @current.delete
       end
 
-      describe "when current is set" do
+      context "when current is set" do
         let(:current) { true }
 
         it "returns the current" do
@@ -27,7 +27,7 @@ module Troo
         end
       end
 
-      describe "when current is not set" do
+      context "when current is not set" do
         let(:current) { false }
 
         it "returns nil" do
@@ -48,7 +48,7 @@ module Troo
         @card.delete
       end
 
-      describe "without an ID" do
+      context "without an ID" do
         subject { described_class.retrieve }
 
         it "retrieves all locally stored cards" do
@@ -56,10 +56,10 @@ module Troo
         end
       end
 
-      describe "with an ID" do
+      context "with an ID" do
         subject { described_class.retrieve(id) }
 
-        describe "local retrieval by database ID" do
+        context "local retrieval by database ID" do
           let(:id) { @card.id }
 
           it "returns the correct card" do
@@ -67,7 +67,7 @@ module Troo
           end
         end
 
-        describe "local retrieval by short_id" do
+        context "local retrieval by short_id" do
           let(:id) { 17 }
 
           it "returns the correct card" do
@@ -75,7 +75,7 @@ module Troo
           end
         end
 
-        describe "local retrieval by external ID" do
+        context "local retrieval by external ID" do
           let(:id) { "526d8f19ddb279532e005259" }
 
           it "returns the correct card" do
@@ -83,7 +83,7 @@ module Troo
           end
         end
 
-        describe "remote retrieval by either ID" do
+        context "remote retrieval by either ID" do
           before do
             @card.delete
             ExternalCard.stubs(:fetch).returns(remote_card)

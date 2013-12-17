@@ -30,7 +30,7 @@ module Troo
     describe ".first" do
       subject { described_class.first(criteria) }
 
-      describe "when no criteria are provided" do
+      context "when no criteria are provided" do
         let(:criteria) { }
 
         it "returns the first model stored of that type" do
@@ -38,7 +38,7 @@ module Troo
         end
       end
 
-      describe "when criteria are provided" do
+      context "when criteria are provided" do
         let(:criteria) { { name: "My Dumber Model" } }
 
         it "returns the first model matching the criteria" do
@@ -47,7 +47,7 @@ module Troo
       end
     end
 
-    describe "#external_attributes" do
+    context "#external_attributes" do
       subject { @dumb.external_attributes }
 
       it "returns the attributes of the model which Trello affects" do

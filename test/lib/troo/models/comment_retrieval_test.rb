@@ -19,7 +19,7 @@ module Troo
         @comment.delete
       end
 
-      describe "without an ID" do
+      context "without an ID" do
         subject { described_class.retrieve }
 
         it "retrieves all locally stored comments" do
@@ -27,10 +27,10 @@ module Troo
         end
       end
 
-      describe "with an ID" do
+      context "with an ID" do
         subject { described_class.retrieve(id) }
 
-        describe "local retrieval by database ID" do
+        context "local retrieval by database ID" do
           let(:id) { @comment.id }
 
           it "returns the correct comment" do
@@ -38,7 +38,7 @@ module Troo
           end
         end
 
-        describe "local retrieval by external ID" do
+        context "local retrieval by external ID" do
           let(:id) { "51f9277b2822b8654f0023af" }
 
           it "returns the correct comment" do

@@ -33,13 +33,13 @@ module Troo
     describe "#create" do
       subject { described_class.for(board_id, list_name) }
 
-      describe "when a new list name is provided" do
+      context "when a new list name is provided" do
         it "creates the list and returns an instance of this class" do
           subject.must_be_instance_of(described_class)
         end
       end
 
-      describe "when a new list name is not provided" do
+      context "when a new list name is not provided" do
         let(:list_name) { nil }
         let(:user_input_list_name) { "My New List" }
 

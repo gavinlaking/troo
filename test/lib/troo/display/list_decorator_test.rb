@@ -38,13 +38,13 @@ module Troo
     describe "#current" do
       subject { described_class.new(@list).current }
 
-      describe "when current" do
+      context "when current" do
         it "return an indicator" do
           subject.must_equal("*")
         end
       end
 
-      describe "when not current" do
+      context "when not current" do
         let(:current) { false }
 
         it "returns nothing" do

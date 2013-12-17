@@ -48,13 +48,13 @@ module Troo
     describe "#description" do
       subject { described_class.new(@card).description }
 
-      describe "when there are further details" do
+      context "when there are further details" do
         it "returns the description" do
           subject.must_equal(@card.desc)
         end
       end
 
-      describe "when there are no further details" do
+      context "when there are no further details" do
         let(:description) { nil }
 
         it "returns a polite message" do
@@ -66,13 +66,13 @@ module Troo
     describe "#comments" do
       subject { described_class.new(@card).comments }
 
-      describe "when there are comments" do
+      context "when there are comments" do
         it "returns the comments" do
           subject.must_equal("There are some comments.")
         end
       end
 
-      describe "when there are no comments" do
+      context "when there are no comments" do
         before do
           @comment.delete
         end
@@ -86,7 +86,7 @@ module Troo
     describe "#members" do
       subject { described_class.new(@card).members }
 
-      describe "when there are members" do
+      context "when there are members" do
         before do
           @card.stubs(:members).returns([:member, :member])
         end
@@ -96,7 +96,7 @@ module Troo
         end
       end
 
-      describe "when there are no members" do
+      context "when there are no members" do
         it "returns a polite message" do
           subject.must_equal("No members have been assigned.")
         end
@@ -114,13 +114,13 @@ module Troo
     describe "#current" do
       subject { described_class.new(@card).current }
 
-      describe "when current" do
+      context "when current" do
         it "return an indicator" do
           subject.must_equal("*")
         end
       end
 
-      describe "when not current" do
+      context "when not current" do
         let(:current) { false }
 
         it "returns nothing" do

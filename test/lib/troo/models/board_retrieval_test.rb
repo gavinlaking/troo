@@ -19,7 +19,7 @@ module Troo
         @current.delete
       end
 
-      describe "when current is set" do
+      context "when current is set" do
         let(:current) { true }
 
         it "returns the current" do
@@ -27,7 +27,7 @@ module Troo
         end
       end
 
-      describe "when current is not set" do
+      context "when current is not set" do
         let(:current) { false }
 
         it "returns nil" do
@@ -47,7 +47,7 @@ module Troo
         @board.delete
       end
 
-      describe "without an ID" do
+      context "without an ID" do
         subject { described_class.retrieve }
 
         it "retrieves all locally stored boards" do
@@ -55,10 +55,10 @@ module Troo
         end
       end
 
-      describe "with an ID" do
+      context "with an ID" do
         subject { described_class.retrieve(id) }
 
-        describe "local retrieval by database ID" do
+        context "local retrieval by database ID" do
           let(:id) { @board.id }
 
           it "returns the correct board" do
@@ -66,7 +66,7 @@ module Troo
           end
         end
 
-        describe "local retrieval by external ID" do
+        context "local retrieval by external ID" do
           let(:id) { "526d8e130a14a9d846001d96" }
 
           it "returns the correct board" do
@@ -74,7 +74,7 @@ module Troo
           end
         end
 
-        describe "remote retrieval by either ID" do
+        context "remote retrieval by either ID" do
           before do
             @board.delete
             ExternalBoard.stubs(:fetch).returns(remote_board)

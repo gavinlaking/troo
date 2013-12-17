@@ -19,7 +19,7 @@ module Troo
     describe "#persist" do
       subject { described_class.for(resource) }
 
-      describe "when an identical copy already exists locally" do
+      context "when an identical copy already exists locally" do
         let(:resource) { OpenStruct.new({
           id:        "5195fdb5a8c01a2318004f5d",
           full_name: "My Test Member"
@@ -30,7 +30,7 @@ module Troo
         end
       end
 
-      describe "when the local copy is out of date" do
+      context "when the local copy is out of date" do
         let(:resource) { OpenStruct.new({
           id:        "5195fdb5a8c01a2318004f5d",
           full_name: "My Renamed Member"
@@ -41,7 +41,7 @@ module Troo
         end
       end
 
-      describe "when there is no local copy" do
+      context "when there is no local copy" do
         before do
           @member.delete
         end

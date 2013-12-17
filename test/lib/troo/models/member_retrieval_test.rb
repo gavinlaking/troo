@@ -19,7 +19,7 @@ module Troo
         @member.delete
       end
 
-      describe "without an ID" do
+      context "without an ID" do
         subject { described_class.retrieve }
 
         it "retrieves all locally stored members" do
@@ -27,10 +27,10 @@ module Troo
         end
       end
 
-      describe "with an ID" do
+      context "with an ID" do
         subject { described_class.retrieve(id) }
 
-        describe "local retrieval by database ID" do
+        context "local retrieval by database ID" do
           let(:id) { @member.id }
 
           it "returns the correct member" do
@@ -38,7 +38,7 @@ module Troo
           end
         end
 
-        describe "local retrieval by external ID" do
+        context "local retrieval by external ID" do
           let(:id) { "5195fdb5a8c01a2318004f5d" }
 
           it "returns the correct member" do
@@ -46,7 +46,7 @@ module Troo
           end
         end
 
-        describe "remote retrieval by either ID" do
+        context "remote retrieval by either ID" do
           before do
             @member.delete
             ExternalMember.stubs(:fetch).returns(remote_member)

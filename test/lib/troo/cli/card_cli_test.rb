@@ -11,13 +11,13 @@ module Troo
 
         subject { described_class.new.all(board_id) }
 
-        describe "when there are cards" do
+        context "when there are cards" do
           it "does something" do
             subject.must_equal("Not implemented yet.")
           end
         end
 
-        describe "when there are no cards" do
+        context "when there are no cards" do
           it "does something" do
             subject.must_equal("Not implemented yet.")
           end
@@ -29,13 +29,13 @@ module Troo
 
         subject { described_class.new.show(card_id) }
 
-        describe "when the card exists" do
+        context "when the card exists" do
           it "does something" do
             subject.must_equal("Not implemented yet.")
           end
         end
 
-        describe "when the card does not exist" do
+        context "when the card does not exist" do
           it "does something" do
             subject.must_equal("Not implemented yet.")
           end

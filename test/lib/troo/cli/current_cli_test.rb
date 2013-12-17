@@ -11,7 +11,7 @@ module Troo
 
         subject { described_class.new.board(board_id) }
 
-        describe "when the board_id cannot be found" do
+        context "when the board_id cannot be found" do
           before do
             Troo::BoardRetrieval.stubs(:retrieve).raises(Trello::Error)
           end
@@ -21,7 +21,7 @@ module Troo
           end
         end
 
-        describe "when the board_id was found" do
+        context "when the board_id was found" do
           let(:board) { Troo::Board.new(name: "My Board", current: false) }
 
           before do
@@ -40,7 +40,7 @@ module Troo
 
         subject { described_class.new.card(card_id) }
 
-        describe "when the card_id cannot be found" do
+        context "when the card_id cannot be found" do
           before do
             Troo::CardRetrieval.stubs(:retrieve).raises(Trello::Error)
           end
@@ -50,7 +50,7 @@ module Troo
           end
         end
 
-        describe "when the card_id was found" do
+        context "when the card_id was found" do
           let(:card) { Troo::Card.new(name: "My Card", current: false) }
 
           before do
@@ -69,7 +69,7 @@ module Troo
 
         subject { described_class.new.list(list_id) }
 
-        describe "when the list_id cannot be found" do
+        context "when the list_id cannot be found" do
           before do
             Troo::ListRetrieval.stubs(:retrieve).raises(Trello::Error)
           end
@@ -79,7 +79,7 @@ module Troo
           end
         end
 
-        describe "when the list_id was found" do
+        context "when the list_id was found" do
           let(:list) { Troo::List.new(name: "My List", current: false) }
 
           before do
