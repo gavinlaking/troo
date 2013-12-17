@@ -14,7 +14,7 @@ module Troo
         end
       end
 
-      describe "#cards" do
+      describe "#show" do
         subject { described_class }
 
         it "" do

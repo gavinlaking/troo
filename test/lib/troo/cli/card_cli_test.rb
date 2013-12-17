@@ -21,22 +21,6 @@ module Troo
           skip
         end
       end
-
-      describe "#comment" do
-        subject { described_class }
-
-        it "" do
-          skip
-        end
-      end
-
-      describe "#move" do
-        subject { described_class }
-
-        it "" do
-          skip
-        end
-      end
     end
   end
 end
