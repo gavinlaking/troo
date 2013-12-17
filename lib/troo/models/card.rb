@@ -38,6 +38,7 @@ module Troo
 
     def members
       #Troo::Member.find(external_member_id:) # we need to get all the member ids for the card first
+      []
     end
   end
 end
