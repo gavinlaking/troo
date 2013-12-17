@@ -21,8 +21,8 @@ module Troo
         else
           puts Troo::BoardPresenter.render(
                  Troo::BoardRetrieval.retrieve(board_id), { show_boards: true,
-                                                             show_lists:  true,
-                                                             show_cards:  true })
+                                                            show_lists:  true,
+                                                            show_cards:  true })
         end
       rescue Trello::Error
         puts "Board cannot be found."
