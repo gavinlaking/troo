@@ -30,11 +30,7 @@ require_relative "troo/external/proxy_list"
 
 require_relative "troo/presentation/screen"
 require_relative "troo/presentation/template"
-require_relative "troo/presentation/board_decorator"
 require_relative "troo/presentation/board_presenter"
-require_relative "troo/presentation/card_decorator"
-require_relative "troo/presentation/comment_decorator"
-require_relative "troo/presentation/list_decorator"
 require_relative "troo/presentation/list_presenter"
 
 require_relative "troo/models/model_helpers"
