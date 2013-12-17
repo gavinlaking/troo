@@ -22,6 +22,8 @@ module Troo
     index :external_list_id
     index :external_card_id
 
+    alias_method :current?, :current
+
     def board
       Troo::Board.first(external_board_id: self.external_board_id)
     end

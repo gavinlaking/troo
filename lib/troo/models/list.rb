@@ -14,6 +14,8 @@ module Troo
     index :external_board_id
     index :external_list_id
 
+    alias_method :current?, :current
+
     def board
       Troo::Board.first(external_board_id: self.external_board_id)
     end

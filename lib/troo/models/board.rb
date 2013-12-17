@@ -11,6 +11,8 @@ module Troo
     index :current
     index :external_board_id
 
+    alias_method :current?, :current
+
     def lists
       Troo::List.find(external_board_id: self.external_board_id)
     end
