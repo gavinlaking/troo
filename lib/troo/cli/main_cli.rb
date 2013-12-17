@@ -47,7 +47,7 @@ module Troo
       def move(card_id, list_id = nil)
         unless list_id
           #Output.render(Troo::Board.current.lists)
-          error("Please choose a destination list. (Move a card <card_id> to list <list_id>)")
+          puts "Please choose a destination list. (Move a card <card_id> to list <list_id>)"
           exit 1
         end
 
@@ -57,8 +57,6 @@ module Troo
         Troo::ExternalList.fetch(result.destination_list_id, { mode: :list })
         Troo::ExternalCard.fetch(card_id, { mode: :card })
       end
-
-
     end
   end
 end
