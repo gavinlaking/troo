@@ -16,6 +16,7 @@ module Troo
     attribute :external_list_id
     attribute :external_card_id
 
+    index :short_id
     index :current
     index :external_board_id
     index :external_list_id
