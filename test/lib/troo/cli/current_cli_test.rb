@@ -9,7 +9,7 @@ module Troo
       describe "#board" do
         let(:board_id) { "some_board_id" }
 
-        subject { described_class.new.board(board_id) }
+        subject { capture_io { described_class.new.board(board_id) }.join }
 
         context "when the board_id cannot be found" do
           before do
@@ -17,7 +17,7 @@ module Troo
           end
 
           it "rescues from the error" do
-            proc { subject }.must_output("Board cannot be found.\n")
+            subject.must_match /Board cannot be found./
           end
         end
 
@@ -30,7 +30,7 @@ module Troo
           end
 
           it "reports success" do
-            proc { subject }.must_output("Board 'My Board' set to current.\n")
+            subject.must_match /Board 'My Board' set to current./
           end
         end
       end
@@ -38,7 +38,7 @@ module Troo
       describe "#card" do
         let(:card_id) { "some_card_id" }
 
-        subject { described_class.new.card(card_id) }
+        subject { capture_io { described_class.new.card(card_id) }.join }
 
         context "when the card_id cannot be found" do
           before do
@@ -46,7 +46,7 @@ module Troo
           end
 
           it "rescues from the error" do
-            proc { subject }.must_output("Card cannot be found.\n")
+            subject.must_match /Card cannot be found./
           end
         end
 
@@ -59,7 +59,7 @@ module Troo
           end
 
           it "reports success" do
-            proc { subject }.must_output("Card 'My Card' set to current.\n")
+            subject.must_match /Card 'My Card' set to current./
           end
         end
       end
@@ -67,7 +67,7 @@ module Troo
       describe "#list" do
         let(:list_id) { "some_list_id" }
 
-        subject { described_class.new.list(list_id) }
+        subject { capture_io { described_class.new.list(list_id) }.join }
 
         context "when the list_id cannot be found" do
           before do
@@ -75,7 +75,7 @@ module Troo
           end
 
           it "rescues from the error" do
-            proc { subject }.must_output("List cannot be found.\n")
+            subject.must_match /List cannot be found./
           end
         end
 
@@ -88,7 +88,7 @@ module Troo
           end
 
           it "reports success" do
-            proc { subject }.must_output("List 'My List' set to current.\n")
+            subject.must_match /List 'My List' set to current./
           end
         end
       end

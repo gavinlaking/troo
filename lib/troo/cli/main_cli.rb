@@ -6,18 +6,18 @@ module Troo
       desc "refresh", "Refresh all data"
       def refresh
         # RefreshAll.perform
-        "Not implemented yet."
+        say "Not implemented yet."
       end
 
       desc "cleanup", "Removes all local data"
       def cleanup
-        "Not implemented yet."
+        #Ohm.redis.select() # need to main_db from config
+        say "Not implemented yet."
       end
 
       desc "version", "Print the version"
       def version
-        # puts "troo #{Troo::VERSION}"
-        "Not implemented yet."
+        say "troo #{Troo::VERSION}"
       end
 
       desc "board [subcommand] <args>", "Operate on the board"
@@ -41,7 +41,7 @@ module Troo
 
         # Troo::ExternalCard.fetch(card_id, { mode: :card })
         # Troo::ExternalComments.fetch(card_id, { mode: :card })
-        "Not implemented yet."
+        say "Not implemented yet."
       end
 
       desc "move <card_id> <list_id>", "Move a card <card_id> to list <list_id>"
@@ -57,7 +57,7 @@ module Troo
         # Troo::ExternalList.fetch(result.source_list_id, { mode: :list })
         # Troo::ExternalList.fetch(result.destination_list_id, { mode: :list })
         # Troo::ExternalCard.fetch(card_id, { mode: :card })
-        "Not implemented yet."
+        say "Not implemented yet."
       end
     end
   end

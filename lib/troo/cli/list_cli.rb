@@ -4,7 +4,7 @@ module Troo
       desc "all <board_id>", "Show all the lists for board <board_id>"
       def all(board_id)
         # Troo::CLI::Board.new.lists(board_id)
-        "Not implemented yet."
+        say "Not implemented yet."
       end
 
       desc "show <list_id>", "Show all cards for list <list_id>"
@@ -18,7 +18,7 @@ module Troo
         #   end
         # rescue Trello::Error
         #   puts "List cannot be found."
-        "Not implemented yet."
+        say "Not implemented yet."
       end
     end
   end

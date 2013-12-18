@@ -7,7 +7,7 @@ module Troo
       let(:described_class) { Board }
 
       describe "#all" do
-        subject { described_class.new.all }
+        subject { capture_io { described_class.new.all }.join }
 
         # before do
         #   Troo::BoardRetrieval.stubs(:retrieve).returns(boards)
@@ -31,19 +31,19 @@ module Troo
         #   let(:boards) { nil }
 
         #   it "shows an error" do
-        #     proc { subject }.must_output("No boards found.\n")
+        #     subject.must_match /No boards found./
         #   end
         # end
 
         context "when there are boards" do
           it "does something" do
-            subject.must_equal("Not implemented yet.")
+            subject.must_match /Not implemented yet./
           end
         end
 
         context "when there are no boards" do
           it "does something" do
-            subject.must_equal("Not implemented yet.")
+            subject.must_match /Not implemented yet./
           end
         end
       end
@@ -51,7 +51,7 @@ module Troo
       describe "#show" do
         let(:board_id) { "526d8e130a14a9d846001d96" }
 
-        subject { described_class.new.show(board_id) }
+        subject { capture_io { described_class.new.show(board_id) }.join }
 
         context "when the board exists" do
           # let(:lists) { [ Troo::List.new(id: 1, name: "My Test List 1", cards: cards) ] }
@@ -72,7 +72,7 @@ module Troo
           #   OUTPUT
           # end
           it "does something" do
-            subject.must_equal("Not implemented yet.")
+            subject.must_match /Not implemented yet./
           end
         end
 
@@ -84,10 +84,10 @@ module Troo
           # end
 
           # it "rescues from the error" do
-          #   proc { subject }.must_output("Board cannot be found.\n")
+          #   subject.must_match /Board cannot be found./
           # end
           it "does something" do
-            subject.must_equal("Not implemented yet.")
+            subject.must_match /Not implemented yet./
           end
         end
       end

@@ -9,10 +9,10 @@ module Troo
       describe "#board" do
         let(:board_name) { "somename" }
 
-        subject { described_class.new.board(board_name) }
+        subject { capture_io { described_class.new.board(board_name) }.join }
 
         it "does something" do
-          subject.must_equal("Not implemented yet.")
+          subject.must_match /Not implemented yet./
         end
       end
 
@@ -20,17 +20,17 @@ module Troo
         let(:list_id) { "526d8e130a14a9d846001d97" }
         let(:card_name) { "somename" }
 
-        subject { described_class.new.card(list_id, card_name) }
+        subject { capture_io { described_class.new.card(list_id, card_name) }.join }
 
         context "when the name is provided" do
           it "does something" do
-            subject.must_equal("Not implemented yet.")
+            subject.must_match /Not implemented yet./
           end
         end
 
         context "when the name is not provided" do
           it "does something" do
-            subject.must_equal("Not implemented yet.")
+            subject.must_match /Not implemented yet./
           end
         end
       end
@@ -39,17 +39,17 @@ module Troo
         let(:board_id) { "526d8e130a14a9d846001d96" }
         let(:list_name) { "somename" }
 
-        subject { described_class.new.list(board_id, list_name) }
+        subject { capture_io { described_class.new.list(board_id, list_name) }.join }
 
         context "when the name is provided" do
           it "does something" do
-            subject.must_equal("Not implemented yet.")
+            subject.must_match /Not implemented yet./
           end
         end
 
         context "when the name is not provided" do
           it "does something" do
-            subject.must_equal("Not implemented yet.")
+            subject.must_match /Not implemented yet./
           end
         end
       end
