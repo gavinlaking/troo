@@ -17,8 +17,7 @@ require_relative "../lib/troo.rb"
 
 # Test Database
 
-config = YAML.load_file(File.dirname(__FILE__) + "/../configuration.yml")
-Ohm.connect(db: config.fetch("test_db", 2))
+Ohm.connect(db: Troo.config.test_db)
 
 require "mocha/setup"
 

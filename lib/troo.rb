@@ -65,6 +65,10 @@ require_relative "troo/cli/current_cli"
 require_relative "troo/cli/main_cli"
 
 module Troo
+  def self.config
+    @config ||= OpenStruct.new(YAML.load_file(File.dirname(__FILE__) + "/../configuration.yml"))
+  end
+
   Celluloid.logger = nil
 
   if ARGV.include?("--debug")
@@ -72,13 +76,12 @@ module Troo
     Celluloid.logger = Logger.new(STDERR)
   end
 
-  config = YAML.load_file(File.dirname(__FILE__) + "/../configuration.yml")
   Trello.configure do |trello|
-    trello.consumer_key       = config.fetch("key")
-    trello.consumer_secret    = config.fetch("secret")
-    trello.oauth_token        = config.fetch("oauth_token")
-    trello.oauth_token_secret = config.fetch("oauth_token_secret")
+    trello.consumer_key       = config.key
+    trello.consumer_secret    = config.secret
+    trello.oauth_token        = config.oauth_token
+    trello.oauth_token_secret = config.oauth_token_secret
   end
 
-  Ohm.connect(db: config.fetch("main_db", 1))
+  Ohm.connect(db: config.main_db)
 end
