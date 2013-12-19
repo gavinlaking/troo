@@ -6,7 +6,7 @@ module Troo
     let(:current) { true }
 
     before do
-      Ohm.redis.flushall
+      Ohm.redis.flushdb
       @member = Troo::Member.create({
         username:           "gavinlaking1",
         full_name:          "Gavin Laking",

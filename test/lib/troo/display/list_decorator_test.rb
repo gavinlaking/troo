@@ -6,7 +6,7 @@ module Troo
     let(:current) { true }
 
     before do
-      Ohm.redis.flushall
+      Ohm.redis.flushdb
       @list = Troo::List.create({
         name:             "My Test List",
         current:          current,

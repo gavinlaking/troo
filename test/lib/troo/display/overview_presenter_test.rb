@@ -7,7 +7,7 @@ module Troo
     let(:options) { { } }
 
     before do
-      Ohm.redis.flushall
+      Ohm.redis.flushdb
     end
 
     after do

@@ -7,7 +7,7 @@ module Troo
     let(:list_name) { "My New List" }
 
     before do
-      Ohm.redis.flushall
+      Ohm.redis.flushdb
       @board = Troo::Board.create({
                  name: "My Test Board",
                  external_board_id: "526d8e130a14a9d846001d96" })

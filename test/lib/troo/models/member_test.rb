@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { Member }
 
     before do
-      Ohm.redis.flushall
+      Ohm.redis.flushdb
       @member = Troo::Member.create({
         username: "gavinlaking1",
         email:    "gavinlaking@gmail.com",

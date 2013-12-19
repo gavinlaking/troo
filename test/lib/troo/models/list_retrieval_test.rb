@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { ListRetrieval }
 
     before do
-      Ohm.redis.flushall
+      Ohm.redis.flushdb
     end
 
     describe ".current" do

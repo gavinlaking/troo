@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { CommentRetrieval }
 
     before do
-      Ohm.redis.flushall
+      Ohm.redis.flushdb
     end
 
     describe ".retrieve" do

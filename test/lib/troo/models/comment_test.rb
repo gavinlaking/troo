@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { Comment }
 
     before do
-      Ohm.redis.flushall
+      Ohm.redis.flushdb
       @comment = Troo::Comment.create({
         text: "some comment text",
         date: "",

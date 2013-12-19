@@ -6,7 +6,7 @@ module Troo
     let(:current) { true }
 
     before do
-      Ohm.redis.flushall
+      Ohm.redis.flushdb
       @comment = Troo::Comment.create({
         text:                "My Test Comment",
         date:                DateTime.civil(2013, 12, 17, 22, 1, 13),

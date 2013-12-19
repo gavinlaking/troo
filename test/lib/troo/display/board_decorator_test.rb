@@ -6,7 +6,7 @@ module Troo
     let(:current) { true }
 
     before do
-      Ohm.redis.flushall
+      Ohm.redis.flushdb
       @board = Troo::Board.create({
         name:              "My Test Board",
         current:           current,

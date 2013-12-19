@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { List }
 
     before do
-      Ohm.redis.flushall
+      Ohm.redis.flushdb
       @list = Troo::List.create({
         name: "My Test List",
         position: 32768,

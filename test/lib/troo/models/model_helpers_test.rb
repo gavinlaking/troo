@@ -14,6 +14,7 @@ module Troo
     let(:described_class) { ModelHelpersDummy }
 
     before do
+      Ohm.redis.flushdb
       @dumb   = ModelHelpersDummy.create({
                  name: "My Dumb Model",
                  current: false })

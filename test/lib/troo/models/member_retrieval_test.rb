@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { MemberRetrieval }
 
     before do
-      Ohm.redis.flushall
+      Ohm.redis.flushdb
     end
 
     describe ".retrieve" do
