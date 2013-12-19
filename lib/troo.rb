@@ -34,10 +34,10 @@ require_relative "troo/display/card_decorator"
 require_relative "troo/display/comment_decorator"
 require_relative "troo/display/list_decorator"
 require_relative "troo/display/member_decorator"
+require_relative "troo/display/overview_presenter"
 
 require_relative "troo/presentation/screen"
 require_relative "troo/presentation/template"
-require_relative "troo/presentation/board_presenter"
 require_relative "troo/presentation/list_presenter"
 
 require_relative "troo/models/model_helpers"
