@@ -18,6 +18,7 @@ tmp
 
 configuration.yml
 configuration.yml.otb
+logs/*.log
 troo.db
 tags
 test/cassettes/*

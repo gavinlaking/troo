@@ -69,11 +69,11 @@ module Troo
     @config ||= OpenStruct.new(YAML.load_file(File.dirname(__FILE__) + "/../configuration.yml"))
   end
 
-  Celluloid.logger = nil
+  Celluloid.logger = Logger.new("logs/celluloid.log")
+  Trello.logger    = Logger.new("logs/trello.log")
 
   if ARGV.include?("--debug")
     ARGV.delete("--debug")
-    Celluloid.logger = Logger.new(STDERR)
   end
 
   Trello.configure do |trello|
