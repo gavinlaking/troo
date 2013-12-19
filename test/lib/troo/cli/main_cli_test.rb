@@ -18,7 +18,7 @@ module Troo
         subject { capture_io { described_class.new.cleanup }.join }
 
         it "removes all local data" do
-          subject.must_match /Not implemented yet./
+          subject.must_match /All local data has been removed./
         end
       end
 

@@ -11,8 +11,8 @@ module Troo
 
       desc "cleanup", "Removes all local data"
       def cleanup
-        #Ohm.redis.select() # need to main_db from config
-        say "Not implemented yet."
+        Ohm.redis.flushdb
+        say "All local data has been removed."
       end
 
       desc "version", "Print the version"
