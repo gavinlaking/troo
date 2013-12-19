@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { ListPersistence }
 
     before do
-      Ohm.redis.flushdb
+      database_cleanup
       @list = Troo::List.create({
         name:              "My Test List",
         closed:            false,

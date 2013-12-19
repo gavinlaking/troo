@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { CardPersistence }
 
     before do
-      Ohm.redis.flushdb
+      database_cleanup
       @card = Troo::Card.create({
         name:             "My Test Card",
         closed:           false,

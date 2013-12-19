@@ -9,7 +9,7 @@ module Troo
       let(:card_id)         { "526d8f19ddb279532e005259" }
 
       before do
-        Ohm.redis.flushdb
+        database_cleanup
         @board = Troo::Board.create({
           name: "My Test Board",
           external_board_id: board_id,

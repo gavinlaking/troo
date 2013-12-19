@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { CommentPersistence }
 
     before do
-      Ohm.redis.flushdb
+      database_cleanup
       @comment = Troo::Comment.create({
         text:                "My Test Comment",
         external_comment_id: "526d8e130a14a9d846001d96"

@@ -7,7 +7,7 @@ module Troo
     let(:options) { { } }
 
     before do
-      Ohm.redis.flushdb
+      database_cleanup
     end
 
     after do

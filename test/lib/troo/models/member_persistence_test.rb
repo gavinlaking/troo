@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { MemberPersistence }
 
     before do
-      Ohm.redis.flushdb
+      database_cleanup
       @member = Troo::Member.create({
         full_name:          "My Test Member",
         external_member_id: "5195fdb5a8c01a2318004f5d"

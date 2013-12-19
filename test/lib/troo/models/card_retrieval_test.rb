@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { CardRetrieval }
 
     before do
-      Ohm.redis.flushdb
+      database_cleanup
     end
 
     describe ".current" do

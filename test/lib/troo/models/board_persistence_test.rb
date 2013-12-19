@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { BoardPersistence }
 
     before do
-      Ohm.redis.flushdb
+      database_cleanup
       @board = Troo::Board.create({
         name:              "My Test Board",
         closed:            false,

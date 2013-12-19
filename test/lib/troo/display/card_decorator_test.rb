@@ -8,7 +8,7 @@ module Troo
     let(:description) { "Finish Troo for fame and fortune." }
 
     before do
-      Ohm.redis.flushdb
+      database_cleanup
       @card = Troo::Card.create({
         short_id:           "67",
         name:               "My Test Card",

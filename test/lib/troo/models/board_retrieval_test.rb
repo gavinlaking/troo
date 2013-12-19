@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { BoardRetrieval }
 
     before do
-      Ohm.redis.flushdb
+      database_cleanup
     end
 
     describe ".current" do

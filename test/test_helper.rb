@@ -15,9 +15,12 @@ require_relative "../lib/troo.rb"
 # require "celluloid/test"
 # Celluloid.boot
 
-# Test Database
-
 Ohm.connect(db: Troo.config.test_db)
 
 require "mocha/setup"
+
+def database_cleanup(delay = 0.00000001)
+  Ohm.redis.flushdb
+  sleep delay
+end
 
