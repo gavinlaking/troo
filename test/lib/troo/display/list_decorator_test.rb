@@ -27,6 +27,14 @@ module Troo
       end
     end
 
+    describe "#short" do
+      subject { described_class.new(@list).short }
+
+      it "returns a one line overview of the list" do
+        subject.must_equal(" *     (1) My Test List\n")
+      end
+    end
+
     describe "#name" do
       subject { described_class.new(@list).name }
 

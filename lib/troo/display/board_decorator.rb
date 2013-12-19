@@ -4,6 +4,10 @@ module Troo
       @board = board
     end
 
+    def short
+      [current.center(3), id.rjust(6), name].join(" ") + "\n"
+    end
+
     def name
       board.name
     end

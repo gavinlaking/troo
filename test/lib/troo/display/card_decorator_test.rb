@@ -37,6 +37,14 @@ module Troo
       end
     end
 
+    describe "#short" do
+      subject { described_class.new(@card).short }
+
+      it "returns a one line overview of the card" do
+        subject.must_equal(" *     (1) My Test Card")
+      end
+    end
+
     describe "#name" do
       subject { described_class.new(@card).name }
 

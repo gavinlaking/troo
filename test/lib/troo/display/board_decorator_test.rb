@@ -27,6 +27,14 @@ module Troo
       end
     end
 
+    describe "#short" do
+      subject { described_class.new(@board).short }
+
+      it "returns a one line overview of the board" do
+        subject.must_equal(" *     (1) My Test Board\n")
+      end
+    end
+
     describe "#name" do
       subject { described_class.new(@board).name }
 
