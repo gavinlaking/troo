@@ -1,93 +1,82 @@
 require_relative "../../../test_helper"
-require "thor"
 
 module Troo
   module CLI
     describe Board do
       let(:described_class) { Board }
+      let(:board_id)        { "526d8e130a14a9d846001d96" }
+      let(:list_id)         { "526d8e130a14a9d846001d97" }
+      let(:card_id)         { "526d8f19ddb279532e005259" }
 
-      describe "#all" do
+      before do
+        Ohm.redis.flushall
+        @board = Troo::Board.create({
+          name: "My Test Board",
+          external_board_id: board_id,
+          current: false
+        })
+        @board_2 = Troo::Board.create({
+          name: "My Other Board",
+          current: true
+        })
+        @list = Troo::List.create({
+          name: "My Test List",
+          external_board_id: board_id,
+          external_list_id: list_id
+        })
+        @card = Troo::Card.create({
+          name: "My Test Card",
+          external_list_id: list_id,
+          external_card_id: card_id
+        })
+      end
+
+      after do
+        @board.delete
+        @board_2.delete
+        @list.delete
+        @card.delete
+      end
+
+      describe ".all" do
         subject { capture_io { described_class.new.all }.join }
 
-        # before do
-        #   Troo::BoardRetrieval.stubs(:retrieve).returns(boards)
-        # end
-
-        # describe "when there are boards to be shown" do
-        #   let(:boards) { [Troo::Board.new(id: 1, name: "My Test Board 1"),
-        #                   Troo::Board.new(id: 2, name: "My Test Board 2")] }
-
-        #   it "outputs a list of boards" do
-        #     skip
-        #     proc { subject }.must_output <<-OUTPUT.gsub(/^ {14}/, "")
-        #       \e[4m\e[31m1\e[0m My Test Board 1
-        #       \e[4m\e[31m2\e[0m My Test Board 2
-
-        #     OUTPUT
-        #   end
-        # end
-
-        # describe "when there are no boards to be shown" do
-        #   let(:boards) { nil }
-
-        #   it "shows an error" do
-        #     subject.must_match /No boards found./
-        #   end
-        # end
-
-        context "when there are boards" do
-          it "does something" do
-            subject.must_match /Not implemented yet./
+        context "when boards exist" do
+          it "returns a list of boards" do
+            subject.must_match /Test Board/
+            subject.must_match /Other Board/
           end
         end
 
-        context "when there are no boards" do
-          it "does something" do
-            subject.must_match /Not implemented yet./
+        context "when no boards exist" do
+          before do
+            Troo::BoardRetrieval.stubs(:retrieve).returns([])
+          end
+
+          it "returns a polite message" do
+            subject.must_match /Boards not found./
           end
         end
       end
 
-      describe "#show" do
-        let(:board_id) { "526d8e130a14a9d846001d96" }
-
+      describe ".show" do
         subject { capture_io { described_class.new.show(board_id) }.join }
 
         context "when the board exists" do
-          # let(:lists) { [ Troo::List.new(id: 1, name: "My Test List 1", cards: cards) ] }
-          # let(:cards) { [ Troo::Card.new(id: 1, name: "My Test Card 1") ] }
-          # let(:board) { Troo::Board.new(id: 1, name: "My Test Board 1", lists: lists) }
-
-          # before do
-          #   #Troo::BoardRetrieval.stubs(:retrieve).returns(board)
-          # end
-
-          # it "outputs the board including lists and cards" do
-          #   skip
-          #   proc { subject }.must_output <<-OUTPUT.gsub(/^ {14}/, "")
-          #     \e[4m\e[31m1\e[0m My Test Board 1
-          #         \e[4m\e[33m1\e[0m My Test List 1
-          #             \e[4m\e[34m\e[0m My Test Card 1
-
-          #   OUTPUT
-          # end
-          it "does something" do
-            subject.must_match /Not implemented yet./
+          it "returns the board with all lists and all cards" do
+            subject.must_match /Test Board/
+            subject.must_match /Test List/
+            subject.must_match /Test Card/
           end
         end
 
         context "when the board does not exist" do
-          # let(:board) { nil }
+          before do
+            Troo::BoardRetrieval.stubs(:retrieve).returns()
+          end
 
-          # before do
-          #   Troo::BoardRetrieval.stubs(:retrieve).raises(Trello::Error)
-          # end
-
-          # it "rescues from the error" do
-          #   subject.must_match /Board cannot be found./
-          # end
-          it "does something" do
-            subject.must_match /Not implemented yet./
+          it "returns a polite message" do
+            subject.must_match /Board not found./
           end
         end
       end
