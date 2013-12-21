@@ -3,27 +3,23 @@ require_relative "../../../test_helper"
 module Troo
   describe ListRetrieval do
     let(:described_class) { ListRetrieval }
+    let(:current) { true }
+    let(:list_name) { "My Test List" }
 
     before do
+      @list = Fabricate(:list, current: current, name: list_name)
+    end
+
+    after do
       database_cleanup
     end
 
     describe ".current" do
       subject { described_class.current }
 
-      before do
-        @current = Troo::List.create(current: current)
-      end
-
-      after do
-        @current.delete
-      end
-
       context "when current is set" do
-        let(:current) { true }
-
         it "returns the current" do
-          subject.must_equal @current
+          subject.must_equal @list
         end
       end
 
@@ -37,16 +33,6 @@ module Troo
     end
 
     describe ".retrieve" do
-      before do
-        @list = Troo::List.create({
-                  name:             "My Test List",
-                  external_list_id: "526d8e130a14a9d846001d97" })
-      end
-
-      after do
-        @list.delete
-      end
-
       context "without an ID" do
         subject { described_class.retrieve }
 
@@ -75,15 +61,12 @@ module Troo
         end
 
         context "remote retrieval by either ID" do
-          before do
-            @list.delete
-            ExternalList.stubs(:fetch).returns(remote_list)
-          end
-
           let(:id) { "526d_remote_list_005259" }
-          let(:remote_list) { [Troo::List.new({
-                                 name:             "My Remote Test List",
-                                 external_list_id: id })] }
+          let(:list_name) { "My Remote Test List" }
+
+          before do
+            ExternalList.stubs(:fetch).returns([@list])
+          end
 
           it "returns the correct list" do
             subject.name.must_equal("My Remote Test List")

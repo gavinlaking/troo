@@ -19,9 +19,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler"
+  spec.add_development_dependency "fabrication"
   spec.add_development_dependency "guard"
   spec.add_development_dependency "guard-minitest"
-
   spec.add_development_dependency "minitest", "5.0.8"
   spec.add_development_dependency "mocha"
   spec.add_development_dependency "pry", "0.9.12.4"

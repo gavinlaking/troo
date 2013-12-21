@@ -3,27 +3,30 @@ require_relative "../../../test_helper"
 module Troo
   describe CommentPersistence do
     let(:described_class) { CommentPersistence }
+    let(:resource) { OpenStruct.new({
+      id:   "51f9277b2822b8654f0023af",
+      date: DateTime.civil(2013, 12, 17, 22, 1, 13),
+      data: {
+        "text" => resource_text, "board" => {
+          "id" => "526d8e130a14a9d846001d96"
+        }, "card" => {
+          "id" => "526d8f19ddb279532e005259"
+        } }
+    }) }
 
     before do
-      database_cleanup
-      @comment = Troo::Comment.create({
-        text:                "My Test Comment",
-        external_comment_id: "526d8e130a14a9d846001d96"
-      })
+      @comment = Fabricate(:comment)
     end
 
     after do
-      @comment.delete
+      database_cleanup
     end
 
     describe "#persist" do
       subject { described_class.for(resource) }
 
       context "when an identical copy already exists locally" do
-        let(:resource) { OpenStruct.new({
-          id:   "526d8e130a14a9d846001d96",
-          data: { "text" => "My Test Comment", "board" => { "id" => "" }, "card" => { "id" => "" } }
-        }) }
+        let(:resource_text) { "My Test Comment" }
 
         it "returns the local copy" do
           subject.must_equal(@comment)
@@ -31,10 +34,7 @@ module Troo
       end
 
       context "when the local copy is out of date" do
-        let(:resource) { OpenStruct.new({
-          id:   "526d8e130a14a9d846001d96",
-          data: { "text" => "My Renamed Comment", "board" => { "id" => "" }, "card" => { "id" => "" } }
-        }) }
+        let(:resource_text) { "My Renamed Comment" }
 
         it "updates and returns the new local copy" do
           subject.text.must_equal("My Renamed Comment")
@@ -42,14 +42,11 @@ module Troo
       end
 
       context "when there is no local copy" do
-        before do
-          @comment.delete
-        end
+        let(:resource_text) { "My New Test Comment" }
 
-        let(:resource) { OpenStruct.new({
-          id:   "526d8e130a14a9d846001d96",
-          data: { "text" => "My New Test Comment", "board" => { "id" => "" }, "card" => { "id" => "" } }
-        }) }
+        before do
+          database_cleanup
+        end
 
         it "creates and returns the new local copy" do
           subject.text.must_equal("My New Test Comment")

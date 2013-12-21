@@ -3,20 +3,13 @@ require_relative "../../../test_helper"
 module Troo
   describe MemberDecorator do
     let(:described_class) { MemberDecorator }
-    let(:current) { true }
 
     before do
-      database_cleanup
-      @member = Troo::Member.create({
-        username:           "gavinlaking1",
-        full_name:          "Gavin Laking",
-        initials:           "GL",
-        external_member_id: "5195fdb5a8c01a2318004f5d"
-      })
+      @member = Fabricate(:member)
     end
 
     after do
-      @member.delete
+      database_cleanup
     end
 
     describe "#initialize" do

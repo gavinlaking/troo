@@ -6,6 +6,16 @@ module Troo
     describe Current do
       let(:described_class) { Current }
 
+      before do
+        @board = Fabricate(:board)
+        @list  = Fabricate(:list)
+        @card  = Fabricate(:card)
+      end
+
+      after do
+        database_cleanup
+      end
+
       describe "#board" do
         let(:board_id) { "some_board_id" }
 
@@ -22,15 +32,13 @@ module Troo
         end
 
         context "when the board_id was found" do
-          let(:board) { Troo::Board.new(name: "My Board", current: false) }
-
           before do
             Troo::BoardRetrieval.stubs(:retrieve)
-            SetCurrent.stubs(:for).returns(board)
+            SetCurrent.stubs(:for).returns(@board)
           end
 
           it "reports success" do
-            subject.must_match /Board 'My Board' set to current./
+            subject.must_match /Board 'My Test Board' set to current./
           end
         end
       end
@@ -51,15 +59,13 @@ module Troo
         end
 
         context "when the card_id was found" do
-          let(:card) { Troo::Card.new(name: "My Card", current: false) }
-
           before do
             Troo::CardRetrieval.stubs(:retrieve)
-            SetCurrent.stubs(:for).returns(card)
+            SetCurrent.stubs(:for).returns(@card)
           end
 
           it "reports success" do
-            subject.must_match /Card 'My Card' set to current./
+            subject.must_match /Card 'My Test Card' set to current./
           end
         end
       end
@@ -80,15 +86,13 @@ module Troo
         end
 
         context "when the list_id was found" do
-          let(:list) { Troo::List.new(name: "My List", current: false) }
-
           before do
             Troo::ListRetrieval.stubs(:retrieve)
-            SetCurrent.stubs(:for).returns(list)
+            SetCurrent.stubs(:for).returns(@list)
           end
 
           it "reports success" do
-            subject.must_match /List 'My List' set to current./
+            subject.must_match /List 'My Test List' set to current./
           end
         end
       end

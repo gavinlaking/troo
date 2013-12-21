@@ -3,29 +3,25 @@ require_relative "../../../test_helper"
 module Troo
   describe BoardPersistence do
     let(:described_class) { BoardPersistence }
+    let(:resource) { OpenStruct.new({
+      id:     "526d8e130a14a9d846001d96",
+      name:   resource_name,
+      closed: false
+    }) }
 
     before do
-      database_cleanup
-      @board = Troo::Board.create({
-        name:              "My Test Board",
-        closed:            false,
-        external_board_id: "526d8e130a14a9d846001d96"
-      })
+      @board = Fabricate(:board)
     end
 
     after do
-      @board.delete
+      database_cleanup
     end
 
     describe "#persist" do
       subject { described_class.for(resource) }
 
       context "when an identical copy already exists locally" do
-        let(:resource) { OpenStruct.new({
-          id:     "526d8e130a14a9d846001d96",
-          name:   "My Test Board",
-          closed: false
-        }) }
+        let(:resource_name) { "My Test Board" }
 
         it "returns the local copy" do
           subject.must_equal(@board)
@@ -33,11 +29,7 @@ module Troo
       end
 
       context "when the local copy is out of date" do
-        let(:resource) { OpenStruct.new({
-          id:     "526d8e130a14a9d846001d96",
-          name:   "My Renamed Board",
-          closed: false
-        }) }
+        let(:resource_name) { "My Renamed Board" }
 
         it "updates and returns the new local copy" do
           subject.name.must_equal("My Renamed Board")
@@ -45,15 +37,11 @@ module Troo
       end
 
       context "when there is no local copy" do
-        before do
-          @board.delete
-        end
+        let(:resource_name) { "My New Test Board" }
 
-        let(:resource) { OpenStruct.new({
-          id:     "526d8e130a14a9d846001d96",
-          name:   "My New Test Board",
-          closed: false
-        }) }
+        before do
+          database_cleanup
+        end
 
         it "creates and returns the new local copy" do
           subject.name.must_equal("My New Test Board")

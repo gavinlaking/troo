@@ -25,7 +25,7 @@ module Troo
         end
 
         context "when there are no cards" do
-          it "does something" do
+          it "returns a polite message" do
             subject.must_match /Not implemented yet./
           end
         end
@@ -43,7 +43,7 @@ module Troo
         end
 
         context "when the card does not exist" do
-          it "does something" do
+          it "returns a polite message" do
             subject.must_match /Not implemented yet./
           end
         end

@@ -6,16 +6,11 @@ module Troo
     let(:current) { true }
 
     before do
-      database_cleanup
-      @comment = Troo::Comment.create({
-        text:                "My Test Comment",
-        date:                DateTime.civil(2013, 12, 17, 22, 1, 13),
-        external_comment_id: "51f9277b2822b8654f0023af"
-      })
+      @comment = Fabricate(:comment)
     end
 
     after do
-      @comment.delete
+      database_cleanup
     end
 
     describe "#initialize" do

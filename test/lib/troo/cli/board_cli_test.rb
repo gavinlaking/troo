@@ -9,33 +9,14 @@ module Troo
       let(:card_id)         { "526d8f19ddb279532e005259" }
 
       before do
-        database_cleanup
-        @board = Troo::Board.create({
-          name: "My Test Board",
-          external_board_id: board_id,
-          current: false
-        })
-        @board_2 = Troo::Board.create({
-          name: "My Other Board",
-          current: true
-        })
-        @list = Troo::List.create({
-          name: "My Test List",
-          external_board_id: board_id,
-          external_list_id: list_id
-        })
-        @card = Troo::Card.create({
-          name: "My Test Card",
-          external_list_id: list_id,
-          external_card_id: card_id
-        })
+        @board   = Fabricate(:board)
+        @board_2 = Fabricate(:board, name: "My Other Board")
+        @list    = Fabricate(:list)
+        @card    = Fabricate(:card)
       end
 
       after do
-        @board.delete
-        @board_2.delete
-        @list.delete
-        @card.delete
+        database_cleanup
       end
 
       describe ".all" do

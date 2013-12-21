@@ -3,27 +3,23 @@ require_relative "../../../test_helper"
 module Troo
   describe BoardRetrieval do
     let(:described_class) { BoardRetrieval }
+    let(:current) { true }
+    let(:board_name) { "My Test Board" }
 
     before do
+      @board = Fabricate(:board, current: current, name: board_name)
+    end
+
+    after do
       database_cleanup
     end
 
     describe ".current" do
       subject { described_class.current }
 
-      before do
-        @current = Troo::Board.create(current: current)
-      end
-
-      after do
-        @current.delete
-      end
-
       context "when current is set" do
-        let(:current) { true }
-
         it "returns the current" do
-          subject.must_equal @current
+          subject.must_equal @board
         end
       end
 
@@ -37,16 +33,6 @@ module Troo
     end
 
     describe ".retrieve" do
-      before do
-        @board = Troo::Board.create({
-                  name:              "My Test Board",
-                  external_board_id: "526d8e130a14a9d846001d96" })
-      end
-
-      after do
-        @board.delete
-      end
-
       context "without an ID" do
         subject { described_class.retrieve }
 
@@ -75,15 +61,12 @@ module Troo
         end
 
         context "remote retrieval by either ID" do
-          before do
-            @board.delete
-            ExternalBoard.stubs(:fetch).returns(remote_board)
-          end
+          let(:id)         { "526d_remote_board_005259" }
+          let(:board_name) { "My Remote Test Board" }
 
-          let(:id) { "526d_remote_board_005259" }
-          let(:remote_board) { [Troo::Board.new({
-                                 name:              "My Remote Test Board",
-                                 external_board_id: id })] }
+          before do
+            ExternalBoard.stubs(:fetch).returns([@board])
+          end
 
           it "returns the correct board" do
             subject.name.must_equal("My Remote Test Board")

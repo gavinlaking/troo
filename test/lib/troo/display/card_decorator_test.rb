@@ -3,30 +3,16 @@ require_relative "../../../test_helper"
 module Troo
   describe CardDecorator do
     let(:described_class) { CardDecorator }
-
     let(:current)     { true }
     let(:description) { "Finish Troo for fame and fortune." }
 
     before do
-      database_cleanup
-      @card = Troo::Card.create({
-        short_id:           "67",
-        name:               "My Test Card",
-        desc:               description,
-        last_activity_date: DateTime.civil(2013, 12, 17, 21, 48, 9),
-        current:            current,
-        closed:             false,
-        external_card_id:   "526d8f19ddb279532e005259"
-      })
-      @comment = Troo::Comment.create({
-        text: "Just fortune will suffice.",
-        external_card_id: "526d8f19ddb279532e005259"
-      })
+      @card    = Fabricate(:card, desc: description, current: current)
+      @comment = Fabricate(:comment)
     end
 
     after do
-      @card.delete
-      @comment.delete
+      database_cleanup
     end
 
     describe "#initialize" do
@@ -41,7 +27,7 @@ module Troo
       subject { described_class.new(@card).short }
 
       it "returns a one line overview of the card" do
-        subject.must_equal(" *     (1) My Test Card")
+        subject.must_equal(" *    (67) My Test Card\n")
       end
     end
 

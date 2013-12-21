@@ -5,41 +5,18 @@ module Troo
     let(:described_class) { Card }
 
     before do
-      database_cleanup
-      @card = Troo::Card.create({
-        short_id: "1",
-        name: "My Test Card",
-        desc: "some description",
-        url: "some trello url",
-        external_member_ids: ["5195fdb5a8c01a2318004f5d"],
-        position: 16,
-        last_activity_date: "",
-        current: false,
-        closed: false,
-        external_board_id: "526d8e130a14a9d846001d96",
-        external_list_id: "526d8e130a14a9d846001d97",
-        external_card_id: "526d8f19ddb279532e005259"
-      })
-      @board = Troo::Board.create({
-        external_board_id: "526d8e130a14a9d846001d96"
-      })
-      @list = Troo::List.create({
-        external_list_id: "526d8e130a14a9d846001d97"
-      })
-      @comment = Troo::Comment.create({
-        external_card_id: "526d8f19ddb279532e005259"
-      })
+      @card    = Fabricate(:card)
+      @board   = Fabricate(:board)
+      @list    = Fabricate(:list)
+      @comment = Fabricate(:comment)
     end
 
     after do
-      @card.delete
-      @board.delete
-      @list.delete
-      @comment.delete
+      database_cleanup
     end
 
     it "should have a short_id attribute" do
-      @card.short_id.must_equal "1"
+      @card.short_id.must_equal "67"
     end
 
     it "should have a name attribute" do
@@ -63,7 +40,7 @@ module Troo
     end
 
     it "should have a last_activity_date attribute" do
-      @card.last_activity_date.must_equal ""
+      @card.last_activity_date.must_equal DateTime.civil(2013, 12, 17, 21, 48, 9)
     end
 
     it "should have a current attribute" do

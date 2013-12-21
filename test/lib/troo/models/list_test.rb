@@ -5,27 +5,13 @@ module Troo
     let(:described_class) { List }
 
     before do
-      database_cleanup
-      @list = Troo::List.create({
-        name: "My Test List",
-        position: 32768,
-        current: false,
-        closed: false,
-        external_board_id: "526d8e130a14a9d846001d96",
-        external_list_id: "526d8e130a14a9d846001d97"
-      })
-      @board = Troo::Board.create({
-        external_board_id: "526d8e130a14a9d846001d96"
-      })
-      @card = Troo::Card.create({
-        external_list_id: "526d8e130a14a9d846001d97"
-      })
+      @list  = Fabricate(:list)
+      @board = Fabricate(:board)
+      @card  = Fabricate(:card)
     end
 
     after do
-      @list.delete
-      @board.delete
-      @card.delete
+      database_cleanup
     end
 
     it "should have a name attribute" do

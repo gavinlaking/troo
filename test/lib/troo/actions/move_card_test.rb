@@ -7,13 +7,12 @@ module Troo
     let(:list_id) { "526d8e130a14a9d846001d97" }
 
     before do
-      @destination_list = Troo::List.create(external_list_id: list_id)
-      @card = Troo::Card.create(external_card_id: card_id, external_list_id: list_id)
+      @destination_list = Fabricate(:list)
+      @card             = Fabricate(:card)
     end
 
     after do
-      @destination_list.delete
-      @card.delete
+      database_cleanup
     end
 
     describe ".initialize" do

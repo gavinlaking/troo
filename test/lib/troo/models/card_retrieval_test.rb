@@ -3,27 +3,23 @@ require_relative "../../../test_helper"
 module Troo
   describe CardRetrieval do
     let(:described_class) { CardRetrieval }
+    let(:current) { true }
+    let(:card_name) { "My Test Card" }
 
     before do
+      @card = Fabricate(:card, current: current, name: card_name)
+    end
+
+    after do
       database_cleanup
     end
 
     describe ".current" do
       subject { described_class.current }
 
-      before do
-        @current = Troo::Card.create(current: current)
-      end
-
-      after do
-        @current.delete
-      end
-
       context "when current is set" do
-        let(:current) { true }
-
         it "returns the current" do
-          subject.must_equal @current
+          subject.must_equal @card
         end
       end
 
@@ -37,17 +33,6 @@ module Troo
     end
 
     describe ".retrieve" do
-      before do
-        @card = Troo::Card.create({
-                  name:             "My Test Card",
-                  short_id:         17,
-                  external_card_id: "526d8f19ddb279532e005259" })
-      end
-
-      after do
-        @card.delete
-      end
-
       context "without an ID" do
         subject { described_class.retrieve }
 
@@ -68,7 +53,7 @@ module Troo
         end
 
         context "local retrieval by short_id" do
-          let(:id) { 17 }
+          let(:id) { 67 }
 
           it "returns the correct card" do
             subject.name.must_equal("My Test Card")
@@ -84,16 +69,12 @@ module Troo
         end
 
         context "remote retrieval by either ID" do
-          before do
-            @card.delete
-            ExternalCard.stubs(:fetch).returns(remote_card)
-          end
-
           let(:id) { "526d_remote_card_005259" }
-          let(:remote_card) { [Troo::Card.new({
-                                 name:             "My Remote Test Card",
-                                 short_id:         66,
-                                 external_card_id: id })] }
+          let(:card_name) { "My Remote Test Card" }
+
+          before do
+            ExternalCard.stubs(:fetch).returns([@card])
+          end
 
           it "returns the correct card" do
             subject.name.must_equal("My Remote Test Card")

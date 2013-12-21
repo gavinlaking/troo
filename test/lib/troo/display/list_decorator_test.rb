@@ -6,17 +6,11 @@ module Troo
     let(:current) { true }
 
     before do
-      database_cleanup
-      @list = Troo::List.create({
-        name:             "My Test List",
-        current:          current,
-        closed:           false,
-        external_list_id: "526d8e130a14a9d846001d97"
-      })
+      @list = Fabricate(:list, current: current)
     end
 
     after do
-      @list.delete
+      database_cleanup
     end
 
     describe "#initialize" do

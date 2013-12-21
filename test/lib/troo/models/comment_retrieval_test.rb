@@ -5,20 +5,14 @@ module Troo
     let(:described_class) { CommentRetrieval }
 
     before do
+      @comment = Fabricate(:comment)
+    end
+
+    after do
       database_cleanup
     end
 
     describe ".retrieve" do
-      before do
-        @comment = Troo::Comment.create({
-                     text:                "My Test Comment",
-                     external_comment_id: "51f9277b2822b8654f0023af" })
-      end
-
-      after do
-        @comment.delete
-      end
-
       context "without an ID" do
         subject { described_class.retrieve }
 

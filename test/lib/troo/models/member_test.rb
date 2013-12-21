@@ -5,21 +5,11 @@ module Troo
     let(:described_class) { Member }
 
     before do
-      database_cleanup
-      @member = Troo::Member.create({
-        username: "gavinlaking1",
-        email:    "gavinlaking@gmail.com",
-        full_name: "Gavin Laking",
-        initials: "GL",
-        avatar_id: "some_avatar_id",
-        bio: "some bio",
-        url: "http://www.gavinlaking.name/",
-        external_member_id: "5195fdb5a8c01a2318004f5d"
-      })
+      @member = Fabricate(:member)
     end
 
     after do
-      @member.delete
+      database_cleanup
     end
 
     it "should have a username attribute" do

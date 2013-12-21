@@ -6,17 +6,11 @@ module Troo
     let(:current) { true }
 
     before do
-      database_cleanup
-      @board = Troo::Board.create({
-        name:              "My Test Board",
-        current:           current,
-        closed:            false,
-        external_board_id: "526d8e130a14a9d846001d96"
-      })
+      @board = Fabricate(:board, current: current)
     end
 
     after do
-      @board.delete
+      database_cleanup
     end
 
     describe "#initialize" do

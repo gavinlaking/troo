@@ -5,42 +5,77 @@ module Troo
   module CLI
     describe List do
       let(:described_class) { List }
+      let(:board_id)        { "526d8e130a14a9d846001d96" }
+      let(:list_id)         { "526d8e130a14a9d846001d97" }
+      let(:card_id)         { "526d8f19ddb279532e005259" }
+
+      before do
+        @board  = Fabricate(:board)
+        @list   = Fabricate(:list)
+        @list_2 = Fabricate(:list, name: "My Other List")
+        @card   = Fabricate(:card)
+      end
+
+      after do
+        database_cleanup
+      end
 
       describe "#all" do
         let(:board_id) { "526d8e130a14a9d846001d96" }
 
         subject { capture_io { described_class.new.all(board_id) }.join }
 
-        context "when there are lists" do
-          it "does something" do
-            subject.must_match /Not implemented yet./
+        context "when the board exists" do
+          context "and there are lists" do
+            it "returns the board with all lists" do
+              subject.must_match /Test Board/
+              subject.must_match /Test List/
+              subject.must_match /Other List/
+            end
+          end
+
+          context "and there are no lists" do
+            before do
+              @list.delete
+              @list_2.delete
+            end
+
+            it "returns a polite message" do
+              subject.must_match /Lists not found./
+            end
           end
         end
 
-        context "when there are no lists" do
-          it "does something" do
-            subject.must_match /Not implemented yet./
+        context "when the board does not exist" do
+          before do
+            Troo::BoardRetrieval.stubs(:retrieve).returns()
+          end
+
+          it "returns a polite message" do
+            subject.must_match /Board not found./
           end
         end
       end
 
-      describe "#show" do
-        let(:list_id) { "526d8e130a14a9d846001d97" }
+      # describe "#show" do
+      #   subject { capture_io { described_class.new.show(list_id) }.join }
 
-        subject { capture_io { described_class.new.show(list_id) }.join }
+      #   context "when the list exists" do
+      #     it "returns the board with the list and all cards" do
+      #       subject.must_match /Not implemented yet./
+      #     end
+      #   end
 
-        context "when the list exists" do
-          it "does something" do
-            subject.must_match /Not implemented yet./
-          end
-        end
+      #   context "when the list does not exist" do
+      #     before do
+      #       Troo::ListRetrieval.stubs(:retrieve).returns()
+      #     end
 
-        context "when the list does not exist" do
-          it "does something" do
-            subject.must_match /Not implemented yet./
-          end
-        end
-      end
+      #     it "returns a polite message" do
+      #       subject.must_match /Not implemented yet./
+      #     end
+      #   end
+      # end
     end
   end
 end
