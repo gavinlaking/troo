@@ -12,7 +12,6 @@ module Troo
       before do
         @board  = Fabricate(:board)
         @list   = Fabricate(:list)
-        @list_2 = Fabricate(:list, name: "My Other List")
         @card   = Fabricate(:card)
       end
 
@@ -20,62 +19,27 @@ module Troo
         database_cleanup
       end
 
-      describe "#all" do
-        let(:board_id) { "526d8e130a14a9d846001d96" }
+      describe "#show" do
+        subject { capture_io { described_class.new.show(list_id) }.join }
 
-        subject { capture_io { described_class.new.all(board_id) }.join }
-
-        context "when the board exists" do
-          context "and there are lists" do
-            it "returns the board with all lists" do
-              subject.must_match /Test Board/
-              subject.must_match /Test List/
-              subject.must_match /Other List/
-            end
-          end
-
-          context "and there are no lists" do
-            before do
-              @list.delete
-              @list_2.delete
-            end
-
-            it "returns a polite message" do
-              subject.must_match /Lists not found./
-            end
+        context "when the list exists" do
+          it "returns the list's board, the list and all cards" do
+            subject.must_match /Test Board/
+            subject.must_match /Test List/
+            subject.must_match /Test Card/
           end
         end
 
-        context "when the board does not exist" do
+        context "when the list does not exist" do
           before do
-            Troo::BoardRetrieval.stubs(:retrieve).returns()
+            Troo::ListRetrieval.stubs(:retrieve).returns()
           end
 
           it "returns a polite message" do
-            subject.must_match /Board not found./
+            subject.must_match /List not found./
           end
         end
       end
-
-      # describe "#show" do
-      #   subject { capture_io { described_class.new.show(list_id) }.join }
-
-      #   context "when the list exists" do
-      #     it "returns the board with the list and all cards" do
-      #       subject.must_match /Not implemented yet./
-      #     end
-      #   end
-
-      #   context "when the list does not exist" do
-      #     before do
-      #       Troo::ListRetrieval.stubs(:retrieve).returns()
-      #     end
-
-      #     it "returns a polite message" do
-      #       subject.must_match /Not implemented yet./
-      #     end
-      #   end
-      # end
     end
   end
 end
