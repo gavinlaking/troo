@@ -5,6 +5,13 @@ module Troo
     let(:described_class) { RefreshAll }
     let(:options) { { } }
 
+    before do
+    end
+
+    after do
+      database_cleanup
+    end
+
     describe ".initialize" do
       subject { described_class.new(options) }
 

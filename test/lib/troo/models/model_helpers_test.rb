@@ -14,7 +14,6 @@ module Troo
     let(:described_class) { ModelHelpersDummy }
 
     before do
-      database_cleanup
       @dumb   = ModelHelpersDummy.create({
                  name: "My Dumb Model",
                  current: false })
@@ -24,8 +23,7 @@ module Troo
     end
 
     after do
-      @dumb.delete
-      @dumber.delete
+      database_cleanup
     end
 
     describe ".first" do

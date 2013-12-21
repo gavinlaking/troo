@@ -6,6 +6,13 @@ module Troo
     let(:object) { }
     let(:template_file) { }
 
+    before do
+    end
+
+    after do
+      database_cleanup
+    end
+
     describe "#initialize" do
       subject { described_class.new(object, template_file) }
 

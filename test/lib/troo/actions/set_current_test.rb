@@ -5,6 +5,13 @@ module Troo
     let(:described_class) { SetCurrent }
     let(:entity) { }
 
+    before do
+    end
+
+    after do
+      database_cleanup
+    end
+
     describe ".initialize" do
       subject { described_class.new(entity) }
 

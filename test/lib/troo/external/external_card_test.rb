@@ -4,6 +4,13 @@ module Troo
   describe ExternalCard do
     let(:described_class) { ExternalCard }
 
+    before do
+    end
+
+    after do
+      database_cleanup
+    end
+
     describe ".initialize" do
       subject { described_class.new("some_id", {}) }
 

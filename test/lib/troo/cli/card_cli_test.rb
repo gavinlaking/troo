@@ -6,6 +6,13 @@ module Troo
     describe Card do
       let(:described_class) { Card }
 
+      before do
+      end
+
+      after do
+        database_cleanup
+      end
+
       describe "#all" do
         let(:board_id) { "526d8e130a14a9d846001d96" }
 

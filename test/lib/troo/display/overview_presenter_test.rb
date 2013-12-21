@@ -7,10 +7,10 @@ module Troo
     let(:options) { { } }
 
     before do
-      database_cleanup
     end
 
     after do
+      database_cleanup
     end
 
     describe "#initialize" do

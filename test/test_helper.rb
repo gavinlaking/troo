@@ -19,8 +19,7 @@ Ohm.connect(db: Troo.config.test_db)
 
 require "mocha/setup"
 
-def database_cleanup(delay = 0.00000001)
+def database_cleanup(delay = 0)
   Ohm.redis.flushdb
-  sleep delay
+  sleep delay if delay > 0
 end
-

@@ -6,6 +6,13 @@ module Troo
     describe Main do
       let(:described_class) { Main }
 
+      before do
+      end
+
+      after do
+        database_cleanup
+      end
+
       describe "#refresh" do
         subject { capture_io { described_class.new.refresh }.join }
 

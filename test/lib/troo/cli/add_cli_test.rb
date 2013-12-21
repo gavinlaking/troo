@@ -6,6 +6,13 @@ module Troo
     describe Add do
       let(:described_class) { Add }
 
+      before do
+      end
+
+      after do
+        database_cleanup
+      end
+
       describe "#board" do
         let(:board_name) { "somename" }
 

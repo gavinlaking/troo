@@ -6,6 +6,13 @@ module Troo
     let(:card_id) { }
     let(:comment) { }
 
+    before do
+    end
+
+    after do
+      database_cleanup
+    end
+
     describe ".initialize" do
       subject { described_class.new(card_id, comment) }
 
