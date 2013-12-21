@@ -17,12 +17,12 @@ module Troo
       ERB.new(load, nil, "-").result(binding)
     end
 
+    private
+    attr_reader :object, :template_file
+
     def load
       File.read(File.dirname(__FILE__) + template_file)
     end
-
-    private
-    attr_reader :object, :template_file
 
     def half_horizontal_line
       "-" * (width / 2).floor
