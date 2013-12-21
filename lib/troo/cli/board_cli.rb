@@ -6,8 +6,7 @@ module Troo
       def all
         if boards.any?
           boards.map do |board|
-            OverviewPresenter.render(board, { show_boards: true,
-                                              show_lists:  true })
+            BoardPresenter.render_all(board)
           end
         else
           say "Boards not found."
@@ -18,9 +17,7 @@ module Troo
       def show(board_id)
         @board_id = board_id
         if board
-          OverviewPresenter.render(board, { show_boards: true,
-                                            show_lists:  true,
-                                            show_cards:  true })
+          BoardPresenter.render_show(board)
         else
           say "Board not found."
         end

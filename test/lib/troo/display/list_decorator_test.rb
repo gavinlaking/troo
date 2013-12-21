@@ -25,7 +25,31 @@ module Troo
       subject { described_class.new(@list).short }
 
       it "returns a one line overview of the list" do
-        subject.must_equal(" *     (1) My Test List\n")
+        subject.must_equal(" * \e[32m\e[4m(1) \e[0m\e[32m\e[4mMy Test List\e[0m\n")
+      end
+    end
+
+    describe "#name_str" do
+      subject { described_class.new(@list).name_str }
+
+      it "returns the formatted list name" do
+        subject.must_equal("\e[32m\e[4mMy Test List\e[0m")
+      end
+    end
+
+    describe "#current_str" do
+      subject { described_class.new(@list).current_str }
+
+      it "returns the formatted card current indicator" do
+        subject.must_equal(" * ")
+      end
+    end
+
+    describe "#id_str" do
+      subject { described_class.new(@list).id_str }
+
+      it "returns the formatted list id" do
+        subject.must_equal("\e[32m\e[4m(1) \e[0m")
       end
     end
 
@@ -59,7 +83,7 @@ module Troo
       subject { described_class.new(@list).id }
 
       it "returns the list id" do
-        subject.must_equal("(#{@list.id})")
+        subject.must_equal(@list.id.to_s)
       end
     end
   end

@@ -1,15 +1,29 @@
 module Troo
   class ListDecorator
+    include DecoratorHelpers
+
     def initialize(list)
       @list = list
     end
 
     def short
-      [current.center(3), id.rjust(6), name].join(" ") + "\n"
+      [current_str, id_str, name_str].join + "\n"
+    end
+
+    def name_str
+      highlight(name, highlight_options)
+    end
+
+    def current_str
+      current.center(3)
+    end
+
+    def id_str
+      highlight(brackets(id) + " ", highlight_options).rjust(6)
     end
 
     def name
-      list.name
+      (list.name && list.name.chomp) || "N/A"
     end
 
     def current
@@ -17,14 +31,14 @@ module Troo
     end
 
     def id
-      brackets(list.id)
+      list.id.to_s
     end
 
     private
     attr_reader :list
 
-    def brackets(value)
-      "(#{value})"
+    def highlight_options
+      { colour: Esc.green, underline: Esc.underline }
     end
   end
 end

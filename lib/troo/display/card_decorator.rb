@@ -1,15 +1,37 @@
 module Troo
   class CardDecorator
+    include DecoratorHelpers
+
     def initialize(card)
       @card = card
     end
 
     def short
-      [current.center(3), id.rjust(6), name].join(" ") + "\n"
+      [current_str, id_str, name_str].join + "\n"
+    end
+
+    def name_str
+      highlight(name, highlight_options)
+    end
+
+    def current_str
+      current.center(3)
+    end
+
+    def id_str
+      highlight(brackets(id) + " ", highlight_options).rjust(6)
     end
 
     def name
-      card.name
+      (card.name && card.name.chomp) || "N/A"
+    end
+
+    def current
+      card.current? ? "*" : ""
+    end
+
+    def id
+      card.short_id
     end
 
     def description
@@ -41,19 +63,11 @@ module Troo
       card.last_activity_date.strftime("%a, %b %d at %H:%M")
     end
 
-    def current
-      card.current? ? "*" : ""
-    end
-
-    def id
-      brackets(card.short_id)
-    end
-
     private
     attr_reader :card
 
-    def brackets(value)
-      "(#{value})"
+    def highlight_options
+      { colour: nil, underline: nil }
     end
   end
 end

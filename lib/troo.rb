@@ -29,12 +29,14 @@ require_relative "troo/external/external_member"
 require_relative "troo/external/proxy_card"
 require_relative "troo/external/proxy_list"
 
+require_relative "troo/display/decorator_helpers"
 require_relative "troo/display/board_decorator"
 require_relative "troo/display/card_decorator"
 require_relative "troo/display/comment_decorator"
 require_relative "troo/display/list_decorator"
 require_relative "troo/display/member_decorator"
 require_relative "troo/display/overview_presenter"
+require_relative "troo/display/board_presenter"
 
 require_relative "troo/presentation/template"
 

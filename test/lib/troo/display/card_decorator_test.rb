@@ -27,7 +27,31 @@ module Troo
       subject { described_class.new(@card).short }
 
       it "returns a one line overview of the card" do
-        subject.must_equal(" *    (67) My Test Card\n")
+        subject.must_equal(" * (67) \e[0mMy Test Card\e[0m\n")
+      end
+    end
+
+    describe "#name_str" do
+      subject { described_class.new(@card).name_str }
+
+      it "returns the formatted card name" do
+        subject.must_equal("My Test Card\e[0m")
+      end
+    end
+
+    describe "#current_str" do
+      subject { described_class.new(@card).current_str }
+
+      it "returns the formatted card current indicator" do
+        subject.must_equal(" * ")
+      end
+    end
+
+    describe "#id_str" do
+      subject { described_class.new(@card).id_str }
+
+      it "returns the formatted card id" do
+        subject.must_equal("(67) \e[0m")
       end
     end
 
@@ -36,6 +60,32 @@ module Troo
 
       it "returns the card name" do
         subject.must_equal(@card.name)
+      end
+    end
+
+    describe "#current" do
+      subject { described_class.new(@card).current }
+
+      context "when current" do
+        it "return an indicator" do
+          subject.must_equal("*")
+        end
+      end
+
+      context "when not current" do
+        let(:current) { false }
+
+        it "returns nothing" do
+          subject.must_equal("")
+        end
+      end
+    end
+
+    describe "#id" do
+      subject { described_class.new(@card).id }
+
+      it "returns the card id" do
+        subject.must_equal(@card.short_id)
       end
     end
 
@@ -102,32 +152,6 @@ module Troo
 
       it "returns the last activity date" do
         subject.must_equal("Tue, Dec 17 at 21:48")
-      end
-    end
-
-    describe "#current" do
-      subject { described_class.new(@card).current }
-
-      context "when current" do
-        it "return an indicator" do
-          subject.must_equal("*")
-        end
-      end
-
-      context "when not current" do
-        let(:current) { false }
-
-        it "returns nothing" do
-          subject.must_equal("")
-        end
-      end
-    end
-
-    describe "#id" do
-      subject { described_class.new(@card).id }
-
-      it "returns the card id" do
-        subject.must_equal("(#{@card.short_id})")
       end
     end
   end

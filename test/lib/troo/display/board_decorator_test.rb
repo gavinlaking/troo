@@ -25,7 +25,31 @@ module Troo
       subject { described_class.new(@board).short }
 
       it "returns a one line overview of the board" do
-        subject.must_equal(" *     (1) My Test Board\n")
+        subject.must_equal(" * \e[34m\e[4m(1) \e[0m\e[34m\e[4mMy Test Board\e[0m\n")
+      end
+    end
+
+    describe "#name_str" do
+      subject { described_class.new(@board).name_str }
+
+      it "returns the formatted board name" do
+        subject.must_equal("\e[34m\e[4mMy Test Board\e[0m")
+      end
+    end
+
+    describe "#current_str" do
+      subject { described_class.new(@board).current_str }
+
+      it "returns the formatted board current indicator" do
+        subject.must_equal(" * ")
+      end
+    end
+
+    describe "#id_str" do
+      subject { described_class.new(@board).id_str }
+
+      it "returns the formatted board id" do
+        subject.must_equal("\e[34m\e[4m(1) \e[0m")
       end
     end
 
@@ -59,7 +83,7 @@ module Troo
       subject { described_class.new(@board).id }
 
       it "returns the board id" do
-        subject.must_equal("(#{@board.id})")
+        subject.must_equal(@board.id.to_s)
       end
     end
   end
