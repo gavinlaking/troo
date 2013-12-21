@@ -45,11 +45,11 @@ module Troo
 
     def resource_data
       { external_comment_id: resource.id,
-        external_board_id:   resource.data["board"]["id"],
-        external_card_id:    resource.data["card"]["id"],
+        external_board_id:   resource.data.fetch("board", {}).fetch("id", ""),
+        external_card_id:    resource.data.fetch("card",  {}).fetch("id", ""),
         external_member_id:  resource.member_creator_id,
         date:                resource.date,
-        text:                resource.data["text"] }
+        text:                resource.data.fetch("text", "") }
     end
   end
 end
