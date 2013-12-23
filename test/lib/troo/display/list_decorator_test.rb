@@ -27,10 +27,18 @@ module Troo
     end
 
     describe "#short" do
-      subject { described_class.new(@list).short }
+      subject { described_class.new(@list, options).short }
 
       it "returns a one line overview of the list" do
         subject.must_equal(" * \e[32m\e[4m(1) \e[0m\e[32m\e[4mMy Test List\e[0m\n")
+      end
+
+      context "when the ansicolor option is false" do
+        let(:options) { { ansicolor: false } }
+
+        it "returns a one line overview of the board" do
+          subject.must_equal(" *   (1) My Test List\n")
+        end
       end
     end
 

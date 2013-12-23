@@ -12,7 +12,7 @@ module Troo
     end
 
     def name_str
-      highlight(name, highlight_options)
+      highlight(name, options)
     end
 
     def current_str
@@ -20,7 +20,7 @@ module Troo
     end
 
     def id_str
-      highlight(brackets(id) + " ", highlight_options).rjust(6)
+      highlight(brackets(id) + " ", options).rjust(6)
     end
 
     def name
@@ -43,11 +43,11 @@ module Troo
     end
 
     def defaults
-      { ansicolor: true }
-    end
-
-    def highlight_options
-      { colour: Esc.blue, underline: Esc.underline }
+      {
+        ansicolor: true,
+        colour:    Esc.blue,
+        underline: Esc.underline
+      }
     end
   end
 end

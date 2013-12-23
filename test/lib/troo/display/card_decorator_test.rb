@@ -31,10 +31,18 @@ module Troo
     end
 
     describe "#short" do
-      subject { described_class.new(@card).short }
+      subject { described_class.new(@card, options).short }
 
       it "returns a one line overview of the card" do
-        subject.must_equal(" * (67) \e[0mMy Test Card\e[0m\n")
+        subject.must_equal(" *  (67) My Test Card\n")
+      end
+
+      context "when the ansicolor option is false" do
+        let(:options) { { ansicolor: false } }
+
+        it "returns a one line overview of the board" do
+          subject.must_equal(" *  (67) My Test Card\n")
+        end
       end
     end
 
@@ -42,7 +50,7 @@ module Troo
       subject { described_class.new(@card).name_str }
 
       it "returns the formatted card name" do
-        subject.must_equal("My Test Card\e[0m")
+        subject.must_equal("My Test Card")
       end
     end
 
@@ -58,7 +66,7 @@ module Troo
       subject { described_class.new(@card).id_str }
 
       it "returns the formatted card id" do
-        subject.must_equal("(67) \e[0m")
+        subject.must_equal(" (67) ")
       end
     end
 
@@ -166,7 +174,7 @@ module Troo
       subject { described_class.new(@card).board }
 
       it "returns the board details" do
-        subject.must_match "\e[34m\e[4m(1) \e[0m\e[34m\e[4mMy Test Board\e[0m"
+        subject.must_match "(1) My Test Board"
       end
     end
 
@@ -174,7 +182,7 @@ module Troo
       subject { described_class.new(@card).list }
 
       it "returns the list details" do
-        subject.must_match "\e[32m\e[4m(1) \e[0m\e[32m\e[4mMy Test List\e[0m"
+        subject.must_match "(1) My Test List"
       end
     end
   end

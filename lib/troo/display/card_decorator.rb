@@ -12,7 +12,7 @@ module Troo
     end
 
     def name_str
-      highlight(name, highlight_options)
+      highlight(name, options)
     end
 
     def current_str
@@ -20,7 +20,7 @@ module Troo
     end
 
     def id_str
-      highlight(brackets(id) + " ", highlight_options).rjust(6)
+      highlight(brackets(id) + " ", options).rjust(6)
     end
 
     def name
@@ -65,11 +65,11 @@ module Troo
     end
 
     def board
-      BoardDecorator.new(card.board, { ansicolor: false }).short
+      BoardDecorator.new(card.board, options).short
     end
 
     def list
-      ListDecorator.new(card.list, { ansicolor: false }).short
+      ListDecorator.new(card.list, options).short
     end
 
     private
@@ -80,11 +80,11 @@ module Troo
     end
 
     def defaults
-      { ansicolor: true }
-    end
-
-    def highlight_options
-      { colour: nil, underline: nil }
+      {
+        ansicolor: false,
+        colour:    nil,
+        underline: nil
+      }
     end
   end
 end
