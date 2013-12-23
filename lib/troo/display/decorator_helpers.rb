@@ -10,13 +10,31 @@ module Troo
     private
 
     def highlight(value, options = {})
-      colour    = options.fetch(:colour, nil)
-      underline = options.fetch(:underline, nil)
-      [colour, underline, value, Esc.reset].join
+      if options.fetch(:ansicolor, true)
+        [ options.fetch(:colour, nil),
+          options.fetch(:underline, nil),
+          value,
+          Esc.reset ].join
+      else
+        value
+      end
     end
 
     def brackets(value)
       "(#{value})"
+    end
+
+    def label(string)
+      highlight(string, { ansicolor: true,
+                          colour:    Esc.yellow,
+                          underline: Esc.underline })
+    end
+
+    def metadata(label, string)
+      [ highlight(label.rjust(9), { ansicolor: true,
+                                    colour:    Esc.cyan,
+                                    underline: nil }),
+        string ].join(" ")
     end
 
     def spacing(options = {}, &block)
