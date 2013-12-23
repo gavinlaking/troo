@@ -13,24 +13,6 @@ module Troo
         database_cleanup
       end
 
-      describe "#all" do
-        let(:board_id) { "526d8e130a14a9d846001d96" }
-
-        subject { capture_io { described_class.new.all(board_id) }.join }
-
-        context "when there are cards" do
-          it "does something" do
-            subject.must_match /Not implemented yet./
-          end
-        end
-
-        context "when there are no cards" do
-          it "returns a polite message" do
-            subject.must_match /Not implemented yet./
-          end
-        end
-      end
-
       describe "#show" do
         let(:card_id) { "526d8f19ddb279532e005259" }
 
