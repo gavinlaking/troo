@@ -1,19 +1,16 @@
-<%= horizontal_line %>
 
-<%= @object.title %>
-
+<%= @object.short %>
 <%= label("Description:") %>
 <%= @object.description %>
 
 <%= label("Comments:") %>
-<%= @object.comments -%>
+<%= @object.comments %>
 
 <%= label("Members:") %>
 <%= @object.members %>
 
 <%= label("Metadata:") %>
-<%= metadata("Board:", @object.board) %>
-<%= metadata("List:",  @object.list) %>
-<%= metadata("Updated:", @object.last_updated) %>
+<%= metadata("Board:", @object.board) -%>
+<%= metadata("List:",  @object.list) -%>
+<%= metadata("Updated:", @object.last_activity_date) %>
 
-<%= horizontal_line %>
