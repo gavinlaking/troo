@@ -35,7 +35,7 @@ require_relative "troo/display/card_decorator"
 require_relative "troo/display/comment_decorator"
 require_relative "troo/display/list_decorator"
 require_relative "troo/display/member_decorator"
-require_relative "troo/display/overview_presenter"
+
 require_relative "troo/display/board_presenter"
 require_relative "troo/display/list_presenter"
 
