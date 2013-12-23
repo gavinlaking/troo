@@ -5,8 +5,11 @@ module Troo
     let(:described_class) { CardDecorator }
     let(:current)     { true }
     let(:description) { "Finish Troo for fame and fortune." }
+    let(:options) { {} }
 
     before do
+      @board   = Fabricate(:board)
+      @list    = Fabricate(:list)
       @card    = Fabricate(:card, desc: description, current: current)
       @comment = Fabricate(:comment)
     end
@@ -16,10 +19,14 @@ module Troo
     end
 
     describe "#initialize" do
-      subject { described_class.new(@card) }
+      subject { described_class.new(@card, options) }
 
       it "assigns the card to an instance variable" do
         subject.instance_variable_get("@card").must_equal(@card)
+      end
+
+      it "assigns the options to an instance variable" do
+        subject.instance_variable_get("@options").must_equal(options)
       end
     end
 
@@ -152,6 +159,22 @@ module Troo
 
       it "returns the last activity date" do
         subject.must_equal("Tue, Dec 17 at 21:48")
+      end
+    end
+
+    describe "#board" do
+      subject { described_class.new(@card).board }
+
+      it "returns the board details" do
+        subject.must_match "\e[34m\e[4m(1) \e[0m\e[34m\e[4mMy Test Board\e[0m"
+      end
+    end
+
+    describe "#list" do
+      subject { described_class.new(@card).list }
+
+      it "returns the list details" do
+        subject.must_match "\e[32m\e[4m(1) \e[0m\e[32m\e[4mMy Test List\e[0m"
       end
     end
   end

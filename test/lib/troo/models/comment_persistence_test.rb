@@ -5,7 +5,7 @@ module Troo
     let(:described_class) { CommentPersistence }
     let(:resource) { OpenStruct.new({
       id:   "51f9277b2822b8654f0023af",
-      date: DateTime.civil(2013, 12, 17, 22, 1, 13),
+      date: "2013-12-17 22:01:13 UTC",
       data: {
         "text" => resource_text, "board" => {
           "id" => "526d8e130a14a9d846001d96"

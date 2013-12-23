@@ -20,7 +20,7 @@ module Troo
     end
 
     it "should have a date attribute" do
-      @comment.date.must_equal DateTime.civil(2013, 12, 17, 22, 1, 13)
+      @comment.date.must_equal "2013-12-17 22:01:13 UTC"
     end
 
     it "should have an external_board_id attribute" do

@@ -4,6 +4,7 @@ module Troo
   describe BoardDecorator do
     let(:described_class) { BoardDecorator }
     let(:current) { true }
+    let(:options) { {} }
 
     before do
       @board = Fabricate(:board, current: current)
@@ -14,10 +15,14 @@ module Troo
     end
 
     describe "#initialize" do
-      subject { described_class.new(@board) }
+      subject { described_class.new(@board, options) }
 
       it "assigns the board to an instance variable" do
         subject.instance_variable_get("@board").must_equal(@board)
+      end
+
+      it "assigns the options to an instance variable" do
+        subject.instance_variable_get("@options").must_equal(options)
       end
     end
 

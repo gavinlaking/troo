@@ -1,7 +1,10 @@
 module Troo
   class MemberDecorator
-    def initialize(member)
+    include DecoratorHelpers
+
+    def initialize(member, options = {})
       @member = member
+      @options = options
     end
 
     def username
@@ -19,8 +22,12 @@ module Troo
     private
     attr_reader :member
 
-    def brackets(value)
-      "(#{value})"
+    def options
+      defaults.merge!(@options)
+    end
+
+    def defaults
+      { ansicolor: true }
     end
   end
 end

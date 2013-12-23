@@ -2,8 +2,9 @@ module Troo
   class BoardDecorator
     include DecoratorHelpers
 
-    def initialize(board)
+    def initialize(board, options = {})
       @board = board
+      @options = options
     end
 
     def short
@@ -36,6 +37,14 @@ module Troo
 
     private
     attr_reader :board
+
+    def options
+      defaults.merge!(@options)
+    end
+
+    def defaults
+      { ansicolor: true }
+    end
 
     def highlight_options
       { colour: Esc.blue, underline: Esc.underline }

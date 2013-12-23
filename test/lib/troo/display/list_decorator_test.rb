@@ -4,6 +4,7 @@ module Troo
   describe ListDecorator do
     let(:described_class) { ListDecorator }
     let(:current) { true }
+    let(:options) { {} }
 
     before do
       @list = Fabricate(:list, current: current)
@@ -14,10 +15,14 @@ module Troo
     end
 
     describe "#initialize" do
-      subject { described_class.new(@list) }
+      subject { described_class.new(@list, options) }
 
       it "assigns the list to an instance variable" do
         subject.instance_variable_get("@list").must_equal(@list)
+      end
+
+      it "assigns the options to an instance variable" do
+        subject.instance_variable_get("@options").must_equal(options)
       end
     end
 

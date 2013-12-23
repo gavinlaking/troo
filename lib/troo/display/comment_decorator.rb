@@ -1,7 +1,10 @@
 module Troo
   class CommentDecorator
-    def initialize(comment)
+    include DecoratorHelpers
+
+    def initialize(comment, options = {})
       @comment = comment
+      @options = options
     end
 
     def text
@@ -9,7 +12,7 @@ module Troo
     end
 
     def date
-      comment.date.strftime("%a, %b %d at %H:%M")
+      Time.parse(comment.date).strftime("%a, %b %d at %H:%M")
     end
 
     def id
@@ -19,8 +22,12 @@ module Troo
     private
     attr_reader :comment
 
-    def brackets(value)
-      "(#{value})"
+    def options
+      defaults.merge!(@options)
+    end
+
+    def defaults
+      { ansicolor: true }
     end
   end
 end

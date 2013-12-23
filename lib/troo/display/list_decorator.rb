@@ -2,8 +2,9 @@ module Troo
   class ListDecorator
     include DecoratorHelpers
 
-    def initialize(list)
+    def initialize(list, options = {})
       @list = list
+      @options = options
     end
 
     def short
@@ -36,6 +37,14 @@ module Troo
 
     private
     attr_reader :list
+
+    def options
+      defaults.merge!(@options)
+    end
+
+    def defaults
+      { ansicolor: true }
+    end
 
     def highlight_options
       { colour: Esc.green, underline: Esc.underline }

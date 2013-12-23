@@ -24,7 +24,7 @@ Fabricator(:card, from: Troo::Card) do
   desc                "some description"
   url                 "some trello url"
   position            16
-  last_activity_date  DateTime.civil(2013, 12, 17, 21, 48, 9)
+  last_activity_date  "2013-12-17 21:48:09 UTC"
   current             false
   closed              false
 end
@@ -35,7 +35,7 @@ Fabricator(:comment, from: Troo::Comment) do
   external_comment_id "51f9277b2822b8654f0023af"
   external_member_id  "5195fdb5a8c01a2318004f5d"
   text                "My Test Comment"
-  date                DateTime.civil(2013, 12, 17, 22, 1, 13)
+  date                "2013-12-17 22:01:13 UTC"
 end
 
 Fabricator(:member, from: Troo::Member) do

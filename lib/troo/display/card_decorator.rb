@@ -2,8 +2,9 @@ module Troo
   class CardDecorator
     include DecoratorHelpers
 
-    def initialize(card)
-      @card = card
+    def initialize(card, options = {})
+      @card    = card
+      @options = options
     end
 
     def short
@@ -60,11 +61,27 @@ module Troo
     end
 
     def last_activity_date
-      card.last_activity_date.strftime("%a, %b %d at %H:%M")
+      Time.parse(card.last_activity_date).strftime("%a, %b %d at %H:%M")
+    end
+
+    def board
+      BoardDecorator.new(card.board, { ansicolor: false }).short
+    end
+
+    def list
+      ListDecorator.new(card.list, { ansicolor: false }).short
     end
 
     private
     attr_reader :card
+
+    def options
+      defaults.merge!(@options)
+    end
+
+    def defaults
+      { ansicolor: true }
+    end
 
     def highlight_options
       { colour: nil, underline: nil }

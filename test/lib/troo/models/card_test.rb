@@ -40,7 +40,7 @@ module Troo
     end
 
     it "should have a last_activity_date attribute" do
-      @card.last_activity_date.must_equal DateTime.civil(2013, 12, 17, 21, 48, 9)
+      @card.last_activity_date.must_equal "2013-12-17 21:48:09 UTC"
     end
 
     it "should have a current attribute" do
