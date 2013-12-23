@@ -5,9 +5,7 @@ module Troo
   module CLI
     describe List do
       let(:described_class) { List }
-      let(:board_id)        { "526d8e130a14a9d846001d96" }
       let(:list_id)         { "526d8e130a14a9d846001d97" }
-      let(:card_id)         { "526d8f19ddb279532e005259" }
 
       before do
         @board  = Fabricate(:board)
