@@ -37,6 +37,7 @@ require_relative "troo/display/list_decorator"
 require_relative "troo/display/member_decorator"
 
 require_relative "troo/display/board_presenter"
+require_relative "troo/display/card_presenter"
 require_relative "troo/display/list_presenter"
 
 require_relative "troo/presentation/template"
