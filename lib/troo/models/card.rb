@@ -37,8 +37,13 @@ module Troo
     end
 
     def members
-      #Troo::Member.find(external_member_id:) # we need to get all the member ids for the card first
-      []
+      if external_member_ids.any?
+        m = external_member_ids.map do |external_member_id|
+          Troo::Member.first(external_member_id: external_member_id)
+        end.compact
+      else
+        []
+      end
     end
   end
 end

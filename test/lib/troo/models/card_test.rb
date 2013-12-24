@@ -9,6 +9,7 @@ module Troo
       @board   = Fabricate(:board)
       @list    = Fabricate(:list)
       @comment = Fabricate(:comment)
+      @member  = Fabricate(:member)
     end
 
     after do
@@ -82,8 +83,20 @@ module Troo
     end
 
     describe "#members" do
-      it "can have many members" do
-        skip
+      context "when the card has members" do
+        it "returns the collection of members" do
+          @card.members.size.must_equal 1
+        end
+      end
+
+      context "when the card has no members" do
+        before do
+          @card.stubs(:external_member_ids).returns([])
+        end
+
+        it "returns an empty collection" do
+          @card.members.size.must_equal 0
+        end
       end
     end
   end
