@@ -20,8 +20,8 @@ module Troo
           RefreshAll.stubs(:perform)
         end
 
-        it "does something" do
-          subject.must_match /Not implemented yet./
+        it "refreshes all local data" do
+          subject.must_match /All local data has been refreshed./
         end
       end
 

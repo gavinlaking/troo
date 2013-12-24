@@ -5,8 +5,8 @@ module Troo
 
       desc "refresh", "Refresh all data"
       def refresh
-        # RefreshAll.perform
-        say "Not implemented yet."
+        RefreshAll.perform
+        say "All local data has been refreshed."
       end
 
       desc "cleanup", "Removes all local data"
