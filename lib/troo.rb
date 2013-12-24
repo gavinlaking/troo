@@ -73,10 +73,6 @@ module Troo
   Celluloid.logger = Logger.new("logs/celluloid.log")
   Trello.logger    = Logger.new("logs/trello.log")
 
-  if ARGV.include?("--debug")
-    ARGV.delete("--debug")
-  end
-
   Trello.configure do |trello|
     trello.consumer_key       = config.key
     trello.consumer_secret    = config.secret
