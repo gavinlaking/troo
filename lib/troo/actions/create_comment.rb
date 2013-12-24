@@ -10,11 +10,22 @@ module Troo
     end
 
     def create
-      proxy_card.add_comment(comment)
+      Trello::Card.new.
+        update_fields({'id' => external_card_id}).
+        add_comment(comment)
+      self
+    end
+
+    def external_card_id
+      card.external_card_id
     end
 
     private
     attr_reader :card_id
+
+    def card
+      @card ||= Troo::CardRetrieval.retrieve(card_id)
+    end
 
     def comment
       @comment || user_input
@@ -23,10 +34,5 @@ module Troo
     def user_input
       Input.get(card_id)
     end
-
-    def proxy_card
-      ProxyCard.for(Troo::CardRetrieval.retrieve(card_id))
-    end
-
   end
 end
