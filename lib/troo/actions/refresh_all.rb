@@ -17,10 +17,7 @@ module Troo
         ExternalMember.fetch(id, options)
 
         Troo.logger.debug "Fetching cards..."
-        ExternalCard.fetch(id, options).map do |card|
-          Troo.logger.debug "Fetching comments for card ##{card.short_id}..."
-          ExternalComment.fetch(card.external_card_id, { mode: :card })
-        end
+        ExternalCard.fetch(id, options)
       end
       true
     end

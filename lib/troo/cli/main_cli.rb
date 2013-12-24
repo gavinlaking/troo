@@ -36,7 +36,7 @@ module Troo
       def move(card_id, list_id)
         result = MoveCard.with(card_id, list_id)
 
-        Troo::ExternalCard.fetch(result.external_card_id, { mode: :card })
+        Troo::ExternalCard.fetch(result.external_card_id, { mode: :card, comments: false })
         Troo::ExternalCard.fetch(result.source_list_id, { mode: :list })
         Troo::ExternalCard.fetch(result.destination_list_id, { mode: :list })
 

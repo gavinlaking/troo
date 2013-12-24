@@ -7,7 +7,10 @@ module Troo
 
     def self.fetch(external_id, options = {})
       new(external_id, options).fetch_by_external_id.map do |resource|
-        Troo::CardPersistence.for(resource) unless closed?(resource)
+        unless closed?(resource)
+          ExternalComment.fetch(resource.id, { mode: :card }) if options.fetch(:comments, true)
+          Troo::CardPersistence.for(resource)
+        end
       end
     end
 
@@ -27,7 +30,7 @@ module Troo
     end
 
     def defaults
-      { mode: :board }
+      { comments: true, mode: :board }
     end
 
     def board_mode

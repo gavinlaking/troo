@@ -12,7 +12,7 @@ module Troo
       desc "card <list_id>", "Add a new card to <list_id>"
       def card(list_id, name = nil, desc = nil)
         result = Troo::CreateCard.for(list_id, name)
-        Troo::ExternalCard.fetch(result.external_list_id, { mode: :list })
+        Troo::ExternalCard.fetch(result.external_list_id, { mode: :list, comments: false })
 
         say "New card '#{result.name}' created"
       end
