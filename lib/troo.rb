@@ -1,4 +1,3 @@
-require "celluloid/autostart"
 require "date"
 require "digest"
 require "erb"
@@ -78,9 +77,7 @@ module Troo
     @logger = logger
   end
 
-  Celluloid.logger = Logger.new("logs/celluloid.log")
   Trello.logger    = Logger.new("logs/trello.log")
-
   Trello.configure do |trello|
     trello.consumer_key       = config.key
     trello.consumer_secret    = config.secret

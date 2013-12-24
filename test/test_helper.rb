@@ -20,9 +20,6 @@ require_relative "./support/vcr_setup.rb"
 require_relative "../lib/troo.rb"
 require_relative "./support/fabrication.rb"
 
-# require "celluloid/test"
-# Celluloid.boot
-
 Ohm.connect(db: Troo.config.test_db)
 
 require "mocha/setup"
