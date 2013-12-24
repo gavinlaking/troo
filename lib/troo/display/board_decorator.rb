@@ -23,6 +23,11 @@ module Troo
       highlight(brackets(id) + " ", options).rjust(6)
     end
 
+    def description
+      return "N/A" if board.description.nil? || board.description.empty?
+      board.description
+    end
+
     def name
       (board.name && board.name.chomp) || "N/A"
     end

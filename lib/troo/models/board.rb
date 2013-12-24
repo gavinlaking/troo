@@ -4,6 +4,7 @@ module Troo
     include ModelHelpers
 
     attribute :name
+    attribute :description
     attribute :current, Type::Boolean
     attribute :closed, Type::Boolean
     attribute :external_board_id

@@ -6,6 +6,7 @@ module Troo
     let(:resource) { OpenStruct.new({
       id:     "526d8e130a14a9d846001d96",
       name:   resource_name,
+      description:   "A very brief description...",
       closed: false
     }) }
 

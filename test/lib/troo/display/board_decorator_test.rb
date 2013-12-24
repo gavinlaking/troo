@@ -66,11 +66,39 @@ module Troo
       end
     end
 
+    describe "#description" do
+      subject { described_class.new(@board).description }
+
+      context "when the board has a description" do
+        it "returns the board description" do
+          subject.must_equal(@board.description)
+        end
+      end
+
+      context "when the board has no description" do
+        before { @board.stubs(:description).returns(nil) }
+
+        it "returns N/A" do
+          subject.must_equal("N/A")
+        end
+      end
+    end
+
     describe "#name" do
       subject { described_class.new(@board).name }
 
-      it "returns the board name" do
-        subject.must_equal(@board.name)
+      context "when the board has a name" do
+        it "returns the board name" do
+          subject.must_equal(@board.name)
+        end
+      end
+
+      context "when the board has no name" do
+        before { @board.stubs(:name).returns(nil) }
+
+        it "returns N/A" do
+          subject.must_equal("N/A")
+        end
       end
     end
 

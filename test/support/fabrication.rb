@@ -1,6 +1,7 @@
 Fabricator(:board, from: Troo::Board) do
   external_board_id "526d8e130a14a9d846001d96"
   name              "My Test Board"
+  description       "A very brief description..."
   current           false
   closed            false
 end

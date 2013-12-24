@@ -18,6 +18,10 @@ module Troo
       @board.name.must_equal "My Test Board"
     end
 
+    it "should have a description attribute" do
+      @board.description.must_equal "A very brief description..."
+    end
+
     it "should have a current attribute" do
       @board.current.must_equal false
     end
