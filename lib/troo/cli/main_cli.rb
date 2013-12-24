@@ -20,7 +20,7 @@ module Troo
         say "troo #{Troo::VERSION}"
       end
 
-      desc "show [board|list|card] <id>", "Show the board, list or card"
+      desc "show [board|list|card] <id>", "Show the board, list or card with <id>"
       subcommand :show, Troo::CLI::Show
 
       desc "board [subcommand] <args>", "Operate on the board"
