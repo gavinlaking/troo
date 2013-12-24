@@ -6,6 +6,7 @@ module Troo
     let(:options) { { } }
 
     before do
+      @board = Fabricate(:board)
     end
 
     after do
@@ -22,6 +23,18 @@ module Troo
 
     describe ".perform" do
       subject { described_class.perform(options) }
+
+      before do
+        ExternalBoard.stubs(:fetch_all).returns([@board])
+        ExternalList.stubs(:fetch).returns()
+        ExternalCard.stubs(:fetch).returns()
+        ExternalComment.stubs(:fetch).returns()
+        ExternalMember.stubs(:fetch).returns()
+      end
+
+      it "returns true when successful" do
+        subject.must_equal(true)
+      end
 
       it "fetches all the boards" do
         skip
