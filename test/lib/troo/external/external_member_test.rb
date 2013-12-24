@@ -35,6 +35,14 @@ module Troo
       it "returns multiple members" do
         subject.size.must_equal(1)
       end
+
+      context "when the board cannot be found" do
+        before { Trello::Board.stubs(:find).raises(Trello::Error) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
+      end
     end
 
     describe "when the mode is member" do
@@ -48,6 +56,14 @@ module Troo
 
       it "returns a member with the member_id" do
         subject.size.must_equal(1)
+      end
+
+      context "when the member cannot be found" do
+        before { Trello::Member.stubs(:find).raises(Trello::Error) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
       end
     end
   end

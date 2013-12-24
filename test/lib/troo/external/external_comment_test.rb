@@ -35,6 +35,14 @@ module Troo
       it "returns multiple comments" do
         subject.size.must_equal(11)
       end
+
+      context "when the board cannot be found" do
+        before { Trello::Board.stubs(:find).raises(Trello::Error) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
+      end
     end
 
     describe "when the mode is card" do
@@ -48,6 +56,14 @@ module Troo
 
       it "returns a comment with the card_id" do
         subject.size.must_equal(4)
+      end
+
+      context "when the card cannot be found" do
+        before { Trello::Card.stubs(:find).raises(Trello::Error) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
       end
     end
   end

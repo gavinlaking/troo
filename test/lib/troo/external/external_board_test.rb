@@ -42,6 +42,14 @@ module Troo
       it "returns a board with the correct name" do
         subject.first.name.must_equal("Troo App")
       end
+
+      context "when the board cannot be found" do
+        before { Trello::Board.stubs(:find).raises(Trello::Error) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
+      end
     end
 
     describe ".fetch_all" do
@@ -52,6 +60,14 @@ module Troo
 
       it "returns multiple boards" do
         subject.size.must_equal(2)
+      end
+
+      context "when no boards can be found" do
+        before { Trello::Board.stubs(:all).raises(Trello::Error) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
       end
     end
   end

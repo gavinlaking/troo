@@ -35,6 +35,14 @@ module Troo
       it "returns multiple cards" do
         subject.size.must_equal(9)
       end
+
+      context "when the board cannot be found" do
+        before { Trello::Board.stubs(:find).raises(Trello::Error) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
+      end
     end
 
     describe "when the mode is list" do
@@ -49,6 +57,14 @@ module Troo
       it "returns multiple cards" do
         subject.size.must_equal(5)
       end
+
+      context "when the list cannot be found" do
+        before { Trello::List.stubs(:find).raises(Trello::Error) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
+      end
     end
 
     describe "when the mode is card" do
@@ -62,6 +78,14 @@ module Troo
 
       it "returns a single card" do
         subject.size.must_equal(1)
+      end
+
+      context "when the card cannot be found" do
+        before { Trello::Card.stubs(:find).raises(Trello::Error) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
       end
     end
   end

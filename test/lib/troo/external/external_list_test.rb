@@ -35,6 +35,14 @@ module Troo
       it "returns multiple lists" do
         subject.size.must_equal(4)
       end
+
+      context "when the board cannot be found" do
+        before { Trello::Board.stubs(:find).raises(Trello::Error) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
+      end
     end
 
     describe "when the mode is list" do
@@ -48,6 +56,14 @@ module Troo
 
       it "returns a list with the list_id" do
         subject.size.must_equal(1)
+      end
+
+      context "when the list cannot be found" do
+        before { Trello::List.stubs(:find).raises(Trello::Error) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
       end
     end
   end
