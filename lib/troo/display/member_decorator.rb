@@ -2,9 +2,8 @@ module Troo
   class MemberDecorator
     include DecoratorHelpers
 
-    def initialize(member, options = {})
+    def initialize(member)
       @member = member
-      @options = options
     end
 
     def username
@@ -21,13 +20,5 @@ module Troo
 
     private
     attr_reader :member
-
-    def options
-      defaults.merge!(@options)
-    end
-
-    def defaults
-      { ansicolor: true }
-    end
   end
 end

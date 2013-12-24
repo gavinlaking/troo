@@ -3,7 +3,6 @@ require_relative "../../../test_helper"
 module Troo
   describe MemberDecorator do
     let(:described_class) { MemberDecorator }
-    let(:options) { {} }
 
     before do
       @member = Fabricate(:member)
@@ -14,14 +13,10 @@ module Troo
     end
 
     describe "#initialize" do
-      subject { described_class.new(@member, options) }
+      subject { described_class.new(@member) }
 
       it "assigns the member to an instance variable" do
         subject.instance_variable_get("@member").must_equal(@member)
-      end
-
-      it "assigns the options to an instance variable" do
-        subject.instance_variable_get("@options").must_equal(options)
       end
     end
 

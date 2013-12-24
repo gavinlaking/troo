@@ -2,9 +2,8 @@ module Troo
   class CommentDecorator
     include DecoratorHelpers
 
-    def initialize(comment, options = {})
+    def initialize(comment)
       @comment = comment
-      @options = options
     end
 
     def text
@@ -21,13 +20,5 @@ module Troo
 
     private
     attr_reader :comment
-
-    def options
-      defaults.merge!(@options)
-    end
-
-    def defaults
-      { ansicolor: true }
-    end
   end
 end
