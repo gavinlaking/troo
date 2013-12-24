@@ -8,8 +8,10 @@ module Troo
 
     before do
       @board = Fabricate(:board)
+      @list = Fabricate(:list)
 
-      ProxyList.stubs(:create)
+      Trello::List.stubs(:create).returns(@list)
+      Troo::BoardRetrieval.stubs(:retrieve).returns(@board)
     end
 
     after do
@@ -29,6 +31,9 @@ module Troo
     end
 
     describe "#create" do
+      before { VCR.insert_cassette(:create_list) }
+      after  { VCR.eject_cassette }
+
       subject { described_class.for(board_id, list_name) }
 
       context "when a new list name is provided" do
@@ -53,8 +58,14 @@ module Troo
       end
     end
 
-    describe "it exposes various attributes we will use later" do
+    context "it exposes various attributes we will use later" do
       subject { described_class.new(board_id, list_name) }
+
+      describe "#board_name" do
+        it "returns the board name" do
+          subject.board_name.must_equal(@board.name)
+        end
+      end
 
       describe "#external_board_id" do
         it "returns the external_board_id" do

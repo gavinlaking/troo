@@ -10,12 +10,16 @@ module Troo
     end
 
     def create
-      ProxyList.create(attributes)
+      Trello::List.create(attributes)
       self
     end
 
+    def board_name
+      board.name
+    end
+
     def external_board_id
-      @external_board_id ||= Troo::BoardRetrieval.retrieve(board_id).external_board_id
+      board.external_board_id
     end
 
     def name
@@ -24,6 +28,10 @@ module Troo
 
     private
     attr_reader :board_id
+
+    def board
+      @board ||= Troo::BoardRetrieval.retrieve(board_id)
+    end
 
     def attributes
       {

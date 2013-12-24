@@ -15,6 +15,8 @@ require "yaml"
 require_relative "troo/version"
 require_relative "troo/input"
 
+require_relative "troo/actions/create_board"
+require_relative "troo/actions/create_card"
 require_relative "troo/actions/create_comment"
 require_relative "troo/actions/create_list"
 require_relative "troo/actions/move_card"
