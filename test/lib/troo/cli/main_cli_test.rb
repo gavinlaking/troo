@@ -37,25 +37,27 @@ module Troo
         end
       end
 
-      describe "#comment" do
-        let(:card_id) { "526d8f19ddb279532e005259" }
-        let(:comment) { }
-
-        subject { capture_io { described_class.new.comment(card_id, comment) }.join }
-
-        it "does something" do
-          subject.must_match /Not implemented yet./
-        end
-      end
-
       describe "#move" do
-        let(:card_id) { "526d8f19ddb279532e005259" }
-        let(:list_id) { "526d8e130a14a9d846001d97" }
+        let(:card_id)   { "526d8f19ddb279532e005259" }
+        let(:list_id)   { "526d8e130a14a9d846001d98" }
+        let(:move_card) { OpenStruct.new(external_card_id: card_id,
+                                         source_list_id: @card.external_list_id,
+                                         source_list_name: @card.list.name,
+                                         destination_list_id: list_id,
+                                         destination_list_name: @destination_list.name) }
+
+        before do
+          @card = Fabricate(:card)
+          @list = Fabricate(:list)
+          @destination_list = Fabricate(:list, name: "My New List", external_list_id: list_id)
+          Troo::ExternalCard.stubs(:fetch).returns(@card)
+          Troo::MoveCard.stubs(:with).returns(move_card)
+        end
 
         subject { capture_io { described_class.new.move(card_id, list_id) }.join }
 
-        it "does something" do
-          subject.must_match /Not implemented yet./
+        it "moves the card and returns a polite message" do
+          subject.must_match /Card moved from/
         end
       end
     end

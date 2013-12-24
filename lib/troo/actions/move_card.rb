@@ -10,7 +10,9 @@ module Troo
     end
 
     def move
-      proxy_card.move_to_list(destination_list_id)
+      Trello::Card.new.
+        update_fields({ 'id' => external_card_id }).
+        move_to_list(destination_list_id)
       self
     end
 
@@ -18,18 +20,26 @@ module Troo
       card.external_list_id
     end
 
+    def source_list_name
+      card.list.name
+    end
+
     def destination_list_id
-      list.external_list_id
+      destination_list.external_list_id
+    end
+
+    def destination_list_name
+      destination_list.name
+    end
+
+    def external_card_id
+      card.external_card_id
     end
 
     private
     attr_reader :card_id, :list_id
 
-    def proxy_card
-      ProxyCard.for card
-    end
-
-    def list
+    def destination_list
       @list ||= Troo::ListRetrieval.retrieve(list_id)
     end
 

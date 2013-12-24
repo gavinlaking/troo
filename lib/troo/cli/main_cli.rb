@@ -32,29 +32,15 @@ module Troo
       desc "current [board|list|card] <id>", "Set board, list or card to be current"
       subcommand :current, Troo::CLI::Current
 
-      desc "comment <card_id> (<comment>)", "Comment on a card with <card_id> <comment>"
-      def comment(card_id, comment = nil)
-        # Troo::CreateComment.for(card_id, comment)
-
-        # Troo::ExternalCard.fetch(card_id, { mode: :card })
-        # Troo::ExternalComments.fetch(card_id, { mode: :card })
-        say "Not implemented yet."
-      end
-
       desc "move <card_id> <list_id>", "Move a card <card_id> to list <list_id>"
-      def move(card_id, list_id = nil)
-        # unless list_id
-        #   #Output.render(Troo::Board.current.lists)
-        #   puts "Please choose a destination list. (Move a card <card_id> to list <list_id>)"
-        #   exit 1
-        # end
+      def move(card_id, list_id)
+        result = MoveCard.with(card_id, list_id)
 
-        # result = MoveCard.with(card_id, list_id)
+        Troo::ExternalCard.fetch(result.external_card_id, { mode: :card })
+        Troo::ExternalCard.fetch(result.source_list_id, { mode: :list })
+        Troo::ExternalCard.fetch(result.destination_list_id, { mode: :list })
 
-        # Troo::ExternalList.fetch(result.source_list_id, { mode: :list })
-        # Troo::ExternalList.fetch(result.destination_list_id, { mode: :list })
-        # Troo::ExternalCard.fetch(card_id, { mode: :card })
-        say "Not implemented yet."
+        say "Card moved from '#{result.source_list_name}' to '#{result.destination_list_name}'"
       end
     end
   end
