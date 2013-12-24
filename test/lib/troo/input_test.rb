@@ -21,11 +21,21 @@ module Troo
     end
 
     describe "#get" do
-      #subject { described_class.get(id) }
+      let(:filehandle) { "file mock" }
+      let(:lines) { ["some input...\n"] }
 
-      #it "does something" do
-      #  subject.must_equal("Yay!")
-      #end
+      subject { described_class.get(id) }
+
+      before do
+        described_class.any_instance.stubs(:system)
+        File.stubs(:open).returns(filehandle)
+        filehandle.stubs(:readlines).returns(lines)
+        filehandle.stubs(:close).returns(true)
+      end
+
+      it "gets the input from the user" do
+        subject.must_equal("some input...\n")
+      end
     end
   end
 end
