@@ -28,7 +28,6 @@ require_relative "troo/external/external_card"
 require_relative "troo/external/external_comment"
 require_relative "troo/external/external_list"
 require_relative "troo/external/external_member"
-require_relative "troo/external/proxy_card"
 
 require_relative "troo/display/decorator_helpers"
 require_relative "troo/display/board_decorator"
