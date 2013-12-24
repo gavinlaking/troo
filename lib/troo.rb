@@ -70,6 +70,14 @@ module Troo
     @config ||= OpenStruct.new(YAML.load_file(File.dirname(__FILE__) + "/../configuration.yml"))
   end
 
+  def self.logger
+    @logger ||= Logger.new("logs/troo.log")
+  end
+
+  def self.logger=(logger)
+    @logger = logger
+  end
+
   Celluloid.logger = Logger.new("logs/celluloid.log")
   Trello.logger    = Logger.new("logs/trello.log")
 
