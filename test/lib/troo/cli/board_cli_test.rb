@@ -39,28 +39,6 @@ module Troo
           end
         end
       end
-
-      describe ".show" do
-        subject { capture_io { described_class.new.show(board_id) }.join }
-
-        context "when the board exists" do
-          it "returns the board with all lists and all cards" do
-            subject.must_match /Test Board/
-            subject.must_match /Test List/
-            subject.must_match /Test Card/
-          end
-        end
-
-        context "when the board does not exist" do
-          before do
-            Troo::BoardRetrieval.stubs(:retrieve).returns()
-          end
-
-          it "returns a polite message" do
-            subject.must_match /Board not found./
-          end
-        end
-      end
     end
   end
 end

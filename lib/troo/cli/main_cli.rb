@@ -20,14 +20,11 @@ module Troo
         say "troo #{Troo::VERSION}"
       end
 
+      desc "show [board|list|card] <id>", "Show the board, list or card"
+      subcommand :show, Troo::CLI::Show
+
       desc "board [subcommand] <args>", "Operate on the board"
       subcommand :board, Troo::CLI::Board
-
-      desc "list [subcommand] <args>", "Operate on the list"
-      subcommand :list, Troo::CLI::List
-
-      desc "card [subcommand] <args>", "Operate on the card"
-      subcommand :card, Troo::CLI::Card
 
       desc "add [board|list|card] <id>", "Add board, list, or card"
       subcommand :add, Troo::CLI::Add

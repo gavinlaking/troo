@@ -1,0 +1,51 @@
+module Troo
+  module CLI
+    class Show < Thor
+
+      desc "board <board_id>", "Show all the lists and cards for board <board_id>"
+      def board(board_id)
+        @board_id = board_id
+        if retrieved_board
+          BoardPresenter.render_show(retrieved_board)
+        else
+          say "Board not found."
+        end
+      end
+
+      desc "list <list_id>", "Show all cards for list <list_id>"
+      def list(list_id)
+        @list_id = list_id
+        if retrieved_list
+          ListPresenter.render_show(retrieved_list)
+        else
+          say "List not found."
+        end
+      end
+
+      desc "card <card_id>", "Show a card <card_id> (includes comments)"
+      def card(card_id)
+        @card_id = card_id
+        if retrieved_card
+          CardPresenter.render_show(retrieved_card)
+        else
+          say "Card not found."
+        end
+      end
+
+      private
+      attr_reader :board_id, :list_id, :card_id
+
+      def retrieved_board
+        @board ||= Troo::BoardRetrieval.retrieve(board_id)
+      end
+
+      def retrieved_list
+        @list ||= Troo::ListRetrieval.retrieve(list_id)
+      end
+
+      def retrieved_card
+        @card ||= Troo::CardRetrieval.retrieve(card_id)
+      end
+    end
+  end
+end

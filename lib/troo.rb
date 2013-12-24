@@ -60,10 +60,9 @@ require_relative "troo/models/member_retrieval"
 require_relative "troo/models/member_persistence"
 
 require_relative "troo/cli/board_cli"
-require_relative "troo/cli/card_cli"
-require_relative "troo/cli/list_cli"
 require_relative "troo/cli/add_cli"
 require_relative "troo/cli/current_cli"
+require_relative "troo/cli/show_cli"
 require_relative "troo/cli/main_cli"
 
 module Troo
