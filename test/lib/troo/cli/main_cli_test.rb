@@ -16,6 +16,10 @@ module Troo
       describe "#refresh" do
         subject { capture_io { described_class.new.refresh }.join }
 
+        before do
+          RefreshAll.stubs(:perform)
+        end
+
         it "does something" do
           subject.must_match /Not implemented yet./
         end

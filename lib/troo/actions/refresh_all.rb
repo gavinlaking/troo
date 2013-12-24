@@ -10,10 +10,17 @@ module Troo
 
     def perform
       external_board_ids.map do |id|
+        Troo.logger.debug "Fetching lists..."
         ExternalList.fetch(id, options)
-        ExternalCard.fetch(id, options)
-        ExternalComment.fetch(id, options)
+
+        Troo.logger.debug "Fetching members..."
         ExternalMember.fetch(id, options)
+
+        Troo.logger.debug "Fetching cards..."
+        ExternalCard.fetch(id, options).map do |card|
+          Troo.logger.debug "Fetching comments for card ##{card.short_id}..."
+          ExternalComment.fetch(card.external_card_id, { mode: :card })
+        end
       end
       true
     end
@@ -33,7 +40,7 @@ module Troo
     end
 
     def active_boards
-      all_boards.delete_if { |b| b.closed == true }
+      all_boards.delete_if { |b| b.nil? || b.closed == true }
     end
 
     def all_boards

@@ -26,34 +26,14 @@ module Troo
 
       before do
         ExternalBoard.stubs(:fetch_all).returns([@board])
-        ExternalList.stubs(:fetch).returns()
-        ExternalCard.stubs(:fetch).returns()
-        ExternalComment.stubs(:fetch).returns()
-        ExternalMember.stubs(:fetch).returns()
+        ExternalList.stubs(:fetch).returns([])
+        ExternalCard.stubs(:fetch).returns([])
+        ExternalComment.stubs(:fetch).returns([])
+        ExternalMember.stubs(:fetch).returns([])
       end
 
       it "returns true when successful" do
         subject.must_equal(true)
-      end
-
-      it "fetches all the boards" do
-        skip
-      end
-
-      it "fetches all the lists" do
-        skip
-      end
-
-      it "fetches all the cards" do
-        skip
-      end
-
-      it "fetches all the comments" do
-        skip
-      end
-
-      it "fetches all the members" do
-        skip
       end
     end
   end
