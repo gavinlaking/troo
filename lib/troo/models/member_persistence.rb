@@ -1,12 +1,13 @@
 module Troo
   class MemberPersistence
 
-    def initialize(resource)
+    def initialize(resource, options = {})
       @resource = resource
+      @options = options
     end
 
-    def self.for(resource)
-      new(resource).persist
+    def self.for(resource, options = {})
+      new(resource, options).persist
     end
 
     def persist
@@ -18,16 +19,27 @@ module Troo
     private
     attr_reader :resource
 
+    def options
+      defaults.merge!(@options)
+    end
+
+    def defaults
+      { }
+    end
+
     def created
+      Troo.logger.debug "Local member does not exist, creating..."
       Troo::Member.create(resource_data)
     end
 
     def updated
+      Troo.logger.debug "Local member out of date, updating..."
       local.update(resource_data) && local
     end
 
     def local_identical?
       return false unless local_exists?
+      Troo.logger.debug "Local member identical, skipping..."
       local_data == resource_data
     end
 

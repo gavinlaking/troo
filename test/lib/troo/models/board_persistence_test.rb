@@ -9,6 +9,8 @@ module Troo
       description:   "A very brief description...",
       closed: false
     }) }
+    let(:resource_name) { "My Test Board" }
+    let(:options) { {} }
 
     before do
       @board = Fabricate(:board)
@@ -18,12 +20,22 @@ module Troo
       database_cleanup
     end
 
+    describe ".initialize" do
+      subject { described_class.new(resource, options) }
+
+      it "assigns the resource to an instance variable" do
+        subject.instance_variable_get("@resource").must_equal(resource)
+      end
+
+      it "assigns the options to an instance variable" do
+        subject.instance_variable_get("@options").must_equal(options)
+      end
+    end
+
     describe "#persist" do
-      subject { described_class.for(resource) }
+      subject { described_class.for(resource, options) }
 
       context "when an identical copy already exists locally" do
-        let(:resource_name) { "My Test Board" }
-
         it "returns the local copy" do
           subject.must_equal(@board)
         end

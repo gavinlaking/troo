@@ -13,6 +13,8 @@ module Troo
           "id" => "526d8f19ddb279532e005259"
         } }
     }) }
+    let(:resource_text) { "My Test Comment" }
+    let(:options) { {} }
 
     before do
       @comment = Fabricate(:comment)
@@ -22,12 +24,22 @@ module Troo
       database_cleanup
     end
 
+    describe ".initialize" do
+      subject { described_class.new(resource, options) }
+
+      it "assigns the resource to an instance variable" do
+        subject.instance_variable_get("@resource").must_equal(resource)
+      end
+
+      it "assigns the options to an instance variable" do
+        subject.instance_variable_get("@options").must_equal(options)
+      end
+    end
+
     describe "#persist" do
-      subject { described_class.for(resource) }
+      subject { described_class.for(resource, options) }
 
       context "when an identical copy already exists locally" do
-        let(:resource_text) { "My Test Comment" }
-
         it "returns the local copy" do
           subject.must_equal(@comment)
         end

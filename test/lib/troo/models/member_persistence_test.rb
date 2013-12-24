@@ -7,6 +7,8 @@ module Troo
       id:        "5195fdb5a8c01a2318004f5d",
       full_name: resource_full_name
     }) }
+    let(:resource_full_name) { "My Test Member" }
+    let(:options) { { } }
 
     before do
       @member = Fabricate(:member)
@@ -16,12 +18,22 @@ module Troo
       database_cleanup
     end
 
+    describe ".initialize" do
+      subject { described_class.new(resource, options) }
+
+      it "assigns the resource to an instance variable" do
+        subject.instance_variable_get("@resource").must_equal(resource)
+      end
+
+      it "assigns the options to an instance variable" do
+        subject.instance_variable_get("@options").must_equal(options)
+      end
+    end
+
     describe "#persist" do
-      subject { described_class.for(resource) }
+      subject { described_class.for(resource, options) }
 
       context "when an identical copy already exists locally" do
-        let(:resource_full_name) { "My Test Member" }
-
         it "returns the local copy" do
           subject.must_equal(@member)
         end
