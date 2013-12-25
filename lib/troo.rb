@@ -73,10 +73,6 @@ module Troo
     @logger ||= Logger.new("logs/troo.log")
   end
 
-  def self.logger=(logger)
-    @logger = logger
-  end
-
   Trello.logger    = Logger.new("logs/trello.log")
   Trello.configure do |trello|
     trello.consumer_key       = config.key
