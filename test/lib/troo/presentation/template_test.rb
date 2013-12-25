@@ -3,7 +3,7 @@ require_relative "../../../test_helper"
 module Troo
   describe Template do
     let(:described_class) { Template }
-    let(:object) { "test" }
+    let(:object) { OpenStruct.new(value: "Hello from variable!") }
     let(:template_path) { "/../../../test/support/template.erb" }
 
     before do
@@ -29,8 +29,9 @@ module Troo
       subject { described_class.new(object, template_path).parse }
 
       context "when the template file can be found" do
-        it "does something" do
-          skip
+        it "parses the template" do
+          subject.must_match /This is the test template/
+          subject.must_match /Hello from variable!/
         end
       end
 
@@ -38,7 +39,7 @@ module Troo
         let(:template_path) { "/some/wrong/path/template.erb" }
 
         it "raises an exception" do
-          skip
+          proc { subject }.must_raise(Errno::ENOENT)
         end
       end
     end
