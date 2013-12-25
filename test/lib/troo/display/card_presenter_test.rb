@@ -7,6 +7,8 @@ module Troo
 
     before do
       @card = Fabricate(:card)
+      @board = Fabricate(:board)
+      @list = Fabricate(:list)
     end
 
     after do
@@ -22,6 +24,16 @@ module Troo
 
       it "assigns the options to an instance variable" do
         subject.instance_variable_get("@options").must_equal(options)
+      end
+    end
+
+    describe "#render_show" do
+      subject { capture_io { described_class.render_show(@card, options) }.join }
+
+      it "renders the view" do
+        subject.must_match /My Test Card/
+        subject.must_match /No comments have been left/
+        subject.must_match /Metadata/
       end
     end
   end

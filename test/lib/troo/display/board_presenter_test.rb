@@ -31,8 +31,9 @@ module Troo
       subject { capture_io { described_class.new(@board, options).render_all }.join }
 
       context "when the board has lists" do
-        it "does something" do
-          skip
+        it "renders the view" do
+          subject.must_match /My Test Board/
+          subject.must_match /My Test List/
         end
       end
 
@@ -51,13 +52,15 @@ module Troo
       subject { capture_io { described_class.new(@board, options).render_show }.join }
 
       context "when the board has lists" do
-        context "when the list has cards" do
-          it "does something" do
-            skip
+        context "and the list has cards" do
+          it "renders the view" do
+            subject.must_match /My Test Board/
+            subject.must_match /My Test List/
+            subject.must_match /My Test Card/
           end
         end
 
-        context "when the list has no cards" do
+        context "and the list has no cards" do
           before do
             @card.delete
           end

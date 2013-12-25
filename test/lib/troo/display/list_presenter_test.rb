@@ -8,6 +8,7 @@ module Troo
     before do
       @list = Fabricate(:list)
       @board = Fabricate(:board)
+      @card = Fabricate(:card)
     end
 
     after do
@@ -30,12 +31,18 @@ module Troo
       subject { capture_io { described_class.new(@list, options).render_show }.join }
 
       context "when the list has cards" do
-        it "does something" do
-          skip
+        it "renders the view" do
+          subject.must_match /My Test Board/
+          subject.must_match /My Test List/
+          subject.must_match /My Test Card/
         end
       end
 
       context "when the list has no cards" do
+        before do
+          @card.delete
+        end
+
         it "returns a polite message" do
           subject.must_match /No cards were found./
         end
