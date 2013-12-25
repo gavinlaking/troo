@@ -24,22 +24,26 @@ module Troo
     end
 
     def defaults
-      { }
+      { debug: false }
+    end
+
+    def debug?
+      options.fetch(:debug, false)
     end
 
     def created
-      Troo.logger.debug "Local list does not exist, creating..."
+      Troo.logger.debug "Local list does not exist, creating..." if debug?
       Troo::List.create(resource_data)
     end
 
     def updated
-      Troo.logger.debug "Local list out of date, updating..."
+      Troo.logger.debug "Local list out of date, updating..." if debug?
       local.update(resource_data) && local
     end
 
     def local_identical?
       return false unless local_exists?
-      Troo.logger.debug "Local list identical, skipping..."
+      Troo.logger.debug "Local list identical, skipping..." if debug?
       local_data == resource_data
     end
 
