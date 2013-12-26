@@ -5,7 +5,7 @@ module Troo
     end
 
     def self.current
-      Troo::Card.first(current: true)
+      Troo::Card.current
     end
 
     def self.retrieve(id = nil)

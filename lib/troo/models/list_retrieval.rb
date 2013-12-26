@@ -5,7 +5,7 @@ module Troo
     end
 
     def self.current
-      Troo::List.first(current: true)
+      Troo::List.current
     end
 
     def self.retrieve(id = nil)

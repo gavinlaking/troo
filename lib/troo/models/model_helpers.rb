@@ -11,6 +11,10 @@ module Troo
         all.map { |record| record.update(criteria) }
         true
       end
+
+      def current
+        first(current: true)
+      end
     end
 
     def self.included(base)

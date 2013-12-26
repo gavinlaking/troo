@@ -7,6 +7,7 @@ class ModelHelpersDummy < Ohm::Model
   attribute :current
 
   index     :name
+  index     :current
 end
 
 module Troo
@@ -19,7 +20,7 @@ module Troo
                  current: false })
       @dumber = ModelHelpersDummy.create({
                  name: "My Dumber Model",
-                 current: false })
+                 current: true })
     end
 
     after do
@@ -65,6 +66,26 @@ module Troo
           ModelHelpersDummy.all.each do |dummy|
             dummy.name.must_equal("My Updated Model")
           end
+        end
+      end
+    end
+
+    describe ".current" do
+      subject { described_class.current }
+
+      context "when there is no current model" do
+        it "returns the model" do
+          subject.must_equal(@dumber)
+        end
+      end
+
+      context "when there is a current model" do
+        before do
+          @dumber.delete
+        end
+
+        it "returns nil" do
+          subject.must_equal(nil)
         end
       end
     end
