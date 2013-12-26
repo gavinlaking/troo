@@ -27,7 +27,7 @@ module Troo
     end
 
     describe "when the mode is board" do
-      before { VCR.insert_cassette(:cards_by_board_id) }
+      before { VCR.insert_cassette(:cards_by_board_id, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
       let(:board_id) { "526d8e130a14a9d846001d96" }
@@ -49,7 +49,7 @@ module Troo
     end
 
     describe "when the mode is list" do
-      before { VCR.insert_cassette(:cards_by_list_id) }
+      before { VCR.insert_cassette(:cards_by_list_id, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
       let(:list_id) { "526d8e130a14a9d846001d97" }
@@ -58,7 +58,7 @@ module Troo
       subject { described_class.fetch(list_id, options) }
 
       it "returns multiple cards" do
-        subject.size.must_equal(5)
+        subject.size.must_equal(4)
       end
 
       context "when the list cannot be found" do
@@ -71,7 +71,7 @@ module Troo
     end
 
     describe "when the mode is card" do
-      before { VCR.insert_cassette(:card_by_card_id) }
+      before { VCR.insert_cassette(:card_by_card_id, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
       let(:card_id) { "526d8f19ddb279532e005259" }
@@ -94,10 +94,11 @@ module Troo
 
     describe "when the comments options is enabled" do
       before do
-        Trello::Card.stubs(:find)
+        Trello::Card.stubs(:find).returns(resource)
         ExternalComment.stubs(:fetch)
       end
 
+      let(:resource) { OpenStruct.new(id: "526d8f19ddb279532e005259") }
       let(:options) { { mode: :card, comments: true } }
 
       subject { described_class.fetch(card_id, options) }

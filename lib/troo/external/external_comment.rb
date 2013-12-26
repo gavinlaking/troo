@@ -14,6 +14,7 @@ module Troo
     def fetch_by_external_id
       case options.fetch(:mode)
       when :board then board_mode
+      when :list  then list_mode
       when :card  then card_mode
       end
     end
@@ -30,14 +31,21 @@ module Troo
     end
 
     def board_mode
-      Trello::Board.find(external_id).actions.
+      Trello::Board.find(external_id).actions({ filter: "commentCard" }).
+        delete_if { |a| a.nil? || a.type != "commentCard" }
+    rescue Trello::Error
+      []
+    end
+
+    def list_mode
+      Trello::List.find(external_id).actions({ filter: "commentCard" }).
         delete_if { |a| a.nil? || a.type != "commentCard" }
     rescue Trello::Error
       []
     end
 
     def card_mode
-      Trello::Card.find(external_id).actions.
+      Trello::Card.find(external_id).actions({ filter: "commentCard" }).
         delete_if { |a| a.nil? || a.type != "commentCard" }
     rescue Trello::Error
       []

@@ -26,7 +26,7 @@ module Troo
     end
 
     describe ".fetch" do
-      before { VCR.insert_cassette(:board_by_id) }
+      before { VCR.insert_cassette(:board_by_id, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
       subject { described_class.fetch(board_id, options) }

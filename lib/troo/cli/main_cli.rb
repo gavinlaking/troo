@@ -4,9 +4,22 @@ module Troo
       class_option :debug, type: :boolean, desc: "Enable debugging."
 
       desc "refresh", "Refresh all data"
+      method_option :lists, type: :boolean, desc: "Refresh all lists for current board"
+      method_option :cards, type: :boolean, desc: "Refresh all cards for current board"
       def refresh
-        RefreshAll.perform
-        say "All local data has been refreshed."
+        say options.inspect
+        if options["lists"]
+          return say "Use 'current board <board_id>' to set a current board first." unless Troo::BoardRetrieval.current
+          RefreshAll.lists
+          say "All lists for current board have been refreshed."
+        elsif options["cards"]
+          return say "Use 'current board <board_id>' to set a current board first." unless Troo::BoardRetrieval.current
+          RefreshAll.cards
+          say "All cards for current board have been refreshed."
+        else
+          RefreshAll.perform(options)
+          say "All local data has been refreshed."
+        end
       end
 
       desc "cleanup", "Removes all local data"
@@ -23,10 +36,7 @@ module Troo
       desc "show [board|list|card] <id>", "Show the board, list or card with <id>"
       subcommand :show, Troo::CLI::Show
 
-      desc "board [subcommand] <args>", "Operate on the board"
-      subcommand :board, Troo::CLI::Board
-
-      desc "add [board|list|card] <id>", "Add board, list, or card"
+      desc "add [board|list|card|comment] <id>", "Add board, list, card or comment"
       subcommand :add, Troo::CLI::Add
 
       desc "current [board|list|card] <id>", "Set board, list or card to be current"

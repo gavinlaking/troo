@@ -24,7 +24,7 @@ module Troo
     end
 
     describe "when the mode is board" do
-      before { VCR.insert_cassette(:members_by_board_id) }
+      before { VCR.insert_cassette(:members_by_board_id, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
       let(:board_id) { "526d8e130a14a9d846001d96" }
@@ -46,7 +46,7 @@ module Troo
     end
 
     describe "when the mode is member" do
-      before { VCR.insert_cassette(:member_by_member_id) }
+      before { VCR.insert_cassette(:member_by_member_id, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
       let(:member_id) { "5195fdb5a8c01a2318004f5d" }

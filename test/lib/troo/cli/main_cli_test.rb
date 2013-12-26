@@ -5,8 +5,10 @@ module Troo
   module CLI
     describe Main do
       let(:described_class) { Main }
+      let(:described_instance) { described_class.new }
 
       before do
+        @board = Fabricate(:board)
       end
 
       after do
@@ -14,14 +16,61 @@ module Troo
       end
 
       describe "#refresh" do
-        subject { capture_io { described_class.new.refresh }.join }
+        let(:current) { @board }
+
+        subject { capture_io { described_instance.refresh }.join }
 
         before do
           RefreshAll.stubs(:perform)
+          Troo::BoardRetrieval.stubs(:current).returns(current)
+          RefreshAll.stubs(:lists)
+          RefreshAll.stubs(:cards)
         end
 
-        it "refreshes all local data" do
-          subject.must_match /All local data has been refreshed./
+        context "when no additional options are set" do
+          it "refreshes all local data" do
+            subject.must_match /All local data has been refreshed./
+          end
+        end
+
+        context "when the --lists option is set" do
+          before do
+            described_instance.stubs(:options).returns({"lists" => true})
+          end
+
+          context "when a current board is set" do
+            it "refresh all the lists for the current board" do
+              subject.must_match /lists for current board have been refreshed/
+            end
+          end
+
+          context "when a current board is not set" do
+            let(:current) { }
+
+            it "returns a polite message" do
+              subject.must_match /to set a current board first/
+            end
+          end
+        end
+
+        context "when the --cards option is set" do
+          before do
+            described_instance.stubs(:options).returns({"cards" => true})
+          end
+
+          context "when a current board is set" do
+            it "retreshes all the cards for the current board" do
+              subject.must_match /cards for current board have been refreshed/
+            end
+          end
+
+          context "when a current board is not set" do
+            let(:current) { }
+
+            it "returns a polite message" do
+              subject.must_match /to set a current board first/
+            end
+          end
         end
       end
 

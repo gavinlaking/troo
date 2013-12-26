@@ -3,7 +3,9 @@ module Troo
     class Show < Thor
 
       desc "board <board_id>", "Show all the lists and cards for board <board_id>"
-      def board(board_id)
+      def board(board_id = nil)
+        return Troo::CLI::Board.new.all unless board_id
+
         @board_id = board_id
         if retrieved_board
           BoardPresenter.render_show(retrieved_board)

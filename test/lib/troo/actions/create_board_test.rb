@@ -29,7 +29,7 @@ module Troo
     end
 
     describe "#create" do
-      before { VCR.insert_cassette(:create_board) }
+      before { VCR.insert_cassette(:create_board, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
       subject { described_class.with(board_name, description) }

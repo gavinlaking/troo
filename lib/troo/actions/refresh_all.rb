@@ -11,15 +11,39 @@ module Troo
     def perform
       external_board_ids.map do |id|
         Troo.logger.debug "Fetching lists..."
-        ExternalList.fetch(id, options)
+        lists(id)
 
         Troo.logger.debug "Fetching members..."
         ExternalMember.fetch(id, options)
 
         Troo.logger.debug "Fetching cards..."
-        ExternalCard.fetch(id, options)
+        cards(id)
       end
       true
+    end
+
+    def self.lists(options = {}, external_board_id = nil)
+      new(options).lists(external_board_id)
+    end
+
+    def lists(external_board_id = nil)
+      if external_board_id
+        ExternalList.fetch(external_board_id, options)
+      elsif Troo::BoardRetrieval.current
+        ExternalList.fetch(Troo::BoardRetrieval.current.external_board_id, options)
+      end
+    end
+
+    def self.cards(options = {}, external_board_id = nil)
+      new(options).cards(external_board_id)
+    end
+
+    def cards(external_board_id = nil)
+      if external_board_id
+        ExternalCard.fetch(external_board_id, options)
+      elsif Troo::BoardRetrieval.current
+        ExternalCard.fetch(Troo::BoardRetrieval.current.external_board_id, options)
+      end
     end
 
     private

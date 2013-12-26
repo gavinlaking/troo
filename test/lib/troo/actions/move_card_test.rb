@@ -31,7 +31,7 @@ module Troo
     end
 
     describe "#move" do
-      before { VCR.insert_cassette(:move_card) }
+      before { VCR.insert_cassette(:move_card, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
       subject { described_class.with(card_id, list_id) }

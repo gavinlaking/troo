@@ -28,7 +28,7 @@ module Troo
     end
 
     describe "#create" do
-      before { VCR.insert_cassette(:create_comment) }
+      before { VCR.insert_cassette(:create_comment, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
       subject { described_class.for(card_id, comment) }
