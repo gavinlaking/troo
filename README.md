@@ -1,6 +1,10 @@
 # Troo
 
-CLI interface for Trello.
+CLI interface for Trello. Named after Trello's mascot 'Roo'.
+
+## Features
+
+- see Todo
 
 ## Installation
 
@@ -31,6 +35,7 @@ You will need user authentication tokens to access your Trello account.
 
 ## Todo
 
+- Update features.
 - Fix multitude of sins.
 - Write cucumber integration tests.
 - Consider caching.

@@ -1,38 +1,41 @@
 module Troo
   class CreateComment
-    def initialize(card_id, comment = nil)
+    def initialize(card_id, comment)
       @card_id = card_id
       @comment = comment
     end
 
-    def self.for(card_id, comment = nil)
-      new(card_id, comment).create
+    def self.for(card_id, comment)
+      new(card_id, comment).perform
     end
 
-    def create
-      Trello::Card.new.
-        update_fields({'id' => external_card_id}).
-        add_comment(comment)
-      self
-    end
-
-    def external_card_id
-      card.external_card_id
+    def perform
+      update_comments
     end
 
     private
-    attr_reader :card_id
+    attr_reader :card_id, :comment
+
+    def update_comments
+      return Troo::CommentPersistence.for(create_comment) if create_comment
+      false
+    end
+
+    def create_comment
+      @comment_resource ||= Trello::Card.new.
+        update_fields(attributes).add_comment(comment)
+    rescue
+      false
+    end
 
     def card
       @card ||= Troo::CardRetrieval.retrieve(card_id)
     end
 
-    def comment
-      @comment || user_input
-    end
-
-    def user_input
-      Input.get(card_id)
+    def attributes
+      {
+        'id' => card.external_card_id
+      }
     end
   end
 end

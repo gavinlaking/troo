@@ -8,10 +8,10 @@ module Troo
 
     before do
       @board = Fabricate(:board)
-      @list = Fabricate(:list)
+      @list = Fabricate(:list, name: list_name)
 
-      Trello::List.stubs(:create).returns(@list)
       Troo::BoardRetrieval.stubs(:retrieve).returns(@board)
+      Troo::ListPersistence.stubs(:for).returns(@list)
     end
 
     after do
@@ -30,52 +30,25 @@ module Troo
       end
     end
 
-    describe "#create" do
+    describe ".for" do
       before { VCR.insert_cassette(:create_list, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
       subject { described_class.for(board_id, list_name) }
 
-      context "when a new list name is provided" do
-        it "creates the list and returns an instance of this class" do
-          subject.must_be_instance_of(described_class)
+      context "when the list was created" do
+        it "returns the new list" do
+          subject.must_equal(@list)
         end
       end
 
-      context "when a new list name is not provided" do
-        let(:list_name) { nil }
-        let(:user_input_list_name) { "My New List" }
-
+      context "when the list was not created" do
         before do
-          Input.stubs(:get).returns(user_input_list_name)
+          Trello::List.stubs(:create).raises(Trello::Error)
         end
 
-        it "asks the user to enter a name and creates the list" do
-          subject.must_be_instance_of(described_class)
-
-          subject.name.must_equal(user_input_list_name)
-        end
-      end
-    end
-
-    context "it exposes various attributes we will use later" do
-      subject { described_class.new(board_id, list_name) }
-
-      describe "#board_name" do
-        it "returns the board name" do
-          subject.board_name.must_equal(@board.name)
-        end
-      end
-
-      describe "#external_board_id" do
-        it "returns the external_board_id" do
-          subject.external_board_id.must_equal(board_id)
-        end
-      end
-
-      describe "#name" do
-        it "returns the name" do
-          subject.name.must_equal(list_name)
+        it "returns nil" do
+          subject.must_equal false
         end
       end
     end

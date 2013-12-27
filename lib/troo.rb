@@ -1,18 +1,15 @@
 require "date"
-require "digest"
 require "erb"
 require "logger"
 require "ohm"
 require "ohm/contrib"
 require "pry"
-require "tempfile"
 require "term/ansicolor"
 require "thor"
 require "trello"
 require "yaml"
 
 require_relative "troo/version"
-require_relative "troo/input"
 
 require_relative "troo/actions/create_board"
 require_relative "troo/actions/create_card"

@@ -8,7 +8,9 @@ module Troo
 
     before do
       @card = Fabricate(:card)
+      @comment = Fabricate(:comment, text: comment)
       Troo::CardRetrieval.stubs(:retrieve).returns(@card)
+      Troo::CommentPersistence.stubs(:for).returns(@comment)
     end
 
     after do
@@ -27,38 +29,25 @@ module Troo
       end
     end
 
-    describe "#create" do
+    describe ".for" do
       before { VCR.insert_cassette(:create_comment, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
       subject { described_class.for(card_id, comment) }
 
-      context "when the comment text is provided" do
-        it "creates the comment and returns an instance of this class" do
-          subject.must_be_instance_of(described_class)
+      context "when the comment was created" do
+        it "returns the new comment" do
+          subject.must_equal(@comment)
         end
       end
 
-      context "when the comment text is not provided" do
-        let(:comment) { nil }
-        let(:user_input_comment) { "Some much needed feedback..." }
-
+      context "when the comment was not created" do
         before do
-          Input.stubs(:get).returns(user_input_comment)
+          Trello::Card.any_instance.stubs(:add_comment).raises(Trello::Error)
         end
 
-        it "asks the user to enter their text and creates the comment" do
-          subject.must_be_instance_of(described_class)
-        end
-      end
-    end
-
-    context "it exposes various attributes we will use later" do
-      subject { described_class.new(card_id, comment) }
-
-      describe "#external_card_id" do
-        it "returns the external_card_id" do
-          subject.external_card_id.must_equal(@card.external_card_id)
+        it "returns nil" do
+          subject.must_equal false
         end
       end
     end

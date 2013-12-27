@@ -7,32 +7,26 @@ module Troo
     end
 
     def self.for(list_id, name = nil, description = nil)
-      new(list_id, name, description).create
+      new(list_id, name, description).perform
     end
 
-    def create
-      Trello::Card.create(attributes)
-      self
-    end
-
-    def list_name
-      list.name
-    end
-
-    def external_list_id
-      list.external_list_id
-    end
-
-    def name
-      @name ||= name_input
-    end
-
-    def description
-      @description ||= description_input
+    def perform
+      update_cards
     end
 
     private
-    attr_reader :list_id
+    attr_reader :list_id, :name, :description
+
+    def update_cards
+      return Troo::CardPersistence.for(create_card) if create_card
+      false
+    end
+
+    def create_card
+      @card ||= Trello::Card.create(attributes)
+    rescue Trello::Error
+      false
+    end
 
     def list
       @list ||= Troo::ListRetrieval.retrieve(list_id)
@@ -41,17 +35,9 @@ module Troo
     def attributes
       {
         name:    name,
-        list_id: external_list_id,
+        list_id: list.external_list_id,
         desc:    description
       }
-    end
-
-    def name_input
-      Input.get(list_id)
-    end
-
-    def description_input
-      Input.get(list_id)
     end
   end
 end

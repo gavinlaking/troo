@@ -8,29 +8,32 @@ module Troo
     end
 
     def self.with(name, description = nil)
-      new(name, description).create
+      new(name, description).perform
     end
 
-    def create
-      Trello::Board.create(attributes)
-      self
-    end
-
-    def description
-      @description ||= description_input
+    def perform
+      update_boards
     end
 
     private
+    attr_reader :name, :description
+
+    def update_boards
+      return Troo::BoardPersistence.for(create_board) if create_board
+      false
+    end
+
+    def create_board
+      @board ||= Trello::Board.create(attributes)
+    rescue Trello::Error
+      false
+    end
 
     def attributes
       {
         name:        name,
         description: description
       }
-    end
-
-    def description_input
-      Input.get
     end
   end
 end

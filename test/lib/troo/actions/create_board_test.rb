@@ -8,8 +8,7 @@ module Troo
 
     before do
       @board = Fabricate(:board, name: board_name, description: description)
-      Trello::Board.stubs(:create).returns(@board)
-      Input.stubs(:get).returns()
+      Troo::BoardPersistence.stubs(:for).returns(@board)
     end
 
     after do
@@ -28,40 +27,25 @@ module Troo
       end
     end
 
-    describe "#create" do
+    describe ".with" do
       before { VCR.insert_cassette(:create_board, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
       subject { described_class.with(board_name, description) }
 
-      context "when a new board description is provided" do
-        it "creates the board and returns an instance of this class" do
-          subject.must_be_instance_of(described_class)
+      context "when the board was created" do
+        it "returns the new board" do
+          subject.must_equal(@board)
         end
       end
 
-      context "when a new board description is not provided" do
-        let(:description) { nil }
-        let(:user_input_description) { "A very brief description..." }
-
+      context "when the board was not created" do
         before do
-          Input.stubs(:get).returns(user_input_description)
+          Trello::Board.stubs(:create).raises(Trello::Error)
         end
 
-        it "asks the user to enter a description and creates the board" do
-          subject.must_be_instance_of(described_class)
-
-          subject.description.must_equal(user_input_description)
-        end
-      end
-    end
-
-    context "it exposes various attributes we will use later" do
-      subject { described_class.new(board_name, description) }
-
-      describe "#description" do
-        it "returns the description" do
-          subject.description.must_equal(description)
+        it "returns nil" do
+          subject.must_equal false
         end
       end
     end

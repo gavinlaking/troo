@@ -5,21 +5,17 @@ module Troo
   module CLI
     describe Add do
       let(:described_class) { Add }
-      let(:create_board)   { OpenStruct.new(name: "My New Test Board") }
-      let(:create_card)    { OpenStruct.new(name: "My New Test Card", external_list_id: "526d8e130a14a9d846001d97") }
-      let(:create_comment) { OpenStruct.new(external_card_id: "526d8f19ddb279532e005259") }
-      let(:create_list)    { OpenStruct.new(name: "My New Test List", external_board_id: "526d8e130a14a9d846001d96") }
 
       before do
-        Troo::CreateBoard.stubs(:with).returns(create_board)
-        Troo::CreateCard.stubs(:for).returns(create_card)
-        Troo::CreateComment.stubs(:for).returns(create_comment)
-        Troo::CreateList.stubs(:for).returns(create_list)
+        @board = Fabricate(:board, name: "My New Test Board")
+        @card = Fabricate(:card, name: "My New Test Card")
+        @comment = Fabricate(:comment)
+        @list = Fabricate(:list, name: "My New Test List")
 
-        Troo::ExternalBoard.stubs(:fetch_all)
-        Troo::ExternalCard.stubs(:fetch)
-        Troo::ExternalComment.stubs(:fetch)
-        Troo::ExternalList.stubs(:fetch)
+        Troo::CreateBoard.stubs(:with).returns(@board)
+        Troo::CreateCard.stubs(:for).returns(@card)
+        Troo::CreateComment.stubs(:for).returns(@comment)
+        Troo::CreateList.stubs(:for).returns(@list)
       end
 
       after do
@@ -31,8 +27,28 @@ module Troo
 
         subject { capture_io { described_class.new.board(board_name) }.join }
 
-        it "creates a board and returns a polite message" do
-          subject.must_match /New board 'My New Test Board' created/
+        context "when the name was not provided" do
+          let(:board_name) { }
+
+          before { $stdin.stubs(:gets).returns(@board.name) }
+
+          it "prompts the user" do
+            subject.must_match /enter a name/
+          end
+        end
+
+        context "when the board was created" do
+          it "returns a polite message" do
+            subject.must_match /New board '#{@board.name}' created/
+          end
+        end
+
+        context "when the board was not created" do
+          before { Troo::CreateBoard.stubs(:with).returns(false) }
+
+          it "returns a polite message" do
+            subject.must_match /Board could not be created/
+          end
         end
       end
 
@@ -43,8 +59,28 @@ module Troo
 
         subject { capture_io { described_class.new.card(list_id, card_name, description) }.join }
 
-        it "creates a card and returns a polite message" do
-          subject.must_match /New card 'My New Test Card' created/
+        context "when the name was not provided" do
+          let(:card_name) { }
+
+          before { $stdin.stubs(:gets).returns(@card.name) }
+
+          it "prompts the user" do
+            subject.must_match /enter a name/
+          end
+        end
+
+        context "when the card was created" do
+          it "returns a polite message" do
+            subject.must_match /New card '#{@card.name}' created/
+          end
+        end
+
+        context "when the card was not created" do
+          before { Troo::CreateCard.stubs(:for).returns(false) }
+
+          it "returns a polite message" do
+            subject.must_match /Card could not be created/
+          end
         end
       end
 
@@ -54,8 +90,28 @@ module Troo
 
         subject { capture_io { described_class.new.comment(card_id, comment) }.join }
 
-        it "creates a comment and returns a polite message" do
-          subject.must_match /New comment created/
+        context "when the name was not provided" do
+          let(:comment) { }
+
+          before { $stdin.stubs(:gets).returns(@comment.text) }
+
+          it "prompts the user" do
+            subject.must_match /enter a comment/
+          end
+        end
+
+        context "when the comment was created" do
+          it "returns a polite message" do
+            subject.must_match /New comment created/
+          end
+        end
+
+        context "when the comment was not created" do
+          before { Troo::CreateComment.stubs(:for).returns(false) }
+
+          it "returns a polite message" do
+            subject.must_match /Comment could not be created/
+          end
         end
       end
 
@@ -65,8 +121,28 @@ module Troo
 
         subject { capture_io { described_class.new.list(board_id, list_name) }.join }
 
-        it "creates a list and returns a polite message" do
-          subject.must_match /New list 'My New Test List' created/
+        context "when the name was not provided" do
+          let(:list_name) { }
+
+          before { $stdin.stubs(:gets).returns(@list.name) }
+
+          it "prompts the user" do
+            subject.must_match /enter a name/
+          end
+        end
+
+        context "when the list was created" do
+          it "returns a polite message" do
+            subject.must_match /New list '#{@list.name}' created/
+          end
+        end
+
+        context "when the list was not created" do
+          before { Troo::CreateList.stubs(:for).returns(false) }
+
+          it "returns a polite message" do
+            subject.must_match /List could not be created/
+          end
         end
       end
     end
