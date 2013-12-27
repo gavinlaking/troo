@@ -5,11 +5,18 @@ module Troo
   module CLI
     describe Current do
       let(:described_class) { Current }
+      let(:board_id) { "526d8e130a14a9d846001d96" }
+      let(:card_id) { "526d8f19ddb279532e005259" }
+      let(:list_id) { "526d8e130a14a9d846001d97" }
 
       before do
         @board = Fabricate(:board)
         @list  = Fabricate(:list)
         @card  = Fabricate(:card)
+
+        Troo::BoardRetrieval.stubs(:retrieve).returns(@board)
+        Troo::CardRetrieval.stubs(:retrieve).returns(@card)
+        Troo::ListRetrieval.stubs(:retrieve).returns(@list)
       end
 
       after do
@@ -17,82 +24,61 @@ module Troo
       end
 
       describe "#board" do
-        let(:board_id) { "some_board_id" }
-
         subject { capture_io { described_class.new.board(board_id) }.join }
 
         context "when the board_id cannot be found" do
           before do
-            Troo::BoardRetrieval.stubs(:retrieve).raises(Trello::Error)
+            Troo::BoardRetrieval.stubs(:retrieve).returns(nil)
           end
 
-          it "rescues from the error" do
-            subject.must_match /Board cannot be found./
+          it "returns a polite message" do
+            subject.must_match /Board cannot be found/
           end
         end
 
         context "when the board_id was found" do
-          before do
-            Troo::BoardRetrieval.stubs(:retrieve)
-            SetCurrent.stubs(:for).returns(@board)
-          end
-
-          it "reports success" do
-            subject.must_match /Board 'My Test Board' set to current./
+          it "returns a polite message" do
+            subject.must_match /Board '#{@board.name}' set to current/
           end
         end
       end
 
       describe "#card" do
-        let(:card_id) { "some_card_id" }
-
         subject { capture_io { described_class.new.card(card_id) }.join }
 
         context "when the card_id cannot be found" do
           before do
-            Troo::CardRetrieval.stubs(:retrieve).raises(Trello::Error)
+            Troo::CardRetrieval.stubs(:retrieve).returns(nil)
           end
 
-          it "rescues from the error" do
-            subject.must_match /Card cannot be found./
+          it "returns a polite message" do
+            subject.must_match /Card cannot be found/
           end
         end
 
         context "when the card_id was found" do
-          before do
-            Troo::CardRetrieval.stubs(:retrieve)
-            SetCurrent.stubs(:for).returns(@card)
-          end
-
-          it "reports success" do
-            subject.must_match /Card 'My Test Card' set to current./
+          it "returns a polite message" do
+            subject.must_match /Card '#{@card.name}' set to current/
           end
         end
       end
 
       describe "#list" do
-        let(:list_id) { "some_list_id" }
-
         subject { capture_io { described_class.new.list(list_id) }.join }
 
         context "when the list_id cannot be found" do
           before do
-            Troo::ListRetrieval.stubs(:retrieve).raises(Trello::Error)
+            Troo::ListRetrieval.stubs(:retrieve).returns(nil)
           end
 
-          it "rescues from the error" do
-            subject.must_match /List cannot be found./
+          it "returns a polite message" do
+            subject.must_match /List cannot be found/
           end
         end
 
         context "when the list_id was found" do
-          before do
-            Troo::ListRetrieval.stubs(:retrieve)
-            SetCurrent.stubs(:for).returns(@list)
-          end
-
-          it "reports success" do
-            subject.must_match /List 'My Test List' set to current./
+          it "returns a polite message" do
+            subject.must_match /List '#{@list.name}' set to current/
           end
         end
       end
