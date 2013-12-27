@@ -77,8 +77,20 @@ module Troo
       describe "#cleanup" do
         subject { capture_io { described_class.new.cleanup }.join }
 
-        it "removes all local data" do
-          subject.must_match /All local data has been removed./
+        context "when the user confirms their intentions" do
+          before { $stdin.stubs(:gets).returns("y\n") }
+
+          it "removes all local data" do
+             subject.must_match /All local data has been removed./
+          end
+        end
+
+        context "when the user denies their intentions" do
+          before { $stdin.stubs(:gets).returns("n\n") }
+
+          it "does not remove the local data" do
+            subject.must_match("")
+          end
         end
       end
 
