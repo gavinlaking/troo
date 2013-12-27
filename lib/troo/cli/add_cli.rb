@@ -50,7 +50,7 @@ module Troo
         end
       end
 
-      desc "list <board_id>", "Add a new list to <board_id> with <name>."
+      desc "list <board_id> <name>", "Add a new list to <board_id> with <name>."
       def list(board_id, name = nil)
         if name.nil?
           name = ask("Please enter a name for this list:")
