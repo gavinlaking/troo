@@ -7,7 +7,6 @@ module Troo
       method_option :lists, type: :boolean, desc: "Refresh all lists for current board."
       method_option :cards, type: :boolean, desc: "Refresh all cards for current board."
       def refresh
-        say options.inspect
         if options["lists"]
           return say "Use 'current board <board_id>' to set a current board first." unless Troo::BoardRetrieval.current
           RefreshAll.lists
