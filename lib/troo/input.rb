@@ -1,11 +1,12 @@
 module Troo
   class Input
-    def initialize(id = nil)
+    def initialize(id = nil, options = {})
       @id = id
+      @options = options
     end
 
-    def self.get(id = nil)
-      new(id).get
+    def self.get(id = nil, options = {})
+      new(id, options).get
     end
 
     def get

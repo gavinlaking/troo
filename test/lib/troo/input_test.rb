@@ -4,6 +4,7 @@ module Troo
   describe Input do
     let(:described_class) { Input }
     let(:id) { "526d8e130a14a9d846001d96" }
+    let(:options) { {} }
 
     before do
     end
@@ -13,10 +14,14 @@ module Troo
     end
 
     describe "#initialize" do
-      subject { described_class.new(id) }
+      subject { described_class.new(id, options) }
 
       it "assigns the id to an instance variable" do
         subject.instance_variable_get("@id").must_equal(id)
+      end
+
+      it "assigns the options to an instance variable" do
+        subject.instance_variable_get("@options").must_equal(options)
       end
     end
 
