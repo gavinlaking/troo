@@ -1,5 +1,7 @@
 module Troo
   class CreateBoard
+    attr_reader :name
+
     def initialize(name, description = nil)
       @name        = name
       @description = description
@@ -19,7 +21,6 @@ module Troo
     end
 
     private
-    attr_reader :name
 
     def attributes
       {
