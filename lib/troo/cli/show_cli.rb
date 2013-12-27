@@ -1,8 +1,9 @@
 module Troo
   module CLI
-    class Show < Thor
+    class Show < ThorFixes
+      package_name "show"
 
-      desc "board <board_id>", "Show all the lists and cards for board <board_id>"
+      desc "board <board_id>", "Show all the lists and cards for board <board_id>."
       def board(board_id = nil)
         return Troo::CLI::Board.new.all unless board_id
 
@@ -14,7 +15,7 @@ module Troo
         end
       end
 
-      desc "list <list_id>", "Show all cards for list <list_id>"
+      desc "list <list_id>", "Show all cards for list <list_id>."
       def list(list_id)
         @list_id = list_id
         if retrieved_list
@@ -24,7 +25,7 @@ module Troo
         end
       end
 
-      desc "card <card_id>", "Show a card <card_id> (includes comments)"
+      desc "card <card_id>", "Show a card <card_id> (includes comments)."
       def card(card_id)
         @card_id = card_id
         if retrieved_card

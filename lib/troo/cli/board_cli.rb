@@ -1,8 +1,7 @@
 module Troo
   module CLI
-    class Board < Thor
-
-      desc "all", "Show all the boards with lists"
+    class Board < ThorFixes
+      desc "all", "Show all the boards with lists."
       def all
         if boards.any?
           boards.map do |board|

@@ -58,6 +58,7 @@ require_relative "troo/models/member"
 require_relative "troo/models/member_retrieval"
 require_relative "troo/models/member_persistence"
 
+require_relative "troo/cli/thor_fixes"
 require_relative "troo/cli/board_cli"
 require_relative "troo/cli/add_cli"
 require_relative "troo/cli/current_cli"
