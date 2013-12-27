@@ -4,7 +4,23 @@ CLI interface for Trello. Named after Trello's mascot 'Roo'.
 
 ## Features
 
-- see Todo
+- troo refresh
+- troo refresh --lists
+- troo refresh --cards
+- troo cleanup
+- troo version
+- troo add board
+- troo add board
+- troo add card
+- troo add comment
+- troo add list
+- troo current board
+- troo current card
+- troo current list
+- troo show board
+- troo show list
+- troo show card
+- troo move
 
 ## Installation
 
