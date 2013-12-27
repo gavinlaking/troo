@@ -9,7 +9,7 @@ module Troo
     before do
       @card = Fabricate(:card)
       @comment = Fabricate(:comment, text: comment)
-      Troo::CardRetrieval.stubs(:retrieve).returns(@card)
+
       Troo::CommentPersistence.stubs(:for).returns(@comment)
     end
 
@@ -18,10 +18,10 @@ module Troo
     end
 
     describe ".initialize" do
-      subject { described_class.new(card_id, comment) }
+      subject { described_class.new(@card, comment) }
 
-      it "assigns the card_id to an instance variable" do
-        subject.instance_variable_get("@card_id").must_equal(card_id)
+      it "assigns the card to an instance variable" do
+        subject.instance_variable_get("@card").must_equal(@card)
       end
 
       it "assigns the comment to an instance variable" do
@@ -33,7 +33,7 @@ module Troo
       before { VCR.insert_cassette(:create_comment, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
-      subject { described_class.for(card_id, comment) }
+      subject { described_class.for(@card, comment) }
 
       context "when the comment was created" do
         it "returns the new comment" do
@@ -46,7 +46,7 @@ module Troo
           Trello::Card.any_instance.stubs(:add_comment).raises(Trello::Error)
         end
 
-        it "returns nil" do
+        it "returns false" do
           subject.must_equal false
         end
       end

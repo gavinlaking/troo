@@ -22,10 +22,14 @@ module Troo
           name = ask("Please enter a name for this card:")
         end
 
-        if result = Troo::CreateCard.for(list_id, name, description)
-          say "New card '#{result.name}' created."
+        if list = Troo::ListRetrieval.retrieve(list_id)
+          if result = Troo::CreateCard.for(list, name, description)
+            say "New card '#{result.name}' created."
+          else
+            say "Card could not be created."
+          end
         else
-          say "Card could not be created."
+          say "Card could not be created, as list was not found."
         end
       end
 
@@ -35,10 +39,14 @@ module Troo
           comment = ask("Please enter a comment:")
         end
 
-        if Troo::CreateComment.for(card_id, comment)
-          say "New comment created."
+        if card = Troo::CardRetrieval.retrieve(card_id)
+          if Troo::CreateComment.for(card, comment)
+            say "New comment created."
+          else
+            say "Comment could not be created."
+          end
         else
-          say "Comment could not be created."
+          say "Comment could not be created, as card was not found."
         end
       end
 
@@ -48,10 +56,14 @@ module Troo
           name = ask("Please enter a name for this list:")
         end
 
-        if result = Troo::CreateList.for(board_id, name)
-          say "New list '#{result.name}' created."
+        if board = Troo::BoardRetrieval.retrieve(board_id)
+          if result = Troo::CreateList.for(board, name)
+            say "New list '#{result.name}' created."
+          else
+            say "List could not be created."
+          end
         else
-          say "List could not be created."
+          say "List could not be created, as board was not found."
         end
       end
     end

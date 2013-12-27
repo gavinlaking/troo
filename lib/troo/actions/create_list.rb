@@ -1,12 +1,12 @@
 module Troo
   class CreateList
-    def initialize(board_id, name)
-      @board_id = board_id
-      @name     = name
+    def initialize(board, name)
+      @board = board
+      @name  = name
     end
 
-    def self.for(board_id, name)
-      new(board_id, name).perform
+    def self.for(board, name)
+      new(board, name).perform
     end
 
     def perform
@@ -14,7 +14,7 @@ module Troo
     end
 
     private
-    attr_reader :board_id, :name
+    attr_reader :board, :name
 
     def update_lists
       return Troo::ListPersistence.for(create_list) if create_list
@@ -25,10 +25,6 @@ module Troo
       @list ||= Trello::List.create(attributes)
     rescue Trello::Error
       false
-    end
-
-    def board
-      @board ||= Troo::BoardRetrieval.retrieve(board_id)
     end
 
     def attributes

@@ -44,7 +44,7 @@ module Troo
           Trello::Board.stubs(:create).raises(Trello::Error)
         end
 
-        it "returns nil" do
+        it "returns false" do
           subject.must_equal false
         end
       end

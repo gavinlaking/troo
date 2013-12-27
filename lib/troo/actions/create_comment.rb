@@ -1,12 +1,12 @@
 module Troo
   class CreateComment
-    def initialize(card_id, comment)
-      @card_id = card_id
+    def initialize(card, comment)
+      @card    = card
       @comment = comment
     end
 
-    def self.for(card_id, comment)
-      new(card_id, comment).perform
+    def self.for(card, comment)
+      new(card, comment).perform
     end
 
     def perform
@@ -14,7 +14,7 @@ module Troo
     end
 
     private
-    attr_reader :card_id, :comment
+    attr_reader :card, :comment
 
     def update_comments
       return Troo::CommentPersistence.for(create_comment) if create_comment
@@ -26,10 +26,6 @@ module Troo
         update_fields(attributes).add_comment(comment)
     rescue
       false
-    end
-
-    def card
-      @card ||= Troo::CardRetrieval.retrieve(card_id)
     end
 
     def attributes

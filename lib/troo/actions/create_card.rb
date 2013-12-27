@@ -1,13 +1,13 @@
 module Troo
   class CreateCard
-    def initialize(list_id, name = nil, description = nil)
-      @list_id     = list_id
+    def initialize(list, name = nil, description = nil)
+      @list        = list
       @name        = name
       @description = description
     end
 
-    def self.for(list_id, name = nil, description = nil)
-      new(list_id, name, description).perform
+    def self.for(list, name = nil, description = nil)
+      new(list, name, description).perform
     end
 
     def perform
@@ -15,7 +15,7 @@ module Troo
     end
 
     private
-    attr_reader :list_id, :name, :description
+    attr_reader :list, :name, :description
 
     def update_cards
       return Troo::CardPersistence.for(create_card) if create_card
@@ -26,10 +26,6 @@ module Troo
       @card ||= Trello::Card.create(attributes)
     rescue Trello::Error
       false
-    end
-
-    def list
-      @list ||= Troo::ListRetrieval.retrieve(list_id)
     end
 
     def attributes

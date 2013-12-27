@@ -11,7 +11,6 @@ module Troo
       @list = Fabricate(:list)
       @card = Fabricate(:card, name: card_name, desc: description)
 
-      Troo::ListRetrieval.stubs(:retrieve).returns(@list)
       Troo::CardPersistence.stubs(:for).returns(@card)
     end
 
@@ -20,10 +19,10 @@ module Troo
     end
 
     describe ".initialize" do
-      subject { described_class.new(list_id, card_name, description) }
+      subject { described_class.new(@list, card_name, description) }
 
-      it "assigns the list_id to an instance variable" do
-        subject.instance_variable_get("@list_id").must_equal(list_id)
+      it "assigns the list to an instance variable" do
+        subject.instance_variable_get("@list").must_equal(@list)
       end
 
       it "assigns the name to an instance variable" do
@@ -39,7 +38,7 @@ module Troo
       before { VCR.insert_cassette(:create_card, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
-      subject { described_class.for(list_id, card_name, description) }
+      subject { described_class.for(@list, card_name, description) }
 
       context "when the card was created" do
         it "returns the new card" do
@@ -52,7 +51,7 @@ module Troo
           Trello::Card.stubs(:create).raises(Trello::Error)
         end
 
-        it "returns nil" do
+        it "returns false" do
           subject.must_equal false
         end
       end

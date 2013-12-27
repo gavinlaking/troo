@@ -57,29 +57,43 @@ module Troo
         let(:card_name)   { "My New Test Card" }
         let(:description) { "A very brief description..." }
 
+        before do
+          Troo::ListRetrieval.stubs(:retrieve).returns(@list)
+        end
+
         subject { capture_io { described_class.new.card(list_id, card_name, description) }.join }
 
-        context "when the name was not provided" do
-          let(:card_name) { }
+        context "when the list was found" do
+          context "when the name was not provided" do
+            let(:card_name) { }
 
-          before { $stdin.stubs(:gets).returns(@card.name) }
+            before { $stdin.stubs(:gets).returns(@card.name) }
 
-          it "prompts the user" do
-            subject.must_match /enter a name/
+            it "prompts the user" do
+              subject.must_match /enter a name/
+            end
+          end
+
+          context "when the card was created" do
+            it "returns a polite message" do
+              subject.must_match /New card '#{@card.name}' created/
+            end
+          end
+
+          context "when the card was not created" do
+            before { Troo::CreateCard.stubs(:for).returns(false) }
+
+            it "returns a polite message" do
+              subject.must_match /Card could not be created/
+            end
           end
         end
 
-        context "when the card was created" do
-          it "returns a polite message" do
-            subject.must_match /New card '#{@card.name}' created/
-          end
-        end
-
-        context "when the card was not created" do
-          before { Troo::CreateCard.stubs(:for).returns(false) }
+        context "when the list was not found" do
+          before { Troo::ListRetrieval.stubs(:retrieve).returns(nil) }
 
           it "returns a polite message" do
-            subject.must_match /Card could not be created/
+            subject.must_match /list was not found/
           end
         end
       end
@@ -88,29 +102,43 @@ module Troo
         let(:card_id) { "526d8f19ddb279532e005259" }
         let(:comment) { "A very brief description..." }
 
+        before do
+          Troo::CardRetrieval.stubs(:retrieve).returns(@card)
+        end
+
         subject { capture_io { described_class.new.comment(card_id, comment) }.join }
 
-        context "when the name was not provided" do
-          let(:comment) { }
+        context "when the card was found" do
+          context "when the name was not provided" do
+            let(:comment) { }
 
-          before { $stdin.stubs(:gets).returns(@comment.text) }
+            before { $stdin.stubs(:gets).returns(@comment.text) }
 
-          it "prompts the user" do
-            subject.must_match /enter a comment/
+            it "prompts the user" do
+              subject.must_match /enter a comment/
+            end
+          end
+
+          context "when the comment was created" do
+            it "returns a polite message" do
+              subject.must_match /New comment created/
+            end
+          end
+
+          context "when the comment was not created" do
+            before { Troo::CreateComment.stubs(:for).returns(false) }
+
+            it "returns a polite message" do
+              subject.must_match /Comment could not be created/
+            end
           end
         end
 
-        context "when the comment was created" do
-          it "returns a polite message" do
-            subject.must_match /New comment created/
-          end
-        end
-
-        context "when the comment was not created" do
-          before { Troo::CreateComment.stubs(:for).returns(false) }
+        context "when the card was not found" do
+          before { Troo::CardRetrieval.stubs(:retrieve).returns(nil) }
 
           it "returns a polite message" do
-            subject.must_match /Comment could not be created/
+            subject.must_match /card was not found/
           end
         end
       end
@@ -119,29 +147,43 @@ module Troo
         let(:board_id)  { "526d8e130a14a9d846001d96" }
         let(:list_name) { "My New List" }
 
+        before do
+          Troo::BoardRetrieval.stubs(:retrieve).returns(@board)
+        end
+
         subject { capture_io { described_class.new.list(board_id, list_name) }.join }
 
-        context "when the name was not provided" do
-          let(:list_name) { }
+        context "when the board was found" do
+          context "when the name was not provided" do
+            let(:list_name) { }
 
-          before { $stdin.stubs(:gets).returns(@list.name) }
+            before { $stdin.stubs(:gets).returns(@list.name) }
 
-          it "prompts the user" do
-            subject.must_match /enter a name/
+            it "prompts the user" do
+              subject.must_match /enter a name/
+            end
+          end
+
+          context "when the list was created" do
+            it "returns a polite message" do
+              subject.must_match /New list '#{@list.name}' created/
+            end
+          end
+
+          context "when the list was not created" do
+            before { Troo::CreateList.stubs(:for).returns(false) }
+
+            it "returns a polite message" do
+              subject.must_match /List could not be created/
+            end
           end
         end
 
-        context "when the list was created" do
-          it "returns a polite message" do
-            subject.must_match /New list '#{@list.name}' created/
-          end
-        end
-
-        context "when the list was not created" do
-          before { Troo::CreateList.stubs(:for).returns(false) }
+        context "when the board was not found" do
+          before { Troo::BoardRetrieval.stubs(:retrieve).returns(nil) }
 
           it "returns a polite message" do
-            subject.must_match /List could not be created/
+            subject.must_match /board was not found/
           end
         end
       end
