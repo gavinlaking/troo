@@ -44,16 +44,16 @@ module Troo
       context "with an ID" do
         subject { described_class.retrieve(id) }
 
-        context "local retrieval by database ID" do
-          let(:id) { @card.id }
+        context "local retrieval by short_id" do
+          let(:id) { 67 }
 
           it "returns the correct card" do
             subject.name.must_equal("My Test Card")
           end
         end
 
-        context "local retrieval by short_id" do
-          let(:id) { 67 }
+        context "local retrieval by database ID" do
+          let(:id) { @card.id }
 
           it "returns the correct card" do
             subject.name.must_equal("My Test Card")

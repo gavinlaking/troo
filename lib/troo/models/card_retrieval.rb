@@ -13,7 +13,7 @@ module Troo
     end
 
     def retrieve
-      all || by_id || by_short_id || by_external_id || remote
+      all || by_short_id || by_id || by_external_id || remote
     end
 
     private
