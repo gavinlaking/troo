@@ -10,12 +10,13 @@ module Troo
     before do
       @board     = Fabricate(:board)
       @list      = Fabricate(:list)
-      @card      = Fabricate(:card, desc: description, current: current)
+      @card      = Fabricate(:card, desc: description, current: current, external_member_ids: ["5195fdb5a8c01a2318004f5d", "some_member_id"])
       @comment   = Fabricate(:comment)
       @comment_2 = Fabricate(:comment, text: "My Other Test Comment")
       @comment_3 = Fabricate(:comment, text: "My Lithium Comment")
       @comment_4 = Fabricate(:comment, text: "My Beryllium Comment")
       @member    = Fabricate(:member)
+      @member_2  = Fabricate(:member, username: "mysterywoman", external_member_id: "some_member_id")
     end
 
     after do
@@ -170,12 +171,15 @@ module Troo
 
       context "when there are members" do
         it "returns the members" do
-          subject.must_equal("There are some members.")
+          subject.must_equal("@gavinlaking1 and @mysterywoman")
         end
       end
 
       context "when there are no members" do
-        before { @member.delete }
+        before do
+          @member.delete
+          @member_2.delete
+        end
 
         it "returns a polite message" do
           subject.must_equal("No members have been assigned.")

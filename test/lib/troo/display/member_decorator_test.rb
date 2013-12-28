@@ -24,7 +24,7 @@ module Troo
       subject { described_class.new(@member).username }
 
       it "returns the member's username" do
-        subject.must_equal("(#{@member.username})")
+        subject.must_equal("@#{@member.username}")
       end
     end
 

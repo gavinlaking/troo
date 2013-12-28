@@ -56,7 +56,7 @@ module Troo
 
     def members
       if card.members.any?
-        "There are some members."
+        MemberPresenter.new(card).render_show
       else
         "No members have been assigned."
       end

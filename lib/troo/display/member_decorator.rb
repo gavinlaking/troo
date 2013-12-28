@@ -7,7 +7,7 @@ module Troo
     end
 
     def username
-      brackets(member.username)
+      ["@", member.username].join
     end
 
     def name
