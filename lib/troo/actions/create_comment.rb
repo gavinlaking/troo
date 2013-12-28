@@ -17,8 +17,18 @@ module Troo
     attr_reader :card, :comment
 
     def update_comments
-      return Troo::CommentPersistence.for(create_comment) if create_comment
+      return Troo::CommentPersistence.for(parsed_json_response) if parsed_json_response
       false
+    end
+
+    def parsed_json_response
+      if create_comment
+        resource = OpenStruct.new(JSON.parse(create_comment))
+        resource.member_creator_id = resource.memberCreator.fetch("id", "")
+        resource
+      else
+        false
+      end
     end
 
     def create_comment
