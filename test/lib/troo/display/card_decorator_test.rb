@@ -8,10 +8,14 @@ module Troo
     let(:options) { {} }
 
     before do
-      @board   = Fabricate(:board)
-      @list    = Fabricate(:list)
-      @card    = Fabricate(:card, desc: description, current: current)
-      @comment = Fabricate(:comment)
+      @board     = Fabricate(:board)
+      @list      = Fabricate(:list)
+      @card      = Fabricate(:card, desc: description, current: current)
+      @comment   = Fabricate(:comment)
+      @comment_2 = Fabricate(:comment, text: "My Other Test Comment")
+      @comment_3 = Fabricate(:comment, text: "My Lithium Comment")
+      @comment_4 = Fabricate(:comment, text: "My Beryllium Comment")
+      @member    = Fabricate(:member)
     end
 
     after do
@@ -125,15 +129,34 @@ module Troo
     describe "#comments" do
       subject { described_class.new(@card).comments }
 
-      context "when there are comments" do
+      context "when there are more than 3 comments" do
         it "returns the comments" do
-          subject.must_equal("There are some comments.")
+          subject.must_match /There are more comments/
+          subject.must_match /My Test Comment/
+          subject.must_match /My Other Test Comment/
+          subject.must_match /My Lithium Comment/
+          subject.wont_match /My Beryllium Comment/
+        end
+      end
+
+      context "when there are 3 or less comments" do
+        before do
+          @comment_3.delete
+          @comment_4.delete
+        end
+
+        it "returns the comments" do
+          subject.must_match /My Test Comment/
+          subject.must_match /My Other Test Comment/
         end
       end
 
       context "when there are no comments" do
         before do
           @comment.delete
+          @comment_2.delete
+          @comment_3.delete
+          @comment_4.delete
         end
 
         it "returns a polite message" do
@@ -146,16 +169,14 @@ module Troo
       subject { described_class.new(@card).members }
 
       context "when there are members" do
-        before do
-          @card.stubs(:members).returns([:member, :member])
-        end
-
         it "returns the members" do
           subject.must_equal("There are some members.")
         end
       end
 
       context "when there are no members" do
+        before { @member.delete }
+
         it "returns a polite message" do
           subject.must_equal("No members have been assigned.")
         end

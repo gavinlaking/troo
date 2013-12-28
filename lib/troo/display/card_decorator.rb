@@ -44,9 +44,11 @@ module Troo
     end
 
     def comments
-      if card.comments.any?
-        #card.comments.map { |comment| CommentDecorator.new(comment).as_view }.join
-        "There are some comments."
+      if card.comments.any? && card.comments.size > 3
+        message = "There are more comments, use: 'troo show comments #{card.short_id}' to view all comments."
+        [decorated_recent_comments, message].join("\n")
+      elsif card.comments.any?
+        decorated_all_comments
       else
         "No comments have been left."
       end
@@ -85,6 +87,14 @@ module Troo
         colour:    nil,
         underline: nil
       }
+    end
+
+    def decorated_recent_comments
+      card.recent_comments.map { |comment| CommentDecorator.new(comment).as_view }.join
+    end
+
+    def decorated_all_comments
+      card.comments.map { |comment| CommentDecorator.new(comment).as_view }.join
     end
   end
 end
