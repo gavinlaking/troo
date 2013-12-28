@@ -25,11 +25,21 @@ module Troo
         end
       end
 
-      desc "card <card_id>", "Show a card <card_id> (includes comments)."
+      desc "card <card_id>", "Show a card <card_id> (includes latest 3 comments)."
       def card(card_id)
         @card_id = card_id
         if retrieved_card
           CardPresenter.render_show(retrieved_card)
+        else
+          say "Card not found."
+        end
+      end
+
+      desc "comments <card_id>", "Show all comments for card <card_id>."
+      def comments(card_id)
+        @card_id = card_id
+        if retrieved_card
+          CommentPresenter.render_show(retrieved_card)
         else
           say "Card not found."
         end

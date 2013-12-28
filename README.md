@@ -19,6 +19,7 @@ CLI interface for Trello. Named after Trello's mascot 'Roo'.
 - troo show board
 - troo show list
 - troo show card
+- troo show comments
 - troo move
 - troo cleanup
 

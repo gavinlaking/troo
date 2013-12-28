@@ -10,9 +10,11 @@ module Troo
       let(:card_id)         { "526d8f19ddb279532e005259" }
 
       before do
-        @board  = Fabricate(:board)
-        @list   = Fabricate(:list)
-        @card   = Fabricate(:card)
+        @board   = Fabricate(:board)
+        @list    = Fabricate(:list)
+        @card    = Fabricate(:card)
+        @comment = Fabricate(:comment)
+        @member  = Fabricate(:member)
       end
 
       after do
@@ -67,12 +69,37 @@ module Troo
         subject { capture_io { described_class.new.card(card_id) }.join }
 
         context "when the card exists" do
+          before do
+            @comment.delete
+          end
+
           it "returns the card details" do
             subject.must_match /\(67\) My Test Card/
             subject.must_match /some description/
             subject.must_match /No comments have been left./
             subject.must_match /Metadata/
             subject.must_match /Tue, Dec 17 at 21:48/
+          end
+        end
+
+        context "when the card does not exist" do
+          before do
+            Troo::CardRetrieval.stubs(:retrieve).returns()
+          end
+
+          it "returns a polite message" do
+            subject.must_match /Card not found./
+          end
+        end
+      end
+
+      describe "#comments" do
+        subject { capture_io { described_class.new.comments(card_id) }.join }
+
+        context "when the card exists" do
+          it "returns the card and all comments" do
+            subject.must_match /\(67\) My Test Card/
+            subject.must_match /My Test Comment/
           end
         end
 
