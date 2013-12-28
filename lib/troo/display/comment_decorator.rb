@@ -6,6 +6,14 @@ module Troo
       @comment = comment
     end
 
+    def as_view
+      Template.parse(self, "/../views/comment.erb")
+    end
+
+    def member_username
+      [comment.member.username, ":"].join
+    end
+
     def text
       comment.text
     end

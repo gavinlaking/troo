@@ -30,6 +30,12 @@ module Troo
                           underline: Esc.underline })
     end
 
+    def member(string)
+      highlight(string, { ansicolor: true,
+                          colour:    Esc.magenta,
+                          underline: Esc.underline })
+    end
+
     def metadata(label, string)
       [ highlight(label.rjust(9), { ansicolor: true,
                                     colour:    Esc.cyan,
