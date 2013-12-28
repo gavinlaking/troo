@@ -8,11 +8,11 @@ module Troo
       method_option :cards, type: :boolean, desc: "Refresh all cards for current board."
       def refresh
         if options["lists"]
-          return say "Use 'current board <board_id>' to set a current board first." unless Troo::BoardRetrieval.current
+          return say "Use 'troo current board <board_id>' to set a current board first." unless Troo::BoardRetrieval.current
           RefreshAll.lists
           say "All lists for current board have been refreshed."
         elsif options["cards"]
-          return say "Use 'current board <board_id>' to set a current board first." unless Troo::BoardRetrieval.current
+          return say "Use 'troo current board <board_id>' to set a current board first." unless Troo::BoardRetrieval.current
           RefreshAll.cards
           say "All cards for current board have been refreshed."
         else
