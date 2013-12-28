@@ -10,6 +10,7 @@ module Troo
     attribute :external_comment_id
     attribute :external_member_id
 
+    index :date
     index :external_board_id
     index :external_card_id
     index :external_comment_id
