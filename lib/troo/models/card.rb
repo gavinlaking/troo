@@ -36,6 +36,10 @@ module Troo
       Troo::Comment.find(external_card_id: self.external_card_id)
     end
 
+    def recent_comments
+      comments.sort(by: :date, limit: [0, 3])
+    end
+
     def members
       if external_member_ids.any?
         m = external_member_ids.map do |external_member_id|

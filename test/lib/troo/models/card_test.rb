@@ -82,6 +82,12 @@ module Troo
       end
     end
 
+    describe "#recent_comments" do
+      it "can have many comments" do
+        @card.recent_comments.size.must_equal 1
+      end
+    end
+
     describe "#members" do
       context "when the card has members" do
         it "returns the collection of members" do
