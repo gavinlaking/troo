@@ -45,13 +45,19 @@ module Troo
 
       desc "move <card_id> <list_id>", "Move a card <card_id> to list <list_id>."
       def move(card_id, list_id)
-        result = MoveCard.with(card_id, list_id)
-
-        Troo::ExternalCard.fetch(result.external_card_id, { mode: :card, comments: false })
-        Troo::ExternalCard.fetch(result.source_list_id, { mode: :list })
-        Troo::ExternalCard.fetch(result.destination_list_id, { mode: :list })
-
-        say "Card moved from '#{result.source_list_name}' to '#{result.destination_list_name}'."
+        if card = Troo::CardRetrieval.retrieve(card_id)
+          if list = Troo::ListRetrieval.retrieve(list_id)
+            if result = MoveCard.with(card, list)
+              say "Card moved from '#{card.list.name}' to '#{list.name}'."
+            else
+              say "Card could not be moved."
+            end
+          else
+            say "Card could not be moved, as list was not found."
+          end
+        else
+          say "Card could not be moved, as card was not found."
+        end
       end
     end
   end

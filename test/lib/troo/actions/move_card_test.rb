@@ -3,81 +3,49 @@ require_relative "../../../test_helper"
 module Troo
   describe MoveCard do
     let(:described_class) { MoveCard }
-    let(:card_id) { "526d8f19ddb279532e005259" }
-    let(:list_id) { "526d8e130a14a9d846001d98" }
 
     before do
-      @destination_list = Fabricate(:list, external_list_id: list_id)
-      @list = Fabricate(:list)
+      @list = Fabricate(:list, external_list_id: "526d8e130a14a9d846001d98")
       @card = Fabricate(:card)
-      Troo::ListRetrieval.stubs(:retrieve).returns(@destination_list)
-      Troo::CardRetrieval.stubs(:retrieve).returns(@card)
-    end
+      Troo::ExternalCard.stubs(:fetch).returns(true)
+     end
 
     after do
       database_cleanup
     end
 
     describe ".initialize" do
-      subject { described_class.new(card_id, list_id) }
+      subject { described_class.new(@card, @list) }
 
-      it "assigns the card_id" do
-        subject.instance_variable_get("@card_id").must_equal(card_id)
+      it "assigns the card to an instance variable" do
+        subject.instance_variable_get("@card").must_equal(@card)
       end
 
-      it "assigns the list_id" do
-        subject.instance_variable_get("@list_id").must_equal(list_id)
+      it "assigns the list to an instance variable" do
+        subject.instance_variable_get("@list").must_equal(@list)
       end
     end
 
-    describe "#move" do
+    describe "#perform" do
       before { VCR.insert_cassette(:move_card, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
-      subject { described_class.with(card_id, list_id) }
+      subject { described_class.with(@card, @list) }
 
-      it "moves the card to the new list and returns an instance of this class" do
-        subject.must_be_instance_of(described_class)
+      context "when the card was moved" do
+        it "returns a refresh of all cards for the board" do
+          subject.wont_equal false
+        end
       end
-    end
 
-    describe "#source_list_id" do
-      subject { described_class.new(card_id, list_id).source_list_id }
+      context "when the card was not moved" do
+        before do
+          Trello::Card.any_instance.stubs(:move_to_list).raises(Trello::Error)
+        end
 
-      it "returns the source list id" do
-        subject.must_equal(@card.external_list_id)
-      end
-    end
-
-    describe "#source_list_name" do
-      subject { described_class.new(card_id, list_id).source_list_name }
-
-      it "returns the source list name" do
-        subject.must_equal(@card.list.name)
-      end
-    end
-
-    describe "#destination_list_id" do
-      subject { described_class.new(card_id, list_id).destination_list_id }
-
-      it "returns the destination list id" do
-        subject.must_equal(@destination_list.external_list_id)
-      end
-    end
-
-    describe "#destination_list_name" do
-      subject { described_class.new(card_id, list_id).destination_list_name }
-
-      it "returns the destination list name" do
-        subject.must_equal(@destination_list.name)
-      end
-    end
-
-    describe "#external_card_id" do
-      subject { described_class.new(card_id, list_id).external_card_id }
-
-      it "returns the external_card_id" do
-        subject.must_equal(@card.external_card_id)
+        it "retrns false" do
+          subject.must_equal false
+        end
       end
     end
   end

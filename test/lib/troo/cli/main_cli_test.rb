@@ -105,24 +105,49 @@ module Troo
       describe "#move" do
         let(:card_id)   { "526d8f19ddb279532e005259" }
         let(:list_id)   { "526d8e130a14a9d846001d98" }
-        let(:move_card) { OpenStruct.new(external_card_id: card_id,
-                                         source_list_id: @card.external_list_id,
-                                         source_list_name: @card.list.name,
-                                         destination_list_id: list_id,
-                                         destination_list_name: @destination_list.name) }
 
         before do
           @card = Fabricate(:card)
           @list = Fabricate(:list)
-          @destination_list = Fabricate(:list, name: "My New List", external_list_id: list_id)
-          Troo::ExternalCard.stubs(:fetch).returns(@card)
-          Troo::MoveCard.stubs(:with).returns(move_card)
+          Troo::MoveCard.stubs(:with).returns(true)
+          Troo::CardRetrieval.stubs(:retrieve).returns(@card)
+          Troo::ListRetrieval.stubs(:retrieve).returns(@list)
         end
 
         subject { capture_io { described_class.new.move(card_id, list_id) }.join }
 
-        it "moves the card and returns a polite message" do
-          subject.must_match /Card moved from/
+        context "when the card was found" do
+          context "when the list was found" do
+            context "when the card could be moved" do
+              it "returns a polite message" do
+                subject.must_match /Card moved from/
+              end
+            end
+
+            context "when the card could not be moved" do
+              before { Troo::MoveCard.stubs(:with).returns(false) }
+
+              it "returns a polite message" do
+                subject.must_match /could not be moved/
+              end
+            end
+          end
+
+          context "when the list was not found" do
+            before { Troo::ListRetrieval.stubs(:retrieve).returns(nil) }
+
+            it "returns a polite message" do
+              subject.must_match /list was not found/
+            end
+          end
+        end
+
+        context "when the card was not found" do
+          before { Troo::CardRetrieval.stubs(:retrieve).returns(nil) }
+
+          it "returns a polite message" do
+            subject.must_match /card was not found/
+          end
         end
       end
     end
