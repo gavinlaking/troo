@@ -30,7 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
 
-  spec.add_dependency "dm-sqlite-adapter"
   spec.add_dependency "json", "1.7.7"
   spec.add_dependency "ohm"
   spec.add_dependency "ohm-contrib"
