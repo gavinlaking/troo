@@ -53,7 +53,7 @@ module Troo
     end
 
     def defaults
-      { mode: :board }
+      { mode: :board, debug: false }
     end
 
     def external_board_ids

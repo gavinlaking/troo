@@ -9,11 +9,11 @@ module Troo
       def refresh
         if options["lists"]
           return say "Use 'troo current board <board_id>' to set a current board first." unless Troo::BoardRetrieval.current
-          RefreshAll.lists
+          RefreshAll.lists(options)
           say "All lists for current board have been refreshed."
         elsif options["cards"]
           return say "Use 'troo current board <board_id>' to set a current board first." unless Troo::BoardRetrieval.current
-          RefreshAll.cards
+          RefreshAll.cards(options)
           say "All cards for current board have been refreshed."
         else
           RefreshAll.perform(options)
