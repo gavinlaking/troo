@@ -15,7 +15,6 @@ module Troo
     end
 
     def fetch_by_external_id
-      Troo.logger.debug "Fetching cards..."
       case options.fetch(:mode)
       when :board then board_mode
       when :list  then list_mode
@@ -35,18 +34,21 @@ module Troo
     end
 
     def board_mode
+      Troo.logger.debug "Fetching remote cards for board..."
       Trello::Board.find(external_id).cards
     rescue Trello::Error
       []
     end
 
     def list_mode
+      Troo.logger.debug "Fetching remote cards for list..."
       Trello::List.find(external_id).cards
     rescue Trello::Error
       []
     end
 
     def card_mode
+      Troo.logger.debug "Fetching remote card..."
       [Trello::Card.find(external_id)]
     rescue Trello::Error
       []

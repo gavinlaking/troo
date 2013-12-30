@@ -12,7 +12,6 @@ module Troo
     end
 
     def fetch_by_external_id
-      Troo.logger.debug "Fetching members..."
       case options.fetch(:mode)
       when :board  then board_mode
       when :member then member_mode
@@ -31,12 +30,14 @@ module Troo
     end
 
     def board_mode
+      Troo.logger.debug "Fetching remote members for board..."
       Trello::Board.find(external_id).members
     rescue Trello::Error
       []
     end
 
     def member_mode
+      Troo.logger.debug "Fetching remote member..."
       [Trello::Member.find(external_id)]
     rescue Trello::Error
       []
