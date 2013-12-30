@@ -22,13 +22,10 @@ module Troo
     end
 
     def parsed_json_response
-      if create_comment
-        resource = OpenStruct.new(JSON.parse(create_comment))
-        resource.member_creator_id = resource.memberCreator.fetch("id", "")
-        resource
-      else
-        false
-      end
+      return false unless create_comment
+      resource = OpenStruct.new(JSON.parse(create_comment))
+      resource.member_creator_id = resource.memberCreator.fetch("id", "")
+      resource
     end
 
     def create_comment
@@ -39,9 +36,7 @@ module Troo
     end
 
     def attributes
-      {
-        'id' => card.external_card_id
-      }
+      { 'id' => card.external_card_id }
     end
   end
 end
