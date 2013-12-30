@@ -15,6 +15,7 @@ module Troo
     end
 
     def fetch_by_external_id
+      Troo.logger.debug "Fetching cards..."
       case options.fetch(:mode)
       when :board then board_mode
       when :list  then list_mode

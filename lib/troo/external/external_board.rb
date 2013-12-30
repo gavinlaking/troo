@@ -12,6 +12,7 @@ module Troo
     end
 
     def fetch_by_external_id
+      Troo.logger.debug "Fetching board..."
       [Trello::Board.find(external_id)]
     rescue Trello::Error
       []
@@ -24,6 +25,7 @@ module Troo
     end
 
     def fetch_all
+      Troo.logger.debug "Fetching boards..."
       Trello::Board.all
     rescue Trello::Error
       []

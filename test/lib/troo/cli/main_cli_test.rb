@@ -21,55 +21,56 @@ module Troo
         subject { capture_io { described_instance.refresh }.join }
 
         before do
-          RefreshAll.stubs(:perform)
+          RefreshAll.stubs(:all)
+          RefreshAll.stubs(:current)
           Troo::BoardRetrieval.stubs(:current).returns(current)
           RefreshAll.stubs(:lists)
           RefreshAll.stubs(:cards)
         end
 
-        context "when no additional options are set" do
+        context "when the --all option is set" do
+          before do
+            described_instance.stubs(:options).returns({"all" => true})
+          end
+
           it "refreshes all local data" do
             subject.must_match /All local data has been refreshed./
           end
         end
 
-        context "when the --lists option is set" do
-          before do
-            described_instance.stubs(:options).returns({"lists" => true})
-          end
+        context "when the current board is set" do
+          context "when the --lists option is set" do
+            before do
+              described_instance.stubs(:options).returns({"lists" => true})
+            end
 
-          context "when a current board is set" do
             it "refresh all the lists for the current board" do
-              subject.must_match /lists for current board have been refreshed/
+              subject.must_match /lists for the current board have been refreshed/
             end
           end
 
-          context "when a current board is not set" do
-            let(:current) { }
+          context "when the --cards option is set" do
+            before do
+              described_instance.stubs(:options).returns({"cards" => true})
+            end
 
-            it "returns a polite message" do
-              subject.must_match /to set a current board first/
+            it "retreshes all the cards for the current board" do
+              subject.must_match /cards for the current board have been refreshed/
+            end
+          end
+
+          context "when no additional options are set" do
+            it "refreshes all local data" do
+              subject.must_match /All data for the current board has been refreshed./
             end
           end
         end
 
-        context "when the --cards option is set" do
-          before do
-            described_instance.stubs(:options).returns({"cards" => true})
-          end
+        context "when the current board is not set" do
+          let(:current) { }
 
-          context "when a current board is set" do
-            it "retreshes all the cards for the current board" do
-              subject.must_match /cards for current board have been refreshed/
-            end
-          end
-
-          context "when a current board is not set" do
-            let(:current) { }
-
-            it "returns a polite message" do
-              subject.must_match /to set a current board first/
-            end
+          it "returns a polite message" do
+            subject.must_match /to set a current board first/
           end
         end
       end

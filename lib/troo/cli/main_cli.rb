@@ -3,21 +3,29 @@ module Troo
     class Main < ThorFixes
       class_option :debug, type: :boolean, desc: "Enable debugging."
 
-      desc "refresh", "Refresh all data"
+      desc "refresh", "Refresh all data for current board."
+      method_option :all, type: :boolean, desc: "Refresh all boards, lists, cards and comments."
       method_option :lists, type: :boolean, desc: "Refresh all lists for current board."
       method_option :cards, type: :boolean, desc: "Refresh all cards for current board."
       def refresh
-        if options["lists"]
-          return say "Use 'troo current board <board_id>' to set a current board first." unless Troo::BoardRetrieval.current
-          RefreshAll.lists(options)
-          say "All lists for current board have been refreshed."
-        elsif options["cards"]
-          return say "Use 'troo current board <board_id>' to set a current board first." unless Troo::BoardRetrieval.current
-          RefreshAll.cards(options)
-          say "All cards for current board have been refreshed."
-        else
-          RefreshAll.perform(options)
+        if options["all"]
+          RefreshAll.all(nil, options)
           say "All local data has been refreshed."
+        else
+          if board = Troo::BoardRetrieval.current
+            if options["lists"]
+              RefreshAll.lists(board, options)
+              say "All lists for the current board have been refreshed."
+            elsif options["cards"]
+              RefreshAll.cards(board, options)
+              say "All cards for the current board have been refreshed."
+            else
+              RefreshAll.current(board, options)
+              say "All data for the current board has been refreshed."
+            end
+          else
+            say "Use 'troo current board <board_id>' to set a current board first."
+          end
         end
       end
 

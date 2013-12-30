@@ -9,7 +9,12 @@ module Troo
       @board = Fabricate(:board)
       @list = Fabricate(:list)
       @card = Fabricate(:card)
-      Troo::BoardRetrieval.stubs(:current).returns(@board)
+
+      ExternalBoard.stubs(:fetch_all).returns([@board])
+      ExternalList.stubs(:fetch).returns([@list])
+      ExternalCard.stubs(:fetch).returns([@card])
+      ExternalComment.stubs(:fetch).returns([])
+      ExternalMember.stubs(:fetch).returns([])
     end
 
     after do
@@ -17,23 +22,29 @@ module Troo
     end
 
     describe ".initialize" do
-      subject { described_class.new(options) }
+      subject { described_class.new(@board, options) }
 
-      it "assigns the options" do
+      it "assigns the board to an instance variable" do
+        subject.instance_variable_get("@board").must_equal(@board)
+      end
+
+      it "assigns the options to an instance variable" do
         subject.instance_variable_get("@options").must_equal(options)
       end
     end
 
-    describe ".perform" do
-      subject { described_class.perform(options) }
+    describe ".all" do
+      let(:board) { nil }
 
-      before do
-        ExternalBoard.stubs(:fetch_all).returns([@board])
-        ExternalList.stubs(:fetch).returns([@list])
-        ExternalCard.stubs(:fetch).returns([@card])
-        ExternalComment.stubs(:fetch).returns([])
-        ExternalMember.stubs(:fetch).returns([])
+      subject { described_class.all(board, options) }
+
+      it "returns true when successful" do
+        subject.must_equal(true)
       end
+    end
+
+    describe ".current" do
+      subject { described_class.current(@board, options) }
 
       it "returns true when successful" do
         subject.must_equal(true)
@@ -41,48 +52,18 @@ module Troo
     end
 
     describe ".lists" do
-      before { VCR.insert_cassette(:refresh_lists_by_board_id, decode_compressed_response: true) }
-      after  { VCR.eject_cassette }
+      subject { described_class.lists(@board, options) }
 
-      subject { described_class.lists(options, external_board_id) }
-
-      context "when an external_board_id is provided" do
-        let(:external_board_id) { "526d8e130a14a9d846001d96" }
-
-        it "refreshes the lists for the board specified" do
-          subject.size.must_equal(4)
-        end
-      end
-
-      context "when a current board is set" do
-        let(:external_board_id) { }
-
-        it "refreshes the lists for the current board" do
-          subject.size.must_equal(4)
-        end
+      it "refreshes the lists for the board specified" do
+          subject.size.must_equal(1)
       end
     end
 
-    describe "#cards" do
-      before { VCR.insert_cassette(:refresh_cards_by_board_id, decode_compressed_response: true) }
-      after  { VCR.eject_cassette }
+    describe ".cards" do
+      subject { described_class.cards(@board, options) }
 
-      subject { described_class.cards(options, external_board_id) }
-
-      context "when an external_board_id is provided" do
-        let(:external_board_id) { "526d8e130a14a9d846001d96" }
-
-        it "refreshes the cards for the board specified" do
-          subject.size.must_equal(9)
-        end
-      end
-
-      context "when a current board is set" do
-        let(:external_board_id) { }
-
-        it "refreshes the cards for the current board" do
-          subject.size.must_equal(9)
-        end
+      it "refreshes the cards for the board specified" do
+        subject.size.must_equal(1)
       end
     end
   end

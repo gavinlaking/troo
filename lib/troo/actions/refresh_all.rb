@@ -1,52 +1,56 @@
 module Troo
   class RefreshAll
-    def initialize(options = {})
+    def initialize(board = nil, options = {})
+      @board = board
       @options = options
     end
 
-    def self.perform(options = {})
-      new(options).perform
+    def self.all(board = nil, options = {})
+      new(board, options).all
     end
 
-    def perform
-      external_board_ids.map do |id|
-        Troo.logger.debug "Fetching lists..."
-        lists(id)
-
-        Troo.logger.debug "Fetching members..."
-        ExternalMember.fetch(id, options)
-
-        Troo.logger.debug "Fetching cards..."
-        cards(id)
+    def all
+      external_board_ids.map do |external_board_id|
+        ExternalList.fetch(external_board_id, options)
+        ExternalMember.fetch(external_board_id, options)
+        ExternalCard.fetch(external_board_id, options)
       end
       true
     end
 
-    def self.lists(options = {}, external_board_id = nil)
-      new(options).lists(external_board_id)
+    def self.current(board, options = {})
+      new(board, options).current
     end
 
-    def lists(external_board_id = nil)
-      if external_board_id
-        ExternalList.fetch(external_board_id, options)
-      elsif Troo::BoardRetrieval.current
-        ExternalList.fetch(Troo::BoardRetrieval.current.external_board_id, options)
-      end
+    def current
+      lists
+      members
+      cards
+      true
     end
 
-    def self.cards(options = {}, external_board_id = nil)
-      new(options).cards(external_board_id)
+    def self.lists(board, options = {})
+      new(board, options).lists
     end
 
-    def cards(external_board_id = nil)
-      if external_board_id
-        ExternalCard.fetch(external_board_id, options)
-      elsif Troo::BoardRetrieval.current
-        ExternalCard.fetch(Troo::BoardRetrieval.current.external_board_id, options)
-      end
+    def lists
+      ExternalList.fetch(external_board_id, options)
+    end
+
+    def self.cards(board, options = {})
+      new(board, options).cards
+    end
+
+    def cards
+      ExternalCard.fetch(external_board_id, options)
+    end
+
+    def members
+      ExternalMember.fetch(external_board_id, options)
     end
 
     private
+    attr_accessor :board
 
     def options
       defaults.merge!(@options)
@@ -54,6 +58,10 @@ module Troo
 
     def defaults
       { mode: :board, debug: false }
+    end
+
+    def external_board_id
+      board.external_board_id
     end
 
     def external_board_ids
