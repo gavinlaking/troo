@@ -16,9 +16,55 @@ module Troo
       end
 
       describe "#status" do
+        before do
+          @board = Fabricate(:board, current: true)
+          @list  = Fabricate(:list, current: true)
+          @card  = Fabricate(:card, current: true)
+        end
+
         subject { capture_io { described_instance.status }.join }
 
+        context "when a current board is set" do
+          it "returns a polite message" do
+            subject.must_match /My Test Board/
+          end
+        end
 
+        context "when a current board is not set" do
+          before { Troo::BoardRetrieval.stubs(:current).returns(nil) }
+
+          it "returns a polite message" do
+            subject.must_match /No board/
+          end
+        end
+
+        context "when a current list is set" do
+          it "returns a polite message" do
+            subject.must_match /My Test List/
+          end
+        end
+
+        context "when a current list is not set" do
+          before { Troo::ListRetrieval.stubs(:current).returns(nil) }
+
+          it "returns a polite message" do
+            subject.must_match /No list/
+          end
+        end
+
+        context "when a current card is set" do
+          it "returns a polite message" do
+            subject.must_match /My Test Card/
+          end
+        end
+
+        context "when a current card is not set" do
+          before { Troo::CardRetrieval.stubs(:current).returns(nil) }
+
+          it "returns a polite message" do
+            subject.must_match /No card/
+          end
+        end
       end
 
       describe "#refresh" do

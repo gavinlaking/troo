@@ -13,6 +13,18 @@ module Troo
         else
           say "No board has been set as current."
         end
+
+        if list = Troo::ListRetrieval.current
+          say "List: #{ListDecorator.new(list).short}"
+        else
+          say "No list has been set as current."
+        end
+
+        if card = Troo::CardRetrieval.current
+          say "Card: #{CardDecorator.new(card).short}"
+        else
+          say "No card has been set as current."
+        end
         puts
 
         help
