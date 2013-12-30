@@ -5,22 +5,22 @@ CLI interface for Trello. Named after Trello's mascot 'Roo'.
 ## Features
 
 - troo refresh
-- troo current board
-- troo current card
-- troo current list
+- troo current board <board_id>
+- troo current card <card_id>
+- troo current list <list_id>
 - troo refresh --lists
 - troo refresh --cards
 - troo version
-- troo add board
-- troo add card
-- troo add comment
-- troo add list
+- troo add board <name>
+- troo add card <list_id>
+- troo add comment <card_id>
+- troo add list <board_id>
 - troo show board
-- troo show board
-- troo show list
-- troo show card
-- troo show comments
-- troo move
+- troo show board (<board_id>)
+- troo show list <list_id>
+- troo show card <card_id>
+- troo show comments <card_id>
+- troo move <card_id> <list_id>
 - troo cleanup
 
 ## Installation
@@ -52,6 +52,7 @@ You will need user authentication tokens to access your Trello account.
 
 ## Todo
 
+- Refactor test suite to use user's Trello account rather than my own.
 - Update features.
 - Fix multitude of sins.
 - Write cucumber integration tests.
