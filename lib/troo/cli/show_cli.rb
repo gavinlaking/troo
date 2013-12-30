@@ -3,7 +3,7 @@ module Troo
     class Show < ThorFixes
       package_name "show"
 
-      desc "board <board_id>", "Show all the lists and cards for board <board_id>."
+      desc "board (<board_id>)", "Show all the boards with lists, or show lists and cards for board <board_id>."
       def board(board_id = nil)
         return Troo::CLI::Board.new.all unless board_id
 
