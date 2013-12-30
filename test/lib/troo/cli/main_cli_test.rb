@@ -15,6 +15,12 @@ module Troo
         database_cleanup
       end
 
+      describe "#status" do
+        subject { capture_io { described_instance.status }.join }
+
+
+      end
+
       describe "#refresh" do
         let(:current) { @board }
 

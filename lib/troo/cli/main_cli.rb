@@ -1,7 +1,22 @@
 module Troo
   module CLI
     class Main < ThorFixes
+      default_task :status
+
       class_option :debug, type: :boolean, desc: "Enable debugging."
+
+      desc "status", "Get troo status."
+      def status
+        puts
+        if board = Troo::BoardRetrieval.current
+          say "Board: #{BoardDecorator.new(board).short}"
+        else
+          say "No board has been set as current."
+        end
+        puts
+
+        help
+      end
 
       desc "refresh", "Refresh all data for current board."
       method_option :all, type: :boolean, desc: "Refresh all boards, lists, cards and comments."
