@@ -11,6 +11,7 @@ module Troo
 
       before do
         @board   = Fabricate(:board)
+        @board_2 = Fabricate(:board, name: "My Other Board")
         @list    = Fabricate(:list)
         @card    = Fabricate(:card)
         @comment = Fabricate(:comment)
@@ -21,24 +22,69 @@ module Troo
         database_cleanup
       end
 
-      describe "#board" do
-        subject { capture_io { described_class.new.board(board_id) }.join }
+      describe "#boards" do
+        subject { capture_io { described_class.new.boards }.join }
 
-        context "when the board exists" do
-          it "returns the board with all lists and all cards" do
+        context "when boards exist" do
+          it "returns a list of boards" do
             subject.must_match /Test Board/
-            subject.must_match /Test List/
-            subject.must_match /Test Card/
+            subject.must_match /Other Board/
           end
         end
 
-        context "when the board does not exist" do
+        context "when no boards exist" do
           before do
-            Troo::BoardRetrieval.stubs(:retrieve).returns()
+            Troo::BoardRetrieval.stubs(:retrieve).returns([])
           end
 
           it "returns a polite message" do
-            subject.must_match /Board not found./
+            subject.must_match /Boards not found./
+          end
+        end
+      end
+
+      describe "#board" do
+        subject { capture_io { described_class.new.board(board_id) }.join }
+
+        context "when a board_id was provided" do
+          context "and the board exists" do
+            it "returns the board with all lists and all cards" do
+              subject.must_match /Test Board/
+              subject.must_match /Test List/
+              subject.must_match /Test Card/
+            end
+          end
+
+          context "and the board does not exist" do
+            before do
+              Troo::BoardRetrieval.stubs(:retrieve).returns()
+            end
+
+            it "returns a polite message" do
+              subject.must_match /Board not found./
+            end
+          end
+        end
+
+        context "when a board_id was not provided" do
+          let(:board_id) { }
+
+          context "and the current board is set" do
+            before { Troo::BoardRetrieval.stubs(:current).returns(@board) }
+
+            it "returns the board with all lists and all cards" do
+              subject.must_match /Test Board/
+              subject.must_match /Test List/
+              subject.must_match /Test Card/
+            end
+          end
+
+          context "and the current board is not set" do
+            before { Troo::BoardRetrieval.stubs(:current).returns() }
+
+            it "returns a polite message" do
+              subject.must_match /set a current board first/
+            end
           end
         end
       end
