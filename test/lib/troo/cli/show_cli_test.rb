@@ -34,7 +34,7 @@ module Troo
 
         context "when no boards exist" do
           before do
-            Troo::BoardRetrieval.stubs(:retrieve).returns([])
+            Troo::BoardRetrieval.stubs(:all).returns([])
           end
 
           it "returns a polite message" do
@@ -70,7 +70,7 @@ module Troo
           let(:board_id) { }
 
           context "and the current board is set" do
-            before { Troo::BoardRetrieval.stubs(:current).returns(@board) }
+            before { Troo::BoardRetrieval.stubs(:retrieve).returns(@board) }
 
             it "returns the board with all lists and all cards" do
               subject.must_match /Test Board/
@@ -80,7 +80,7 @@ module Troo
           end
 
           context "and the current board is not set" do
-            before { Troo::BoardRetrieval.stubs(:current).returns() }
+            before { Troo::BoardRetrieval.stubs(:retrieve).returns() }
 
             it "returns a polite message" do
               subject.must_match /set a current board first/
@@ -92,21 +92,45 @@ module Troo
       describe "#list" do
         subject { capture_io { described_class.new.list(list_id) }.join }
 
-        context "when the list exists" do
-          it "returns the list's board, the list and all cards" do
-            subject.must_match /Test Board/
-            subject.must_match /Test List/
-            subject.must_match /Test Card/
+        context "when a list_id was provided" do
+          context "when the list exists" do
+            it "returns the list's board, the list and all cards" do
+              subject.must_match /Test Board/
+              subject.must_match /Test List/
+              subject.must_match /Test Card/
+            end
+          end
+
+          context "when the list does not exist" do
+            before do
+              Troo::ListRetrieval.stubs(:retrieve).returns()
+            end
+
+            it "returns a polite message" do
+              subject.must_match /List not found./
+            end
           end
         end
 
-        context "when the list does not exist" do
-          before do
-            Troo::ListRetrieval.stubs(:retrieve).returns()
+        context "when a list_id was not provided" do
+          let(:list_id) { }
+
+          context "and the current list is set" do
+            before { Troo::ListRetrieval.stubs(:retrieve).returns(@list) }
+
+            it "returns the list's board, the list and all cards" do
+              subject.must_match /Test Board/
+              subject.must_match /Test List/
+              subject.must_match /Test Card/
+            end
           end
 
-          it "returns a polite message" do
-            subject.must_match /List not found./
+          context "and the current list is not set" do
+            before { Troo::ListRetrieval.stubs(:retrieve).returns() }
+
+            it "returns a polite message" do
+              subject.must_match /set a current list first/
+            end
           end
         end
       end
@@ -114,27 +138,51 @@ module Troo
       describe "#card" do
         subject { capture_io { described_class.new.card(card_id) }.join }
 
-        context "when the card exists" do
-          before do
-            @comment.delete
+        context "when a card_id was provided" do
+          context "when the card exists" do
+            before do
+              @comment.delete
+            end
+
+            it "returns the card details" do
+              subject.must_match /\(67\) My Test Card/
+              subject.must_match /some description/
+              subject.must_match /Metadata/
+              subject.must_match /Tue, Dec 17 at 21:48/
+            end
           end
 
-          it "returns the card details" do
-            subject.must_match /\(67\) My Test Card/
-            subject.must_match /some description/
-            subject.must_match /No comments have been left./
-            subject.must_match /Metadata/
-            subject.must_match /Tue, Dec 17 at 21:48/
+          context "when the card does not exist" do
+            before do
+              Troo::CardRetrieval.stubs(:retrieve).returns()
+            end
+
+            it "returns a polite message" do
+              subject.must_match /Card not found./
+            end
           end
         end
 
-        context "when the card does not exist" do
-          before do
-            Troo::CardRetrieval.stubs(:retrieve).returns()
+        context "when a card_id was not provided" do
+          let(:card_id) { }
+
+          context "and the current card is set" do
+            before { Troo::CardRetrieval.stubs(:retrieve).returns(@card) }
+
+            it "returns the card details" do
+              subject.must_match /\(67\) My Test Card/
+              subject.must_match /some description/
+              subject.must_match /Metadata/
+              subject.must_match /Tue, Dec 17 at 21:48/
+            end
           end
 
-          it "returns a polite message" do
-            subject.must_match /Card not found./
+          context "and the current card is not set" do
+            before { Troo::CardRetrieval.stubs(:retrieve).returns() }
+
+            it "returns a polite message" do
+              subject.must_match /set a current card first/
+            end
           end
         end
       end
@@ -142,20 +190,43 @@ module Troo
       describe "#comments" do
         subject { capture_io { described_class.new.comments(card_id) }.join }
 
-        context "when the card exists" do
-          it "returns the card and all comments" do
-            subject.must_match /\(67\) My Test Card/
-            subject.must_match /My Test Comment/
+        context "when a card_id was provided" do
+          context "when the card exists" do
+            it "returns the card and all comments" do
+              subject.must_match /\(67\) My Test Card/
+              subject.must_match /My Test Comment/
+            end
+          end
+
+          context "when the card does not exist" do
+            before do
+              Troo::CardRetrieval.stubs(:retrieve).returns()
+            end
+
+            it "returns a polite message" do
+              subject.must_match /Card not found./
+            end
           end
         end
 
-        context "when the card does not exist" do
-          before do
-            Troo::CardRetrieval.stubs(:retrieve).returns()
+        context "when a card_id was not provided" do
+          let(:card_id) { }
+
+          context "and the current card is set" do
+            before { Troo::CardRetrieval.stubs(:retrieve).returns(@card) }
+
+            it "returns the card and all comments" do
+              subject.must_match /\(67\) My Test Card/
+              subject.must_match /My Test Comment/
+            end
           end
 
-          it "returns a polite message" do
-            subject.must_match /Card not found./
+          context "and the current card is not set" do
+            before { Troo::CardRetrieval.stubs(:retrieve).returns() }
+
+            it "returns a polite message" do
+              subject.must_match /set a current card first/
+            end
           end
         end
       end

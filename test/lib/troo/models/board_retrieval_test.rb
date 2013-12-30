@@ -14,6 +14,14 @@ module Troo
       database_cleanup
     end
 
+    describe ".all" do
+      subject { described_class.all }
+
+      it "retrieves all locally stored lists" do
+        subject.size.must_equal 1
+      end
+    end
+
     describe ".current" do
       subject { described_class.current }
 
@@ -36,8 +44,18 @@ module Troo
       context "without an ID" do
         subject { described_class.retrieve }
 
-        it "retrieves all locally stored boards" do
-          subject.size.must_equal 1
+        context "when current is set" do
+          it "returns the current" do
+            subject.must_equal @board
+          end
+        end
+
+        context "when current is not set" do
+          let(:current) { false }
+
+          it "returns nil" do
+            subject.must_equal nil
+          end
         end
       end
 
@@ -70,6 +88,16 @@ module Troo
 
           it "returns the correct board" do
             subject.name.must_equal("My Remote Test Board")
+          end
+        end
+
+        context "when the ID cannot be found" do
+          let(:id) { "not_found_id" }
+
+          before { ExternalBoard.stubs(:fetch).returns([]) }
+
+          it "returns nil" do
+            subject.must_equal nil
           end
         end
       end

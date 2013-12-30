@@ -1,28 +1,23 @@
 module Troo
   class CommentRetrieval
-    def initialize(id = nil)
+    def initialize(id)
       @id = id
     end
 
-    def self.retrieve(id = nil)
+    def self.all
+      Troo::Comment.all
+    end
+
+    def self.retrieve(id)
       new(id).retrieve
     end
 
     def retrieve
-      all || by_id || by_external_id
+      by_id || by_external_id
     end
 
     private
     attr_reader :id
-
-    def all
-      return all_comments unless id
-      nil
-    end
-
-    def all_comments
-      Troo::Comment.all
-    end
 
     def by_id
       Troo::Comment[id]

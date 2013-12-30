@@ -4,8 +4,12 @@ module Troo
       @id = id
     end
 
+    def self.all
+      Troo::List.all
+    end
+
     def self.current
-      Troo::List.current
+      new.retrieve
     end
 
     def self.retrieve(id = nil)
@@ -13,19 +17,15 @@ module Troo
     end
 
     def retrieve
-      all || by_id || by_external_id || remote
+      return current unless id
+      by_id || by_external_id || remote
     end
 
     private
     attr_reader :id
 
-    def all
-      return all_lists unless id
-      nil
-    end
-
-    def all_lists
-      Troo::List.all
+    def current
+      Troo::List.current
     end
 
     def by_id

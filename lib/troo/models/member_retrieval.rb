@@ -1,28 +1,23 @@
 module Troo
   class MemberRetrieval
-    def initialize(id = nil)
+    def initialize(id)
       @id = id
     end
 
-    def self.retrieve(id = nil)
+    def self.all
+      Troo::Member.all
+    end
+
+    def self.retrieve(id)
       new(id).retrieve
     end
 
     def retrieve
-      all || by_id || by_external_id || remote
+      by_id || by_external_id || remote
     end
 
     private
     attr_reader :id
-
-    def all
-      return all_members unless id
-      nil
-    end
-
-    def all_members
-      Troo::Member.all
-    end
 
     def by_id
       Troo::Member[id]

@@ -12,32 +12,40 @@ module Troo
       database_cleanup
     end
 
-    describe ".retrieve" do
-      context "without an ID" do
-        subject { described_class.retrieve }
+    describe ".all" do
+      subject { described_class.all }
 
-        it "retrieves all locally stored comments" do
-          subject.size.must_equal 1
+      it "retrieves all locally stored comments" do
+        subject.size.must_equal 1
+      end
+    end
+
+    describe ".retrieve" do
+      subject { described_class.retrieve(id) }
+
+      context "local retrieval by database ID" do
+        let(:id) { @comment.id }
+
+        it "returns the correct comment" do
+          subject.text.must_equal("My Test Comment")
         end
       end
 
-      context "with an ID" do
-        subject { described_class.retrieve(id) }
+      context "local retrieval by external ID" do
+        let(:id) { "51f9277b2822b8654f0023af" }
 
-        context "local retrieval by database ID" do
-          let(:id) { @comment.id }
-
-          it "returns the correct comment" do
-            subject.text.must_equal("My Test Comment")
-          end
+        it "returns the correct comment" do
+          subject.text.must_equal("My Test Comment")
         end
+      end
 
-        context "local retrieval by external ID" do
-          let(:id) { "51f9277b2822b8654f0023af" }
+      context "when the ID cannot be found" do
+        let(:id) { "not_found_id" }
 
-          it "returns the correct comment" do
-            subject.text.must_equal("My Test Comment")
-          end
+        before { ExternalComment.stubs(:fetch).returns([]) }
+
+        it "returns nil" do
+          subject.must_equal nil
         end
       end
     end

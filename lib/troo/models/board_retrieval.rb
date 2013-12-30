@@ -4,8 +4,12 @@ module Troo
       @id = id
     end
 
+    def self.all
+      Troo::Board.all
+    end
+
     def self.current
-      Troo::Board.current
+      new.retrieve
     end
 
     def self.retrieve(id = nil)
@@ -13,19 +17,15 @@ module Troo
     end
 
     def retrieve
-      all || by_id || by_external_id || remote
+      return current unless id
+      by_id || by_external_id || remote
     end
 
     private
     attr_reader :id
 
-    def all
-      return all_boards unless id
-      nil
-    end
-
-    def all_boards
-      Troo::Board.all
+    def current
+      Troo::Board.current
     end
 
     def by_id
