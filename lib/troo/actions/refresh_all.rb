@@ -23,9 +23,11 @@ module Troo
     end
 
     def current
-      lists
-      members
-      cards
+      new_lists = ExternalList.fetch(external_board_id, options)
+      new_cards = new_lists.map do |list|
+        ExternalCard.fetch(list.external_list_id, { mode: :list })
+      end
+      ExternalMember.fetch(external_board_id, options)
       true
     end
 
