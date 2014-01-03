@@ -39,8 +39,12 @@ module Troo
 
     def local_identical?
       return false unless local_exists?
-      Troo.logger.debug "Local list identical, skipping..." if options[:debug]
-      local_data == resource_data
+      if local_data == resource_data
+        Troo.logger.debug "Local list identical, skipping..." if options[:debug]
+        true
+      else
+        false
+      end
     end
 
     def local_exists?
@@ -59,8 +63,8 @@ module Troo
       { external_board_id: resource.board_id,
         external_list_id:  resource.id,
         name:              resource.name,
-        position:          resource.pos,
-        closed:            resource.closed }
+        position:          resource.pos.to_s,
+        closed:            resource.closed.to_s }
     end
   end
 end

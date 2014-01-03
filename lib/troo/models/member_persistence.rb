@@ -39,8 +39,12 @@ module Troo
 
     def local_identical?
       return false unless local_exists?
-      Troo.logger.debug "Local member identical, skipping..." if options[:debug]
-      local_data == resource_data
+      if local_data == resource_data
+        Troo.logger.debug "Local member identical, skipping..." if options[:debug]
+        true
+      else
+        false
+      end
     end
 
     def local_exists?
@@ -63,7 +67,7 @@ module Troo
         initials:           resource.initials,
         avatar_id:          resource.avatar_id,
         bio:                resource.bio,
-        url:                resource.url }
+        url:                resource.url }.delete_if { |k, v| v.nil? }
     end
   end
 end

@@ -39,8 +39,12 @@ module Troo
 
     def local_identical?
       return false unless local_exists?
-      Troo.logger.debug "Local card identical, skipping..." if options[:debug]
-      local_data == resource_data
+      if local_data == resource_data
+        Troo.logger.debug "Local card identical, skipping..." if options[:debug]
+        true
+      else
+        false
+      end
     end
 
     def local_exists?
@@ -60,13 +64,14 @@ module Troo
         external_list_id:    resource.list_id,
         external_card_id:    resource.id,
         external_member_ids: resource.member_ids,
-        short_id:            resource.short_id,
+        external_member_ids: resource.member_ids.to_s.gsub(" ", ""),
+        short_id:            resource.short_id.to_s,
         name:                resource.name,
         desc:                resource.desc,
         url:                 resource.url,
-        position:            resource.pos,
-        last_activity_date:  resource.last_activity_date,
-        closed:              resource.closed }
+        position:            resource.pos.to_s,
+        last_activity_date:  resource.last_activity_date.to_s,
+        closed:              resource.closed.to_s }
     end
   end
 end

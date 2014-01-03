@@ -42,6 +42,5 @@ module Troo
     rescue Trello::Error
       []
     end
-
   end
 end

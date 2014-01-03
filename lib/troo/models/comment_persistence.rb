@@ -39,8 +39,12 @@ module Troo
 
     def local_identical?
       return false unless local_exists?
-      Troo.logger.debug "Local comment identical, skipping..." if options[:debug]
-      local_data == resource_data
+      if local_data == resource_data
+        Troo.logger.debug "Local comment identical, skipping..." if options[:debug]
+        true
+      else
+        false
+      end
     end
 
     def local_exists?
@@ -60,7 +64,7 @@ module Troo
         external_board_id:   resource.data.fetch("board", {}).fetch("id", ""),
         external_card_id:    resource.data.fetch("card",  {}).fetch("id", ""),
         external_member_id:  resource.member_creator_id,
-        date:                resource.date,
+        date:                resource.date.to_s,
         text:                resource.data.fetch("text", "") }
     end
   end
