@@ -61,7 +61,7 @@ module Troo
         external_list_id:  resource.id,
         name:              resource.name,
         position:          resource.pos.to_s,
-        closed:            resource.closed.to_s }
+        closed:            resource.closed.to_s }.delete_if { |k, v| v.nil? }
     end
   end
 end

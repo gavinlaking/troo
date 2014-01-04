@@ -60,7 +60,7 @@ module Troo
       { external_board_id: resource.id,
         name:              resource.name,
         description:       resource.description,
-        closed:            resource.closed.to_s }
+        closed:            resource.closed.to_s }.delete_if { |k, v| v.nil? }
     end
   end
 end

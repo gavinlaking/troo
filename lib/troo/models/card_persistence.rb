@@ -67,7 +67,7 @@ module Troo
         url:                 resource.url,
         position:            resource.pos.to_s,
         last_activity_date:  resource.last_activity_date.to_s,
-        closed:              resource.closed.to_s }
+        closed:              resource.closed.to_s }.delete_if { |k, v| v.nil? }
     end
   end
 end
