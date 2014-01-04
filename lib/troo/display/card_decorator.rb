@@ -11,6 +11,11 @@ module Troo
       [current_str, id_str, name_str].join + "\n"
     end
 
+    def title
+      title_options = { ansicolor: true, colour: Esc.green, underline: Esc.underline }
+      highlight([current, brackets(id), name].join(" "), title_options)
+    end
+
     def name_str
       highlight(name, options)
     end

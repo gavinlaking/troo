@@ -2,10 +2,11 @@ require_relative "../../../test_helper"
 
 module Troo
   describe CardDecorator do
-    let(:described_class) { CardDecorator }
-    let(:current)     { true }
-    let(:description) { "Finish Troo for fame and fortune." }
-    let(:options) { {} }
+    let(:described_class)    { CardDecorator }
+    let(:described_instance) { described_class.new(@card, options) }
+    let(:current)            { true }
+    let(:description)        { "Finish Troo for fame and fortune." }
+    let(:options)            { {} }
 
     before do
       @board     = Fabricate(:board)
@@ -24,7 +25,7 @@ module Troo
     end
 
     describe "#initialize" do
-      subject { described_class.new(@card, options) }
+      subject { described_instance }
 
       it "assigns the card to an instance variable" do
         subject.instance_variable_get("@card").must_equal(@card)
@@ -36,7 +37,7 @@ module Troo
     end
 
     describe "#short" do
-      subject { described_class.new(@card, options).short }
+      subject { described_instance.short }
 
       it "returns a one line overview of the card" do
         subject.must_equal(" *  (67) My Test Card\n")
@@ -51,8 +52,16 @@ module Troo
       end
     end
 
+    describe "#title" do
+      subject { described_instance.title }
+
+      it "returns a formatted string representing the card title" do
+        subject.must_match /\* \(67\) My Test Card/
+      end
+    end
+
     describe "#name_str" do
-      subject { described_class.new(@card).name_str }
+      subject { described_instance.name_str }
 
       it "returns the formatted card name" do
         subject.must_equal("My Test Card")
@@ -60,7 +69,7 @@ module Troo
     end
 
     describe "#current_str" do
-      subject { described_class.new(@card).current_str }
+      subject { described_instance.current_str }
 
       it "returns the formatted card current indicator" do
         subject.must_equal(" * ")
@@ -68,7 +77,7 @@ module Troo
     end
 
     describe "#id_str" do
-      subject { described_class.new(@card).id_str }
+      subject { described_instance.id_str }
 
       it "returns the formatted card id" do
         subject.must_equal(" (67) ")
@@ -76,7 +85,7 @@ module Troo
     end
 
     describe "#name" do
-      subject { described_class.new(@card).name }
+      subject { described_instance.name }
 
       it "returns the card name" do
         subject.must_equal(@card.name)
@@ -84,7 +93,7 @@ module Troo
     end
 
     describe "#current" do
-      subject { described_class.new(@card).current }
+      subject { described_instance.current }
 
       context "when current" do
         it "return an indicator" do
@@ -102,7 +111,7 @@ module Troo
     end
 
     describe "#id" do
-      subject { described_class.new(@card).id }
+      subject { described_instance.id }
 
       it "returns the card id" do
         subject.must_equal(@card.short_id)
@@ -110,7 +119,7 @@ module Troo
     end
 
     describe "#description" do
-      subject { described_class.new(@card).description }
+      subject { described_instance.description }
 
       context "when there are further details" do
         it "returns the description" do
@@ -128,7 +137,7 @@ module Troo
     end
 
     describe "#comments" do
-      subject { described_class.new(@card).comments }
+      subject { described_instance.comments }
 
       context "when there are more than 3 comments" do
         it "returns the comments" do
@@ -167,7 +176,7 @@ module Troo
     end
 
     describe "#members" do
-      subject { described_class.new(@card).members }
+      subject { described_instance.members }
 
       context "when there are members" do
         it "returns the members" do
@@ -188,7 +197,7 @@ module Troo
     end
 
     describe "#last_activity_date" do
-      subject { described_class.new(@card).last_activity_date }
+      subject { described_instance.last_activity_date }
 
       it "returns the last activity date" do
         subject.must_equal("Tue, Dec 17 at 21:48")
@@ -196,7 +205,7 @@ module Troo
     end
 
     describe "#board" do
-      subject { described_class.new(@card).board }
+      subject { described_instance.board }
 
       it "returns the board details" do
         subject.must_match "(1) My Test Board"
