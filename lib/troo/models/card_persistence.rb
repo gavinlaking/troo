@@ -60,7 +60,6 @@ module Troo
       { external_board_id:   resource.board_id,
         external_list_id:    resource.list_id,
         external_card_id:    resource.id,
-        external_member_ids: resource.member_ids,
         external_member_ids: resource.member_ids.to_s.gsub(" ", ""),
         short_id:            resource.short_id.to_s,
         name:                resource.name,
