@@ -47,10 +47,6 @@ module Troo
       ExternalCard.fetch(external_board_id, options)
     end
 
-    def members
-      ExternalMember.fetch(external_board_id, options)
-    end
-
     private
     attr_accessor :board
 
