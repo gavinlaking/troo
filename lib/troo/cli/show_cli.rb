@@ -18,6 +18,9 @@ module Troo
       desc "board (<board_id>)", "Show lists and cards for board <board_id> (uses default board if <board_id> not provided)."
       def board(board_id = nil)
         if board = Troo::BoardRetrieval.retrieve(board_id)
+          if SetDefault.for(board)
+            say "'#{board.name}' set to default."
+          end
           BoardPresenter.render_show(board)
         else
           if board_id
@@ -31,6 +34,9 @@ module Troo
       desc "list (<list_id>)", "Show all cards for list <list_id> (uses default list if <list_id> not provided)."
       def list(list_id = nil)
         if list = Troo::ListRetrieval.retrieve(list_id)
+          if SetDefault.for(list)
+            say "'#{list.name}' set to default."
+          end
           ListPresenter.render_show(list)
         else
           if list_id
@@ -44,6 +50,9 @@ module Troo
       desc "card (<card_id>)", "Show a card including latest 3 comments for card <card_id> (uses default card if <card_id> not provided)."
       def card(card_id = nil)
         if card = Troo::CardRetrieval.retrieve(card_id)
+          if SetDefault.for(card)
+            say "'#{card.name}' set to default."
+          end
           CardPresenter.render_show(card)
         else
           if card_id
@@ -57,6 +66,9 @@ module Troo
       desc "comments (<card_id>)", "Show all comments for card <card_id> (uses default card if <card_id> not provided)."
       def comments(card_id = nil)
         if card = Troo::CardRetrieval.retrieve(card_id)
+          if SetDefault.for(card)
+            say "'#{card.name}' set to default."
+          end
           CommentPresenter.render_show(card)
         else
           if card_id
