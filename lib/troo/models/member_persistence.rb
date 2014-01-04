@@ -39,12 +39,9 @@ module Troo
 
     def local_identical?
       return false unless local_exists?
-      if local_data == resource_data
-        Troo.logger.debug "Local member identical, skipping..." if options[:debug]
-        true
-      else
-        false
-      end
+      return false if local_data != resource_data
+      Troo.logger.debug "Local member identical, skipping..." if options[:debug]
+      true
     end
 
     def local_exists?
