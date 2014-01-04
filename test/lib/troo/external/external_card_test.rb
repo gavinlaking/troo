@@ -36,7 +36,7 @@ module Troo
       subject { described_class.fetch(board_id, options) }
 
       it "returns multiple cards" do
-        subject.size.must_equal(9)
+        subject.size.must_equal(11)
       end
 
       context "when the board cannot be found" do
@@ -58,7 +58,7 @@ module Troo
       subject { described_class.fetch(list_id, options) }
 
       it "returns multiple cards" do
-        subject.size.must_equal(4)
+        subject.size.must_equal(6)
       end
 
       context "when the list cannot be found" do

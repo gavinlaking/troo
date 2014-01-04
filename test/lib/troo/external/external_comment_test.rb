@@ -34,7 +34,7 @@ module Troo
       subject { described_class.fetch(board_id, options) }
 
       it "returns multiple comments" do
-        subject.size.must_equal(12)
+        subject.size.must_equal(20)
       end
 
       context "when the board cannot be found" do
@@ -78,7 +78,7 @@ module Troo
       subject { described_class.fetch(card_id, options) }
 
       it "returns a comment with the card_id" do
-        subject.size.must_equal(5)
+        subject.size.must_equal(11)
       end
 
       context "when the card cannot be found" do
