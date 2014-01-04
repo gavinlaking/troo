@@ -44,7 +44,7 @@ module Troo
       if card.desc.nil? || card.desc.empty?
         "There are no further details at this time."
       else
-        card.desc
+        word_wrap(card.desc)
       end
     end
 

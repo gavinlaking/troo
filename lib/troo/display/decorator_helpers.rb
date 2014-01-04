@@ -9,6 +9,11 @@ module Troo
 
     private
 
+    def word_wrap(text, line_width = 70)
+      return text if line_width <= 0
+      text.gsub(/\n/, ' ').gsub(/(.{1,#{line_width}})(\s+|$)/, "\\1\n").strip
+    end
+
     def highlight(value, options = {})
       if options.fetch(:ansicolor, true)
         [ options.fetch(:colour, nil),

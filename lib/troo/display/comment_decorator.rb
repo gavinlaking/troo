@@ -15,7 +15,7 @@ module Troo
     end
 
     def text
-      comment.text
+      word_wrap(comment.text)
     end
 
     def date

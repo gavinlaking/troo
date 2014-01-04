@@ -24,7 +24,7 @@ module Troo
       elsif two_members?
         members.join(" and ")
       elsif many_members?
-        [all_but_last_member, last_member].join(" and ")
+        word_wrap([all_but_last_member, last_member].join(" and "))
       else
         "No members have been assigned."
       end
