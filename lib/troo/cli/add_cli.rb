@@ -3,7 +3,8 @@ module Troo
     class Add < ThorFixes
       package_name "add"
 
-      desc "board <name> (<description>)", "Add a new board with <name> and optional <description>."
+      desc "board <name> (<description>)",
+           "Add a new board with <name> and optional <description>."
       def board(name = nil, description = nil)
         if name.nil?
           name = ask("Please enter a name for this board:")
@@ -16,7 +17,8 @@ module Troo
         end
       end
 
-      desc "card <list_id> <name> (<description>)", "Add a new card to <list_id> with <name> and optional <description>."
+      desc "card <list_id> <name> (<description>)",
+           "Add a new card to <list_id> with <name> and optional <description>."
       def card(list_id, name = nil, description = nil)
         if name.nil?
           name = ask("Please enter a name for this card:")
@@ -33,7 +35,8 @@ module Troo
         end
       end
 
-      desc "comment <card_id> <comment>", "Add a new comment to <card_id>."
+      desc "comment <card_id> <comment>",
+           "Add a new comment to <card_id>."
       def comment(card_id, comment = nil)
         if comment.nil?
           comment = ask("Please enter a comment:")
@@ -50,7 +53,8 @@ module Troo
         end
       end
 
-      desc "list <board_id> <name>", "Add a new list to <board_id> with <name>."
+      desc "list <board_id> <name>",
+           "Add a new list to <board_id> with <name>."
       def list(board_id, name = nil)
         if name.nil?
           name = ask("Please enter a name for this list:")
