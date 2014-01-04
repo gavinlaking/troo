@@ -5,13 +5,6 @@ module Troo
     let(:described_class) { ExternalComment }
     let(:options) { {} }
 
-    before do
-    end
-
-    after do
-      database_cleanup
-    end
-
     describe ".initialize" do
       subject { described_class.new("some_id", options) }
 

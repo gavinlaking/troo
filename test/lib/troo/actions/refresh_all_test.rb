@@ -17,9 +17,7 @@ module Troo
       ExternalMember.stubs(:fetch).returns([])
     end
 
-    after do
-      database_cleanup
-    end
+    after { database_cleanup }
 
     describe ".initialize" do
       subject { described_class.new(@board, options) }

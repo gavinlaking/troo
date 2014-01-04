@@ -11,9 +11,7 @@ module Troo
         @board = Fabricate(:board)
       end
 
-      after do
-        database_cleanup
-      end
+      after { database_cleanup }
 
       describe "#status" do
         before do

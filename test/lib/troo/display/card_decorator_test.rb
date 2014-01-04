@@ -20,9 +20,7 @@ module Troo
       @member_2  = Fabricate(:member, username: "mysterywoman", external_member_id: "some_member_id")
     end
 
-    after do
-      database_cleanup
-    end
+    after { database_cleanup }
 
     describe "#initialize" do
       subject { described_instance }

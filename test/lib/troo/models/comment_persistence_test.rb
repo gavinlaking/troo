@@ -20,9 +20,7 @@ module Troo
       @comment = Fabricate(:comment)
     end
 
-    after do
-      database_cleanup
-    end
+    after { database_cleanup }
 
     describe ".initialize" do
       subject { described_class.new(resource, options) }

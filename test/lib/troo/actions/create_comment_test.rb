@@ -13,9 +13,7 @@ module Troo
       Troo::CommentPersistence.stubs(:for).returns(@comment)
     end
 
-    after do
-      database_cleanup
-    end
+    after { database_cleanup }
 
     describe ".initialize" do
       subject { described_class.new(@card, comment) }

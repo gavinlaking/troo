@@ -11,9 +11,7 @@ module Troo
       Troo::BoardPersistence.stubs(:for).returns(@board)
     end
 
-    after do
-      database_cleanup
-    end
+    after { database_cleanup }
 
     describe ".initialize" do
       subject { described_class.new(board_name, description) }

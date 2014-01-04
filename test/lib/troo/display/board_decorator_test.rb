@@ -10,9 +10,7 @@ module Troo
       @board = Fabricate(:board, default: default)
     end
 
-    after do
-      database_cleanup
-    end
+    after { database_cleanup }
 
     describe "#initialize" do
       subject { described_class.new(@board, options) }

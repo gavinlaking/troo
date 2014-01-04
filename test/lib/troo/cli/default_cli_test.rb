@@ -19,9 +19,7 @@ module Troo
         Troo::ListRetrieval.stubs(:retrieve).returns(@list)
       end
 
-      after do
-        database_cleanup
-      end
+      after { database_cleanup }
 
       describe "#board" do
         subject { capture_io { described_class.new.board(board_id) }.join }

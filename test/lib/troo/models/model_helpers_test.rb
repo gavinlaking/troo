@@ -23,9 +23,7 @@ module Troo
                  default: true })
     end
 
-    after do
-      database_cleanup
-    end
+    after { database_cleanup }
 
     describe ".first" do
       subject { described_class.first(criteria) }

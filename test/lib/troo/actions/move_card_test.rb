@@ -10,9 +10,7 @@ module Troo
       Troo::ExternalCard.stubs(:fetch).returns(true)
      end
 
-    after do
-      database_cleanup
-    end
+    after { database_cleanup }
 
     describe ".initialize" do
       subject { described_class.new(@card, @list) }

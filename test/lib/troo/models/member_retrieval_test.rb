@@ -9,9 +9,7 @@ module Troo
       @member = Fabricate(:member, full_name: full_name)
     end
 
-    after do
-      database_cleanup
-    end
+    after { database_cleanup }
 
     describe ".all" do
       subject { described_class.all }

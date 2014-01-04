@@ -11,9 +11,7 @@ module Troo
       @list = Fabricate(:list)
     end
 
-    after do
-      database_cleanup
-    end
+    after { database_cleanup }
 
     describe "#initialize" do
       subject { described_class.new(@card, options) }

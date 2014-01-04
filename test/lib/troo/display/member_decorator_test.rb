@@ -8,9 +8,7 @@ module Troo
       @member = Fabricate(:member)
     end
 
-    after do
-      database_cleanup
-    end
+    after { database_cleanup }
 
     describe "#initialize" do
       subject { described_class.new(@member) }

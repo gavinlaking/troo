@@ -6,13 +6,6 @@ module Troo
     let(:object) { OpenStruct.new(value: "Hello from variable!") }
     let(:template_path) { "/../../../test/support/template.erb" }
 
-    before do
-    end
-
-    after do
-      database_cleanup
-    end
-
     describe "#initialize" do
       subject { described_class.new(object, template_path) }
 
