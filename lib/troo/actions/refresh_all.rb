@@ -18,11 +18,11 @@ module Troo
       true
     end
 
-    def self.current(board, options = {})
-      new(board, options).current
+    def self.default(board, options = {})
+      new(board, options).default
     end
 
-    def current
+    def default
       new_lists = ExternalList.fetch(external_board_id, options)
       new_cards = new_lists.map do |list|
         ExternalCard.fetch(list.external_list_id, { mode: :list })

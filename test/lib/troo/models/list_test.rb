@@ -22,8 +22,8 @@ module Troo
       @list.position.must_equal 32768
     end
 
-    it "should have a current attribute" do
-      @list.current.must_equal false
+    it "should have a default attribute" do
+      @list.default.must_equal false
     end
 
     it "should have a closed attribute" do

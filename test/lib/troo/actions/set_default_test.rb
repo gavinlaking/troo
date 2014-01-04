@@ -1,13 +1,13 @@
 require_relative "../../../test_helper"
 
 module Troo
-  describe SetCurrent do
-    let(:described_class) { SetCurrent }
+  describe SetDefault do
+    let(:described_class) { SetDefault }
     let(:entity) { @board_2 }
 
     before do
-      @board_1 = Fabricate(:board, current: true)
-      @board_2 = Fabricate(:board, current: false)
+      @board_1 = Fabricate(:board, default: true)
+      @board_2 = Fabricate(:board, default: false)
     end
 
     after do
@@ -22,11 +22,11 @@ module Troo
       end
     end
 
-    describe "#set_current!" do
+    describe "#set_default!" do
       subject { described_class.for(entity) }
 
-      it "sets the specified entity to be the current" do
-        subject.current.must_equal(true)
+      it "sets the specified entity to be the default" do
+        subject.default.must_equal(true)
       end
     end
   end

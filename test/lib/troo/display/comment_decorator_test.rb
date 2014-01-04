@@ -3,7 +3,7 @@ require_relative "../../../test_helper"
 module Troo
   describe CommentDecorator do
     let(:described_class) { CommentDecorator }
-    let(:current) { true }
+    let(:default) { true }
 
     before do
       @comment = Fabricate(:comment)

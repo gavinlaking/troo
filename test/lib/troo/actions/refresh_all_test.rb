@@ -43,8 +43,8 @@ module Troo
       end
     end
 
-    describe ".current" do
-      subject { described_class.current(@board, options) }
+    describe ".default" do
+      subject { described_class.default(@board, options) }
 
       it "returns true when successful" do
         subject.must_equal(true)

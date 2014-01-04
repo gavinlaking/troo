@@ -69,7 +69,7 @@ module Troo
         context "when a board_id was not provided" do
           let(:board_id) { }
 
-          context "and the current board is set" do
+          context "and the default board is set" do
             before { Troo::BoardRetrieval.stubs(:retrieve).returns(@board) }
 
             it "returns the board with all lists and all cards" do
@@ -79,11 +79,11 @@ module Troo
             end
           end
 
-          context "and the current board is not set" do
+          context "and the default board is not set" do
             before { Troo::BoardRetrieval.stubs(:retrieve).returns() }
 
             it "returns a polite message" do
-              subject.must_match /set a current board first/
+              subject.must_match /set a default board first/
             end
           end
         end
@@ -115,7 +115,7 @@ module Troo
         context "when a list_id was not provided" do
           let(:list_id) { }
 
-          context "and the current list is set" do
+          context "and the default list is set" do
             before { Troo::ListRetrieval.stubs(:retrieve).returns(@list) }
 
             it "returns the list's board, the list and all cards" do
@@ -125,11 +125,11 @@ module Troo
             end
           end
 
-          context "and the current list is not set" do
+          context "and the default list is not set" do
             before { Troo::ListRetrieval.stubs(:retrieve).returns() }
 
             it "returns a polite message" do
-              subject.must_match /set a current list first/
+              subject.must_match /set a default list first/
             end
           end
         end
@@ -166,7 +166,7 @@ module Troo
         context "when a card_id was not provided" do
           let(:card_id) { }
 
-          context "and the current card is set" do
+          context "and the default card is set" do
             before { Troo::CardRetrieval.stubs(:retrieve).returns(@card) }
 
             it "returns the card details" do
@@ -177,11 +177,11 @@ module Troo
             end
           end
 
-          context "and the current card is not set" do
+          context "and the default card is not set" do
             before { Troo::CardRetrieval.stubs(:retrieve).returns() }
 
             it "returns a polite message" do
-              subject.must_match /set a current card first/
+              subject.must_match /set a default card first/
             end
           end
         end
@@ -212,7 +212,7 @@ module Troo
         context "when a card_id was not provided" do
           let(:card_id) { }
 
-          context "and the current card is set" do
+          context "and the default card is set" do
             before { Troo::CardRetrieval.stubs(:retrieve).returns(@card) }
 
             it "returns the card and all comments" do
@@ -221,11 +221,11 @@ module Troo
             end
           end
 
-          context "and the current card is not set" do
+          context "and the default card is not set" do
             before { Troo::CardRetrieval.stubs(:retrieve).returns() }
 
             it "returns a polite message" do
-              subject.must_match /set a current card first/
+              subject.must_match /set a default card first/
             end
           end
         end

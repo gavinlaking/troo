@@ -44,8 +44,8 @@ module Troo
       @card.last_activity_date.must_equal "2013-12-17 21:48:09 UTC"
     end
 
-    it "should have a current attribute" do
-      @card.current.must_equal false
+    it "should have a default attribute" do
+      @card.default.must_equal false
     end
 
     it "should have a closed attribute" do

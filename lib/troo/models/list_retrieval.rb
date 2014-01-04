@@ -8,7 +8,7 @@ module Troo
       Troo::List.all
     end
 
-    def self.current
+    def self.default
       new.retrieve
     end
 
@@ -17,15 +17,15 @@ module Troo
     end
 
     def retrieve
-      return current unless id
+      return default unless id
       by_id || by_external_id || remote
     end
 
     private
     attr_reader :id
 
-    def current
-      Troo::List.current
+    def default
+      Troo::List.default
     end
 
     def by_id

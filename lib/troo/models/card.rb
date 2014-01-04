@@ -10,19 +10,19 @@ module Troo
     attribute :external_member_ids, Type::Array
     attribute :position
     attribute :last_activity_date
-    attribute :current, Type::Boolean
+    attribute :default, Type::Boolean
     attribute :closed, Type::Boolean
     attribute :external_board_id
     attribute :external_list_id
     attribute :external_card_id
 
     index :short_id
-    index :current
+    index :default
     index :external_board_id
     index :external_list_id
     index :external_card_id
 
-    alias_method :current?, :current
+    alias_method :default?, :default
 
     def board
       Troo::Board.first(external_board_id: self.external_board_id)

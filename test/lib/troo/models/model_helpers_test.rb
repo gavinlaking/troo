@@ -4,10 +4,10 @@ class ModelHelpersDummy < Ohm::Model
   include Troo::ModelHelpers
 
   attribute :name
-  attribute :current
+  attribute :default
 
   index     :name
-  index     :current
+  index     :default
 end
 
 module Troo
@@ -17,10 +17,10 @@ module Troo
     before do
       @dumb   = ModelHelpersDummy.create({
                  name: "My Dumb Model",
-                 current: false })
+                 default: false })
       @dumber = ModelHelpersDummy.create({
                  name: "My Dumber Model",
-                 current: true })
+                 default: true })
     end
 
     after do
@@ -70,16 +70,16 @@ module Troo
       end
     end
 
-    describe ".current" do
-      subject { described_class.current }
+    describe ".default" do
+      subject { described_class.default }
 
-      context "when there is no current model" do
+      context "when there is no default model" do
         it "returns the model" do
           subject.must_equal(@dumber)
         end
       end
 
-      context "when there is a current model" do
+      context "when there is a default model" do
         before do
           @dumber.delete
         end

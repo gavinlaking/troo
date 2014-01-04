@@ -8,50 +8,50 @@ module Troo
       desc "status", "Get troo status."
       def status
         puts
-        if board = Troo::BoardRetrieval.current
+        if board = Troo::BoardRetrieval.default
           say "Board: #{BoardDecorator.new(board).short}"
         else
-          say "No board has been set as current."
+          say "No board has been set as default."
         end
 
-        if list = Troo::ListRetrieval.current
+        if list = Troo::ListRetrieval.default
           say "List: #{ListDecorator.new(list).short}"
         else
-          say "No list has been set as current."
+          say "No list has been set as default."
         end
 
-        if card = Troo::CardRetrieval.current
+        if card = Troo::CardRetrieval.default
           say "Card: #{CardDecorator.new(card).short}"
         else
-          say "No card has been set as current."
+          say "No card has been set as default."
         end
         puts
 
         help
       end
 
-      desc "refresh", "Refresh all data for current board."
+      desc "refresh", "Refresh all data for default board."
       method_option :all, type: :boolean, desc: "Refresh all boards, lists, cards and comments."
-      method_option :lists, type: :boolean, desc: "Refresh all lists for current board."
-      method_option :cards, type: :boolean, desc: "Refresh all cards for current board."
+      method_option :lists, type: :boolean, desc: "Refresh all lists for default board."
+      method_option :cards, type: :boolean, desc: "Refresh all cards for default board."
       def refresh
         if options["all"]
           RefreshAll.all(nil, options)
           say "All local data has been refreshed."
         else
-          if board = Troo::BoardRetrieval.current
+          if board = Troo::BoardRetrieval.default
             if options["lists"]
               RefreshAll.lists(board, options)
-              say "All lists for the current board have been refreshed."
+              say "All lists for the default board have been refreshed."
             elsif options["cards"]
               RefreshAll.cards(board, options)
-              say "All cards for the current board have been refreshed."
+              say "All cards for the default board have been refreshed."
             else
-              RefreshAll.current(board, options)
-              say "All data for the current board has been refreshed."
+              RefreshAll.default(board, options)
+              say "All data for the default board has been refreshed."
             end
           else
-            say "Use 'troo current board <board_id>' to set a current board first."
+            say "Use 'troo default board <board_id>' to set a default board first."
           end
         end
       end
@@ -75,8 +75,8 @@ module Troo
       desc "add [board|list|card|comment] <id>", "Add board, list, card or comment."
       subcommand :add, Troo::CLI::Add
 
-      desc "current [board|list|card] <id>", "Set board, list or card to be current."
-      subcommand :current, Troo::CLI::Current
+      desc "default [board|list|card] <id>", "Set board, list or card to be default."
+      subcommand :default, Troo::CLI::Default
 
       desc "move <card_id> <list_id>", "Move a card <card_id> to list <list_id>."
       def move(card_id, list_id)

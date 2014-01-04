@@ -3,8 +3,8 @@ require "thor"
 
 module Troo
   module CLI
-    describe Current do
-      let(:described_class) { Current }
+    describe Default do
+      let(:described_class) { Default }
       let(:board_id) { "526d8e130a14a9d846001d96" }
       let(:card_id) { "526d8f19ddb279532e005259" }
       let(:list_id) { "526d8e130a14a9d846001d97" }
@@ -38,7 +38,7 @@ module Troo
 
         context "when the board_id was found" do
           it "returns a polite message" do
-            subject.must_match /Board '#{@board.name}' set to current/
+            subject.must_match /Board '#{@board.name}' set to default/
           end
         end
       end
@@ -58,7 +58,7 @@ module Troo
 
         context "when the card_id was found" do
           it "returns a polite message" do
-            subject.must_match /Card '#{@card.name}' set to current/
+            subject.must_match /Card '#{@card.name}' set to default/
           end
         end
       end
@@ -78,7 +78,7 @@ module Troo
 
         context "when the list_id was found" do
           it "returns a polite message" do
-            subject.must_match /List '#{@list.name}' set to current/
+            subject.must_match /List '#{@list.name}' set to default/
           end
         end
       end

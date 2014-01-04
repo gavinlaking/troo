@@ -3,11 +3,11 @@ require_relative "../../../test_helper"
 module Troo
   describe CardRetrieval do
     let(:described_class) { CardRetrieval }
-    let(:current) { true }
+    let(:default) { true }
     let(:card_name) { "My Test Card" }
 
     before do
-      @card = Fabricate(:card, current: current, name: card_name)
+      @card = Fabricate(:card, default: default, name: card_name)
     end
 
     after do
@@ -22,17 +22,17 @@ module Troo
       end
     end
 
-    describe ".current" do
-      subject { described_class.current }
+    describe ".default" do
+      subject { described_class.default }
 
-      context "when current is set" do
-        it "returns the current" do
+      context "when default is set" do
+        it "returns the default" do
           subject.must_equal @card
         end
       end
 
-      context "when current is not set" do
-        let(:current) { false }
+      context "when default is not set" do
+        let(:default) { false }
 
         it "returns nil" do
           subject.must_equal nil
@@ -44,14 +44,14 @@ module Troo
       context "without an ID" do
         subject { described_class.retrieve }
 
-        context "when current is set" do
-          it "returns the current" do
+        context "when default is set" do
+          it "returns the default" do
             subject.must_equal @card
           end
         end
 
-        context "when current is not set" do
-          let(:current) { false }
+        context "when default is not set" do
+          let(:default) { false }
 
           it "returns nil" do
             subject.must_equal nil

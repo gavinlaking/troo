@@ -22,8 +22,8 @@ module Troo
       @board.description.must_equal "A very brief description..."
     end
 
-    it "should have a current attribute" do
-      @board.current.must_equal false
+    it "should have a default attribute" do
+      @board.default.must_equal false
     end
 
     it "should have a closed attribute" do

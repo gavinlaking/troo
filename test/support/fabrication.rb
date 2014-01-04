@@ -2,7 +2,7 @@ Fabricator(:board, from: Troo::Board) do
   external_board_id "526d8e130a14a9d846001d96"
   name              "My Test Board"
   description       "A very brief description..."
-  current           false
+  default           false
   closed            false
 end
 
@@ -11,7 +11,7 @@ Fabricator(:list, from: Troo::List) do
   external_list_id  "526d8e130a14a9d846001d97"
   name              "My Test List"
   position          32768
-  current           false
+  default           false
   closed            false
 end
 
@@ -26,7 +26,7 @@ Fabricator(:card, from: Troo::Card) do
   url                 "some trello url"
   position            16
   last_activity_date  "2013-12-17 21:48:09 UTC"
-  current             false
+  default             false
   closed              false
 end
 

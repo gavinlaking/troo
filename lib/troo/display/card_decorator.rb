@@ -8,20 +8,20 @@ module Troo
     end
 
     def short
-      [current_str, id_str, name_str].join + "\n"
+      [default_str, id_str, name_str].join + "\n"
     end
 
     def title
       title_options = { ansicolor: true, colour: Esc.green, underline: Esc.underline }
-      highlight([current, brackets(id), name].join(" "), title_options)
+      highlight([default, brackets(id), name].join(" "), title_options)
     end
 
     def name_str
       highlight(name, options)
     end
 
-    def current_str
-      current.center(3)
+    def default_str
+      default.center(3)
     end
 
     def id_str
@@ -32,8 +32,8 @@ module Troo
       (card.name && card.name.chomp) || "N/A"
     end
 
-    def current
-      card.current? ? "*" : ""
+    def default
+      card.default? ? "*" : ""
     end
 
     def id

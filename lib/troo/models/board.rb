@@ -5,14 +5,14 @@ module Troo
 
     attribute :name
     attribute :description
-    attribute :current, Type::Boolean
+    attribute :default, Type::Boolean
     attribute :closed, Type::Boolean
     attribute :external_board_id
 
-    index :current
+    index :default
     index :external_board_id
 
-    alias_method :current?, :current
+    alias_method :default?, :default
 
     def lists
       Troo::List.find(external_board_id: self.external_board_id)

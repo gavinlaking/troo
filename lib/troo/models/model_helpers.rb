@@ -12,8 +12,8 @@ module Troo
         true
       end
 
-      def current
-        first(current: true)
+      def default
+        first(default: true)
       end
     end
 
@@ -22,7 +22,7 @@ module Troo
     end
 
     def external_attributes
-      self.attributes.delete_if { |k, _| k == :id || k == :current }
+      self.attributes.delete_if { |k, _| k == :id || k == :default }
     end
   end
 end

@@ -3,11 +3,11 @@ require_relative "../../../test_helper"
 module Troo
   describe ListDecorator do
     let(:described_class) { ListDecorator }
-    let(:current) { true }
+    let(:default) { true }
     let(:options) { {} }
 
     before do
-      @list = Fabricate(:list, current: current)
+      @list = Fabricate(:list, default: default)
     end
 
     after do
@@ -50,10 +50,10 @@ module Troo
       end
     end
 
-    describe "#current_str" do
-      subject { described_class.new(@list).current_str }
+    describe "#default_str" do
+      subject { described_class.new(@list).default_str }
 
-      it "returns the formatted card current indicator" do
+      it "returns the formatted card default indicator" do
         subject.must_equal(" * ")
       end
     end
@@ -74,17 +74,17 @@ module Troo
       end
     end
 
-    describe "#current" do
-      subject { described_class.new(@list).current }
+    describe "#default" do
+      subject { described_class.new(@list).default }
 
-      context "when current" do
+      context "when default" do
         it "return an indicator" do
           subject.must_equal("*")
         end
       end
 
-      context "when not current" do
-        let(:current) { false }
+      context "when not default" do
+        let(:default) { false }
 
         it "returns nothing" do
           subject.must_equal("")

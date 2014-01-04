@@ -17,49 +17,49 @@ module Troo
 
       describe "#status" do
         before do
-          @board = Fabricate(:board, current: true)
-          @list  = Fabricate(:list, current: true)
-          @card  = Fabricate(:card, current: true)
+          @board = Fabricate(:board, default: true)
+          @list  = Fabricate(:list, default: true)
+          @card  = Fabricate(:card, default: true)
         end
 
         subject { capture_io { described_instance.status }.join }
 
-        context "when a current board is set" do
+        context "when a default board is set" do
           it "returns a polite message" do
             subject.must_match /My Test Board/
           end
         end
 
-        context "when a current board is not set" do
-          before { Troo::BoardRetrieval.stubs(:current).returns(nil) }
+        context "when a default board is not set" do
+          before { Troo::BoardRetrieval.stubs(:default).returns(nil) }
 
           it "returns a polite message" do
             subject.must_match /No board/
           end
         end
 
-        context "when a current list is set" do
+        context "when a default list is set" do
           it "returns a polite message" do
             subject.must_match /My Test List/
           end
         end
 
-        context "when a current list is not set" do
-          before { Troo::ListRetrieval.stubs(:current).returns(nil) }
+        context "when a default list is not set" do
+          before { Troo::ListRetrieval.stubs(:default).returns(nil) }
 
           it "returns a polite message" do
             subject.must_match /No list/
           end
         end
 
-        context "when a current card is set" do
+        context "when a default card is set" do
           it "returns a polite message" do
             subject.must_match /My Test Card/
           end
         end
 
-        context "when a current card is not set" do
-          before { Troo::CardRetrieval.stubs(:current).returns(nil) }
+        context "when a default card is not set" do
+          before { Troo::CardRetrieval.stubs(:default).returns(nil) }
 
           it "returns a polite message" do
             subject.must_match /No card/
@@ -68,14 +68,14 @@ module Troo
       end
 
       describe "#refresh" do
-        let(:current) { @board }
+        let(:default) { @board }
 
         subject { capture_io { described_instance.refresh }.join }
 
         before do
           RefreshAll.stubs(:all)
-          RefreshAll.stubs(:current)
-          Troo::BoardRetrieval.stubs(:current).returns(current)
+          RefreshAll.stubs(:default)
+          Troo::BoardRetrieval.stubs(:default).returns(default)
           RefreshAll.stubs(:lists)
           RefreshAll.stubs(:cards)
         end
@@ -90,14 +90,14 @@ module Troo
           end
         end
 
-        context "when the current board is set" do
+        context "when the default board is set" do
           context "when the --lists option is set" do
             before do
               described_instance.stubs(:options).returns({"lists" => true})
             end
 
-            it "refresh all the lists for the current board" do
-              subject.must_match /lists for the current board have been refreshed/
+            it "refresh all the lists for the default board" do
+              subject.must_match /lists for the default board have been refreshed/
             end
           end
 
@@ -106,23 +106,23 @@ module Troo
               described_instance.stubs(:options).returns({"cards" => true})
             end
 
-            it "retreshes all the cards for the current board" do
-              subject.must_match /cards for the current board have been refreshed/
+            it "retreshes all the cards for the default board" do
+              subject.must_match /cards for the default board have been refreshed/
             end
           end
 
           context "when no additional options are set" do
             it "refreshes all local data" do
-              subject.must_match /All data for the current board has been refreshed./
+              subject.must_match /All data for the default board has been refreshed./
             end
           end
         end
 
-        context "when the current board is not set" do
-          let(:current) { }
+        context "when the default board is not set" do
+          let(:default) { }
 
           it "returns a polite message" do
-            subject.must_match /to set a current board first/
+            subject.must_match /to set a default board first/
           end
         end
       end

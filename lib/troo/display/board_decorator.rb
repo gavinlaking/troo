@@ -8,15 +8,15 @@ module Troo
     end
 
     def short
-      [current_str, id_str, name_str].join + "\n"
+      [default_str, id_str, name_str].join + "\n"
     end
 
     def name_str
       highlight(name, options)
     end
 
-    def current_str
-      current.center(3)
+    def default_str
+      default.center(3)
     end
 
     def id_str
@@ -32,8 +32,8 @@ module Troo
       (board.name && board.name.chomp) || "N/A"
     end
 
-    def current
-      board.current? ? "*" : ""
+    def default
+      board.default? ? "*" : ""
     end
 
     def id

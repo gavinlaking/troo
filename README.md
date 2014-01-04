@@ -5,9 +5,9 @@ CLI interface for Trello. Named after Trello's mascot 'Roo'.
 ## Features
 
 - troo refresh
-- troo current board <board_id>
-- troo current card <card_id>
-- troo current list <list_id>
+- troo default board <board_id>
+- troo default card <card_id>
+- troo default list <list_id>
 - troo refresh --lists
 - troo refresh --cards
 - troo version

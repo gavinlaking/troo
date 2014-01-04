@@ -4,14 +4,14 @@ module Troo
   describe CardDecorator do
     let(:described_class)    { CardDecorator }
     let(:described_instance) { described_class.new(@card, options) }
-    let(:current)            { true }
+    let(:default)            { true }
     let(:description)        { "Finish Troo for fame and fortune." }
     let(:options)            { {} }
 
     before do
       @board     = Fabricate(:board)
       @list      = Fabricate(:list)
-      @card      = Fabricate(:card, desc: description, current: current, external_member_ids: ["5195fdb5a8c01a2318004f5d", "some_member_id"])
+      @card      = Fabricate(:card, desc: description, default: default, external_member_ids: ["5195fdb5a8c01a2318004f5d", "some_member_id"])
       @comment   = Fabricate(:comment)
       @comment_2 = Fabricate(:comment, text: "My Other Test Comment")
       @comment_3 = Fabricate(:comment, text: "My Lithium Comment")
@@ -68,10 +68,10 @@ module Troo
       end
     end
 
-    describe "#current_str" do
-      subject { described_instance.current_str }
+    describe "#default_str" do
+      subject { described_instance.default_str }
 
-      it "returns the formatted card current indicator" do
+      it "returns the formatted card default indicator" do
         subject.must_equal(" * ")
       end
     end
@@ -92,17 +92,17 @@ module Troo
       end
     end
 
-    describe "#current" do
-      subject { described_instance.current }
+    describe "#default" do
+      subject { described_instance.default }
 
-      context "when current" do
+      context "when default" do
         it "return an indicator" do
           subject.must_equal("*")
         end
       end
 
-      context "when not current" do
-        let(:current) { false }
+      context "when not default" do
+        let(:default) { false }
 
         it "returns nothing" do
           subject.must_equal("")

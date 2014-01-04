@@ -1,16 +1,16 @@
 module Troo
-  class SetCurrent
+  class SetDefault
     def initialize(entity)
       @entity = entity
     end
 
     def self.for(entity)
-      new(entity).set_current!
+      new(entity).set_default!
     end
 
-    def set_current!
-      entity.class.update(current: false)
-      entity.update(current: true)
+    def set_default!
+      entity.class.update(default: false)
+      entity.update(default: true)
       entity
     end
 
