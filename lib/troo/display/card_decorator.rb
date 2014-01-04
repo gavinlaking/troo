@@ -45,7 +45,7 @@ module Troo
 
     def comments
       if card.comments.any? && card.comments.size > 3
-        message = "There are more comments, use: 'troo show comments #{card.short_id}' to view all comments."
+        message = "(There are more comments, use: 'troo show comments #{card.short_id}' to view all comments.)"
         [decorated_recent_comments, message].join("\n")
       elsif card.comments.any?
         decorated_all_comments
