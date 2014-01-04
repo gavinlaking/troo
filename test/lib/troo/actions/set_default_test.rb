@@ -3,18 +3,10 @@ require_relative "../../../test_helper"
 module Troo
   describe SetDefault do
     let(:described_class) { SetDefault }
-    let(:entity) { @board_2 }
-
-    before do
-      @board_1 = Fabricate(:board, default: true)
-      @board_2 = Fabricate(:board, default: false)
-    end
-
-    after do
-      database_cleanup
-    end
 
     describe ".initialize" do
+      let(:entity) { :some_model }
+
       subject { described_class.new(entity) }
 
       it "assigns the entity to an instance variable" do
@@ -23,10 +15,31 @@ module Troo
     end
 
     describe "#set_default!" do
+      before do
+        @board_1 = Fabricate(:board, default: true)
+        @board_2 = Fabricate(:board, default: false)
+      end
+
+      after { database_cleanup }
+
       subject { described_class.for(entity) }
 
-      it "sets the specified entity to be the default" do
-        subject.default.must_equal(true)
+      context "when the entity is already the default" do
+        let(:entity) { @board_1 }
+
+        it "returns false" do
+          subject.must_equal false
+        end
+      end
+
+      context "when the entity is not already the default" do
+        let(:entity) { @board_2 }
+
+        it "sets the specified entity to be the default" do
+          subject.default.must_equal(true)
+
+          subject.must_equal(@board_2)
+        end
       end
     end
   end

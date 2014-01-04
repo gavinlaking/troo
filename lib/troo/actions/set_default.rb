@@ -9,6 +9,7 @@ module Troo
     end
 
     def set_default!
+      return false if already_default?
       entity.class.update(default: false)
       entity.update(default: true)
       entity
@@ -16,5 +17,9 @@ module Troo
 
     private
     attr_reader :entity
+
+    def already_default?
+      entity.default?
+    end
   end
 end
