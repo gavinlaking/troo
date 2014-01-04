@@ -90,7 +90,15 @@ module Troo
       end
     end
 
-    context "#external_attributes" do
+    describe ".count" do
+      subject { described_class.count }
+
+      it "returns the number of this model persisted" do
+        subject.must_equal(2)
+      end
+    end
+
+    describe "#external_attributes" do
       subject { @dumb.external_attributes }
 
       it "returns the attributes of the model which Trello affects" do

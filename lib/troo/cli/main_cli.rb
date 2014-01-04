@@ -8,27 +8,56 @@ module Troo
       desc "status", "Get troo status."
       def status
         puts
-        if board = Troo::BoardRetrieval.default
-          say "Board: #{BoardDecorator.new(board).short}"
+
+        board_count = Troo::Board.count
+        list_count  = Troo::List.count
+        card_count  = Troo::Card.count
+
+        if board_count > 0
+          if board = Troo::BoardRetrieval.default
+            say "Board: #{BoardDecorator.new(board).short}"
+          else
+            say "No board has been set as default."
+          end
         else
-          say "No board has been set as default."
+          say "No local board data."
         end
 
-        if list = Troo::ListRetrieval.default
-          say "List: #{ListDecorator.new(list).short}"
+        if list_count > 0
+          if list = Troo::ListRetrieval.default
+            say "List: #{ListDecorator.new(list).short}"
+          else
+            say "No list has been set as default."
+          end
         else
-          say "No list has been set as default."
+          say "No local list data."
         end
 
-        if card = Troo::CardRetrieval.default
-          say "Card: #{CardDecorator.new(card).short}"
+        if card_count > 0
+          if card = Troo::CardRetrieval.default
+            say "Card: #{CardDecorator.new(card).short}"
+          else
+            say "No card has been set as default."
+          end
         else
-          say "No card has been set as default."
+          say "No local card data."
         end
+
+        puts [plural(board_count, "board"),
+              plural(list_count, "list"),
+              plural(card_count, "card") ].join(", ")
         puts
 
         help
       end
+
+      private
+
+      def plural(size, singular)
+        (size == 1) ? "#{size} #{singular}" : "#{size} #{singular}s"
+      end
+
+      public
 
       desc "refresh", "Refresh all data for default board."
       method_option :all, type: :boolean, desc: "Refresh all boards, lists, cards and comments."

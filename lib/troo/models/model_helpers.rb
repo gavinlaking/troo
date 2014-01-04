@@ -15,6 +15,10 @@ module Troo
       def default
         first(default: true)
       end
+
+      def count
+        all.count
+      end
     end
 
     def self.included(base)
