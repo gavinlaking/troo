@@ -18,7 +18,7 @@ module Troo
     attr_reader :card, :list
 
     def update_cards
-      Troo::ExternalCard.fetch(card.external_board_id, { mode: :board })
+      Troo::ExternalCard.fetch(card.external_board_id)
     end
 
     def move_card
