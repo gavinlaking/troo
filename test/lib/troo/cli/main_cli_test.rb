@@ -63,6 +63,30 @@ module Troo
             subject.must_match /No card/
           end
         end
+
+        context "when there are no boards" do
+          before { Troo::Board.stubs(:count).returns(0) }
+
+          it "returns a polite message" do
+            subject.must_match /No local board data/
+          end
+        end
+
+        context "when there are no lists" do
+          before { Troo::List.stubs(:count).returns(0) }
+
+          it "returns a polite message" do
+            subject.must_match /No local list data/
+          end
+        end
+
+        context "when there are no cards" do
+          before { Troo::Card.stubs(:count).returns(0) }
+
+          it "returns a polite message" do
+            subject.must_match /No local card data/
+          end
+        end
       end
 
       describe "#refresh" do
