@@ -28,19 +28,16 @@ module Troo
     end
 
     def created
-      Troo.logger.debug "Local member does not exist, creating..." if options[:debug]
       Troo::Member.create(resource_data)
     end
 
     def updated
-      Troo.logger.debug "Local member out of date, updating..." if options[:debug]
       local.update(resource_data) && local
     end
 
     def local_identical?
       return false unless local_exists?
       return false if local_data != resource_data
-      Troo.logger.debug "Local member identical, skipping..." if options[:debug]
       true
     end
 

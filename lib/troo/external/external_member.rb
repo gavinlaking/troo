@@ -30,14 +30,12 @@ module Troo
     end
 
     def board_mode
-      Troo.logger.debug "Fetching remote members for board..."
       Trello::Board.find(external_id).members
     rescue Trello::Error
       []
     end
 
     def member_mode
-      Troo.logger.debug "Fetching remote member..."
       [Trello::Member.find(external_id)]
     rescue Trello::Error
       []

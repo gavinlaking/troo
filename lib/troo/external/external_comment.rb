@@ -31,7 +31,6 @@ module Troo
     end
 
     def board_mode
-      Troo.logger.debug "Fetching remote comments for board..."
       Trello::Board.find(external_id).actions({ filter: "commentCard" }).
         delete_if { |a| a.nil? || a.type != "commentCard" }
     rescue Trello::Error
@@ -39,7 +38,6 @@ module Troo
     end
 
     def list_mode
-      Troo.logger.debug "Fetching remote comments for list..."
       Trello::List.find(external_id).actions({ filter: "commentCard" }).
         delete_if { |a| a.nil? || a.type != "commentCard" }
     rescue Trello::Error
@@ -47,7 +45,6 @@ module Troo
     end
 
     def card_mode
-      Troo.logger.debug "Fetching remote comments for card..."
       Trello::Card.find(external_id).actions({ filter: "commentCard" }).
         delete_if { |a| a.nil? || a.type != "commentCard" }
     rescue Trello::Error

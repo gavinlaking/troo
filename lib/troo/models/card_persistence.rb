@@ -28,19 +28,16 @@ module Troo
     end
 
     def created
-      Troo.logger.debug "Local card does not exist, creating..." if options[:debug]
       Troo::Card.create(resource_data)
     end
 
     def updated
-      Troo.logger.debug "Local card out of date, updating..." if options[:debug]
       local.update(resource_data) && local
     end
 
     def local_identical?
       return false unless local_exists?
       return false if local_data != resource_data
-      Troo.logger.debug "Local card identical, skipping..." if options[:debug]
       true
     end
 

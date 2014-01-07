@@ -30,14 +30,12 @@ module Troo
     end
 
     def board_mode
-      Troo.logger.debug "Fetching remote lists for board..."
       Trello::Board.find(external_id).lists
     rescue Trello::Error
       []
     end
 
     def list_mode
-      Troo.logger.debug "Fetching remote list..."
       [Trello::List.find(external_id)]
     rescue Trello::Error
       []
