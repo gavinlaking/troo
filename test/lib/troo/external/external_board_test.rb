@@ -57,7 +57,7 @@ module Troo
       subject { described_class.fetch_all }
 
       it "returns multiple boards" do
-        subject.size.must_equal(10)
+        subject.size.must_equal(1)
       end
 
       context "when no boards can be found" do
