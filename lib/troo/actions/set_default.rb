@@ -10,13 +10,21 @@ module Troo
 
     def set_default!
       return false if already_default?
-      entity.class.update(default: false)
-      entity.update(default: true)
+      unset_default
+      set_new_default
       entity
     end
 
     private
     attr_reader :entity
+
+    def set_new_default
+      entity.update(default: true)
+    end
+
+    def unset_default
+      entity.class.update(default: false)
+    end
 
     def already_default?
       entity.default?
