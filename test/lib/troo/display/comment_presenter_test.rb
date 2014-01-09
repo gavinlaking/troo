@@ -36,16 +36,12 @@ module Troo
       end
 
       context "when the card has no comments" do
-        before do
-          @comment.delete
-        end
+        before { @comment.delete }
 
         it "returns a polite message" do
           subject.must_match /No comments were found/
         end
       end
-
-
     end
   end
 end

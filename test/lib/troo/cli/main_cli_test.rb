@@ -7,11 +7,8 @@ module Troo
       let(:described_class) { Main }
       let(:described_instance) { described_class.new }
 
-      before do
-        @board = Fabricate(:board)
-      end
-
-      after { database_cleanup }
+      before { @board = Fabricate(:board) }
+      after  { database_cleanup }
 
       describe "#status" do
         before do
@@ -103,9 +100,7 @@ module Troo
         end
 
         context "when the --all option is set" do
-          before do
-            described_instance.stubs(:options).returns({"all" => true})
-          end
+          before { described_instance.stubs(:options).returns({"all" => true}) }
 
           it "refreshes all local data" do
             subject.must_match /All local data has been refreshed./
@@ -114,9 +109,7 @@ module Troo
 
         context "when the default board is set" do
           context "when the --lists option is set" do
-            before do
-              described_instance.stubs(:options).returns({"lists" => true})
-            end
+            before { described_instance.stubs(:options).returns({"lists" => true}) }
 
             it "refresh all the lists for the default board" do
               subject.must_match /lists for the default board have been refreshed/
@@ -124,9 +117,7 @@ module Troo
           end
 
           context "when the --cards option is set" do
-            before do
-              described_instance.stubs(:options).returns({"cards" => true})
-            end
+            before { described_instance.stubs(:options).returns({"cards" => true}) }
 
             it "retreshes all the cards for the default board" do
               subject.must_match /cards for the default board have been refreshed/

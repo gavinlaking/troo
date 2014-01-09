@@ -16,11 +16,8 @@ module Troo
     let(:resource_text) { "My Test Comment" }
     let(:options) { {} }
 
-    before do
-      @comment = Fabricate(:comment)
-    end
-
-    after { database_cleanup }
+    before { @comment = Fabricate(:comment) }
+    after  { database_cleanup }
 
     describe ".initialize" do
       subject { described_class.new(resource, options) }
@@ -54,9 +51,7 @@ module Troo
       context "when there is no local copy" do
         let(:resource_text) { "My New Test Comment" }
 
-        before do
-          database_cleanup
-        end
+        before { database_cleanup }
 
         it "creates and returns the new local copy" do
           subject.text.must_equal("My New Test Comment")

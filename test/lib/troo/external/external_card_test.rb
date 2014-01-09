@@ -6,11 +6,8 @@ module Troo
     let(:card_id) { "526d8f19ddb279532e005259" }
     let(:options) { {} }
 
-    before do
-      @card = Fabricate(:card)
-    end
-
-    after { database_cleanup }
+    before { @card = Fabricate(:card) }
+    after  { database_cleanup }
 
     describe ".initialize" do
       subject { described_class.new("some_id", options) }

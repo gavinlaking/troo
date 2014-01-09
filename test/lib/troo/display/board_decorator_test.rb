@@ -6,11 +6,8 @@ module Troo
     let(:default) { true }
     let(:options) { {} }
 
-    before do
-      @board = Fabricate(:board, default: default)
-    end
-
-    after { database_cleanup }
+    before { @board = Fabricate(:board, default: default) }
+    after  { database_cleanup }
 
     describe "#initialize" do
       subject { described_class.new(@board, options) }

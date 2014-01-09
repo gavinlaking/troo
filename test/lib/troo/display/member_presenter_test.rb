@@ -37,9 +37,7 @@ module Troo
       context "when there are two members" do
         let(:external_member_ids) { ["5195fdb5a8c01a2318004f5d", "helium"] }
 
-        before do
-          @member_2 = Fabricate(:member, username: "helium", external_member_id: "helium")
-        end
+        before { @member_2 = Fabricate(:member, username: "helium", external_member_id: "helium") }
 
         it "returns a formatted list of members" do
           subject.must_equal("@gavinlaking1 and @helium")

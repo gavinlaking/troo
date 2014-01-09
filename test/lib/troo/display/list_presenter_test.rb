@@ -37,9 +37,7 @@ module Troo
       end
 
       context "when the list has no cards" do
-        before do
-          @card.delete
-        end
+        before { @card.delete }
 
         it "returns a polite message" do
           subject.must_match /No cards were found./

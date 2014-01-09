@@ -5,11 +5,8 @@ module Troo
     let(:described_class) { MemberRetrieval }
     let(:full_name) { "My Test Member" }
 
-    before do
-      @member = Fabricate(:member, full_name: full_name)
-    end
-
-    after { database_cleanup }
+    before { @member = Fabricate(:member, full_name: full_name) }
+    after  { database_cleanup }
 
     describe ".all" do
       subject { described_class.all }
@@ -42,9 +39,7 @@ module Troo
         let(:id) { "526d_remote_member_005259" }
         let(:full_name) { "My Remote Test Member" }
 
-        before do
-          ExternalMember.stubs(:fetch).returns([@member])
-        end
+        before { ExternalMember.stubs(:fetch).returns([@member]) }
 
         it "returns the correct member" do
           subject.full_name.must_equal("My Remote Test Member")

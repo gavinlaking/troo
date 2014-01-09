@@ -4,11 +4,8 @@ module Troo
   describe CommentRetrieval do
     let(:described_class) { CommentRetrieval }
 
-    before do
-      @comment = Fabricate(:comment)
-    end
-
-    after { database_cleanup }
+    before { @comment = Fabricate(:comment) }
+    after  { database_cleanup }
 
     describe ".all" do
       subject { described_class.all }

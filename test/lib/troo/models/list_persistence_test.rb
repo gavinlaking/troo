@@ -11,11 +11,8 @@ module Troo
     let(:resource_name) { "My Test List" }
     let(:options) { {} }
 
-    before do
-      @list = Fabricate(:list)
-    end
-
-    after { database_cleanup }
+    before { @list = Fabricate(:list) }
+    after  { database_cleanup }
 
     describe ".initialize" do
       subject { described_class.new(resource, options) }
@@ -49,9 +46,7 @@ module Troo
       context "when there is no local copy" do
         let(:resource_name) { "My New Test List" }
 
-        before do
-          database_cleanup
-        end
+        before { database_cleanup }
 
         it "creates and returns the new local copy" do
           subject.name.must_equal("My New Test List")

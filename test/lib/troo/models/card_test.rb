@@ -90,9 +90,7 @@ module Troo
       end
 
       context "when the card has no members" do
-        before do
-          subject.stubs(:external_member_ids).returns([])
-        end
+        before { subject.stubs(:external_member_ids).returns([]) }
 
         it "returns an empty collection" do
           subject.members.size.must_equal 0

@@ -31,9 +31,7 @@ module Troo
         end
 
         context "when no boards exist" do
-          before do
-            Troo::BoardRetrieval.stubs(:all).returns([])
-          end
+          before { Troo::BoardRetrieval.stubs(:all).returns([]) }
 
           it "returns a polite message" do
             subject.must_match /Boards not found./
@@ -54,9 +52,7 @@ module Troo
           end
 
           context "and the board does not exist" do
-            before do
-              Troo::BoardRetrieval.stubs(:retrieve).returns()
-            end
+            before { Troo::BoardRetrieval.stubs(:retrieve).returns() }
 
             it "returns a polite message" do
               subject.must_match /Board not found./
@@ -100,9 +96,7 @@ module Troo
           end
 
           context "when the list does not exist" do
-            before do
-              Troo::ListRetrieval.stubs(:retrieve).returns()
-            end
+            before { Troo::ListRetrieval.stubs(:retrieve).returns() }
 
             it "returns a polite message" do
               subject.must_match /List not found./
@@ -138,9 +132,7 @@ module Troo
 
         context "when a card_id was provided" do
           context "when the card exists" do
-            before do
-              @comment.delete
-            end
+            before { @comment.delete }
 
             it "returns the card details" do
               subject.must_match /\(67\) My Test Card/
@@ -151,9 +143,7 @@ module Troo
           end
 
           context "when the card does not exist" do
-            before do
-              Troo::CardRetrieval.stubs(:retrieve).returns()
-            end
+            before { Troo::CardRetrieval.stubs(:retrieve).returns() }
 
             it "returns a polite message" do
               subject.must_match /Card not found./
@@ -197,9 +187,7 @@ module Troo
           end
 
           context "when the card does not exist" do
-            before do
-              Troo::CardRetrieval.stubs(:retrieve).returns()
-            end
+            before { Troo::CardRetrieval.stubs(:retrieve).returns() }
 
             it "returns a polite message" do
               subject.must_match /Card not found./

@@ -9,10 +9,7 @@ module Troo
       describe ".banner" do
         let(:command) { OpenStruct.new(usage: "some usage") }
 
-        before do
-          File.stubs(:basename).returns("troo")
-        end
-
+        before  { File.stubs(:basename).returns("troo") }
         subject { described_class.banner(command) }
 
         it "should override Thor to provide proper subcommand help" do

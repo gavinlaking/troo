@@ -6,11 +6,8 @@ module Troo
     let(:default) { true }
     let(:board_name) { "My Test Board" }
 
-    before do
-      @board = Fabricate(:board, default: default, name: board_name)
-    end
-
-    after { database_cleanup }
+    before { @board = Fabricate(:board, default: default, name: board_name) }
+    after  { database_cleanup }
 
     describe ".all" do
       subject { described_class.all }
@@ -80,9 +77,7 @@ module Troo
           let(:id)         { "526d_remote_board_005259" }
           let(:board_name) { "My Remote Test Board" }
 
-          before do
-            ExternalBoard.stubs(:fetch).returns([@board])
-          end
+          before { ExternalBoard.stubs(:fetch).returns([@board]) }
 
           it "returns the correct board" do
             subject.name.must_equal("My Remote Test Board")

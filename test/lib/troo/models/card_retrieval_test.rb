@@ -6,11 +6,8 @@ module Troo
     let(:default) { true }
     let(:card_name) { "My Test Card" }
 
-    before do
-      @card = Fabricate(:card, default: default, name: card_name)
-    end
-
-    after { database_cleanup }
+    before { @card = Fabricate(:card, default: default, name: card_name) }
+    after  { database_cleanup }
 
     describe ".all" do
       subject { described_class.all }
@@ -88,9 +85,7 @@ module Troo
           let(:id) { "526d_remote_card_005259" }
           let(:card_name) { "My Remote Test Card" }
 
-          before do
-            ExternalCard.stubs(:fetch).returns([@card])
-          end
+          before { ExternalCard.stubs(:fetch).returns([@card]) }
 
           it "returns the correct card" do
             subject.name.must_equal("My Remote Test Card")

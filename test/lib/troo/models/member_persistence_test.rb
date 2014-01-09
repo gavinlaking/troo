@@ -10,11 +10,8 @@ module Troo
     let(:resource_full_name) { "My Test Member" }
     let(:options) { { } }
 
-    before do
-      @member = Fabricate(:member)
-    end
-
-    after { database_cleanup }
+    before { @member = Fabricate(:member) }
+    after  { database_cleanup }
 
     describe ".initialize" do
       subject { described_class.new(resource, options) }
@@ -48,9 +45,7 @@ module Troo
       context "when there is no local copy" do
         let(:resource_full_name) { "My New Test Member" }
 
-        before do
-          database_cleanup
-        end
+        before { database_cleanup }
 
         it "creates and returns the new local copy" do
           subject.full_name.must_equal("My New Test Member")

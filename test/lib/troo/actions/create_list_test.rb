@@ -40,9 +40,7 @@ module Troo
       end
 
       context "when the list was not created" do
-        before do
-          Trello::List.stubs(:create).raises(Trello::Error)
-        end
+        before { Trello::List.stubs(:create).raises(Trello::Error) }
 
         it "returns false" do
           subject.must_equal false

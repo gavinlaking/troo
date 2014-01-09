@@ -4,11 +4,8 @@ module Troo
   describe MemberDecorator do
     let(:described_class) { MemberDecorator }
 
-    before do
-      @member = Fabricate(:member)
-    end
-
-    after { database_cleanup }
+    before { @member = Fabricate(:member) }
+    after  { database_cleanup }
 
     describe "#initialize" do
       subject { described_class.new(@member) }

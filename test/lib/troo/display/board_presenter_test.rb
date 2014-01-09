@@ -36,9 +36,7 @@ module Troo
       end
 
       context "when the board has no lists" do
-        before do
-          @list.delete
-        end
+        before { @list.delete }
 
         it "returns a polite message" do
           subject.must_match /No lists were found./
@@ -59,9 +57,7 @@ module Troo
         end
 
         context "and the list has no cards" do
-          before do
-            @card.delete
-          end
+          before { @card.delete }
 
           it "returns a polite message" do
             subject.must_match /No cards were found./
@@ -70,9 +66,7 @@ module Troo
       end
 
       context "when the board has no lists" do
-        before do
-          @board.stubs(:lists).returns([])
-        end
+        before { @board.stubs(:lists).returns([]) }
 
         it "returns a polite message" do
           subject.must_match /No lists were found./

@@ -45,9 +45,7 @@ module Troo
       end
 
       context "when the card was not created" do
-        before do
-          Trello::Card.stubs(:create).raises(Trello::Error)
-        end
+        before { Trello::Card.stubs(:create).raises(Trello::Error) }
 
         it "returns false" do
           subject.must_equal false

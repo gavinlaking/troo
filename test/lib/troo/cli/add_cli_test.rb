@@ -55,9 +55,7 @@ module Troo
         let(:card_name)   { "My New Test Card" }
         let(:description) { "A very brief description..." }
 
-        before do
-          Troo::ListRetrieval.stubs(:retrieve).returns(@list)
-        end
+        before { Troo::ListRetrieval.stubs(:retrieve).returns(@list) }
 
         subject { capture_io { described_class.new.card(list_id, card_name, description) }.join }
 
@@ -100,9 +98,7 @@ module Troo
         let(:card_id) { "526d8f19ddb279532e005259" }
         let(:comment) { "A very brief description..." }
 
-        before do
-          Troo::CardRetrieval.stubs(:retrieve).returns(@card)
-        end
+        before { Troo::CardRetrieval.stubs(:retrieve).returns(@card) }
 
         subject { capture_io { described_class.new.comment(card_id, comment) }.join }
 
@@ -145,9 +141,7 @@ module Troo
         let(:board_id)  { "526d8e130a14a9d846001d96" }
         let(:list_name) { "My New List" }
 
-        before do
-          Troo::BoardRetrieval.stubs(:retrieve).returns(@board)
-        end
+        before { Troo::BoardRetrieval.stubs(:retrieve).returns(@board) }
 
         subject { capture_io { described_class.new.list(board_id, list_name) }.join }
 

@@ -38,9 +38,7 @@ module Troo
       end
 
       context "when the board was not created" do
-        before do
-          Trello::Board.stubs(:create).raises(Trello::Error)
-        end
+        before { Trello::Board.stubs(:create).raises(Trello::Error) }
 
         it "returns false" do
           subject.must_equal false

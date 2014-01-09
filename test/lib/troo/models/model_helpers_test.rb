@@ -78,9 +78,7 @@ module Troo
       end
 
       context "when there is a default model" do
-        before do
-          @dumber.delete
-        end
+        before { @dumber.delete }
 
         it "returns nil" do
           subject.must_equal(nil)

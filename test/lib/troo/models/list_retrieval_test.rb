@@ -6,11 +6,8 @@ module Troo
     let(:default) { true }
     let(:list_name) { "My Test List" }
 
-    before do
-      @list = Fabricate(:list, default: default, name: list_name)
-    end
-
-    after { database_cleanup }
+    before { @list = Fabricate(:list, default: default, name: list_name) }
+    after  { database_cleanup }
 
     describe ".all" do
       subject { described_class.all }
@@ -80,9 +77,7 @@ module Troo
           let(:id) { "526d_remote_list_005259" }
           let(:list_name) { "My Remote Test List" }
 
-          before do
-            ExternalList.stubs(:fetch).returns([@list])
-          end
+          before { ExternalList.stubs(:fetch).returns([@list]) }
 
           it "returns the correct list" do
             subject.name.must_equal("My Remote Test List")

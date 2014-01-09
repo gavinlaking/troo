@@ -25,9 +25,7 @@ module Troo
         subject { capture_io { described_class.new.board(board_id) }.join }
 
         context "when the board_id cannot be found" do
-          before do
-            Troo::BoardRetrieval.stubs(:retrieve).returns(nil)
-          end
+          before { Troo::BoardRetrieval.stubs(:retrieve).returns(nil) }
 
           it "returns a polite message" do
             subject.must_match /Board cannot be found/
@@ -45,9 +43,7 @@ module Troo
         subject { capture_io { described_class.new.card(card_id) }.join }
 
         context "when the card_id cannot be found" do
-          before do
-            Troo::CardRetrieval.stubs(:retrieve).returns(nil)
-          end
+          before { Troo::CardRetrieval.stubs(:retrieve).returns(nil) }
 
           it "returns a polite message" do
             subject.must_match /Card cannot be found/
@@ -65,9 +61,7 @@ module Troo
         subject { capture_io { described_class.new.list(list_id) }.join }
 
         context "when the list_id cannot be found" do
-          before do
-            Troo::ListRetrieval.stubs(:retrieve).returns(nil)
-          end
+          before { Troo::ListRetrieval.stubs(:retrieve).returns(nil) }
 
           it "returns a polite message" do
             subject.must_match /List cannot be found/

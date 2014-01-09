@@ -6,9 +6,6 @@ module Troo
     let(:board_id)        { "526d8e130a14a9d846001d96" }
     let(:options)         { { } }
 
-    before do
-    end
-
     after { database_cleanup }
 
     describe ".initialize" do
