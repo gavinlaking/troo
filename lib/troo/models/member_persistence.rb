@@ -17,15 +17,7 @@ module Troo
     end
 
     private
-    attr_reader :resource
-
-    def options
-      defaults.merge!(@options)
-    end
-
-    def defaults
-      { debug: true }
-    end
+    attr_reader :resource, :options
 
     def created
       Troo::Member.create(resource_data)
