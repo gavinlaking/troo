@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "vcr"
-  spec.add_development_dependency "webmock"
+  spec.add_development_dependency "webmock", "1.15.2"
 
   spec.add_dependency "json", "1.7.7"
   spec.add_dependency "ohm"
