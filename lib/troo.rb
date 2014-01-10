@@ -4,6 +4,9 @@ require_relative "troo/version"
 module Troo
   def self.config
     @config ||= OpenStruct.new(YAML.load_file(File.dirname(__FILE__) + "/../configuration.yml"))
+  rescue Errno::ENOENT
+    warn "Cannot continue, no configuration file."
+    exit!
   end
 
   def self.logger
