@@ -15,6 +15,8 @@ module Troo
         else
           say "Board could not be created."
         end
+      rescue Troo::InvalidAccessToken
+        say "Your Trello access credentials have expired, please renew and try again."
       end
 
       desc "card <list_id> <name> (<description>)",
@@ -33,6 +35,8 @@ module Troo
         else
           say "Card could not be created, as list was not found."
         end
+      rescue Troo::InvalidAccessToken
+        say "Your Trello access credentials have expired, please renew and try again."
       end
 
       desc "comment <card_id> <comment>",
@@ -51,6 +55,8 @@ module Troo
         else
           say "Comment could not be created, as card was not found."
         end
+      rescue Troo::InvalidAccessToken
+        say "Your Trello access credentials have expired, please renew and try again."
       end
 
       desc "list <board_id> <name>",
@@ -69,6 +75,8 @@ module Troo
         else
           say "List could not be created, as board was not found."
         end
+      rescue Troo::InvalidAccessToken
+        say "Your Trello access credentials have expired, please renew and try again."
       end
     end
   end

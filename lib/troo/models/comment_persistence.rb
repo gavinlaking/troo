@@ -20,17 +20,21 @@ module Troo
     attr_reader :resource, :options
 
     def created
-      Troo::Comment.create(resource_data)
+      Troo::Comment.create(remote)
     end
 
     def updated
-      local.update(resource_data) && local
+      local.update(remote) && local
     end
 
     def local_identical?
       return false unless local_exists?
-      return false if local_data != resource_data
+      return false if local_data != remote
       true
+    end
+
+    def local_data
+      local.external_attributes
     end
 
     def local_exists?
@@ -41,17 +45,8 @@ module Troo
       @local ||= Troo::Comment.first(external_comment_id: resource.id)
     end
 
-    def local_data
-      local.external_attributes
-    end
-
-    def resource_data
-      { external_comment_id: resource.id,
-        external_board_id:   resource.data.fetch("board", {}).fetch("id", ""),
-        external_card_id:    resource.data.fetch("card",  {}).fetch("id", ""),
-        external_member_id:  resource.member_creator_id,
-        date:                resource.date.to_s,
-        text:                resource.data.fetch("text", "") }.delete_if { |k, v| v.nil? }
+    def remote
+      @remote ||= Troo::External::CommentAdaptor.adapt(resource)
     end
   end
 end

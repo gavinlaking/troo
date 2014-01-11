@@ -48,6 +48,14 @@ module Troo
             subject.must_match /Board could not be created/
           end
         end
+
+        context "when the Trello access token credentials are invalid" do
+          before { Troo::CreateBoard.stubs(:with).raises(Troo::InvalidAccessToken) }
+
+          it "returns a polite message" do
+            subject.must_match /access credentials have expired, please renew/
+          end
+        end
       end
 
       describe "#card" do
@@ -81,6 +89,14 @@ module Troo
 
             it "returns a polite message" do
               subject.must_match /Card could not be created/
+            end
+          end
+
+          context "when the Trello access token credentials are invalid" do
+            before { Troo::CreateCard.stubs(:for).raises(Troo::InvalidAccessToken) }
+
+            it "returns a polite message" do
+              subject.must_match /access credentials have expired, please renew/
             end
           end
         end
@@ -126,6 +142,14 @@ module Troo
               subject.must_match /Comment could not be created/
             end
           end
+
+          context "when the Trello access token credentials are invalid" do
+            before { Troo::CreateComment.stubs(:for).raises(Troo::InvalidAccessToken) }
+
+            it "returns a polite message" do
+              subject.must_match /access credentials have expired, please renew/
+            end
+          end
         end
 
         context "when the card was not found" do
@@ -169,6 +193,14 @@ module Troo
               subject.must_match /List could not be created/
             end
           end
+
+          context "when the Trello access token credentials are invalid" do
+            before { Troo::CreateList.stubs(:for).raises(Troo::InvalidAccessToken) }
+
+            it "returns a polite message" do
+              subject.must_match /access credentials have expired, please renew/
+            end
+        end
         end
 
         context "when the board was not found" do

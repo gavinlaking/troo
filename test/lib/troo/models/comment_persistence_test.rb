@@ -34,27 +34,29 @@ module Troo
     describe "#persist" do
       subject { described_class.for(resource, options) }
 
-      context "when an identical copy already exists locally" do
-        it "returns the local copy" do
-          subject.must_equal(@comment)
+      context "when there is already a local copy" do
+        context "and the local copy is identical" do
+          it "returns the local copy" do
+            subject.must_equal(@comment)
+          end
+        end
+
+        context "and the local copy is out of date" do
+          let(:resource_text) { "My Renamed Comment" }
+
+          it "updates and returns the new local copy" do
+            subject.text.must_equal(resource_text)
+          end
         end
       end
 
-      context "when the local copy is out of date" do
-        let(:resource_text) { "My Renamed Comment" }
-
-        it "updates and returns the new local copy" do
-          subject.text.must_equal("My Renamed Comment")
-        end
-      end
-
-      context "when there is no local copy" do
+      context "when there is not already a local copy" do
         let(:resource_text) { "My New Test Comment" }
 
         before { database_cleanup }
 
         it "creates and returns the new local copy" do
-          subject.text.must_equal("My New Test Comment")
+          subject.text.must_equal(resource_text)
         end
       end
     end

@@ -25,6 +25,8 @@ module Troo
       Trello::Card.new.
         update_fields({ 'id' => card.external_card_id }).
         move_to_list(list.external_list_id)
+    rescue Trello::InvalidAccessToken
+      raise Troo::InvalidAccessToken
     rescue Trello::Error
       false
     end

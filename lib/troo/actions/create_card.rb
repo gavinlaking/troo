@@ -24,6 +24,8 @@ module Troo
 
     def create_card
       @card ||= Trello::Card.create(attributes)
+    rescue Trello::InvalidAccessToken
+      raise Troo::InvalidAccessToken
     rescue Trello::Error
       false
     end

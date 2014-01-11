@@ -22,9 +22,11 @@ VCR.configure do |c|
       end
       interaction.response.body = JSON.dump(parsed)
     elsif parsed.is_a?(Hash)
-      parsed.map { |k, v| parsed[k] = "<Trello URL>" if (k == "url"      ||
-                                                         k == "shortUrl" ||
-                                                         k == "shortLink") }
+      parsed.map do |k, v|
+        parsed[k] = "<Trello URL>" if (k == "url"      ||
+                                       k == "shortUrl" ||
+                                       k == "shortLink")
+      end
       interaction.response.body = JSON.dump(parsed)
     end
     nil

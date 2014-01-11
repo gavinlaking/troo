@@ -83,6 +83,8 @@ module Troo
             say "Use 'troo default board <board_id>' to set a default board first."
           end
         end
+      rescue Troo::InvalidAccessToken
+        say "Your Trello access credentials have expired, please renew and try again."
       end
 
       desc "cleanup", "Removes all local data."
@@ -122,6 +124,8 @@ module Troo
         else
           say "Card could not be moved, as card was not found."
         end
+      rescue Troo::InvalidAccessToken
+        say "Your Trello access credentials have expired, please renew and try again."
       end
     end
   end

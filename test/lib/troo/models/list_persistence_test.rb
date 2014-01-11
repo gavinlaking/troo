@@ -29,27 +29,29 @@ module Troo
     describe "#persist" do
       subject { described_class.for(resource, options) }
 
-      context "when an identical copy already exists locally" do
-        it "returns the local copy" do
-          subject.must_equal(@list)
+      context "when there is already a local copy" do
+        context "and the local copy is identical" do
+          it "returns the local copy" do
+            subject.must_equal(@list)
+          end
+        end
+
+        context "and the local copy is out of date" do
+          let(:resource_name) { "My Renamed List" }
+
+          it "updates and returns the new local copy" do
+            subject.name.must_equal(resource_name)
+          end
         end
       end
 
-      context "when the local copy is out of date" do
-        let(:resource_name) { "My Renamed List" }
-
-        it "updates and returns the new local copy" do
-          subject.name.must_equal("My Renamed List")
-        end
-      end
-
-      context "when there is no local copy" do
+      context "when there is not already a local copy" do
         let(:resource_name) { "My New Test List" }
 
         before { database_cleanup }
 
         it "creates and returns the new local copy" do
-          subject.name.must_equal("My New Test List")
+          subject.name.must_equal(resource_name)
         end
       end
     end

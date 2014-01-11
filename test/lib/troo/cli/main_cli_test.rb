@@ -138,6 +138,17 @@ module Troo
             subject.must_match /to set a default board first/
           end
         end
+
+        context "when the Trello access token credentials are invalid" do
+          before do
+            described_instance.stubs(:options).returns({"all" => true})
+            Troo::RefreshAll.stubs(:all).raises(Troo::InvalidAccessToken)
+          end
+
+          it "returns a polite message" do
+            subject.must_match /access credentials have expired, please renew/
+          end
+        end
       end
 
       describe "#cleanup" do

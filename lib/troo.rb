@@ -2,6 +2,8 @@ require_relative "troo/troo"
 require_relative "troo/version"
 
 module Troo
+  class InvalidAccessToken < StandardError; end
+
   def self.config
     @config ||= OpenStruct.new(YAML.load_file(File.dirname(__FILE__) + "/../configuration.yml"))
   rescue Errno::ENOENT

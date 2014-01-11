@@ -33,6 +33,8 @@ module Troo
     def board_mode
       Trello::Board.find(external_id).actions({ filter: "commentCard" }).
         delete_if { |a| a.nil? || a.type != "commentCard" }
+    rescue Trello::InvalidAccessToken
+      raise Troo::InvalidAccessToken
     rescue Trello::Error
       []
     end
@@ -40,6 +42,8 @@ module Troo
     def list_mode
       Trello::List.find(external_id).actions({ filter: "commentCard" }).
         delete_if { |a| a.nil? || a.type != "commentCard" }
+    rescue Trello::InvalidAccessToken
+      raise Troo::InvalidAccessToken
     rescue Trello::Error
       []
     end
@@ -47,6 +51,8 @@ module Troo
     def card_mode
       Trello::Card.find(external_id).actions({ filter: "commentCard" }).
         delete_if { |a| a.nil? || a.type != "commentCard" }
+    rescue Trello::InvalidAccessToken
+      raise Troo::InvalidAccessToken
     rescue Trello::Error
       []
     end

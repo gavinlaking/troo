@@ -23,6 +23,8 @@ module Troo
 
     def create_list
       @list ||= Trello::List.create(attributes)
+    rescue Trello::InvalidAccessToken
+      raise Troo::InvalidAccessToken
     rescue Trello::Error
       false
     end

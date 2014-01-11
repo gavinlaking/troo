@@ -20,17 +20,21 @@ module Troo
     attr_reader :resource, :options
 
     def created
-      Troo::Member.create(resource_data)
+      Troo::Member.create(remote)
     end
 
     def updated
-      local.update(resource_data) && local
+      local.update(remote) && local
     end
 
     def local_identical?
       return false unless local_exists?
-      return false if local_data != resource_data
+      return false if local_data != remote
       true
+    end
+
+    def local_data
+      local.external_attributes
     end
 
     def local_exists?
@@ -41,19 +45,8 @@ module Troo
       @local ||= Troo::Member.first(external_member_id: resource.id)
     end
 
-    def local_data
-      local.external_attributes
-    end
-
-    def resource_data
-      { external_member_id: resource.id,
-        username:           resource.username,
-        email:              resource.email,
-        full_name:          resource.full_name,
-        initials:           resource.initials,
-        avatar_id:          resource.avatar_id,
-        bio:                resource.bio,
-        url:                resource.url }.delete_if { |k, v| v.nil? }
+    def remote
+      @remote ||= Troo::External::MemberAdaptor.adapt(resource)
     end
   end
 end

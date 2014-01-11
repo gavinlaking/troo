@@ -25,6 +25,8 @@ module Troo
 
     def create_board
       @board ||= Trello::Board.create(attributes)
+    rescue Trello::InvalidAccessToken
+      raise Troo::InvalidAccessToken
     rescue Trello::Error
       false
     end

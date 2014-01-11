@@ -13,6 +13,8 @@ module Troo
 
     def fetch_by_external_id
       [Trello::Board.find(external_id)]
+    rescue Trello::InvalidAccessToken
+      raise Troo::InvalidAccessToken
     rescue Trello::Error
       []
     end
@@ -25,6 +27,8 @@ module Troo
 
     def fetch_all
       Trello::Board.all
+    rescue Trello::InvalidAccessToken
+      raise Troo::InvalidAccessToken
     rescue Trello::Error
       []
     end

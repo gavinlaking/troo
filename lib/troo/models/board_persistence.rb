@@ -20,17 +20,21 @@ module Troo
     attr_reader :resource, :options
 
     def created
-      Troo::Board.create(resource_data)
+      Troo::Board.create(remote)
     end
 
     def updated
-      local.update(resource_data) && local
+      local.update(remote) && local
     end
 
     def local_identical?
       return false unless local_exists?
-      return false if local_data != resource_data
+      return false if local_data != remote
       true
+    end
+
+    def local_data
+      local.external_attributes
     end
 
     def local_exists?
@@ -41,15 +45,8 @@ module Troo
       @local ||= Troo::Board.first(external_board_id: resource.id)
     end
 
-    def local_data
-      local.external_attributes
-    end
-
-    def resource_data
-      { external_board_id: resource.id,
-        name:              resource.name,
-        description:       resource.description,
-        closed:            resource.closed.to_s }.delete_if { |k, v| v.nil? }
+    def remote
+      @remote ||= Troo::External::BoardAdaptor.adapt(resource)
     end
   end
 end
