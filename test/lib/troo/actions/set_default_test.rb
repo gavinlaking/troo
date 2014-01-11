@@ -27,9 +27,7 @@ module Troo
       context "when the entity is already the default" do
         let(:entity) { @board_1 }
 
-        it "returns false" do
-          subject.must_equal false
-        end
+        it { subject.must_equal false }
       end
 
       context "when the entity is not already the default" do

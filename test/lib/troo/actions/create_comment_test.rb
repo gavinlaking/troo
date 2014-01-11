@@ -42,9 +42,7 @@ module Troo
       context "when the comment was not created" do
         before { Trello::Card.any_instance.stubs(:add_comment).raises(Trello::Error) }
 
-        it "returns false" do
-          subject.must_equal false
-        end
+        it { subject.must_equal false }
       end
     end
   end

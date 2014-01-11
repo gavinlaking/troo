@@ -51,9 +51,7 @@ module Troo
 
         before { ExternalMember.stubs(:fetch).returns([]) }
 
-        it "returns nil" do
-          subject.must_equal nil
-        end
+        it { subject.must_equal(nil) }
       end
     end
   end

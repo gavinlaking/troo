@@ -53,7 +53,7 @@ module Troo
       subject { described_class.lists(@board, options) }
 
       it "refreshes the lists for the board specified" do
-          subject.size.must_equal(1)
+        subject.size.must_equal(1)
       end
     end
 

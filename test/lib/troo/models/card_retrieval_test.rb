@@ -29,9 +29,7 @@ module Troo
       context "when default is not set" do
         let(:default) { false }
 
-        it "returns nil" do
-          subject.must_equal nil
-        end
+        it { subject.must_equal(nil) }
       end
     end
 
@@ -48,9 +46,7 @@ module Troo
         context "when default is not set" do
           let(:default) { false }
 
-          it "returns nil" do
-            subject.must_equal nil
-          end
+          it { subject.must_equal(nil) }
         end
       end
 
@@ -97,9 +93,7 @@ module Troo
 
           before { ExternalCard.stubs(:fetch).returns([]) }
 
-          it "returns nil" do
-            subject.must_equal nil
-          end
+          it { subject.must_equal(nil) }
         end
       end
     end

@@ -39,9 +39,7 @@ module Troo
       context "when the card was not moved" do
         before { Trello::Card.any_instance.stubs(:move_to_list).raises(Trello::Error) }
 
-        it "retrns false" do
-          subject.must_equal false
-        end
+        it { subject.must_equal false }
       end
     end
   end
