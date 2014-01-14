@@ -1,14 +1,16 @@
 module Troo
   class ListPresenter
+    class << self
+      def render_show(list, options = {})
+        new(list, options).render_show
+      end
+    end
+
     include DecoratorHelpers
 
     def initialize(list, options = {})
       @list   = list
       @options = options
-    end
-
-    def self.render_show(list, options = {})
-      new(list, options).render_show
     end
 
     def render_show

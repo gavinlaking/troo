@@ -1,12 +1,26 @@
 module Troo
   class RefreshAll
+    class << self
+      def all(board = nil, options = {})
+        new(board, options).all
+      end
+
+      def default(board, options = {})
+        new(board, options).default
+      end
+
+      def lists(board, options = {})
+        new(board, options).lists
+      end
+
+      def cards(board, options = {})
+        new(board, options).cards
+      end
+    end
+
     def initialize(board = nil, options = {})
       @board = board
       @options = options
-    end
-
-    def self.all(board = nil, options = {})
-      new(board, options).all
     end
 
     def all
@@ -18,10 +32,6 @@ module Troo
       true
     end
 
-    def self.default(board, options = {})
-      new(board, options).default
-    end
-
     def default
       new_lists = ExternalList.fetch(external_board_id, options)
       new_cards = new_lists.map do |list|
@@ -31,16 +41,8 @@ module Troo
       true
     end
 
-    def self.lists(board, options = {})
-      new(board, options).lists
-    end
-
     def lists
       ExternalList.fetch(external_board_id, options)
-    end
-
-    def self.cards(board, options = {})
-      new(board, options).cards
     end
 
     def cards

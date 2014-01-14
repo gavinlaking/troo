@@ -1,14 +1,16 @@
 module Troo
   class CommentPresenter
+    class << self
+      def render_show(card, options = {})
+        new(card, options).render_show
+      end
+    end
+
     include DecoratorHelpers
 
     def initialize(card, options = {})
       @card    = card
       @options = options
-    end
-
-    def self.render_show(card, options = {})
-      new(card, options).render_show
     end
 
     def render_show

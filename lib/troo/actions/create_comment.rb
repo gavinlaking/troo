@@ -1,12 +1,14 @@
 module Troo
   class CreateComment
+    class << self
+      def for(card, comment)
+        new(card, comment).perform
+      end
+    end
+
     def initialize(card, comment)
       @card    = card
       @comment = comment
-    end
-
-    def self.for(card, comment)
-      new(card, comment).perform
     end
 
     def perform

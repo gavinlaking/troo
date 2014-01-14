@@ -1,14 +1,20 @@
 module Troo
   class BoardPresenter
+    class << self
+      def render_all(board, options = {})
+        new(board, options).render_all
+      end
+
+      def render_show(board, options = {})
+        new(board, options).render_show
+      end
+    end
+
     include DecoratorHelpers
 
     def initialize(board, options = {})
       @board   = board
       @options = options
-    end
-
-    def self.render_all(board, options = {})
-      new(board, options).render_all
     end
 
     def render_all
@@ -25,10 +31,6 @@ module Troo
           print_error "No lists were found.\n"
         end
       end
-    end
-
-    def self.render_show(board, options = {})
-      new(board, options).render_show
     end
 
     def render_show

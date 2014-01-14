@@ -1,13 +1,14 @@
 module Troo
   class BoardPersistence
+    class << self
+      def for(resource, options = {})
+        new(resource, options).persist
+      end
+    end
 
     def initialize(resource, options = {})
       @resource = resource
       @options = options
-    end
-
-    def self.for(resource, options = {})
-      new(resource, options).persist
     end
 
     def persist

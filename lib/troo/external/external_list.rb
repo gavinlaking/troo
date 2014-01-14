@@ -1,14 +1,22 @@
 module Troo
   class ExternalList
+    class << self
+      def fetch(external_id, options = {})
+        new(external_id, options).fetch_by_external_id.map do |resource|
+          Troo::ListPersistence.for(resource) unless closed?(resource)
+        end
+      end
+
+      private
+
+      def closed?(resource)
+        resource.nil? || resource.closed?
+      end
+    end
+
     def initialize(external_id, options = {})
       @external_id = external_id
       @options     = options
-    end
-
-    def self.fetch(external_id, options = {})
-      new(external_id, options).fetch_by_external_id.map do |resource|
-        Troo::ListPersistence.for(resource) unless closed?(resource)
-      end
     end
 
     def fetch_by_external_id
@@ -43,10 +51,6 @@ module Troo
       raise Troo::InvalidAccessToken
     rescue Trello::Error
       []
-    end
-
-    def self.closed?(resource)
-      resource.nil? || resource.closed?
     end
   end
 end

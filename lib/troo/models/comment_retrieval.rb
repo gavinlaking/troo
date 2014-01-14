@@ -1,15 +1,17 @@
 module Troo
   class CommentRetrieval
+    class << self
+      def all
+        Troo::Comment.all
+      end
+
+      def retrieve(id)
+        new(id).retrieve
+      end
+    end
+
     def initialize(id)
       @id = id
-    end
-
-    def self.all
-      Troo::Comment.all
-    end
-
-    def self.retrieve(id)
-      new(id).retrieve
     end
 
     def retrieve

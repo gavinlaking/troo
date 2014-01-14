@@ -1,15 +1,17 @@
 module Troo
   class MemberRetrieval
+    class << self
+      def all
+        Troo::Member.all
+      end
+
+      def retrieve(id)
+        new(id).retrieve
+      end
+    end
+
     def initialize(id)
       @id = id
-    end
-
-    def self.all
-      Troo::Member.all
-    end
-
-    def self.retrieve(id)
-      new(id).retrieve
     end
 
     def retrieve

@@ -1,19 +1,21 @@
 module Troo
   class BoardRetrieval
+    class << self
+      def all
+        Troo::Board.all
+      end
+
+      def default
+        new.retrieve
+      end
+
+      def retrieve(id = nil)
+        new(id).retrieve
+      end
+    end
+
     def initialize(id = nil)
       @id = id
-    end
-
-    def self.all
-      Troo::Board.all
-    end
-
-    def self.default
-      new.retrieve
-    end
-
-    def self.retrieve(id = nil)
-      new(id).retrieve
     end
 
     def retrieve

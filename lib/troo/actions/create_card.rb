@@ -1,13 +1,15 @@
 module Troo
   class CreateCard
+    class << self
+      def for(list, name = nil, description = nil)
+        new(list, name, description).perform
+      end
+    end
+
     def initialize(list, name = nil, description = nil)
       @list        = list
       @name        = name
       @description = description
-    end
-
-    def self.for(list, name = nil, description = nil)
-      new(list, name, description).perform
     end
 
     def perform

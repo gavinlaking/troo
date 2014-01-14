@@ -1,14 +1,16 @@
 module Troo
   class CreateBoard
+    class << self
+      def with(name, description = nil)
+        new(name, description).perform
+      end
+    end
+
     attr_reader :name
 
     def initialize(name, description = nil)
       @name        = name
       @description = description
-    end
-
-    def self.with(name, description = nil)
-      new(name, description).perform
     end
 
     def perform

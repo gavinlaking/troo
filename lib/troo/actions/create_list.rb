@@ -1,12 +1,14 @@
 module Troo
   class CreateList
+    class << self
+      def for(board, name)
+        new(board, name).perform
+      end
+    end
+
     def initialize(board, name)
       @board = board
       @name  = name
-    end
-
-    def self.for(board, name)
-      new(board, name).perform
     end
 
     def perform

@@ -1,14 +1,16 @@
 module Troo
   class ExternalMember
+    class << self
+      def fetch(external_id, options = {})
+        new(external_id, options).fetch_by_external_id.map do |resource|
+          Troo::MemberPersistence.for(resource)
+        end
+      end
+    end
+
     def initialize(external_id, options = {})
       @external_id = external_id
       @options     = options
-    end
-
-    def self.fetch(external_id, options = {})
-      new(external_id, options).fetch_by_external_id.map do |resource|
-        Troo::MemberPersistence.for(resource)
-      end
     end
 
     def fetch_by_external_id

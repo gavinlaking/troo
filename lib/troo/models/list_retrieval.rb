@@ -1,19 +1,21 @@
 module Troo
   class ListRetrieval
+    class << self
+      def all
+        Troo::List.all
+      end
+
+      def default
+        new.retrieve
+      end
+
+      def retrieve(id = nil)
+        new(id).retrieve
+      end
+    end
+
     def initialize(id = nil)
       @id = id
-    end
-
-    def self.all
-      Troo::List.all
-    end
-
-    def self.default
-      new.retrieve
-    end
-
-    def self.retrieve(id = nil)
-      new(id).retrieve
     end
 
     def retrieve

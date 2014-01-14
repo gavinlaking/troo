@@ -1,12 +1,14 @@
 module Troo
   module External
     class MemberAdaptor
-      def initialize(resource)
-        @resource = resource
+      class << self
+        def adapt(resource)
+          new(resource).adapted
+        end
       end
 
-      def self.adapt(resource)
-        new(resource).adapted
+      def initialize(resource)
+        @resource = resource
       end
 
       def adapted

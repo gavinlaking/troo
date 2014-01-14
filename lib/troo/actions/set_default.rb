@@ -1,11 +1,13 @@
 module Troo
   class SetDefault
-    def initialize(entity)
-      @entity = entity
+    class << self
+      def for(entity)
+        new(entity).set_default!
+      end
     end
 
-    def self.for(entity)
-      new(entity).set_default!
+    def initialize(entity)
+      @entity = entity
     end
 
     def set_default!

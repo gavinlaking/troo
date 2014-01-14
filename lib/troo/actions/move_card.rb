@@ -1,12 +1,14 @@
 module Troo
   class MoveCard
+    class << self
+      def with(card, list)
+        new(card, list).perform
+      end
+    end
+
     def initialize(card, list)
       @card = card
       @list = list
-    end
-
-    def self.with(card, list)
-      new(card, list).perform
     end
 
     def perform
