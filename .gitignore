@@ -22,4 +22,4 @@ configuration.yml.personal
 logs/*.log
 troo.db
 tags
-test/cassettes/*
+# test/cassettes

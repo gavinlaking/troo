@@ -26,7 +26,7 @@ module Troo
       subject { described_class.fetch(board_id, options) }
 
       it "returns multiple lists" do
-        subject.size.must_equal(5)
+        subject.size.must_equal(4)
       end
 
       context "when the board cannot be found" do
