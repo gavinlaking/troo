@@ -7,7 +7,7 @@ module Troo
     before do
       @list = Fabricate(:list, external_list_id: "526d8e130a14a9d846001d98")
       @card = Fabricate(:card)
-      Troo::ExternalCard.stubs(:fetch).returns(true)
+      Troo::External::Card.stubs(:fetch).returns(true)
      end
 
     after { database_cleanup }

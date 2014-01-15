@@ -30,7 +30,7 @@ module Troo
     end
 
     def remote
-      ExternalMember.fetch(id, { mode: :member }).first
+      External::Member.fetch(id, { mode: :member }).first
     end
   end
 end

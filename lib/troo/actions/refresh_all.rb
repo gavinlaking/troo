@@ -25,28 +25,28 @@ module Troo
 
     def all
       external_board_ids.map do |external_board_id|
-        ExternalList.fetch(external_board_id, options)
-        ExternalMember.fetch(external_board_id, options)
-        ExternalCard.fetch(external_board_id, options)
+        External::List.fetch(external_board_id, options)
+        External::Member.fetch(external_board_id, options)
+        External::Card.fetch(external_board_id, options)
       end
       true
     end
 
     def default
-      new_lists = ExternalList.fetch(external_board_id, options)
+      new_lists = External::List.fetch(external_board_id, options)
       new_cards = new_lists.map do |list|
-        ExternalCard.fetch(list.external_list_id, { mode: :list })
+        External::Card.fetch(list.external_list_id, { mode: :list })
       end
-      ExternalMember.fetch(external_board_id, options)
+      External::Member.fetch(external_board_id, options)
       true
     end
 
     def lists
-      ExternalList.fetch(external_board_id, options)
+      External::List.fetch(external_board_id, options)
     end
 
     def cards
-      ExternalCard.fetch(external_board_id, options)
+      External::Card.fetch(external_board_id, options)
     end
 
     private
@@ -73,7 +73,7 @@ module Troo
     end
 
     def all_boards
-      @boards ||= ExternalBoard.fetch_all
+      @boards ||= External::Board.fetch_all
     end
   end
 end

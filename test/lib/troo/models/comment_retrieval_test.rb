@@ -37,7 +37,7 @@ module Troo
       context "when the ID cannot be found" do
         let(:id) { "not_found_id" }
 
-        before { ExternalComment.stubs(:fetch).returns([]) }
+        before { External::Comment.stubs(:fetch).returns([]) }
 
         it { subject.must_equal(nil) }
       end

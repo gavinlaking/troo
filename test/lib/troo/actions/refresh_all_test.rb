@@ -10,11 +10,11 @@ module Troo
       @list = Fabricate(:list)
       @card = Fabricate(:card)
 
-      ExternalBoard.stubs(:fetch_all).returns([@board])
-      ExternalList.stubs(:fetch).returns([@list])
-      ExternalCard.stubs(:fetch).returns([@card])
-      ExternalComment.stubs(:fetch).returns([])
-      ExternalMember.stubs(:fetch).returns([])
+      External::Board.stubs(:fetch_all).returns([@board])
+      External::List.stubs(:fetch).returns([@list])
+      External::Card.stubs(:fetch).returns([@card])
+      External::Comment.stubs(:fetch).returns([])
+      External::Member.stubs(:fetch).returns([])
     end
 
     after { database_cleanup }

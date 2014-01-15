@@ -39,7 +39,7 @@ module Troo
     end
 
     def remote
-      ExternalList.fetch(id, { mode: :list }).first
+      External::List.fetch(id, { mode: :list }).first
     end
   end
 end

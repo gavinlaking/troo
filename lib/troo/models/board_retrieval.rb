@@ -39,7 +39,7 @@ module Troo
     end
 
     def remote
-      ExternalBoard.fetch(id).first
+      External::Board.fetch(id).first
     end
   end
 end

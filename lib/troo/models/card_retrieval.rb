@@ -43,7 +43,7 @@ module Troo
     end
 
     def remote
-      ExternalCard.fetch(id, { mode: :card }).first
+      External::Card.fetch(id, { mode: :card }).first
     end
   end
 end

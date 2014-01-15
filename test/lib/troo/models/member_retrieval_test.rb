@@ -39,7 +39,7 @@ module Troo
         let(:id) { "526d_remote_member_005259" }
         let(:full_name) { "My Remote Test Member" }
 
-        before { ExternalMember.stubs(:fetch).returns([@member]) }
+        before { External::Member.stubs(:fetch).returns([@member]) }
 
         it "returns the correct member" do
           subject.full_name.must_equal("My Remote Test Member")
@@ -49,7 +49,7 @@ module Troo
       context "when the ID cannot be found" do
         let(:id) { "not_found_id" }
 
-        before { ExternalMember.stubs(:fetch).returns([]) }
+        before { External::Member.stubs(:fetch).returns([]) }
 
         it { subject.must_equal(nil) }
       end
