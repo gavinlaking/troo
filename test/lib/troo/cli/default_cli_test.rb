@@ -10,9 +10,9 @@ module Troo
       let(:list_id) { "526d8e130a14a9d846001d97" }
 
       before do
-        @board = Fabricate(:board)
-        @list  = Fabricate(:list)
-        @card  = Fabricate(:card)
+        @board = Fabricate.build(:board)
+        @list  = Fabricate.build(:list)
+        @card  = Fabricate.build(:card)
 
         Troo::BoardRetrieval.stubs(:retrieve).returns(@board)
         Troo::CardRetrieval.stubs(:retrieve).returns(@card)

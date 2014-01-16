@@ -7,10 +7,10 @@ module Troo
       let(:described_class) { Add }
 
       before do
-        @board = Fabricate(:board, name: "My New Test Board")
-        @card = Fabricate(:card, name: "My New Test Card")
-        @comment = Fabricate(:comment)
-        @list = Fabricate(:list, name: "My New Test List")
+        @board   = Fabricate.build(:board, name: "My New Test Board")
+        @card    = Fabricate.build(:card, name: "My New Test Card")
+        @comment = Fabricate.build(:comment)
+        @list    = Fabricate.build(:list, name: "My New Test List")
 
         Troo::CreateBoard.stubs(:with).returns(@board)
         Troo::CreateCard.stubs(:for).returns(@card)

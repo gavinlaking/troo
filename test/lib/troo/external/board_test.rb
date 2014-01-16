@@ -7,8 +7,6 @@ module Troo
       let(:board_id)        { "526d8e130a14a9d846001d96" }
       let(:options)         { { } }
 
-      after { database_cleanup }
-
       describe ".initialize" do
         subject { described_class.new(board_id, options) }
 
