@@ -60,6 +60,7 @@ require_relative "models/list_persistence"
 require_relative "models/member"
 require_relative "models/member_retrieval"
 require_relative "models/member_persistence"
+require_relative "models/refresh"
 
 require_relative "cli/thor_fixes"
 require_relative "cli/add_cli"

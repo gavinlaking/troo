@@ -49,3 +49,8 @@ Fabricator(:member, from: Troo::Member) do
   bio                "some bio"
   url                "http://www.gavinlaking.name/"
 end
+
+Fabricator(:refresh, from: Troo::Refresh) do
+  last_performed_at "2014-01-16 21:00:00 UTC"
+end
+
