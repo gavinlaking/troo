@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/gavinlaking/troo.png)](https://codeclimate.com/github/gavinlaking/troo)
+
 # Troo
 
 CLI interface for Trello. Named after Trello's mascot 'Roo'.
