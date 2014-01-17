@@ -5,9 +5,13 @@ module Troo
   class InvalidAccessToken < StandardError; end
 
   def self.config
-    @config ||= OpenStruct.new(YAML.load_file(File.dirname(__FILE__) + "/../configuration.yml"))
+    @config ||= OpenStruct.new(YAML.load_file(Dir.home + "/.trooconf"))
   rescue Errno::ENOENT
-    warn "Cannot continue, no configuration file."
+    warn "No configuration file found..."
+    src = File.dirname(__FILE__) + "/../configuration.yml.example"
+    dst = Dir.home + "/.trooconf"
+    FileUtils.cp(src, dst)
+    warn "New configuration file created at '#{Dir.home}/.trooconf'"
     exit!
   end
 

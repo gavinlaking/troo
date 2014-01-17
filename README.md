@@ -28,6 +28,7 @@ CLI interface for Trello. Named after Trello's mascot 'Roo'.
 ## Requirements
 
 - A Trello account with API key/secret.
+- MacOSX/Linux (I've not tested with Windows, sorry.)
 - Ruby 2.1.0 (>= 1.9.3 should be fine.)
 - Redis.
 
@@ -57,7 +58,9 @@ You will need user authentication tokens to access your Trello account.
 
     https://trello.com/1/connect?key=your_key_here&name=troo&response_type=token&scope=read,write
 
-3) Have fun, and tweet me @gavinlaking if you like it.
+3) Add your authentication tokens to the configuration file `.trooconf` in your home directory. (This file will be created for you the first time you run `troo`)
+
+4) Have fun, and tweet me @gavinlaking if you like it.
 
 ## Todo
 
