@@ -17,7 +17,7 @@ module Troo
     alias_method :default?, :default
 
     def board
-      Troo::Board.first(external_board_id: self.external_board_id)
+      Troo::BoardRetrieval.retrieve(self.external_board_id)
     end
 
     def cards

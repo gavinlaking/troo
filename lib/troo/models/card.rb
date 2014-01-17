@@ -25,11 +25,11 @@ module Troo
     alias_method :default?, :default
 
     def board
-      Troo::Board.first(external_board_id: self.external_board_id)
+      Troo::BoardRetrieval.retrieve(self.external_board_id)
     end
 
     def list
-      Troo::List.first(external_list_id: self.external_list_id)
+      Troo::ListRetrieval.retrieve(self.external_list_id)
     end
 
     def comments
