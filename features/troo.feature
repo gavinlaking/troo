@@ -1,5 +1,8 @@
 Feature: Troo basics
 
+Scenario: Running the command for the first time
+  When I run `troo`
+
 Scenario: Running the command with no arguments
   When I run `troo`
 
