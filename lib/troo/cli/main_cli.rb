@@ -7,8 +7,6 @@ module Troo
 
       desc "status", "Get troo status."
       def status
-        puts
-
         board_count = Troo::Board.count
         list_count  = Troo::List.count
         card_count  = Troo::Card.count
@@ -17,7 +15,7 @@ module Troo
           if board = Troo::BoardRetrieval.default
             say "Board: #{BoardDecorator.new(board).short}"
           else
-            say "No board has been set as default."
+            say "Board: No default set."
           end
         else
           say "No local board data."
@@ -27,7 +25,7 @@ module Troo
           if list = Troo::ListRetrieval.default
             say "List: #{ListDecorator.new(list).short}"
           else
-            say "No list has been set as default."
+            say "List: No default set."
           end
         else
           say "No local list data."
@@ -37,7 +35,7 @@ module Troo
           if card = Troo::CardRetrieval.default
             say "Card: #{CardDecorator.new(card).short}"
           else
-            say "No card has been set as default."
+            say "Card: No default set."
           end
         else
           say "No local card data."

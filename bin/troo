@@ -5,6 +5,7 @@ trap("SIGINT") { exit! }
 require_relative "../lib/troo"
 
 begin
+  puts
   Troo::CLI::Main.start(ARGV)
 rescue SocketError
   puts "Cannot continue, no network connection."

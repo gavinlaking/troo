@@ -29,7 +29,7 @@ module Troo
           before { Troo::BoardRetrieval.stubs(:default).returns(nil) }
 
           it "returns a polite message" do
-            subject.must_match /No board/
+            subject.must_match /Board: No default/
           end
         end
 
@@ -43,7 +43,7 @@ module Troo
           before { Troo::ListRetrieval.stubs(:default).returns(nil) }
 
           it "returns a polite message" do
-            subject.must_match /No list/
+            subject.must_match /List: No default/
           end
         end
 
@@ -57,7 +57,7 @@ module Troo
           before { Troo::CardRetrieval.stubs(:default).returns(nil) }
 
           it "returns a polite message" do
-            subject.must_match /No card/
+            subject.must_match /Card: No default/
           end
         end
 
