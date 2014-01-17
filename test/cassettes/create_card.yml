@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.trello.com/1/cards
+    body:
+      encoding: US-ASCII
+      string: name=My%20New%20Card&desc=A%20description%20to%20get%20us%20started.&idList=526d8e130a14a9d846001d97
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - "<OAuth Credentials>"
+      Content-Length:
+      - '100'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Server-Time:
+      - '1389729837565'
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Content-Length:
+      - '684'
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Tue, 14 Jan 2014 20:03:57 GMT
+    body:
+      encoding: UTF-8
+      string: "{\"id\":\"52d5982df33f99314641a271\",\"badges\":{\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":false,\"fogbugz\":\"\",\"checkItems\":0,\"checkItemsChecked\":0,\"comments\":0,\"attachments\":0,\"description\":true,\"due\":null},\"checkItemStates\":[],\"closed\":false,\"dateLastActivity\":\"2014-01-14T20:03:57.454Z\",\"desc\":\"A
+        description to get us started.\",\"descData\":{\"emoji\":{}},\"due\":null,\"idBoard\":\"526d8e130a14a9d846001d96\",\"idChecklists\":[],\"idList\":\"526d8e130a14a9d846001d97\",\"idMembers\":[],\"idShort\":33,\"idAttachmentCover\":null,\"manualCoverAttachment\":false,\"labels\":[],\"name\":\"My
+        New Card\",\"pos\":704511,\"shortUrl\":\"<Trello URL>\",\"url\":\"<Trello
+        URL>\"}"
+    http_version: 
+  recorded_at: Tue, 14 Jan 2014 20:03:56 GMT
+recorded_with: VCR 2.8.0

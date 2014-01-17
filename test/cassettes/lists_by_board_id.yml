@@ -1,0 +1,118 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/boards/526d8e130a14a9d846001d96
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - "<OAuth Credentials>"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Server-Time:
+      - '1389729854059'
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Content-Length:
+      - '717'
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Tue, 14 Jan 2014 20:04:14 GMT
+    body:
+      encoding: UTF-8
+      string: "{\"id\":\"526d8e130a14a9d846001d96\",\"name\":\"Troo App\",\"desc\":\"\",\"descData\":null,\"closed\":false,\"idOrganization\":null,\"pinned\":true,\"url\":\"<Trello
+        URL>\",\"shortUrl\":\"<Trello URL>\",\"prefs\":{\"permissionLevel\":\"private\",\"voting\":\"disabled\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":false,\"cardCovers\":true,\"cardAging\":\"regular\",\"background\":\"blue\",\"backgroundColor\":\"#205C7E\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"unknown\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"labelNames\":{\"yellow\":\"Analysis
+        Complete\",\"red\":\"\",\"purple\":\"\",\"orange\":\"\",\"green\":\"Ready
+        to Pull\",\"blue\":\"\"}}"
+    http_version:
+  recorded_at: Tue, 14 Jan 2014 20:04:13 GMT
+- request:
+    method: get
+    uri: https://api.trello.com/1/boards/526d8e130a14a9d846001d96/lists?filter=open
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - "<OAuth Credentials>"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Server-Time:
+      - '1389729854781'
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Etag:
+      - "\"1328980396\""
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Tue, 14 Jan 2014 20:04:14 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "[
+        {\"id\":\"52d5982f59cba13377bfed33\",\"name\":\"My New List\",\"closed\":false,\"idBoard\":\"526d8e130a14a9d846001d96\",\"pos\":256,\"subscribed\":false},
+        {\"id\":\"52d1c3448a4da3ab7d1c6ae9\",\"name\":\"My New List\",\"closed\":false,\"idBoard\":\"526d8e130a14a9d846001d96\",\"pos\":512,\"subscribed\":false},
+        {\"id\":\"52d191e0a8e0f7535e69bb6c\",\"name\":\"My New List\",\"closed\":false,\"idBoard\":\"526d8e130a14a9d846001d96\",\"pos\":1024,\"subscribed\":false},
+        {\"id\":\"52d1919dbab072c42f21ee08\",\"name\":\"My New List\",\"closed\":false,\"idBoard\":\"526d8e130a14a9d846001d96\",\"pos\":2048,\"subscribed\":false}]"
+    http_version:
+  recorded_at: Tue, 14 Jan 2014 20:04:13 GMT
+recorded_with: VCR 2.8.0

@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.trello.com/1/lists
+    body:
+      encoding: US-ASCII
+      string: name=My%20New%20List&closed=false&idBoard=526d8e130a14a9d846001d96
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - "<OAuth Credentials>"
+      Content-Length:
+      - '66'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Server-Time:
+      - '1389729839524'
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Content-Length:
+      - '116'
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Tue, 14 Jan 2014 20:03:59 GMT
+    body:
+      encoding: UTF-8
+      string: "{\"id\":\"52d5982f59cba13377bfed33\",\"name\":\"My New List\",\"closed\":false,\"idBoard\":\"526d8e130a14a9d846001d96\",\"pos\":256}"
+    http_version: 
+  recorded_at: Tue, 14 Jan 2014 20:03:58 GMT
+recorded_with: VCR 2.8.0

@@ -1,0 +1,114 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/lists/526d8e130a14a9d846001d97
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - "<OAuth Credentials>"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Server-Time:
+      - '1389734860005'
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Content-Length:
+      - '113'
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Tue, 14 Jan 2014 21:27:40 GMT
+    body:
+      encoding: UTF-8
+      string: "{\"id\":\"526d8e130a14a9d846001d97\",\"name\":\"To Do\",\"closed\":false,\"idBoard\":\"526d8e130a14a9d846001d96\",\"pos\":311296}"
+    http_version:
+  recorded_at: Tue, 14 Jan 2014 21:27:40 GMT
+- request:
+    method: get
+    uri: https://api.trello.com/1/lists/526d8e130a14a9d846001d97/cards?filter=open
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - "<OAuth Credentials>"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Server-Time:
+      - '1389734860648'
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Etag:
+      - "\"-2139380215\""
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Tue, 14 Jan 2014 21:27:40 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "[{\"id\":\"52cb0eb873b2cf2f3a60a973\",\"checkItemStates\":[],\"closed\":false,\"dateLastActivity\":\"2014-01-06T20:14:48.590Z\",\"desc\":\"A
+        description to get us started.\",\"descData\":null,\"idBoard\":\"526d8e130a14a9d846001d96\",\"idList\":\"526d8e130a14a9d846001d97\",\"idMembersVoted\":[],\"idShort\":27,\"idAttachmentCover\":null,\"manualCoverAttachment\":false,\"name\":\"My
+        New Card\",\"pos\":606207,\"shortLink\":\"<Trello URL>\",\"badges\":{\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":false,\"fogbugz\":\"\",\"checkItems\":0,\"checkItemsChecked\":0,\"comments\":0,\"attachments\":0,\"description\":true,\"due\":null},\"due\":null,\"idChecklists\":[],\"idMembers\":[],\"labels\":[],\"shortUrl\":\"<Trello
+        URL>\",\"subscribed\":false,\"url\":\"<Trello URL>\"}]"
+    http_version:
+  recorded_at: Tue, 14 Jan 2014 21:27:40 GMT
+recorded_with: VCR 2.8.0
