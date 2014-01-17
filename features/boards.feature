@@ -1,9 +1,13 @@
 Feature: Managing boards
 
-Scenario: Adding a new board
+# Scenario: Adding a new board
+#   When I run `troo add board`
 
 Scenario: Setting a default board
+  When I run `troo default board`
 
-Scenario: Showing all boards
+# Scenario: Show all the boards with lists
+#   When I run `troo show boards`
 
-Scenario: Showing a board
+Scenario: Show lists and cards for a board
+  When I run `troo show board`

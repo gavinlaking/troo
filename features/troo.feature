@@ -1,6 +1,7 @@
 Feature: Troo basics
 
 Scenario: Running the command with no arguments
+  When I run `troo`
 
 Scenario: Getting the current version
   When I run `troo version`
@@ -10,3 +11,4 @@ Scenario: Getting the current version
   """
 
 Scenario: Getting the current status
+  When I run `troo status`
