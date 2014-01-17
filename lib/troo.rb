@@ -15,7 +15,7 @@ module Troo
     @logger ||= Logger.new("logs/troo.log")
   end
 
-  Trello.logger    = Logger.new("logs/trello.log")
+  # Trello.logger = Logger.new("logs/trello.log")
   Trello.configure do |trello|
     trello.consumer_key       = config.key
     trello.consumer_secret    = config.secret
