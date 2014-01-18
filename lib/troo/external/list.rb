@@ -25,6 +25,10 @@ module Troo
         when :board then board_mode
         when :list  then list_mode
         end
+      rescue Trello::InvalidAccessToken
+        raise Troo::InvalidAccessToken
+      rescue Trello::Error
+        []
       end
 
       private
@@ -40,18 +44,10 @@ module Troo
 
       def board_mode
         Trello::Board.find(external_id).lists
-      rescue Trello::InvalidAccessToken
-        raise Troo::InvalidAccessToken
-      rescue Trello::Error
-        []
       end
 
       def list_mode
         [Trello::List.find(external_id)]
-      rescue Trello::InvalidAccessToken
-        raise Troo::InvalidAccessToken
-      rescue Trello::Error
-        []
       end
     end
   end

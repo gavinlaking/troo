@@ -19,6 +19,10 @@ module Troo
         when :board  then board_mode
         when :member then member_mode
         end
+      rescue Trello::InvalidAccessToken
+        raise Troo::InvalidAccessToken
+      rescue Trello::Error
+        []
       end
 
       private
@@ -34,18 +38,10 @@ module Troo
 
       def board_mode
         Trello::Board.find(external_id).members
-      rescue Trello::InvalidAccessToken
-        raise Troo::InvalidAccessToken
-      rescue Trello::Error
-        []
       end
 
       def member_mode
         [Trello::Member.find(external_id)]
-      rescue Trello::InvalidAccessToken
-        raise Troo::InvalidAccessToken
-      rescue Trello::Error
-        []
       end
     end
   end
