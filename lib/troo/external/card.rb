@@ -1,6 +1,6 @@
 module Troo
   module External
-    class Card
+    class Card < Resource
       class << self
         def fetch(external_id, options = {})
           new(external_id, options).fetch_by_external_id.map do |resource|
@@ -10,29 +10,11 @@ module Troo
             end
           end
         end
-
-        private
-
-        def closed?(resource)
-          resource.nil? || resource.closed?
-        end
       end
 
       def initialize(external_id, options = {})
         @external_id = external_id
         @options     = options
-      end
-
-      def fetch_by_external_id
-        case options.fetch(:mode)
-        when :board then board_mode
-        when :list  then list_mode
-        when :card  then card_mode
-        end
-      rescue Trello::InvalidAccessToken
-        raise Troo::InvalidAccessToken
-      rescue Trello::Error
-        []
       end
 
       private
@@ -46,16 +28,20 @@ module Troo
         { comments: true, mode: :board }
       end
 
-      def board_mode
+      def by_board_id
         Trello::Board.find(external_id).cards
       end
 
-      def list_mode
+      def by_list_id
         Trello::List.find(external_id).cards
       end
 
-      def card_mode
+      def by_card_id
         [Trello::Card.find(external_id)]
+      end
+
+      def by_member_id
+        []
       end
     end
   end

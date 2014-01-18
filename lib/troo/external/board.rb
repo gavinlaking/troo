@@ -1,6 +1,6 @@
 module Troo
   module External
-    class Board
+    class Board < Resource
       class << self
         def fetch(external_id, options = {})
           new(external_id, options).fetch_by_external_id.map do |resource|
@@ -12,12 +12,6 @@ module Troo
           new.fetch_all.map do |resource|
             Troo::BoardPersistence.for(resource) unless closed?(resource)
           end
-        end
-
-        private
-
-        def closed?(resource)
-          resource.nil? || resource.closed?
         end
       end
 

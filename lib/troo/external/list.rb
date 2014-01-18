@@ -1,34 +1,17 @@
 module Troo
   module External
-    class List
+    class List < Resource
       class << self
         def fetch(external_id, options = {})
           new(external_id, options).fetch_by_external_id.map do |resource|
             Troo::ListPersistence.for(resource) unless closed?(resource)
           end
         end
-
-        private
-
-        def closed?(resource)
-          resource.nil? || resource.closed?
-        end
       end
 
       def initialize(external_id, options = {})
         @external_id = external_id
         @options     = options
-      end
-
-      def fetch_by_external_id
-        case options.fetch(:mode)
-        when :board then board_mode
-        when :list  then list_mode
-        end
-      rescue Trello::InvalidAccessToken
-        raise Troo::InvalidAccessToken
-      rescue Trello::Error
-        []
       end
 
       private
@@ -42,12 +25,20 @@ module Troo
         { mode: :board }
       end
 
-      def board_mode
+      def by_board_id
         Trello::Board.find(external_id).lists
       end
 
-      def list_mode
+      def by_list_id
         [Trello::List.find(external_id)]
+      end
+
+      def by_card_id
+        []
+      end
+
+      def by_member_id
+        []
       end
     end
   end

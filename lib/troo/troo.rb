@@ -19,6 +19,7 @@ require_relative "actions/move_card"
 require_relative "actions/refresh_all"
 require_relative "actions/set_default"
 
+require_relative "external/resource"
 require_relative "external/board"
 require_relative "external/card"
 require_relative "external/comment"
