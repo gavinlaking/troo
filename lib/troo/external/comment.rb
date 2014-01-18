@@ -38,18 +38,15 @@ module Troo
       end
 
       def board_mode
-        Trello::Board.find(external_id).actions({ filter: "commentCard" }).
-          delete_if { |a| a.nil? || a.type != "commentCard" }
+        Trello::Board.find(external_id).actions({ filter: "commentCard" })
       end
 
       def list_mode
-        Trello::List.find(external_id).actions({ filter: "commentCard" }).
-          delete_if { |a| a.nil? || a.type != "commentCard" }
+        Trello::List.find(external_id).actions({ filter: "commentCard" })
       end
 
       def card_mode
-        Trello::Card.find(external_id).actions({ filter: "commentCard" }).
-          delete_if { |a| a.nil? || a.type != "commentCard" }
+        Trello::Card.find(external_id).actions({ filter: "commentCard" })
       end
     end
   end
