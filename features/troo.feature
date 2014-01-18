@@ -8,10 +8,7 @@ Scenario: Running the command with no arguments
 
 Scenario: Getting the current version
   When I run `troo version`
-  Then the output should contain:
-  """
-  troo 0.0.3
-  """
+  Then the output should be the version number of troo
 
 Scenario: Getting the current status
   When I run `troo status`
