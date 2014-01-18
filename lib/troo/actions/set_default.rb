@@ -1,4 +1,10 @@
 module Troo
+  class NullEntity
+    def default?
+      true
+    end
+  end
+
   class SetDefault
     class << self
       def for(entity)
@@ -30,6 +36,11 @@ module Troo
 
     def already_default?
       entity.default?
+    end
+
+    def entity
+      return NullEntity.new if @entity.nil?
+      @entity
     end
   end
 end

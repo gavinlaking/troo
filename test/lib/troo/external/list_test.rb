@@ -60,6 +60,28 @@ module Troo
           end
         end
       end
+
+      describe "when the mode is card" do
+        let(:card_id) { "526d8f19ddb279532e005259" }
+        let(:options) { { mode: :card } }
+
+        subject { described_class.fetch(card_id, options) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
+      end
+
+      describe "when the mode is member" do
+        let(:member_id) { "5195fdb5a8c01a2318004f5d" }
+        let(:options) { { mode: :member } }
+
+        subject { described_class.fetch(member_id, options) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
+      end
     end
   end
 end
