@@ -1,6 +1,6 @@
 module Troo
   module External
-    class Member
+    class Member < Resource
       class << self
         def fetch(external_id, options = {})
           new(external_id, options).fetch_by_external_id.map do |resource|
@@ -14,13 +14,6 @@ module Troo
         @options     = options
       end
 
-      def fetch_by_external_id
-        case options.fetch(:mode)
-        when :board  then board_mode
-        when :member then member_mode
-        end
-      end
-
       private
       attr_reader :external_id
 
@@ -32,20 +25,20 @@ module Troo
         { mode: :board }
       end
 
-      def board_mode
+      def by_board_id
         Trello::Board.find(external_id).members
-      rescue Trello::InvalidAccessToken
-        raise Troo::InvalidAccessToken
-      rescue Trello::Error
+      end
+
+      def by_list_id
         []
       end
 
-      def member_mode
-        [Trello::Member.find(external_id)]
-      rescue Trello::InvalidAccessToken
-        raise Troo::InvalidAccessToken
-      rescue Trello::Error
+      def by_card_id
         []
+      end
+
+      def by_member_id
+        [Trello::Member.find(external_id)]
       end
     end
   end

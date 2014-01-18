@@ -1,6 +1,6 @@
 module Troo
   module External
-    class Comment
+    class Comment < Resource
       class << self
         def fetch(external_id, options = {})
           new(external_id, options).fetch_by_external_id.map do |resource|
@@ -14,14 +14,6 @@ module Troo
         @options     = options
       end
 
-      def fetch_by_external_id
-        case options.fetch(:mode)
-        when :board then board_mode
-        when :list  then list_mode
-        when :card  then card_mode
-        end
-      end
-
       private
       attr_reader :external_id
 
@@ -33,30 +25,19 @@ module Troo
         { mode: :board }
       end
 
-      def board_mode
-        Trello::Board.find(external_id).actions({ filter: "commentCard" }).
-          delete_if { |a| a.nil? || a.type != "commentCard" }
-      rescue Trello::InvalidAccessToken
-        raise Troo::InvalidAccessToken
-      rescue Trello::Error
-        []
+      def by_board_id
+        Trello::Board.find(external_id).actions({ filter: "commentCard" })
       end
 
-      def list_mode
-        Trello::List.find(external_id).actions({ filter: "commentCard" }).
-          delete_if { |a| a.nil? || a.type != "commentCard" }
-      rescue Trello::InvalidAccessToken
-        raise Troo::InvalidAccessToken
-      rescue Trello::Error
-        []
+      def by_list_id
+        Trello::List.find(external_id).actions({ filter: "commentCard" })
       end
 
-      def card_mode
-        Trello::Card.find(external_id).actions({ filter: "commentCard" }).
-          delete_if { |a| a.nil? || a.type != "commentCard" }
-      rescue Trello::InvalidAccessToken
-        raise Troo::InvalidAccessToken
-      rescue Trello::Error
+      def by_card_id
+        Trello::Card.find(external_id).actions({ filter: "commentCard" })
+      end
+
+      def by_member_id
         []
       end
     end
