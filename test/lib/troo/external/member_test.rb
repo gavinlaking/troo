@@ -39,6 +39,28 @@ module Troo
         end
       end
 
+      describe "when the mode is list" do
+        let(:list_id) { "526d8e130a14a9d846001d97" }
+        let(:options) { { mode: :list } }
+
+        subject { described_class.fetch(list_id, options) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
+      end
+
+      describe "when the mode is card" do
+        let(:card_id) { "526d8f19ddb279532e005259" }
+        let(:options) { { mode: :card } }
+
+        subject { described_class.fetch(card_id, options) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
+      end
+
       describe "when the mode is member" do
         before { VCR.insert_cassette(:member_by_member_id, decode_compressed_response: true) }
         after  { VCR.eject_cassette }

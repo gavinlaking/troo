@@ -83,6 +83,17 @@ module Troo
           end
         end
       end
+
+      describe "when the mode is member" do
+        let(:member_id) { "5195fdb5a8c01a2318004f5d" }
+        let(:options) { { mode: :member } }
+
+        subject { described_class.fetch(member_id, options) }
+
+        it "returns an empty collection" do
+          subject.must_equal([])
+        end
+      end
     end
   end
 end
