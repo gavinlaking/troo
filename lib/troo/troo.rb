@@ -46,6 +46,7 @@ require_relative "display/member_presenter"
 require_relative "presentation/template"
 
 require_relative "models/model_helpers"
+require_relative "models/persistence"
 require_relative "models/board"
 require_relative "models/board_retrieval"
 require_relative "models/board_persistence"
