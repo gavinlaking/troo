@@ -1,20 +1,10 @@
 module Troo
   class MemberPersistence
-    class << self
-      def for(resource, options = {})
-        new(resource, options).persist
-      end
-    end
+    include Persistence
 
     def initialize(resource, options = {})
       @resource = resource
       @options = options
-    end
-
-    def persist
-      return local   if local_identical?
-      return updated if local_exists?
-      return created
     end
 
     private
@@ -22,24 +12,6 @@ module Troo
 
     def created
       Troo::Member.create(remote)
-    end
-
-    def updated
-      local.update(remote) && local
-    end
-
-    def local_identical?
-      return false unless local_exists?
-      return false if local_data != remote
-      true
-    end
-
-    def local_data
-      local.external_attributes
-    end
-
-    def local_exists?
-      !!local
     end
 
     def local
