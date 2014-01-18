@@ -3,34 +3,43 @@ module Troo
     class Default < ThorFixes
       package_name "default"
 
-      desc "board <board_id>", "Set the board <board_id> to default."
-      def board(board_id)
-        if board = Troo::BoardRetrieval.retrieve(board_id)
-          SetDefault.for(board)
-          say "Board '#{board.name}' set to default."
-        else
-          say "Board cannot be found."
+      desc "board <id>", "Set the board <id> to default."
+      def board(id)
+        set_default(id, :board)
+      end
+
+      desc "card <id>", "Set the card <id> to default."
+      def card(id)
+        set_default(id, :card)
+      end
+
+      desc "list <id>", "Set the list <id> to default."
+      def list(id)
+        set_default(id, :list)
+      end
+
+      private
+
+      def set_default(id, type)
+        @id, @type = id, type
+        return success(resource.name) if SetDefault.for(resource)
+        not_found
+      end
+
+      def resource
+        @resource ||= case @type
+        when :board then Troo::BoardRetrieval.retrieve(@id)
+        when :list  then Troo::ListRetrieval.retrieve(@id)
+        when :card  then Troo::CardRetrieval.retrieve(@id)
         end
       end
 
-      desc "card <card_id>", "Set the card <card_id> to default."
-      def card(card_id)
-        if card = Troo::CardRetrieval.retrieve(card_id)
-          SetDefault.for(card)
-          say "Card '#{card.name}' set to default."
-        else
-          say "Card cannot be found."
-        end
+      def success(resource_name = "")
+        say "'#{resource_name}' set as default #{@type.to_s.downcase}."
       end
 
-      desc "list <list_id>", "Set the list <list_id> to default."
-      def list(list_id)
-        if list = Troo::ListRetrieval.retrieve(list_id)
-          SetDefault.for(list)
-          say "List '#{list.name}' set to default."
-        else
-          say "List cannot be found."
-        end
+      def not_found
+        say "#{@type.to_s.capitalize} cannot be found."
       end
     end
   end
