@@ -1,19 +1,3 @@
-# require "minitest/spec"
-# World(MiniTest::Assertions)
-# MiniTest::Spec.new(nil)
-
-# require 'minitest'
-# module MiniTestAssertions
-#   def self.extended(base)
-#     base.extend(MiniTest::Assertions)
-#     base.assertions = 0
-#   end
-
-#   attr_accessor :assertions
-# end
-# World(MiniTestAssertions)
-
-
 require "aruba/cucumber"
 
 ENV['PATH'] = "#{File.expand_path(File.dirname(__FILE__) + "/../../bin")}#{File::PATH_SEPARATOR}#{ENV['PATH']}"
