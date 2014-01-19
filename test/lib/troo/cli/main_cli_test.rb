@@ -11,53 +11,55 @@ module Troo
       after  { database_cleanup }
 
       describe "#status" do
+        let(:default) { false }
+
         before do
-          @board = Fabricate(:board, default: true)
-          @list  = Fabricate(:list, default: true)
-          @card  = Fabricate(:card, default: true)
+          @board = Fabricate(:board, default: default)
+          @list  = Fabricate(:list, default: default)
+          @card  = Fabricate(:card, default: default)
         end
 
         subject { capture_io { described_instance.status }.join }
 
         context "when a default board is set" do
+          let(:default) { true }
+
           it "returns a polite message" do
             subject.must_match /My Test Board/
           end
         end
 
         context "when a default board is not set" do
-          before { BoardRetrieval.stubs(:default) }
-
           it "returns a polite message" do
-            subject.must_match /Board: No default/
+            subject.must_match /No default board set/
           end
         end
 
         context "when a default list is set" do
+          let(:default) { true }
+
           it "returns a polite message" do
             subject.must_match /My Test List/
           end
         end
 
         context "when a default list is not set" do
-          before { ListRetrieval.stubs(:default) }
-
           it "returns a polite message" do
-            subject.must_match /List: No default/
+            subject.must_match /No default list set/
           end
         end
 
         context "when a default card is set" do
+          let(:default) { true }
+
           it "returns a polite message" do
             subject.must_match /My Test Card/
           end
         end
 
         context "when a default card is not set" do
-          before { CardRetrieval.stubs(:default) }
-
           it "returns a polite message" do
-            subject.must_match /Card: No default/
+            subject.must_match /No default card set/
           end
         end
 
@@ -65,7 +67,7 @@ module Troo
           before { Troo::Board.stubs(:count).returns(0) }
 
           it "returns a polite message" do
-            subject.must_match /No local board data/
+            subject.must_match /No boards found/
           end
         end
 
@@ -73,7 +75,7 @@ module Troo
           before { Troo::List.stubs(:count).returns(0) }
 
           it "returns a polite message" do
-            subject.must_match /No local list data/
+            subject.must_match /No lists found/
           end
         end
 
@@ -81,7 +83,7 @@ module Troo
           before { Troo::Card.stubs(:count).returns(0) }
 
           it "returns a polite message" do
-            subject.must_match /No local card data/
+            subject.must_match /No cards found/
           end
         end
       end
