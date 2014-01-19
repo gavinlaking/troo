@@ -11,7 +11,7 @@ module Troo
         end
 
         if result = CreateBoard.with(name, description)
-          say "New board '#{result.name}' created."
+          say "New board '#{result.decorator.name}' created."
         else
           say "Board could not be created."
         end
@@ -28,7 +28,7 @@ module Troo
 
         if list = ListRetrieval.retrieve(list_id)
           if result = CreateCard.for(list, name, description)
-            say "New card '#{result.name}' created."
+            say "New card '#{result.decorator.name}' created."
           else
             say "Card could not be created."
           end
@@ -68,7 +68,7 @@ module Troo
 
         if board = BoardRetrieval.retrieve(board_id)
           if result = CreateList.for(board, name)
-            say "New list '#{result.name}' created."
+            say "New list '#{result.decorator.name}' created."
           else
             say "List could not be created."
           end

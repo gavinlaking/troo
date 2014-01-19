@@ -36,7 +36,7 @@ module Troo
       def comments(id = nil)
         if card = CardRetrieval.retrieve(id)
           if SetDefault.for(card)
-            say "'#{card.name}' set to default."
+            say "'#{card.decorator.name}' set to default."
           end
           CommentPresenter.show(card)
         else

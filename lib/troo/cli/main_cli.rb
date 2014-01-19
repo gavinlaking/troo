@@ -112,7 +112,7 @@ module Troo
         if card = CardRetrieval.retrieve(card_id)
           if list = ListRetrieval.retrieve(list_id)
             if result = MoveCard.with(card, list)
-              say "Card moved from '#{card.list.name}' to '#{list.name}'."
+              say "Card moved from '#{card.list.decorator.name}' to '#{list.decorator.name}'."
             else
               say "Card could not be moved."
             end
