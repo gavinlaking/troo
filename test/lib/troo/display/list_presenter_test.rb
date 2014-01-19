@@ -25,8 +25,8 @@ module Troo
       end
     end
 
-    describe "#render_show" do
-      subject { capture_io { described_class.new(@list, options).render_show }.join }
+    describe "#show" do
+      subject { capture_io { described_class.show(@list, options) }.join }
 
       context "when the list has cards" do
         it "renders the view" do

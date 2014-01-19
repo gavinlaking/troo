@@ -23,5 +23,17 @@ module Troo
     def cards
       Troo::Card.find(external_list_id: self.external_list_id)
     end
+
+    def decorator(options = {})
+      ListDecorator.new(self, options)
+    end
+
+    def presenter
+      ListPresenter.new(self)
+    end
+
+    def set_default!
+      SetDefault.for(self)
+    end
   end
 end

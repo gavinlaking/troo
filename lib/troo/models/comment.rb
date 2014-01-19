@@ -27,6 +27,10 @@ module Troo
     def member
       MemberRetrieval.retrieve(self.external_member_id)
     end
+
+    def decorator(options = {})
+      CommentDecorator.new(self, options)
+    end
   end
 end
 

@@ -5,8 +5,8 @@ module Troo
         new(board, options).render_all
       end
 
-      def render_show(board, options = {})
-        new(board, options).render_show
+      def show(board, options = {})
+        new(board, options).show
       end
     end
 
@@ -19,12 +19,12 @@ module Troo
 
     def render_all
       spacing({foot: false}) do
-        print BoardDecorator.new(board).short
+        print board.decorator.short
 
         if board.lists.any?
           board.lists.each do |list|
             indent do
-              print ListDecorator.new(list).short
+              print list.decorator.short
             end
           end
         else
@@ -33,19 +33,19 @@ module Troo
       end
     end
 
-    def render_show
+    def show
       spacing do
-        print BoardDecorator.new(board).short
+        print board.decorator.short
 
         if board.lists.any?
           board.lists.each do |list|
             indent do
-              print ListDecorator.new(list).short
+              print list.decorator.short
 
               if list.cards.any?
                 list.cards.each do |card|
                   indent do
-                    print CardDecorator.new(card).short
+                    print card.decorator.short
                   end
                 end
               else

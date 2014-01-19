@@ -25,8 +25,8 @@ module Troo
       end
     end
 
-    describe "#render_show" do
-      subject { described_class.render_show(@card, options) }
+    describe "#show" do
+      subject { described_class.show(@card, options) }
 
       context "when there is one member" do
         it "returns the member" do

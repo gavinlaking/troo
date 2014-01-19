@@ -2,8 +2,9 @@ module Troo
   class MemberDecorator
     include DecoratorHelpers
 
-    def initialize(member)
-      @member = member
+    def initialize(member, options = {})
+      @member  = member
+      @options = options
     end
 
     def username

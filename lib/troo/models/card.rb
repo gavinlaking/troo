@@ -49,6 +49,18 @@ module Troo
         []
       end
     end
+
+    def decorator(options = {})
+      CardDecorator.new(self, options)
+    end
+
+    def presenter
+      CardPresenter.new(self)
+    end
+
+    def set_default!
+      SetDefault.for(self)
+    end
   end
 end
 

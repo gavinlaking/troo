@@ -21,6 +21,18 @@ module Troo
     def cards
       Troo::Card.find(external_board_id: self.external_board_id)
     end
+
+    def decorator(options = {})
+      BoardDecorator.new(self, options)
+    end
+
+    def presenter
+      BoardPresenter.new(self)
+    end
+
+    def set_default!
+      SetDefault.for(self)
+    end
   end
 end
 

@@ -4,6 +4,7 @@ module Troo
   describe CommentDecorator do
     let(:described_class) { CommentDecorator }
     let(:default) { true }
+    let(:options) { {} }
 
     before do
       @comment = Fabricate(:comment)
@@ -13,10 +14,14 @@ module Troo
     after { database_cleanup }
 
     describe "#initialize" do
-      subject { described_class.new(@comment) }
+      subject { described_class.new(@comment, options) }
 
       it "assigns the comment to an instance variable" do
         subject.instance_variable_get("@comment").must_equal(@comment)
+      end
+
+      it "assigns the options to an instance variable" do
+        subject.instance_variable_get("@options").must_equal(options)
       end
     end
 

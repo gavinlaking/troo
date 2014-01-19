@@ -13,7 +13,7 @@ module Troo
 
         if board_count > 0
           if board = BoardRetrieval.default
-            say "Board: #{BoardDecorator.new(board).short}"
+            say "Board: #{board.decorator.short}"
           else
             say "Board: No default set."
           end
@@ -23,7 +23,7 @@ module Troo
 
         if list_count > 0
           if list = ListRetrieval.default
-            say "List: #{ListDecorator.new(list).short}"
+            say "List: #{list.decorator.short}"
           else
             say "List: No default set."
           end
@@ -33,7 +33,7 @@ module Troo
 
         if card_count > 0
           if card = CardRetrieval.default
-            say "Card: #{CardDecorator.new(card).short}"
+            say "Card: #{card.decorator.short}"
           else
             say "Card: No default set."
           end

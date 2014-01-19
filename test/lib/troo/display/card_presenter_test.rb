@@ -25,8 +25,8 @@ module Troo
       end
     end
 
-    describe "#render_show" do
-      subject { capture_io { described_class.render_show(@card, options) }.join }
+    describe "#show" do
+      subject { capture_io { described_class.show(@card, options) }.join }
 
       it "renders the view" do
         subject.must_match /My Test Card/

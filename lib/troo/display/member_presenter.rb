@@ -1,8 +1,8 @@
 module Troo
   class MemberPresenter
     class << self
-      def render_show(card, options = {})
-        new(card, options).render_show
+      def show(card, options = {})
+        new(card, options).show
       end
     end
 
@@ -13,7 +13,7 @@ module Troo
       @options = options
     end
 
-    def render_show
+    def show
       decorated_members
     end
 
@@ -33,7 +33,7 @@ module Troo
     end
 
     def members
-      @members ||= card.members.map { |member| MemberDecorator.new(member).username }
+      @members ||= card.members.map { |member| member.decorator.username }
     end
 
     def one_member?
