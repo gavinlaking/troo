@@ -71,7 +71,7 @@ module Troo
       end
 
       context "when the board has no description" do
-        before { @board.stubs(:description).returns(nil) }
+        before { @board.stubs(:description) }
 
         it "returns N/A" do
           subject.must_equal("N/A")
@@ -89,7 +89,7 @@ module Troo
       end
 
       context "when the board has no name" do
-        before { @board.stubs(:name).returns(nil) }
+        before { @board.stubs(:name) }
 
         it "returns N/A" do
           subject.must_equal("N/A")

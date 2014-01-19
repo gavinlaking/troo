@@ -4,13 +4,13 @@ module Troo
       class << self
         def fetch(external_id, options = {})
           new(external_id, options).fetch_by_external_id.map do |resource|
-            Troo::BoardPersistence.for(resource) unless closed?(resource)
+            BoardPersistence.for(resource) unless closed?(resource)
           end
         end
 
         def fetch_all
           new.fetch_all.map do |resource|
-            Troo::BoardPersistence.for(resource) unless closed?(resource)
+            BoardPersistence.for(resource) unless closed?(resource)
           end
         end
       end

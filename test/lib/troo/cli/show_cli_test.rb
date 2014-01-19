@@ -31,7 +31,7 @@ module Troo
         end
 
         context "when no boards exist" do
-          before { Troo::BoardRetrieval.stubs(:all).returns([]) }
+          before { BoardRetrieval.stubs(:all).returns([]) }
 
           it "returns a polite message" do
             subject.must_match /Boards not found./
@@ -52,10 +52,10 @@ module Troo
           end
 
           context "and the board does not exist" do
-            before { Troo::BoardRetrieval.stubs(:retrieve).returns() }
+            before { BoardRetrieval.stubs(:retrieve) }
 
             it "returns a polite message" do
-              subject.must_match /Board not found./
+              subject.must_match /Board cannot be found./
             end
           end
         end
@@ -64,7 +64,7 @@ module Troo
           let(:board_id) { }
 
           context "and the default board is set" do
-            before { Troo::BoardRetrieval.stubs(:retrieve).returns(@board) }
+            before { BoardRetrieval.stubs(:retrieve).returns(@board) }
 
             it "returns the board with all lists and all cards" do
               subject.must_match /Test Board/
@@ -74,7 +74,7 @@ module Troo
           end
 
           context "and the default board is not set" do
-            before { Troo::BoardRetrieval.stubs(:retrieve).returns() }
+            before { BoardRetrieval.stubs(:retrieve) }
 
             it "returns a polite message" do
               subject.must_match /set a default board first/
@@ -96,10 +96,10 @@ module Troo
           end
 
           context "when the list does not exist" do
-            before { Troo::ListRetrieval.stubs(:retrieve).returns() }
+            before { ListRetrieval.stubs(:retrieve) }
 
             it "returns a polite message" do
-              subject.must_match /List not found./
+              subject.must_match /List cannot be found/
             end
           end
         end
@@ -108,7 +108,7 @@ module Troo
           let(:list_id) { }
 
           context "and the default list is set" do
-            before { Troo::ListRetrieval.stubs(:retrieve).returns(@list) }
+            before { ListRetrieval.stubs(:retrieve).returns(@list) }
 
             it "returns the list's board, the list and all cards" do
               subject.must_match /Test Board/
@@ -118,7 +118,7 @@ module Troo
           end
 
           context "and the default list is not set" do
-            before { Troo::ListRetrieval.stubs(:retrieve).returns() }
+            before { ListRetrieval.stubs(:retrieve) }
 
             it "returns a polite message" do
               subject.must_match /set a default list first/
@@ -143,10 +143,10 @@ module Troo
           end
 
           context "when the card does not exist" do
-            before { Troo::CardRetrieval.stubs(:retrieve).returns() }
+            before { CardRetrieval.stubs(:retrieve) }
 
             it "returns a polite message" do
-              subject.must_match /Card not found./
+              subject.must_match /Card cannot be found/
             end
           end
         end
@@ -155,7 +155,7 @@ module Troo
           let(:card_id) { }
 
           context "and the default card is set" do
-            before { Troo::CardRetrieval.stubs(:retrieve).returns(@card) }
+            before { CardRetrieval.stubs(:retrieve).returns(@card) }
 
             it "returns the card details" do
               subject.must_match /\(67\) My Test Card/
@@ -166,7 +166,7 @@ module Troo
           end
 
           context "and the default card is not set" do
-            before { Troo::CardRetrieval.stubs(:retrieve).returns() }
+            before { CardRetrieval.stubs(:retrieve) }
 
             it "returns a polite message" do
               subject.must_match /set a default card first/
@@ -187,10 +187,10 @@ module Troo
           end
 
           context "when the card does not exist" do
-            before { Troo::CardRetrieval.stubs(:retrieve).returns() }
+            before { CardRetrieval.stubs(:retrieve) }
 
             it "returns a polite message" do
-              subject.must_match /Card not found./
+              subject.must_match /Card cannot be found/
             end
           end
         end
@@ -199,7 +199,7 @@ module Troo
           let(:card_id) { }
 
           context "and the default card is set" do
-            before { Troo::CardRetrieval.stubs(:retrieve).returns(@card) }
+            before { CardRetrieval.stubs(:retrieve).returns(@card) }
 
             it "returns the card and all comments" do
               subject.must_match /\(67\) My Test Card/
@@ -208,7 +208,7 @@ module Troo
           end
 
           context "and the default card is not set" do
-            before { Troo::CardRetrieval.stubs(:retrieve).returns() }
+            before { CardRetrieval.stubs(:retrieve) }
 
             it "returns a polite message" do
               subject.must_match /set a default card first/

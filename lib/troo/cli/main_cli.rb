@@ -12,7 +12,7 @@ module Troo
         card_count  = Troo::Card.count
 
         if board_count > 0
-          if board = Troo::BoardRetrieval.default
+          if board = BoardRetrieval.default
             say "Board: #{BoardDecorator.new(board).short}"
           else
             say "Board: No default set."
@@ -22,7 +22,7 @@ module Troo
         end
 
         if list_count > 0
-          if list = Troo::ListRetrieval.default
+          if list = ListRetrieval.default
             say "List: #{ListDecorator.new(list).short}"
           else
             say "List: No default set."
@@ -32,7 +32,7 @@ module Troo
         end
 
         if card_count > 0
-          if card = Troo::CardRetrieval.default
+          if card = CardRetrieval.default
             say "Card: #{CardDecorator.new(card).short}"
           else
             say "Card: No default set."
@@ -66,7 +66,7 @@ module Troo
           RefreshAll.all(nil, options)
           say "All local data has been refreshed."
         else
-          if board = Troo::BoardRetrieval.default
+          if board = BoardRetrieval.default
             if options["lists"]
               RefreshAll.lists(board, options)
               say "All lists for the default board have been refreshed."
@@ -109,8 +109,8 @@ module Troo
 
       desc "move <card_id> <list_id>", "Move a card <card_id> to list <list_id>."
       def move(card_id, list_id)
-        if card = Troo::CardRetrieval.retrieve(card_id)
-          if list = Troo::ListRetrieval.retrieve(list_id)
+        if card = CardRetrieval.retrieve(card_id)
+          if list = ListRetrieval.retrieve(list_id)
             if result = MoveCard.with(card, list)
               say "Card moved from '#{card.list.name}' to '#{list.name}'."
             else

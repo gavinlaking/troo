@@ -8,7 +8,7 @@ module Troo
 
     before do
       @board = Fabricate(:board, name: board_name, description: description)
-      Troo::BoardPersistence.stubs(:for).returns(@board)
+      BoardPersistence.stubs(:for).returns(@board)
     end
 
     after { database_cleanup }

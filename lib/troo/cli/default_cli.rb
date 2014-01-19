@@ -28,9 +28,9 @@ module Troo
 
       def resource
         @resource ||= case @type
-        when :board then Troo::BoardRetrieval.retrieve(@id)
-        when :list  then Troo::ListRetrieval.retrieve(@id)
-        when :card  then Troo::CardRetrieval.retrieve(@id)
+        when :board then BoardRetrieval.retrieve(@id)
+        when :list  then ListRetrieval.retrieve(@id)
+        when :card  then CardRetrieval.retrieve(@id)
         end
       end
 

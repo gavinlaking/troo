@@ -19,7 +19,7 @@ module Troo
     attr_reader :board, :name
 
     def update_lists
-      return Troo::ListPersistence.for(create_list) if create_list
+      return ListPersistence.for(create_list) if create_list
       false
     end
 

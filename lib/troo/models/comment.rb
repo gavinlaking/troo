@@ -17,15 +17,15 @@ module Troo
     index :external_member_id
 
     def board
-      Troo::BoardRetrieval.retrieve(self.external_board_id)
+      BoardRetrieval.retrieve(self.external_board_id)
     end
 
     def card
-      Troo::CardRetrieval.retrieve(self.external_card_id)
+      CardRetrieval.retrieve(self.external_card_id)
     end
 
     def member
-      Troo::MemberRetrieval.retrieve(self.external_member_id)
+      MemberRetrieval.retrieve(self.external_member_id)
     end
   end
 end

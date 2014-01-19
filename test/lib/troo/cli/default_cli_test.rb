@@ -12,7 +12,7 @@ module Troo
         subject { capture_io { described_class.new.board(id) }.join }
 
         context "when the id cannot be found" do
-          before { Troo::BoardRetrieval.stubs(:retrieve).returns(nil) }
+          before { BoardRetrieval.stubs(:retrieve) }
 
           it "returns a polite message" do
             subject.must_match /Board cannot be found/
@@ -22,7 +22,7 @@ module Troo
         context "when the id was found" do
           before do
             @board = Fabricate.build(:board)
-            Troo::BoardRetrieval.stubs(:retrieve).returns(@board)
+            BoardRetrieval.stubs(:retrieve).returns(@board)
           end
 
           it "returns a polite message" do
@@ -36,13 +36,13 @@ module Troo
 
         before do
           @card  = Fabricate.build(:card)
-          Troo::CardRetrieval.stubs(:retrieve).returns(@card)
+          CardRetrieval.stubs(:retrieve).returns(@card)
         end
 
         subject { capture_io { described_class.new.card(id) }.join }
 
         context "when the id cannot be found" do
-          before { Troo::CardRetrieval.stubs(:retrieve).returns(nil) }
+          before { CardRetrieval.stubs(:retrieve) }
 
           it "returns a polite message" do
             subject.must_match /Card cannot be found/
@@ -62,7 +62,7 @@ module Troo
         subject { capture_io { described_class.new.list(id) }.join }
 
         context "when the id cannot be found" do
-          before { Troo::ListRetrieval.stubs(:retrieve).returns(nil) }
+          before { ListRetrieval.stubs(:retrieve) }
 
           it "returns a polite message" do
             subject.must_match /List cannot be found/
@@ -72,7 +72,7 @@ module Troo
         context "when the id was found" do
           before do
             @list = Fabricate.build(:list)
-            Troo::ListRetrieval.stubs(:retrieve).returns(@list)
+            ListRetrieval.stubs(:retrieve).returns(@list)
           end
 
           it "returns a polite message" do

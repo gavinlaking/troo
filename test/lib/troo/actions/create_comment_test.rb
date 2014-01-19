@@ -10,7 +10,7 @@ module Troo
       @card = Fabricate(:card)
       @comment = Fabricate(:comment, text: comment)
 
-      Troo::CommentPersistence.stubs(:for).returns(@comment)
+      CommentPersistence.stubs(:for).returns(@comment)
     end
 
     after { database_cleanup }
