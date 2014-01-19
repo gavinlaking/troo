@@ -11,11 +11,6 @@ module Troo
       [default_str, id_str, name_str].join + "\n"
     end
 
-    def title
-      title_options = { ansicolor: true, colour: Esc.green, underline: Esc.underline }
-      highlight([default, brackets(id), name].join(" "), title_options)
-    end
-
     def name_str
       highlight(name, options)
     end
@@ -88,9 +83,9 @@ module Troo
 
     def defaults
       {
-        ansicolor: false,
-        colour:    nil,
-        underline: nil
+        ansicolor: true,
+        colour:    Esc.magenta,
+        underline: Esc.underline
       }
     end
 

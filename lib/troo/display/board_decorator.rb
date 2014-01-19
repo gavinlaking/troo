@@ -40,6 +40,10 @@ module Troo
       board.id.to_s
     end
 
+    def lists(alt_options = {})
+      board.lists.map { |list| list.decorator(alt_options) }
+    end
+
     private
     attr_reader :board
 

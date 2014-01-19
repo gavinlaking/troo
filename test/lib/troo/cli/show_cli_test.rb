@@ -49,6 +49,14 @@ module Troo
               subject.must_match /Test List/
               subject.must_match /Test Card/
             end
+
+            context "but there are no lists" do
+              before { @list.delete }
+
+              it "returns a polite message" do
+                subject.must_match /No lists were found/
+              end
+            end
           end
 
           context "and the board does not exist" do
@@ -87,15 +95,23 @@ module Troo
         subject { capture_io { described_class.new.list(list_id) }.join }
 
         context "when a list_id was provided" do
-          context "when the list exists" do
+          context "and the list exists" do
             it "returns the list's board, the list and all cards" do
               subject.must_match /Test Board/
               subject.must_match /Test List/
               subject.must_match /Test Card/
             end
+
+            context "but there are no cards" do
+              before { @card.delete }
+
+              it "returns a polite message" do
+                subject.must_match /No cards were found/
+              end
+            end
           end
 
-          context "when the list does not exist" do
+          context "and the list does not exist" do
             before { ListRetrieval.stubs(:retrieve) }
 
             it "returns a polite message" do
@@ -131,18 +147,24 @@ module Troo
         subject { capture_io { described_class.new.card(card_id) }.join }
 
         context "when a card_id was provided" do
-          context "when the card exists" do
-            before { @comment.delete }
-
+          context "and the card exists" do
             it "returns the card details" do
               subject.must_match /\(67\) My Test Card/
               subject.must_match /some description/
               subject.must_match /Metadata/
               subject.must_match /Tue, Dec 17 at 21:48/
             end
+
+            context "but there are no comments" do
+              before { @comment.delete }
+
+              it "returns a polite message" do
+                subject.must_match /No comments have been left/
+              end
+            end
           end
 
-          context "when the card does not exist" do
+          context "and the card does not exist" do
             before { CardRetrieval.stubs(:retrieve) }
 
             it "returns a polite message" do
@@ -179,14 +201,22 @@ module Troo
         subject { capture_io { described_class.new.comments(card_id) }.join }
 
         context "when a card_id was provided" do
-          context "when the card exists" do
+          context "and the card exists" do
             it "returns the card and all comments" do
-              subject.must_match /\(67\) My Test Card/
+              subject.must_match /My Test Card/
               subject.must_match /My Test Comment/
+            end
+
+            context "but there are no comments" do
+              before { @comment.delete }
+
+              it "returns a polite message" do
+                subject.must_match /No comments were found/
+              end
             end
           end
 
-          context "when the card does not exist" do
+          context "and the card does not exist" do
             before { CardRetrieval.stubs(:retrieve) }
 
             it "returns a polite message" do
@@ -202,7 +232,7 @@ module Troo
             before { CardRetrieval.stubs(:retrieve).returns(@card) }
 
             it "returns the card and all comments" do
-              subject.must_match /\(67\) My Test Card/
+              subject.must_match /My Test Card/
               subject.must_match /My Test Comment/
             end
           end
