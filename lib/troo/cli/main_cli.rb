@@ -1,61 +1,22 @@
 module Troo
   module CLI
     class Main < ThorFixes
+      include Helpers
+
       default_task :status
 
       class_option :debug, type: :boolean, desc: "Enable debugging."
 
       desc "status", "Get troo status."
       def status
-        board_count = Troo::Board.count
-        list_count  = Troo::List.count
-        card_count  = Troo::Card.count
-
-        if board_count > 0
-          if board = BoardRetrieval.default
-            say "Board: #{board.decorator.short}"
-          else
-            say "Board: No default set."
-          end
-        else
-          say "No local board data."
-        end
-
-        if list_count > 0
-          if list = ListRetrieval.default
-            say "List: #{list.decorator.short}"
-          else
-            say "List: No default set."
-          end
-        else
-          say "No local list data."
-        end
-
-        if card_count > 0
-          if card = CardRetrieval.default
-            say "Card: #{card.decorator.short}"
-          else
-            say "Card: No default set."
-          end
-        else
-          say "No local card data."
-        end
-
-        puts [plural(board_count, "board"),
-              plural(list_count, "list"),
-              plural(card_count, "card") ].join(", ")
-        puts
+        say "Status:"
+        get_status(:board)
+        get_status(:list)
+        get_status(:card)
+        say ""
 
         help
       end
-
-      private
-
-      def plural(size, singular)
-        (size == 1) ? "#{size} #{singular}" : "#{size} #{singular}s"
-      end
-
-      public
 
       desc "refresh", "Refresh all data for default board."
       method_option :all, type: :boolean, desc: "Refresh all boards, lists, cards and comments."
@@ -124,6 +85,47 @@ module Troo
         end
       rescue Troo::InvalidAccessToken
         say "Your Trello access credentials have expired, please renew and try again."
+      end
+
+      private
+      attr_reader :id, :type
+
+      def get_status(type)
+        @id, @type = nil, type
+        return show             if resource_found && resource
+        return no_default_found if resource_count > 0
+      end
+
+      def resource_found
+        label = "  #{type.to_s.capitalize}s:".ljust(10)
+        say label + plural(resource_count, type.to_s) + " found."
+      end
+
+      def resource_count
+        @count = case type
+        when :board then Troo::Board.count
+        when :list  then Troo::List.count
+        when :card  then Troo::Card.count
+        end
+      end
+
+      def show
+        say "          #{resource.decorator.title}"
+      end
+
+      def no_default_found
+        say "          " + Esc.red + "No default #{type} set." + Esc.reset
+      end
+
+      def plural(size, singular)
+        pluralized = singular + "s"
+        if size == 0
+          "No #{pluralized}"
+        elsif size == 1
+          "#{size} #{singular}"
+        else
+          "#{size} #{pluralized}"
+        end
       end
     end
   end
