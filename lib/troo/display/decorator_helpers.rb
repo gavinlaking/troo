@@ -7,7 +7,15 @@ module Troo
       base.extend(ClassMethods)
     end
 
+    def title
+      highlight([default, brackets(id), name].join(" "), options)
+    end
+
     private
+
+    def title_for(resource)
+      indent { print resource.title + "\n" }
+    end
 
     def word_wrap(text, line_width = 70)
       return text if line_width <= 0

@@ -7,7 +7,7 @@ module Troo
       end
 
       def success
-        say "'#{resource.name}' set as default #{type.to_s.downcase}."
+        say "'#{resource.decorator.name}' set as default #{type.to_s.downcase}."
         true
       end
 

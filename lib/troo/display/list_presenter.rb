@@ -9,28 +9,22 @@ module Troo
     include DecoratorHelpers
 
     def initialize(list, options = {})
-      @list   = list
+      @list    = list
       @options = options
     end
 
     def show
-      spacing do
-        print board.decorator.short
+      puts board.decorator.title
 
-        indent do
-          print list.decorator.short
+      title_for(list.decorator)
 
-          if list.cards.any?
-            list.cards.each do |card|
-              indent do
-                print card.decorator.short
-              end
-            end
-          else
-            print_error "No cards were found."
-          end
-        end
+      print_error "No cards were found." if cards.empty?
+
+      cards.each do |card|
+        title_for(card)
       end
+
+      puts
     end
 
     private
@@ -38,6 +32,10 @@ module Troo
 
     def board
       list.board
+    end
+
+    def cards
+      list.decorator.cards
     end
   end
 end

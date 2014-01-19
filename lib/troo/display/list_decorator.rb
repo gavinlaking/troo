@@ -35,6 +35,10 @@ module Troo
       list.id.to_s
     end
 
+    def cards(alt_options = {})
+      list.cards.map { |card| card.decorator(alt_options) }
+    end
+
     private
     attr_reader :list
 

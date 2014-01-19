@@ -18,48 +18,54 @@ module Troo
     end
 
     def render_all
-      spacing({foot: false}) do
-        print board.decorator.short
+      puts board.decorator.title
 
-        if board.lists.any?
-          board.lists.each do |list|
-            indent do
-              print list.decorator.short
-            end
-          end
-        else
-          print_error "No lists were found.\n"
-        end
-      end
+      print_error "No lists were found." if lists.empty?
+
+      print_lists
     end
 
     def show
-      spacing do
-        print board.decorator.short
+      puts board.decorator.title
 
-        if board.lists.any?
-          board.lists.each do |list|
-            indent do
-              print list.decorator.short
+      print_error "No lists were found." if lists.empty?
 
-              if list.cards.any?
-                list.cards.each do |card|
-                  indent do
-                    print card.decorator.short
-                  end
-                end
-              else
-                print_error "No cards were found."
-              end
-            end
-          end
-        else
-          print_error "No lists were found."
-        end
-      end
+      print_lists_with_cards
     end
 
     private
     attr_reader :board
+
+    def print_lists_with_cards
+      lists.each do |list|
+        title_for(list)
+
+        print_error "No cards were found." if list.cards.empty?
+
+        list.cards(unformatted).each do |card|
+          title_for(card)
+        end
+      end
+      puts
+    end
+
+    def print_lists
+      lists.each do |list|
+        title_for(list)
+      end
+      puts
+    end
+
+    def lists
+      board.decorator.lists
+    end
+
+    def unformatted
+      {
+        ansicolor: false,
+        colour:    nil,
+        underline: nil
+      }
+    end
   end
 end

@@ -38,23 +38,15 @@ module Troo
       subject { described_instance.short }
 
       it "returns a one line overview of the card" do
-        subject.must_equal(" *  (67) My Test Card\n")
+        subject.must_equal(" * \e[35m\e[4m(67) \e[0m\e[35m\e[4mMy Test Card\e[0m\n")
       end
 
       context "when the ansicolor option is false" do
         let(:options) { { ansicolor: false } }
 
-        it "returns a one line overview of the board" do
+        it "returns a one line overview of the card" do
           subject.must_equal(" *  (67) My Test Card\n")
         end
-      end
-    end
-
-    describe "#title" do
-      subject { described_instance.title }
-
-      it "returns a formatted string representing the card title" do
-        subject.must_match /\* \(67\) My Test Card/
       end
     end
 
@@ -62,7 +54,7 @@ module Troo
       subject { described_instance.name_str }
 
       it "returns the formatted card name" do
-        subject.must_equal("My Test Card")
+        subject.must_equal("\e[35m\e[4mMy Test Card\e[0m")
       end
     end
 
@@ -78,7 +70,7 @@ module Troo
       subject { described_instance.id_str }
 
       it "returns the formatted card id" do
-        subject.must_equal(" (67) ")
+        subject.must_equal("\e[35m\e[4m(67) \e[0m")
       end
     end
 
@@ -206,7 +198,7 @@ module Troo
       subject { described_instance.board }
 
       it "returns the board details" do
-        subject.must_match "(1) My Test Board"
+        subject.must_equal "   \e[35m\e[4m(1) \e[0m\e[35m\e[4mMy Test Board\e[0m\n"
       end
     end
 
@@ -214,7 +206,7 @@ module Troo
       subject { described_class.new(@card).list }
 
       it "returns the list details" do
-        subject.must_match "(1) My Test List"
+        subject.must_equal "   \e[35m\e[4m(1) \e[0m\e[35m\e[4mMy Test List\e[0m\n"
       end
     end
   end
