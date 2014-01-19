@@ -1,6 +1,8 @@
 module Troo
   module CLI
     class Default < ThorFixes
+      include Helpers
+
       package_name "default"
 
       desc "board <id>", "Set the board <id> to default."
@@ -19,6 +21,7 @@ module Troo
       end
 
       private
+      attr_reader :id, :type
 
       def set_default(id, type)
         @id, @type = id, type
@@ -26,20 +29,8 @@ module Troo
         not_found
       end
 
-      def resource
-        @resource ||= case @type
-        when :board then BoardRetrieval.retrieve(@id)
-        when :list  then ListRetrieval.retrieve(@id)
-        when :card  then CardRetrieval.retrieve(@id)
-        end
-      end
-
       def success(resource_name = "")
-        say "'#{resource_name}' set as default #{@type.to_s.downcase}."
-      end
-
-      def not_found
-        say "#{@type.to_s.capitalize} cannot be found."
+        say "'#{resource_name}' set as default #{type.to_s.downcase}."
       end
     end
   end

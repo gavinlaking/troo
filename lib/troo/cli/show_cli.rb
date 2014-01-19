@@ -1,6 +1,8 @@
 module Troo
   module CLI
     class Show < ThorFixes
+      include Helpers
+
       package_name "show"
 
       desc "boards", "Show all the boards with lists."
@@ -47,6 +49,7 @@ module Troo
       end
 
       private
+      attr_reader :id, :type
 
       def show(id, type)
         @id, @type = id, type
@@ -65,27 +68,15 @@ module Troo
       end
 
       def presenter
-        @presenter ||= case @type
+        @presenter ||= case type
         when :board    then BoardPresenter.render_show(resource)
         when :list     then ListPresenter.render_show(resource)
         when :card     then CardPresenter.render_show(resource)
         end
       end
 
-      def resource
-        @resource ||= case @type
-        when :board    then BoardRetrieval.retrieve(@id)
-        when :list     then ListRetrieval.retrieve(@id)
-        when :card     then CardRetrieval.retrieve(@id)
-        end
-      end
-
-      def not_found
-        say "#{@type.to_s.capitalize} cannot be found."
-      end
-
       def not_found_no_default
-        say "Specify an <id> or use 'troo default #{@type.to_s} <id>' to set a default #{@type.to_s} first."
+        say "Specify an <id> or use 'troo default #{type.to_s} <id>' to set a default #{type.to_s} first."
       end
     end
   end
