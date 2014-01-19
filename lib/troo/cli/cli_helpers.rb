@@ -17,10 +17,10 @@ module Troo
       end
 
       def resource
-        @resource ||= case type
-        when :board then BoardRetrieval.retrieve(id)
-        when :list  then ListRetrieval.retrieve(id)
-        when :card  then CardRetrieval.retrieve(id)
+        @resource = case type
+        when :board then @board ||= BoardRetrieval.retrieve(id)
+        when :list  then @list  ||= ListRetrieval.retrieve(id)
+        when :card  then @card  ||= CardRetrieval.retrieve(id)
         end
       end
     end
