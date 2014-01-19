@@ -109,6 +109,7 @@ module Troo
         end
       end
 
+
       def show_resource_title
         say "          #{resource.decorator.title}"
       end
