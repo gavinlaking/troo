@@ -61,7 +61,7 @@ module Troo
 
     def members
       if card.members.any?
-        MemberPresenter.new(card).render_show
+        MemberPresenter.new(card).show
       else
         "No members have been assigned."
       end
@@ -72,11 +72,11 @@ module Troo
     end
 
     def board
-      BoardDecorator.new(card.board, options).short
+      card.board.decorator(options).short
     end
 
     def list
-      ListDecorator.new(card.list, options).short
+      card.list.decorator(options).short
     end
 
     private
@@ -95,11 +95,11 @@ module Troo
     end
 
     def decorated_recent_comments
-      card.recent_comments.map { |comment| CommentDecorator.new(comment).as_view }.join
+      card.recent_comments.map { |comment| comment.decorator.as_view }.join
     end
 
     def decorated_all_comments
-      card.comments.map { |comment| CommentDecorator.new(comment).as_view }.join
+      card.comments.map { |comment| comment.decorator.as_view }.join
     end
   end
 end

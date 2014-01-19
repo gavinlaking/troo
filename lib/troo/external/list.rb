@@ -4,7 +4,7 @@ module Troo
       class << self
         def fetch(external_id, options = {})
           new(external_id, options).fetch_by_external_id.map do |resource|
-            Troo::ListPersistence.for(resource) unless closed?(resource)
+            ListPersistence.for(resource) unless closed?(resource)
           end
         end
       end

@@ -1,8 +1,8 @@
 module Troo
   class ListPresenter
     class << self
-      def render_show(list, options = {})
-        new(list, options).render_show
+      def show(list, options = {})
+        new(list, options).show
       end
     end
 
@@ -13,17 +13,17 @@ module Troo
       @options = options
     end
 
-    def render_show
+    def show
       spacing do
-        print BoardDecorator.new(board).short
+        print board.decorator.short
 
         indent do
-          print ListDecorator.new(list).short
+          print list.decorator.short
 
           if list.cards.any?
             list.cards.each do |card|
               indent do
-                print CardDecorator.new(card).short
+                print card.decorator.short
               end
             end
           else

@@ -26,7 +26,7 @@ module Troo
         end
 
         context "when a default board is not set" do
-          before { Troo::BoardRetrieval.stubs(:default).returns(nil) }
+          before { BoardRetrieval.stubs(:default) }
 
           it "returns a polite message" do
             subject.must_match /Board: No default/
@@ -40,7 +40,7 @@ module Troo
         end
 
         context "when a default list is not set" do
-          before { Troo::ListRetrieval.stubs(:default).returns(nil) }
+          before { ListRetrieval.stubs(:default) }
 
           it "returns a polite message" do
             subject.must_match /List: No default/
@@ -54,7 +54,7 @@ module Troo
         end
 
         context "when a default card is not set" do
-          before { Troo::CardRetrieval.stubs(:default).returns(nil) }
+          before { CardRetrieval.stubs(:default) }
 
           it "returns a polite message" do
             subject.must_match /Card: No default/
@@ -94,7 +94,7 @@ module Troo
         before do
           RefreshAll.stubs(:all)
           RefreshAll.stubs(:default)
-          Troo::BoardRetrieval.stubs(:default).returns(default)
+          BoardRetrieval.stubs(:default).returns(default)
           RefreshAll.stubs(:lists)
           RefreshAll.stubs(:cards)
         end
@@ -187,8 +187,8 @@ module Troo
           @card = Fabricate(:card)
           @list = Fabricate(:list)
           Troo::MoveCard.stubs(:with).returns(true)
-          Troo::CardRetrieval.stubs(:retrieve).returns(@card)
-          Troo::ListRetrieval.stubs(:retrieve).returns(@list)
+          CardRetrieval.stubs(:retrieve).returns(@card)
+          ListRetrieval.stubs(:retrieve).returns(@list)
         end
 
         subject { capture_io { described_class.new.move(card_id, list_id) }.join }
@@ -211,7 +211,7 @@ module Troo
           end
 
           context "when the list was not found" do
-            before { Troo::ListRetrieval.stubs(:retrieve).returns(nil) }
+            before { ListRetrieval.stubs(:retrieve) }
 
             it "returns a polite message" do
               subject.must_match /list was not found/
@@ -220,7 +220,7 @@ module Troo
         end
 
         context "when the card was not found" do
-          before { Troo::CardRetrieval.stubs(:retrieve).returns(nil) }
+          before { CardRetrieval.stubs(:retrieve) }
 
           it "returns a polite message" do
             subject.must_match /card was not found/

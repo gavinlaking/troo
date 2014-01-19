@@ -12,10 +12,10 @@ module Troo
         @comment = Fabricate.build(:comment)
         @list    = Fabricate.build(:list, name: "My New Test List")
 
-        Troo::CreateBoard.stubs(:with).returns(@board)
-        Troo::CreateCard.stubs(:for).returns(@card)
-        Troo::CreateComment.stubs(:for).returns(@comment)
-        Troo::CreateList.stubs(:for).returns(@list)
+        CreateBoard.stubs(:with).returns(@board)
+        CreateCard.stubs(:for).returns(@card)
+        CreateComment.stubs(:for).returns(@comment)
+        CreateList.stubs(:for).returns(@list)
       end
 
       after { database_cleanup }
@@ -42,7 +42,7 @@ module Troo
         end
 
         context "when the board was not created" do
-          before { Troo::CreateBoard.stubs(:with).returns(false) }
+          before { CreateBoard.stubs(:with).returns(false) }
 
           it "returns a polite message" do
             subject.must_match /Board could not be created/
@@ -50,7 +50,7 @@ module Troo
         end
 
         context "when the Trello access token credentials are invalid" do
-          before { Troo::CreateBoard.stubs(:with).raises(Troo::InvalidAccessToken) }
+          before { CreateBoard.stubs(:with).raises(Troo::InvalidAccessToken) }
 
           it "returns a polite message" do
             subject.must_match /access credentials have expired, please renew/
@@ -63,7 +63,7 @@ module Troo
         let(:card_name)   { "My New Test Card" }
         let(:description) { "A very brief description..." }
 
-        before { Troo::ListRetrieval.stubs(:retrieve).returns(@list) }
+        before { ListRetrieval.stubs(:retrieve).returns(@list) }
 
         subject { capture_io { described_class.new.card(list_id, card_name, description) }.join }
 
@@ -85,7 +85,7 @@ module Troo
           end
 
           context "when the card was not created" do
-            before { Troo::CreateCard.stubs(:for).returns(false) }
+            before { CreateCard.stubs(:for).returns(false) }
 
             it "returns a polite message" do
               subject.must_match /Card could not be created/
@@ -93,7 +93,7 @@ module Troo
           end
 
           context "when the Trello access token credentials are invalid" do
-            before { Troo::CreateCard.stubs(:for).raises(Troo::InvalidAccessToken) }
+            before { CreateCard.stubs(:for).raises(Troo::InvalidAccessToken) }
 
             it "returns a polite message" do
               subject.must_match /access credentials have expired, please renew/
@@ -102,7 +102,7 @@ module Troo
         end
 
         context "when the list was not found" do
-          before { Troo::ListRetrieval.stubs(:retrieve).returns(nil) }
+          before { ListRetrieval.stubs(:retrieve) }
 
           it "returns a polite message" do
             subject.must_match /list was not found/
@@ -114,7 +114,7 @@ module Troo
         let(:card_id) { "526d8f19ddb279532e005259" }
         let(:comment) { "A very brief description..." }
 
-        before { Troo::CardRetrieval.stubs(:retrieve).returns(@card) }
+        before { CardRetrieval.stubs(:retrieve).returns(@card) }
 
         subject { capture_io { described_class.new.comment(card_id, comment) }.join }
 
@@ -136,7 +136,7 @@ module Troo
           end
 
           context "when the comment was not created" do
-            before { Troo::CreateComment.stubs(:for).returns(false) }
+            before { CreateComment.stubs(:for).returns(false) }
 
             it "returns a polite message" do
               subject.must_match /Comment could not be created/
@@ -144,7 +144,7 @@ module Troo
           end
 
           context "when the Trello access token credentials are invalid" do
-            before { Troo::CreateComment.stubs(:for).raises(Troo::InvalidAccessToken) }
+            before { CreateComment.stubs(:for).raises(Troo::InvalidAccessToken) }
 
             it "returns a polite message" do
               subject.must_match /access credentials have expired, please renew/
@@ -153,7 +153,7 @@ module Troo
         end
 
         context "when the card was not found" do
-          before { Troo::CardRetrieval.stubs(:retrieve).returns(nil) }
+          before { CardRetrieval.stubs(:retrieve) }
 
           it "returns a polite message" do
             subject.must_match /card was not found/
@@ -165,7 +165,7 @@ module Troo
         let(:board_id)  { "526d8e130a14a9d846001d96" }
         let(:list_name) { "My New List" }
 
-        before { Troo::BoardRetrieval.stubs(:retrieve).returns(@board) }
+        before { BoardRetrieval.stubs(:retrieve).returns(@board) }
 
         subject { capture_io { described_class.new.list(board_id, list_name) }.join }
 
@@ -187,7 +187,7 @@ module Troo
           end
 
           context "when the list was not created" do
-            before { Troo::CreateList.stubs(:for).returns(false) }
+            before { CreateList.stubs(:for).returns(false) }
 
             it "returns a polite message" do
               subject.must_match /List could not be created/
@@ -195,7 +195,7 @@ module Troo
           end
 
           context "when the Trello access token credentials are invalid" do
-            before { Troo::CreateList.stubs(:for).raises(Troo::InvalidAccessToken) }
+            before { CreateList.stubs(:for).raises(Troo::InvalidAccessToken) }
 
             it "returns a polite message" do
               subject.must_match /access credentials have expired, please renew/
@@ -204,7 +204,7 @@ module Troo
         end
 
         context "when the board was not found" do
-          before { Troo::BoardRetrieval.stubs(:retrieve).returns(nil) }
+          before { BoardRetrieval.stubs(:retrieve) }
 
           it "returns a polite message" do
             subject.must_match /board was not found/

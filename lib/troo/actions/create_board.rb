@@ -21,7 +21,7 @@ module Troo
     attr_reader :name, :description
 
     def update_boards
-      return Troo::BoardPersistence.for(create_board) if create_board
+      return BoardPersistence.for(create_board) if create_board
       false
     end
 

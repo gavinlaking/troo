@@ -1,8 +1,8 @@
 module Troo
   class CardPresenter
     class << self
-      def render_show(card, options = {})
-        new(card, options).render_show
+      def show(card, options = {})
+        new(card, options).show
       end
     end
 
@@ -13,7 +13,7 @@ module Troo
       @options = options
     end
 
-    def render_show
+    def show
       print Template.parse(decorated_card, "/../views/card.erb")
     end
 
@@ -21,7 +21,7 @@ module Troo
     attr_reader :card
 
     def decorated_card
-      @decorated_card ||= CardDecorator.new(card)
+      @decorated_card ||= card.decorator
     end
   end
 end

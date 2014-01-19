@@ -10,7 +10,7 @@ module Troo
       @board = Fabricate(:board)
       @list = Fabricate(:list, name: list_name)
 
-      Troo::ListPersistence.stubs(:for).returns(@list)
+      ListPersistence.stubs(:for).returns(@list)
     end
 
     after { database_cleanup }

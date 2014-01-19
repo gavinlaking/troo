@@ -10,7 +10,7 @@ module Troo
           name = ask("Please enter a name for this board:")
         end
 
-        if result = Troo::CreateBoard.with(name, description)
+        if result = CreateBoard.with(name, description)
           say "New board '#{result.name}' created."
         else
           say "Board could not be created."
@@ -26,8 +26,8 @@ module Troo
           name = ask("Please enter a name for this card:")
         end
 
-        if list = Troo::ListRetrieval.retrieve(list_id)
-          if result = Troo::CreateCard.for(list, name, description)
+        if list = ListRetrieval.retrieve(list_id)
+          if result = CreateCard.for(list, name, description)
             say "New card '#{result.name}' created."
           else
             say "Card could not be created."
@@ -46,8 +46,8 @@ module Troo
           comment = ask("Please enter a comment:")
         end
 
-        if card = Troo::CardRetrieval.retrieve(card_id)
-          if Troo::CreateComment.for(card, comment)
+        if card = CardRetrieval.retrieve(card_id)
+          if CreateComment.for(card, comment)
             say "New comment created."
           else
             say "Comment could not be created."
@@ -66,8 +66,8 @@ module Troo
           name = ask("Please enter a name for this list:")
         end
 
-        if board = Troo::BoardRetrieval.retrieve(board_id)
-          if result = Troo::CreateList.for(board, name)
+        if board = BoardRetrieval.retrieve(board_id)
+          if result = CreateList.for(board, name)
             say "New list '#{result.name}' created."
           else
             say "List could not be created."

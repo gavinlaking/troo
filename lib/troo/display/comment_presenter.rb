@@ -1,8 +1,8 @@
 module Troo
   class CommentPresenter
     class << self
-      def render_show(card, options = {})
-        new(card, options).render_show
+      def show(card, options = {})
+        new(card, options).show
       end
     end
 
@@ -13,14 +13,14 @@ module Troo
       @options = options
     end
 
-    def render_show
+    def show
       spacing do
-        print CardDecorator.new(card).short
+        print card.decorator.short
 
         if card.comments.any?
           card.comments.each do |comment|
             indent do
-              print CommentDecorator.new(comment).as_view
+              print comment.decorator.as_view
             end
           end
         else

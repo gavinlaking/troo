@@ -65,7 +65,7 @@ require_relative "models/member_retrieval"
 require_relative "models/member_persistence"
 require_relative "models/refresh"
 
-require_relative "cli/thor_fixes"
+require_relative "cli/cli_helpers"
 require_relative "cli/add_cli"
 require_relative "cli/default_cli"
 require_relative "cli/show_cli"

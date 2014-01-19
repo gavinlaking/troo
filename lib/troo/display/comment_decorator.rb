@@ -2,8 +2,9 @@ module Troo
   class CommentDecorator
     include DecoratorHelpers
 
-    def initialize(comment)
+    def initialize(comment, options = {})
       @comment = comment
+      @options = options
     end
 
     def as_view

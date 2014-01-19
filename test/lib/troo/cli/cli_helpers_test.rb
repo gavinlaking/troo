@@ -3,6 +3,9 @@ require "thor"
 
 module Troo
   module CLI
+    module Helpers
+    end
+
     describe ThorFixes do
       let(:described_class) { ThorFixes }
 

@@ -1,45 +1,31 @@
 module Troo
   module CLI
     class Default < ThorFixes
+      include Helpers
+
       package_name "default"
 
       desc "board <id>", "Set the board <id> to default."
       def board(id)
-        set_default(id, :board)
+        initialize_and_dispatch(id, :board)
       end
 
       desc "card <id>", "Set the card <id> to default."
       def card(id)
-        set_default(id, :card)
+        initialize_and_dispatch(id, :card)
       end
 
       desc "list <id>", "Set the list <id> to default."
       def list(id)
-        set_default(id, :list)
+        initialize_and_dispatch(id, :list)
       end
 
       private
+      attr_reader :id, :type
 
-      def set_default(id, type)
+      def initialize_and_dispatch(id, type)
         @id, @type = id, type
-        return success(resource.name) if SetDefault.for(resource)
-        not_found
-      end
-
-      def resource
-        @resource ||= case @type
-        when :board then Troo::BoardRetrieval.retrieve(@id)
-        when :list  then Troo::ListRetrieval.retrieve(@id)
-        when :card  then Troo::CardRetrieval.retrieve(@id)
-        end
-      end
-
-      def success(resource_name = "")
-        say "'#{resource_name}' set as default #{@type.to_s.downcase}."
-      end
-
-      def not_found
-        say "#{@type.to_s.capitalize} cannot be found."
+        set_default
       end
     end
   end
