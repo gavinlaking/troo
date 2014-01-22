@@ -92,8 +92,8 @@ module Troo
 
       def get_status(type)
         @id, @type = nil, type
-        return show             if resource_found && resource
-        return no_default_found if resource_count > 0
+        return show_resource_title if resource_found && resource
+        return no_default_found    if resource_count > 0
       end
 
       def resource_found
@@ -109,7 +109,7 @@ module Troo
         end
       end
 
-      def show
+      def show_resource_title
         say "          #{resource.decorator.title}"
       end
 
