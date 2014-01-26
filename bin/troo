@@ -7,6 +7,8 @@ require_relative "../lib/troo"
 begin
   puts
   Troo::CLI::Main.start(ARGV)
+rescue Troo::InvalidAccessToken
+  puts "Your Trello access credentials have expired, please renew and try again."
 rescue SocketError
   puts "Cannot continue, no network connection."
 end
