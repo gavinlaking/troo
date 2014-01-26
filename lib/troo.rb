@@ -27,5 +27,10 @@ module Troo
     trello.oauth_token_secret = config.oauth_token_secret
   end
 
-  Ohm.connect(db: config.main_db)
+  if ARGV.include?("--test")
+    ARGV = ARGV.delete_if { |arg| arg == "--test" }
+    Ohm.connect(db: config.test_db)
+  else
+    Ohm.connect(db: config.main_db)
+  end
 end
