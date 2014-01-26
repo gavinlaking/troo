@@ -189,8 +189,18 @@ module Troo
     describe "#last_activity_date" do
       subject { described_instance.last_activity_date }
 
-      it "returns the last activity date" do
-        subject.must_equal("Tue, Dec 17 at 21:48")
+      context "when the last activity date is set" do
+        it "returns the last activity date" do
+          subject.must_equal("Tue, Dec 17 at 21:48")
+        end
+      end
+
+      context "when the last activity date is not set" do
+        before { @card.stubs(:last_activity_date) }
+
+        it "returns 'N/A'" do
+          subject.must_equal("N/A")
+        end
       end
     end
 

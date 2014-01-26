@@ -63,7 +63,9 @@ module Troo
     end
 
     def last_activity_date
-      Time.parse(card.last_activity_date).strftime("%a, %b %d at %H:%M")
+      return "N/A" unless card.last_activity_date
+      Time.parse(card.last_activity_date).
+        strftime("%a, %b %d at %H:%M")
     end
 
     def board
