@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-trap("SIGINT") { exit! }
+trap("INT") { exit! }
 
 require_relative "../lib/troo"
 
