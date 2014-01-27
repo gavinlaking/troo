@@ -26,8 +26,8 @@ module Troo
       BoardDecorator.new(self, options)
     end
 
-    def presenter
-      BoardPresenter.new(self)
+    def presenter(options = {})
+      BoardPresenter.new(self, options)
     end
 
     def set_default!

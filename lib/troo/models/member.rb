@@ -18,8 +18,8 @@ module Troo
       MemberDecorator.new(self, options)
     end
 
-    def presenter
-      MemberPresenter.new(self)
+    def presenter(options = {})
+      MemberPresenter.new(self, options)
     end
   end
 end

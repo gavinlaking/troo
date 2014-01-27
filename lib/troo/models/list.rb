@@ -28,8 +28,8 @@ module Troo
       ListDecorator.new(self, options)
     end
 
-    def presenter
-      ListPresenter.new(self)
+    def presenter(options = {})
+      ListPresenter.new(self, options)
     end
 
     def set_default!

@@ -54,8 +54,16 @@ module Troo
       CardDecorator.new(self, options)
     end
 
-    def presenter
-      CardPresenter.new(self)
+    def presenter(options = {})
+      CardPresenter.new(self, options)
+    end
+
+    def comment_presenter(options = {})
+      CommentPresenter.new(self, options)
+    end
+
+    def member_presenter(options = {})
+      MemberPresenter.new(self, options)
     end
 
     def set_default!
