@@ -44,6 +44,7 @@ require_relative "display/comment_presenter"
 require_relative "display/list_presenter"
 require_relative "display/member_presenter"
 
+require_relative "presentation/sentence"
 require_relative "presentation/template"
 
 require_relative "models/model_helpers"
