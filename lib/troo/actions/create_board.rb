@@ -6,8 +6,6 @@ module Troo
       end
     end
 
-    attr_reader :name
-
     def initialize(name, description = nil)
       @name        = name
       @description = description
