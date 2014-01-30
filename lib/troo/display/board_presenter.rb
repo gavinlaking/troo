@@ -1,5 +1,7 @@
 module Troo
   class BoardPresenter
+    include DecoratorHelpers
+
     class << self
       def render_all(board, options = {})
         new(board, options).render_all
@@ -9,8 +11,6 @@ module Troo
         new(board, options).show
       end
     end
-
-    include DecoratorHelpers
 
     def initialize(board, options = {})
       @board   = board

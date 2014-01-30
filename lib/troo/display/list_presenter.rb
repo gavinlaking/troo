@@ -1,12 +1,12 @@
 module Troo
   class ListPresenter
+    include DecoratorHelpers
+
     class << self
       def show(list, options = {})
         new(list, options).show
       end
     end
-
-    include DecoratorHelpers
 
     def initialize(list, options = {})
       @list    = list

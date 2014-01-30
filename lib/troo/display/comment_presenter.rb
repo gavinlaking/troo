@@ -1,12 +1,12 @@
 module Troo
   class CommentPresenter
+    include DecoratorHelpers
+
     class << self
       def show(card, options = {})
         new(card, options).show
       end
     end
-
-    include DecoratorHelpers
 
     def initialize(card, options = {})
       @card    = card
