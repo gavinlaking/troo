@@ -5,8 +5,6 @@ guard :minitest do
   watch(%r{^test/support/vcr_setup\.rb}) { 'test' }
 end
 
-guard :cucumber, :cli => '--format pretty --no-profile --tags ~@wip --tags ~@pending' do
-  watch(%r{^features/(.+)\.feature$})             { |m| m[0] }
-  watch(%r{^features/step_definitions/(.+)\.rb$}) { 'features' }
-  watch(%r{^features/support/(.+)$})              { 'features' }
+guard :cucumber, :cli => '--format pretty --no-profile --tags ~@wip --tags ~@pending', :focus_on => :wip do
+  watch(%r{^features/(.+)\.feature$})              { |m| m[0] }
 end

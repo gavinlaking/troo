@@ -55,11 +55,7 @@ module Troo
     end
 
     def members
-      if card.members.any?
-        MemberPresenter.new(card).show
-      else
-        "No members have been assigned."
-      end
+      MemberPresenter.show(card)
     end
 
     def last_activity_date

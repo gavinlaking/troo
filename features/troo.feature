@@ -1,14 +1,17 @@
-Feature: Troo basics
+Feature: Troo Basics
 
-Scenario: Running the command for the first time
-  When I run `troo`
+  Scenario: Getting the current version
+    When I run `troo --test version`
+    Then the output should be the version number of troo
 
-Scenario: Running the command with no arguments
-  When I run `troo`
+  Scenario: Running the command with no arguments
+    When I run `troo --test`
+    Then the output should contain "Commands:"
+    And the output should contain "Options:"
 
-Scenario: Getting the current version
-  When I run `troo version`
-  Then the output should be the version number of troo
-
-Scenario: Getting the current status
-  When I run `troo status`
+  Scenario: Running an unknown command
+    When I run `troo --test unknown`
+    Then the output should contain:
+      """
+      Could not find command "unknown".
+      """

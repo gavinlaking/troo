@@ -1,7 +1,7 @@
 module Troo
   class NullEntity
     def default?
-      true
+      false
     end
   end
 
@@ -17,7 +17,7 @@ module Troo
     end
 
     def set_default!
-      return false if already_default?
+      return true if already_default?
       unset_default
       set_new_default
       entity

@@ -6,9 +6,10 @@ module Troo
     let(:options) { { } }
 
     before do
-      @card  = Fabricate(:card)
-      @board = Fabricate(:board)
-      @list  = Fabricate(:list)
+      @card   = Fabricate(:card)
+      @board  = Fabricate(:board)
+      @list   = Fabricate(:list)
+      @member = Fabricate(:member)
     end
 
     after { database_cleanup }

@@ -3,80 +3,42 @@ module Troo
     class Add < ThorFixes
       package_name "add"
 
-      desc "board <name> (<description>)",
-           "Add a new board with <name> and optional <description>."
-      def board(name = nil, description = nil)
-        if name.nil?
-          name = ask("Please enter a name for this board:")
-        end
+      desc "board (<name>)", "Add a new board with <name>."
+      def board(name = nil)
+        board_name = name.nil? ? prompt_for_name : name
 
-        if result = CreateBoard.with(name, description)
-          say "New board '#{result.decorator.name}' created."
-        else
-          say "Board could not be created."
-        end
-      rescue Troo::InvalidAccessToken
-        say "Your Trello access credentials have expired, please renew and try again."
+        say Commands::Add.dispatch(:board, board_name)
       end
 
-      desc "card <list_id> <name> (<description>)",
-           "Add a new card to <list_id> with <name> and optional <description>."
-      def card(list_id, name = nil, description = nil)
-        if name.nil?
-          name = ask("Please enter a name for this card:")
-        end
+      desc "card <id> (<name>)", "Add a new card to list <id> with <name>."
+      def card(id, name = nil)
+        card_name = name.nil? ? prompt_for_name : name
 
-        if list = ListRetrieval.retrieve(list_id)
-          if result = CreateCard.for(list, name, description)
-            say "New card '#{result.decorator.name}' created."
-          else
-            say "Card could not be created."
-          end
-        else
-          say "Card could not be created, as list was not found."
-        end
-      rescue Troo::InvalidAccessToken
-        say "Your Trello access credentials have expired, please renew and try again."
+        say Commands::Add.dispatch(:card, card_name, id)
       end
 
-      desc "comment <card_id> <comment>",
-           "Add a new comment to <card_id>."
-      def comment(card_id, comment = nil)
-        if comment.nil?
-          comment = ask("Please enter a comment:")
-        end
+      desc "comment <id> (<comment>)", "Add a new comment to card <id>."
+      def comment(id, comment = nil)
+        user_comment = comment.nil? ? prompt_for_comment : comment
 
-        if card = CardRetrieval.retrieve(card_id)
-          if CreateComment.for(card, comment)
-            say "New comment created."
-          else
-            say "Comment could not be created."
-          end
-        else
-          say "Comment could not be created, as card was not found."
-        end
-      rescue Troo::InvalidAccessToken
-        say "Your Trello access credentials have expired, please renew and try again."
+        say Commands::Add.dispatch(:comment, user_comment, id)
       end
 
-      desc "list <board_id> <name>",
-           "Add a new list to <board_id> with <name>."
-      def list(board_id, name = nil)
-        if name.nil?
-          name = ask("Please enter a name for this list:")
-        end
+      desc "list <id> (<name>)", "Add a new list to board <id> with <name>."
+      def list(id, name = nil)
+        list_name = name.nil? ? prompt_for_name : name
 
-        if board = BoardRetrieval.retrieve(board_id)
-          if result = CreateList.for(board, name)
-            say "New list '#{result.decorator.name}' created."
-          else
-            say "List could not be created."
-          end
-        else
-          say "List could not be created, as board was not found."
-        end
-      rescue Troo::InvalidAccessToken
-        say "Your Trello access credentials have expired, please renew and try again."
+        say Commands::Add.dispatch(:list, name, id)
+      end
+
+      private
+
+      def prompt_for_name
+        @answer = ask("Please enter a name:")
+      end
+
+      def prompt_for_comment
+        @answer = ask("Please enter a comment:")
       end
     end
   end

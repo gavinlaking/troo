@@ -24,12 +24,22 @@ module Troo
 
     alias_method :default?, :default
 
+    def external_member_ids
+      if @attributes[:external_member_ids].nil?
+        []
+      elsif @attributes[:external_member_ids].is_a?(Array)
+        @attributes[:external_member_ids]
+      else
+        JSON(@attributes[:external_member_ids])
+      end
+    end
+
     def board
-      BoardRetrieval.retrieve(self.external_board_id)
+      @board ||= BoardRetrieval.retrieve(self.external_board_id)
     end
 
     def list
-      ListRetrieval.retrieve(self.external_list_id)
+      @list ||= ListRetrieval.retrieve(self.external_list_id)
     end
 
     def comments
@@ -41,13 +51,10 @@ module Troo
     end
 
     def members
-      if external_member_ids.any?
-        m = external_member_ids.map do |external_member_id|
-          Troo::Member.first(external_member_id: external_member_id)
-        end.compact
-      else
-        []
-      end
+      return [] if external_member_ids.empty?
+      @members ||= external_member_ids.map do |member_id|
+        MemberRetrieval.retrieve(member_id)
+      end.compact
     end
 
     def decorator(options = {})
