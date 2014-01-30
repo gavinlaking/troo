@@ -1,0 +1,5 @@
+require_relative "board"
+require_relative "card"
+require_relative "comment"
+require_relative "list"
+require_relative "member"
