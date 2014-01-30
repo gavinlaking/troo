@@ -1,0 +1,6 @@
+require_relative "thor_fixes"
+require_relative "add_cli"
+require_relative "default_cli"
+require_relative "refresh_cli"
+require_relative "show_cli"
+require_relative "main_cli"
