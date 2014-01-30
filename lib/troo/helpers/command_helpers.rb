@@ -28,5 +28,9 @@ module Troo
     def type_pluralize
       type_str + "s"
     end
+
+    def no_default?
+      id.nil?
+    end
   end
 end

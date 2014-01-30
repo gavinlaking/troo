@@ -1,11 +1,11 @@
-require_relative "../../../test_helper"
+require_relative "../../../../test_helper"
 require "thor"
 
 module Troo
-  module CLI
-    module Commands
-      describe Show do
-        let(:described_class) { Show }
+  module Commands
+    module Show
+      describe Board do
+        let(:described_class) { Board }
         let(:type)  { :board }
         let(:id)    { nil }
 

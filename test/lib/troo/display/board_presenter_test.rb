@@ -25,8 +25,8 @@ module Troo
       end
     end
 
-    describe "#render_all" do
-      subject { capture_io { described_class.new(@board, options).render_all }.join }
+    describe "#all" do
+      subject { capture_io { described_class.all([@board], options) }.join }
 
       context "when the board has lists" do
         it "renders the view" do
