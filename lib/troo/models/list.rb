@@ -25,7 +25,7 @@ module Troo
     end
 
     def decorator(options = {})
-      ListDecorator.new(self, options)
+      Decorators::List.new(self, options)
     end
 
     def presenter(options = {})

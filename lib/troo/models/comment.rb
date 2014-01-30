@@ -29,7 +29,7 @@ module Troo
     end
 
     def decorator(options = {})
-      CommentDecorator.new(self, options)
+      Decorators::Comment.new(self, options)
     end
   end
 end

@@ -58,7 +58,7 @@ module Troo
     end
 
     def decorator(options = {})
-      CardDecorator.new(self, options)
+      Decorators::Card.new(self, options)
     end
 
     def presenter(options = {})

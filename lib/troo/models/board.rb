@@ -23,7 +23,7 @@ module Troo
     end
 
     def decorator(options = {})
-      BoardDecorator.new(self, options)
+      Decorators::Board.new(self, options)
     end
 
     def presenter(options = {})

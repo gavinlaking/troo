@@ -15,7 +15,7 @@ module Troo
     index :external_member_id
 
     def decorator(options = {})
-      MemberDecorator.new(self, options)
+      Decorators::Member.new(self, options)
     end
 
     def presenter(options = {})
