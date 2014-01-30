@@ -1,67 +1,35 @@
 require_relative "../../../test_helper"
 
 module Troo
-  describe RefreshAll do
-    let(:described_class) { RefreshAll }
-    let(:options) { { } }
+  module CLI
+    module Commands
+      describe RefreshAll do
+        let(:described_class) { RefreshAll }
+        let(:options) { { } }
 
-    before do
-      @board = Fabricate(:board)
-      @list = Fabricate(:list)
-      @card = Fabricate(:card)
+        before do
+          @board = Fabricate(:board)
+          @list = Fabricate(:list)
+          @card = Fabricate(:card)
 
-      External::Board.stubs(:fetch_all).returns([@board])
-      External::List.stubs(:fetch).returns([@list])
-      External::Card.stubs(:fetch).returns([@card])
-      External::Comment.stubs(:fetch).returns([])
-      External::Member.stubs(:fetch).returns([])
-    end
+          External::Board.stubs(:fetch_all).returns([@board])
+          External::List.stubs(:fetch).returns([@list])
+          External::Card.stubs(:fetch).returns([@card])
+          External::Comment.stubs(:fetch).returns([])
+          External::Member.stubs(:fetch).returns([])
+        end
 
-    after { database_cleanup }
+        after { database_cleanup }
 
-    describe ".initialize" do
-      subject { described_class.new(@board, options) }
+        describe ".dispatch" do
+          let(:board) { nil }
 
-      it "assigns the board to an instance variable" do
-        subject.instance_variable_get("@board").must_equal(@board)
-      end
+          subject { described_class.dispatch }
 
-      it "assigns the options to an instance variable" do
-        subject.instance_variable_get("@options").must_equal(options)
-      end
-    end
-
-    describe ".all" do
-      let(:board) { nil }
-
-      subject { described_class.all(board, options) }
-
-      it "returns true when successful" do
-        subject.must_equal(true)
-      end
-    end
-
-    describe ".default" do
-      subject { described_class.default(@board, options) }
-
-      it "returns true when successful" do
-        subject.must_equal(true)
-      end
-    end
-
-    describe ".lists" do
-      subject { described_class.lists(@board, options) }
-
-      it "refreshes the lists for the board specified" do
-        subject.size.must_equal(1)
-      end
-    end
-
-    describe ".cards" do
-      subject { described_class.cards(@board, options) }
-
-      it "refreshes the cards for the board specified" do
-        subject.size.must_equal(1)
+          it "returns a polite message" do
+            subject.must_equal("All local data refreshed.")
+          end
+        end
       end
     end
   end
