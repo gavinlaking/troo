@@ -62,15 +62,15 @@ module Troo
     end
 
     def presenter(options = {})
-      CardPresenter.new(self, options)
+      Presenters::Card.new(self, options)
     end
 
     def comment_presenter(options = {})
-      CommentPresenter.new(self, options)
+      Presenters::Comment.new(self, options)
     end
 
     def member_presenter(options = {})
-      MemberPresenter.new(self, options)
+      Presenters::Member.new(self, options)
     end
 
     def set_default!

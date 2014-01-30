@@ -19,7 +19,7 @@ module Troo
     end
 
     def presenter(options = {})
-      MemberPresenter.new(self, options)
+      Presenters::Member.new(self, options)
     end
   end
 end

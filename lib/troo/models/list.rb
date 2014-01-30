@@ -29,7 +29,7 @@ module Troo
     end
 
     def presenter(options = {})
-      ListPresenter.new(self, options)
+      Presenters::List.new(self, options)
     end
 
     def set_default!

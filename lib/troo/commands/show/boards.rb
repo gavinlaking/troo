@@ -22,7 +22,7 @@ module Troo
         attr_reader :type, :id
 
         def presenter
-          BoardPresenter.all(resources)
+          Presenters::Board.all(resources)
         end
 
         def resources

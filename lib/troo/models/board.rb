@@ -27,7 +27,7 @@ module Troo
     end
 
     def presenter(options = {})
-      BoardPresenter.new(self, options)
+      Presenters::Board.new(self, options)
     end
 
     def set_default!

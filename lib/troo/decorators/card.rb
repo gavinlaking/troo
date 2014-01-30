@@ -56,7 +56,7 @@ module Troo
       end
 
       def members
-        MemberPresenter.show(card)
+        Presenters::Member.show(card)
       end
 
       def last_activity_date
