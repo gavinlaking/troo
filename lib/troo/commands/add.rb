@@ -44,9 +44,9 @@ module Troo
       def created
         @created ||= case type
         when :board   then CreateBoard.with(value)
-        when :list    then CreateList.for(resource, value)
         when :card    then CreateCard.for(resource, value)
         when :comment then CreateComment.for(resource, value)
+        when :list    then CreateList.for(resource, value)
         else
         end
       end
@@ -54,8 +54,8 @@ module Troo
       def resource
         case type
         when :card    then ListRetrieval.retrieve(id)
-        when :list    then BoardRetrieval.retrieve(id)
         when :comment then CardRetrieval.retrieve(id)
+        when :list    then BoardRetrieval.retrieve(id)
         else
         end
       end
