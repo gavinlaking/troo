@@ -7,9 +7,9 @@ module Troo
            "Get troo status."
       def status
         say "Status:"
-        say Commands::Status.dispatch(:board)
-        say Commands::Status.dispatch(:list)
-        say Commands::Status.dispatch(:card)
+        say Commands::Status::Board.dispatch
+        say Commands::Status::List.dispatch
+        say Commands::Status::Card.dispatch
       end
 
       desc "cleanup",

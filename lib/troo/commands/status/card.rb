@@ -5,13 +5,9 @@ module Troo
         include CommandHelpers
 
         class << self
-          def dispatch(type, id = nil)
-            new(type, id).get_status
+          def dispatch
+            new.get_status
           end
-        end
-
-        def initialize(type, id = nil)
-          @type, @id = type, id
         end
 
         def get_status
@@ -20,24 +16,17 @@ module Troo
         end
 
         private
-        attr_reader :type, :id
-
-        def count
-          @count = Troo::Card.count
-        end
 
         def success
-          "  #{type_capitalize}s:".ljust(10) +
-          plural(count, type_str)   +
-          " found.\n"                        +
+          "  Cards:  " + plural("card") + " found.\n" +
           "          #{resource_title}"
         end
 
         def error
           if count > 0
-            Esc.red + "  Cards:  No default cards set." + Esc.reset
+            "  Cards:  " + Esc.red + "No default card set." + Esc.reset
           else
-            "  Cards:".ljust(10) + "No cards found.\n"
+            "  Cards:  No cards found.\n"
           end
         end
 
@@ -45,16 +34,16 @@ module Troo
           resource.decorator.title
         end
 
-        def resource
-          @resource ||= CardRetrieval.retrieve(id)
+        def count
+          @count ||= Troo::Card.count
         end
 
-        def plural(size, singular)
-          case size
-          when 0 then "No #{singular}s"
-          when 1 then "#{size} #{singular}"
-          else "#{size} #{singular}s"
-          end
+        def resource
+          @resource ||= CardRetrieval.default
+        end
+
+        def plural(singular)
+          count == 1 ? "#{count} #{singular}" : "#{count} #{singular}s"
         end
       end
     end
