@@ -38,7 +38,7 @@ module Troo
       $stderr = @stderr
 
       puts
-      Troo::CLI::Main.start(argv)
+      Troo::CLI::Main.start(@argv)
       puts
 
       @kernel.exit(0)
@@ -48,16 +48,6 @@ module Troo
     rescue SocketError
       @stderr.puts "Cannot continue, no network connection."
       @kernel.exit(1)
-    end
-
-    def argv
-      if @argv.include?("--test")
-        @argv = @argv.delete_if { |arg| arg == "--test" }
-        Ohm.connect(db: Troo.config.test_db)
-      else
-        Ohm.connect(db: Troo.config.main_db)
-      end
-      @argv
     end
   end
 end

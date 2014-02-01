@@ -1,5 +1,5 @@
 Given(/^the Trello API is stubbed with "(.*?)"$/) do |stub|
-  send(stub.to_sym)
+  VCR.insert_cassette(stub)
 end
 
 Then(/^the output should be the version number of troo$/) do
@@ -12,4 +12,5 @@ end
 
 After do
   Ohm.redis.flushdb
+  VCR.eject_cassette
 end

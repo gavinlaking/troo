@@ -3,7 +3,7 @@ Feature: Showing a board
   @show
   Scenario: Showing a board with ID
     Given a board exists
-    When I run `troo --test show board 1`
+    When I run `troo show board 1`
     Then the output should contain:
       """
        (1) My Test Board
@@ -12,13 +12,13 @@ Feature: Showing a board
 
   @show
   Scenario: Cannot show board; not found
-    When I run `troo --test show board 69`
+    When I run `troo show board 69`
     Then the output should contain "Board cannot be found."
 
   @show
   Scenario: Showing the default board
     Given a default board exists
-    When I run `troo --test show board`
+    When I run `troo show board`
     Then the output should contain:
       """
       * (1) My Default Board
@@ -27,5 +27,5 @@ Feature: Showing a board
 
   @show
   Scenario: Cannot show; no default board
-    When I run `troo --test show board`
+    When I run `troo show board`
     Then the output should contain "set a default board first"

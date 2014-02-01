@@ -2,7 +2,7 @@ Feature: Showing the current status
 
   @status
   Scenario: When there is no local data
-    When I run `troo --test status`
+    When I run `troo status`
     And the output should contain:
       """
       Status:
@@ -16,7 +16,7 @@ Feature: Showing the current status
     Given a default board exists
     And a default list exists
     And a default card exists
-    When I run `troo --test status`
+    When I run `troo status`
     Then the output should contain:
       """
       Status:
@@ -34,7 +34,7 @@ Feature: Showing the current status
     And a board exists
     And a default list exists
     And a card exists
-    When I run `troo --test status`
+    When I run `troo status`
     Then the output should contain:
       """
       Status:
