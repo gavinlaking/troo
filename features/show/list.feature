@@ -16,6 +16,7 @@ Feature: Showing a list
 
   @show
   Scenario: Cannot show list; not found
+    Given the Trello API is stubbed with "fetch_list_by_id"
     When I run `troo show list 69`
     Then the output should contain "List cannot be found."
 

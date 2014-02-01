@@ -29,6 +29,7 @@ Feature: Showing a card
 
   @show
   Scenario: Cannot show card; not found
+  Given the Trello API is stubbed with "fetch_card_by_id"
     When I run `troo show card 69`
     Then the output should contain "Card cannot be found."
 

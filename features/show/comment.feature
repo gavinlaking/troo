@@ -16,6 +16,7 @@ Feature: Showing comments
 
   @show
   Scenario: Cannot show comments; card not found
+    Given the Trello API is stubbed with "fetch_card_by_id"
     When I run `troo show comments 69`
     Then the output should contain "Card cannot be found."
 
