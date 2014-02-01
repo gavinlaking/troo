@@ -1,33 +1,29 @@
 Feature: Refreshing a resource
 
-  @pending @refresh
+  @refresh
   Scenario: Refresh the list with ID
     Given the Trello API is stubbed with "refresh_list_success"
     And a list exists
     When I run `troo refresh list 1`
-    Then the output should contain "'My Test List' refreshed."
+    Then the output should contain "refreshed"
 
-  @pending @refresh
-  Scenario: Cannot refresh; no ID
-    When I run `troo refresh list`
-    Then the output should contain "was called with no arguments"
-
-  @pending @refresh
+  @refresh
   Scenario: Cannot refresh; list not found
+    Given the Trello API is stubbed with "refresh_list_not_found"
     When I run `troo refresh list 69`
-    Then the output should contain "List cannot be found."
+    Then the output should contain "List cannot be found"
 
-  @pending @refresh
+  @refresh
   Scenario: Refresh the default list
-    Given the Trello API is stubbed with "refresh_list_success"
+    Given the Trello API is stubbed with "refresh_default_list_success"
     And a default list exists
     When I run `troo refresh list`
-    Then the output should contain "'My Test List' refreshed."
+    Then the output should contain "refreshed"
 
-  @pending @refresh
+  @refresh
   Scenario: Cannot refresh; no default list
     When I run `troo refresh list`
-    Then the output should contain "Default list cannot be found."
+    Then the output should contain "Default list cannot be found"
 
   @pending @refresh
   Scenario: Cannot refresh, not authenticated with Trello

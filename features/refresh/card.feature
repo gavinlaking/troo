@@ -1,33 +1,29 @@
 Feature: Refreshing a card
 
-  @pending @refresh
+  @refresh
   Scenario: Refresh the card with ID
     Given the Trello API is stubbed with "refresh_card_success"
     And a card exists
     When I run `troo refresh card 1`
-    Then the output should contain "'My New Card' refreshed."
+    Then the output should contain "refreshed"
 
-  @pending @refresh
-  Scenario: Cannot refresh; no ID
-    When I run `troo refresh card`
-    Then the output should contain "was called with no arguments"
-
-  @pending @refresh
+  @refresh
   Scenario: Cannot refresh; card not found
+    Given the Trello API is stubbed with "refresh_card_not_found"
     When I run `troo refresh card 69`
-    Then the output should contain "Card cannot be found."
+    Then the output should contain "Card cannot be found"
 
-  @pending @refresh
+  @refresh
   Scenario: Refresh the default card
-    Given the Trello API is stubbed with "refresh_card_success"
+    Given the Trello API is stubbed with "refresh_default_card_success"
     And a default card exists
     When I run `troo refresh card`
-    Then the output should contain "'My Default Card' refreshed."
+    Then the output should contain "refreshed"
 
-  @pending @refresh
+  @refresh
   Scenario: Cannot refresh; no default card
     When I run `troo refresh card`
-    Then the output should contain "Default card cannot be found."
+    Then the output should contain "Default card cannot be found"
 
   @pending @refresh
   Scenario: Cannot refresh, not authenticated with Trello
