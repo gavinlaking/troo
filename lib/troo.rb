@@ -27,10 +27,36 @@ module Troo
     trello.oauth_token_secret = config.oauth_token_secret
   end
 
-  if ARGV.include?("--test")
-    ARGV = ARGV.delete_if { |arg| arg == "--test" }
-    Ohm.connect(db: config.test_db)
-  else
-    Ohm.connect(db: config.main_db)
+  class Launcher
+    def initialize(argv, stdin=STDIN, stdout=STDOUT, stderr=STDERR, kernel=Kernel)
+      @argv, @stdin, @stdout, @stderr, @kernel = argv, stdin, stdout, stderr, kernel
+    end
+
+    def execute!
+      $stdin  = @stdin
+      $stdout = @stdout
+
+      puts
+      Troo::CLI::Main.start(argv)
+      puts
+
+      @kernel.exit(0)
+    rescue Troo::InvalidAccessToken
+      @stderr.puts "Your Trello access credentials have expired, please renew and try again."
+      @kernel.exit(1)
+    rescue SocketError
+      @stderr.puts "Cannot continue, no network connection."
+      @kernel.exit(1)
+    end
+
+    def argv
+      if @argv.include?("--test")
+        @argv = @argv.delete_if { |arg| arg == "--test" }
+        Ohm.connect(db: Troo.config.test_db)
+      else
+        Ohm.connect(db: Troo.config.main_db)
+      end
+      @argv
+    end
   end
 end
