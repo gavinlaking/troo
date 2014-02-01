@@ -5,6 +5,10 @@ guard :minitest do
   watch(%r{^test/support/vcr_setup\.rb}) { 'test' }
 end
 
-guard :cucumber, :cli => '--format pretty --no-profile --tags ~@wip --tags ~@pending', :focus_on => :wip do
-  watch(%r{^features/(.+)\.feature$})              { |m| m[0] }
+guard 'cucumber', :cli => "--format pretty --profile all" do
+  watch(%r{^features/.+\.feature$})
+  watch(%r{^features/support/.+$}) { 'features' }
+  watch(%r{^features/step_definitions/(.+)_steps\.rb$}) do |m|
+    Dir[File.join("**/#{m[1]}.feature")][0] || 'features'
+  end
 end

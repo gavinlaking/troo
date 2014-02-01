@@ -1,0 +1,11 @@
+wip: --tags @wip
+pending: --tags @pending
+all: --tags ~@add,
+     --tags ~@default,
+     --tags ~@basics,
+     --tags ~@cleanup,
+     --tags ~@pending,
+     --tags ~@refresh,
+     --tags ~@show,
+     --tags ~@status,
+     --tags ~@wip

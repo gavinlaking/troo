@@ -4,6 +4,7 @@ Feature: Showing a card
     And a list exists
     And a member exists
 
+  @show
   Scenario: Showing a card with ID
     Given a card exists
     When I run `troo --test show card 1`
@@ -26,10 +27,12 @@ Feature: Showing a card
        Updated: Tue, Dec 17 at 21:48
       """
 
+  @show
   Scenario: Cannot show card; not found
     When I run `troo --test show card 69`
     Then the output should contain "Card cannot be found."
 
+  @show
   Scenario: Showing the default card
     Given a default card exists
     When I run `troo --test show card`
@@ -52,6 +55,7 @@ Feature: Showing a card
        Updated: Tue, Dec 17 at 21:48
       """
 
+  @show
   Scenario: Cannot show; no default card
     When I run `troo --test show card`
     Then the output should contain "set a default card first"

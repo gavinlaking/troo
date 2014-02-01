@@ -1,5 +1,6 @@
 Feature: Showing the current status
 
+  @status
   Scenario: When there is no local data
     When I run `troo --test status`
     And the output should contain:
@@ -10,6 +11,7 @@ Feature: Showing the current status
         Cards:  No cards found.
       """
 
+  @status
   Scenario: When there is local data; all defaults set
     Given a default board exists
     And a default list exists
@@ -26,6 +28,7 @@ Feature: Showing the current status
                 * (67) My Default Card
       """
 
+  @status
   Scenario: When there is local data; some defaults set
     Given a default board exists
     And a board exists
