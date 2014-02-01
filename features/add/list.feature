@@ -5,8 +5,11 @@ Feature: Adding content to Trello
   @pending @add
   Scenario: Add a list
     Given the Trello API is stubbed with "add_list_success"
-    When I run `troo add list 1 ""`
-    Then the output should contain ""
+    When I run `troo add list 1 "My Cucumber List"`
+    Then the output should contain:
+      """
+      New list 'My Cucumber Card' created
+      """
 
   @pending @add
   Scenario: Add a list, name not provided
