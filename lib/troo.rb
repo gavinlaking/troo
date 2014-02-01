@@ -35,6 +35,7 @@ module Troo
     def execute!
       $stdin  = @stdin
       $stdout = @stdout
+      $stderr = @stderr
 
       puts
       Troo::CLI::Main.start(argv)
