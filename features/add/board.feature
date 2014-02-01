@@ -1,6 +1,6 @@
 Feature: Adding content to Trello
 
-  @pending @add
+  @add_board
   Scenario: Add a board
     Given the Trello API is stubbed with "add_board_success"
     When I run `troo add board "Cuke Add Board"`
@@ -17,14 +17,4 @@ Feature: Adding content to Trello
   Scenario: Cannot add a board
     Given the Trello API is stubbed with "add_board_failure"
     When I run `troo add board "My New Board"`
-    Then the output should contain ""
-
-  @pending @add
-  Scenario: Cannot add a board, not authenticated with Trello
-    Given the Trello API is stubbed with "unauthenticated"
-    Then the output should contain ""
-
-  @pending @add
-  Scenario: Cannot add a board, Trello not responding
-    Given the Trello API is stubbed with "trello_failure"
     Then the output should contain ""

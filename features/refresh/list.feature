@@ -25,10 +25,3 @@ Feature: Refreshing a resource
     When I run `troo refresh list`
     Then the output should contain "Default list cannot be found"
 
-  @pending @refresh
-  Scenario: Cannot refresh, not authenticated with Trello
-    Given the Trello API is stubbed with "unauthenticated"
-
-  @pending @refresh
-  Scenario: Cannot refresh, Trello not responding
-    Given the Trello API is stubbed with "trello_failure"

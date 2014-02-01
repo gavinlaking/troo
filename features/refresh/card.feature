@@ -25,10 +25,3 @@ Feature: Refreshing a card
     When I run `troo refresh card`
     Then the output should contain "Default card cannot be found"
 
-  @pending @refresh
-  Scenario: Cannot refresh, not authenticated with Trello
-    Given the Trello API is stubbed with "unauthenticated"
-
-  @pending @refresh
-  Scenario: Cannot refresh, Trello not responding
-    Given the Trello API is stubbed with "trello_failure"

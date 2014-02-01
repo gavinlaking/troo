@@ -31,13 +31,3 @@ Feature: Adding content to Trello
   Scenario: Cannot add a list as no default board
     When I run `troo add list ""`
     Then the output should contain ""
-
-  @pending @add
-  Scenario: Cannot add a list, not authenticated with Trello
-    Given the Trello API is stubbed with "unauthenticated"
-    Then the output should contain ""
-
-  @pending @add
-  Scenario: Cannot add a list, Trello not responding
-    Given the Trello API is stubbed with "trello_failure"
-    Then the output should contain ""

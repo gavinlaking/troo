@@ -18,3 +18,15 @@ Feature: Troo Basics
       """
       Could not find command "unknown".
       """
+
+  @pending @authentication
+  Scenario: Not authenticated with Trello
+    Given the Trello API is stubbed with "unauthenticated"
+
+  @pending @connectivity
+  Scenario: Trello not responding
+    Given the Trello API is stubbed with "trello_failure"
+
+  @pending @connectivity
+  Scenario: No network connection
+

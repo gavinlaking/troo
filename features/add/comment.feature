@@ -31,13 +31,3 @@ Feature: Adding content to Trello
   Scenario: Cannot add a comment as no default card
     When I run `troo add comment ""`
     Then the output should contain ""
-
-  @pending @add
-  Scenario: Cannot add a comment, not authenticated with Trello
-    Given the Trello API is stubbed with "unauthenticated"
-    Then the output should contain ""
-
-  @pending @add
-  Scenario: Cannot add a comment, Trello not responding
-    Given the Trello API is stubbed with "trello_failure"
-    Then the output should contain ""

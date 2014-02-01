@@ -24,11 +24,3 @@ Feature: Refreshing a resource
   Scenario: Cannot refresh; no default board
     When I run `troo refresh board`
     Then the output should contain "Default board cannot be found"
-
-  @pending @refresh
-  Scenario: Cannot refresh, not authenticated with Trello
-    Given the Trello API is stubbed with "unauthenticated"
-
-  @pending @refresh
-  Scenario: Cannot refresh, Trello not responding
-    Given the Trello API is stubbed with "trello_failure"
