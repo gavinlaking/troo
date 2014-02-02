@@ -1,24 +1,16 @@
 module Troo
-  class BoardPersistence
-    include Persistence
-
-    def initialize(resource, options = {})
-      @resource = resource
-      @options = options
-    end
-
+  class BoardPersistence < Resource
     private
-    attr_reader :resource, :options
 
     def created
-      Troo::Board.create(remote)
+      Troo::Board.create(remote_data)
     end
 
     def local
       @local ||= Troo::Board.first(external_board_id: resource.id)
     end
 
-    def remote
+    def remote_data
       @remote ||= Troo::External::BoardAdaptor.adapt(resource)
     end
   end

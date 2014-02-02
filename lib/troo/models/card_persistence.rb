@@ -1,24 +1,16 @@
 module Troo
-  class CardPersistence
-    include Persistence
-
-    def initialize(resource, options = {})
-      @resource = resource
-      @options = options
-    end
-
+  class CardPersistence < Resource
     private
-    attr_reader :resource, :options
 
     def created
-      Troo::Card.create(remote)
+      Troo::Card.create(remote_data)
     end
 
     def local
       @local ||= Troo::Card.first(external_card_id: resource.id)
     end
 
-    def remote
+    def remote_data
       @remote ||= Troo::External::CardAdaptor.adapt(resource)
     end
   end

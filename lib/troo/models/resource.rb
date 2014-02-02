@@ -1,13 +1,16 @@
 module Troo
-  module Persistence
-    module ClassMethods
+  class Resource
+    attr_reader :resource, :options
+
+    class << self
       def for(resource, options = {})
         new(resource, options).persist
       end
     end
 
-    def self.included(base)
-      base.extend(ClassMethods)
+    def initialize(resource, options = {})
+      @resource = resource
+      @options = options
     end
 
     def persist
@@ -19,12 +22,12 @@ module Troo
     private
 
     def updated
-      local.update(remote) && local
+      local.update(remote_data) && local
     end
 
     def local_identical?
       return false unless local_exists?
-      return false if local_data != remote
+      return false if local_data != remote_data
       true
     end
 

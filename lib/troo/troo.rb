@@ -49,7 +49,7 @@ require_relative "presenters/comment"
 require_relative "presenters/list"
 require_relative "presenters/member"
 
-require_relative "models/persistence"
+require_relative "models/resource"
 require_relative "models/board"
 require_relative "models/board_retrieval"
 require_relative "models/board_persistence"

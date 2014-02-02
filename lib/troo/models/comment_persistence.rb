@@ -1,24 +1,16 @@
 module Troo
-  class CommentPersistence
-    include Persistence
-
-    def initialize(resource, options = {})
-      @resource = resource
-      @options = options
-    end
-
+  class CommentPersistence < Resource
     private
-    attr_reader :resource, :options
 
     def created
-      Troo::Comment.create(remote)
+      Troo::Comment.create(remote_data)
     end
 
     def local
       @local ||= Troo::Comment.first(external_comment_id: resource.id)
     end
 
-    def remote
+    def remote_data
       @remote ||= Troo::External::CommentAdaptor.adapt(resource)
     end
   end
