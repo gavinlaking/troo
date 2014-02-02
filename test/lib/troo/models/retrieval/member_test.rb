@@ -1,8 +1,8 @@
-require_relative "../../../test_helper"
+require_relative "../../../../test_helper"
 
 module Troo
-  describe MemberRetrieval do
-    let(:described_class) { MemberRetrieval }
+  describe Retrieval::Member do
+    let(:described_class) { Retrieval::Member }
     let(:full_name) { "My Test Member" }
 
     before { @member = Fabricate(:member, full_name: full_name) }

@@ -14,6 +14,10 @@ module Troo
 
     alias_method :default?, :default
 
+    def self.remote(id, options = {})
+      External::Board.fetch(id, options).first
+    end
+
     def lists
       Troo::List.find(external_board_id: self.external_board_id)
     end

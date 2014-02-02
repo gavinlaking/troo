@@ -51,7 +51,7 @@ module Troo
         end
 
         def local
-          @local ||= ListRetrieval.retrieve(id)
+          @local ||= Retrieval::List.retrieve(id)
         end
       end
     end

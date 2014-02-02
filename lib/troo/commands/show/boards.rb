@@ -26,7 +26,7 @@ module Troo
         end
 
         def resources
-          @resource ||= BoardRetrieval.all
+          @resource ||= Retrieval::Board.all
         end
       end
     end

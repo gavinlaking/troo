@@ -51,7 +51,7 @@ module Troo
         end
 
         def local
-          @local ||= CardRetrieval.retrieve(id)
+          @local ||= Retrieval::Card.retrieve(id)
         end
       end
     end

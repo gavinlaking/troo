@@ -1,8 +1,8 @@
-require_relative "../../../test_helper"
+require_relative "../../../../test_helper"
 
 module Troo
-  describe CardRetrieval do
-    let(:described_class) { CardRetrieval }
+  describe Retrieval::Card do
+    let(:described_class) { Retrieval::Card }
     let(:default) { true }
     let(:card_name) { "My Test Card" }
 

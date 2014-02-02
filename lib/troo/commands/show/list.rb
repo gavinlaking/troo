@@ -32,7 +32,7 @@ module Troo
         end
 
         def resource
-          ListRetrieval.retrieve(id)
+          Retrieval::List.retrieve(id)
         end
       end
     end

@@ -39,7 +39,7 @@ module Troo
         end
 
         def resource
-          @resource ||= CardRetrieval.default
+          @resource ||= Retrieval::Card.default
         end
 
         def plural(singular)

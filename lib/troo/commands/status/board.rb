@@ -39,7 +39,7 @@ module Troo
         end
 
         def resource
-          @resource ||= BoardRetrieval.default
+          @resource ||= Retrieval::Board.default
         end
 
         def plural(singular)

@@ -39,7 +39,7 @@ module Troo
         end
 
         def resource
-          @resource ||= ListRetrieval.default
+          @resource ||= Retrieval::List.default
         end
 
         def plural(singular)

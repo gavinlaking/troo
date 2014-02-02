@@ -1,8 +1,8 @@
-require_relative "../../../test_helper"
+require_relative "../../../../test_helper"
 
 module Troo
-  describe BoardRetrieval do
-    let(:described_class) { BoardRetrieval }
+  describe Retrieval::Board do
+    let(:described_class) { Retrieval::Board }
     let(:default) { true }
     let(:board_name) { "My Test Board" }
 

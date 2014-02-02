@@ -51,7 +51,7 @@ module Troo
         end
 
         def local
-          @local ||= BoardRetrieval.retrieve(id)
+          @local ||= Retrieval::Board.retrieve(id)
         end
       end
     end

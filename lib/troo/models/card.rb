@@ -24,6 +24,10 @@ module Troo
 
     alias_method :default?, :default
 
+    def self.remote(id, options = { mode: :card })
+      External::Card.fetch(id, options).first
+    end
+
     def external_member_ids
       if @attributes[:external_member_ids].nil?
         []
@@ -35,11 +39,11 @@ module Troo
     end
 
     def board
-      @board ||= BoardRetrieval.retrieve(self.external_board_id)
+      @board ||= Retrieval::Board.retrieve(self.external_board_id)
     end
 
     def list
-      @list ||= ListRetrieval.retrieve(self.external_list_id)
+      @list ||= Retrieval::List.retrieve(self.external_list_id)
     end
 
     def comments
@@ -53,7 +57,7 @@ module Troo
     def members
       return [] if external_member_ids.empty?
       @members ||= external_member_ids.map do |member_id|
-        MemberRetrieval.retrieve(member_id)
+        Retrieval::Member.retrieve(member_id)
       end.compact
     end
 

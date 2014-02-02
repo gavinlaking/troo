@@ -1,8 +1,8 @@
-require_relative "../../../test_helper"
+require_relative "../../../../test_helper"
 
 module Troo
-  describe ListRetrieval do
-    let(:described_class) { ListRetrieval }
+  describe Retrieval::List do
+    let(:described_class) { Retrieval::List }
     let(:default) { true }
     let(:list_name) { "My Test List" }
 

@@ -16,8 +16,12 @@ module Troo
 
     alias_method :default?, :default
 
+    def self.remote(id, options = { mode: :list })
+      External::List.fetch(id, options).first
+    end
+
     def board
-      BoardRetrieval.retrieve(self.external_board_id)
+      Retrieval::Board.retrieve(self.external_board_id)
     end
 
     def cards

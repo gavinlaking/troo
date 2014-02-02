@@ -1,8 +1,8 @@
-require_relative "../../../test_helper"
+require_relative "../../../../test_helper"
 
 module Troo
-  describe CommentRetrieval do
-    let(:described_class) { CommentRetrieval }
+  describe Retrieval::Comment do
+    let(:described_class) { Retrieval::Comment }
 
     before { @comment = Fabricate(:comment) }
     after  { database_cleanup }
