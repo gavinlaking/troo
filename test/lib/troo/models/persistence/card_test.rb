@@ -1,16 +1,17 @@
-require_relative "../../../test_helper"
+require_relative "../../../../test_helper"
 
 module Troo
-  describe Persistence::Member do
-    let(:described_class) { Persistence::Member }
+  describe Persistence::Card do
+    let(:described_class) { Persistence::Card }
     let(:resource) { OpenStruct.new({
-      id:        "5195fdb5a8c01a2318004f5d",
-      full_name: resource_full_name
+      id:     "526d8f19ddb279532e005259",
+      name:   resource_name,
+      closed: false
     }) }
-    let(:resource_full_name) { "My Test Member" }
-    let(:options) { { } }
+    let(:resource_name) { "My Test Card" }
+    let(:options) { {} }
 
-    before { @member = Fabricate(:member) }
+    before { @card = Fabricate(:card) }
     after  { database_cleanup }
 
     describe ".initialize" do
@@ -31,29 +32,28 @@ module Troo
       context "when there is already a local copy" do
         context "and the local copy is identical" do
           it "returns the local copy" do
-            subject.must_equal(@member)
+            subject.must_equal(@card)
           end
         end
 
         context "and the local copy is out of date" do
-          let(:resource_full_name) { "My Renamed Member" }
+          let(:resource_name) { "My Renamed Card" }
 
           it "updates and returns the new local copy" do
-            subject.full_name.must_equal(resource_full_name)
+            subject.name.must_equal(resource_name)
           end
         end
       end
 
       context "when there is not already a local copy" do
-        let(:resource_full_name) { "My New Test Member" }
+        let(:resource_name) { "My New Test Card" }
 
         before { database_cleanup }
 
         it "creates and returns the new local copy" do
-          subject.full_name.must_equal(resource_full_name)
+          subject.name.must_equal(resource_name)
         end
       end
     end
   end
 end
-

@@ -1,18 +1,22 @@
-require_relative "../../../test_helper"
+require_relative "../../../../test_helper"
 
 module Troo
-  describe Persistence::Board do
-    let(:described_class) { Persistence::Board }
+  describe Persistence::Comment do
+    let(:described_class) { Persistence::Comment }
     let(:resource) { OpenStruct.new({
-      id:     "526d8e130a14a9d846001d96",
-      name:   resource_name,
-      description:   "A very brief description...",
-      closed: false
+      id:   "51f9277b2822b8654f0023af",
+      date: "2013-12-17 22:01:13 UTC",
+      data: {
+        "text" => resource_text, "board" => {
+          "id" => "526d8e130a14a9d846001d96"
+        }, "card" => {
+          "id" => "526d8f19ddb279532e005259"
+        } }
     }) }
-    let(:resource_name) { "My Test Board" }
+    let(:resource_text) { "My Test Comment" }
     let(:options) { {} }
 
-    before { @board = Fabricate(:board) }
+    before { @comment = Fabricate(:comment) }
     after  { database_cleanup }
 
     describe ".initialize" do
@@ -33,28 +37,29 @@ module Troo
       context "when there is already a local copy" do
         context "and the local copy is identical" do
           it "returns the local copy" do
-            subject.must_equal(@board)
+            subject.must_equal(@comment)
           end
         end
 
         context "and the local copy is out of date" do
-          let(:resource_name) { "My Renamed Board" }
+          let(:resource_text) { "My Renamed Comment" }
 
           it "updates and returns the new local copy" do
-            subject.name.must_equal(resource_name)
+            subject.text.must_equal(resource_text)
           end
         end
       end
 
       context "when there is not already a local copy" do
-        let(:resource_name) { "My New Test Board" }
+        let(:resource_text) { "My New Test Comment" }
 
         before { database_cleanup }
 
         it "creates and returns the new local copy" do
-          subject.name.must_equal(resource_name)
+          subject.text.must_equal(resource_text)
         end
       end
     end
   end
 end
+
