@@ -17,6 +17,7 @@ test/tmp
 test/version_tmp
 tmp
 
+features/support/fixtures/cassettes/*.yml
 logs/*.log
 troo.db
 tags
