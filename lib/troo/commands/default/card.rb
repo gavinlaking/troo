@@ -5,13 +5,13 @@ module Troo
         include CommandHelpers
 
         class << self
-          def dispatch(type, id = nil)
-            new(type, id).set_default
+          def dispatch(id = nil)
+            new(id).set_default
           end
         end
 
-        def initialize(type, id = nil)
-          @type, @id = type, id
+        def initialize(id = nil)
+          @id = id
         end
 
         def set_default
@@ -20,7 +20,7 @@ module Troo
         end
 
         private
-        attr_reader :type, :id
+        attr_reader :id
 
         def success
           "'#{resource_name}' set as default card."

@@ -5,15 +5,10 @@ module Troo
     module Default
       describe Board do
         let(:described_class) { Board }
-        let(:type) { }
         let(:id) { }
 
         describe "#initialize" do
-          subject { described_class.new(type, id) }
-
-          it "assigns the type to an instance variable" do
-            subject.instance_variable_get("@type").must_equal(type)
-          end
+          subject { described_class.new(id) }
 
           it "assigns the id to an instance variable" do
             subject.instance_variable_get("@id").must_equal(id)
@@ -21,7 +16,7 @@ module Troo
         end
 
         describe ".dispatch" do
-          subject { described_class.dispatch(type, id) }
+          subject { described_class.dispatch(id) }
 
           context "when the board can be found" do
             it "sets the default and returns a polite message" do
