@@ -6,7 +6,7 @@ module Troo
       desc "all",
            "Refresh all the local data."
       def all
-        say Commands::RefreshAll.dispatch
+        say Commands::Refresh::All.dispatch
       end
 
       desc "board (<id>)",

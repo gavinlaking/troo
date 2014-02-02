@@ -4,35 +4,35 @@ module Troo
       package_name "add"
 
       desc "board (<name>)",
-           "Add a new board with <name>."
+           "Add a new board with <name>; prompts if <name> not provided."
       def board(name = nil)
         board_name = name.nil? ? prompt_for_name : name
 
-        say Commands::Add.dispatch(:board, board_name)
+        say Commands::Add::Board.dispatch(board_name)
       end
 
-      desc "card <id> (<name>)",
-           "Add a new card to list <id> with <name>."
+      desc "card <list_id> (<name>)",
+           "Add a new card to the list with <list_id> with <name>; prompts if <name> not provided."
       def card(id, name = nil)
         card_name = name.nil? ? prompt_for_name : name
 
-        say Commands::Add.dispatch(:card, card_name, id)
+        say Commands::Add::Card.dispatch(card_name, id)
       end
 
-      desc "comment <id> (<comment>)",
-           "Add a new comment to card <id>."
+      desc "comment <card_id> (<comment>)",
+           "Add a new comment to the card with <card_id> with <comment>; prompts if <comment> not provided."
       def comment(id, comment = nil)
-        user_comment = comment.nil? ? prompt_for_comment : comment
+        comment_text = comment.nil? ? prompt_for_comment : comment
 
-        say Commands::Add.dispatch(:comment, user_comment, id)
+        say Commands::Add::Comment.dispatch(comment_text, id)
       end
 
-      desc "list <id> (<name>)",
-           "Add a new list to board <id> with <name>."
+      desc "list <board_id> (<name>)",
+           "Add a new list to the board with <board_id> with <name>; prompts if <name> not provided."
       def list(id, name = nil)
         list_name = name.nil? ? prompt_for_name : name
 
-        say Commands::Add.dispatch(:list, name, id)
+        say Commands::Add::List.dispatch(list_name, id)
       end
 
       private

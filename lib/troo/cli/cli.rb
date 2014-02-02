@@ -1,6 +1,0 @@
-require_relative "thor_fixes"
-require_relative "add"
-require_relative "default"
-require_relative "refresh"
-require_relative "show"
-require_relative "main"

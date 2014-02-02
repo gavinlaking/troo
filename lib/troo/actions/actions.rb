@@ -1,6 +1,0 @@
-require_relative "create_board"
-require_relative "create_card"
-require_relative "create_comment"
-require_relative "create_list"
-require_relative "move_card"
-require_relative "set_default"
