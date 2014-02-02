@@ -1,9 +1,10 @@
-require "aruba"
 require "simplecov"
+require "aruba"
 require "aruba/cucumber"
 require "aruba/in_process"
 require "ohm"
 require "vcr"
+require "webmock/cucumber"
 
 SimpleCov.start do
   add_filter   "/test/"
@@ -15,6 +16,8 @@ class CucumberError < StandardError; end
 
 Aruba::InProcess.main_class = Troo::Launcher
 Aruba.process = Aruba::InProcess
+
+WebMock.disable_net_connect!
 
 VCR.configure do |c|
   c.cassette_library_dir = 'features/support/fixtures/cassettes'
