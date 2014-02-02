@@ -13,7 +13,7 @@ Feature: Adding content to Trello
 
   @pending @add
   Scenario: Add a list, name not provided
-    Given the Trello API is stubbed with "add_list_success"
+    Given the Trello API is stubbed with "add_list_interactive_success"
     When I run `troo add list` interactively
     And I type "My New Exciting List"
     Then the output should contain ""

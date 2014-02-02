@@ -19,9 +19,9 @@ Feature: Adding content to Trello
 
   @pending @add
   Scenario: Add a card, name not provided
-    Given the Trello API is stubbed with "add_card_success"
-    When I run `troo add card 1` interactively
-    And I type "My New Exciting Card"
+    Given the Trello API is stubbed with "add_card_interactive_success"
+    When I run `troo --test add card 1`
+    And I input "My New Exciting Card"
     Then the output should contain:
       """
       New card 'My New Exciting Card' created
@@ -39,7 +39,8 @@ Feature: Adding content to Trello
 
   @pending @add
   Scenario: Cannot add a card as list not found
-    When I run `troo add card 69 ""`
+    Given the Trello API is stubbed with "add_card_list_not_found"
+    When I run `troo add card 69 "My Cucumber Card"`
     Then the output should contain ""
 
   @pending @add

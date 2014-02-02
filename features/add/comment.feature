@@ -10,7 +10,7 @@ Feature: Adding content to Trello
 
   @pending @add
   Scenario: Add a comment, comment not provided
-    Given the Trello API is stubbed with "add_comment_success"
+    Given the Trello API is stubbed with "add_comment_interactive_success"
     When I run `troo add comment` interactively
     And I type "My New Exciting Comment"
     Then the output should contain ""
