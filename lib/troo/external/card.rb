@@ -6,7 +6,7 @@ module Troo
           new(external_id, options).fetch_by_external_id.map do |resource|
             unless closed?(resource)
               Troo::External::Comment.fetch(resource.id, { mode: :card }) if options.fetch(:comments, true)
-              CardPersistence.for(resource)
+              Persistence::Card.for(resource)
             end
           end
         end

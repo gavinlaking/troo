@@ -1,8 +1,8 @@
 require_relative "../../../test_helper"
 
 module Troo
-  describe MemberPersistence do
-    let(:described_class) { MemberPersistence }
+  describe Persistence::Member do
+    let(:described_class) { Persistence::Member }
     let(:resource) { OpenStruct.new({
       id:        "5195fdb5a8c01a2318004f5d",
       full_name: resource_full_name

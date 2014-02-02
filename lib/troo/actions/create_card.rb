@@ -20,7 +20,7 @@ module Troo
     attr_reader :list, :name, :description
 
     def update_cards
-      return CardPersistence.for(create_card) if create_card
+      return Persistence::Card.for(create_card) if create_card
       false
     end
 

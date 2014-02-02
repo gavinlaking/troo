@@ -4,7 +4,7 @@ module Troo
       class << self
         def fetch(external_id, options = {})
           new(external_id, options).fetch_by_external_id.map do |resource|
-            MemberPersistence.for(resource)
+            Persistence::Member.for(resource)
           end
         end
       end

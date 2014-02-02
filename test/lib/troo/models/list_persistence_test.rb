@@ -1,8 +1,8 @@
 require_relative "../../../test_helper"
 
 module Troo
-  describe ListPersistence do
-    let(:described_class) { ListPersistence }
+  describe Persistence::List do
+    let(:described_class) { Persistence::List }
     let(:resource) { OpenStruct.new({
       id:     "526d8e130a14a9d846001d97",
       name:   resource_name,

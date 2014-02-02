@@ -19,7 +19,7 @@ module Troo
     attr_reader :card, :comment
 
     def update_comments
-      return CommentPersistence.for(parsed_json_response) if parsed_json_response
+      return Persistence::Comment.for(parsed_json_response) if parsed_json_response
       false
     end
 

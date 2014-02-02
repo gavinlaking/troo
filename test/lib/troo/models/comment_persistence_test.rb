@@ -1,8 +1,8 @@
 require_relative "../../../test_helper"
 
 module Troo
-  describe CommentPersistence do
-    let(:described_class) { CommentPersistence }
+  describe Persistence::Comment do
+    let(:described_class) { Persistence::Comment }
     let(:resource) { OpenStruct.new({
       id:   "51f9277b2822b8654f0023af",
       date: "2013-12-17 22:01:13 UTC",

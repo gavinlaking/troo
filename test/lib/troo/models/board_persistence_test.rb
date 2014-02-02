@@ -1,8 +1,8 @@
 require_relative "../../../test_helper"
 
 module Troo
-  describe BoardPersistence do
-    let(:described_class) { BoardPersistence }
+  describe Persistence::Board do
+    let(:described_class) { Persistence::Board }
     let(:resource) { OpenStruct.new({
       id:     "526d8e130a14a9d846001d96",
       name:   resource_name,
@@ -58,4 +58,3 @@ module Troo
     end
   end
 end
-

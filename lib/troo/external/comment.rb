@@ -4,7 +4,7 @@ module Troo
       class << self
         def fetch(external_id, options = {})
           new(external_id, options).fetch_by_external_id.map do |resource|
-            CommentPersistence.for(resource)
+            Persistence::Comment.for(resource)
           end
         end
       end

@@ -11,7 +11,7 @@ module Troo
       @list = Fabricate(:list)
       @card = Fabricate(:card, name: card_name, desc: description)
 
-      CardPersistence.stubs(:for).returns(@card)
+      Persistence::Card.stubs(:for).returns(@card)
     end
 
     after { database_cleanup }
