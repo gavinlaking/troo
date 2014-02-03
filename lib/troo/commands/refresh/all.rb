@@ -2,19 +2,17 @@ module Troo
   module Commands
     module Refresh
       class All
-        include CommandHelpers
-
         def self.dispatch
-          new.success
+          new.refresh_all
         end
 
-        def success
-          "All local data refreshed." if refresh
+        def refresh_all
+          "All local data refreshed." if refreshed?
         end
 
         private
 
-        def refresh
+        def refreshed?
           external_board_ids.map do |external_board_id|
             External::List.fetch(external_board_id)
             External::Member.fetch(external_board_id)

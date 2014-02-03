@@ -1,9 +1,7 @@
 module Troo
   module Commands
     module Show
-      class Boards
-        include CommandHelpers
-
+      class Boards < Resource
         class << self
           def dispatch
             new.render
@@ -19,7 +17,6 @@ module Troo
         end
 
         private
-        attr_reader :type, :id
 
         def presenter
           Presenters::Board.all(resources)

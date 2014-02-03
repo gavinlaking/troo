@@ -1,20 +1,7 @@
 module Troo
   module Commands
     module Status
-      class Board
-        include CommandHelpers
-
-        class << self
-          def dispatch
-            new.get_status
-          end
-        end
-
-        def get_status
-          return success if resource
-          return error
-        end
-
+      class Board < Resource
         private
 
         def success
@@ -30,20 +17,12 @@ module Troo
           end
         end
 
-        def resource_title
-          resource.decorator.title
-        end
-
         def count
           @count ||= Troo::Board.count
         end
 
         def resource
           @resource ||= Retrieval::Board.default
-        end
-
-        def plural(singular)
-          count == 1 ? "#{count} #{singular}" : "#{count} #{singular}s"
         end
       end
     end
