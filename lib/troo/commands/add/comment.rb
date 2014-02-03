@@ -2,8 +2,6 @@ module Troo
   module Commands
     module Add
       class Comment < Resource
-        include CommandHelpers
-
         def add
           if created
             success

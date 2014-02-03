@@ -2,8 +2,6 @@ module Troo
   module Commands
     module Add
       class List < Resource
-        include CommandHelpers
-
         def add
           if created
             success
