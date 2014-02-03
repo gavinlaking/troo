@@ -12,7 +12,7 @@ module Troo
       end
 
       def remote_data
-        @remote ||= Troo::External::BoardAdaptor.adapt(resource)
+        @remote ||= Adaptors::Board.adapt(resource)
       end
     end
   end

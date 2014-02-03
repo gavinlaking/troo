@@ -8,10 +8,10 @@ module Troo
 
         before do
           @board = Fabricate(:board)
-          @list = Fabricate(:list)
-          @card = Fabricate(:card)
+          @list  = Fabricate(:list)
+          @card  = Fabricate(:card)
 
-          External::Board.stubs(:fetch_all).returns([@board])
+          External::Board.stubs(:fetch).returns([@board])
           External::List.stubs(:fetch).returns([@list])
           External::Card.stubs(:fetch).returns([@card])
           External::Comment.stubs(:fetch).returns([])

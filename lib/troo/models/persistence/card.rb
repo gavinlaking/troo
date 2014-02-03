@@ -12,7 +12,7 @@ module Troo
       end
 
       def remote_data
-        @remote ||= Troo::External::CardAdaptor.adapt(resource)
+        @remote ||= Adaptors::Card.adapt(resource)
       end
     end
   end

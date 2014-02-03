@@ -12,7 +12,7 @@ module Troo
       end
 
       def remote_data
-        @remote ||= Troo::External::CommentAdaptor.adapt(resource)
+        @remote ||= Adaptors::Comment.adapt(resource)
       end
     end
   end

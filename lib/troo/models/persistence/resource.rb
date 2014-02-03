@@ -7,6 +7,12 @@ module Troo
         def for(resource, options = {})
           new(resource, options).persist
         end
+
+        def with_collection(resources, options = {})
+          resources.map do |resource|
+            new(resource, options).persist
+          end
+        end
       end
 
       def initialize(resource, options = {})

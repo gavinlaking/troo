@@ -14,7 +14,6 @@ module Troo
 
         private
 
-
         def refresh
           external_board_ids.map do |external_board_id|
             External::List.fetch(external_board_id)
@@ -35,7 +34,7 @@ module Troo
         end
 
         def all_boards
-          @boards ||= External::Board.fetch_all
+          @boards ||= External::Board.fetch(0, { mode: :all })
         end
       end
     end

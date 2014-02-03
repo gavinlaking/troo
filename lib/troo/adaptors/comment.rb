@@ -1,16 +1,6 @@
 module Troo
-  module External
-    class CommentAdaptor
-      class << self
-        def adapt(resource)
-          new(resource).adapted
-        end
-      end
-
-      def initialize(resource)
-        @resource = resource
-      end
-
+  module Adaptors
+    class Comment < Resource
       def adapted
         {
           external_comment_id: external_comment_id,
@@ -23,7 +13,6 @@ module Troo
       end
 
       private
-      attr_reader :resource
 
       def external_comment_id
         resource.id

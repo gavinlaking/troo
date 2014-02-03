@@ -12,7 +12,7 @@ module Troo
       end
 
       def remote_data
-        @remote ||= Troo::External::MemberAdaptor.adapt(resource)
+        @remote ||= Adaptors::Member.adapt(resource)
       end
     end
   end

@@ -1,16 +1,6 @@
 module Troo
-  module External
-    class MemberAdaptor
-      class << self
-        def adapt(resource)
-          new(resource).adapted
-        end
-      end
-
-      def initialize(resource)
-        @resource = resource
-      end
-
+  module Adaptors
+    class Member < Resource
       def adapted
         {
           external_member_id: external_member_id,
@@ -25,7 +15,6 @@ module Troo
       end
 
       private
-      attr_reader :resource
 
       def external_member_id
         resource.id
