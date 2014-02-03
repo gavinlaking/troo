@@ -12,18 +12,18 @@ module Troo
     end
 
     def perform
-      update_lists
+      create_local
     end
 
     private
     attr_reader :board, :name
 
-    def update_lists
-      return Persistence::List.for(create_list) if create_list
+    def create_local
+      return Persistence::List.for(create_remote) if create_remote
       false
     end
 
-    def create_list
+    def create_remote
       @list ||= Trello::List.create(attributes)
     rescue Trello::InvalidAccessToken
       raise Troo::InvalidAccessToken
