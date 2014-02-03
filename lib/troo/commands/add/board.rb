@@ -1,24 +1,13 @@
 module Troo
   module Commands
     module Add
-      class Board
-        class << self
-          def dispatch(value)
-            new(value).add
-          end
-        end
-
-        def initialize(value)
-          @value = value
-        end
-
+      class Board < Resource
         def add
           return success if created?
           error
         end
 
         private
-        attr_reader :value
 
         def success
           "New board '#{value}' created."

@@ -1,20 +1,10 @@
 module Troo
   module Commands
     module Add
-      class Card
+      class Card < Resource
         include CommandHelpers
 
-        class << self
-          def dispatch(value, id)
-            new(value, id).add_resource
-          end
-        end
-
-        def initialize(value, id)
-          @value, @id = value, id
-        end
-
-        def add_resource
+        def add
           if created
             success
           elsif created == false
@@ -27,10 +17,9 @@ module Troo
         end
 
         private
-        attr_reader :id, :value
 
         def success
-          "New card '#{created_name}' created."
+          "New card '#{value}' created."
         end
 
         def error_trello_error
@@ -39,10 +28,6 @@ module Troo
 
         def error_no_default
           "Specify an <id> or use 'troo default list <id>' to set a default list first."
-        end
-
-        def created_name
-          created.decorator.name
         end
 
         def created

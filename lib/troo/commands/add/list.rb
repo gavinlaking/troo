@@ -1,20 +1,10 @@
 module Troo
   module Commands
     module Add
-      class List
+      class List < Resource
         include CommandHelpers
 
-        class << self
-          def dispatch(value, id)
-            new(value, id).add_resource
-          end
-        end
-
-        def initialize(value, id)
-          @value, @id = value, id
-        end
-
-        def add_resource
+        def add
           if created
             success
           elsif created == false
@@ -27,18 +17,13 @@ module Troo
         end
 
         private
-        attr_reader :id, :value
 
         def success
-          "New list '#{created_name}' created."
+          "New list '#{value}' created."
         end
 
         def error_trello_error
           "List could not be created."
-        end
-
-        def created_name
-          created.decorator.name
         end
 
         def created

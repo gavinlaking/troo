@@ -1,20 +1,10 @@
 module Troo
   module Commands
     module Add
-      class Comment
+      class Comment < Resource
         include CommandHelpers
 
-        class << self
-          def dispatch(value, id)
-            new(value, id).add_resource
-          end
-        end
-
-        def initialize(value, id)
-          @value, @id = value, id
-        end
-
-        def add_resource
+        def add
           if created
             success
           elsif created == false
@@ -27,7 +17,6 @@ module Troo
         end
 
         private
-        attr_reader :id, :value
 
         def success
           "New comment created."
