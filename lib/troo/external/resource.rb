@@ -44,25 +44,25 @@ module Troo
         { mode: :board }
       end
 
-      # def all_boards
-      #   []
-      # end
+      def all_boards
+        []
+      end
 
-      # def by_board_id
-      #   []
-      # end
+      def by_board_id
+        []
+      end
 
-      # def by_list_id
-      #   []
-      # end
+      def by_list_id
+        []
+      end
 
-      # def by_card_id
-      #   []
-      # end
+      def by_card_id
+        []
+      end
 
-      # def by_member_id
-      #   []
-      # end
+      def by_member_id
+        []
+      end
     end
   end
 end
