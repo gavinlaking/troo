@@ -78,7 +78,7 @@ module Troo
     end
 
     def set_default!
-      SetDefault.for(self)
+      Behaviours::SetDefault.for(self)
     end
   end
 end

@@ -20,7 +20,6 @@ require_relative "actions/create_card"
 require_relative "actions/create_comment"
 require_relative "actions/create_list"
 require_relative "actions/move_card"
-require_relative "actions/set_default"
 
 require_relative "adaptors/resource"
 require_relative "adaptors/board"
@@ -50,6 +49,8 @@ require_relative "presenters/card"
 require_relative "presenters/comment"
 require_relative "presenters/list"
 require_relative "presenters/member"
+
+require_relative "models/behaviours/set_default"
 
 require_relative "models/persistence/resource"
 require_relative "models/persistence/board"

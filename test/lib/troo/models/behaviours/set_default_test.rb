@@ -1,8 +1,8 @@
-require_relative "../../../test_helper"
+require_relative "../../../../test_helper"
 
 module Troo
-  describe SetDefault do
-    let(:described_class) { SetDefault }
+  describe Behaviours::SetDefault do
+    let(:described_class) { Behaviours::SetDefault }
 
     describe ".initialize" do
       let(:entity) { :some_model }
