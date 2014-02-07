@@ -9,7 +9,6 @@ Feature: Troo Basics
   Scenario: Running the command with no arguments
     When I run `troo`
     Then the output should contain "Commands:"
-    And the output should contain "Options:"
 
   @basics
   Scenario: Running an unknown command
