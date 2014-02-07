@@ -41,6 +41,11 @@ module Troo
       desc 'refresh [board|list|card] <id>',
            'Refresh board, list or card with <id>.'
       subcommand :refresh, CLI::Refresh
+
+      desc 'move <card_id> <list_id> (<board_id>)',
+           'Move card with <card_id> to list with <list_id>, ' \
+           'optionally to another board with <board_id>.'
+      subcommand :move, CLI::Move
     end
   end
 end
