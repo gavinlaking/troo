@@ -16,18 +16,16 @@ module Troo
     end
 
     private
-    attr_reader :card, :comment
+    attr_reader   :card, :comment
+    attr_accessor :comment_resource
 
     def create_local
-      return Persistence::Comment.for(parsed_json_response) if parsed_json_response
+      return Persistence::Comment.for(resource) if create_remote
       false
     end
 
-    def parsed_json_response
-      return false unless create_remote
-      resource = OpenStruct.new(JSON.parse(create_remote))
-      resource.member_creator_id = resource.memberCreator.fetch("id", "")
-      resource
+    def resource
+      Remote::Comment.create(comment_resource)
     end
 
     def create_remote

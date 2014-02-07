@@ -59,6 +59,9 @@ require_relative "models/persistence/comment"
 require_relative "models/persistence/list"
 require_relative "models/persistence/member"
 
+require_relative "models/remote/resource"
+require_relative "models/remote/comment"
+
 require_relative "models/retrieval/resource"
 require_relative "models/retrieval/board"
 require_relative "models/retrieval/card"
