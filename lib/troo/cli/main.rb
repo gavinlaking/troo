@@ -1,8 +1,6 @@
 module Troo
   module CLI
     class Main < ThorFixes
-      class_option :debug, type: :boolean, desc: "Enable debugging."
-
       desc "status",
            "Get troo status."
       def status

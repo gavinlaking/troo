@@ -23,7 +23,7 @@ module Troo
       end
 
       def external_card_id
-        resource.data.fetch("card",  {}).fetch("id", "")
+        resource.data.fetch("card", {}).fetch("id", "")
       end
 
       def external_member_id

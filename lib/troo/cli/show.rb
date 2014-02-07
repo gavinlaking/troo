@@ -36,12 +36,6 @@ module Troo
       def comments(id = nil)
         say Troo::Commands::Show::Comments.dispatch(:comments, id)
       end
-
-      private
-
-      def use_default_text
-
-      end
     end
   end
 end

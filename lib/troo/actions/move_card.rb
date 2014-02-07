@@ -25,7 +25,7 @@ module Troo
 
     def move_card
       Trello::Card.new.
-        update_fields({ 'id' => card.external_card_id }).
+        update_fields({'id' => card.external_card_id}).
         move_to_list(list.external_list_id)
     rescue Trello::InvalidAccessToken
       raise Troo::InvalidAccessToken
