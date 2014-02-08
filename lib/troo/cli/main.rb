@@ -25,8 +25,8 @@ module Troo
         say "troo #{Troo::VERSION}"
       end
 
-      desc "show [board|list|card|comment] <id>",
-           "Show the board, list, card or comment with <id>."
+      desc "show [board|list|card|comments] <id>",
+           "Show the board, list, card with <id>. Also, show all comments for card with <id>."
       subcommand :show, CLI::Show
 
       desc "add [board|list|card|comment] <id>",
