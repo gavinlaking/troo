@@ -15,7 +15,7 @@ module Troo
       end
 
       def show
-        Sentence.construct(members, "members")
+        Sentence.construct(members, 'members')
       end
 
       private

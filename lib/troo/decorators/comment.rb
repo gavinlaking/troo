@@ -9,11 +9,11 @@ module Troo
       end
 
       def as_view
-        Template.parse(self, "/../views/comment.erb")
+        Template.parse(self, '/../views/comment.erb')
       end
 
       def member_username
-        [comment.member.username, ":"].join
+        [comment.member.username, ':'].join
       end
 
       def text
@@ -21,7 +21,7 @@ module Troo
       end
 
       def date
-        Time.parse(comment.date).strftime("%a, %b %d at %H:%M")
+        Time.parse(comment.date).strftime('%a, %b %d at %H:%M')
       end
 
       def id

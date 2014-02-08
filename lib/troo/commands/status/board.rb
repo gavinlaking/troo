@@ -5,13 +5,13 @@ module Troo
         private
 
         def success
-          "  Boards: " + plural("board") + " found.\n" +
+          '  Boards: ' + plural('board') + " found.\n" +
           "          #{resource_title}"
         end
 
         def error
           if count > 0
-            "  Boards: " + Esc.red + "No default board set." + Esc.reset
+            '  Boards: ' + Esc.red + 'No default board set.' + Esc.reset
           else
             "  Boards: No boards found.\n"
           end

@@ -22,7 +22,7 @@ module Troo
         boards.map do |board|
           puts board.decorator.title
 
-          print_error "No lists were found." if lists(board).empty?
+          print_error 'No lists were found.' if lists(board).empty?
 
           print_lists(board)
         end
@@ -31,7 +31,7 @@ module Troo
       def show
         puts board.decorator.title
 
-        print_error "No lists were found." if lists.empty?
+        print_error 'No lists were found.' if lists.empty?
 
         print_lists_with_cards
       end
@@ -44,7 +44,7 @@ module Troo
         lists.each do |list|
           title_for(list)
 
-          print_error "No cards were found." if list.cards.empty?
+          print_error 'No cards were found.' if list.cards.empty?
 
           list.cards(unformatted).each do |card|
             title_for(card)

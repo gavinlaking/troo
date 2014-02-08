@@ -5,13 +5,13 @@ module Troo
         private
 
         def success
-          "  Cards:  " + plural("card") + " found.\n" +
+          '  Cards:  ' + plural('card') + " found.\n" +
           "          #{resource_title}"
         end
 
         def error
           if count > 0
-            "  Cards:  " + Esc.red + "No default card set." + Esc.reset
+            '  Cards:  ' + Esc.red + 'No default card set.' + Esc.reset
           else
             "  Cards:  No cards found.\n"
           end

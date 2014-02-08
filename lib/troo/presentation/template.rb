@@ -18,7 +18,7 @@ module Troo
     end
 
     def parse
-      ERB.new(load_template, nil, "-").result(binding)
+      ERB.new(load_template, nil, '-').result(binding)
     end
 
     private

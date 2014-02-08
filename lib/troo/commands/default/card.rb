@@ -9,7 +9,7 @@ module Troo
         end
 
         def error
-          "Card cannot be found."
+          'Card cannot be found.'
         end
 
         def resource_name

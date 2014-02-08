@@ -1,10 +1,10 @@
-require_relative "../../../test_helper"
+require_relative '../../../test_helper'
 
 module Troo
   describe CreateBoard do
     let(:described_class) { CreateBoard }
-    let(:board_name)      { "My New Board" }
-    let(:description)     { "A very brief description..." }
+    let(:board_name)      { 'My New Board' }
+    let(:description)     { 'A very brief description...' }
 
     before do
       @board = Fabricate(:board, name: board_name, description: description)
@@ -13,42 +13,42 @@ module Troo
 
     after { database_cleanup }
 
-    describe ".initialize" do
+    describe '.initialize' do
       subject { described_class.new(board_name, description) }
 
-      it "assigns the name to an instance variable" do
-        subject.instance_variable_get("@name").must_equal(board_name)
+      it 'assigns the name to an instance variable' do
+        subject.instance_variable_get('@name').must_equal(board_name)
       end
 
-      it "assigns the description to an instance variable" do
-        subject.instance_variable_get("@description").must_equal(description)
+      it 'assigns the description to an instance variable' do
+        subject.instance_variable_get('@description').must_equal(description)
       end
     end
 
-    describe ".with" do
+    describe '.with' do
       before { VCR.insert_cassette(:create_board, decode_compressed_response: true) }
       after  { VCR.eject_cassette }
 
       subject { described_class.with(board_name, description) }
 
-      context "when the board was created" do
-        it "returns the new board" do
+      context 'when the board was created' do
+        it 'returns the new board' do
           subject.must_equal(@board)
         end
       end
 
-      context "when the board was not created" do
+      context 'when the board was not created' do
         before { Trello::Board.stubs(:create).raises(Trello::Error) }
 
         it { subject.must_equal false }
       end
 
-      context "when the access token is invalid" do
+      context 'when the access token is invalid' do
         before { Trello::Board.stubs(:create).raises(Trello::InvalidAccessToken) }
 
         subject { described_class.with(board_name, description) }
 
-        it "catches the exception and re-raises" do
+        it 'catches the exception and re-raises' do
           proc { subject }.must_raise(Troo::InvalidAccessToken)
         end
       end

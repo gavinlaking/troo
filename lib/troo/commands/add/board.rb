@@ -14,7 +14,7 @@ module Troo
         end
 
         def error
-          "Board could not be created."
+          'Board could not be created.'
         end
 
         def created?

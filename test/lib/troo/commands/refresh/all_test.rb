@@ -1,4 +1,4 @@
-require_relative "../../../../test_helper"
+require_relative '../../../../test_helper'
 
 module Troo
   module Commands
@@ -18,18 +18,18 @@ module Troo
           External::Member.stubs(:fetch).returns([])
         end
 
-        describe ".dispatch" do
+        describe '.dispatch' do
           subject { described_class.dispatch }
 
-          context "when all the resources are refreshed" do
-            it "returns a polite message" do
+          context 'when all the resources are refreshed' do
+            it 'returns a polite message' do
               subject.must_match(/All local data refreshed/)
             end
           end
 
-          context "when all the resources are not refreshed" do
-            it "returns a polite message" do
-              skip("Not implemented yet.")
+          context 'when all the resources are not refreshed' do
+            it 'returns a polite message' do
+              skip('Not implemented yet.')
             end
           end
         end

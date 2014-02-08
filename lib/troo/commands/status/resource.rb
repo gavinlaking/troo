@@ -12,7 +12,7 @@ module Troo
 
         def get_status
           return success if resource
-          return error
+          error
         end
 
         private

@@ -21,15 +21,15 @@ module Troo
       end
 
       def id_str
-        highlight(brackets(id) + " ", options).rjust(6)
+        highlight(brackets(id) + ' ', options).rjust(6)
       end
 
       def name
-        (card.name && card.name.chomp) || "N/A"
+        (card.name && card.name.chomp) || 'N/A'
       end
 
       def default
-        card.default? ? "*" : ""
+        card.default? ? '*' : ''
       end
 
       def id
@@ -38,7 +38,7 @@ module Troo
 
       def description
         if card.desc.nil? || card.desc.empty?
-          "There are no further details at this time."
+          'There are no further details at this time.'
         else
           word_wrap(card.desc)
         end
@@ -51,7 +51,7 @@ module Troo
         elsif card.comments.any?
           decorated_all_comments
         else
-          "No comments have been left."
+          'No comments have been left.'
         end
       end
 
@@ -60,9 +60,9 @@ module Troo
       end
 
       def last_activity_date
-        return "N/A" unless card.last_activity_date
+        return 'N/A' unless card.last_activity_date
         Time.parse(card.last_activity_date).
-          strftime("%a, %b %d at %H:%M")
+          strftime('%a, %b %d at %H:%M')
       end
 
       def board

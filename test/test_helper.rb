@@ -1,11 +1,11 @@
-require "simplecov"
-require "minitest/autorun"
-require "minitest/pride"
-require "fabrication"
+require 'simplecov'
+require 'minitest/autorun'
+require 'minitest/pride'
+require 'fabrication'
 
 SimpleCov.start do
-  command_name "MiniTest::Spec"
-  add_filter   "/test/"
+  command_name 'MiniTest::Spec'
+  add_filter   '/test/'
 end
 
 module MiniTest
@@ -16,13 +16,13 @@ module MiniTest
   end
 end
 
-require_relative "./support/vcr_setup.rb"
-require_relative "../lib/troo.rb"
-require_relative "./support/fabrication.rb"
+require_relative './support/vcr_setup.rb'
+require_relative '../lib/troo.rb'
+require_relative './support/fabrication.rb'
 
 Ohm.connect(db: Troo.config.test_db)
 
-require "mocha/setup"
+require 'mocha/setup'
 
 def database_cleanup(delay = 0)
   Ohm.redis.flushdb

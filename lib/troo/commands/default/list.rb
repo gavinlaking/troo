@@ -9,7 +9,7 @@ module Troo
         end
 
         def error
-          "List cannot be found."
+          'List cannot be found.'
         end
 
         def resource_name

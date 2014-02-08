@@ -18,7 +18,7 @@ module Troo
         spacing do
           print card.decorator.short
 
-          print_error "No comments were found." unless card.comments.any?
+          print_error 'No comments were found.' unless card.comments.any?
 
           card.comments.each do |comment|
             indent { print comment.decorator.as_view }

@@ -5,18 +5,18 @@ module Troo
         private
 
         def many_success
-          "Multiple lists refreshed."
+          'Multiple lists refreshed.'
         end
 
         def error
-          return "Default list cannot be found." unless id
+          return 'Default list cannot be found.' unless id
           @type = :list
-          "List cannot be found. " + error_no_default
+          'List cannot be found. ' + error_no_default
         end
 
         def resource
           return [] unless local
-          @resource ||= External::List.fetch(local.external_list_id, { mode: :list })
+          @resource ||= External::List.fetch(local.external_list_id,  mode: :list)
         end
 
         def local

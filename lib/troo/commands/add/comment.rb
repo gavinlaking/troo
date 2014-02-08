@@ -13,11 +13,11 @@ module Troo
         private
 
         def success
-          "New comment created."
+          'New comment created.'
         end
 
         def error_trello_error
-          "Comment could not be created."
+          'Comment could not be created.'
         end
 
         def created

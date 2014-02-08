@@ -19,7 +19,7 @@ module Troo
 
         title_for(list.decorator)
 
-        print_error "No cards were found." if cards.empty?
+        print_error 'No cards were found.' if cards.empty?
 
         cards.each do |card|
           title_for(card)

@@ -9,7 +9,7 @@ module Troo
       end
 
       def username
-        ["@", member.username].join
+        ['@', member.username].join
       end
 
       def name

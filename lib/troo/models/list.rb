@@ -21,11 +21,11 @@ module Troo
     end
 
     def board
-      Retrieval::Board.retrieve(self.external_board_id)
+      Retrieval::Board.retrieve(external_board_id)
     end
 
     def cards
-      Troo::Card.find(external_list_id: self.external_list_id)
+      Troo::Card.find(external_list_id: external_list_id)
     end
 
     def decorator(options = {})

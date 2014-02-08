@@ -5,18 +5,18 @@ module Troo
         private
 
         def many_success
-          "Multiple cards refreshed."
+          'Multiple cards refreshed.'
         end
 
         def error
-          return "Default card cannot be found." unless id
+          return 'Default card cannot be found.' unless id
           @type = :card
-          "Card cannot be found. " + error_no_default
+          'Card cannot be found. ' + error_no_default
         end
 
         def resource
           return [] unless local
-          @resource ||= External::Card.fetch(local.external_card_id, { mode: :card })
+          @resource ||= External::Card.fetch(local.external_card_id,  mode: :card)
         end
 
         def local

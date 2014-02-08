@@ -8,15 +8,15 @@ module Troo
       private
 
       def by_board_id
-        Trello::Board.find(external_id).actions({ filter: "commentCard" })
+        Trello::Board.find(external_id).actions(filter: 'commentCard')
       end
 
       def by_list_id
-        Trello::List.find(external_id).actions({ filter: "commentCard" })
+        Trello::List.find(external_id).actions(filter: 'commentCard')
       end
 
       def by_card_id
-        Trello::Card.find(external_id).actions({ filter: "commentCard" })
+        Trello::Card.find(external_id).actions(filter: 'commentCard')
       end
 
       def by_member_id

@@ -39,15 +39,15 @@ module Troo
     end
 
     def board
-      @board ||= Retrieval::Board.retrieve(self.external_board_id)
+      @board ||= Retrieval::Board.retrieve(external_board_id)
     end
 
     def list
-      @list ||= Retrieval::List.retrieve(self.external_list_id)
+      @list ||= Retrieval::List.retrieve(external_list_id)
     end
 
     def comments
-      Troo::Comment.find(external_card_id: self.external_card_id)
+      Troo::Comment.find(external_card_id: external_card_id)
     end
 
     def recent_comments

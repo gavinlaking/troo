@@ -19,11 +19,11 @@ module Troo
     end
 
     def lists
-      Troo::List.find(external_board_id: self.external_board_id)
+      Troo::List.find(external_board_id: external_board_id)
     end
 
     def cards
-      Troo::Card.find(external_board_id: self.external_board_id)
+      Troo::Card.find(external_board_id: external_board_id)
     end
 
     def decorator(options = {})

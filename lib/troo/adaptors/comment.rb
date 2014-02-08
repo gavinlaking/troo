@@ -19,11 +19,11 @@ module Troo
       end
 
       def external_board_id
-        resource.data.fetch("board", {}).fetch("id", "")
+        resource.data.fetch('board', {}).fetch('id', '')
       end
 
       def external_card_id
-        resource.data.fetch("card", {}).fetch("id", "")
+        resource.data.fetch('card', {}).fetch('id', '')
       end
 
       def external_member_id
@@ -35,7 +35,7 @@ module Troo
       end
 
       def text
-        resource.data.fetch("text", "")
+        resource.data.fetch('text', '')
       end
     end
   end

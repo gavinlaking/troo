@@ -21,15 +21,15 @@ module Troo
       end
 
       def id_str
-        highlight(brackets(id) + " ", options).rjust(6)
+        highlight(brackets(id) + ' ', options).rjust(6)
       end
 
       def name
-        (list.name && list.name.chomp) || "N/A"
+        (list.name && list.name.chomp) || 'N/A'
       end
 
       def default
-        list.default? ? "*" : ""
+        list.default? ? '*' : ''
       end
 
       def id

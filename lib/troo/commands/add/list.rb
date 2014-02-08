@@ -17,7 +17,7 @@ module Troo
         end
 
         def error_trello_error
-          "List could not be created."
+          'List could not be created.'
         end
 
         def created

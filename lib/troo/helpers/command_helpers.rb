@@ -26,7 +26,7 @@ module Troo
     end
 
     def type_pluralize
-      type_str + "s"
+      type_str + 's'
     end
 
     def no_default?

@@ -17,7 +17,7 @@ module Troo
         end
 
         def error_trello_error
-          "Card could not be created."
+          'Card could not be created.'
         end
 
         def created
