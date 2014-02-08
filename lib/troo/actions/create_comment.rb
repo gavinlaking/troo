@@ -16,6 +16,7 @@ module Troo
     end
 
     private
+
     attr_reader   :card, :comment
     attr_accessor :comment_resource
 

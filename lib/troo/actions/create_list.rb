@@ -16,6 +16,7 @@ module Troo
     end
 
     private
+
     attr_reader :board, :name
 
     def create_local

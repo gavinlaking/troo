@@ -29,6 +29,7 @@ module Troo
       end
 
       private
+
       attr_reader :list
 
       def board

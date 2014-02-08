@@ -19,6 +19,7 @@ module Troo
       end
 
       private
+
       attr_reader :card, :options
 
       def members

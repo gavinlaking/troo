@@ -8,7 +8,7 @@ module Troo
           external_card_id:    external_card_id,
           external_member_id:  external_member_id,
           date:                date,
-          text:                text,
+          text:                text
         }
       end
 

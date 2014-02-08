@@ -17,6 +17,7 @@ module Troo
     end
 
     private
+
     attr_reader :list, :name, :description
 
     def create_local

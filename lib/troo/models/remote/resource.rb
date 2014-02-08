@@ -14,6 +14,7 @@ module Troo
       end
 
       private
+
       attr_reader :json
 
       def params

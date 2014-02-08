@@ -27,6 +27,7 @@ module Troo
       end
 
       private
+
       attr_reader :card
     end
   end

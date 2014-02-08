@@ -37,6 +37,7 @@ module Troo
       end
 
       private
+
       attr_reader  :board
       alias_method :boards, :board
 

@@ -13,7 +13,7 @@ module Troo
           url:                 url,
           position:            position,
           last_activity_date:  last_activity_date,
-          closed:              closed,
+          closed:              closed
         }
       end
 

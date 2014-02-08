@@ -22,6 +22,7 @@ module Troo
     end
 
     private
+
     attr_reader :object, :template_path
 
     def load_template

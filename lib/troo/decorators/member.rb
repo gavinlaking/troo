@@ -21,6 +21,7 @@ module Troo
       end
 
       private
+
       attr_reader :member
     end
   end

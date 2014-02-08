@@ -10,7 +10,7 @@ module Troo
           initials:           initials,
           avatar_id:          avatar_id,
           bio:                bio,
-          url:                url,
+          url:                url
         }
       end
 

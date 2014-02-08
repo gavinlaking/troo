@@ -17,6 +17,7 @@ module Troo
     end
 
     private
+
     attr_reader :card, :list
 
     def update_cards

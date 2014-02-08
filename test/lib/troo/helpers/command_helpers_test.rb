@@ -8,6 +8,7 @@ class CommandHelpersDummy
   end
 
   private
+
   attr_accessor :type
 end
 

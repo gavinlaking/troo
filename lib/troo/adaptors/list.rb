@@ -7,7 +7,7 @@ module Troo
           external_list_id:  external_list_id,
           name:              name,
           position:          position,
-          closed:            closed,
+          closed:            closed
         }
       end
 

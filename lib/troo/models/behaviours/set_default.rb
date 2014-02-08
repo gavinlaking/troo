@@ -25,6 +25,7 @@ module Troo
       end
 
       private
+
       attr_reader :entity
 
       def set_new_default
