@@ -5,26 +5,37 @@ module Troo
     module Add
       describe Card do
         let(:described_class) { Card }
-        let(:value) { }
+        let(:value) { "Add Card Test" }
         let(:id)    { }
 
-        describe "#initialize" do
-          subject { described_class.new(value, id) }
-
-          it "assigns the value to an instance variable" do
-            subject.instance_variable_get("@value").must_equal(value)
-          end
-
-          it "assigns the id to an instance variable" do
-            subject.instance_variable_get("@id").must_equal(id)
-          end
+        before do
+          Retrieval::List.stubs(:retrieve)
+          CreateCard.stubs(:for).returns(false)
         end
 
-        describe ".dispatch" do
-          subject { described_class.dispatch(value, id) }
+        describe "#add" do
+          subject { described_class.new(value, id).add }
 
-          it "will be tested by the integration tests" do
-            skip
+          context "when the parent resource exists" do
+            context "and the card was created" do
+              before { CreateCard.stubs(:for).returns(true) }
+
+              it "returns a polite message" do
+                subject.must_match(/\'Add Card Test\' created/)
+              end
+            end
+
+            context "and the card was not created" do
+              it "returns a polite message" do
+                subject.must_match(/could not/)
+              end
+            end
+          end
+
+          context "when the parent resource does not exist" do
+            it "returns a polite message" do
+              subject.must_match(/could not/)
+            end
           end
         end
       end

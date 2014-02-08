@@ -31,7 +31,9 @@ module Troo
     def create_remote
       @comment_resource ||= Trello::Card.new.
         update_fields(attributes).add_comment(comment)
-    rescue
+    rescue Trello::InvalidAccessToken
+      raise Troo::InvalidAccessToken
+    rescue Trello::Error
       false
     end
 

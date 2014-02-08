@@ -7,12 +7,6 @@ module Troo
         def fetch(external_id, options = {})
           new(external_id, options).persist
         end
-
-        private
-
-        def closed?(resource)
-          resource.nil? || resource.closed?
-        end
       end
 
       def initialize(external_id, options = {})
@@ -42,26 +36,6 @@ module Troo
 
       def defaults
         { mode: :board }
-      end
-
-      def all_boards
-        []
-      end
-
-      def by_board_id
-        []
-      end
-
-      def by_list_id
-        []
-      end
-
-      def by_card_id
-        []
-      end
-
-      def by_member_id
-        []
       end
     end
   end

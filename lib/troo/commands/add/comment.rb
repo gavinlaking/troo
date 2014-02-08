@@ -5,12 +5,8 @@ module Troo
         def add
           if created
             success
-          elsif created == false
-            error_trello_error
-          elsif no_default?
-            error_no_default
           else
-            error_not_found
+            error_trello_error
           end
         end
 
@@ -22,10 +18,6 @@ module Troo
 
         def error_trello_error
           "Comment could not be created."
-        end
-
-        def error_no_default
-          "Specify an <id> or use 'troo default card <id>' to set a default card first."
         end
 
         def created

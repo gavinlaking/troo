@@ -6,18 +6,6 @@ module Troo
       let(:described_class) { Comment }
       let(:options) { {} }
 
-      describe ".initialize" do
-        subject { described_class.new("some_id", options) }
-
-        it "assigns the external_id" do
-          subject.instance_variable_get("@external_id").must_equal("some_id")
-        end
-
-        it "assigns the options" do
-          subject.instance_variable_get("@options").must_equal(options)
-        end
-      end
-
       describe "when the mode is board" do
         before { VCR.insert_cassette(:comments_by_board_id, decode_compressed_response: true) }
         after  { VCR.eject_cassette }
@@ -36,6 +24,16 @@ module Troo
 
           it "returns an empty collection" do
             subject.must_equal([])
+          end
+        end
+
+        context "when the access token is invalid" do
+          before { Trello::Board.stubs(:find).raises(Trello::InvalidAccessToken) }
+
+          subject { described_class.new(board_id, options).fetch }
+
+          it "catches the exception and re-raises" do
+            proc { subject }.must_raise(Troo::InvalidAccessToken)
           end
         end
       end

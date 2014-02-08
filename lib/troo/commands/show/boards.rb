@@ -18,6 +18,10 @@ module Troo
 
         private
 
+        def type
+          :boards
+        end
+
         def presenter
           Presenters::Board.all(resources)
         end

@@ -42,6 +42,16 @@ module Troo
 
         it { subject.must_equal false }
       end
+
+      context "when the access token is invalid" do
+        before { Trello::Board.stubs(:create).raises(Trello::InvalidAccessToken) }
+
+        subject { described_class.with(board_name, description) }
+
+        it "catches the exception and re-raises" do
+          proc { subject }.must_raise(Troo::InvalidAccessToken)
+        end
+      end
     end
   end
 end

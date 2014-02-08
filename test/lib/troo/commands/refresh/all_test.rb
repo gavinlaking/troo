@@ -7,9 +7,9 @@ module Troo
         let(:described_class) { All }
 
         before do
-          @board = Fabricate(:board)
-          @list  = Fabricate(:list)
-          @card  = Fabricate(:card)
+          @board = Fabricate.build(:board)
+          @list  = Fabricate.build(:list)
+          @card  = Fabricate.build(:card)
 
           External::Board.stubs(:fetch).returns([@board])
           External::List.stubs(:fetch).returns([@list])
@@ -18,15 +18,19 @@ module Troo
           External::Member.stubs(:fetch).returns([])
         end
 
-        after { database_cleanup }
-
         describe ".dispatch" do
-          let(:board) { nil }
-
           subject { described_class.dispatch }
 
-          it "returns a polite message" do
-            subject.must_equal("All local data refreshed.")
+          context "when all the resources are refreshed" do
+            it "returns a polite message" do
+              subject.must_match(/All local data refreshed/)
+            end
+          end
+
+          context "when all the resources are not refreshed" do
+            it "returns a polite message" do
+              skip("Not implemented yet.")
+            end
           end
         end
       end

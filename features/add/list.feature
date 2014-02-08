@@ -19,18 +19,6 @@ Feature: Adding content to Trello
     Then the output should contain ""
 
   @pending @failing @add
-  Scenario: Add a list to the default board
-    Given the Trello API is stubbed with "add_list_success"
-    And a default board exists
-    When I run `troo add list ""`
-    Then the output should contain ""
-
-  @pending @failing @add
   Scenario: Cannot add a list as board not found
     When I run `troo add list 69 ""`
-    Then the output should contain ""
-
-  @pending @failing @add
-  Scenario: Cannot add a list as no default board
-    When I run `troo add list ""`
     Then the output should contain ""

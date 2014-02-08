@@ -28,22 +28,7 @@ Feature: Adding content to Trello
       """
 
   @pending @failing @add
-  Scenario: Add a card to the default list
-    Given a default list exists
-    Given the Trello API is stubbed with "add_card_success"
-    When I run `troo add card "My Cucumber Card"`
-    Then the output should contain:
-      """
-      New card 'My Cucumber Card' created
-      """
-
-  @pending @failing @add
   Scenario: Cannot add a card as list not found
     Given the Trello API is stubbed with "add_card_list_not_found"
-    When I run `troo add card 69 "My Cucumber Card"`
-    Then the output should contain ""
-
-  @pending @failing @add
-  Scenario: Cannot add a card as no default list
-    When I run `troo add list ""`
+    When I run `troo add card 1 "My Cucumber Card"`
     Then the output should contain ""

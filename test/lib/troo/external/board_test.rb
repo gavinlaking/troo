@@ -7,18 +7,6 @@ module Troo
       let(:board_id)        { "526d8e130a14a9d846001d96" }
       let(:options)         { { } }
 
-      describe ".initialize" do
-        subject { described_class.new(board_id, options) }
-
-        it "assigns the external_id" do
-          subject.instance_variable_get("@external_id").must_equal(board_id)
-        end
-
-        it "assigns the options" do
-          subject.instance_variable_get("@options").must_equal(options)
-        end
-      end
-
       describe ".fetch" do
         subject { described_class.fetch(board_id, options) }
 
@@ -34,6 +22,30 @@ module Troo
 
           context "when no boards can be found" do
             before { Trello::Board.stubs(:all).raises(Trello::Error) }
+
+            it "returns an empty collection" do
+              subject.must_equal([])
+            end
+          end
+
+          context "and the option is :list" do
+            let(:options) { { mode: :list } }
+
+            it "returns an empty collection" do
+              subject.must_equal([])
+            end
+          end
+
+          context "and the option is :card" do
+            let(:options) { { mode: :card } }
+
+            it "returns an empty collection" do
+              subject.must_equal([])
+            end
+          end
+
+          context "and the option is :member" do
+            let(:options) { { mode: :member } }
 
             it "returns an empty collection" do
               subject.must_equal([])
@@ -62,6 +74,16 @@ module Troo
 
             it "returns an empty collection" do
               subject.must_equal([])
+            end
+          end
+
+          context "when the access token is invalid" do
+            before { Trello::Board.stubs(:find).raises(Trello::InvalidAccessToken) }
+
+            subject { described_class.new(board_id, options).fetch }
+
+            it "catches the exception and re-raises" do
+              proc { subject }.must_raise(Troo::InvalidAccessToken)
             end
           end
         end

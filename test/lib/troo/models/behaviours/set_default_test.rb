@@ -1,6 +1,16 @@
 require_relative "../../../../test_helper"
 
 module Troo
+  describe Behaviours::NullEntity do
+    let(:described_class) { Behaviours::NullEntity }
+
+    describe "#default?" do
+      subject { described_class.new.default? }
+
+      it { subject.must_equal false }
+    end
+  end
+
   describe Behaviours::SetDefault do
     let(:described_class) { Behaviours::SetDefault }
 

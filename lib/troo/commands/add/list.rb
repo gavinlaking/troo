@@ -5,12 +5,8 @@ module Troo
         def add
           if created
             success
-          elsif created == false
-            error_trello_error
-          elsif no_default?
-            error_no_default
           else
-            error_not_found
+            error_trello_error
           end
         end
 

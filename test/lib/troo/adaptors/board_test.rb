@@ -10,6 +10,8 @@ module Troo
       closed:      false,
     }) }
 
+    after { database_cleanup }
+
     describe "#initialize" do
       subject { described_class.new(resource) }
 

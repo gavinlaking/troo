@@ -44,6 +44,22 @@ module Troo
 
         it { subject.must_equal false }
       end
+
+      context "when the access token is invalid" do
+        let(:card) { stub }
+
+        before do
+          Trello::Card.stubs(:new).returns(card)
+          card.stubs(:update_fields).returns(card)
+          card.stubs(:add_comment).raises(Trello::InvalidAccessToken)
+        end
+
+        subject { described_class.for(@card, comment) }
+
+        it "catches the exception and re-raises" do
+          proc { subject }.must_raise(Troo::InvalidAccessToken)
+        end
+      end
     end
   end
 end

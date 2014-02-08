@@ -7,12 +7,12 @@ module Troo
         attr_reader :id, :type
 
         class << self
-          def dispatch(type, id = nil)
+          def dispatch(type = nil, id = nil)
             new(type, id).render
           end
         end
 
-        def initialize(type, id = nil)
+        def initialize(type = nil, id = nil)
           @type, @id = type, id
         end
 
@@ -30,6 +30,10 @@ module Troo
 
         def presenter
           resource.presenter.show
+        end
+
+        def error_not_found
+          "#{type_capitalize} cannot be found."
         end
       end
     end

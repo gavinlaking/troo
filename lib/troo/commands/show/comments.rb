@@ -11,6 +11,10 @@ module Troo
         def resource
           Retrieval::Card.retrieve(id)
         end
+
+        def error_not_found
+          "Card cannot be found."
+        end
       end
     end
   end
