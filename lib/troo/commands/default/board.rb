@@ -9,7 +9,7 @@ module Troo
         end
 
         def error
-          "Board cannot be found."
+          'Board cannot be found.'
         end
 
         def resource_name

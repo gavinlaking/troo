@@ -13,7 +13,7 @@ module Troo
           url:                 url,
           position:            position,
           last_activity_date:  last_activity_date,
-          closed:              closed,
+          closed:              closed
         }
       end
 
@@ -32,7 +32,7 @@ module Troo
       end
 
       def external_member_ids
-        resource.member_ids.to_s.gsub(" ", "")
+        resource.member_ids.to_s.gsub(' ', '')
       end
 
       def short_id

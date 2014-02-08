@@ -6,7 +6,7 @@ module Troo
           external_board_id: external_board_id,
           name:              name,
           description:       description,
-          closed:            closed,
+          closed:            closed
         }
       end
 

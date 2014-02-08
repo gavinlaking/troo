@@ -16,6 +16,7 @@ module Troo
     end
 
     private
+
     attr_reader   :card, :comment
     attr_accessor :comment_resource
 
@@ -29,8 +30,9 @@ module Troo
     end
 
     def create_remote
-      @comment_resource ||= Trello::Card.new.
-        update_fields(attributes).add_comment(comment)
+      @comment_resource ||= Trello::Card.new
+                              .update_fields(attributes)
+                              .add_comment(comment)
     rescue Trello::InvalidAccessToken
       raise Troo::InvalidAccessToken
     rescue Trello::Error

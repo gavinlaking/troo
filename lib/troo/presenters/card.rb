@@ -15,10 +15,11 @@ module Troo
       end
 
       def show
-        print Template.parse(decorated_card, "/../views/card.erb")
+        print Template.parse(decorated_card, '/../views/card.erb')
       end
 
       private
+
       attr_reader :card
 
       def decorated_card

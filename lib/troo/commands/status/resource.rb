@@ -6,13 +6,13 @@ module Troo
 
         class << self
           def dispatch
-            new.get_status
+            new.report_status
           end
         end
 
-        def get_status
+        def report_status
           return success if resource
-          return error
+          error
         end
 
         private
@@ -22,7 +22,11 @@ module Troo
         end
 
         def plural(singular)
-          count == 1 ? "#{count} #{singular}" : "#{count} #{singular}s"
+          if count == 1
+            "#{count} #{singular}"
+          else
+            "#{count} #{singular}s"
+          end
         end
       end
     end

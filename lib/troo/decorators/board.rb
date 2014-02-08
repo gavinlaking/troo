@@ -21,20 +21,21 @@ module Troo
       end
 
       def id_str
-        highlight(brackets(id) + " ", options).rjust(6)
+        highlight(brackets(id) + ' ', options).rjust(6)
       end
 
       def description
-        return "N/A" if board.description.nil? || board.description.empty?
+        return 'N/A' if board.description.nil? ||
+                        board.description.empty?
         word_wrap(board.description)
       end
 
       def name
-        (board.name && board.name.chomp) || "N/A"
+        (board.name && board.name.chomp) || 'N/A'
       end
 
       def default
-        board.default? ? "*" : ""
+        board.default? ? '*' : ''
       end
 
       def id
@@ -46,6 +47,7 @@ module Troo
       end
 
       private
+
       attr_reader :board
 
       def options

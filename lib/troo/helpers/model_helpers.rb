@@ -26,7 +26,7 @@ module Troo
     end
 
     def external_attributes
-      self.attributes.delete_if { |k, _| k == :id || k == :default }
+      attributes.delete_if { |k, _| k == :id || k == :default }
     end
   end
 end

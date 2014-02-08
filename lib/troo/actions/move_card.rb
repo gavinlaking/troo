@@ -17,6 +17,7 @@ module Troo
     end
 
     private
+
     attr_reader :card, :list
 
     def update_cards
@@ -24,9 +25,9 @@ module Troo
     end
 
     def move_card
-      Trello::Card.new.
-        update_fields({'id' => card.external_card_id}).
-        move_to_list(list.external_list_id)
+      Trello::Card.new
+        .update_fields('id' => card.external_card_id)
+        .move_to_list(list.external_list_id)
     rescue Trello::InvalidAccessToken
       raise Troo::InvalidAccessToken
     rescue Trello::Error

@@ -5,13 +5,13 @@ module Troo
         private
 
         def many_success
-          "Multiple boards refreshed."
+          'Multiple boards refreshed.'
         end
 
         def error
-          return "Default board cannot be found." unless id
+          return 'Default board cannot be found.' unless id
           @type = :board
-          "Board cannot be found. " + error_no_default
+          'Board cannot be found. ' + error_no_default
         end
 
         def resource

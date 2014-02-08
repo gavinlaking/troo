@@ -13,7 +13,7 @@ module Troo
         end
 
         def error_not_found
-          "Card cannot be found."
+          'Card cannot be found.'
         end
       end
     end

@@ -1,10 +1,10 @@
-require_relative "../../../test_helper"
+require_relative '../../../test_helper'
 
 module Troo
   module Presenters
     describe Card do
       let(:described_class) { Card }
-      let(:options) { { } }
+      let(:options) { {} }
 
       before do
         @card   = Fabricate(:card)
@@ -15,25 +15,25 @@ module Troo
 
       after { database_cleanup }
 
-      describe "#initialize" do
+      describe '#initialize' do
         subject { described_class.new(@card, options) }
 
-        it "assigns the card to an instance variable" do
-          subject.instance_variable_get("@card").must_equal(@card)
+        it 'assigns the card to an instance variable' do
+          subject.instance_variable_get('@card').must_equal(@card)
         end
 
-        it "assigns the options to an instance variable" do
-          subject.instance_variable_get("@options").must_equal(options)
+        it 'assigns the options to an instance variable' do
+          subject.instance_variable_get('@options').must_equal(options)
         end
       end
 
-      describe "#show" do
+      describe '#show' do
         subject { capture_io { described_class.show(@card, options) }.join }
 
-        it "renders the view" do
-          subject.must_match /My Test Card/
-          subject.must_match /No comments have been left/
-          subject.must_match /Metadata/
+        it 'renders the view' do
+          subject.must_match(/My Test Card/)
+          subject.must_match(/No comments have been left/)
+          subject.must_match(/Metadata/)
         end
       end
     end

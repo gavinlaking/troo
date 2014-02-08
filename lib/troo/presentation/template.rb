@@ -18,10 +18,11 @@ module Troo
     end
 
     def parse
-      ERB.new(load_template, nil, "-").result(binding)
+      ERB.new(load_template, nil, '-').result(binding)
     end
 
     private
+
     attr_reader :object, :template_path
 
     def load_template

@@ -23,7 +23,7 @@ module Troo
       def persist
         return local   if local_identical?
         return updated if local_exists?
-        return created
+        created
       end
 
       private

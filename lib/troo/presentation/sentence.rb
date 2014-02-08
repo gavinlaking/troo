@@ -1,7 +1,7 @@
 module Troo
   class Sentence
     class << self
-      def construct(elements, label = "elements")
+      def construct(elements, label = 'elements')
         new(elements, label).construct
       end
     end
@@ -14,15 +14,16 @@ module Troo
       if one?
         first
       elsif two?
-        elements.join(" and ")
+        elements.join(' and ')
       elsif many?
-        [but_last, last].join(" and ")
+        [but_last, last].join(' and ')
       else
         "No #{label} have been assigned."
       end
     end
 
     private
+
     attr_reader :elements, :label
 
     def one?
@@ -38,7 +39,7 @@ module Troo
     end
 
     def but_last
-      elements[0...-1].join(", ")
+      elements[0...-1].join(', ')
     end
 
     def first

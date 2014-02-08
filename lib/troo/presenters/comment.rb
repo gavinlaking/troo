@@ -18,16 +18,21 @@ module Troo
         spacing do
           print card.decorator.short
 
-          print_error "No comments were found." unless card.comments.any?
+          print_error 'No comments were found.' unless comments.any?
 
-          card.comments.each do |comment|
+          comments.each do |comment|
             indent { print comment.decorator.as_view }
           end
         end
       end
 
       private
+
       attr_reader :card
+
+      def comments
+        card.comments
+      end
     end
   end
 end

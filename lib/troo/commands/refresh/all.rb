@@ -7,7 +7,7 @@ module Troo
         end
 
         def refresh_all
-          "All local data refreshed." if refreshed?
+          'All local data refreshed.' if refreshed?
         end
 
         private
@@ -17,7 +17,8 @@ module Troo
             External::List.fetch(external_board_id)
             External::Member.fetch(external_board_id)
             External::Card.fetch(external_board_id).map do |card|
-              External::Comment.fetch(card.external_card_id, { mode: :card })
+              External::Comment.fetch(card.external_card_id,
+                                      mode: :card)
             end
           end
           true
@@ -32,7 +33,7 @@ module Troo
         end
 
         def all_boards
-          @boards ||= External::Board.fetch(0, { mode: :all })
+          @boards ||= External::Board.fetch(0,  mode: :all)
         end
       end
     end

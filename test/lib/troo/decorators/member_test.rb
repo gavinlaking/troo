@@ -1,4 +1,4 @@
-require_relative "../../../test_helper"
+require_relative '../../../test_helper'
 
 module Troo
   module Decorators
@@ -9,19 +9,20 @@ module Troo
       before { @member = Fabricate(:member) }
       after  { database_cleanup }
 
-      describe "#initialize" do
+      describe '#initialize' do
         subject { described_class.new(@member, options) }
 
-        it "assigns the member to an instance variable" do
-          subject.instance_variable_get("@member").must_equal(@member)
+        it 'assigns the member to an instance variable' do
+          subject.instance_variable_get('@member').must_equal(@member)
         end
 
-        it "assigns the options to an instance variable" do
-          subject.instance_variable_get("@options").must_equal(options)
+        it 'assigns the options to an instance variable' do
+          subject.instance_variable_get('@options')
+            .must_equal(options)
         end
       end
 
-      describe "#username" do
+      describe '#username' do
         subject { described_class.new(@member).username }
 
         it "returns the member's username" do
@@ -29,7 +30,7 @@ module Troo
         end
       end
 
-      describe "#name" do
+      describe '#name' do
         subject { described_class.new(@member).name }
 
         it "returns the member's full name" do
@@ -37,7 +38,7 @@ module Troo
         end
       end
 
-      describe "#initials" do
+      describe '#initials' do
         subject { described_class.new(@member).initials }
 
         it "returns the member's initials" do

@@ -1,22 +1,22 @@
-require_relative "troo/troo"
-require_relative "troo/version"
+require_relative 'troo/troo'
+require_relative 'troo/version'
 
 module Troo
   class InvalidAccessToken < StandardError; end
 
   def self.config
-    @config ||= OpenStruct.new(YAML.load_file(Dir.home + "/.trooconf"))
+    @config ||= OpenStruct.new(YAML.load_file(Dir.home + '/.trooconf'))
   rescue Errno::ENOENT
-    warn "No configuration file found..."
-    src = File.dirname(__FILE__) + "/../configuration.yml.example"
-    dst = Dir.home + "/.trooconf"
+    warn 'No configuration file found...'
+    src = File.dirname(__FILE__) + '/../configuration.yml.example'
+    dst = Dir.home + '/.trooconf'
     FileUtils.cp(src, dst)
     warn "New configuration file created at '#{Dir.home}/.trooconf'"
     exit!
   end
 
   def self.logger
-    @logger ||= Logger.new("logs/troo.log")
+    @logger ||= Logger.new('logs/troo.log')
   end
 
   # Trello.logger = Logger.new("logs/trello.log")
@@ -28,14 +28,19 @@ module Troo
   end
 
   class Launcher
-    def initialize(argv, stdin=STDIN, stdout=STDOUT, stderr=STDERR, kernel=Kernel)
-      @argv, @stdin, @stdout, @stderr, @kernel = argv, stdin, stdout, stderr, kernel
+    def initialize(argv, stdin = STDIN,
+                         stdout = STDOUT,
+                         stderr = STDERR,
+                         kernel = Kernel)
+      @argv = argv
+      @stdin = stdin
+      @stdout = stdout
+      @stderr = stderr
+      @kernel = kernel
     end
 
     def execute!
-      $stdin  = @stdin
-      $stdout = @stdout
-      $stderr = @stderr
+      $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
       puts
       Troo::CLI::Main.start(@argv)
@@ -43,10 +48,11 @@ module Troo
 
       @kernel.exit(0)
     rescue Troo::InvalidAccessToken
-      @stderr.puts "Your Trello access credentials have expired, please renew and try again."
+      @stderr.puts 'Your Trello access credentials have expired, ' \
+                   ' please renew and try again.'
       @kernel.exit(1)
     rescue SocketError
-      @stderr.puts "Cannot continue, no network connection."
+      @stderr.puts 'Cannot continue, no network connection.'
       @kernel.exit(1)
     end
   end
