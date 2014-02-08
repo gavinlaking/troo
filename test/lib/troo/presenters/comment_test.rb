@@ -31,8 +31,8 @@ module Troo
 
         context 'when the card has comments' do
           it 'renders the view' do
-            subject.must_match /My Test Card/
-            subject.must_match /My Test Comment/
+            subject.must_match(/My Test Card/)
+            subject.must_match(/My Test Comment/)
           end
         end
 
@@ -40,7 +40,7 @@ module Troo
           before { @comment.delete }
 
           it 'returns a polite message' do
-            subject.must_match /No comments were found/
+            subject.must_match(/No comments were found/)
           end
         end
       end

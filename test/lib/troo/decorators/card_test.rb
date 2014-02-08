@@ -132,11 +132,11 @@ module Troo
 
         context 'when there are more than 3 comments' do
           it 'returns the comments' do
-            subject.must_match /There are more comments/
-            subject.must_match /My Test Comment/
-            subject.must_match /My Other Test Comment/
-            subject.must_match /My Lithium Comment/
-            subject.wont_match /My Beryllium Comment/
+            subject.must_match(/There are more comments/)
+            subject.must_match(/My Test Comment/)
+            subject.must_match(/My Other Test Comment/)
+            subject.must_match(/My Lithium Comment/)
+            subject.wont_match(/My Beryllium Comment/)
           end
         end
 
@@ -147,8 +147,8 @@ module Troo
           end
 
           it 'returns the comments' do
-            subject.must_match /My Test Comment/
-            subject.must_match /My Other Test Comment/
+            subject.must_match(/My Test Comment/)
+            subject.must_match(/My Other Test Comment/)
           end
         end
 

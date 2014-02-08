@@ -31,9 +31,9 @@ module Troo
         subject { capture_io { described_class.show(@card, options) }.join }
 
         it 'renders the view' do
-          subject.must_match /My Test Card/
-          subject.must_match /No comments have been left/
-          subject.must_match /Metadata/
+          subject.must_match(/My Test Card/)
+          subject.must_match(/No comments have been left/)
+          subject.must_match(/Metadata/)
         end
       end
     end

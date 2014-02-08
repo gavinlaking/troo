@@ -31,8 +31,8 @@ module Troo
 
         context 'when the board has lists' do
           it 'renders the view' do
-            subject.must_match /My Test Board/
-            subject.must_match /My Test List/
+            subject.must_match(/My Test Board/)
+            subject.must_match(/My Test List/)
           end
         end
 
@@ -40,7 +40,7 @@ module Troo
           before { @list.delete }
 
           it 'returns a polite message' do
-            subject.must_match /No lists were found./
+            subject.must_match(/No lists were found./)
           end
         end
       end
@@ -51,9 +51,9 @@ module Troo
         context 'when the board has lists' do
           context 'and the list has cards' do
             it 'renders the view' do
-              subject.must_match /My Test Board/
-              subject.must_match /My Test List/
-              subject.must_match /My Test Card/
+              subject.must_match(/My Test Board/)
+              subject.must_match(/My Test List/)
+              subject.must_match(/My Test Card/)
             end
           end
 
@@ -61,7 +61,7 @@ module Troo
             before { @card.delete }
 
             it 'returns a polite message' do
-              subject.must_match /No cards were found./
+              subject.must_match(/No cards were found./)
             end
           end
         end
@@ -70,7 +70,7 @@ module Troo
           before { @board.stubs(:lists).returns([]) }
 
           it 'returns a polite message' do
-            subject.must_match /No lists were found./
+            subject.must_match(/No lists were found./)
           end
         end
       end

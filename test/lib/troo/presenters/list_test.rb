@@ -31,9 +31,9 @@ module Troo
 
         context 'when the list has cards' do
           it 'renders the view' do
-            subject.must_match /My Test Board/
-            subject.must_match /My Test List/
-            subject.must_match /My Test Card/
+            subject.must_match(/My Test Board/)
+            subject.must_match(/My Test List/)
+            subject.must_match(/My Test Card/)
           end
         end
 
@@ -41,7 +41,7 @@ module Troo
           before { @card.delete }
 
           it 'returns a polite message' do
-            subject.must_match /No cards were found./
+            subject.must_match(/No cards were found./)
           end
         end
       end

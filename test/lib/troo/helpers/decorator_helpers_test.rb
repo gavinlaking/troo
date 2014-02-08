@@ -20,7 +20,7 @@ module Troo
       subject { described_instance.title }
 
       it 'returns a formatted string representing the card title' do
-        subject.must_match /\* \(67\) My Test Dummy/
+        subject.must_match(/\* \(67\) My Test Dummy/)
       end
     end
   end

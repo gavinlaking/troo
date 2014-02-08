@@ -30,9 +30,9 @@ module Troo
         subject { described_class.new(@comment).as_view }
 
         it 'returns the rendered comment' do
-          subject.must_match /gavinlaking1/
-          subject.must_match /My Test Comment/
-          subject.must_match /Tue, Dec 17 at 22:01/
+          subject.must_match(/gavinlaking1/)
+          subject.must_match(/My Test Comment/)
+          subject.must_match(/Tue, Dec 17 at 22:01/)
         end
       end
 

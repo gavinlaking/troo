@@ -25,13 +25,13 @@ module Troo
         let(:type) { :comments }
 
         it 'returns the no default set error message' do
-          subject.must_match /to set a default card first/
+          subject.must_match(/to set a default card first/)
         end
       end
 
       context 'when the type is not comments' do
         it 'returns the no default set error message' do
-          subject.must_match /to set a default board first/
+          subject.must_match(/to set a default board first/)
         end
       end
     end
@@ -43,13 +43,13 @@ module Troo
         let(:type) { :comments }
 
         it 'returns the not found error message' do
-          subject.must_match /Card cannot be found/
+          subject.must_match(/Card cannot be found/)
         end
       end
 
       context 'when the type is not comments' do
         it 'returns the no default set error message' do
-          subject.must_match /Board cannot be found/
+          subject.must_match(/Board cannot be found/)
         end
       end
     end

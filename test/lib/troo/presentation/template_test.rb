@@ -23,8 +23,8 @@ module Troo
 
       context 'when the template file can be found' do
         it 'parses the template' do
-          subject.must_match /This is the test template/
-          subject.must_match /Hello from variable!/
+          subject.must_match(/This is the test template/)
+          subject.must_match(/Hello from variable!/)
         end
       end
 
