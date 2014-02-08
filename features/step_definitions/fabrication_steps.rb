@@ -32,33 +32,3 @@ end
 Given(/^a default card exists$/) do
   Fabricate(:card, default: true, name: "My Default Card")
 end
-
-Given(/^[a|some] boards? exists?\:$/) do |table|
-  table.hashes.each do |data|
-    Fabricate(:board, data)
-  end
-end
-
-Given(/^[a|some] lists? exists?\:$/) do |table|
-  table.hashes.each do |data|
-    Fabricate(:list, data)
-  end
-end
-
-Given(/^[a|some] cards? exists?\:$/) do |table|
-  table.hashes.each do |data|
-    Fabricate(:card, data)
-  end
-end
-
-Given(/^[a|some] comments? exists?\:$/) do |table|
-  table.hashes.each do |data|
-    Fabricate(:comment, data)
-  end
-end
-
-Given(/^[a|some] members? exists?\:$/) do |table|
-  table.hashes.each do |data|
-    Fabricate(:member, data)
-  end
-end
