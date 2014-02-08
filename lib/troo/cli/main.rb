@@ -26,7 +26,8 @@ module Troo
       end
 
       desc 'show [board|list|card|comments] <id>',
-           'Show the board, list, card with <id>. Also, show all comments for card with <id>.'
+           'Show the board, list, card with <id>. Also, show all ' \
+           'comments for card with <id>.'
       subcommand :show, CLI::Show
 
       desc 'add [board|list|card|comment] <id>',

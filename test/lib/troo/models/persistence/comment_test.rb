@@ -3,17 +3,20 @@ require_relative '../../../../test_helper'
 module Troo
   describe Persistence::Comment do
     let(:described_class) { Persistence::Comment }
-    let(:resource) do OpenStruct.new(
-      id:   '51f9277b2822b8654f0023af',
-      date: '2013-12-17 22:01:13 UTC',
-      data: {
-        'text' => resource_text, 'board' => {
-          'id' => '526d8e130a14a9d846001d96'
-        },
-        'card' => {
-          'id' => '526d8f19ddb279532e005259'
-        } }
-    ) end
+    let(:resource) do
+      OpenStruct.new(
+        id:   '51f9277b2822b8654f0023af',
+        date: '2013-12-17 22:01:13 UTC',
+        data: {
+          'text' => resource_text,
+          'board' => {
+            'id' => '526d8e130a14a9d846001d96'
+          },
+          'card' => {
+            'id' => '526d8f19ddb279532e005259'
+        }
+      })
+    end
     let(:resource_text) { 'My Test Comment' }
     let(:options) { {} }
 
@@ -24,7 +27,8 @@ module Troo
       subject { described_class.new(resource, options) }
 
       it 'assigns the resource to an instance variable' do
-        subject.instance_variable_get('@resource').must_equal(resource)
+        subject.instance_variable_get('@resource')
+          .must_equal(resource)
       end
 
       it 'assigns the options to an instance variable' do

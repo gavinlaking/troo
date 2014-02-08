@@ -46,7 +46,9 @@ module Troo
 
       def comments
         if card.comments.any? && card.comments.size > 3
-          message = "(There are more comments, use: 'troo show comments #{card.short_id}' to view all comments.)"
+          message = "(There are more comments, use: " \
+                    "'troo show comments #{card.short_id}' to view " \
+                    " all comments.)"
           [decorated_recent_comments, message].join("\n")
         elsif card.comments.any?
           decorated_all_comments
@@ -61,8 +63,8 @@ module Troo
 
       def last_activity_date
         return 'N/A' unless card.last_activity_date
-        Time.parse(card.last_activity_date).
-          strftime('%a, %b %d at %H:%M')
+        Time.parse(card.last_activity_date)
+            .strftime('%a, %b %d at %H:%M')
       end
 
       def board
@@ -90,7 +92,9 @@ module Troo
       end
 
       def decorated_recent_comments
-        card.recent_comments.map { |comment| comment.decorator.as_view }.join
+        card.recent_comments.map do |comment|
+          comment.decorator.as_view
+        end.join
       end
 
       def decorated_all_comments

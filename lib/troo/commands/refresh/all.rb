@@ -17,7 +17,8 @@ module Troo
             External::List.fetch(external_board_id)
             External::Member.fetch(external_board_id)
             External::Card.fetch(external_board_id).map do |card|
-              External::Comment.fetch(card.external_card_id,  mode: :card)
+              External::Comment.fetch(card.external_card_id,
+                                      mode: :card)
             end
           end
           true

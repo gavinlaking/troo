@@ -11,11 +11,13 @@ module Troo
         subject { described_class.new(external_id, options) }
 
         it 'assigns the external_id to an instance variable' do
-          subject.instance_variable_get('@external_id').must_equal(external_id)
+          subject.instance_variable_get('@external_id')
+            .must_equal(external_id)
         end
 
         it 'assigns the options to an instance variable' do
-          subject.instance_variable_get('@options').must_equal(options)
+          subject.instance_variable_get('@options')
+            .must_equal(options)
         end
       end
     end

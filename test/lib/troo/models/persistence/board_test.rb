@@ -3,12 +3,13 @@ require_relative '../../../../test_helper'
 module Troo
   describe Persistence::Board do
     let(:described_class) { Persistence::Board }
-    let(:resource) do OpenStruct.new(
-      id:     '526d8e130a14a9d846001d96',
-      name:   resource_name,
-      description:   'A very brief description...',
-      closed: false
-    ) end
+    let(:resource) do
+      OpenStruct.new(
+        id:     '526d8e130a14a9d846001d96',
+        name:   resource_name,
+        description:   'A very brief description...',
+        closed: false)
+    end
     let(:resource_name) { 'My Test Board' }
     let(:options) { {} }
 
@@ -19,7 +20,8 @@ module Troo
       subject { described_class.new(resource, options) }
 
       it 'assigns the resource to an instance variable' do
-        subject.instance_variable_get('@resource').must_equal(resource)
+        subject.instance_variable_get('@resource')
+          .must_equal(resource)
       end
 
       it 'assigns the options to an instance variable' do

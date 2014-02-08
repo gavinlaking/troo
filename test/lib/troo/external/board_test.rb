@@ -13,7 +13,10 @@ module Troo
         context 'when the all option is set' do
           let(:options) { { mode: :all } }
 
-          before { VCR.insert_cassette(:boards_all, decode_compressed_response: true) }
+          before do
+            VCR.insert_cassette(:boards_all,
+                                decode_compressed_response: true)
+          end
           after  { VCR.eject_cassette }
 
           it 'returns multiple boards' do
@@ -54,7 +57,10 @@ module Troo
         end
 
         context 'when the all option is not set' do
-          before { VCR.insert_cassette(:board_by_id, decode_compressed_response: true) }
+          before do
+            VCR.insert_cassette(:board_by_id,
+                                decode_compressed_response: true)
+          end
           after  { VCR.eject_cassette }
 
           it 'returns a single board' do
@@ -78,7 +84,10 @@ module Troo
           end
 
           context 'when the access token is invalid' do
-            before { Trello::Board.stubs(:find).raises(Trello::InvalidAccessToken) }
+            before do
+              Trello::Board.stubs(:find)
+                .raises(Trello::InvalidAccessToken)
+            end
 
             subject { described_class.new(board_id, options).fetch }
 

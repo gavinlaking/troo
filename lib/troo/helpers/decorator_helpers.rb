@@ -19,7 +19,9 @@ module Troo
 
     def word_wrap(text, line_width = 70)
       return text if line_width <= 0
-      text.gsub(/\n/, ' ').gsub(/(.{1,#{line_width}})(\s+|$)/, "\\1\n").strip
+      text.gsub(/\n/, ' ')
+          .gsub(/(.{1,#{line_width}})(\s+|$)/, "\\1\n")
+          .strip
     end
 
     def highlight(value, options = {})
@@ -77,8 +79,12 @@ module Troo
 
     def print_error(message)
       indent do
-        print [(' ' * 2), [Esc.red, message, Esc.reset].join].join(' ') + "\n"
+        print [(' ' * 2), error(message)].join(' ') + "\n"
       end
+    end
+
+    def error(message)
+      [Esc.red, message, Esc.reset].join
     end
   end
 end

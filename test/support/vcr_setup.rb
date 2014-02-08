@@ -8,7 +8,6 @@ VCR.configure do |c|
     interaction.request.headers['Authorization'].first
   end
 
-  # hack hack hack
   # Couldn't work out how to instruct VCR to filter urls, shortUrls
   # and shortLinks from the returned body string; hate myself.
   c.filter_sensitive_data('<Trello URL>') do |interaction|

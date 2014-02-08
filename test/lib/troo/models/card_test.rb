@@ -28,23 +28,29 @@ module Troo
         context 'when the attribute is set' do
           context 'and the attribute is an array' do
             it 'returns the attribute' do
-              subject.external_member_ids.
-                must_equal(['5195fdb5a8c01a2318004f5d'])
+              subject.external_member_ids
+                .must_equal(['5195fdb5a8c01a2318004f5d'])
             end
           end
 
           context 'and the attribute is a string' do
-            let(:described_instance) { Fabricate.build(:card, external_member_ids: "[\"5195fdb5a8c01a2318004f5d\"]") }
+            let(:member_ids) { "[\"5195fdb5a8c01a2318004f5d\"]" }
+            let(:described_instance) do
+              Fabricate.build(:card,
+                              external_member_ids: member_ids)
+            end
 
             it 'converts to an array and returns the attribute' do
-              subject.external_member_ids.
-                must_equal(['5195fdb5a8c01a2318004f5d'])
+              subject.external_member_ids
+                .must_equal(['5195fdb5a8c01a2318004f5d'])
             end
           end
         end
 
         context 'when the attribute is not set' do
-          let(:described_instance) { Fabricate.build(:card, external_member_ids: nil) }
+          let(:described_instance) do
+            Fabricate.build(:card, external_member_ids: nil)
+          end
 
           it 'returns an empty collection' do
             subject.external_member_ids.must_equal([])
@@ -57,7 +63,8 @@ module Troo
       end
 
       it 'should have a last_activity_date attribute' do
-        subject.last_activity_date.must_equal '2013-12-17 21:48:09 UTC'
+        subject.last_activity_date
+          .must_equal '2013-12-17 21:48:09 UTC'
       end
 
       it 'should have a default attribute' do
@@ -69,7 +76,8 @@ module Troo
       end
 
       it 'should have an external_board_id attribute' do
-        subject.external_board_id.must_equal '526d8e130a14a9d846001d96'
+        subject.external_board_id
+          .must_equal '526d8e130a14a9d846001d96'
       end
 
       it 'should have an external_list_id attribute' do

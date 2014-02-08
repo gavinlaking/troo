@@ -9,7 +9,8 @@ module Troo
 
     def error_no_default
       @type = :card if type == :comments
-      "Specify an <id> or use 'troo default #{type_str} <id>' to set a default #{type_str} first."
+      "Specify an <id> or use 'troo default #{type_str} <id>' " \
+      "to set a default #{type_str} first."
     end
 
     def error_not_found

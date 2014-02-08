@@ -7,7 +7,8 @@ module Troo
     let(:description)     { 'A very brief description...' }
 
     before do
-      @board = Fabricate(:board, name: board_name, description: description)
+      @board = Fabricate(:board, name: board_name,
+                                 description: description)
       Persistence::Board.stubs(:for).returns(@board)
     end
 
@@ -21,12 +22,17 @@ module Troo
       end
 
       it 'assigns the description to an instance variable' do
-        subject.instance_variable_get('@description').must_equal(description)
+        subject.instance_variable_get('@description')
+          .must_equal(description)
       end
     end
 
     describe '.with' do
-      before { VCR.insert_cassette(:create_board, decode_compressed_response: true) }
+      before do
+        VCR.insert_cassette(:create_board,
+                            decode_compressed_response: true)
+      end
+
       after  { VCR.eject_cassette }
 
       subject { described_class.with(board_name, description) }
@@ -44,7 +50,10 @@ module Troo
       end
 
       context 'when the access token is invalid' do
-        before { Trello::Board.stubs(:create).raises(Trello::InvalidAccessToken) }
+        before do
+          Trello::Board.stubs(:create)
+            .raises(Trello::InvalidAccessToken)
+        end
 
         subject { described_class.with(board_name, description) }
 

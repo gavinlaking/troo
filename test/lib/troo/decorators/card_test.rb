@@ -12,13 +12,20 @@ module Troo
       before do
         @board     = Fabricate(:board)
         @list      = Fabricate(:list)
-        @card      = Fabricate(:card, desc: description, default: default)
+        @card      = Fabricate(:card,
+                               desc: description,
+                               default: default)
         @comment   = Fabricate(:comment)
-        @comment_2 = Fabricate(:comment, text: 'My Other Test Comment')
-        @comment_3 = Fabricate(:comment, text: 'My Lithium Comment')
-        @comment_4 = Fabricate(:comment, text: 'My Beryllium Comment')
+        @comment_2 = Fabricate(:comment,
+                               text: 'My Other Test Comment')
+        @comment_3 = Fabricate(:comment,
+                               text: 'My Lithium Comment')
+        @comment_4 = Fabricate(:comment,
+                               text: 'My Beryllium Comment')
         @member    = Fabricate(:member)
-        @member_2  = Fabricate(:member, username: 'mysterywoman', external_member_id: 'some_member_id')
+        @member_2  = Fabricate(:member,
+                               username: 'mysterywoman',
+                               external_member_id: 'some_member_id')
       end
 
       after { database_cleanup }
@@ -31,7 +38,8 @@ module Troo
         end
 
         it 'assigns the options to an instance variable' do
-          subject.instance_variable_get('@options').must_equal(options)
+          subject.instance_variable_get('@options')
+            .must_equal(options)
         end
       end
 
@@ -39,7 +47,8 @@ module Troo
         subject { described_instance.short }
 
         it 'returns a one line overview of the card' do
-          subject.must_equal(" * \e[35m\e[4m(67) \e[0m\e[35m\e[4mMy Test Card\e[0m\n")
+          subject.must_equal(" * \e[35m\e[4m(67) \e[0m\e[35m\e[4m" \
+                             "My Test Card\e[0m\n")
         end
 
         context 'when the ansicolor option is false' do
@@ -122,7 +131,7 @@ module Troo
           let(:description) { nil }
 
           it 'returns a polite message' do
-            subject.must_equal('There are no further details at this time.')
+            subject.must_match(/no further details/)
           end
         end
       end
@@ -210,7 +219,8 @@ module Troo
         subject { described_instance.board }
 
         it 'returns the board details' do
-          subject.must_equal "   \e[35m\e[4m(1) \e[0m\e[35m\e[4mMy Test Board\e[0m\n"
+          subject.must_equal "   \e[35m\e[4m(1) \e[0m\e[35m\e[4mMy " \
+                             "Test Board\e[0m\n"
         end
       end
 
@@ -218,7 +228,8 @@ module Troo
         subject { described_class.new(@card).list }
 
         it 'returns the list details' do
-          subject.must_equal "   \e[35m\e[4m(1) \e[0m\e[35m\e[4mMy Test List\e[0m\n"
+          subject.must_equal "   \e[35m\e[4m(1) \e[0m\e[35m\e[4mMy " \
+                             "Test List\e[0m\n"
         end
       end
     end

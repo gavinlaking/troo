@@ -10,7 +10,6 @@ module Troo
     before do
       @list = Fabricate(:list)
       @card = Fabricate(:card, name: card_name, desc: description)
-
       Persistence::Card.stubs(:for).returns(@card)
     end
 
@@ -28,12 +27,17 @@ module Troo
       end
 
       it 'assigns the description to an instance variable' do
-        subject.instance_variable_get('@description').must_equal(description)
+        subject.instance_variable_get('@description')
+          .must_equal(description)
       end
     end
 
     describe '.for' do
-      before { VCR.insert_cassette(:create_card, decode_compressed_response: true) }
+      before do
+        VCR.insert_cassette(:create_card,
+                            decode_compressed_response: true)
+      end
+
       after  { VCR.eject_cassette }
 
       subject { described_class.for(@list, card_name, description) }
@@ -51,7 +55,10 @@ module Troo
       end
 
       context 'when the access token is invalid' do
-        before { Trello::Card.stubs(:create).raises(Trello::InvalidAccessToken) }
+        before do
+          Trello::Card.stubs(:create)
+            .raises(Trello::InvalidAccessToken)
+        end
 
         subject { described_class.for(@list, card_name, description) }
 

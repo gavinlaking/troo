@@ -3,11 +3,12 @@ require_relative '../../../../test_helper'
 module Troo
   describe Persistence::List do
     let(:described_class) { Persistence::List }
-    let(:resource) do OpenStruct.new(
-      id:     '526d8e130a14a9d846001d97',
-      name:   resource_name,
-      closed: false
-    ) end
+    let(:resource) do
+      OpenStruct.new(
+        id:     '526d8e130a14a9d846001d97',
+        name:   resource_name,
+        closed: false)
+    end
     let(:resource_name) { 'My Test List' }
     let(:options) { {} }
 

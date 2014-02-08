@@ -9,7 +9,6 @@ module Troo
     before do
       @board = Fabricate(:board)
       @list = Fabricate(:list, name: list_name)
-
       Persistence::List.stubs(:for).returns(@list)
     end
 
@@ -28,7 +27,11 @@ module Troo
     end
 
     describe '.for' do
-      before { VCR.insert_cassette(:create_list, decode_compressed_response: true) }
+      before do
+        VCR.insert_cassette(:create_list,
+                            decode_compressed_response: true)
+      end
+
       after  { VCR.eject_cassette }
 
       subject { described_class.for(@board, list_name) }
@@ -46,7 +49,10 @@ module Troo
       end
 
       context 'when the access token is invalid' do
-        before { Trello::List.stubs(:create).raises(Trello::InvalidAccessToken) }
+        before do
+          Trello::List.stubs(:create)
+            .raises(Trello::InvalidAccessToken)
+        end
 
         subject { described_class.for(@board, list_name) }
 

@@ -18,7 +18,8 @@ module Troo
         end
 
         it 'assigns the options to an instance variable' do
-          subject.instance_variable_get('@options').must_equal(options)
+          subject.instance_variable_get('@options')
+            .must_equal(options)
         end
       end
 
@@ -26,7 +27,8 @@ module Troo
         subject { described_class.new(@list, options).short }
 
         it 'returns a one line overview of the list' do
-          subject.must_equal(" * \e[32m\e[4m(1) \e[0m\e[32m\e[4mMy Test List\e[0m\n")
+          subject.must_equal(" * \e[32m\e[4m(1) \e[0m\e[32m\e[4mMy " \
+                             "Test List\e[0m\n")
         end
 
         context 'when the ansicolor option is false' do

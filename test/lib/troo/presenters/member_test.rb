@@ -3,11 +3,13 @@ require_relative '../../../test_helper'
 module Troo
   module Presenters
     describe Member do
-      let(:described_class) { Member }
-      let(:options)         { {} }
+      let(:described_class)     { Member }
+      let(:options)             { {} }
+      let(:external_member_ids) { ['5195fdb5a8c01a2318004f5d'] }
 
       before do
-        @card = Fabricate(:card, external_member_ids: ['5195fdb5a8c01a2318004f5d'])
+        @card = Fabricate(:card,
+                          external_member_ids: external_member_ids)
         @member = Fabricate(:member)
       end
 
@@ -21,7 +23,8 @@ module Troo
         end
 
         it 'assigns the options to an instance variable' do
-          subject.instance_variable_get('@options').must_equal(options)
+          subject.instance_variable_get('@options')
+            .must_equal(options)
         end
       end
 

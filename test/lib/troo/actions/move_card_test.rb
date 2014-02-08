@@ -3,12 +3,13 @@ require_relative '../../../test_helper'
 module Troo
   describe MoveCard do
     let(:described_class) { MoveCard }
+    let(:id) { '526d8e130a14a9d846001d98' }
 
     before do
-      @list = Fabricate(:list, external_list_id: '526d8e130a14a9d846001d98')
+      @list = Fabricate(:list, external_list_id: id)
       @card = Fabricate(:card)
       Troo::External::Card.stubs(:fetch).returns(true)
-     end
+    end
 
     after { database_cleanup }
 
@@ -25,8 +26,12 @@ module Troo
     end
 
     describe '#perform' do
-      before { VCR.insert_cassette(:move_card, decode_compressed_response: true) }
-      after  { VCR.eject_cassette }
+      before do
+        VCR.insert_cassette(:move_card,
+                            decode_compressed_response: true)
+      end
+
+      after { VCR.eject_cassette }
 
       subject { described_class.with(@card, @list) }
 
@@ -37,7 +42,10 @@ module Troo
       end
 
       context 'when the card was not moved' do
-        before { Trello::Card.any_instance.stubs(:move_to_list).raises(Trello::Error) }
+        before do
+          Trello::Card.any_instance.stubs(:move_to_list)
+            .raises(Trello::Error)
+        end
 
         it { subject.must_equal false }
       end

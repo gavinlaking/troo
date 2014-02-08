@@ -14,7 +14,8 @@ module Troo
       end
 
       it 'assigns the template_path to an instance variable' do
-        subject.instance_variable_get('@template_path').must_equal(template_path)
+        subject.instance_variable_get('@template_path')
+          .must_equal(template_path)
       end
     end
 

@@ -9,7 +9,6 @@ module Troo
     before do
       @card = Fabricate(:card)
       @comment = Fabricate(:comment, text: comment)
-
       Persistence::Comment.stubs(:for).returns(@comment)
     end
 
@@ -28,7 +27,11 @@ module Troo
     end
 
     describe '.for' do
-      before { VCR.insert_cassette(:create_comment, decode_compressed_response: true) }
+      before do
+        VCR.insert_cassette(:create_comment,
+                            decode_compressed_response: true)
+      end
+
       after  { VCR.eject_cassette }
 
       subject { described_class.for(@card, comment) }
@@ -40,7 +43,10 @@ module Troo
       end
 
       context 'when the comment was not created' do
-        before { Trello::Card.any_instance.stubs(:add_comment).raises(Trello::Error) }
+        before do
+          Trello::Card.any_instance.stubs(:add_comment)
+            .raises(Trello::Error)
+        end
 
         it { subject.must_equal false }
       end

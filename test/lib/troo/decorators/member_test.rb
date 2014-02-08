@@ -17,7 +17,8 @@ module Troo
         end
 
         it 'assigns the options to an instance variable' do
-          subject.instance_variable_get('@options').must_equal(options)
+          subject.instance_variable_get('@options')
+            .must_equal(options)
         end
       end
 

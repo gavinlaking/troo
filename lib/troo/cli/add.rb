@@ -4,7 +4,8 @@ module Troo
       package_name 'add'
 
       desc 'board (<name>)',
-           'Add a new board with <name>; prompts if <name> not provided.'
+           'Add a new board with <name>; prompts if <name> not ' \
+           'provided.'
       def board(name = nil)
         board_name = name.nil? ? prompt_for_name : name
 
@@ -12,7 +13,8 @@ module Troo
       end
 
       desc 'card <list_id> (<name>)',
-           'Add a new card to the list with <list_id> with <name>; prompts if <name> not provided.'
+           'Add a new card to the list with <list_id> with <name>; ' \
+           'prompts if <name> not provided.'
       def card(id, name = nil)
         card_name = name.nil? ? prompt_for_name : name
 
@@ -20,7 +22,8 @@ module Troo
       end
 
       desc 'comment <card_id> (<comment>)',
-           'Add a new comment to the card with <card_id> with <comment>; prompts if <comment> not provided.'
+           'Add a new comment to the card with <card_id> with ' \
+           '<comment>; prompts if <comment> not provided.'
       def comment(id, comment = nil)
         comment_text = comment.nil? ? prompt_for_comment : comment
 
@@ -28,7 +31,8 @@ module Troo
       end
 
       desc 'list <board_id> (<name>)',
-           'Add a new list to the board with <board_id> with <name>; prompts if <name> not provided.'
+           'Add a new list to the board with <board_id> with ' \
+           '<name>; prompts if <name> not provided.'
       def list(id, name = nil)
         list_name = name.nil? ? prompt_for_name : name
 

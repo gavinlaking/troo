@@ -25,7 +25,8 @@ module Troo
       end
 
       def description
-        return 'N/A' if board.description.nil? || board.description.empty?
+        return 'N/A' if board.description.nil? ||
+                        board.description.empty?
         word_wrap(board.description)
       end
 

@@ -7,7 +7,10 @@ module Troo
       let(:options) { {} }
 
       describe 'when the mode is board' do
-        before { VCR.insert_cassette(:comments_by_board_id, decode_compressed_response: true) }
+        before do
+          VCR.insert_cassette(:comments_by_board_id,
+                              decode_compressed_response: true)
+        end
         after  { VCR.eject_cassette }
 
         let(:board_id) { '526d8e130a14a9d846001d96' }
@@ -28,7 +31,10 @@ module Troo
         end
 
         context 'when the access token is invalid' do
-          before { Trello::Board.stubs(:find).raises(Trello::InvalidAccessToken) }
+          before do
+            Trello::Board.stubs(:find)
+              .raises(Trello::InvalidAccessToken)
+          end
 
           subject { described_class.new(board_id, options).fetch }
 
@@ -39,7 +45,10 @@ module Troo
       end
 
       describe 'when the mode is list' do
-        before { VCR.insert_cassette(:comments_by_list_id, decode_compressed_response: true) }
+        before do
+          VCR.insert_cassette(:comments_by_list_id,
+                              decode_compressed_response: true)
+        end
         after  { VCR.eject_cassette }
 
         let(:list_id) { '526d8e130a14a9d846001d97' }
@@ -61,7 +70,10 @@ module Troo
       end
 
       describe 'when the mode is card' do
-        before { VCR.insert_cassette(:comments_by_card_id, decode_compressed_response: true) }
+        before do
+          VCR.insert_cassette(:comments_by_card_id,
+                              decode_compressed_response: true)
+        end
         after  { VCR.eject_cassette }
 
         let(:card_id) { '526d8f19ddb279532e005259' }

@@ -26,7 +26,8 @@ module Troo
         subject { described_class.new(@board, options).short }
 
         it 'returns a one line overview of the board' do
-          subject.must_equal(" * \e[34m\e[4m(1) \e[0m\e[34m\e[4mMy Test Board\e[0m\n")
+          subject.must_equal(" * \e[34m\e[4m(1) \e[0m\e[34m\e[4mMy " \
+                             "Test Board\e[0m\n")
         end
 
         context 'when the ansicolor option is false' do

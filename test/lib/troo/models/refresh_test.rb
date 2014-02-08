@@ -9,7 +9,8 @@ module Troo
 
     context 'attributes' do
       it 'should have a last_performed_at attribute' do
-        subject.last_performed_at.must_equal Time.parse('2014-01-16 21:00:00 UTC')
+        subject.last_performed_at
+          .must_equal(Time.parse('2014-01-16 21:00:00 UTC'))
       end
     end
 
