@@ -6,26 +6,28 @@ module Troo
       end
     end
 
-    attr_reader :name
-
     def initialize(name, description = nil)
       @name        = name
       @description = description
     end
 
     def perform
-      update_boards
+      create_local
     end
 
     private
     attr_reader :name, :description
 
-    def update_boards
-      return BoardPersistence.for(create_board) if create_board
-      false
+    def create_local
+      if create_remote
+        Persistence::Board.for(create_remote)
+        # refresh for lists
+      else
+        false
+      end
     end
 
-    def create_board
+    def create_remote
       @board ||= Trello::Board.create(attributes)
     rescue Trello::InvalidAccessToken
       raise Troo::InvalidAccessToken

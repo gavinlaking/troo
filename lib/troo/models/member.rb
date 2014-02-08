@@ -14,12 +14,16 @@ module Troo
 
     index :external_member_id
 
-    def decorator(options = {})
-      MemberDecorator.new(self, options)
+    def self.remote(id, options = { mode: :member })
+      External::Member.fetch(id, options).first
     end
 
-    def presenter
-      MemberPresenter.new(self)
+    def decorator(options = {})
+      Decorators::Member.new(self, options)
+    end
+
+    def presenter(options = {})
+      Presenters::Member.new(self, options)
     end
   end
 end

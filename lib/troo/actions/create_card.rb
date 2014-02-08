@@ -13,18 +13,18 @@ module Troo
     end
 
     def perform
-      update_cards
+      create_local
     end
 
     private
     attr_reader :list, :name, :description
 
-    def update_cards
-      return CardPersistence.for(create_card) if create_card
+    def create_local
+      return Persistence::Card.for(create_remote) if create_remote
       false
     end
 
-    def create_card
+    def create_remote
       @card ||= Trello::Card.create(attributes)
     rescue Trello::InvalidAccessToken
       raise Troo::InvalidAccessToken

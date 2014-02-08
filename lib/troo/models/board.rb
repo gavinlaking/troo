@@ -14,6 +14,10 @@ module Troo
 
     alias_method :default?, :default
 
+    def self.remote(id, options = {})
+      External::Board.fetch(id, options).first
+    end
+
     def lists
       Troo::List.find(external_board_id: self.external_board_id)
     end
@@ -23,16 +27,15 @@ module Troo
     end
 
     def decorator(options = {})
-      BoardDecorator.new(self, options)
+      Decorators::Board.new(self, options)
     end
 
-    def presenter
-      BoardPresenter.new(self)
+    def presenter(options = {})
+      Presenters::Board.new(self, options)
     end
 
     def set_default!
-      SetDefault.for(self)
+      Behaviours::SetDefault.for(self)
     end
   end
 end
-

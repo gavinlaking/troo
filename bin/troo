@@ -1,12 +1,7 @@
 #!/usr/bin/env ruby
 
-trap("SIGINT") { exit! }
+trap("INT") { exit! }
 
 require_relative "../lib/troo"
 
-begin
-  puts
-  Troo::CLI::Main.start(ARGV)
-rescue SocketError
-  puts "Cannot continue, no network connection."
-end
+Troo::Launcher.new(ARGV.dup).execute!

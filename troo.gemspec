@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "cucumber",       "1.3.10"
   spec.add_development_dependency "fabrication",    "2.9.3"
   spec.add_development_dependency "guard",          "2.2.5"
+  spec.add_development_dependency "guard-cucumber"
   spec.add_development_dependency "guard-minitest", "2.1.3"
   spec.add_development_dependency "minitest",       "5.0.8"
   spec.add_development_dependency "mocha",          "0.14.0"

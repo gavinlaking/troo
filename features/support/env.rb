@@ -1,31 +1,29 @@
-# require "minitest/spec"
-# World(MiniTest::Assertions)
-# MiniTest::Spec.new(nil)
-
-# require 'minitest'
-# module MiniTestAssertions
-#   def self.extended(base)
-#     base.extend(MiniTest::Assertions)
-#     base.assertions = 0
-#   end
-
-#   attr_accessor :assertions
-# end
-# World(MiniTestAssertions)
-
-
+require "simplecov"
+require "aruba"
 require "aruba/cucumber"
+require "aruba/in_process"
+require "ohm"
+require "vcr"
+require "webmock/cucumber"
 
-ENV['PATH'] = "#{File.expand_path(File.dirname(__FILE__) + "/../../bin")}#{File::PATH_SEPARATOR}#{ENV['PATH']}"
-LIB_DIR = File.join(File.expand_path(File.dirname(__FILE__)), "..", "..", "lib")
-
-Before do
-  # Using "announce" causes massive warnings on 1.9.2
-  @puts = true
-  @original_rubylib = ENV['RUBYLIB']
-  ENV['RUBYLIB'] = LIB_DIR + File::PATH_SEPARATOR + ENV['RUBYLIB'].to_s
+SimpleCov.start do
+  add_filter   "/test/"
 end
 
-After do
-  ENV['RUBYLIB'] = @original_rubylib
+require_relative "../../lib/troo.rb"
+
+class CucumberError < StandardError; end
+
+Aruba::InProcess.main_class = Troo::Launcher
+Aruba.process = Aruba::InProcess
+
+WebMock.disable_net_connect!
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'features/support/fixtures/cassettes'
+  c.hook_into :webmock
+  #c.debug_logger = File.open("logs/vcr.log", 'w')
+  c.filter_sensitive_data('<OAuth Credentials>') do |interaction|
+    interaction.request.headers['Authorization'].first
+  end
 end

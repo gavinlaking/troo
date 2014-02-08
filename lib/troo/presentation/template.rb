@@ -4,13 +4,13 @@ module Troo
   end
 
   class Template
+    include DecoratorHelpers
+
     class << self
       def parse(object, template_path)
         new(object, template_path).parse
       end
     end
-
-    include DecoratorHelpers
 
     def initialize(object, template_path)
       @object        = object

@@ -12,28 +12,28 @@ module Troo
     end
 
     def perform
-      update_comments
+      create_local
     end
 
     private
-    attr_reader :card, :comment
+    attr_reader   :card, :comment
+    attr_accessor :comment_resource
 
-    def update_comments
-      return CommentPersistence.for(parsed_json_response) if parsed_json_response
+    def create_local
+      return Persistence::Comment.for(resource) if create_remote
       false
     end
 
-    def parsed_json_response
-      return false unless create_comment
-      resource = OpenStruct.new(JSON.parse(create_comment))
-      resource.member_creator_id = resource.memberCreator.fetch("id", "")
-      resource
+    def resource
+      Remote::Comment.create(comment_resource)
     end
 
-    def create_comment
+    def create_remote
       @comment_resource ||= Trello::Card.new.
         update_fields(attributes).add_comment(comment)
-    rescue
+    rescue Trello::InvalidAccessToken
+      raise Troo::InvalidAccessToken
+    rescue Trello::Error
       false
     end
 

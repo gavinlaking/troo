@@ -11,7 +11,7 @@ module Troo
       @list = Fabricate(:list)
       @card = Fabricate(:card, name: card_name, desc: description)
 
-      CardPersistence.stubs(:for).returns(@card)
+      Persistence::Card.stubs(:for).returns(@card)
     end
 
     after { database_cleanup }
@@ -48,6 +48,16 @@ module Troo
         before { Trello::Card.stubs(:create).raises(Trello::Error) }
 
         it { subject.must_equal false }
+      end
+
+      context "when the access token is invalid" do
+        before { Trello::Card.stubs(:create).raises(Trello::InvalidAccessToken) }
+
+        subject { described_class.for(@list, card_name, description) }
+
+        it "catches the exception and re-raises" do
+          proc { subject }.must_raise(Troo::InvalidAccessToken)
+        end
       end
     end
   end

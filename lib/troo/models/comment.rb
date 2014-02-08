@@ -16,21 +16,24 @@ module Troo
     index :external_comment_id
     index :external_member_id
 
+    def self.remote
+      nil
+    end
+
     def board
-      BoardRetrieval.retrieve(self.external_board_id)
+      Retrieval::Board.retrieve(self.external_board_id)
     end
 
     def card
-      CardRetrieval.retrieve(self.external_card_id)
+      Retrieval::Card.retrieve(self.external_card_id)
     end
 
     def member
-      MemberRetrieval.retrieve(self.external_member_id)
+      Retrieval::Member.retrieve(self.external_member_id)
     end
 
     def decorator(options = {})
-      CommentDecorator.new(self, options)
+      Decorators::Comment.new(self, options)
     end
   end
 end
-

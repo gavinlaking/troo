@@ -1,1 +1,0 @@
-Feature: Showing a board

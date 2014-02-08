@@ -1,1 +1,0 @@
-Feature: Showing all boards

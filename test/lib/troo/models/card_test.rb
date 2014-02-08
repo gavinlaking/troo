@@ -24,8 +24,32 @@ module Troo
         subject.url.must_equal "some trello url"
       end
 
-      it "should have an external_member_ids attribute" do
-        subject.external_member_ids.must_equal(["5195fdb5a8c01a2318004f5d"])
+      describe "#external_member_ids" do
+        context "when the attribute is set" do
+          context "and the attribute is an array" do
+            it "returns the attribute" do
+              subject.external_member_ids.
+                must_equal(["5195fdb5a8c01a2318004f5d"])
+            end
+          end
+
+          context "and the attribute is a string" do
+            let(:described_instance) { Fabricate.build(:card, external_member_ids: "[\"5195fdb5a8c01a2318004f5d\"]") }
+
+            it "converts to an array and returns the attribute" do
+              subject.external_member_ids.
+                must_equal(["5195fdb5a8c01a2318004f5d"])
+            end
+          end
+        end
+
+        context "when the attribute is not set" do
+          let(:described_instance) { Fabricate.build(:card, external_member_ids: nil) }
+
+          it "returns an empty collection" do
+            subject.external_member_ids.must_equal([])
+          end
+        end
       end
 
       it "should have a position attribute" do

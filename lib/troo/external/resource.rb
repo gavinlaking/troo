@@ -1,16 +1,22 @@
 module Troo
   module External
     class Resource
-      class << self
-        private
+      attr_reader :external_id
 
-        def closed?(resource)
-          resource.nil? || resource.closed?
+      class << self
+        def fetch(external_id, options = {})
+          new(external_id, options).persist
         end
       end
 
-      def fetch_by_external_id
+      def initialize(external_id, options = {})
+        @external_id = external_id
+        @options     = options
+      end
+
+      def fetch
         case options.fetch(:mode)
+        when :all    then all_boards
         when :board  then by_board_id
         when :list   then by_list_id
         when :card   then by_card_id
@@ -20,6 +26,16 @@ module Troo
         raise Troo::InvalidAccessToken
       rescue Trello::Error
         []
+      end
+
+      private
+
+      def options
+        defaults.merge!(@options)
+      end
+
+      def defaults
+        { mode: :board }
       end
     end
   end
