@@ -1,7 +1,5 @@
-key: some_key
-secret: some_secret
-oauth_token: some_oauth_token
-oauth_token_secret:
-main_db: 1
-test_db: 2
-
+default:
+  api_key: some_key
+  api_token: some_secret
+  main_db: 1
+  test_db: 2

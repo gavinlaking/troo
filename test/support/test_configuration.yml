@@ -1,0 +1,5 @@
+test:
+  key: some_key
+  secret: some_token
+  main_db: 5
+  test_db: 6

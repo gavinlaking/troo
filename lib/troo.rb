@@ -2,7 +2,9 @@ require_relative 'troo/troo'
 require_relative 'troo/version'
 
 module Troo
-  class InvalidAccessToken < StandardError; end
+  InvalidAccessToken = Class.new(StandardError)
+
+  Troo::Configuration.load(Dir.home + '/.trooconf', :default)
 
   def self.config
     @config ||= OpenStruct.new(YAML.load_file(Dir.home + '/.trooconf'))
