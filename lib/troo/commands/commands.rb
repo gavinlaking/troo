@@ -9,6 +9,8 @@ require_relative 'default/board'
 require_relative 'default/card'
 require_relative 'default/list'
 
+require_relative 'move/card'
+
 require_relative 'refresh/resource'
 require_relative 'refresh/all'
 require_relative 'refresh/board'
