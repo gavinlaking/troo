@@ -7,7 +7,7 @@ Then(/^the output should be the version number of troo$/) do
 end
 
 Before do
-  Ohm.connect(db: Troo.config.test_db)
+  Ohm.connect(db: Troo::Configuration.test_db)
 end
 
 After do

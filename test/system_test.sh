@@ -7,6 +7,9 @@ function partition() {
 
 if [ -e ./bin/troo ]
 then
+  partition "init"
+  ./bin/troo init
+
   partition "version"
   ./bin/troo version
 
@@ -53,3 +56,4 @@ else
 fi
 
 # troo  add [board|list|card|comment] <id>   # Add board, list, card or comment.
+# troo  move <card_id> <list_id> # Move card to list.
