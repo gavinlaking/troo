@@ -28,12 +28,19 @@ module Troo
         end
 
         def success
-          "Card '#{card.decorator.name}' moved to " \
-          "'#{list.decorator.name}'."
+          "Card '#{card_name}' moved to '#{list_name}'."
         end
 
         def error
           'Card could not be moved.'
+        end
+
+        def card_name
+          card.decorator.name
+        end
+
+        def list_name
+          list.decorator.name
         end
 
         def card
