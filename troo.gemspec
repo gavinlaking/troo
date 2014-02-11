@@ -42,5 +42,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "ruby-trello",    "1.1.0"
   spec.add_dependency "term-ansicolor", "1.2.2"
   spec.add_dependency "thor",           "0.18.1"
+  spec.add_dependency "yajl-ruby"
 end
 

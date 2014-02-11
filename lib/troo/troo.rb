@@ -12,6 +12,7 @@ require 'singleton'
 require 'term/ansicolor'
 require 'thor'
 require 'trello'
+require 'yajl'
 require 'yaml'
 
 require_relative 'configuration'
