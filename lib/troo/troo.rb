@@ -16,8 +16,6 @@ require 'yaml'
 
 require_relative 'configuration'
 
-require_relative 'api/client'
-
 require_relative 'helpers/command_helpers'
 require_relative 'helpers/decorator_helpers'
 require_relative 'helpers/model_helpers'
