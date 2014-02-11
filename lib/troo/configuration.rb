@@ -43,7 +43,7 @@ module Troo
     end
 
     def api_url
-      'https://api.trello.com/1'
+      config.fetch('api_url', 'https://api.trello.com/1')
     end
 
     def api_key
@@ -65,11 +65,11 @@ module Troo
     end
 
     def main_db
-      config.fetch('main_db', '')
+      config.fetch('main_db', '1')
     end
 
     def test_db
-      config.fetch('test_db', '')
+      config.fetch('test_db', '2')
     end
   end
 end
