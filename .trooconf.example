@@ -1,5 +1,7 @@
 default:
   api_key: some_key
   api_token: some_secret
+  api_oauth_token: some_oauth_token
+  api_oauth_token_secret: some_oauth_token_secret
   main_db: 1
   test_db: 2

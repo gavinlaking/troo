@@ -21,6 +21,14 @@ module Troo
         instance.api_token
       end
 
+      def api_oauth_token
+        instance.api_oauth_token
+      end
+
+      def api_oauth_token_secret
+        instance.api_oauth_token_secret
+      end
+
       def main_db
         instance.main_db
       end
@@ -47,6 +55,14 @@ module Troo
       config.fetch('api_token', nil) || config.fetch('secret', '')
     end
     alias_method :secret, :api_token
+
+    def api_oauth_token
+      config.fetch('api_oauth_token', '')
+    end
+
+    def api_oauth_token_secret
+      config.fetch('api_oauth_token_secret', '')
+    end
 
     def main_db
       config.fetch('main_db', '')

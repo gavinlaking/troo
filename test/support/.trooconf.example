@@ -1,5 +1,7 @@
 test:
-  key: some_key
-  secret: some_token
+  api_key: some_key
+  api_token: some_token
+  api_oauth_token: some_oauth_token
+  api_oauth_token_secret: some_oauth_token_secret
   main_db: 5
   test_db: 6
