@@ -11,7 +11,7 @@ module Troo
 
         def error
           if count > 0
-            '  Boards: ' + Esc.red + 'No default board set.' + Esc.reset
+            '  Boards: ' + Esc.red + 'No default board set.' + Esc.reset + " (#{count})"
           else
             "  Boards: No boards found.\n"
           end

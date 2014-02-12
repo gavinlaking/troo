@@ -11,7 +11,7 @@ module Troo
 
         def error
           if count > 0
-            '  Cards:  ' + Esc.red + 'No default card set.' + Esc.reset
+            '  Cards:  ' + Esc.red + 'No default card set.' + Esc.reset + " (#{count})"
           else
             "  Cards:  No cards found.\n"
           end
