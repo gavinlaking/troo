@@ -30,6 +30,12 @@ module Troo
 
       private
 
+      def params
+        params = options.dup
+        params.delete(:mode)
+        params
+      end
+
       def options
         defaults.merge!(@options)
       end
