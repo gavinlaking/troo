@@ -13,8 +13,9 @@ module Troo
         end
 
         def move
-          return 'Card cannot be found.' unless card
-          return 'List cannot be found.' unless list
+          return 'Card cannot be found.' if card_not_found?
+          return 'List cannot be found.' if list_not_found?
+          return 'Board cannot be found' if board_specified? && board_not_found?
           return success if moved?
           error
         end
@@ -28,7 +29,11 @@ module Troo
         end
 
         def success
-          "Card '#{card_name}' moved to '#{list_name}'."
+          if board_specified?
+            "Card '#{card_name}' moved to '#{list_name}' on '#{board_name}'."
+          else
+            "Card '#{card_name}' moved to '#{list_name}'."
+          end
         end
 
         def error
@@ -39,16 +44,40 @@ module Troo
           card.decorator.name
         end
 
-        def list_name
-          list.decorator.name
-        end
-
         def card
           @card ||= Retrieval::Card.retrieve(card_id)
         end
 
+        def card_not_found?
+          card.nil?
+        end
+
+        def list_name
+          list.decorator.name
+        end
+
         def list
           @list ||= Retrieval::List.retrieve(list_id)
+        end
+
+        def list_not_found?
+          list.nil?
+        end
+
+        def board_name
+          board.decorator.name
+        end
+
+        def board
+          @board ||= Retrieval::Board.retrieve(board_id)
+        end
+
+        def board_not_found?
+          board.nil?
+        end
+
+        def board_specified?
+          !board_id.nil?
         end
       end
     end
