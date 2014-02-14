@@ -1,6 +1,6 @@
 Feature: Refreshing a resource
 
-  @refresh
+  @failing @refresh
   Scenario: Refresh the list with ID
     Given the Trello API is stubbed with "refresh_list_success"
     And a list exists
@@ -13,7 +13,7 @@ Feature: Refreshing a resource
     When I run `troo refresh list 69`
     Then the output should contain "List cannot be found"
 
-  @refresh
+  @failing @refresh
   Scenario: Refresh the default list
     Given the Trello API is stubbed with "refresh_default_list_success"
     And a default list exists

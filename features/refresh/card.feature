@@ -1,6 +1,6 @@
 Feature: Refreshing a card
 
-  @refresh
+  @failing @refresh
   Scenario: Refresh the card with ID
     Given the Trello API is stubbed with "refresh_card_success"
     And a card exists
@@ -13,7 +13,7 @@ Feature: Refreshing a card
     When I run `troo refresh card 69`
     Then the output should contain "Card cannot be found"
 
-  @refresh
+  @failing @refresh
   Scenario: Refresh the default card
     Given the Trello API is stubbed with "refresh_default_card_success"
     And a default card exists

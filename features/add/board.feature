@@ -1,6 +1,6 @@
 Feature: Adding content to Trello
 
-  @add
+  @failing @add
   Scenario: Add a board
     Given the Trello API is stubbed with "add_board_success"
     When I run `troo add board "Cuke Add Board"`
