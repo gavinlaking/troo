@@ -20,9 +20,6 @@ require_relative 'configuration'
 
 require_relative 'api/request'
 require_relative 'api/response'
-require_relative 'api/get'
-require_relative 'api/post'
-require_relative 'api/put'
 
 require_relative 'helpers/command_helpers'
 require_relative 'helpers/decorator_helpers'
