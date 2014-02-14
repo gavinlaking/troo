@@ -7,7 +7,7 @@ module Troo
     subject { described_class }
 
     it 'configures the API url' do
-      subject.api_url.must_equal('https://api.trello.com/1')
+      subject.api_url.must_equal('http://www.example.com/')
     end
 
     it 'configures the API key' do
