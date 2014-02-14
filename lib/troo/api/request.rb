@@ -1,48 +1,52 @@
 module Troo
   module API
     class Request
-      def initialize(urn, query = {})
-        @urn   = urn
-        @query = query
-      end
+      class << self
+        def get(urn, query = {})
+          new(:get, urn, query).response
+        end
 
-      def uri
-        Addressable::URI.parse(url + urn).tap do |uri|
-          uri.query_values = query if query.any?
+        def post(urn, query = {})
+          new(:post, urn, query).response
+        end
+
+        def put(urn, query = {})
+          new(:put, urn, query).response
         end
       end
 
+      def initialize(verb, urn, query = {})
+        @verb, @urn, @query = verb, urn, query
+      end
+
       def response
-        @response ||= Response.new(http.request(request))
+        @response ||= Response.new(request)
       end
 
       private
 
-      attr_reader :urn, :query
+      attr_reader :urn, :verb
 
-      def http
-        Net::HTTP.new(uri.host, uri.inferred_port).tap do |http|
-          http.use_ssl = true
-          # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      def request
+        RestClient::Request.execute(
+          headers: Headers.build!(uri),
+          payload: query,
+          timeout: 10,
+          method:  verb,
+          url:     uri)
+      end
 
-          http.open_timeout = 2
-          http.read_timeout = 5
-        end
+      def query
+        Addressable::URI.new
+          .tap { |u| u.query_values = @query }.query
+      end
+
+      def uri
+        Addressable::URI.parse(url + urn).to_s
       end
 
       def url
         Troo::Configuration.api_url
-      end
-
-      def query
-        credentials.merge!(@query)
-      end
-
-      def credentials
-        {
-          key:   Troo::Configuration.api_key,
-          token: Troo::Configuration.api_token
-        }
       end
     end
   end
