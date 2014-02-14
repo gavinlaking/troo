@@ -3,6 +3,7 @@ require_relative 'troo/version'
 
 module Troo
   InvalidAccessToken = Class.new(StandardError)
+  GenericAPIError    = Class.new(StandardError)
 
   Troo::Configuration.load(Dir.home + '/.trooconf', :default)
 
