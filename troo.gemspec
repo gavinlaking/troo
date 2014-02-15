@@ -37,13 +37,14 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "addressable",    "2.3.5"
   spec.add_dependency "json",           "1.7.7"
-  spec.add_dependency "oauth"
+  spec.add_dependency "oauth",          "0.4.7"
   spec.add_dependency "ohm",            "1.3.2"
   spec.add_dependency "ohm-contrib",    "1.2"
   spec.add_dependency "rest-client",    "1.6.7"
   spec.add_dependency "ruby-trello",    "1.1.0"
   spec.add_dependency "term-ansicolor", "1.2.2"
   spec.add_dependency "thor",           "0.18.1"
-  spec.add_dependency "yajl-ruby"
+  spec.add_dependency "virtus",         "1.0.1"
+  spec.add_dependency "yajl-ruby",      "1.2.0"
 end
 
