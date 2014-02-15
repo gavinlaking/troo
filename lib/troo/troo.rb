@@ -75,7 +75,6 @@ require_relative 'models/persistence/comment'
 require_relative 'models/persistence/list'
 require_relative 'models/persistence/member'
 
-require_relative 'models/remote/resource'
 require_relative 'models/remote/board'
 require_relative 'models/remote/card'
 require_relative 'models/remote/comment_data_card'
