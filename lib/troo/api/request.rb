@@ -46,7 +46,7 @@ module Troo
       end
 
       def url
-        Troo::Configuration.api_url
+        Troo.configuration.api_url
       end
     end
   end

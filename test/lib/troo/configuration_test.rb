@@ -4,10 +4,10 @@ module Troo
   describe Configuration do
     let(:described_class) { Configuration }
 
-    subject { described_class }
+    subject { described_class.load('test/support/.trooconf', :test) }
 
     it 'configures the API url' do
-      subject.api_url.must_equal('http://www.example.com/')
+      subject.api_url.must_equal('http://www.example.com')
     end
 
     it 'configures the API key' do

@@ -26,8 +26,8 @@ module Troo
       end
 
       def application
-        OAuth::Token.new(Troo::Configuration.api_oauth_token,
-                         Troo::Configuration.api_oauth_token_secret)
+        OAuth::Token.new(Troo.configuration.api_oauth_token,
+                         Troo.configuration.api_oauth_token_secret)
       end
 
       def wrapper
@@ -35,8 +35,8 @@ module Troo
       end
 
       def consumer
-        OAuth::Consumer.new(Troo::Configuration.api_key,
-                            Troo::Configuration.api_token,
+        OAuth::Consumer.new(Troo.configuration.api_key,
+                            Troo.configuration.api_token,
                             oauth_settings)
       end
 

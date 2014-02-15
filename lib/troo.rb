@@ -7,7 +7,10 @@ module Troo
   InvalidAccessToken = Class.new(StandardError)
   GenericAPIError    = Class.new(StandardError)
 
-  Troo::Configuration.load(Dir.home + '/.trooconf', :default)
+  def self.configuration(file = Dir.home + '/.trooconf', env = :default)
+    @configuration ||= Troo::Configuration.load(file, env)
+  end
+  configuration
 
   def self.logger
     @logger ||= Logger.new('logs/troo.log')
@@ -16,10 +19,10 @@ module Troo
   # RestClient.log = 'logs/restclient.log'
   # Trello.logger = Logger.new("logs/trello.log")
   Trello.configure do |trello|
-    trello.consumer_key       = Troo::Configuration.api_key
-    trello.consumer_secret    = Troo::Configuration.api_token
-    trello.oauth_token        = Troo::Configuration.api_oauth_token
-    trello.oauth_token_secret = Troo::Configuration.api_oauth_token_secret
+    trello.consumer_key       = Troo.configuration.api_key
+    trello.consumer_secret    = Troo.configuration.api_token
+    trello.oauth_token        = Troo.configuration.api_oauth_token
+    trello.oauth_token_secret = Troo.configuration.api_oauth_token_secret
   end
 
   class Launcher
