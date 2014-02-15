@@ -3,6 +3,12 @@ module Troo
     class Response
       attr_accessor :status, :body
 
+      class << self
+        def parse(api_response)
+          new(api_response).parse
+        end
+      end
+
       def initialize(api_response)
         @api_response = api_response
       end
@@ -20,6 +26,7 @@ module Troo
           raise GenericAPIError
         end
       end
+      alias_method :parse, :body
 
       private
 

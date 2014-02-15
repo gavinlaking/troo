@@ -20,7 +20,7 @@ module Troo
       end
 
       def response
-        @response ||= Response.new(request)
+        @response ||= Response.parse(request)
       end
 
       private
