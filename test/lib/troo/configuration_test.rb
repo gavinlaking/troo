@@ -26,12 +26,8 @@ module Troo
       subject.api_oauth_token_secret.must_equal('some_oauth_token_secret')
     end
 
-    it 'configures the main database to use' do
-      subject.main_db.must_equal(5)
-    end
-
-    it 'configures the test database to use' do
-      subject.test_db.must_equal(6)
+    it 'configures the database to use' do
+      subject.database.must_equal(5)
     end
   end
 end

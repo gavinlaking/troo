@@ -4,13 +4,11 @@ default:
   api_token: some_secret
   api_oauth_token: some_oauth_token
   api_oauth_token_secret: some_oauth_token_secret
-  main_db: 1
-  test_db: 2
+  database: 1
 test:
   api_url: http://www.example.com
   api_key: some_key
   api_token: some_secret
   api_oauth_token: some_oauth_token
   api_oauth_token_secret: some_oauth_token_secret
-  main_db: 1
-  test_db: 2
+  database: 2

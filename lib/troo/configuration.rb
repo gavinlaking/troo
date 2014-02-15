@@ -8,8 +8,7 @@ module Troo
       attribute :api_token
       attribute :api_oauth_token
       attribute :api_oauth_token_secret
-      attribute :main_db
-      attribute :test_db
+      attribute :database
     end
 
     class << self
