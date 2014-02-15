@@ -1,8 +1,0 @@
-test:
-  api_url: http://www.example.com/
-  api_key: some_key
-  api_token: some_token
-  api_oauth_token: some_oauth_token
-  api_oauth_token_secret: some_oauth_token_secret
-  main_db: 5
-  test_db: 6
