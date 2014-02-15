@@ -11,6 +11,7 @@ module Troo
     @logger ||= Logger.new('logs/troo.log')
   end
 
+  # RestClient.log = 'logs/restclient.log'
   # Trello.logger = Logger.new("logs/trello.log")
   Trello.configure do |trello|
     trello.consumer_key       = Troo::Configuration.api_key
