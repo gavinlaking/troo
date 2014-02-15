@@ -22,6 +22,7 @@ require 'yaml'
 
 require_relative 'configuration'
 
+require_relative 'api/endpoints'
 require_relative 'api/headers'
 require_relative 'api/request'
 require_relative 'api/response'

@@ -12,6 +12,11 @@ module Troo
   end
   configuration
 
+  def self.endpoints(version = :version_1)
+    @endpoints ||= Troo::API::Endpoints.load(File.dirname(__FILE__) + '/../config/trello_api.yml', version)
+  end
+  endpoints
+
   def self.logger
     @logger ||= Logger.new('logs/troo.log')
   end
