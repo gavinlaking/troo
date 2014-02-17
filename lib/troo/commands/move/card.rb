@@ -16,7 +16,7 @@ module Troo
           return 'Card cannot be found.' if card_not_found?
           return 'List cannot be found.' if list_not_found?
           return 'Board cannot be found' if board_specified? && board_not_found?
-          return success if moved?
+          return success if moved
           error
         end
 
@@ -24,7 +24,7 @@ module Troo
 
         attr_reader :card_id, :list_id, :board_id
 
-        def moved?
+        def moved
           @moved ||= MoveCard.with(card, list)
         end
 
