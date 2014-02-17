@@ -4,88 +4,57 @@ module Troo
   module External
     describe Member do
       let(:described_class) { Member }
+      let(:external_id) { 'some_id' }
+      let(:options) { {} }
 
-      describe 'when the mode is board' do
-        before do
-          VCR.insert_cassette(:members_by_board_id,
-                              decode_compressed_response: true)
-        end
-        after  { VCR.eject_cassette }
+      describe '.fetch' do
+        subject { described_class.fetch(external_id, options) }
 
-        let(:board_id) { '526d8e130a14a9d846001d96' }
-        let(:options)  { { mode: :board } }
+        context 'when the mode is :all' do
+          let(:options) { { mode: :all } }
 
-        subject { described_class.fetch(board_id, options) }
-
-        it 'returns multiple members' do
-          subject.size.must_equal(1)
+          it { subject.must_equal [] }
         end
 
-        context 'when the board cannot be found' do
-          before { Trello::Board.stubs(:find).raises(Trello::Error) }
+        context 'when the mode is :board' do
+          let(:external_id) { '526d8e130a14a9d846001d96' }
+          let(:options) { { mode: :board } }
 
-          it 'returns an empty collection' do
-            subject.must_equal([])
-          end
-        end
-
-        context 'when the access token is invalid' do
           before do
-            Trello::Board.stubs(:find)
-              .raises(Trello::InvalidAccessToken)
+            VCR.insert_cassette(:members_by_board_id,
+                                decode_compressed_response: true)
           end
+          after { VCR.eject_cassette }
 
-          subject { described_class.new(board_id, options).fetch }
-
-          it 'catches the exception and re-raises' do
-            proc { subject }.must_raise(Troo::InvalidAccessToken)
+          it 'fetches the remote resource' do
+            subject.size.must_equal(1)
           end
         end
-      end
 
-      describe 'when the mode is list' do
-        let(:list_id) { '526d8e130a14a9d846001d97' }
-        let(:options) { { mode: :list } }
+        context 'when the mode is :list' do
+          let(:options) { { mode: :list } }
 
-        subject { described_class.fetch(list_id, options) }
-
-        it 'returns an empty collection' do
-          subject.must_equal([])
-        end
-      end
-
-      describe 'when the mode is card' do
-        let(:card_id) { '526d8f19ddb279532e005259' }
-        let(:options) { { mode: :card } }
-
-        subject { described_class.fetch(card_id, options) }
-
-        it 'returns an empty collection' do
-          subject.must_equal([])
-        end
-      end
-
-      describe 'when the mode is member' do
-        before do
-          VCR.insert_cassette(:member_by_member_id,
-                              decode_compressed_response: true)
-        end
-        after  { VCR.eject_cassette }
-
-        let(:member_id) { '5195fdb5a8c01a2318004f5d' }
-        let(:options)   { { mode: :member } }
-
-        subject { described_class.fetch(member_id, options) }
-
-        it 'returns a member with the member_id' do
-          subject.size.must_equal(1)
+          it { subject.must_equal [] }
         end
 
-        context 'when the member cannot be found' do
-          before { Trello::Member.stubs(:find).raises(Trello::Error) }
+        context 'when the mode is :card' do
+          let(:options) { { mode: :card } }
 
-          it 'returns an empty collection' do
-            subject.must_equal([])
+          it { subject.must_equal [] }
+        end
+
+        context 'when the mode is :member' do
+          let(:external_id) { '5195fdb5a8c01a2318004f5d' }
+          let(:options) { { mode: :member } }
+
+          before do
+            VCR.insert_cassette(:member_by_id,
+                                decode_compressed_response: true)
+          end
+          after { VCR.eject_cassette }
+
+          it 'fetches the remote resource' do
+            subject.size.must_equal(1)
           end
         end
       end

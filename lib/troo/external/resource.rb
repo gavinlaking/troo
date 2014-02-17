@@ -14,26 +14,10 @@ module Troo
         @options     = options
       end
 
-      def fetch
-        case options.fetch(:mode)
-        when :all    then all_boards
-        when :board  then by_board_id
-        when :list   then by_list_id
-        when :card   then by_card_id
-        when :member then by_member_id
-        end
-      rescue Trello::InvalidAccessToken
-        raise Troo::InvalidAccessToken
-      rescue Trello::Error
-        []
-      end
-
       private
 
-      def params
-        params = options.dup
-        params.delete(:mode)
-        params
+      def resources
+        API::Client.perform(parameters)
       end
 
       def options
@@ -41,7 +25,31 @@ module Troo
       end
 
       def defaults
-        { mode: :board }
+        {}
+      end
+
+      def parameters
+        {
+          verb:          :get,
+          endpoint:      nil,
+          interpolation: interpolation,
+          query:         {},
+          model:         model
+        }.merge!(resource_parameters)
+      end
+
+      def resource_parameters
+        case options.fetch(:mode)
+        when :all    then all
+        when :board  then by_board_id
+        when :list   then by_list_id
+        when :card   then by_card_id
+        when :member then by_member_id
+        end
+      end
+
+      def interpolation
+        { external_id: external_id }
       end
     end
   end

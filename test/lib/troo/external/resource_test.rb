@@ -7,6 +7,10 @@ module Troo
       let(:external_id) { '526d8e130a14a9d846001d96' }
       let(:options) { {} }
 
+      before do
+        API::Client.stubs(:perform)
+      end
+
       describe '.initialize' do
         subject { described_class.new(external_id, options) }
 

@@ -2,29 +2,39 @@ module Troo
   module External
     class Card < Resource
       def persist
-        Persistence::Card.with_collection(fetch)
+        Persistence::Card.with_collection(resources)
       end
 
       private
 
-      def defaults
-        { comments: true, mode: :board }
+      def all
+        {}
       end
 
       def by_board_id
-        Trello::Board.find(external_id).cards
+        {
+          endpoint: :cards_by_board_id,
+          query:    { filter: :open }
+        }
       end
 
       def by_list_id
-        Trello::List.find(external_id).cards
+        {
+          endpoint: :cards_by_list_id,
+          query:    { filter: :open }
+        }
       end
 
       def by_card_id
-        [Trello::Card.find(external_id)]
+        { endpoint: :card_by_id }
       end
 
       def by_member_id
-        []
+        {}
+      end
+
+      def model
+        Remote::Card
       end
     end
   end
