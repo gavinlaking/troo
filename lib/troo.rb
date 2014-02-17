@@ -24,13 +24,6 @@ module Troo
   end
 
   # RestClient.log = File.dirname(__FILE__) + '/../logs/restclient.log'
-  # Trello.logger = Logger.new("logs/trello.log")
-  Trello.configure do |trello|
-    trello.consumer_key       = Troo.configuration.api_key
-    trello.consumer_secret    = Troo.configuration.api_token
-    trello.oauth_token        = Troo.configuration.api_oauth_token
-    trello.oauth_token_secret = Troo.configuration.api_oauth_token_secret
-  end
 
   class Launcher
     def initialize(argv, stdin = STDIN,
