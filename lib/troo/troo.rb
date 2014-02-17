@@ -100,6 +100,7 @@ require_relative 'models/member'
 require_relative 'models/refresh'
 
 require_relative 'commands/commands'
+require_relative 'commands/default'
 
 require_relative 'cli/thor_fixes'
 require_relative 'cli/add'
