@@ -3,34 +3,12 @@ module Troo
     class List < Resource
       def adapted
         {
-          external_board_id: external_board_id,
-          external_list_id:  external_list_id,
-          name:              name,
-          position:          position,
-          closed:            closed
+          external_board_id: resource.external_board_id,
+          external_list_id:  resource.external_list_id,
+          name:              resource.name,
+          position:          resource.position,
+          closed:            resource.closed
         }
-      end
-
-      private
-
-      def external_board_id
-        resource.board_id
-      end
-
-      def external_list_id
-        resource.id
-      end
-
-      def name
-        resource.name
-      end
-
-      def position
-        resource.pos.to_s
-      end
-
-      def closed
-        resource.closed.to_s
       end
     end
   end
