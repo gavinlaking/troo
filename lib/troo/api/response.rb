@@ -18,19 +18,19 @@ module Troo
       end
 
       def body
-        if ok?
-          @body ||= Yajl::Parser.parse(api_response.body)
-        elsif unauthorized?
-          raise InvalidAccessToken
-        else
-          raise GenericAPIError
-        end
+        return parsed_response  if ok?
+        fail InvalidAccessToken if unauthorized?
+        fail GenericAPIError
       end
       alias_method :parse, :body
 
       private
 
       attr_reader :api_response
+
+      def parsed_response
+        @body ||= Yajl::Parser.parse(api_response.body)
+      end
 
       def ok?
         [200, 201].include?(status_code)
