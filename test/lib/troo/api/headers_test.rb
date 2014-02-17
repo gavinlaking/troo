@@ -19,12 +19,12 @@ module Troo
         end
       end
 
-      describe "#build!" do
+      describe '#build!' do
         subject do
-          described_class.build!(uri, headers)["Authorization"]
+          described_class.build!(uri, headers)['Authorization']
         end
 
-        it "returns the built headers" do
+        it 'returns the built headers' do
           subject.must_match(/consumer_key/)
           subject.must_match(/nonce/)
           subject.must_match(/signature/)

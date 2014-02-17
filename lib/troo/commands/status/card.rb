@@ -11,7 +11,7 @@ module Troo
 
         def error
           if count > 0
-            '  Cards:  ' + Esc.red + 'No default card set.' + Esc.reset + " (#{count})"
+            '  Cards:  ' + no_default_error + " (#{count})"
           else
             "  Cards:  No cards found.\n"
           end
@@ -23,6 +23,10 @@ module Troo
 
         def resource
           @resource ||= Retrieval::Card.default
+        end
+
+        def no_default_error
+          Esc.red + 'No default card set.' + Esc.reset
         end
       end
     end

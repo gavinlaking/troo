@@ -26,10 +26,6 @@ module Troo
       type_str.capitalize
     end
 
-    def type_pluralize
-      type_str + 's'
-    end
-
     def no_default?
       id.nil?
     end

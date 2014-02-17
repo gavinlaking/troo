@@ -11,7 +11,7 @@ module Troo
 
         def error
           if count > 0
-            '  Boards: ' + Esc.red + 'No default board set.' + Esc.reset + " (#{count})"
+            '  Boards: ' + no_default_error + " (#{count})"
           else
             "  Boards: No boards found.\n"
           end
@@ -23,6 +23,10 @@ module Troo
 
         def resource
           @resource ||= Retrieval::Board.default
+        end
+
+        def no_default_error
+          Esc.red + 'No default board set.' + Esc.reset
         end
       end
     end

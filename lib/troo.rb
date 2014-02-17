@@ -14,7 +14,8 @@ module Troo
   configuration
 
   def self.endpoints(version = :version_1)
-    @endpoints ||= Troo::API::Endpoints.load(File.dirname(__FILE__) + '/../config/trello_api.yml', version)
+    @endpoints ||= Troo::API::Endpoints
+      .load(File.dirname(__FILE__) + '/../config/trello_api.yml', version)
   end
   endpoints
 

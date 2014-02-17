@@ -28,7 +28,7 @@ module Troo
         end
       end
 
-      describe "#response" do
+      describe '#response' do
         subject { described_class.new(verb, urn, query) }
       end
     end

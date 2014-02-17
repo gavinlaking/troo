@@ -1,7 +1,7 @@
 module Troo
   module Remote
     class Comment
-      include Virtus.model(:finalize => false)
+      include Virtus.model(finalize: false)
 
       attribute :id
       attribute :idMemberCreator

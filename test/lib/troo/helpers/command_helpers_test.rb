@@ -70,13 +70,5 @@ module Troo
         subject.must_equal('Board')
       end
     end
-
-    describe '#type_pluralize' do
-      subject { described_instance.type_pluralize }
-
-      it 'returns the type as a pluralized string' do
-        subject.must_equal('boards')
-      end
-    end
   end
 end

@@ -11,7 +11,7 @@ module Troo
 
         def error
           if count > 0
-            '  Lists:  ' + Esc.red + 'No default list set.' + Esc.reset + " (#{count})"
+            '  Lists:  ' + no_default_error + " (#{count})"
           else
             "  Lists:  No lists found.\n"
           end
@@ -23,6 +23,10 @@ module Troo
 
         def resource
           @resource ||= Retrieval::List.default
+        end
+
+        def no_default_error
+          Esc.red + 'No default list set.' + Esc.reset
         end
       end
     end
