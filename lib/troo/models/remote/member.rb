@@ -49,6 +49,15 @@ module Troo
       alias_method :one_time_messages_dismissed, :oneTimeMessagesDismissed
       alias_method :uploaded_avatar_hash,        :uploadedAvatarHash
       alias_method :premium_features,            :premiumFeatures
+
+      alias_method :external_member_id, :id
+      alias_method :avatar_id,          :avatarHash
+
+      class << self
+        def with_collection(resources = [])
+          resources.map { |resource| new(resource) }
+        end
+      end
     end
   end
 end

@@ -22,7 +22,7 @@ module Troo
       end
 
       def remote
-        Troo::Board.remote(id)
+        Troo::Board.remote(id).first
       end
     end
   end

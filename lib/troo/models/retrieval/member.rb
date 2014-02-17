@@ -18,7 +18,7 @@ module Troo
       end
 
       def remote
-        Troo::Member.remote(id)
+        Troo::Member.remote(id).first
       end
     end
   end

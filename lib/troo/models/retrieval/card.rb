@@ -26,7 +26,7 @@ module Troo
       end
 
       def remote
-        Troo::Card.remote(id)
+        Troo::Card.remote(id).first
       end
     end
   end

@@ -35,6 +35,20 @@ module Troo
       alias_method :id_attachment_cover,     :idAttachmentCover
       alias_method :manual_cover_attachment, :manualCoverAttachment
       alias_method :short_url,               :shortUrl
+
+      alias_method :external_board_id,       :idBoard
+      alias_method :external_list_id,        :idList
+      alias_method :external_card_id,        :id
+      alias_method :external_member_ids,     :idMembers
+      alias_method :short_id,                :idShort
+      alias_method :position,                :pos
+      alias_method :last_activity_date,      :dateLastActivity
+
+      class << self
+        def with_collection(resources = [])
+          resources.map { |resource| new(resource) }
+        end
+      end
     end
   end
 end

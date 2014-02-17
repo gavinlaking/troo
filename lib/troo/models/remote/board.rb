@@ -7,7 +7,7 @@ module Troo
       attribute :name
       attribute :desc
       attribute :descData
-      attribute :closed
+      attribute :closed,        String
       attribute :idOrganization
       attribute :pinned
       attribute :url
@@ -19,7 +19,15 @@ module Troo
       alias_method :id_organization, :idOrganization
       alias_method :short_url,       :shortUrl
       alias_method :label_names,     :labelNames
+
+      alias_method :external_board_id, :id
+      alias_method :description,       :desc
+
+      class << self
+        def with_collection(resources = [])
+          resources.map { |resource| new(resource) }
+        end
+      end
     end
   end
 end
-
