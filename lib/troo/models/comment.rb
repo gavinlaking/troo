@@ -16,8 +16,14 @@ module Troo
     index :external_comment_id
     index :external_member_id
 
-    def self.remote
-      nil
+    class << self
+      def remote(id, options = { mode: :card })
+        External::Card.fetch(id, options)
+      end
+
+      def retrieve(id = nil)
+        Retrieval::Comment.retrieve(id)
+      end
     end
 
     def board

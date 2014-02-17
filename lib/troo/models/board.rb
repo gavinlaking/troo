@@ -14,8 +14,14 @@ module Troo
 
     alias_method :default?, :default
 
-    def self.remote(id, options = {})
-      External::Board.fetch(id, options).first
+    class << self
+      def remote(id, options = { mode: :board })
+        External::Board.fetch(id, options)
+      end
+
+      def retrieve(id = nil)
+        Retrieval::Board.retrieve(id)
+      end
     end
 
     def lists

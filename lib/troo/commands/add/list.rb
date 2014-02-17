@@ -3,11 +3,8 @@ module Troo
     module Add
       class List < Resource
         def add
-          if created
-            success
-          else
-            error_trello_error
-          end
+          return success if created
+          error_trello_error
         end
 
         private
