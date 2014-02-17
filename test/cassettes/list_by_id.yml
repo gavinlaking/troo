@@ -4,7 +4,7 @@ http_interactions:
     method: get
     uri: https://api.trello.com/1/lists/526d8e130a14a9d846001d97
     body:
-      encoding: US-ASCII
+      encoding: ASCII-8BIT
       string: ''
     headers:
       Accept:
@@ -13,6 +13,8 @@ http_interactions:
       - gzip, deflate
       Authorization:
       - "<OAuth Credentials>"
+      Content-Length:
+      - '0'
       User-Agent:
       - Ruby
   response:
@@ -33,7 +35,7 @@ http_interactions:
       X-Frame-Options:
       - DENY
       X-Server-Time:
-      - '1389729855445'
+      - '1392671186790'
       Expires:
       - Thu, 01 Jan 1970 00:00:00
       Content-Type:
@@ -47,10 +49,10 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Date:
-      - Tue, 14 Jan 2014 20:04:15 GMT
+      - Mon, 17 Feb 2014 21:06:26 GMT
     body:
       encoding: UTF-8
       string: "{\"id\":\"526d8e130a14a9d846001d97\",\"name\":\"To Do\",\"closed\":false,\"idBoard\":\"526d8e130a14a9d846001d96\",\"pos\":311296}"
     http_version: 
-  recorded_at: Tue, 14 Jan 2014 20:04:14 GMT
+  recorded_at: Mon, 17 Feb 2014 21:06:26 GMT
 recorded_with: VCR 2.8.0

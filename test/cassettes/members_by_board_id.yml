@@ -2,63 +2,10 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.trello.com/1/boards/526d8e130a14a9d846001d96
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      Authorization:
-      - "<OAuth Credentials>"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Powered-By:
-      - Express
-      Cache-Control:
-      - max-age=0, must-revalidate, no-cache, no-store
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=15768000
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Frame-Options:
-      - DENY
-      X-Server-Time:
-      - '1389729856082'
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00
-      Content-Type:
-      - application/json
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Allow-Methods:
-      - GET, PUT, POST, DELETE
-      Content-Length:
-      - '717'
-      Vary:
-      - Accept-Encoding
-      Date:
-      - Tue, 14 Jan 2014 20:04:16 GMT
+    uri: https://api.trello.com/1/boards/526d8e130a14a9d846001d96/members
     body:
       encoding: UTF-8
-      string: "{\"id\":\"526d8e130a14a9d846001d96\",\"name\":\"Troo App\",\"desc\":\"\",\"descData\":null,\"closed\":false,\"idOrganization\":null,\"pinned\":true,\"url\":\"<Trello URL>\",\"shortUrl\":\"<Trello URL>\",\"prefs\":{\"permissionLevel\":\"private\",\"voting\":\"disabled\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":false,\"cardCovers\":true,\"cardAging\":\"regular\",\"background\":\"blue\",\"backgroundColor\":\"#205C7E\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"unknown\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"labelNames\":{\"yellow\":\"Analysis Complete\",\"red\":\"\",\"purple\":\"\",\"orange\":\"\",\"green\":\"Ready to Pull\",\"blue\":\"\"}}"
-    http_version:
-  recorded_at: Tue, 14 Jan 2014 20:04:15 GMT
-- request:
-    method: get
-    uri: https://api.trello.com/1/boards/526d8e130a14a9d846001d96/members?filter=all
-    body:
-      encoding: US-ASCII
-      string: ''
+      string: filter=all
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -66,6 +13,8 @@ http_interactions:
       - gzip, deflate
       Authorization:
       - "<OAuth Credentials>"
+      Content-Length:
+      - '10'
       User-Agent:
       - Ruby
   response:
@@ -86,7 +35,7 @@ http_interactions:
       X-Frame-Options:
       - DENY
       X-Server-Time:
-      - '1389729856709'
+      - '1392671729121'
       Expires:
       - Thu, 01 Jan 1970 00:00:00
       Content-Type:
@@ -100,10 +49,10 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Date:
-      - Tue, 14 Jan 2014 20:04:16 GMT
+      - Mon, 17 Feb 2014 21:15:29 GMT
     body:
       encoding: UTF-8
       string: "[{\"id\":\"5195fdb5a8c01a2318004f5d\",\"fullName\":\"Gavin Laking\",\"username\":\"gavinlaking1\"}]"
-    http_version:
-  recorded_at: Tue, 14 Jan 2014 20:04:15 GMT
+    http_version: 
+  recorded_at: Mon, 17 Feb 2014 21:15:28 GMT
 recorded_with: VCR 2.8.0
