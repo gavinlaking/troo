@@ -11,11 +11,11 @@ module Troo
           @list  = Fabricate.build(:list)
           @card  = Fabricate.build(:card)
 
-          External::Board.stubs(:fetch).returns([@board])
-          External::List.stubs(:fetch).returns([@list])
-          External::Card.stubs(:fetch).returns([@card])
-          External::Comment.stubs(:fetch).returns([])
-          External::Member.stubs(:fetch).returns([])
+          Board.stubs(:remote).returns([@board])
+          List.stubs(:remote).returns([@list])
+          Card.stubs(:remote).returns([@card])
+          Comment.stubs(:remote).returns([])
+          Member.stubs(:remote).returns([])
         end
 
         describe '.dispatch' do

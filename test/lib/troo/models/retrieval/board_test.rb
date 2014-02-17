@@ -73,7 +73,7 @@ module Troo
           let(:id)         { '526d_remote_board_005259' }
           let(:board_name) { 'My Remote Test Board' }
 
-          before { External::Board.stubs(:fetch).returns([@board]) }
+          before { Board.stubs(:remote).returns([@board]) }
 
           it 'returns the correct board' do
             subject.name.must_equal('My Remote Test Board')
@@ -83,7 +83,7 @@ module Troo
         context 'when the ID cannot be found' do
           let(:id) { 'not_found_id' }
 
-          before { External::Board.stubs(:fetch).returns([]) }
+          before { Board.stubs(:remote).returns([]) }
 
           it { subject.must_equal(nil) }
         end

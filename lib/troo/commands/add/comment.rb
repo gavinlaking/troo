@@ -22,7 +22,7 @@ module Troo
         end
 
         def resource
-          Retrieval::Card.retrieve(id)
+          Card.retrieve(id)
         end
       end
     end

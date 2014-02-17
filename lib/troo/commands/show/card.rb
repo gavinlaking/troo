@@ -5,7 +5,7 @@ module Troo
         private
 
         def resource
-          Retrieval::Card.retrieve(id)
+          Card.retrieve(id)
         end
       end
     end

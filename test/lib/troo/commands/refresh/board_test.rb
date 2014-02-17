@@ -12,7 +12,7 @@ module Troo
         before do
           @board = Fabricate.build(:board)
           Retrieval::Board.stubs(:retrieve).returns(resource)
-          External::Board.stubs(:fetch).returns(retrieved)
+          Board.stubs(:remote).returns(retrieved)
         end
 
         after { database_cleanup }

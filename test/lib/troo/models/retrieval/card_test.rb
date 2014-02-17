@@ -81,7 +81,7 @@ module Troo
           let(:id) { '526d_remote_card_005259' }
           let(:card_name) { 'My Remote Test Card' }
 
-          before { External::Card.stubs(:fetch).returns([@card]) }
+          before { Card.stubs(:remote).returns([@card]) }
 
           it 'returns the correct card' do
             subject.name.must_equal('My Remote Test Card')
@@ -91,7 +91,7 @@ module Troo
         context 'when the ID cannot be found' do
           let(:id) { 'not_found_id' }
 
-          before { External::Card.stubs(:fetch).returns([]) }
+          before { Card.stubs(:remote).returns([]) }
 
           it { subject.must_equal(nil) }
         end

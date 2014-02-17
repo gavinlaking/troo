@@ -5,7 +5,7 @@ module Troo
         private
 
         def resource
-          Retrieval::List.retrieve(id)
+          List.retrieve(id)
         end
       end
     end

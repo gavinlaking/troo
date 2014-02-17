@@ -8,7 +8,7 @@ module Troo
           new(resource, options).persist
         end
 
-        def with_collection(resources, options = {})
+        def with_collection(resources = [], options = {})
           resources.map do |resource|
             new(resource, options).persist
           end

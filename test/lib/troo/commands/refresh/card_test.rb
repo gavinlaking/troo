@@ -12,7 +12,7 @@ module Troo
         before do
           @card = Fabricate.build(:card)
           Retrieval::Card.stubs(:retrieve).returns(resource)
-          External::Card.stubs(:fetch).returns(retrieved)
+          Card.stubs(:remote).returns(retrieved)
         end
 
         after { database_cleanup }

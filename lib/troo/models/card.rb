@@ -45,11 +45,11 @@ module Troo
     end
 
     def board
-      @board ||= Retrieval::Board.retrieve(external_board_id)
+      @board ||= Board.retrieve(external_board_id)
     end
 
     def list
-      @list ||= Retrieval::List.retrieve(external_list_id)
+      @list ||= List.retrieve(external_list_id)
     end
 
     def comments
@@ -63,7 +63,7 @@ module Troo
     def members
       return [] if external_member_ids.empty?
       @members ||= external_member_ids.map do |member_id|
-        Retrieval::Member.retrieve(member_id)
+        Member.retrieve(member_id)
       end.compact
     end
 

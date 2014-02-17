@@ -12,7 +12,7 @@ module Troo
         before do
           @list = Fabricate.build(:list)
           Retrieval::List.stubs(:retrieve).returns(resource)
-          External::List.stubs(:fetch).returns(retrieved)
+          List.stubs(:remote).returns(retrieved)
         end
 
         after { database_cleanup }

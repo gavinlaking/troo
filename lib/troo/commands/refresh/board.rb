@@ -16,11 +16,11 @@ module Troo
 
         def resource
           return [] unless local
-          @resource ||= External::Board.fetch(local.external_board_id)
+          @resource ||= Board.remote(local.external_board_id, { mode: :board })
         end
 
         def local
-          @local ||= Retrieval::Board.retrieve(id)
+          @local ||= Board.retrieve(id)
         end
       end
     end

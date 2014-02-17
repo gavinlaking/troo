@@ -45,7 +45,7 @@ module Troo
         end
 
         def card
-          @card ||= Retrieval::Card.retrieve(card_id)
+          @card ||= Card.retrieve(card_id)
         end
 
         def card_not_found?
@@ -57,7 +57,7 @@ module Troo
         end
 
         def list
-          @list ||= Retrieval::List.retrieve(list_id)
+          @list ||= List.retrieve(list_id)
         end
 
         def list_not_found?
@@ -69,7 +69,7 @@ module Troo
         end
 
         def board
-          @board ||= Retrieval::Board.retrieve(board_id)
+          @board ||= Board.retrieve(board_id)
         end
 
         def board_not_found?
