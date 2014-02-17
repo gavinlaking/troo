@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 function partition() {
   echo $1
@@ -51,6 +52,8 @@ then
 
   partition "cleanup"
   ./bin/troo cleanup
+
+  partition "All done!"
 else
   echo -e "\nExecute this from the root of the project, i.e: ./test/system_test.sh\n"
 fi
