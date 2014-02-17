@@ -49,7 +49,7 @@ module Troo
               subject.must_match(/moved to/)
             end
 
-            context "when the optional board is provided" do
+            context 'when the optional board is provided' do
               let(:board_id) { '2' }
               let(:board) { @board }
 
