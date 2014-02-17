@@ -21,7 +21,7 @@ module Troo
 
       def defaults
         {
-          "Authorization" => consumer.sign!(wrapper, application)
+          'Authorization' => consumer.sign!(wrapper, application)
         }
       end
 
@@ -37,34 +37,7 @@ module Troo
       def consumer
         OAuth::Consumer.new(Troo.configuration.api_key,
                             Troo.configuration.api_token,
-                            oauth_settings)
-      end
-
-      def oauth_settings
-        {
-          scheme:             :header,
-          scope:              'read,write,account',
-          http_method:        :get,
-          request_token_path: request_token_path,
-          authorize_path:     authorize_path,
-          access_token_path:  access_token_path,
-          signature_method:   'HMAC-SHA1',
-          nonce:              SecureRandom.hex,
-          timestamp:          Time.now.to_i,
-          uri:                uri
-        }
-      end
-
-      def request_token_path
-        'https://trello.com/1/OAuthGetRequestToken'
-      end
-
-      def authorize_path
-        'https://trello.com/1/OAuthAuthorizeToken'
-      end
-
-      def access_token_path
-        'https://trello.com/1/OAuthGetAccessToken'
+                            OAuthSettings.new(uri: uri).to_hash)
       end
     end
   end
