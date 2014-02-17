@@ -6,6 +6,7 @@ require_relative 'troo/version'
 module Troo
   InvalidAccessToken = Class.new(StandardError)
   GenericAPIError    = Class.new(StandardError)
+  EndpointNotFound   = Class.new(StandardError)
 
   def self.configuration(file = Dir.home + '/.trooconf', env = :default)
     @configuration ||= Troo::Configuration.load(file, env)
