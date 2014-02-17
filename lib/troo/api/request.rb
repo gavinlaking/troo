@@ -2,16 +2,8 @@ module Troo
   module API
     class Request
       class << self
-        def get(urn, query = {})
-          new(:get, urn, query).response
-        end
-
-        def post(urn, query = {})
-          new(:post, urn, query).response
-        end
-
-        def put(urn, query = {})
-          new(:put, urn, query).response
+        def make(verb, urn, query = {})
+          new(verb, urn, query).response
         end
       end
 
