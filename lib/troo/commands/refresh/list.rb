@@ -10,7 +10,7 @@ module Troo
 
         def resource
           return [] unless local
-          @resource ||= List.remote(external_list_id, mode: :list)
+          @resource ||= Troo::List.remote(external_list_id, mode: :list)
         end
 
         def external_list_id
@@ -18,7 +18,7 @@ module Troo
         end
 
         def local
-          @local ||= List.retrieve(id)
+          @local ||= Troo::List.retrieve(id)
         end
       end
     end

@@ -27,7 +27,7 @@ module Troo
     end
 
     def board
-      Board.retrieve(external_board_id)
+      Troo::Board.retrieve(external_board_id)
     end
 
     def cards

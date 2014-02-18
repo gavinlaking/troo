@@ -22,7 +22,7 @@ module Troo
         end
 
         def resource
-          Board.retrieve(id)
+          Troo::Board.retrieve(id)
         end
       end
     end

@@ -9,7 +9,7 @@ module Troo
         end
 
         def resource
-          Card.retrieve(id)
+          Troo::Card.retrieve(id)
         end
 
         def type

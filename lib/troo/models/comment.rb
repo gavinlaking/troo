@@ -27,15 +27,15 @@ module Troo
     end
 
     def board
-      Board.retrieve(external_board_id)
+      Troo::Board.retrieve(external_board_id)
     end
 
     def card
-      Card.retrieve(external_card_id)
+      Troo::Card.retrieve(external_card_id)
     end
 
     def member
-      Member.retrieve(external_member_id)
+      Troo::Member.retrieve(external_member_id)
     end
 
     def decorator(options = {})

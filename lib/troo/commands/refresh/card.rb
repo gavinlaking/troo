@@ -10,7 +10,7 @@ module Troo
 
         def resource
           return [] unless local
-          @resource ||= Card.remote(external_card_id, mode: :card)
+          @resource ||= Troo::Card.remote(external_card_id, mode: :card)
         end
 
         def external_card_id
@@ -18,7 +18,7 @@ module Troo
         end
 
         def local
-          @local ||= Card.retrieve(id)
+          @local ||= Troo::Card.retrieve(id)
         end
       end
     end

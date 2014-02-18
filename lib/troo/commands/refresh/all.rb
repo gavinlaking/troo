@@ -14,10 +14,10 @@ module Troo
 
         def refreshed?
           external_board_ids.map do |external_board_id|
-            List.remote(external_board_id, mode: :board)
-            Member.remote(external_board_id, mode: :board)
-            Card.remote(external_board_id, mode: :board).map do |card|
-              Comment.remote(card.external_card_id, mode: :card)
+            Troo::List.remote(external_board_id, mode: :board)
+            Troo::Member.remote(external_board_id, mode: :board)
+            Troo::Card.remote(external_board_id, mode: :board).map do |card|
+              Troo::Comment.remote(card.external_card_id, mode: :card)
             end
           end
           true
@@ -32,7 +32,7 @@ module Troo
         end
 
         def all_boards
-          @boards ||= Board.remote(0, mode: :all)
+          @boards ||= Troo::Board.remote(0, mode: :all)
         end
       end
     end
