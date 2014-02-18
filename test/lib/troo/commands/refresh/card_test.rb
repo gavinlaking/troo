@@ -11,7 +11,7 @@ module Troo
 
         before do
           @card = Fabricate.build(:card)
-          Retrieval::Card.stubs(:retrieve).returns(resource)
+          Troo::Card.stubs(:retrieve).returns(resource)
           Card.stubs(:remote).returns(retrieved)
         end
 

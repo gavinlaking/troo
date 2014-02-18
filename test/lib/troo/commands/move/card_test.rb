@@ -17,9 +17,9 @@ module Troo
           @card  = Fabricate.build(:card)
           @list  = Fabricate.build(:list, name: 'Another Test List')
           @board = Fabricate.build(:board)
-          Retrieval::Card.stubs(:retrieve).returns(card)
-          Retrieval::List.stubs(:retrieve).returns(list)
-          Retrieval::Board.stubs(:retrieve).returns(board)
+          Troo::Card.stubs(:retrieve).returns(card)
+          Troo::List.stubs(:retrieve).returns(list)
+          Troo::Board.stubs(:retrieve).returns(board)
           MoveCard.stubs(:with).returns(outcome)
         end
 

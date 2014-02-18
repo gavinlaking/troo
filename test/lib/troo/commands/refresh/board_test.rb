@@ -11,7 +11,7 @@ module Troo
 
         before do
           @board = Fabricate.build(:board)
-          Retrieval::Board.stubs(:retrieve).returns(resource)
+          Troo::Board.stubs(:retrieve).returns(resource)
           Board.stubs(:remote).returns(retrieved)
         end
 

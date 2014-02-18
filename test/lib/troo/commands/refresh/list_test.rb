@@ -11,7 +11,7 @@ module Troo
 
         before do
           @list = Fabricate.build(:list)
-          Retrieval::List.stubs(:retrieve).returns(resource)
+          Troo::List.stubs(:retrieve).returns(resource)
           List.stubs(:remote).returns(retrieved)
         end
 
