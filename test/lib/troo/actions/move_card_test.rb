@@ -11,7 +11,7 @@ module Troo
       @board = Fabricate(:board, external_board_id: board_id)
       @list = Fabricate(:list, external_list_id: list_id)
       @card = Fabricate(:card)
-      Troo::External::Card.stubs(:fetch).returns(true)
+      Troo::Card.stubs(:remote).returns(true)
     end
 
     after { database_cleanup }
@@ -32,7 +32,7 @@ module Troo
       end
     end
 
-    describe '#perform' do
+    describe '.with' do
       subject { described_class.with(@card, @list, @board) }
 
       context 'when a board was not specified' do
@@ -50,10 +50,7 @@ module Troo
         end
 
         context 'and the card was not moved' do
-          before do
-            Trello::Card.any_instance.stubs(:move_to_list)
-              .raises(Trello::Error)
-          end
+          before { API::Client.stubs(:perform).returns(false) }
 
           it { subject.must_equal false }
         end
@@ -74,10 +71,7 @@ module Troo
         end
 
         context 'and the card was not moved' do
-          before do
-            Trello::Card.any_instance.stubs(:move_to_list)
-              .raises(Trello::Error)
-          end
+          before { API::Client.stubs(:perform).returns(false) }
 
           it { subject.must_equal false }
         end

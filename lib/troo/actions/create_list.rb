@@ -20,19 +20,25 @@ module Troo
     attr_reader :board, :name
 
     def create_local
-      return Persistence::List.for(create_remote) if create_remote
+      return Persistence::List.with_collection(resource) if resource
       false
     end
 
-    def create_remote
-      @list ||= Trello::List.create(attributes)
-    rescue Trello::InvalidAccessToken
-      raise Troo::InvalidAccessToken
-    rescue Trello::Error
-      false
+    def resource
+      @resource ||= API::Client.perform(parameters)
     end
 
-    def attributes
+    def parameters
+      {
+        verb:          :post,
+        endpoint:      :create_list,
+        interpolation: {},
+        query:         query,
+        model:         Remote::List
+      }
+    end
+
+    def query
       {
         name:     name,
         board_id: board.external_board_id

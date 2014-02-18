@@ -9,9 +9,9 @@ module Troo
         let(:id)    {}
 
         before do
-          Retrieval::Board.stubs(:retrieve)
-          CreateList.stubs(:for).returns(false)
           API::Client.stubs(:perform)
+          Troo::Board.stubs(:retrieve)
+          CreateList.stubs(:with).returns(false)
         end
 
         describe '#add' do
@@ -19,7 +19,7 @@ module Troo
 
           context 'when the parent resource exists' do
             context 'and the list was created' do
-              before { CreateList.stubs(:for).returns(true) }
+              before { CreateList.stubs(:with).returns(true) }
 
               it 'returns a polite message' do
                 subject.must_match(/\'Add List Test\' created/)

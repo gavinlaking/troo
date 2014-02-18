@@ -7,14 +7,11 @@ module Troo
     end
 
     def initialize(card, list, board = nil)
-      @card  = card
-      @list  = list
-      @board = board
+      @card, @list, @board = card, list, board
     end
 
     def perform
-      return update_cards if move
-      false
+      update_cards
     end
 
     private
@@ -22,43 +19,36 @@ module Troo
     attr_reader :card, :list, :board
 
     def update_cards
-      #Troo::External::Card.fetch(card.external_board_id)
-    end
-
-    def move
-      if board
-        move_card
-      else
-        move_card_to_board
-      end
-    end
-
-    def move_card
-      Trello::Card.new
-        .update_fields('id' => card.external_card_id)
-        .move_to_list(list.external_list_id)
-    rescue Trello::InvalidAccessToken
-      raise Troo::InvalidAccessToken
-    rescue Trello::Error
+      return Persistence::Card.with_collection(resource) if resource
       false
     end
 
-    def move_card_to_board
-      Trello::Card.new
-        .update_fields('id' => card.external_card_id)
-        .move_to_board(proxy_board, proxy_list)
-    rescue Trello::InvalidAccessToken
-      raise Troo::InvalidAccessToken
-    rescue Trello::Error
-      false
+    def resource
+      @resource ||= API::Client.perform(parameters)
     end
 
-    def proxy_board
-      Trello::Board.new.update_fields('id' => board.external_board_id)
+    def parameters
+      {
+        verb:          :put,
+        endpoint:      endpoint,
+        interpolation: interpolation,
+        query:         query,
+        model:         Remote::Card
+      }
     end
 
-    def proxy_list
-      Trello::List.new.update_fields('id' => list.external_list_id)
+    def endpoint
+      return :move_card_board if board
+      :move_card_list
+    end
+
+    def interpolation
+      { external_id: card.external_card_id }
+    end
+
+    def query
+      return { id: board.external_board_id } if board
+             { id: list.external_list_id }
     end
   end
 end

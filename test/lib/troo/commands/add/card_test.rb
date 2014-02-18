@@ -9,9 +9,9 @@ module Troo
         let(:id)    {}
 
         before do
-          Retrieval::List.stubs(:retrieve)
-          CreateCard.stubs(:for).returns(false)
           API::Client.stubs(:perform)
+          Troo::List.stubs(:retrieve)
+          CreateCard.stubs(:with).returns(false)
         end
 
         describe '#add' do
@@ -19,7 +19,7 @@ module Troo
 
           context 'when the parent resource exists' do
             context 'and the card was created' do
-              before { CreateCard.stubs(:for).returns(true) }
+              before { CreateCard.stubs(:with).returns(true) }
 
               it 'returns a polite message' do
                 subject.must_match(/\'Add Card Test\' created/)

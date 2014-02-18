@@ -20,26 +20,28 @@ module Troo
     attr_reader :name, :description
 
     def create_local
-      if create_remote
-        Persistence::Board.for(create_remote)
-        # refresh for lists
-      else
-        false
-      end
-    end
-
-    def create_remote
-      @board ||= Trello::Board.create(attributes)
-    rescue Trello::InvalidAccessToken
-      raise Troo::InvalidAccessToken
-    rescue Trello::Error
+      return Persistence::Board.with_collection(resource) if resource
       false
     end
 
-    def attributes
+    def resource
+      @resource ||= API::Client.perform(parameters)
+    end
+
+    def parameters
       {
-        name:        name,
-        description: description
+        verb:          :post,
+        endpoint:      :create_board,
+        interpolation: {},
+        query:         query,
+        model:         Remote::Board
+      }
+    end
+
+    def query
+      {
+        name: name,
+        desc: description
       }
     end
   end

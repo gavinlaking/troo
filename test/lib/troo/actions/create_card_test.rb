@@ -4,27 +4,27 @@ module Troo
   describe CreateCard do
     let(:described_class) { CreateCard }
     let(:list_id)  { '526d8e130a14a9d846001d97' }
-    let(:card_name) { 'My New Card' }
+    let(:resource_name) { 'My New Card' }
     let(:description) { 'A description to get us started.' }
 
     before do
       API::Client.stubs(:perform)
       @list = Fabricate(:list)
-      @card = Fabricate(:card, name: card_name, desc: description)
+      @card = Fabricate(:card, name: resource_name, desc: description)
       Persistence::Card.stubs(:for).returns(@card)
     end
 
     after { database_cleanup }
 
     describe '.initialize' do
-      subject { described_class.new(@list, card_name, description) }
+      subject { described_class.new(@list, resource_name, description) }
 
       it 'assigns the list to an instance variable' do
         subject.instance_variable_get('@list').must_equal(@list)
       end
 
       it 'assigns the name to an instance variable' do
-        subject.instance_variable_get('@name').must_equal(card_name)
+        subject.instance_variable_get('@name').must_equal(resource_name)
       end
 
       it 'assigns the description to an instance variable' do
@@ -50,22 +50,9 @@ module Troo
       end
 
       context 'when the card was not created' do
-        before { Trello::Card.stubs(:create).raises(Trello::Error) }
+        before { API::Client.stubs(:perform).returns(false) }
 
         it { subject.must_equal false }
-      end
-
-      context 'when the access token is invalid' do
-        before do
-          Trello::Card.stubs(:create)
-            .raises(Trello::InvalidAccessToken)
-        end
-
-        subject { described_class.for(@list, card_name, description) }
-
-        it 'catches the exception and re-raises' do
-          proc { subject }.must_raise(Troo::InvalidAccessToken)
-        end
       end
     end
   end

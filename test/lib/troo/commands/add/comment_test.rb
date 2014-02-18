@@ -9,9 +9,9 @@ module Troo
         let(:id)    {}
 
         before do
-          Retrieval::Card.stubs(:retrieve)
-          CreateComment.stubs(:for).returns(false)
           API::Client.stubs(:perform)
+          Troo::Card.stubs(:retrieve)
+          CreateComment.stubs(:with).returns(false)
         end
 
         describe '#add' do
@@ -19,7 +19,7 @@ module Troo
 
           context 'when the parent resource exists' do
             context 'and the comment was created' do
-              before { CreateComment.stubs(:for).returns(true) }
+              before { CreateComment.stubs(:with).returns(true) }
 
               it 'returns a polite message' do
                 subject.must_match(/New comment created/)
