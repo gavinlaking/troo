@@ -31,5 +31,9 @@ module Troo
     def presenter(options = {})
       Presenters::Member.new(self, options)
     end
+
+    def default?
+      false
+    end
   end
 end

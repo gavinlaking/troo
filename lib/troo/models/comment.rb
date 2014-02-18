@@ -41,5 +41,9 @@ module Troo
     def decorator(options = {})
       Decorators::Comment.new(self, options)
     end
+
+    def default?
+      false
+    end
   end
 end
