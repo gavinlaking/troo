@@ -1,7 +1,7 @@
 module Troo
   class CreateComment
     class << self
-      def for(card, comment)
+      def with(card, comment)
         new(card, comment).perform
       end
     end

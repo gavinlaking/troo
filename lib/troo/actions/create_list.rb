@@ -1,7 +1,7 @@
 module Troo
   class CreateList
     class << self
-      def for(board, name)
+      def with(board, name)
         new(board, name).perform
       end
     end

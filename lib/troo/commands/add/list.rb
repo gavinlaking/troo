@@ -18,7 +18,7 @@ module Troo
         end
 
         def created
-          @created ||= CreateList.for(resource, value)
+          @created ||= CreateList.with(resource, value)
         end
 
         def resource

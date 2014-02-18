@@ -18,7 +18,7 @@ module Troo
         end
 
         def created
-          @created ||= CreateCard.for(resource, value)
+          @created ||= CreateCard.with(resource, value)
         end
 
         def resource

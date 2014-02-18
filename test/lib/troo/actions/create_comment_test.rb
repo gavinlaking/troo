@@ -26,7 +26,7 @@ module Troo
       end
     end
 
-    describe '.for' do
+    describe '.with' do
       before do
         VCR.insert_cassette(:create_comment,
                             decode_compressed_response: true)
@@ -34,7 +34,7 @@ module Troo
 
       after  { VCR.eject_cassette }
 
-      subject { described_class.for(@card, comment) }
+      subject { described_class.with(@card, comment) }
 
       context 'when the comment was created' do
         it 'returns the new comment' do

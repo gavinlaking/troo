@@ -32,7 +32,7 @@ module Troo
       end
     end
 
-    describe '.for' do
+    describe '.with' do
       before do
         VCR.insert_cassette(:create_card,
                             decode_compressed_response: true)
@@ -40,7 +40,7 @@ module Troo
 
       after  { VCR.eject_cassette }
 
-      subject { described_class.for(@list, card_name, description) }
+      subject { described_class.with(@list, resource_name, description) }
 
       context 'when the card was created' do
         it 'returns the new card' do

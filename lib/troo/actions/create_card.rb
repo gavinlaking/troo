@@ -1,7 +1,7 @@
 module Troo
   class CreateCard
     class << self
-      def for(list, name = nil, description = nil)
+      def with(list, name = nil, description = nil)
         new(list, name, description).perform
       end
     end

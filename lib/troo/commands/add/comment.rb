@@ -18,7 +18,7 @@ module Troo
         end
 
         def created
-          @created ||= CreateComment.for(resource, value)
+          @created ||= CreateComment.with(resource, value)
         end
 
         def resource
