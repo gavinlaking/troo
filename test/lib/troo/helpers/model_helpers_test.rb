@@ -91,13 +91,5 @@ module Troo
         subject.must_equal(2)
       end
     end
-
-    describe '#external_attributes' do
-      subject { @dumb.external_attributes }
-
-      it 'returns the attributes of the model which Trello affects' do
-        subject.must_equal(name: 'My Dumb Model')
-      end
-    end
   end
 end

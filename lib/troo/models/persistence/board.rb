@@ -3,7 +3,7 @@ module Troo
     class Board < Resource
       private
 
-      def created
+      def create
         Troo::Board.create(remote_data)
       end
 

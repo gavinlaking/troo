@@ -4,56 +4,49 @@ module Troo
   describe Persistence::Card do
     let(:described_class) { Persistence::Card }
     let(:resource) do
-      OpenStruct.new(
+      [OpenStruct.new(
         id:     '526d8f19ddb279532e005259',
-        name:   resource_name,
-        closed: false)
+        name:   'My Test Card',
+        closed: false)]
     end
-    let(:resource_name) { 'My Test Card' }
     let(:options) { {} }
-
-    before { @card = Fabricate(:card) }
-    after  { database_cleanup }
-
-    describe '.initialize' do
-      subject { described_class.new(resource, options) }
-
-      it 'assigns the resource to an instance variable' do
-        subject.instance_variable_get('@resource')
-          .must_equal(resource)
-      end
-
-      it 'assigns the options to an instance variable' do
-        subject.instance_variable_get('@options').must_equal(options)
-      end
-    end
+    let(:klass) { Troo::Card }
 
     describe '#persist' do
-      subject { described_class.for(resource, options) }
+      subject { described_class.with_collection(resource, options) }
 
-      context 'when there is already a local copy' do
-        context 'and the local copy is identical' do
-          it 'returns the local copy' do
-            subject.must_equal(@card)
+      context 'when the local exists' do
+        let(:default) { false }
+
+        before { @card = Fabricate(:card, default: default) }
+        after  { database_cleanup }
+
+        context 'and the local is default' do
+          let(:default) { true }
+
+          it 'the remote is set to default' do
+            subject.first.default.must_equal(true)
           end
         end
 
-        context 'and the local copy is out of date' do
-          let(:resource_name) { 'My Renamed Card' }
-
-          it 'updates and returns the new local copy' do
-            subject.name.must_equal(resource_name)
+        context 'and the local is not default' do
+          it 'the remote is not set to default' do
+            subject.first.default.must_equal(false)
           end
+        end
+
+        it 'deletes the local and persists the remote' do
+          @card.delete
+          subject
+          klass.count.must_equal 1
         end
       end
 
-      context 'when there is not already a local copy' do
-        let(:resource_name) { 'My New Test Card' }
-
-        before { database_cleanup }
-
-        it 'creates and returns the new local copy' do
-          subject.name.must_equal(resource_name)
+      context 'when the local does not exist' do
+        it 'persists the remote' do
+          klass.count.must_equal 0
+          subject
+          klass.count.must_equal 1
         end
       end
     end

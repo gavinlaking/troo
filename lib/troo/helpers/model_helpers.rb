@@ -24,9 +24,5 @@ module Troo
     def self.included(base)
       base.extend(ClassMethods)
     end
-
-    def external_attributes
-      attributes.delete_if { |k, _| k == :id || k == :default }
-    end
   end
 end

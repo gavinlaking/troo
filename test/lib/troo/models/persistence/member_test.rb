@@ -4,55 +4,32 @@ module Troo
   describe Persistence::Member do
     let(:described_class) { Persistence::Member }
     let(:resource) do
-      OpenStruct.new(
+      [OpenStruct.new(
         id:        '5195fdb5a8c01a2318004f5d',
-        full_name: resource_full_name)
+        full_name: 'My Test Member')]
     end
-    let(:resource_full_name) { 'My Test Member' }
     let(:options) { {} }
-
-    before { @member = Fabricate(:member) }
-    after  { database_cleanup }
-
-    describe '.initialize' do
-      subject { described_class.new(resource, options) }
-
-      it 'assigns the resource to an instance variable' do
-        subject.instance_variable_get('@resource')
-          .must_equal(resource)
-      end
-
-      it 'assigns the options to an instance variable' do
-        subject.instance_variable_get('@options').must_equal(options)
-      end
-    end
+    let(:klass) { Troo::Member }
 
     describe '#persist' do
-      subject { described_class.for(resource, options) }
+      subject { described_class.with_collection(resource, options) }
 
-      context 'when there is already a local copy' do
-        context 'and the local copy is identical' do
-          it 'returns the local copy' do
-            subject.must_equal(@member)
-          end
-        end
+      context 'when the local exists' do
+        before { @member = Fabricate(:member) }
+        after  { database_cleanup }
 
-        context 'and the local copy is out of date' do
-          let(:resource_full_name) { 'My Renamed Member' }
-
-          it 'updates and returns the new local copy' do
-            subject.full_name.must_equal(resource_full_name)
-          end
+        it 'deletes the local and persists the remote' do
+          @member.delete
+          subject
+          klass.count.must_equal 1
         end
       end
 
-      context 'when there is not already a local copy' do
-        let(:resource_full_name) { 'My New Test Member' }
-
-        before { database_cleanup }
-
-        it 'creates and returns the new local copy' do
-          subject.full_name.must_equal(resource_full_name)
+      context 'when the local does not exist' do
+        it 'persists the remote' do
+          klass.count.must_equal 0
+          subject
+          klass.count.must_equal 1
         end
       end
     end

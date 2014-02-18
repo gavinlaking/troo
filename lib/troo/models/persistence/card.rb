@@ -3,7 +3,7 @@ module Troo
     class Card < Resource
       private
 
-      def created
+      def create
         Troo::Card.create(remote_data)
       end
 

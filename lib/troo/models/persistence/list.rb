@@ -3,7 +3,7 @@ module Troo
     class List < Resource
       private
 
-      def created
+      def create
         Troo::List.create(remote_data)
       end
 

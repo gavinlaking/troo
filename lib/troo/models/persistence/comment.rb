@@ -3,12 +3,13 @@ module Troo
     class Comment < Resource
       private
 
-      def created
+      def create
         Troo::Comment.create(remote_data)
       end
 
       def local
-        @local ||= Troo::Comment.first(external_comment_id: resource.id)
+        @local ||= Troo::Comment
+          .first(external_comment_id: resource.id)
       end
 
       def remote_data

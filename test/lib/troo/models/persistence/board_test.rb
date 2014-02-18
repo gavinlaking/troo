@@ -4,57 +4,50 @@ module Troo
   describe Persistence::Board do
     let(:described_class) { Persistence::Board }
     let(:resource) do
-      OpenStruct.new(
-        id:     '526d8e130a14a9d846001d96',
-        name:   resource_name,
-        description:   'A very brief description...',
-        closed: false)
+      [Remote::Board.new(
+        id:             '526d8e130a14a9d846001d96',
+        name:           'My Test Board',
+        description:    'A very brief description...',
+        closed:         false)]
     end
-    let(:resource_name) { 'My Test Board' }
     let(:options) { {} }
-
-    before { @board = Fabricate(:board) }
-    after  { database_cleanup }
-
-    describe '.initialize' do
-      subject { described_class.new(resource, options) }
-
-      it 'assigns the resource to an instance variable' do
-        subject.instance_variable_get('@resource')
-          .must_equal(resource)
-      end
-
-      it 'assigns the options to an instance variable' do
-        subject.instance_variable_get('@options').must_equal(options)
-      end
-    end
+    let(:klass) { Troo::Board }
 
     describe '#persist' do
-      subject { described_class.for(resource, options) }
+      subject { described_class.with_collection(resource, options) }
 
-      context 'when there is already a local copy' do
-        context 'and the local copy is identical' do
-          it 'returns the local copy' do
-            subject.must_equal(@board)
+      context 'when the local exists' do
+        let(:default) { false }
+
+        before { @board = Fabricate(:board, default: default) }
+        after  { database_cleanup }
+
+        context 'and the local is default' do
+          let(:default) { true }
+
+          it 'the remote is set to default' do
+            subject.first.default.must_equal(true)
           end
         end
 
-        context 'and the local copy is out of date' do
-          let(:resource_name) { 'My Renamed Board' }
-
-          it 'updates and returns the new local copy' do
-            subject.name.must_equal(resource_name)
+        context 'and the local is not default' do
+          it 'the remote is not set to default' do
+            subject.first.default.must_equal(false)
           end
+        end
+
+        it 'deletes the local and persists the remote' do
+          @board.delete
+          subject
+          klass.count.must_equal 1
         end
       end
 
-      context 'when there is not already a local copy' do
-        let(:resource_name) { 'My New Test Board' }
-
-        before { database_cleanup }
-
-        it 'creates and returns the new local copy' do
-          subject.name.must_equal(resource_name)
+      context 'when the local does not exist' do
+        it 'persists the remote' do
+          klass.count.must_equal 0
+          subject
+          klass.count.must_equal 1
         end
       end
     end

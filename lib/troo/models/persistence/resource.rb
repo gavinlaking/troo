@@ -4,10 +4,6 @@ module Troo
       attr_reader :resource, :options
 
       class << self
-        def for(resource, options = {})
-          new(resource, options).persist
-        end
-
         def with_collection(resources = [], options = {})
           resources.map do |resource|
             new(resource, options).persist
@@ -17,29 +13,27 @@ module Troo
 
       def initialize(resource, options = {})
         @resource = resource
-        @options = options
+        @options  = options
       end
 
       def persist
-        return local   if local_identical?
-        return updated if local_exists?
-        created
+        set_default
+        delete
+        create
       end
 
       private
 
-      def updated
-        local.update(remote_data) && local
+      def set_default
+        remote_data.merge!(default: true) if is_default?
       end
 
-      def local_identical?
-        return false unless local_exists?
-        return false if local_data != remote_data
-        true
+      def delete
+        local.delete if local_exists?
       end
 
-      def local_data
-        local.external_attributes
+      def is_default?
+        local_exists? && local.default?
       end
 
       def local_exists?
