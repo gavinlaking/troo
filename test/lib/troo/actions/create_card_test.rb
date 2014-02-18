@@ -8,6 +8,7 @@ module Troo
     let(:description) { 'A description to get us started.' }
 
     before do
+      API::Client.stubs(:perform)
       @list = Fabricate(:list)
       @card = Fabricate(:card, name: card_name, desc: description)
       Persistence::Card.stubs(:for).returns(@card)

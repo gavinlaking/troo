@@ -7,6 +7,7 @@ module Troo
     let(:comment) { 'Some much needed feedback...' }
 
     before do
+      API::Client.stubs(:perform)
       @card = Fabricate(:card)
       @comment = Fabricate(:comment, text: comment)
       Persistence::Comment.stubs(:for).returns(@comment)

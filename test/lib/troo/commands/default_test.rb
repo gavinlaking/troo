@@ -11,6 +11,7 @@ module Troo
       let(:decorator)       { OpenStruct.new(name: "Test") }
 
       before do
+        API::Client.stubs(:perform)
         klass.stubs(:retrieve).returns(resource)
         resource.stubs(:set_default!).returns(outcome)
         resource.stubs(:decorator).returns(decorator)

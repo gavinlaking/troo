@@ -7,6 +7,8 @@ module Troo
         let(:described_class) { All }
 
         before do
+          API::Client.stubs(:perform)
+
           @board = Fabricate.build(:board)
           @list  = Fabricate.build(:list)
           @card  = Fabricate.build(:card)

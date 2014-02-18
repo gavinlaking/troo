@@ -13,6 +13,7 @@ module Troo
         let(:presenter) { stub }
 
         before do
+          API::Client.stubs(:perform)
           @board = Fabricate.build(:board, default: default)
           Troo::Board.stubs(:retrieve).returns(resource)
           Presenters::Board.stubs(:new).returns(presenter)

@@ -12,6 +12,7 @@ module Troo
         let(:presenter) { stub }
 
         before do
+          API::Client.stubs(:perform)
           @list = Fabricate.build(:list, default: default)
           Troo::List.stubs(:retrieve).returns(resource)
           Presenters::List.stubs(:new).returns(presenter)

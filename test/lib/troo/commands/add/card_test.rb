@@ -11,6 +11,7 @@ module Troo
         before do
           Retrieval::List.stubs(:retrieve)
           CreateCard.stubs(:for).returns(false)
+          API::Client.stubs(:perform)
         end
 
         describe '#add' do

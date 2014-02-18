@@ -7,6 +7,7 @@ module Troo
     let(:list_name) { 'My New List' }
 
     before do
+      API::Client.stubs(:perform)
       @board = Fabricate(:board)
       @list = Fabricate(:list, name: list_name)
       Persistence::List.stubs(:for).returns(@list)

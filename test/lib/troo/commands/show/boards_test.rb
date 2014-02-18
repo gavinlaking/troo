@@ -8,6 +8,7 @@ module Troo
         let(:resources) { [] }
 
         before do
+          API::Client.stubs(:perform)
           @board = Fabricate.build(:board)
           Troo::Board.stubs(:all).returns(resources)
           Presenters::Board.stubs(:all).returns(@board.name)

@@ -7,6 +7,7 @@ module Troo
     let(:list_id) { '526d8e130a14a9d846001d98' }
 
     before do
+      API::Request.stubs(:perform)
       @board = Fabricate(:board, external_board_id: board_id)
       @list = Fabricate(:list, external_list_id: list_id)
       @card = Fabricate(:card)

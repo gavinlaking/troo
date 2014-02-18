@@ -11,6 +11,7 @@ module Troo
         before do
           Retrieval::Board.stubs(:retrieve)
           CreateList.stubs(:for).returns(false)
+          API::Client.stubs(:perform)
         end
 
         describe '#add' do

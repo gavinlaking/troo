@@ -14,6 +14,7 @@ module Troo
         let(:board) {}
 
         before do
+          API::Client.stubs(:perform)
           @card  = Fabricate.build(:card)
           @list  = Fabricate.build(:list, name: 'Another Test List')
           @board = Fabricate.build(:board)

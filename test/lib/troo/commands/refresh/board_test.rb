@@ -10,6 +10,7 @@ module Troo
         let(:retrieved) {}
 
         before do
+          API::Client.stubs(:perform)
           @board = Fabricate.build(:board)
           Troo::Board.stubs(:retrieve).returns(resource)
           Board.stubs(:remote).returns(retrieved)

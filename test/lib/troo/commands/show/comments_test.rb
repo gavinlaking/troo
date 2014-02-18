@@ -12,6 +12,7 @@ module Troo
         let(:presenter) { stub }
 
         before do
+          API::Client.stubs(:perform)
           @card = Fabricate.build(:card, default: default)
           Troo::Card.stubs(:retrieve).returns(resource)
           Presenters::Comment.stubs(:new).returns(presenter)
