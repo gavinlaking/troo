@@ -2,8 +2,6 @@ module Troo
   module Commands
     module Add
       class Resource
-        include CommandHelpers
-
         attr_reader :id, :value
 
         class << self

@@ -4,7 +4,7 @@ module Troo
       class Card < Resource
         def add
           return success if created
-          error_trello_error
+          error
         end
 
         private
@@ -13,7 +13,7 @@ module Troo
           "New card '#{value}' created."
         end
 
-        def error_trello_error
+        def error
           'Card could not be created.'
         end
 

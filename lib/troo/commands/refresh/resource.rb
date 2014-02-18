@@ -2,9 +2,6 @@ module Troo
   module Commands
     module Refresh
       class Resource
-        include CommandHelpers
-
-        attr_accessor :type
         attr_reader :id
 
         class << self
@@ -23,14 +20,32 @@ module Troo
           elsif resource.count > 1
             many_success
           else
-            error
+            not_found
           end
         end
 
         private
 
+        def many_success
+          "Multiple #{type}s refreshed."
+        end
+
         def success
           "'#{resource_name}' refreshed."
+        end
+
+        def not_found
+          return [error, no_default].join(' ') if id
+          error
+        end
+
+        def error
+          "#{type.capitalize} cannot be found."
+        end
+
+        def no_default
+          "Specify an <id> or use 'troo default #{type} <id>' " \
+          "to set a default #{type} first."
         end
 
         def resource_name

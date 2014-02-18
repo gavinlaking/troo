@@ -4,7 +4,7 @@ module Troo
       class Comment < Resource
         def add
           return success if created
-          error_trello_error
+          error
         end
 
         private
@@ -13,7 +13,7 @@ module Troo
           'New comment created.'
         end
 
-        def error_trello_error
+        def error
           'Comment could not be created.'
         end
 

@@ -2,8 +2,6 @@ module Troo
   module Commands
     module Show
       class Resource
-        include CommandHelpers
-
         attr_reader :id, :type
 
         class << self
@@ -20,9 +18,9 @@ module Troo
           if resource
             presenter
           elsif no_default?
-            error_no_default
+            [error, no_default].join(' ')
           else
-            error_not_found
+            error
           end
         end
 
@@ -32,8 +30,17 @@ module Troo
           resource.presenter.show
         end
 
-        def error_not_found
-          "#{type_capitalize} cannot be found."
+        def error
+          "#{type.capitalize} cannot be found."
+        end
+
+        def no_default?
+          id.nil?
+        end
+
+        def no_default
+          "Specify an <id> or use 'troo default #{type} <id>' " \
+          "to set a default #{type} first."
         end
       end
     end

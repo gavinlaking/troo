@@ -4,19 +4,6 @@ module Troo
       class List < Resource
         private
 
-        def success
-          '  Lists:  ' + plural('list') + " found.\n" +
-          "          #{resource_title}"
-        end
-
-        def error
-          if count > 0
-            '  Lists:  ' + no_default_error + " (#{count})"
-          else
-            "  Lists:  No lists found.\n"
-          end
-        end
-
         def count
           @count ||= Troo::List.count
         end
@@ -25,8 +12,8 @@ module Troo
           @resource ||= Retrieval::List.default
         end
 
-        def no_default_error
-          Esc.red + 'No default list set.' + Esc.reset
+        def type
+          'list'
         end
       end
     end

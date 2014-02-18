@@ -7,6 +7,10 @@ module Troo
         def resource
           List.retrieve(id)
         end
+
+        def type
+          'list'
+        end
       end
     end
   end

@@ -4,14 +4,8 @@ module Troo
       class List < Resource
         private
 
-        def many_success
-          'Multiple lists refreshed.'
-        end
-
-        def error
-          return 'Default list cannot be found.' unless id
-          @type = :list
-          'List cannot be found. ' + error_no_default
+        def type
+          'list'
         end
 
         def resource

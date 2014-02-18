@@ -12,14 +12,14 @@ module Troo
           if resources.any?
             presenter
           else
-            error_not_found
+            error
           end
         end
 
         private
 
         def type
-          :boards
+          'boards'
         end
 
         def presenter

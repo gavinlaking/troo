@@ -7,6 +7,10 @@ module Troo
         def resource
           Card.retrieve(id)
         end
+
+        def type
+          'card'
+        end
       end
     end
   end

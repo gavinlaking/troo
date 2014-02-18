@@ -2,8 +2,6 @@ module Troo
   module Commands
     module Status
       class Resource
-        include CommandHelpers
-
         class << self
           def dispatch
             new.report_status
@@ -17,15 +15,32 @@ module Troo
 
         private
 
+        def success
+          "  #{type.capitalize}s:  " + plural + " found.\n" +
+          "          #{resource_title}"
+        end
+
+        def error
+          if count > 0
+            "  #{type.capitalize}s:  " + no_default_error + " (#{count})"
+          else
+            "  #{type.capitalize}s:  No #{type}s found.\n"
+          end
+        end
+
         def resource_title
           resource.decorator.title
         end
 
-        def plural(singular)
+        def no_default_error
+          Esc.red + "No default #{type} set." + Esc.reset
+        end
+
+        def plural
           if count == 1
-            "#{count} #{singular}"
+            "#{count} #{type}"
           else
-            "#{count} #{singular}s"
+            "#{count} #{type}s"
           end
         end
       end

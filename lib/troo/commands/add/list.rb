@@ -4,7 +4,7 @@ module Troo
       class List < Resource
         def add
           return success if created
-          error_trello_error
+          error
         end
 
         private
@@ -13,7 +13,7 @@ module Troo
           "New list '#{value}' created."
         end
 
-        def error_trello_error
+        def error
           'List could not be created.'
         end
 

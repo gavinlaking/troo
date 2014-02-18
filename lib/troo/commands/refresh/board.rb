@@ -4,14 +4,8 @@ module Troo
       class Board < Resource
         private
 
-        def many_success
-          'Multiple boards refreshed.'
-        end
-
-        def error
-          return 'Default board cannot be found.' unless id
-          @type = :board
-          'Board cannot be found. ' + error_no_default
+        def type
+          'board'
         end
 
         def resource

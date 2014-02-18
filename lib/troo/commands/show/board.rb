@@ -7,6 +7,10 @@ module Troo
         def resource
           Board.retrieve(id)
         end
+
+        def type
+          'board'
+        end
       end
     end
   end
