@@ -5,7 +5,7 @@ module Troo
 
       attribute :id
       attribute :idMemberCreator
-      attribute :data, CommentData
+      attribute :data,            CommentData
       attribute :type
       attribute :date
       attribute :memberCreator

@@ -6,7 +6,7 @@ module Troo
       attribute :id
       attribute :badges
       attribute :checkItemStates
-      attribute :closed
+      attribute :closed,                Boolean
       attribute :dateLastActivity
       attribute :desc
       attribute :descData

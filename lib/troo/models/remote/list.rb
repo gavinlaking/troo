@@ -5,9 +5,9 @@ module Troo
 
       attribute :id
       attribute :name
-      attribute :closed
+      attribute :closed,  Boolean
       attribute :idBoard
-      attribute :pos
+      attribute :pos,     Integer
 
       alias_method :id_board, :idBoard
 

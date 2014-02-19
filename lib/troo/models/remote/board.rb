@@ -7,7 +7,7 @@ module Troo
       attribute :name
       attribute :desc
       attribute :descData
-      attribute :closed,        String
+      attribute :closed,        Boolean
       attribute :idOrganization
       attribute :pinned
       attribute :url
