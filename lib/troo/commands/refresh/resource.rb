@@ -35,7 +35,7 @@ module Troo
         end
 
         def not_found
-          return [error, no_default].join(' ') if id
+          return [error, no_default].join(' ') unless id
           error
         end
 
