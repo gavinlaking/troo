@@ -4,9 +4,9 @@ module Troo
     include ModelHelpers
 
     attribute :name
-    attribute :position, Type::Integer
-    attribute :default, Type::Boolean
-    attribute :closed, Type::Boolean
+    attribute :position,         Type::Integer
+    attribute :default,          Type::Boolean
+    attribute :closed,           Type::Boolean
     attribute :external_board_id
     attribute :external_list_id
 
