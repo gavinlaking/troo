@@ -13,7 +13,7 @@ module Troo
           API::Client.stubs(:perform)
           @board = Fabricate.build(:board)
           Troo::Board.stubs(:retrieve).returns(resource)
-          Board.stubs(:remote).returns(retrieved)
+          Troo::Board.stubs(:remote).returns(retrieved)
         end
 
         after { database_cleanup }
@@ -53,7 +53,7 @@ module Troo
             let(:resource) {}
 
             it 'returns a polite message' do
-              subject.must_match(/Default board cannot be found/)
+              subject.must_match(/to set a default board first/)
             end
           end
         end

@@ -13,7 +13,7 @@ module Troo
           API::Client.stubs(:perform)
           @list = Fabricate.build(:list)
           Troo::List.stubs(:retrieve).returns(resource)
-          List.stubs(:remote).returns(retrieved)
+          Troo::List.stubs(:remote).returns(retrieved)
         end
 
         after { database_cleanup }
@@ -53,7 +53,7 @@ module Troo
             let(:resource) {}
 
             it 'returns a polite message' do
-              subject.must_match(/Default list cannot be found/)
+              subject.must_match(/set a default list first/)
             end
           end
         end

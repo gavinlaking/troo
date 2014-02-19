@@ -2,13 +2,14 @@ require_relative '../../../../test_helper'
 
 module Troo
   describe Persistence::Card do
-    let(:described_class) { Persistence::Card }
-    let(:resource) do
-      [OpenStruct.new(
-        id:     '526d8f19ddb279532e005259',
-        name:   'My Test Card',
-        closed: false)]
+    def load_mock_trello_response
+      json = File.read('./test/support/remotes/card.json')
+      hash = Yajl::Parser.parse(json)
+      Troo::Remote::Card.new(hash)
     end
+
+    let(:described_class) { Persistence::Card }
+    let(:resource) { [load_mock_trello_response] }
     let(:options) { {} }
     let(:klass) { Troo::Card }
 

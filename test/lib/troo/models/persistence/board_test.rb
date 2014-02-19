@@ -2,14 +2,14 @@ require_relative '../../../../test_helper'
 
 module Troo
   describe Persistence::Board do
-    let(:described_class) { Persistence::Board }
-    let(:resource) do
-      [Remote::Board.new(
-        id:             '526d8e130a14a9d846001d96',
-        name:           'My Test Board',
-        description:    'A very brief description...',
-        closed:         false)]
+    def load_mock_trello_response
+      json = File.read('./test/support/remotes/board.json')
+      hash = Yajl::Parser.parse(json)
+      Troo::Remote::Board.new(hash)
     end
+
+    let(:described_class) { Persistence::Board }
+    let(:resource) { [load_mock_trello_response] }
     let(:options) { {} }
     let(:klass) { Troo::Board }
 
