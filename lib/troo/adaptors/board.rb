@@ -3,7 +3,7 @@ module Troo
     class Board < Resource
       def adapted
         {
-          external_board_id: resource.external_board_id,
+          external_board_id: resource.id,
           name:              resource.name,
           description:       resource.description,
           closed:            resource.closed

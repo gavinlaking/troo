@@ -2,14 +2,14 @@ require_relative '../../../test_helper'
 
 module Troo
   describe Adaptors::Board do
-    let(:described_class) { Adaptors::Board }
-    let(:resource) do
-      OpenStruct.new(
-        id:          '526d8e130a14a9d846001d96',
-        name:        'My Test Board',
-        description: 'A very brief description...',
-        closed:      false)
+    def load_mock_trello_response
+      json = File.read('./test/support/remotes/board.json')
+      hash = Yajl::Parser.parse(json)
+      Troo::Remote::Board.new(hash)
     end
+
+    let(:described_class) { Adaptors::Board }
+    let(:resource) { load_mock_trello_response }
 
     after { database_cleanup }
 
@@ -30,7 +30,7 @@ module Troo
           external_board_id: '526d8e130a14a9d846001d96',
           name:              'My Test Board',
           description:       'A very brief description...',
-          closed:            'false'
+          closed:            false
         )
       end
     end

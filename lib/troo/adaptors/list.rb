@@ -4,9 +4,9 @@ module Troo
       def adapted
         {
           external_board_id: resource.external_board_id,
-          external_list_id:  resource.external_list_id,
+          external_list_id:  resource.id,
           name:              resource.name,
-          position:          resource.position,
+          position:          resource.pos,
           closed:            resource.closed
         }
       end

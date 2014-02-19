@@ -3,16 +3,16 @@ module Troo
     class Card < Resource
       def adapted
         {
-          external_board_id:   resource.external_board_id,
-          external_list_id:    resource.external_list_id,
-          external_card_id:    resource.external_card_id,
-          external_member_ids: resource.external_member_ids,
-          short_id:            resource.short_id,
+          external_board_id:   resource.idBoard,
+          external_list_id:    resource.idList,
+          external_card_id:    resource.id,
+          external_member_ids: resource.idMembers,
+          short_id:            resource.idShort,
           name:                resource.name,
           desc:                resource.desc,
           url:                 resource.url,
-          position:            resource.position,
-          last_activity_date:  resource.last_activity_date,
+          position:            resource.pos,
+          last_activity_date:  resource.dateLastActivity,
           closed:              resource.closed
         }
       end
