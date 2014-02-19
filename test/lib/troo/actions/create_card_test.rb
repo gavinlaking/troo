@@ -8,7 +8,6 @@ module Troo
     let(:description) { 'A description to get us started.' }
 
     before do
-      API::Client.stubs(:perform)
       @list = Fabricate(:list)
       @card = Fabricate(:card, name: resource_name, desc: description)
       Persistence::Card.stubs(:for).returns(@card)
@@ -45,7 +44,7 @@ module Troo
 
       context 'when the card was created' do
         it 'returns the new card' do
-          subject.must_equal(@card)
+          subject.must_be_instance_of Troo::Card
         end
       end
 

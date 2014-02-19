@@ -47,8 +47,21 @@ module Troo
     end
 
     def query
-      return { id: board.external_board_id } if board
-             { id: list.external_list_id }
+      return board_query if board
+      list_query
+    end
+
+    def board_query
+      {
+        value:  board.external_board_id,
+        idList: list.external_list_id
+      }
+    end
+
+    def list_query
+      {
+        value: list.external_list_id
+      }
     end
   end
 end

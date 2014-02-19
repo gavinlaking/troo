@@ -20,7 +20,7 @@ module Troo
     attr_reader :card, :comment
 
     def create_local
-      return Persistence::Comment.with_collection(resource) if resource
+      return Persistence::Comment.with_collection(resource).first if resource
       false
     end
 

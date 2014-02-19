@@ -7,7 +7,6 @@ module Troo
     let(:comment) { 'Some much needed feedback...' }
 
     before do
-      API::Client.stubs(:perform)
       @card = Fabricate(:card)
       @comment = Fabricate(:comment, text: comment)
       Persistence::Comment.stubs(:for).returns(@comment)
@@ -39,7 +38,7 @@ module Troo
 
       context 'when the comment was created' do
         it 'returns the new comment' do
-          subject.must_equal(@comment)
+          subject.must_be_instance_of Troo::Comment
         end
       end
 

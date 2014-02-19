@@ -7,7 +7,6 @@ module Troo
     let(:resource_name) { 'My New List' }
 
     before do
-      API::Client.stubs(:perform)
       @board = Fabricate(:board)
       @list = Fabricate(:list, name: resource_name)
       Persistence::List.stubs(:for).returns(@list)
@@ -39,7 +38,7 @@ module Troo
 
       context 'when the list was created' do
         it 'returns the new list' do
-          subject.must_equal(@list)
+          subject.must_be_instance_of Troo::List
         end
       end
 

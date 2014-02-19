@@ -20,7 +20,8 @@ module Troo
         attribute :lists_by_board_id
         attribute :member_by_id
         attribute :members_by_board_id
-        attribute :move_card
+        attribute :move_card_board
+        attribute :move_card_list
       end
 
       class << self

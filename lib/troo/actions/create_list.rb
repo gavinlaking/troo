@@ -20,7 +20,7 @@ module Troo
     attr_reader :board, :name
 
     def create_local
-      return Persistence::List.with_collection(resource) if resource
+      return Persistence::List.with_collection(resource).first if resource
       false
     end
 
