@@ -1,13 +1,9 @@
 Feature: Showing a card
-  Background:
-    Given a board exists
-    And a list exists
-    And a member exists
 
   @show
   Scenario: Showing a card with ID
     Given a card exists
-    When I run `troo show card 1`
+    When I run `troo show card 200`
     Then the output should contain:
       """
        (67) My Test Card
@@ -29,8 +25,8 @@ Feature: Showing a card
 
   @show
   Scenario: Cannot show card; not found
-  Given the Trello API is stubbed with "fetch_card_by_id"
-    When I run `troo show card 69`
+    Given the Trello API is stubbed with "400_card_by_id"
+    When I run `troo show card 400`
     Then the output should contain "Card cannot be found."
 
   @show

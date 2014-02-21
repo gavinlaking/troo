@@ -20,12 +20,16 @@ Feature: Troo Basics
 
   @pending @authentication
   Scenario: Not authenticated with Trello
-    Given the Trello API is stubbed with "unauthenticated"
+    When I run `troo default board 401`
+    Then the output should contain ""
 
   @pending @connectivity
   Scenario: Trello not responding
-    Given the Trello API is stubbed with "trello_failure"
+    When I run `troo default board 401`
+    Then the output should contain ""
 
   @pending @connectivity
   Scenario: No network connection
+    When I run `troo default board 401`
+    Then the output should contain ""
 

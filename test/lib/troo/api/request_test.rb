@@ -28,8 +28,18 @@ module Troo
         end
       end
 
-      describe '#response' do
-        subject { described_class.new(verb, urn, query) }
+      describe '.make' do
+        subject { described_class.make(verb, urn, query) }
+
+        context 'when the request raises an exception' do
+          before do
+            RestClient::Request.stubs(:execute).raises(RestClient::Exception)
+          end
+
+          it 'returns an ErrorResponse we can process further' do
+            subject.must_be_instance_of(ErrorResponse)
+          end
+        end
       end
     end
   end

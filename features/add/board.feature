@@ -1,14 +1,15 @@
 Feature: Adding content to Trello
 
-  @failing @add
+  @add
   Scenario: Add a board
-    Given the Trello API is stubbed with "add_board_success"
-    When I run `troo add board "Cuke Add Board"`
+    Given the Trello API is stubbed with "200_create_board"
+    When I run `troo add board "My Cucumber Board"`
     Then the output should contain:
       """
-      New board 'Cuke Add Board' created.
+      New board 'My Cucumber Board' created.
       """
 
+  # undefined method `stdin' for #<Aruba::InProcess
   @pending @failing @add
   Scenario: Add a board, name not provided
     Given the Trello API is stubbed with "add_board_interactive_success"
@@ -21,6 +22,9 @@ Feature: Adding content to Trello
 
   @pending @failing @add
   Scenario: Cannot add a board
-    Given the Trello API is stubbed with "add_board_failure"
-    When I run `troo add board "My New Board"`
-    Then the output should contain "Board could not be created."
+    Given the Trello API is stubbed with "400_create_board"
+    When I run `troo add board "My Cucumber Board"`
+    Then the output should contain:
+      """
+      Board could not be created.
+      """

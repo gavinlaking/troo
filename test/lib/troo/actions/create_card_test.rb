@@ -2,28 +2,31 @@ require_relative '../../../test_helper'
 
 module Troo
   describe CreateCard do
-    let(:described_class) { CreateCard }
-    let(:list_id)  { '526d8e130a14a9d846001d97' }
-    let(:resource_name) { 'My New Card' }
-    let(:description) { 'A description to get us started.' }
+    let(:described_class)  { CreateCard }
+    let(:external_list_id) { '526d8e130a14a9d846001d97' }
+    let(:resource_name)    { 'My New Card' }
+    let(:description)      { 'A description to get us started.' }
+    let(:card)             { [Fabricate.build(:card,
+                                              name: resource_name,
+                                              desc: description)] }
 
-    before do
-      @list = Fabricate(:list)
-      @card = Fabricate(:card, name: resource_name, desc: description)
-      Persistence::Card.stubs(:for).returns(@card)
-    end
-
-    after { database_cleanup }
+    before { Persistence::Card.stubs(:with_collection).returns(card) }
+    after  { database_cleanup }
 
     describe '.initialize' do
-      subject { described_class.new(@list, resource_name, description) }
+      subject do
+        described_class
+          .new(external_list_id, resource_name, description)
+      end
 
-      it 'assigns the list to an instance variable' do
-        subject.instance_variable_get('@list').must_equal(@list)
+      it 'assigns the external_list_id to an instance variable' do
+        subject.instance_variable_get('@external_list_id')
+          .must_equal(external_list_id)
       end
 
       it 'assigns the name to an instance variable' do
-        subject.instance_variable_get('@name').must_equal(resource_name)
+        subject.instance_variable_get('@name')
+          .must_equal(resource_name)
       end
 
       it 'assigns the description to an instance variable' do
@@ -40,7 +43,10 @@ module Troo
 
       after  { VCR.eject_cassette }
 
-      subject { described_class.with(@list, resource_name, description) }
+      subject do
+        described_class
+          .with(external_list_id, resource_name, description)
+      end
 
       context 'when the card was created' do
         it 'returns the new card' do
@@ -49,7 +55,7 @@ module Troo
       end
 
       context 'when the card was not created' do
-        before { API::Client.stubs(:perform).returns(false) }
+        before { API::Client.stubs(:perform).returns([]) }
 
         it { subject.must_equal false }
       end

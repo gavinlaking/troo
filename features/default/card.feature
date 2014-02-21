@@ -3,16 +3,16 @@ Feature: Setting a default card
   @default
   Scenario: Set a card to default
     Given a card exists
-    When I run `troo default card 1`
+    When I run `troo default card 200`
     Then the output should contain:
       """
-      'My Test Card' set as default card.
+      'My Test Card' set as default.
       """
 
   @default
   Scenario: Cannot set a default; not found
-    Given the Trello API is stubbed with "fetch_card_by_id"
-    When I run `troo default card 69`
+    Given the Trello API is stubbed with "400_card_by_id"
+    When I run `troo default card 400`
     Then the output should contain "Card cannot be found."
 
   @default

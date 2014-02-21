@@ -23,12 +23,6 @@ module Troo
       describe '#perform' do
         subject { described_class.perform(parameters) }
 
-        context 'when a required parameter is missing' do
-          let(:endpoint) {}
-
-          it { subject.must_equal [] }
-        end
-
         context 'when all required parameters are provided' do
           context 'and the API request returns a collection' do
             let(:response) { [{ name: "Board 1" }, { name: "Board 2" }] }
@@ -45,6 +39,18 @@ module Troo
               subject.size.must_equal(1)
             end
           end
+        end
+
+        context 'when a required parameter is missing' do
+          let(:endpoint) {}
+
+          it { subject.must_equal [] }
+        end
+
+        context 'when the response is an error' do
+          let(:response) { ErrorResponse.new }
+
+          it { subject.must_equal [] }
         end
       end
     end
