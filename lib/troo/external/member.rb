@@ -2,7 +2,8 @@ module Troo
   module External
     class Member < Resource
       def persist
-        Persistence::Member.with_collection(resources)
+        return Persistence::Member.with_collection(resources) if any?
+        []
       end
 
       private

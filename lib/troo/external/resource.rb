@@ -16,6 +16,10 @@ module Troo
 
       private
 
+      def any?
+        resources.any?
+      end
+
       def resources
         @resources ||= API::Client.perform(parameters)
       end

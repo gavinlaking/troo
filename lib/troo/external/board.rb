@@ -2,7 +2,8 @@ module Troo
   module External
     class Board < Resource
       def persist
-        Persistence::Board.with_collection(resources)
+        return Persistence::Board.with_collection(resources) if any?
+        []
       end
 
       private

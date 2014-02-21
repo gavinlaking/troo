@@ -2,7 +2,8 @@ module Troo
   module External
     class List < Resource
       def persist
-        Persistence::List.with_collection(resources)
+        return Persistence::List.with_collection(resources) if any?
+        []
       end
 
       private

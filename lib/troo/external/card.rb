@@ -2,7 +2,8 @@ module Troo
   module External
     class Card < Resource
       def persist
-        Persistence::Card.with_collection(resources)
+        return Persistence::Card.with_collection(resources) if any?
+        []
       end
 
       private

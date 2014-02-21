@@ -2,7 +2,8 @@ module Troo
   module External
     class Comment < Resource
       def persist
-        Persistence::Comment.with_collection(resources)
+        return Persistence::Comment.with_collection(resources) if any?
+        []
       end
 
       private
