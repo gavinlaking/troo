@@ -16,20 +16,23 @@ module Troo
         private
 
         def success
-          "  #{type.capitalize}s:  " + plural + " found.\n" +
-          "          #{resource_title}"
+          label + plural + " found.\n" + resource_title
         end
 
         def error
           if count > 0
-            "  #{type.capitalize}s:  " + no_default_error + " (#{count})"
+            label + no_default_error + " (#{count})"
           else
-            "  #{type.capitalize}s:  No #{type}s found.\n"
+            label + "No #{type}s found.\n"
           end
         end
 
+        def label
+          "  #{type.capitalize}s:".ljust(10)
+        end
+
         def resource_title
-          resource.decorator.title
+          "".rjust(10) + resource.decorator.title
         end
 
         def no_default_error
