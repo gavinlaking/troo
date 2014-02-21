@@ -3,7 +3,7 @@ module Troo
     module Add
       class Board < Resource
         def add
-          return success if created
+          return success if create
           error
         end
 
@@ -17,8 +17,8 @@ module Troo
           'Board could not be created.'
         end
 
-        def created
-          @created ||= CreateBoard.with(value)
+        def create
+          @create ||= CreateBoard.with(value)
         end
       end
     end

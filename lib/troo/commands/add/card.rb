@@ -3,7 +3,7 @@ module Troo
     module Add
       class Card < Resource
         def add
-          return success if created
+          return success if create
           error
         end
 
@@ -17,8 +17,8 @@ module Troo
           'Card could not be created.'
         end
 
-        def created
-          @created ||= CreateCard.with(resource, value)
+        def create
+          @create ||= CreateCard.with(resource, value)
         end
 
         def resource

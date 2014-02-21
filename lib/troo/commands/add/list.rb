@@ -3,7 +3,7 @@ module Troo
     module Add
       class List < Resource
         def add
-          return success if created
+          return success if create
           error
         end
 
@@ -17,8 +17,8 @@ module Troo
           'List could not be created.'
         end
 
-        def created
-          @created ||= CreateList.with(resource, value)
+        def create
+          @create ||= CreateList.with(resource, value)
         end
 
         def resource

@@ -3,7 +3,7 @@ module Troo
     module Add
       class Comment < Resource
         def add
-          return success if created
+          return success if create
           error
         end
 
@@ -17,8 +17,8 @@ module Troo
           'Comment could not be created.'
         end
 
-        def created
-          @created ||= CreateComment.with(resource, value)
+        def create
+          @create ||= CreateComment.with(resource, value)
         end
 
         def resource
