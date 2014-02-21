@@ -20,43 +20,29 @@ http_interactions:
   response:
     status:
       code: 200
-      message: OK
+      message: 'OK '
     headers:
-      X-Powered-By:
-      - Express
-      Cache-Control:
-      - max-age=0, must-revalidate, no-cache, no-store
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=15768000
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '1189'
       X-Xss-Protection:
       - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - DENY
-      X-Server-Time:
-      - '1392671815663'
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00
-      Content-Type:
-      - application/json
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Allow-Methods:
-      - GET, PUT, POST, DELETE
-      Etag:
-      - "\"-349226057\""
-      Vary:
-      - Accept-Encoding
+      - SAMEORIGIN
+      Server:
+      - WEBrick/1.3.1 (Ruby/2.1.0/2013-12-25) OpenSSL/1.0.1e
       Date:
-      - Mon, 17 Feb 2014 21:16:55 GMT
-      Transfer-Encoding:
-      - chunked
+      - Fri, 21 Feb 2014 19:12:14 GMT
+      Connection:
+      - Keep-Alive
     body:
       encoding: UTF-8
-      string: "{\"id\":\"5195fdb5a8c01a2318004f5d\",\"avatarHash\":\"045fd924d84699c9ba451e181bba33a3\",\"bio\":\"\",\"bioData\":null,\"confirmed\":true,\"fullName\":\"Gavin
-        Laking\",\"idPremOrgsAdmin\":[],\"initials\":\"GL\",\"memberType\":\"normal\",\"products\":[],\"status\":\"disconnected\",\"url\":\"<Trello
-        URL>\",\"username\":\"gavinlaking1\",\"avatarSource\":\"gravatar\",\"email\":null,\"gravatarHash\":\"c9c47875936bed67032a12c047b468a8\",\"idBoards\":[\"5195fdb6a8c01a2318004f5f\",\"526d8e130a14a9d846001d96\",\"52bc953c9e0687876e033f97\",\"52bc958395ba537530017de8\",\"52bde0bb032383625d01a655\",\"52bded8ac13ea0245903b301\",\"52be0f11f6a939a72e011e67\",\"52c0a7169777fc4d0800b445\",\"52c1b00073d9e2dd65011576\",\"52c73ea6de4147771a00355a\",\"52c88181740df45b0f00d8b4\",\"52c881c48267d0703700d9eb\",\"52c8820ef427cacf7b00d647\",\"52c8824cf6d05f166e004f53\",\"52c885cf530fa4b30f00f769\",\"52c885f7d08b9bd97b00d797\",\"52c886224d8eca7f7c00d23a\",\"52c8869bd6db249c7c004ce7\",\"52c8881c30ceeaf83600ddf9\",\"52c88842b43278b86d00d43b\",\"52c888900b6491e73600d312\",\"52c889fd26b615973a00d6b1\",\"52c88ac79cd5cbd53600d823\",\"52c88b4a62c0a82f3a005abc\",\"52c88b89fe70eaae6d00d15a\",\"52c88bd73616972f3200df6e\",\"52c88d2ef96c5af37b00e174\",\"52c88dad8e4e40cd6d00df1e\",\"52c89167f2357a841a00de42\",\"52c9b1d1439586cc36007473\",\"52c9b2feebe8d7230600cd75\",\"52cb0eb76de8f23049882fec\",\"52d0157e2cc81113348dbd65\",\"52d177076ebbf2c33cb71565\",\"52d1919e8e09e1f54223867c\",\"52d191de8c71ee0e7b73adb3\",\"52d1c3421da43c20167ba048\",\"52d5982c68f398246f1e3d1e\",\"52e6c9be263fcb685347be82\",\"52e6ca12d355e1e957a9122c\",\"52e6e1d3e18c69a057a657fa\",\"52e6e329faa045f030a55cc8\",\"52e6e72dec03457353d046fd\",\"52e6ebb9e0212ed9302623e3\",\"52e6f3ea449303ad30caa5fe\",\"52e6f486b338d26a10ff7998\",\"52eab9947c88465d2e156a38\",\"52eab9d97420b8f55d20ac0a\",\"52eac20209f9316b66b7af27\",\"52eac6f57adf0ffe5dbb93a0\",\"52eb6ba5afe1e5e3237c0180\",\"52ed57ac99e39fdd6021784c\",\"52ed57aefbec575c62cab4b6\",\"52eea46bca967d54245dfee6\",\"52eea48db6b314ec42496386\",\"52eea54ebf3801a0236e4660\",\"52eea60018a25bc7608eec2a\",\"52efd7e2b6d3feb3388b0c60\",\"52ff7f2185323dd904cfc66b\",\"52ff81963e2a4fdb0415635b\",\"52ff822f31fbadb946eb4476\",\"52ff83601de286bb46b3da8f\"],\"idBoardsInvited\":[],\"idBoardsPinned\":[\"5195fdb6a8c01a2318004f5f\",\"526d8e130a14a9d846001d96\",\"52bc953c9e0687876e033f97\",\"52bc958395ba537530017de8\",\"52bde0bb032383625d01a655\",\"52bded8ac13ea0245903b301\",\"52be0f11f6a939a72e011e67\",\"52c0a7169777fc4d0800b445\",\"52c1b00073d9e2dd65011576\",\"52c73ea6de4147771a00355a\",\"52c88181740df45b0f00d8b4\",\"52c881c48267d0703700d9eb\",\"52c8820ef427cacf7b00d647\",\"52c8824cf6d05f166e004f53\",\"52c885cf530fa4b30f00f769\",\"52c885f7d08b9bd97b00d797\",\"52c886224d8eca7f7c00d23a\",\"52c8869bd6db249c7c004ce7\",\"52c8881c30ceeaf83600ddf9\",\"52c88842b43278b86d00d43b\",\"52c888900b6491e73600d312\",\"52c889fd26b615973a00d6b1\",\"52c88ac79cd5cbd53600d823\",\"52c88b4a62c0a82f3a005abc\",\"52c88b89fe70eaae6d00d15a\",\"52c88bd73616972f3200df6e\",\"52c88d2ef96c5af37b00e174\",\"52c88dad8e4e40cd6d00df1e\",\"52c89167f2357a841a00de42\",\"52c9b1d1439586cc36007473\",\"52c9b2feebe8d7230600cd75\",\"52cb0eb76de8f23049882fec\",\"52d0157e2cc81113348dbd65\",\"52d177076ebbf2c33cb71565\",\"52d1919e8e09e1f54223867c\",\"52d191de8c71ee0e7b73adb3\",\"52d1c3421da43c20167ba048\",\"52d5982c68f398246f1e3d1e\",\"52e6c9be263fcb685347be82\",\"52e6ca12d355e1e957a9122c\",\"52e6e1d3e18c69a057a657fa\",\"52e6e329faa045f030a55cc8\",\"52e6e72dec03457353d046fd\",\"52e6ebb9e0212ed9302623e3\",\"52e6f3ea449303ad30caa5fe\",\"52e6f486b338d26a10ff7998\",\"52eab9947c88465d2e156a38\",\"52eab9d97420b8f55d20ac0a\",\"52eac20209f9316b66b7af27\",\"52eac6f57adf0ffe5dbb93a0\",\"52eb6ba5afe1e5e3237c0180\",\"52ed57ac99e39fdd6021784c\",\"52ed57aefbec575c62cab4b6\",\"52eea46bca967d54245dfee6\",\"52eea48db6b314ec42496386\",\"52eea54ebf3801a0236e4660\",\"52eea60018a25bc7608eec2a\",\"52efd7e2b6d3feb3388b0c60\",\"52ff7f2185323dd904cfc66b\",\"52ff81963e2a4fdb0415635b\",\"52ff822f31fbadb946eb4476\",\"52ff83601de286bb46b3da8f\"],\"idOrganizations\":[],\"idOrganizationsInvited\":[],\"loginTypes\":null,\"newEmail\":null,\"oneTimeMessagesDismissed\":[\"newtrelloIntro\"],\"prefs\":{\"timezoneInfo\":{\"timezoneNext\":\"BST\",\"dateNext\":\"2014-03-30T01:00:00.000Z\",\"offsetNext\":-60,\"timezoneCurrent\":\"GMT\",\"offsetCurrent\":0},\"sendSummaries\":true,\"minutesBetweenSummaries\":60,\"minutesBeforeDeadlineToNotify\":1440,\"colorBlind\":false},\"trophies\":[\"Android\"],\"uploadedAvatarHash\":null,\"premiumFeatures\":[]}"
+      string: "{\"id\":\"5195fdb5a8c01a2318004f5d\",\"avatarHash\":\"045fd924d84699c9ba451e181bba33a3\",\"bio\":\"some
+        bio\",\"bioData\":null,\"confirmed\":true,\"fullName\":\"Gavin Laking\",\"idPremOrgsAdmin\":[],\"initials\":\"GL\",\"memberType\":\"normal\",\"products\":[],\"status\":\"disconnected\",\"url\":\"<Trello
+        URL>\",\"username\":\"gavinlaking1\",\"avatarSource\":\"gravatar\",\"email\":\"gavinlaking@gmail.com\",\"gravatarHash\":\"c9c47875936bed67032a12c047b468a8\",\"idBoards\":[\"526d8e130a14a9d846001d96\"],\"idBoardsInvited\":[],\"idBoardsPinned\":[\"526d8e130a14a9d846001d96\"],\"idOrganizations\":[],\"idOrganizationsInvited\":[],\"loginTypes\":null,\"newEmail\":null,\"oneTimeMessagesDismissed\":[\"newtrelloIntro\"],\"prefs\":{\"timezoneInfo\":{\"timezoneNext\":\"BST\",\"dateNext\":\"2014-03-30T01:00:00.000Z\",\"offsetNext\":-60,\"timezoneCurrent\":\"GMT\",\"offsetCurrent\":0},\"sendSummaries\":true,\"minutesBetweenSummaries\":60,\"minutesBeforeDeadlineToNotify\":1440,\"colorBlind\":false},\"trophies\":[\"Android\"],\"uploadedAvatarHash\":null,\"premiumFeatures\":[]}"
     http_version: 
-  recorded_at: Mon, 17 Feb 2014 21:16:55 GMT
+  recorded_at: Fri, 21 Feb 2014 19:12:14 GMT
 recorded_with: VCR 2.8.0

@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://api.trello.com/1/cards/526d8f19ddb279532e005259/actions/comments
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: text=Some%20much%20needed%20feedback...
     headers:
       Accept:
@@ -15,53 +15,35 @@ http_interactions:
       - "<OAuth Credentials>"
       Content-Length:
       - '39'
-      Content-Type:
-      - application/x-www-form-urlencoded
       User-Agent:
       - Ruby
   response:
     status:
       code: 200
-      message: OK
+      message: 'OK '
     headers:
-      X-Powered-By:
-      - Express
-      Cache-Control:
-      - max-age=0, must-revalidate, no-cache, no-store
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=15768000
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '665'
       X-Xss-Protection:
       - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - DENY
-      X-Server-Time:
-      - '1389729838483'
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00
-      Content-Type:
-      - application/json
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Allow-Methods:
-      - GET, PUT, POST, DELETE
-      Content-Length:
-      - '946'
-      Vary:
-      - Accept-Encoding
+      - SAMEORIGIN
+      Server:
+      - WEBrick/1.3.1 (Ruby/2.1.0/2013-12-25) OpenSSL/1.0.1e
       Date:
-      - Tue, 14 Jan 2014 20:03:58 GMT
+      - Fri, 21 Feb 2014 19:12:13 GMT
+      Connection:
+      - Keep-Alive
     body:
       encoding: UTF-8
-      string: "{\"id\":\"52d5982eb49a4d207519a16b\",\"idMemberCreator\":\"5195fdb5a8c01a2318004f5d\",\"data\":{\"text\":\"Some
-        much needed feedback...\",\"textData\":{\"emoji\":{}},\"card\":{\"id\":\"526d8f19ddb279532e005259\",\"name\":\"My
-        Test Card\",\"idShort\":8,\"shortLink\":\"UJBK7pil\"},\"board\":{\"id\":\"526d8e130a14a9d846001d96\",\"name\":\"Troo
-        App\",\"shortLink\":\"a3RnYKnD\"}},\"type\":\"commentCard\",\"date\":\"2014-01-14T20:03:58.448Z\",\"memberCreator\":{\"id\":\"5195fdb5a8c01a2318004f5d\",\"avatarHash\":\"045fd924d84699c9ba451e181bba33a3\",\"fullName\":\"Gavin
-        Laking\",\"initials\":\"GL\",\"username\":\"gavinlaking1\"},\"entities\":[{\"type\":\"member\",\"id\":\"5195fdb5a8c01a2318004f5d\",\"text\":\"Gavin
-        Laking\"},{\"type\":\"text\",\"text\":\"on\",\"hideIfContext\":true,\"idContext\":\"526d8f19ddb279532e005259\"},{\"type\":\"card\",\"hideIfContext\":true,\"shortLink\":\"UJBK7pil\",\"id\":\"526d8f19ddb279532e005259\",\"text\":\"My
-        Test Card\"},{\"type\":\"comment\",\"text\":\"Some much needed feedback...\",\"textHtml\":\"<p>Some
-        much needed feedback...</p>\\n\"}]}"
+      string: "{\"id\":\"51f9277b2822b8654f0023af\",\"idMemberCreator\":\"5195fdb5a8c01a2318004f5d\",\"data\":{\"board\":{\"shortLink\":\"a3RnYKnD\",\"name\":\"My
+        Test Board\",\"id\":\"526d8e130a14a9d846001d96\"},\"card\":{\"shortLink\":\"UJBK7pil\",\"idShort\":8,\"name\":\"My
+        Test Card\",\"id\":\"526d8f19ddb279532e005259\"},\"text\":\"My Test Comment\"},\"type\":\"commentCard\",\"date\":\"2014-02-07T18:02:24.297Z\",\"memberCreator\":{\"id\":\"5195fdb5a8c01a2318004f5d\",\"avatarHash\":\"045fd924d84699c9ba451e181bba33a3\",\"fullName\":\"Gavin
+        Laking\",\"initials\":\"GL\",\"username\":\"gavinlaking1\"}}"
     http_version: 
-  recorded_at: Tue, 14 Jan 2014 20:03:57 GMT
+  recorded_at: Fri, 21 Feb 2014 19:12:13 GMT
 recorded_with: VCR 2.8.0

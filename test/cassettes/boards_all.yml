@@ -20,44 +20,31 @@ http_interactions:
   response:
     status:
       code: 200
-      message: OK
+      message: 'OK '
     headers:
-      X-Powered-By:
-      - Express
-      Cache-Control:
-      - max-age=0, must-revalidate, no-cache, no-store
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=15768000
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '898'
       X-Xss-Protection:
       - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - DENY
-      X-Server-Time:
-      - '1392670308176'
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00
-      Content-Type:
-      - application/json
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Allow-Methods:
-      - GET, PUT, POST, DELETE
-      Etag:
-      - "\"-176890119\""
-      Vary:
-      - Accept-Encoding
+      - SAMEORIGIN
+      Server:
+      - WEBrick/1.3.1 (Ruby/2.1.0/2013-12-25) OpenSSL/1.0.1e
       Date:
-      - Mon, 17 Feb 2014 20:51:48 GMT
-      Transfer-Encoding:
-      - chunked
+      - Fri, 21 Feb 2014 19:12:14 GMT
+      Connection:
+      - Keep-Alive
     body:
       encoding: UTF-8
-      string: "[{\"id\":\"52e6e1d3e18c69a057a657fa\",\"name\":\"Cuke Add Board\",\"desc\":\"\",\"descData\":null,\"closed\":true,\"idOrganization\":null,\"invited\":false,\"pinned\":true,\"starred\":false,\"url\":\"<Trello
-        URL>\",\"prefs\":{\"permissionLevel\":\"private\",\"voting\":\"disabled\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":false,\"cardCovers\":true,\"cardAging\":\"regular\",\"background\":\"blue\",\"backgroundColor\":\"#23719F\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"unknown\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"invitations\":[],\"memberships\":[{\"id\":\"52e6e1d3e18c69a057a657fe\",\"idMember\":\"5195fdb5a8c01a2318004f5d\",\"memberType\":\"admin\",\"deactivated\":false,\"unconfirmed\":false}],\"shortLink\":\"<Trello
-        URL>\",\"subscribed\":false,\"labelNames\":{\"red\":\"\",\"orange\":\"\",\"yellow\":\"\",\"green\":\"\",\"blue\":\"\",\"purple\":\"\"},\"powerUps\":[],\"dateLastActivity\":null,\"dateLastView\":\"2014-01-29T21:01:08.044Z\",\"shortUrl\":\"<Trello
-        URL>\"}]"
-    http_version:
-  recorded_at: Mon, 17 Feb 2014 20:51:48 GMT
+      string: "[{\"id\":\"526d8e130a14a9d846001d96\",\"name\":\"My Test Board\",\"desc\":\"A
+        very brief description...\",\"descData\":null,\"closed\":false,\"idOrganization\":null,\"pinned\":true,\"url\":\"<Trello
+        URL>\",\"shortUrl\":\"<Trello URL>\",\"prefs\":{\"permissionLevel\":\"private\",\"voting\":\"disabled\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":false,\"cardCovers\":true,\"cardAging\":\"regular\",\"background\":\"blue\",\"backgroundColor\":\"#23719F\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"unknown\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"labelNames\":{\"yellow\":\"Analysis
+        Complete\",\"red\":\"\",\"purple\":\"\",\"orange\":\"\",\"green\":\"Ready
+        to Pull\",\"blue\":\"\"}}]"
+    http_version: 
+  recorded_at: Fri, 21 Feb 2014 19:12:14 GMT
 recorded_with: VCR 2.8.0

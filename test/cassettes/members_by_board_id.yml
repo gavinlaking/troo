@@ -20,39 +20,29 @@ http_interactions:
   response:
     status:
       code: 200
-      message: OK
+      message: 'OK '
     headers:
-      X-Powered-By:
-      - Express
-      Cache-Control:
-      - max-age=0, must-revalidate, no-cache, no-store
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=15768000
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '1191'
       X-Xss-Protection:
       - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - DENY
-      X-Server-Time:
-      - '1392671729121'
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00
-      Content-Type:
-      - application/json
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Allow-Methods:
-      - GET, PUT, POST, DELETE
-      Content-Length:
-      - '87'
-      Vary:
-      - Accept-Encoding
+      - SAMEORIGIN
+      Server:
+      - WEBrick/1.3.1 (Ruby/2.1.0/2013-12-25) OpenSSL/1.0.1e
       Date:
-      - Mon, 17 Feb 2014 21:15:29 GMT
+      - Fri, 21 Feb 2014 19:12:14 GMT
+      Connection:
+      - Keep-Alive
     body:
       encoding: UTF-8
-      string: "[{\"id\":\"5195fdb5a8c01a2318004f5d\",\"fullName\":\"Gavin Laking\",\"username\":\"gavinlaking1\"}]"
+      string: "[{\"id\":\"5195fdb5a8c01a2318004f5d\",\"avatarHash\":\"045fd924d84699c9ba451e181bba33a3\",\"bio\":\"some
+        bio\",\"bioData\":null,\"confirmed\":true,\"fullName\":\"Gavin Laking\",\"idPremOrgsAdmin\":[],\"initials\":\"GL\",\"memberType\":\"normal\",\"products\":[],\"status\":\"disconnected\",\"url\":\"<Trello
+        URL>\",\"username\":\"gavinlaking1\",\"avatarSource\":\"gravatar\",\"email\":\"gavinlaking@gmail.com\",\"gravatarHash\":\"c9c47875936bed67032a12c047b468a8\",\"idBoards\":[\"526d8e130a14a9d846001d96\"],\"idBoardsInvited\":[],\"idBoardsPinned\":[\"526d8e130a14a9d846001d96\"],\"idOrganizations\":[],\"idOrganizationsInvited\":[],\"loginTypes\":null,\"newEmail\":null,\"oneTimeMessagesDismissed\":[\"newtrelloIntro\"],\"prefs\":{\"timezoneInfo\":{\"timezoneNext\":\"BST\",\"dateNext\":\"2014-03-30T01:00:00.000Z\",\"offsetNext\":-60,\"timezoneCurrent\":\"GMT\",\"offsetCurrent\":0},\"sendSummaries\":true,\"minutesBetweenSummaries\":60,\"minutesBeforeDeadlineToNotify\":1440,\"colorBlind\":false},\"trophies\":[\"Android\"],\"uploadedAvatarHash\":null,\"premiumFeatures\":[]}]"
     http_version: 
-  recorded_at: Mon, 17 Feb 2014 21:15:28 GMT
+  recorded_at: Fri, 21 Feb 2014 19:12:14 GMT
 recorded_with: VCR 2.8.0
