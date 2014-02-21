@@ -2,6 +2,7 @@ module Troo
   module Remote
     class Member
       include Virtus.model
+      include Troo::RemoteModelHelpers
 
       attribute :id
       attribute :avatarHash
@@ -52,12 +53,6 @@ module Troo
 
       alias_method :external_member_id, :id
       alias_method :avatar_id,          :avatarHash
-
-      class << self
-        def with_collection(resources = [])
-          resources.map { |resource| new(resource) }
-        end
-      end
     end
   end
 end

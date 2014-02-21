@@ -2,6 +2,7 @@ module Troo
   module Remote
     class Board
       include Virtus.model
+      include Troo::RemoteModelHelpers
 
       attribute :id
       attribute :name
@@ -22,12 +23,6 @@ module Troo
 
       alias_method :external_board_id, :id
       alias_method :description,       :desc
-
-      class << self
-        def with_collection(resources = [])
-          resources.map { |resource| new(resource) }
-        end
-      end
     end
   end
 end

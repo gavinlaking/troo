@@ -2,6 +2,7 @@ module Troo
   module Remote
     class Card
       include Virtus.model
+      include Troo::RemoteModelHelpers
 
       attribute :id
       attribute :badges
@@ -43,12 +44,6 @@ module Troo
       alias_method :short_id,                :idShort
       alias_method :position,                :pos
       alias_method :last_activity_date,      :dateLastActivity
-
-      class << self
-        def with_collection(resources = [])
-          resources.map { |resource| new(resource) }
-        end
-      end
     end
   end
 end

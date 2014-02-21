@@ -31,6 +31,7 @@ require_relative 'api/client'
 
 require_relative 'helpers/decorator_helpers'
 require_relative 'helpers/model_helpers'
+require_relative 'helpers/remote_model_helpers'
 
 require_relative 'actions/create_board'
 require_relative 'actions/create_card'

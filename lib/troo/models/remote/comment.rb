@@ -2,6 +2,7 @@ module Troo
   module Remote
     class Comment
       include Virtus.model(finalize: false)
+      include Troo::RemoteModelHelpers
 
       attribute :id
       attribute :idMemberCreator
@@ -9,12 +10,6 @@ module Troo
       attribute :type
       attribute :date
       attribute :memberCreator
-
-      class << self
-        def with_collection(resources = [])
-          resources.map { |resource| new(resource) }
-        end
-      end
 
       def external_board_id
         data.board.id
