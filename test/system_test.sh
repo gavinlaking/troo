@@ -2,6 +2,7 @@
 set -e
 
 function partition() {
+  echo -e "--------------------------------------------------------"
   echo $1
   echo -e "--------------------------------------------------------"
 }
@@ -50,13 +51,25 @@ then
   partition "default card 1"
   ./bin/troo default card 1
 
+  partition "add board 'Test Board'"
+  ./bin/troo add board 'Test Board'
+
+  partition "add list 1 'Test List'"
+  ./bin/troo add list 1 'Test List'
+
+  partition "add card 1 'Test Card'"
+  ./bin/troo add card 1 'Test Card'
+
+  partition "add comment 1 'Test Comment'"
+  ./bin/troo add comment 1 'Test Comment'
+
   partition "cleanup"
   ./bin/troo cleanup
 
   partition "All done!"
+  echo -e ""
 else
   echo -e "\nExecute this from the root of the project, i.e: ./test/system_test.sh\n"
 fi
 
-# troo  add [board|list|card|comment] <id>   # Add board, list, card or comment.
 # troo  move <card_id> <list_id> # Move card to list.
