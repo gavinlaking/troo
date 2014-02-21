@@ -45,12 +45,11 @@ module Troo
 
       @kernel.exit(0)
     rescue Troo::InvalidAccessToken
-      @stderr.puts 'Your Trello access credentials have expired, ' \
-                   ' please renew and try again.'
+      @stderr.puts 'Your Trello access credentials have expired ' \
+                   'or are invalid, please renew and try again.'
       @kernel.exit(1)
-    rescue SocketError
-      @stderr.puts 'Cannot continue, no network connection.'
-      @kernel.exit(1)
+    ensure
+      $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
     end
   end
 end
