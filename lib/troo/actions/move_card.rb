@@ -1,13 +1,20 @@
 module Troo
   class MoveCard
     class << self
-      def with(card, list, board = nil)
-        new(card, list, board).perform
+      def with(external_card_id,
+               external_list_id,
+               external_board_id = nil)
+        new(external_card_id, external_list_id, external_board_id)
+          .perform
       end
     end
 
-    def initialize(card, list, board = nil)
-      @card, @list, @board = card, list, board
+    def initialize(external_card_id,
+                   external_list_id,
+                   external_board_id = nil)
+      @external_card_id  = external_card_id
+      @external_list_id  = external_list_id
+      @external_board_id = external_board_id
     end
 
     def perform
@@ -16,11 +23,17 @@ module Troo
 
     private
 
-    attr_reader :card, :list, :board
+    attr_reader :external_card_id,
+                :external_list_id,
+                :external_board_id
 
     def update_cards
-      return Persistence::Card.with_collection(resource) if resource
+      return Persistence::Card.with_collection(resource).first if any?
       false
+    end
+
+    def any?
+      resource.any?
     end
 
     def resource
@@ -38,29 +51,29 @@ module Troo
     end
 
     def endpoint
-      return :move_card_board if board
+      return :move_card_board if external_board_id
       :move_card_list
     end
 
     def interpolation
-      { external_id: card.external_card_id }
+      { external_id: external_card_id }
     end
 
     def query
-      return board_query if board
+      return board_query if external_board_id
       list_query
     end
 
     def board_query
       {
-        value:  board.external_board_id,
-        idList: list.external_list_id
+        value:  external_board_id,
+        idList: external_list_id
       }
     end
 
     def list_query
       {
-        value: list.external_list_id
+        value: external_list_id
       }
     end
   end

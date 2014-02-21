@@ -1,14 +1,14 @@
 module Troo
   class CreateList
     class << self
-      def with(board, name)
-        new(board, name).perform
+      def with(external_board_id, name)
+        new(external_board_id, name).perform
       end
     end
 
-    def initialize(board, name)
-      @board = board
-      @name  = name
+    def initialize(external_board_id, name)
+      @external_board_id = external_board_id
+      @name              = name
     end
 
     def perform
@@ -17,11 +17,15 @@ module Troo
 
     private
 
-    attr_reader :board, :name
+    attr_reader :external_board_id, :name
 
     def create_local
-      return Persistence::List.with_collection(resource).first if resource
+      return Persistence::List.with_collection(resource).first if any?
       false
+    end
+
+    def any?
+      resource.any?
     end
 
     def resource
@@ -41,7 +45,7 @@ module Troo
     def query
       {
         name:     name,
-        board_id: board.external_board_id
+        board_id: external_board_id
       }
     end
   end

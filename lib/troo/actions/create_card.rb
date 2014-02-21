@@ -1,15 +1,15 @@
 module Troo
   class CreateCard
     class << self
-      def with(list, name = nil, description = nil)
-        new(list, name, description).perform
+      def with(external_list_id, name = nil, description = nil)
+        new(external_list_id, name, description).perform
       end
     end
 
-    def initialize(list, name = nil, description = nil)
-      @list        = list
-      @name        = name
-      @description = description
+    def initialize(external_list_id, name = nil, description = nil)
+      @external_list_id = external_list_id
+      @name             = name
+      @description      = description
     end
 
     def perform
@@ -18,11 +18,15 @@ module Troo
 
     private
 
-    attr_reader :list, :name, :description
+    attr_reader :external_list_id, :name, :description
 
     def create_local
-      return Persistence::Card.with_collection(resource).first if resource
+      return Persistence::Card.with_collection(resource).first if any?
       false
+    end
+
+    def any?
+      resource.any?
     end
 
     def resource
@@ -42,7 +46,7 @@ module Troo
     def query
       {
         name:    name,
-        list_id: list.external_list_id,
+        list_id: external_list_id,
         desc:    description
       }
     end

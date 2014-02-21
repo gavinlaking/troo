@@ -13,9 +13,9 @@ module Troo
         end
 
         def move
-          return 'Card cannot be found.' if card_not_found?
-          return 'List cannot be found.' if list_not_found?
-          return 'Board cannot be found' if board_specified? && board_not_found?
+          return 'Card cannot be found.'  if card_not_found?
+          return 'List cannot be found.'  if list_not_found?
+          return 'Board cannot be found.' if board_not_found?
           return success if moved
           error
         end
@@ -25,7 +25,14 @@ module Troo
         attr_reader :card_id, :list_id, :board_id
 
         def moved
-          @moved ||= MoveCard.with(card, list)
+          if board_specified?
+            @moved ||= MoveCard.with(external_card_id,
+                                     external_list_id,
+                                     external_board_id)
+          else
+            @moved ||= MoveCard.with(external_card_id,
+                                     external_list_id)
+          end
         end
 
         def success
@@ -44,6 +51,10 @@ module Troo
           card.decorator.name
         end
 
+        def external_card_id
+          card.external_card_id
+        end
+
         def card
           @card ||= Troo::Card.retrieve(card_id)
         end
@@ -54,6 +65,10 @@ module Troo
 
         def list_name
           list.decorator.name
+        end
+
+        def external_list_id
+          list.external_list_id
         end
 
         def list
@@ -68,12 +83,16 @@ module Troo
           board.decorator.name
         end
 
+        def external_board_id
+          board.external_board_id
+        end
+
         def board
           @board ||= Troo::Board.retrieve(board_id)
         end
 
         def board_not_found?
-          board.nil?
+          board_specified? && board.nil?
         end
 
         def board_specified?

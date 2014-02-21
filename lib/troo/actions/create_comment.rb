@@ -1,14 +1,14 @@
 module Troo
   class CreateComment
     class << self
-      def with(card, comment)
-        new(card, comment).perform
+      def with(external_card_id, comment)
+        new(external_card_id, comment).perform
       end
     end
 
-    def initialize(card, comment)
-      @card    = card
-      @comment = comment
+    def initialize(external_card_id, comment)
+      @external_card_id = external_card_id
+      @comment          = comment
     end
 
     def perform
@@ -17,11 +17,15 @@ module Troo
 
     private
 
-    attr_reader :card, :comment
+    attr_reader :external_card_id, :comment
 
     def create_local
-      return Persistence::Comment.with_collection(resource).first if resource
+      return Persistence::Comment.with_collection(resource).first if any?
       false
+    end
+
+    def any?
+      resource.any?
     end
 
     def resource
@@ -39,7 +43,7 @@ module Troo
     end
 
     def interpolation
-      { external_id: card.external_card_id }
+      { external_id: external_card_id }
     end
 
     def query
