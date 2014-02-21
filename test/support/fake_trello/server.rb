@@ -25,16 +25,20 @@ webrick_options = {
 }
 
 class Response
-  def self.render!(resource)
+  def self.render!(resource, collection = false)
     path = File.dirname(__FILE__)
     file = "/../remotes/#{resource}.json"
-    File.read(path + file)
+    json = File.read(path + file)
+    collection ? "[" + json + "]" : json
   end
 end
 
 class MyFakeTrello < Sinatra::Base
   # boards_all
   get '/1/members/me/boards' do
+    halt(400, 'Bad Request')  if params["id"] == "400"
+    halt(401, 'Unauthorized') if params["id"] == "401"
+    Response.render!('board', true)
   end
 
   # board_by_id
@@ -67,10 +71,16 @@ class MyFakeTrello < Sinatra::Base
 
   # cards_by_board_id
   get '/1/boards/:id/cards' do
+    halt(400, 'Bad Request')  if params["id"] == "400"
+    halt(401, 'Unauthorized') if params["id"] == "401"
+    Response.render!('card', true)
   end
 
   # cards_by_list_id
   get '/1/lists/:id/cards' do
+    halt(400, 'Bad Request')  if params["id"] == "400"
+    halt(401, 'Unauthorized') if params["id"] == "401"
+    Response.render!('card', true)
   end
 
   # comments_by_board_id
@@ -96,10 +106,16 @@ class MyFakeTrello < Sinatra::Base
 
   # lists_by_board_id
   get '/1/boards/:id/lists' do
+    halt(400, 'Bad Request')  if params["id"] == "400"
+    halt(401, 'Unauthorized') if params["id"] == "401"
+    Response.render!('list', true)
   end
 
   # members_by_board_id
   get '/1/boards/:id/members' do
+    halt(400, 'Bad Request')  if params["id"] == "400"
+    halt(401, 'Unauthorized') if params["id"] == "401"
+    Response.render!('member', true)
   end
 
   # create_board
@@ -131,12 +147,18 @@ class MyFakeTrello < Sinatra::Base
   end
 
   # move_card_list
-  # put '/1/cards/:id/idList' do
-  # end
+  put '/1/cards/:id/idList' do
+    halt(400, 'Bad Request')  if params["id"] == "400"
+    halt(401, 'Unauthorized') if params["id"] == "401"
+    Response.render!('card')
+  end
 
   # move_card_board
-  # put '/1/cards/:id/idBoard' do
-  # end
+  put '/1/cards/:id/idBoard' do
+    halt(400, 'Bad Request')  if params["id"] == "400"
+    halt(401, 'Unauthorized') if params["id"] == "401"
+    Response.render!('card')
+  end
 end
 
 Rack::Handler::WEBrick.run MyFakeTrello, webrick_options
