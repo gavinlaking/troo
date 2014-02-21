@@ -17,7 +17,7 @@ module Troo
       private
 
       def resources
-        API::Client.perform(parameters)
+        @resources ||= API::Client.perform(parameters)
       end
 
       def options

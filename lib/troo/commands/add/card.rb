@@ -22,7 +22,7 @@ module Troo
         end
 
         def resource
-          Troo::List.retrieve(id)
+          @resource ||= Troo::List.retrieve(id)
         end
       end
     end

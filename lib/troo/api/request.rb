@@ -20,7 +20,7 @@ module Troo
       attr_reader :urn, :verb
 
       def request
-        RestClient::Request.execute(
+        @request ||= RestClient::Request.execute(
           headers: Headers.build!(uri),
           payload: query,
           timeout: 10,

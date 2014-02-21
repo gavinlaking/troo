@@ -5,7 +5,7 @@ module Troo
         private
 
         def resource
-          Troo::Board.retrieve(id)
+          @resource ||= Troo::Board.retrieve(id)
         end
 
         def type
