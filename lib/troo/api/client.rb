@@ -17,8 +17,9 @@ module Troo
 
       def perform
         return [] if missing_parameters?
+        return [] if error_response?
 
-        if response.is_a?(Array)
+        if collection?
           model.with_collection(response)
         else
           [model.new(response)]
@@ -26,6 +27,14 @@ module Troo
       end
 
       private
+
+      def collection?
+        response.is_a?(Array)
+      end
+
+      def error_response?
+        response.is_a?(ErrorResponse)
+      end
 
       def response
         @response ||= API::Request.make(verb, urn, query)

@@ -18,7 +18,12 @@ module Troo
         end
 
         def create
-          @create ||= CreateCard.with(resource, value)
+          return false if no_resource?
+          @create ||= CreateCard.with(external_list_id, value)
+        end
+
+        def external_list_id
+          resource.external_list_id
         end
 
         def resource

@@ -18,7 +18,12 @@ module Troo
         end
 
         def create
-          @create ||= CreateComment.with(resource, value)
+          return false if no_resource?
+          @create ||= CreateComment.with(external_card_id, value)
+        end
+
+        def external_card_id
+          resource.external_card_id
         end
 
         def resource

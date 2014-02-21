@@ -13,6 +13,12 @@ module Troo
         def initialize(value, id = nil)
           @value, @id = value, id
         end
+
+        private
+
+        def no_resource?
+          resource.nil?
+        end
       end
     end
   end

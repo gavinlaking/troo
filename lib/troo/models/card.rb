@@ -79,10 +79,6 @@ module Troo
       Presenters::Comment.new(self, options)
     end
 
-    def member_presenter(options = {})
-      Presenters::Member.new(self, options)
-    end
-
     def set_default!
       Behaviours::SetDefault.for(self)
     end

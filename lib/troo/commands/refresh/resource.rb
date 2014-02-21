@@ -15,13 +15,9 @@ module Troo
         end
 
         def refresh
-          if resource.one?
-            success
-          elsif resource.count > 1
-            many_success
-          else
-            not_found
-          end
+          return not_found    if resource.nil? || resource.none?
+          return many_success if resource.count > 1
+          success
         end
 
         private

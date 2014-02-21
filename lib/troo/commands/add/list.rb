@@ -18,7 +18,12 @@ module Troo
         end
 
         def create
-          @create ||= CreateList.with(resource, value)
+          return false if no_resource?
+          @create ||= CreateList.with(external_board_id, value)
+        end
+
+        def external_board_id
+          resource.external_board_id
         end
 
         def resource

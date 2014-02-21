@@ -9,11 +9,8 @@ module Troo
         end
 
         def render
-          if resources.any?
-            presenter
-          else
-            error
-          end
+          return presenter if resources.any?
+          error
         end
 
         private

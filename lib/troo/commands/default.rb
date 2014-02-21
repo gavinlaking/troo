@@ -21,7 +21,7 @@ module Troo
       attr_reader :id, :klass
 
       def success
-        "'#{name}' set as default #{type.downcase}."
+        "'#{name}' set as default."
       end
 
       def error
