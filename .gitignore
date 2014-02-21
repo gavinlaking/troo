@@ -22,3 +22,5 @@ features/support/fixtures/cassettes/*.yml
 logs/*.log
 troo.db
 tags
+test/support/fake_trello/my-server.crt
+test/support/fake_trello/my-server.key
