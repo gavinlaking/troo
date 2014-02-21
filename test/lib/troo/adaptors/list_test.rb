@@ -11,15 +11,6 @@ module Troo
     let(:described_class) { Adaptors::List }
     let(:resource) { load_mock_trello_response }
 
-    describe '#initialize' do
-      subject { described_class.new(resource) }
-
-      it 'assigns the resource to an instance variable' do
-        subject.instance_variable_get('@resource')
-          .must_equal(resource)
-      end
-    end
-
     describe '#adapted' do
       subject { described_class.adapt(resource) }
 
