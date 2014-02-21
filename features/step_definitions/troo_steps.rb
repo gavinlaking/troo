@@ -1,5 +1,5 @@
 Given(/^the Trello API is stubbed with "(.*?)"$/) do |stub|
-  VCR.insert_cassette(stub)
+  VCR.insert_cassette(stub, allow_playback_repeats: true)
 end
 
 Then(/^the output should be the version number of troo$/) do
