@@ -8,6 +8,10 @@ require 'openssl'
 # 2) sudo ipfw add 100 fwd 127.0.0.1,8080 tcp from any to me 80
 # 3) sudo ipfw add 101 fwd 127.0.0.1,8443 tcp from any to me 443
 # 4) add 127.0.0.1 api.trello.com to /etc/hosts
+# 5) when done:
+# remove entry from /etc/hosts
+# sudo ipfw del 100
+# sudo ipfw del 101
 
 my_server_crt   = File.open(File.join('./', 'my-server.crt')).read
 my_server_key   = File.open(File.join('./', 'my-server.key')).read
