@@ -6,12 +6,27 @@ module Troo
       let(:described_class) { Main }
 
       describe '#init' do
-        before { File.stubs(:exist?).returns(true) }
+        let(:exists) { false }
+
+        before do
+          File.stubs(:exist?).returns(exists)
+          FileUtils.stubs(:cp)
+        end
 
         subject { capture_io { described_class.new.init }.join }
 
-        it 'returns the output of the command' do
-          subject.must_match(/configuration file already exists/)
+        context 'when a configuration file exists' do
+          let(:exists) { true }
+
+          it 'returns the output of the command' do
+            subject.must_match(/already exists/)
+          end
+        end
+
+        context 'when a configuration file does not exist' do
+          it 'returns the output of the command' do
+            subject.must_match(/does not exist/)
+          end
         end
       end
 

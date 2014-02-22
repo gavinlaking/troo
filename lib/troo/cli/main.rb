@@ -8,11 +8,9 @@ module Troo
           say 'A configuration file already exists in your home ' \
               'directory.'
         else
-          say 'No `.trooconf` found in your home directory...'
+          say 'A configuration file does not exist in your home ' \
+              'directory, creating one...'
           FileUtils.cp(source, destination)
-          say "A configuration file has been created at " \
-              "`#{Dir.home}/.trooconf`."
-          exit!
         end
       end
 
