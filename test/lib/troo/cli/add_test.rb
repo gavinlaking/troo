@@ -5,6 +5,17 @@ module Troo
     describe Add do
       let(:described_class) { Add }
 
+      before do
+        Troo::Commands::Add::Board.stubs(:dispatch)
+          .returns('could not be created')
+        Troo::Commands::Add::Card.stubs(:dispatch)
+          .returns('could not be created')
+        Troo::Commands::Add::Comment.stubs(:dispatch)
+          .returns('could not be created')
+        Troo::Commands::Add::List.stubs(:dispatch)
+          .returns('could not be created')
+      end
+
       describe '#board' do
         let(:value) {}
 
@@ -12,8 +23,20 @@ module Troo
           capture_io { described_class.new.board(value) }.join
         end
 
-        it 'returns the output of the command' do
-          skip('Needs a spec, please write one.')
+        context 'when a value is provided' do
+          let(:value) { 'some value' }
+
+          it 'returns the output of the command' do
+            subject.must_match(/could not be created/)
+          end
+        end
+
+        context 'when a value is not provided' do
+          before { $stdin.stubs(:gets).returns("some value\n") }
+
+          it 'returns the output of the command' do
+            subject.must_match(/could not be created/)
+          end
         end
       end
 
@@ -25,8 +48,20 @@ module Troo
           capture_io { described_class.new.card(id, value) }.join
         end
 
-        it 'returns the output of the command' do
-          skip('Needs a spec, please write one.')
+        context 'when a value is provided' do
+          let(:value) { 'some value' }
+
+          it 'returns the output of the command' do
+            subject.must_match(/could not be created/)
+          end
+        end
+
+        context 'when a value is not provided' do
+          before { $stdin.stubs(:gets).returns("some value\n") }
+
+          it 'returns the output of the command' do
+            subject.must_match(/could not be created/)
+          end
         end
       end
 
@@ -38,8 +73,20 @@ module Troo
           capture_io { described_class.new.comment(id, value) }.join
         end
 
-        it 'returns the output of the command' do
-          skip('Needs a spec, please write one.')
+        context 'when a value is provided' do
+          let(:value) { 'some value' }
+
+          it 'returns the output of the command' do
+            subject.must_match(/could not be created/)
+          end
+        end
+
+        context 'when a value is not provided' do
+          before { $stdin.stubs(:gets).returns("some value\n") }
+
+          it 'returns the output of the command' do
+            subject.must_match(/could not be created/)
+          end
         end
       end
 
@@ -51,8 +98,20 @@ module Troo
           capture_io { described_class.new.list(id, value) }.join
         end
 
-        it 'returns the output of the command' do
-          skip('Needs a spec, please write one.')
+        context 'when a value is provided' do
+          let(:value) { 'some value' }
+
+          it 'returns the output of the command' do
+            subject.must_match(/could not be created/)
+          end
+        end
+
+        context 'when a value is not provided' do
+          before { $stdin.stubs(:gets).returns("some value\n") }
+
+          it 'returns the output of the command' do
+            subject.must_match(/could not be created/)
+          end
         end
       end
     end
