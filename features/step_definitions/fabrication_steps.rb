@@ -36,13 +36,15 @@ Given(/^a default card exists$/) do
   Fabricate(:board)
   Fabricate(:list)
   Fabricate(:member)
-  Fabricate(:card, default: true, name: 'My Default Card', external_card_id: 200)
+  Fabricate(:card, default: true,
+                   name:    'My Default Card',
+                   external_card_id: 200)
 end
 
 Given(/^local data exists, all defaults set$/) do
   Fabricate(:board, default: true, name: 'My Default Board')
-  Fabricate(:list, default: true, name: 'My Default List')
-  Fabricate(:card, default: true, name: 'My Default Card')
+  Fabricate(:list,  default: true, name: 'My Default List')
+  Fabricate(:card,  default: true, name: 'My Default Card')
 end
 
 Given(/^local data exists$/) do

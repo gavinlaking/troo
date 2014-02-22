@@ -5,8 +5,9 @@ module Troo
     let(:described_class)   { CreateList }
     let(:external_board_id) { '526d8e130a14a9d846001d96' }
     let(:resource_name)     { 'My New List' }
-    let(:list)              { [Fabricate.build(:list,
-                                               name: resource_name)] }
+    let(:list)              do
+      [Fabricate.build(:list, name: resource_name)]
+    end
 
     before { Persistence::List.stubs(:with_collection).returns(list) }
     after  { database_cleanup }

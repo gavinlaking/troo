@@ -19,7 +19,7 @@ module Troo
           external_board_id: '526d8e130a14a9d846001d96',
           external_list_id:  '526d8e130a14a9d846001d97',
           name:              'My Test List',
-          position:          32768,
+          position:          32_768,
           closed:            false
         )
       end

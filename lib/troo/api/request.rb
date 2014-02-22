@@ -14,11 +14,11 @@ module Troo
       def response
         @response ||= Response.parse(request)
       rescue RestClient::Exception => e
-        ErrorResponse.new({ body: e.http_body, code: e.http_code })
+        ErrorResponse.new(body: e.http_body, code: e.http_code)
       rescue SocketError
-        ErrorResponse.new({
+        ErrorResponse.new(
           body: 'Cannot continue, no network connection.',
-          code: 0 })
+          code: 0)
       end
 
       private

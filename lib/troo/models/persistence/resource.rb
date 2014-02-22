@@ -25,14 +25,14 @@ module Troo
       private
 
       def set_default
-        remote_data.merge!(default: true) if is_default?
+        remote_data.merge!(default: true) if default?
       end
 
       def delete
         local.delete if local_exists?
       end
 
-      def is_default?
+      def default?
         local_exists? && local.default?
       end
 

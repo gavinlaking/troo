@@ -4,14 +4,12 @@ module Troo
       desc 'init',
            'Prepare to use Troo.'
       def init
-        if File.exist?(Dir.home + '/.trooconf')
+        if File.exist?(destination)
           say 'A configuration file already exists in your home ' \
               'directory.'
         else
           say 'No `.trooconf` found in your home directory...'
-          src = File.dirname(__FILE__) + '/../.trooconf.example'
-          dst = Dir.home + '/.trooconf'
-          FileUtils.cp(src, dst)
+          FileUtils.cp(source, destination)
           say "A configuration file has been created at " \
               "`#{Dir.home}/.trooconf`."
           exit!
@@ -65,6 +63,16 @@ module Troo
            'optionally to another board with <board_id>.'
       def move(card_id, list_id, board_id = nil)
         say Commands::Move::Card.dispatch(card_id, list_id, board_id)
+      end
+
+      private
+
+      def source
+        File.dirname(__FILE__) + '/../.trooconf.example'
+      end
+
+      def destination
+        Dir.home + '/.trooconf'
       end
     end
   end

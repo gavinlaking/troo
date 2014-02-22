@@ -25,7 +25,9 @@ module Troo
 
         context 'when all required parameters are provided' do
           context 'and the API request returns a collection' do
-            let(:response) { [{ name: "Board 1" }, { name: "Board 2" }] }
+            let(:response) do
+              [{ name: 'Board 1' }, { name: 'Board 2' }]
+            end
 
             it 'builds the remote model' do
               subject.size.must_equal(2)
@@ -33,7 +35,7 @@ module Troo
           end
 
           context 'and the API request returns an instance' do
-            let(:response) { { name: "Board 1" } }
+            let(:response) { { name: 'Board 1' } }
 
             it 'builds the remote model' do
               subject.size.must_equal(1)

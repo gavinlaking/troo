@@ -32,7 +32,7 @@ module Troo
         end
 
         def resource_title
-          "".rjust(10) + resource.decorator.title
+          ''.rjust(10) + resource.decorator.title
         end
 
         def no_default_error

@@ -10,7 +10,8 @@ module Troo
 
         def resource
           return [] unless local
-          @resource ||= Troo::Board.remote(external_board_id, { mode: :board })
+          @resource ||= Troo::Board
+            .remote(external_board_id, mode: :board)
         end
 
         def external_board_id

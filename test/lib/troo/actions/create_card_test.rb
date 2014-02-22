@@ -6,9 +6,9 @@ module Troo
     let(:external_list_id) { '526d8e130a14a9d846001d97' }
     let(:resource_name)    { 'My New Card' }
     let(:description)      { 'A description to get us started.' }
-    let(:card)             { [Fabricate.build(:card,
-                                              name: resource_name,
-                                              desc: description)] }
+    let(:card) do
+      [Fabricate.build(:card, name: resource_name, desc: description)]
+    end
 
     before { Persistence::Card.stubs(:with_collection).returns(card) }
     after  { database_cleanup }

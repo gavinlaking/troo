@@ -24,7 +24,7 @@ module Troo
           name:                'My Test Card',
           desc:                'some description',
           url:                 '<Trello URL>',
-          position:            589823,
+          position:            589_823,
           last_activity_date:  '2014-02-13T20:12:46.612Z',
           closed:              false)
       end
