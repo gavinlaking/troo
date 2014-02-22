@@ -10,7 +10,7 @@ module Troo
       attribute :idBoard
       attribute :pos,     Integer
 
-      alias_method :id_board, :idBoard
+      alias_method :id_board,          :idBoard
 
       alias_method :external_board_id, :idBoard
       alias_method :external_list_id,  :id

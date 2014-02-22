@@ -51,8 +51,8 @@ module Troo
       alias_method :uploaded_avatar_hash,        :uploadedAvatarHash
       alias_method :premium_features,            :premiumFeatures
 
-      alias_method :external_member_id, :id
-      alias_method :avatar_id,          :avatarHash
+      alias_method :external_member_id,          :id
+      alias_method :avatar_id,                   :avatarHash
     end
   end
 end

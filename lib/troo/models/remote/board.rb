@@ -16,10 +16,10 @@ module Troo
       attribute :prefs
       attribute :labelNames
 
-      alias_method :desc_data,       :descData
-      alias_method :id_organization, :idOrganization
-      alias_method :short_url,       :shortUrl
-      alias_method :label_names,     :labelNames
+      alias_method :desc_data,         :descData
+      alias_method :id_organization,   :idOrganization
+      alias_method :short_url,         :shortUrl
+      alias_method :label_names,       :labelNames
 
       alias_method :external_board_id, :id
       alias_method :description,       :desc
