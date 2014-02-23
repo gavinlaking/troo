@@ -38,7 +38,7 @@ module Troo
           endpoint:      nil,
           interpolation: interpolation,
           query:         {},
-          model:         model
+          model:         remote_model
         }.merge!(resource_parameters)
       end
 

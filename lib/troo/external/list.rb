@@ -31,7 +31,7 @@ module Troo
         {}
       end
 
-      def model
+      def remote_model
         Remote::List
       end
     end

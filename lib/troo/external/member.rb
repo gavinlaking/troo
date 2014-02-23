@@ -31,7 +31,7 @@ module Troo
         { endpoint: :member_by_id }
       end
 
-      def model
+      def remote_model
         Remote::Member
       end
     end

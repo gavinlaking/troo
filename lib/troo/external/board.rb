@@ -28,7 +28,7 @@ module Troo
         {}
       end
 
-      def model
+      def remote_model
         Remote::Board
       end
     end

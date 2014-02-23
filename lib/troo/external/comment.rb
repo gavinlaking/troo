@@ -34,7 +34,7 @@ module Troo
         {}
       end
 
-      def model
+      def remote_model
         Remote::Comment
       end
     end
