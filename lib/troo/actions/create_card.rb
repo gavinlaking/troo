@@ -21,7 +21,8 @@ module Troo
     attr_reader :external_list_id, :name, :description
 
     def create_local
-      return Persistence::Card.with_collection(resource).first if any?
+      return Persistence::Resource
+        .with_collection(resource).first if any?
       false
     end
 

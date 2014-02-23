@@ -9,7 +9,7 @@ module Troo
       [Fabricate.build(:list, name: resource_name)]
     end
 
-    before { Persistence::List.stubs(:with_collection).returns(list) }
+    before { Persistence::Resource.stubs(:with_collection).returns(list) }
     after  { database_cleanup }
 
     describe '.initialize' do

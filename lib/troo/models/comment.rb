@@ -17,6 +17,10 @@ module Troo
     index :external_member_id
 
     class << self
+      def by_external_id(id)
+        first(external_comment_id: id)
+      end
+
       def remote(id, options = { mode: :card })
         External::Card.fetch(id, options)
       end

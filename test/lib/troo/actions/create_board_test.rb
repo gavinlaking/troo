@@ -40,7 +40,7 @@ module Troo
       end
 
       context 'when the board was not created' do
-        before { API::Client.stubs(:perform).returns(false) }
+        before { API::Client.stubs(:perform).returns([]) }
 
         it { subject.must_equal false }
       end

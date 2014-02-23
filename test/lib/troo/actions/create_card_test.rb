@@ -10,7 +10,7 @@ module Troo
       [Fabricate.build(:card, name: resource_name, desc: description)]
     end
 
-    before { Persistence::Card.stubs(:with_collection).returns(card) }
+    before { Persistence::Resource.stubs(:with_collection).returns(card) }
     after  { database_cleanup }
 
     describe '.initialize' do

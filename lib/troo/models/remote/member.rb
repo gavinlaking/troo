@@ -1,7 +1,7 @@
 module Troo
   module Remote
     class Member
-      include Virtus.model
+      include Virtus.model(finalize: false)
       include Troo::RemoteModelHelpers
 
       attribute :id
@@ -33,26 +33,17 @@ module Troo
       attribute :uploadedAvatarHash
       attribute :premiumFeatures
 
-      alias_method :avatar_hash,                 :avatarHash
-      alias_method :bio_data,                    :bioData
-      alias_method :full_name,                   :fullName
-      alias_method :id_prem_orgs_admin,          :idPremOrgsAdmin
-      alias_method :member_type,                 :memberType
-      alias_method :avatar_source,               :avatarSource
-      alias_method :gravatar_hash,               :gravatarHash
-      alias_method :id_boards,                   :idBoards
-      alias_method :id_boards_invited,           :idBoardsInvited
-      alias_method :id_boards_pinned,            :idBoardsPinned
-      alias_method :id_organizations,            :idOrganizations
-      alias_method :id_organizations_invited,    :idOrganizationsInvited
-      alias_method :login_types,                 :loginTypes
-      alias_method :new_email,                   :newEmail
-      alias_method :one_time_messages_dismissed, :oneTimeMessagesDismissed
-      alias_method :uploaded_avatar_hash,        :uploadedAvatarHash
-      alias_method :premium_features,            :premiumFeatures
+      def associations
+        []
+      end
 
-      alias_method :external_member_id,          :id
-      alias_method :avatar_id,                   :avatarHash
+      def local_model
+        Troo::Member
+      end
+
+      def adaptor
+        Adaptors::Member
+      end
     end
   end
 end

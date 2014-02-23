@@ -25,6 +25,10 @@ module Troo
     alias_method :default?, :default
 
     class << self
+      def by_external_id(id)
+        first(external_card_id: id)
+      end
+
       def remote(id, options = { mode: :card })
         External::Card.fetch(id, options)
       end

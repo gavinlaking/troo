@@ -9,7 +9,7 @@ module Troo
     let(:card)              { [Fabricate.build(:card)] }
 
     before do
-      Persistence::Card.stubs(:with_collection).returns(card)
+      Persistence::Resource.stubs(:with_collection).returns(card)
     end
 
     after { database_cleanup }

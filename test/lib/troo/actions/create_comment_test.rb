@@ -8,7 +8,7 @@ module Troo
     let(:comment)          { [Fabricate.build(:comment, text: text)] }
 
     before do
-      Persistence::Comment.stubs(:with_collection).returns(comment)
+      Persistence::Resource.stubs(:with_collection).returns(comment)
     end
     after { database_cleanup }
 

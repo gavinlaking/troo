@@ -15,6 +15,10 @@ module Troo
     alias_method :default?, :default
 
     class << self
+      def by_external_id(id)
+        first(external_board_id: id)
+      end
+
       def remote(id, options = { mode: :board })
         External::Board.fetch(id, options)
       end

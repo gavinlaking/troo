@@ -1,7 +1,7 @@
 module Troo
   module Remote
     class List
-      include Virtus.model
+      include Virtus.model(finalize: false)
       include Troo::RemoteModelHelpers
 
       attribute :id
@@ -10,11 +10,17 @@ module Troo
       attribute :idBoard
       attribute :pos,     Integer
 
-      alias_method :id_board,          :idBoard
+      def associations
+        []
+      end
 
-      alias_method :external_board_id, :idBoard
-      alias_method :external_list_id,  :id
-      alias_method :position,          :pos
+      def local_model
+        Troo::List
+      end
+
+      def adaptor
+        Adaptors::List
+      end
     end
   end
 end

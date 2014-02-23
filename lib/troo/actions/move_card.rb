@@ -28,7 +28,8 @@ module Troo
                 :external_board_id
 
     def update_cards
-      return Persistence::Card.with_collection(resource).first if any?
+      return Persistence::Resource
+        .with_collection(resource).first if any?
       false
     end
 

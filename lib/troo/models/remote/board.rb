@@ -1,7 +1,7 @@
 module Troo
   module Remote
     class Board
-      include Virtus.model
+      include Virtus.model(finalize: false)
       include Troo::RemoteModelHelpers
 
       attribute :id
@@ -15,14 +15,21 @@ module Troo
       attribute :shortUrl
       attribute :prefs
       attribute :labelNames
+      attribute :lists,         Array[Troo::Remote::List]
+      attribute :cards,         Array[Troo::Remote::Card]
+      attribute :members,       Array[Troo::Remote::Member]
 
-      alias_method :desc_data,         :descData
-      alias_method :id_organization,   :idOrganization
-      alias_method :short_url,         :shortUrl
-      alias_method :label_names,       :labelNames
+      def associations
+        [:lists, :cards, :members]
+      end
 
-      alias_method :external_board_id, :id
-      alias_method :description,       :desc
+      def local_model
+        Troo::Board
+      end
+
+      def adaptor
+        Adaptors::Board
+      end
     end
   end
 end

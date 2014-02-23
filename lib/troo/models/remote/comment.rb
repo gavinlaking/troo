@@ -36,8 +36,18 @@ module Troo
       def member_creator
         memberCreator
       end
-    end
 
-    Virtus.finalize
+      def associations
+        []
+      end
+
+      def local_model
+        Troo::Comment
+      end
+
+      def adaptor
+        Adaptors::Comment
+      end
+    end
   end
 end

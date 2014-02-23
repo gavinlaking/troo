@@ -17,6 +17,7 @@ module Troo
       end
 
       def persist
+        preprocess
         set_default
         delete
         create
@@ -24,20 +25,50 @@ module Troo
 
       private
 
+      attr_reader :resource
+
+      def preprocess
+        resource.preprocess if preprocess?
+      end
+
+      def preprocess?
+        options.fetch(:preprocess)
+      end
+
       def set_default
-        remote_data.merge!(default: true) if default?
+        remote.merge!(default: true) if default?
       end
 
       def delete
-        local.delete if local_exists?
+        local.delete if exists?
+      end
+
+      def create
+        resource.local_model.create(remote)
+      end
+
+      def remote
+        resource.adapted
       end
 
       def default?
-        local_exists? && local.default?
+        exists? && local.default?
       end
 
-      def local_exists?
+      def exists?
         !!local
+      end
+
+      def local
+        resource.local
+      end
+
+      def options
+        defaults.merge!(@options)
+      end
+
+      def defaults
+        { preprocess: true }
       end
     end
   end
