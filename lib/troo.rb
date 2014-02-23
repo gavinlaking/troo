@@ -24,6 +24,8 @@ module Troo
 
   # RestClient.log = File.dirname(__FILE__) + '/../logs/restclient.log'
 
+  Ohm.connect(db: Troo.configuration.database)
+
   class Launcher
     def initialize(argv, stdin = STDIN,
                          stdout = STDOUT,
