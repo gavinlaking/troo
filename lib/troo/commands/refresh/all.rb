@@ -7,12 +7,25 @@ module Troo
         end
 
         def refresh_all
-          'All local data refreshed.' if refresh
+          return success if refreshed?
+          failure
         end
 
         private
 
-        def refresh
+        def success
+          'All local data refreshed.'
+        end
+
+        def failure
+          'Cannot refresh all local data.'
+        end
+
+        def refreshed?
+          resources.any?
+        end
+
+        def resources
           external_board_ids.map do |id|
             Troo::Board.remote(id, mode: :board)
           end

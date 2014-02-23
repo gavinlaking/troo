@@ -4,20 +4,16 @@ module Troo
   module Commands
     module Refresh
       describe All do
+        def load_mock_trello_response
+          json = File.read('./test/support/remotes/board.json')
+          hash = Yajl::Parser.parse(json)
+          Troo::Remote::Board.new(hash)
+        end
         let(:described_class) { All }
+        let(:resource) { [load_mock_trello_response] }
 
         before do
-          API::Client.stubs(:perform)
-
-          @board = Fabricate.build(:board)
-          @list  = Fabricate.build(:list)
-          @card  = Fabricate.build(:card)
-
-          Troo::Board.stubs(:remote).returns([@board])
-          Troo::List.stubs(:remote).returns([@list])
-          Troo::Card.stubs(:remote).returns([@card])
-          Troo::Comment.stubs(:remote).returns([])
-          Troo::Member.stubs(:remote).returns([])
+          Troo::Board.stubs(:remote).returns(resource)
         end
 
         describe '.dispatch' do
@@ -30,8 +26,10 @@ module Troo
           end
 
           context 'when all the resources are not refreshed' do
+            let(:resource) { [] }
+
             it 'returns a polite message' do
-              skip('Not implemented yet.')
+              subject.must_match(/Cannot refresh all local data/)
             end
           end
         end
