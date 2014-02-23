@@ -34,5 +34,107 @@
     "orange": "",
     "green": "Ready to Pull",
     "blue": ""
-  }
+  },
+  "cards": [
+    {
+      "id": "526d8e201fd7dac675004c49",
+      "checkItemStates": [],
+      "closed": true,
+      "dateLastActivity": "2013-10-27T22:10:19.584Z",
+      "desc": "",
+      "descData": null,
+      "idBoard": "526d8e130a14a9d846001d96",
+      "idList": "526d8e130a14a9d846001d97",
+      "idMembersVoted": [],
+      "idShort": 1,
+      "idAttachmentCover": null,
+      "manualCoverAttachment": false,
+      "name": "Command: config",
+      "pos": 327679,
+      "shortLink": "1G0cGaRV",
+      "badges": {
+        "votes": 0,
+        "viewingMemberVoted": false,
+        "subscribed": false,
+        "fogbugz": "",
+        "checkItems": 0,
+        "checkItemsChecked": 0,
+        "comments": 0,
+        "attachments": 0,
+        "description": false,
+        "due": null
+      },
+      "due": null,
+      "idChecklists": [],
+      "idMembers": [],
+      "labels": [],
+      "shortUrl": "<Trello URL>",
+      "subscribed": false,
+      "url": "<Trello URL>"
+    },
+    {
+      "id": "52cb0eb873b2cf2f3a60a973",
+      "checkItemStates": [],
+      "closed": false,
+      "dateLastActivity": "2014-02-07T19:39:15.075Z",
+      "desc": "A description to get us started.",
+      "descData": null,
+      "idBoard": "526d8e130a14a9d846001d96",
+      "idList": "526d8e130a14a9d846001d97",
+      "idMembersVoted": [],
+      "idShort": 27,
+      "idAttachmentCover": null,
+      "manualCoverAttachment": false,
+      "name": "My New Card",
+      "pos": 606207,
+      "shortLink": "OMnSslgP",
+      "badges": {
+        "votes": 0,
+        "viewingMemberVoted": false,
+        "subscribed": false,
+        "fogbugz": "",
+        "checkItems": 0,
+        "checkItemsChecked": 0,
+        "comments": 1,
+        "attachments": 0,
+        "description": true,
+        "due": null
+      },
+      "due": null,
+      "idChecklists": [],
+      "idMembers": [],
+      "labels": [],
+      "shortUrl": "<Trello URL>",
+      "subscribed": false,
+      "url": "<Trello URL>"
+    }
+  ],
+  "members": [
+    {
+      "id": "5195fdb5a8c01a2318004f5d",
+      "avatarHash": "045fd924d84699c9ba451e181bba33a3",
+      "initials": "GL",
+      "fullName": "Gavin Laking",
+      "username": "gavinlaking1",
+      "confirmed": true
+    }
+  ],
+  "lists": [
+    {
+      "id": "52d5982f59cba13377bfed33",
+      "name": "My New List",
+      "closed": true,
+      "idBoard": "526d8e130a14a9d846001d96",
+      "pos": 256,
+      "subscribed": false
+    },
+    {
+      "id": "52d1c3448a4da3ab7d1c6ae9",
+      "name": "My New List",
+      "closed": true,
+      "idBoard": "526d8e130a14a9d846001d96",
+      "pos": 512,
+      "subscribed": false
+    }
+  ]
 }

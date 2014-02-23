@@ -1,0 +1,41 @@
+{
+  "id": "526d8e130a14a9d846001d96",
+  "name": "My Test Board",
+  "desc": "A very brief description...",
+  "descData": null,
+  "closed": false,
+  "idOrganization": null,
+  "pinned": true,
+  "url": "<Trello URL>",
+  "shortUrl": "<Trello URL>",
+  "prefs": {
+    "permissionLevel": "private",
+    "voting": "disabled",
+    "comments": "members",
+    "invitations": "members",
+    "selfJoin": false,
+    "cardCovers": true,
+    "cardAging": "regular",
+    "background": "blue",
+    "backgroundColor": "#23719F",
+    "backgroundImage": null,
+    "backgroundImageScaled": null,
+    "backgroundTile": false,
+    "backgroundBrightness": "unknown",
+    "canBePublic": true,
+    "canBeOrg": true,
+    "canBePrivate": true,
+    "canInvite": true
+  },
+  "labelNames": {
+    "yellow": "Analysis Complete",
+    "red": "",
+    "purple": "",
+    "orange": "",
+    "green": "Ready to Pull",
+    "blue": ""
+  },
+  "cards": [],
+  "members": [],
+  "lists": []
+}
