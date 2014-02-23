@@ -29,5 +29,9 @@ module Troo
     it 'configures the database to use' do
       subject.database.must_equal(5)
     end
+
+    it 'configures communication with the Trello API' do
+      subject.allow_remote.must_equal(false)
+    end
   end
 end

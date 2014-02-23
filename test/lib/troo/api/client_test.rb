@@ -54,6 +54,10 @@ module Troo
 
           it { subject.must_equal [] }
         end
+
+        context 'when the response is empty' do
+          it { subject.must_equal [] }
+        end
       end
     end
   end

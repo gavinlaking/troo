@@ -12,6 +12,7 @@ module Troo
       end
 
       def response
+        return [] unless allow_remote?
         @response ||= Response.parse(request)
       rescue RestClient::Exception => e
         ErrorResponse.new(body: e.http_body, code: e.http_code)
@@ -45,6 +46,10 @@ module Troo
 
       def url
         Troo.configuration.api_url
+      end
+
+      def allow_remote?
+        Troo.configuration.allow_remote
       end
     end
   end

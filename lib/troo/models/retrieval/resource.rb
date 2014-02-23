@@ -29,7 +29,8 @@ module Troo
       end
 
       def allow_remote?
-        options.fetch(:allow_remote)
+        Troo.configuration.allow_remote &&
+          options.fetch(:allow_remote)
       end
 
       def options

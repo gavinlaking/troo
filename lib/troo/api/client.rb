@@ -18,6 +18,7 @@ module Troo
       def perform
         return [] if missing_parameters?
         return [] if error_response?
+        return [] if empty_response?
 
         if collection?
           model.with_collection(response)
@@ -30,6 +31,10 @@ module Troo
 
       def collection?
         response.is_a?(Array)
+      end
+
+      def empty_response?
+        response.empty?
       end
 
       def error_response?
