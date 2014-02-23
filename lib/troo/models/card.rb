@@ -29,7 +29,7 @@ module Troo
         first(external_card_id: id)
       end
 
-      def remote(id, options = { mode: :card })
+      def fetch(id, options = { mode: :card })
         Remote::Retrieval::Card.fetch(id, options)
       end
 
