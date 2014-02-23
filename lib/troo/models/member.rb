@@ -20,11 +20,11 @@ module Troo
       end
 
       def remote(id, options = { mode: :member })
-        External::Member.fetch(id, options)
+        Remote::Retrieval::Member.fetch(id, options)
       end
 
-      def retrieve(id = nil)
-        Retrieval::Member.retrieve(id)
+      def retrieve(id = nil, options = {})
+        Retrieval::Member.retrieve(id, options = {})
       end
     end
 

@@ -18,11 +18,11 @@ module Troo
       end
 
       def by_external_id
-        Troo::Board.first(external_board_id: id)
+        Troo::Board.by_external_id(id)
       end
 
       def remote
-        Troo::Board.remote(id).first
+        Troo::Board.fetch(id).first
       end
     end
   end

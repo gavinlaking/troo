@@ -13,7 +13,7 @@ module Troo
           API::Client.stubs(:perform)
           @card = Fabricate.build(:card)
           Troo::Card.stubs(:retrieve).returns(resource)
-          Troo::Card.stubs(:remote).returns(retrieved)
+          Troo::Card.stubs(:fetch).returns(retrieved)
         end
 
         after { database_cleanup }

@@ -13,7 +13,7 @@ module Troo
         let(:resource) { [load_mock_trello_response] }
 
         before do
-          Troo::Board.stubs(:remote).returns(resource)
+          Troo::Board.stubs(:fetch).returns(resource)
         end
 
         describe '.dispatch' do

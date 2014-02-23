@@ -22,11 +22,11 @@ module Troo
       end
 
       def by_external_id
-        Troo::Card.first(external_card_id: id)
+        Troo::Card.by_external_id(id)
       end
 
       def remote
-        Troo::Card.remote(id).first
+        Troo::Card.fetch(id).first
       end
     end
   end

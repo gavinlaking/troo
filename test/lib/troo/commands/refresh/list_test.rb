@@ -13,7 +13,7 @@ module Troo
           API::Client.stubs(:perform)
           @list = Fabricate.build(:list)
           Troo::List.stubs(:retrieve).returns(resource)
-          Troo::List.stubs(:remote).returns(retrieved)
+          Troo::List.stubs(:fetch).returns(retrieved)
         end
 
         after { database_cleanup }

@@ -10,7 +10,8 @@ module Troo
 
         def resource
           return [] unless local
-          @resource ||= Troo::List.remote(external_list_id, mode: :list)
+          @resource ||= Troo::List
+            .fetch(external_list_id, mode: :list)
         end
 
         def external_list_id

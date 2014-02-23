@@ -19,12 +19,12 @@ module Troo
         first(external_board_id: id)
       end
 
-      def remote(id, options = { mode: :board })
-        External::Board.fetch(id, options)
+      def fetch(id, options = { mode: :board })
+        Remote::Retrieval::Board.fetch(id, options)
       end
 
-      def retrieve(id = nil)
-        Retrieval::Board.retrieve(id)
+      def retrieve(id = nil, options = {})
+        Retrieval::Board.retrieve(id, options = {})
       end
     end
 

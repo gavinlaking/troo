@@ -14,11 +14,11 @@ module Troo
       end
 
       def by_external_id
-        Troo::Member.first(external_member_id: id)
+        Troo::Member.by_external_id(id)
       end
 
       def remote
-        Troo::Member.remote(id).first
+        Troo::Member.fetch(id).first
       end
     end
   end

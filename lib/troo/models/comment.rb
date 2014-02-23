@@ -22,11 +22,11 @@ module Troo
       end
 
       def remote(id, options = { mode: :card })
-        External::Card.fetch(id, options)
+        Remote::Retrieval::Card.fetch(id, options)
       end
 
-      def retrieve(id = nil)
-        Retrieval::Comment.retrieve(id)
+      def retrieve(id = nil, options = {})
+        Retrieval::Comment.retrieve(id, options = {})
       end
     end
 

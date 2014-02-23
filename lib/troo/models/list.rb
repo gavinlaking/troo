@@ -22,11 +22,11 @@ module Troo
       end
 
       def remote(id, options = { mode: :list })
-        External::List.fetch(id, options)
+        Remote::Retrieval::List.fetch(id, options)
       end
 
-      def retrieve(id = nil)
-        Retrieval::List.retrieve(id)
+      def retrieve(id = nil, options = {})
+        Retrieval::List.retrieve(id, options = {})
       end
     end
 
