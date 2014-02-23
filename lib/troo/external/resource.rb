@@ -5,7 +5,7 @@ module Troo
 
       class << self
         def fetch(external_id, options = {})
-          new(external_id, options).persist
+          new(external_id, options).fetch
         end
       end
 
@@ -14,14 +14,28 @@ module Troo
         @options     = options
       end
 
+      def fetch
+        return []        if none?
+        return persist   if persist?
+               resources
+      end
+
       private
 
-      def any?
-        resources.any?
+      def none?
+        resources.empty?
       end
 
       def resources
         @resources ||= API::Client.perform(parameters)
+      end
+
+      def persist
+        @persisted ||= Persistence::Resource.with_collection(resources)
+      end
+
+      def persist?
+        options.fetch(:persist)
       end
 
       def options
@@ -29,7 +43,7 @@ module Troo
       end
 
       def defaults
-        {}
+        { persist: true }
       end
 
       def parameters
