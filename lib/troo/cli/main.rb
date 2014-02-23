@@ -39,9 +39,9 @@ module Troo
         say "troo #{Troo::VERSION}"
       end
 
-      desc 'show [board|list|card|comments] <id>',
-           'Show the board, list, card with <id>. Also, show all ' \
-           'comments for card with <id>.'
+      desc 'show [boards|board|list|card|comments] <id>',
+           'Show all the boards or the board, list, card with ' \
+           '<id>. Also, show all comments for card with <id>.'
       subcommand :show, CLI::Show
 
       desc 'add [board|list|card|comment] <id>',
