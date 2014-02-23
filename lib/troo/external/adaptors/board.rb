@@ -5,7 +5,7 @@ module Troo
         {
           external_board_id: resource.id,
           name:              resource.name,
-          description:       resource.description,
+          description:       resource.desc,
           closed:            resource.closed
         }
       end

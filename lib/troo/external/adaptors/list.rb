@@ -3,7 +3,7 @@ module Troo
     class List < Resource
       def adapted
         {
-          external_board_id: resource.external_board_id,
+          external_board_id: resource.idBoard,
           external_list_id:  resource.id,
           name:              resource.name,
           position:          resource.pos,
