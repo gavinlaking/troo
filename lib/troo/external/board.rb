@@ -9,11 +9,21 @@ module Troo
       private
 
       def all
-        { endpoint: :boards_all }
+        {
+          endpoint: :boards_all,
+          query:    { filter: :open }
+        }
       end
 
       def by_board_id
-        { endpoint: :board_by_id }
+        {
+          endpoint: :board_by_id,
+          query:    {
+                      cards:   :open,
+                      lists:   :open,
+                      members: :all
+                    }
+        }
       end
 
       def by_list_id
