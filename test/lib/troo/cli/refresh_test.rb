@@ -6,10 +6,12 @@ module Troo
       let(:described_class) { Refresh }
 
       describe '#all' do
+        before { Troo::Board.stubs(:fetch).returns([]) }
+
         subject { capture_io { described_class.new.all }.join }
 
         it 'returns the output of the command' do
-          skip('Needs a spec, please write one.')
+          subject.must_match(/Cannot refresh all local data/)
         end
       end
 

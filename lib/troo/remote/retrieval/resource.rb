@@ -44,7 +44,7 @@ module Troo
         end
 
         def defaults
-          { persist: true }
+          { mode: :none, persist: true }
         end
 
         def parameters
@@ -64,7 +64,13 @@ module Troo
           when :list   then by_list_id
           when :card   then by_card_id
           when :member then by_member_id
+          else
+            {}
           end
+        end
+
+        def remote_model
+          # subclasses override this
         end
 
         def interpolation

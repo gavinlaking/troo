@@ -31,7 +31,7 @@ module Troo
     end
 
     it 'configures communication with the Trello API' do
-      subject.allow_remote.must_equal(false)
+      subject.allow_remote.must_equal(true)
     end
   end
 end
