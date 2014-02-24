@@ -10,6 +10,7 @@ module Troo
       attribute :api_oauth_token_secret
       attribute :database
       attribute :allow_remote, Boolean, default: true
+      attribute :logs,         Boolean, default: false
     end
 
     class << self

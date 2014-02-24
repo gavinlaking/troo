@@ -19,7 +19,7 @@ module Troo
   endpoints
 
   def self.logger
-    @logger ||= Logger.new('logs/troo.log')
+    @logger ||= Logger.new(File.dirname(__FILE__) + '/../logs/troo.log')
   end
 
   # RestClient.log = File.dirname(__FILE__) + '/../logs/restclient.log'
