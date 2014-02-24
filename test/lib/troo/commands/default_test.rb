@@ -8,7 +8,7 @@ module Troo
       let(:id)              {}
       let(:resource)        { stub }
       let(:outcome)         { true }
-      let(:decorator)       { OpenStruct.new(name: 'Test') }
+      let(:decorator)       { stub(name: 'Test') }
 
       before do
         API::Client.stubs(:perform)

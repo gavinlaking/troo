@@ -4,7 +4,7 @@ module Troo
   module API
     describe Response do
       let(:described_class) { Response }
-      let(:api_response)    { OpenStruct.new(body: body) }
+      let(:api_response)    { stub(body: body) }
       let(:body)            { '{"key":"some_value"}' }
 
       describe '#initialize' do

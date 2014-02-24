@@ -4,28 +4,32 @@ module Troo
   module CLI
     describe ThorFixes do
       let(:described_class) { ThorFixes }
-      let(:command)         { OpenStruct.new(usage: 'usage') }
+      let(:command)         { stub(usage: 'usage') }
       let(:namespace)       {}
       let(:subcommand)      {}
+      let(:package_name)    {}
 
       describe '.banner' do
+        before do
+          described_class
+            .instance_variable_set("@package_name", package_name)
+        end
+
         subject do
           described_class.banner(command, namespace, subcommand)
         end
 
         context 'when executing a subcommand' do
-          let(:subcommand) { true }
+          let(:package_name) { 'show' }
 
           it 'package_name has a leading space' do
-            skip('Needs a spec, please write one.')
-            # subject.must_equal('-e  usage')
+            subject.must_match(/show usage/)
           end
         end
 
         context 'when executing a top-level command' do
           it 'package_name does not have a leading space' do
-            skip('Needs a spec, please write one.')
-            # subject.must_equal('-e usage')
+            subject.must_match(/\s{1}usage/)
           end
         end
       end

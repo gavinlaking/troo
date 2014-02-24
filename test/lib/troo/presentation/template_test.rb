@@ -3,7 +3,7 @@ require_relative '../../../test_helper'
 module Troo
   describe Template do
     let(:described_class) { Template }
-    let(:object) { OpenStruct.new(value: 'Hello from variable!') }
+    let(:object) { stub(value: 'Hello from variable!') }
     let(:template_path) { '/../../../test/support/template.erb' }
 
     describe '#initialize' do
