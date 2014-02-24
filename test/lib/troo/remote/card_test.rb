@@ -10,7 +10,7 @@ module Troo
       describe '#associations' do
         subject { described_instance.associations }
 
-        it { subject.must_equal [] }
+        it { subject.must_equal [:actions] }
       end
 
       describe '#local_model' do

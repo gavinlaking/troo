@@ -5,6 +5,7 @@ require 'aruba/in_process'
 require 'ohm'
 require 'vcr'
 require 'webmock/cucumber'
+require 'mocha/api'
 
 SimpleCov.start do
   add_filter   '/test/'

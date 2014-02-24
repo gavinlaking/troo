@@ -22,11 +22,13 @@ module Troo
         end
 
         def refreshed?
-          resources.any?
+          return false if resources.none?
+          Troo::Refresh.completed!
+          true
         end
 
         def resources
-          external_board_ids.map do |id|
+          @resources ||= external_board_ids.map do |id|
             Troo::Board.fetch(id, mode: :board)
           end
         end
@@ -36,8 +38,14 @@ module Troo
         end
 
         def all_boards
-          @boards ||= Troo::Board.fetch(0, { mode:    :all,
-                                             persist: false })
+          @boards ||= Troo::Board.fetch(0, options)
+        end
+
+        def options
+          {
+            mode:    :all,
+            persist: false
+          }
         end
       end
     end

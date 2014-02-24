@@ -53,7 +53,7 @@ class MyFakeTrello < Sinatra::Base
   get '/1/cards/:id' do
     halt(400, 'Bad Request')  if params['id'] == '400'
     halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('card')
+    Response.render!('card_by_card_id')
   end
 
   # list_by_id

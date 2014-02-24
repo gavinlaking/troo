@@ -16,8 +16,8 @@ module Troo
         end
       end
 
-      describe '#body' do
-        subject { described_class.new(api_response).body }
+      describe '#parse' do
+        subject { described_class.parse(api_response) }
 
         it 'returns the parsed JSON response' do
           subject.must_equal('key' => 'some_value')

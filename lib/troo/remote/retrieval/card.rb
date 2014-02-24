@@ -23,7 +23,10 @@ module Troo
         end
 
         def by_card_id
-          { endpoint: :card_by_id }
+          {
+            endpoint: :card_by_id,
+            query:    { actions: :commentCard }
+          }
         end
 
         def by_member_id

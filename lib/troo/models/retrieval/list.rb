@@ -22,7 +22,7 @@ module Troo
       end
 
       def remote
-        Troo::List.fetch(id).first
+        Troo::List.fetch(id, options).first
       end
     end
   end

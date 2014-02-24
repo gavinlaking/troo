@@ -3,8 +3,8 @@ Feature: Moving a card
   @move
   Scenario: Move a card to another list
     Given the Trello API is stubbed with "200_move_card_200_list"
-    #Given a card exists
-    #And a list exists
+    And a card exists
+    And a list exists
     When I run `troo move 200 200`
     Then the output should contain:
       """
@@ -22,7 +22,8 @@ Feature: Moving a card
 
   @move
   Scenario: Cannot move card, list not found
-    Given the Trello API is stubbed with "400_move_card_400_list"
+    Given the Trello API is stubbed with "200_move_card_400_list"
+    And a card exists
     When I run `troo move 200 400`
     Then the output should contain:
       """
@@ -32,6 +33,9 @@ Feature: Moving a card
   @move
   Scenario: Move a card to another list (different board)
     Given the Trello API is stubbed with "200_move_card_200_board"
+    And a card exists
+    And a list exists
+    And a board exists
     When I run `troo move 200 200 200`
     Then the output should contain:
       """
@@ -41,6 +45,8 @@ Feature: Moving a card
   @move
   Scenario: Cannot move card, board not found
     Given the Trello API is stubbed with "400_move_card_400_board"
+    And a card exists
+    And a list exists
     When I run `troo move 200 200 400`
     Then the output should contain:
       """

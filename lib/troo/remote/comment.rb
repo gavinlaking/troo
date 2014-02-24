@@ -6,10 +6,10 @@ module Troo
 
       attribute :id
       attribute :idMemberCreator
-      attribute :data,            CommentData
+      attribute :data,            Troo::Remote::CommentData
       attribute :type
       attribute :date
-      attribute :memberCreator
+      attribute :memberCreator,   Troo::Remote::Member
 
       def external_board_id
         data.board.id
@@ -23,22 +23,12 @@ module Troo
         id
       end
 
-      def id_member_creator
-        idMemberCreator
-      end
-      alias_method :member_creator_id,  :id_member_creator
-      alias_method :external_member_id, :id_member_creator
-
       def text
         data.text
       end
 
-      def member_creator
-        memberCreator
-      end
-
       def associations
-        []
+        [:memberCreator]
       end
 
       def local_model

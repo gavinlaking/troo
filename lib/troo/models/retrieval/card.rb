@@ -26,7 +26,7 @@ module Troo
       end
 
       def remote
-        Troo::Card.fetch(id).first
+        Troo::Card.fetch(id, options).first
       end
     end
   end

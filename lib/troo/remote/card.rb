@@ -24,9 +24,10 @@ module Troo
       attribute :pos
       attribute :shortUrl
       attribute :url
+      attribute :actions,               Array[Troo::Remote::Comment]
 
       def associations
-        []
+        [:actions]
       end
 
       def local_model

@@ -1,23 +1,27 @@
 module Troo
   module Persistence
     class Resource
-      attr_reader :resource, :options
-
       class << self
-        def with_collection(resources = [], options = {})
+        def with_collection(resources = [])
           resources.map do |resource|
-            new(resource, options).persist
+            new(resource).preprocess
           end
+        end
+
+        def persist(resource)
+          new(resource).persist
         end
       end
 
-      def initialize(resource, options = {})
+      def initialize(resource)
         @resource = resource
-        @options  = options
+      end
+
+      def preprocess
+        resource.preprocess
       end
 
       def persist
-        preprocess
         set_default
         delete
         create
@@ -26,14 +30,6 @@ module Troo
       private
 
       attr_reader :resource
-
-      def preprocess
-        resource.preprocess if preprocess?
-      end
-
-      def preprocess?
-        options.fetch(:preprocess)
-      end
 
       def set_default
         remote.merge!(default: true) if default?
@@ -61,14 +57,6 @@ module Troo
 
       def local
         resource.local
-      end
-
-      def options
-        defaults.merge!(@options)
-      end
-
-      def defaults
-        { preprocess: true }
       end
     end
   end

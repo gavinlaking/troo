@@ -10,11 +10,10 @@ module Troo
 
     let(:described_class) { Persistence::Resource }
     let(:resource) { [load_mock_trello_response] }
-    let(:options) { {} }
     let(:klass) { Troo::Board }
 
     describe '#persist' do
-      subject { described_class.with_collection(resource, options) }
+      subject { described_class.with_collection(resource) }
 
       context 'when the local exists' do
         let(:default) { false }

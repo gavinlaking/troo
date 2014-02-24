@@ -18,7 +18,7 @@ module Troo
       end
 
       def remote
-        Troo::Member.fetch(id).first
+        Troo::Member.fetch(id, options).first
       end
     end
   end

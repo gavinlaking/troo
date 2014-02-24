@@ -12,10 +12,10 @@ module Troo
 
     def preprocess
       associations.map do |association|
-        self.send(association).map { |record| record.preprocess }
+        associated(association).map { |record| record.preprocess }
       end
 
-      Persistence::Resource.with_collection([self], preprocess: false)
+      Persistence::Resource.persist(self)
     end
 
     def local
@@ -24,6 +24,14 @@ module Troo
 
     def adapted
       @adapted ||= adaptor.adapt(self)
+    end
+
+    private
+
+    def associated(association)
+      entity = self.send(association)
+      return entity if entity.is_a?(Array)
+      [entity]
     end
   end
 end
