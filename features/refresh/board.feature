@@ -1,6 +1,6 @@
 Feature: Refreshing a resource
 
-  @failing @refresh
+  @refresh
   Scenario: Refresh the board with ID
     Given the Trello API is stubbed with "200_board_by_id"
     And a board exists
@@ -13,7 +13,7 @@ Feature: Refreshing a resource
     When I run `troo refresh board 400`
     Then the output should contain "Board cannot be found"
 
-  @failing @refresh
+  @refresh
   Scenario: Refresh the default board
     Given the Trello API is stubbed with "200_board_by_id"
     And a default board exists

@@ -1,6 +1,6 @@
 Feature: Refreshing a resource
 
-  @pending @refresh
+  @refresh
   Scenario: Refresh the list with ID
     Given the Trello API is stubbed with "200_list_by_id"
     And a list exists

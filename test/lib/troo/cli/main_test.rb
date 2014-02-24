@@ -39,10 +39,24 @@ module Troo
       end
 
       describe '#cleanup' do
+        let(:confirm) { "y\n" }
+
+        before { $stdin.stubs(:gets).returns(confirm) }
+
         subject { capture_io { described_class.new.cleanup }.join }
 
-        it 'returns the output of the command' do
-          skip('Needs a spec, please write one.')
+        context 'when the user confirms the operation' do
+          it 'returns the output of the command' do
+            subject.must_match(/All local data has been removed/)
+          end
+        end
+
+        context 'when the user cancels the operation' do
+          let(:confirm) { "n\n" }
+
+          it 'returns the output of the command' do
+            subject.must_match(/No local data has been removed/)
+          end
         end
       end
 

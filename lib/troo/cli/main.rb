@@ -28,8 +28,9 @@ module Troo
       def cleanup
         if yes?('This will remove all local data, are you sure?')
           Ohm.redis.flushdb
-          say
-          say 'All local data has been removed.'
+          say "\n" + 'All local data has been removed.'
+        else
+          say "\n" + 'No local data has been removed.'
         end
       end
 

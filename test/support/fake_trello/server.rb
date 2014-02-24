@@ -36,17 +36,9 @@ class Response
 end
 
 class MyFakeTrello < Sinatra::Base
-  # helpers do
-  #   def bar(name)
-  #     return halt(400, 'Bad Request')  if params['id'] == '400'
-  #     return halt(401, 'Unauthorized') if params['id'] == '401'
-  #   end
-  # end
 
   # boards_all
   get '/1/members/me/boards' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
     Response.render!('all_boards', true)
   end
 

@@ -24,12 +24,16 @@ Given(/^a comment exists$/) do
 end
 
 Given(/^a default board exists$/) do
-  Fabricate(:board, default: true, name: 'My Default Board')
+  Fabricate(:board, default: true,
+                    name: 'My Default Board',
+                    external_board_id: 200)
 end
 
 Given(/^a default list exists$/) do
   Fabricate(:board)
-  Fabricate(:list, default: true, name: 'My Default List')
+  Fabricate(:list, default: true,
+                   name: 'My Default List',
+                   external_list_id: 200)
 end
 
 Given(/^a default card exists$/) do
