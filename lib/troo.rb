@@ -19,7 +19,12 @@ module Troo
   endpoints
 
   def self.logger
-    @logger ||= Logger.new(File.dirname(__FILE__) + '/../logs/troo.log')
+    @logger ||= Logger
+      .new(File.dirname(__FILE__) + '/../logs/troo.log').tap do |log|
+        log.formatter = proc do |mode, time, prog, msg|
+          "%s %5s:\n%s\n" % [time.iso8601, mode, msg]
+      end
+    end
   end
 
   # RestClient.log = File.dirname(__FILE__) + '/../logs/restclient.log'
