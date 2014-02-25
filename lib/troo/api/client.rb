@@ -20,6 +20,8 @@ module Troo
         return [] if error_response?
         return [] if empty_response?
 
+        log_endpoint
+
         if collection?
           model.with_collection(response)
         else
@@ -31,6 +33,10 @@ module Troo
 
       def collection?
         response.is_a?(Array)
+      end
+
+      def log_endpoint
+        Troo.logger.debug(endpoint) if log?
       end
 
       def empty_response?
@@ -51,6 +57,10 @@ module Troo
 
       def missing_parameters?
         verb.nil? || endpoint.nil? || model.nil?
+      end
+
+      def log?
+        Troo.configuration.logs
       end
     end
   end
