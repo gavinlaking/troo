@@ -11,7 +11,7 @@ module Troo
 
         def error
           if count > 0
-            '  Lists:  ' + Esc.red + 'No default list set.' + Esc.reset
+            '  Lists:  ' + Esc.red + 'No default list set.' + Esc.reset + " (#{count})"
           else
             "  Lists:  No lists found.\n"
           end

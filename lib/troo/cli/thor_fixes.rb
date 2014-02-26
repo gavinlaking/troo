@@ -6,7 +6,11 @@ module Troo
       # end
 
       def self.banner(command, namespace = nil, subcommand = false)
-        "#{basename} #{@package_name} #{command.usage}"
+        if subcommand
+          "#{basename} #{@package_name} #{command.usage}"
+        else
+          "#{basename}#{@package_name} #{command.usage}"
+        end
       end
     end
   end
