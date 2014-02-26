@@ -7,6 +7,8 @@ module Troo
         let(:described_class) { Card }
         let(:default) { true }
 
+        before { API::Client.stubs(:perform) }
+
         describe '.dispatch' do
           subject { described_class.dispatch }
 

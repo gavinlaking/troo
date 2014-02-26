@@ -26,6 +26,7 @@ module Troo
 
           print_lists(board)
         end
+        nil
       end
 
       def show

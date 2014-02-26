@@ -10,4 +10,4 @@ Feature: Removing all local data
   Scenario: User cancels removal
     When I run `troo cleanup` interactively
     And I type "no"
-    Then the output should not contain "All local data has been removed."
+    Then the output should not contain "No local data has been removed."

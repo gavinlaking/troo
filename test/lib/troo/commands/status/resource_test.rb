@@ -6,6 +6,8 @@ module Troo
       describe Resource do
         let(:described_class) { Resource }
 
+        before { API::Client.stubs(:perform) }
+
         # describe ".dispatch" do
         #   subject { described_class.dispatch }
 

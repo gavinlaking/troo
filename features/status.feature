@@ -13,9 +13,7 @@ Feature: Showing the current status
 
   @status
   Scenario: When there is local data; all defaults set
-    Given a default board exists
-    And a default list exists
-    And a default card exists
+    Given local data exists, all defaults set
     When I run `troo status`
     Then the output should contain:
       """
@@ -30,10 +28,7 @@ Feature: Showing the current status
 
   @status
   Scenario: When there is local data; some defaults set
-    Given a default board exists
-    And a board exists
-    And a default list exists
-    And a card exists
+    Given local data exists
     When I run `troo status`
     Then the output should contain:
       """
@@ -42,5 +37,5 @@ Feature: Showing the current status
                 * (1) My Default Board
         Lists:  1 list found.
                 * (1) My Default List
-        Cards:  No default card set.
+        Cards:  No default card set. (1)
       """

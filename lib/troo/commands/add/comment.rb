@@ -3,11 +3,8 @@ module Troo
     module Add
       class Comment < Resource
         def add
-          if created
-            success
-          else
-            error_trello_error
-          end
+          return success if create
+          error
         end
 
         private
@@ -16,16 +13,21 @@ module Troo
           'New comment created.'
         end
 
-        def error_trello_error
+        def error
           'Comment could not be created.'
         end
 
-        def created
-          @created ||= CreateComment.for(resource, value)
+        def create
+          return false if no_resource?
+          @create ||= CreateComment.with(external_card_id, value)
+        end
+
+        def external_card_id
+          resource.external_card_id
         end
 
         def resource
-          Retrieval::Card.retrieve(id)
+          @resource ||= Troo::Card.retrieve(id)
         end
       end
     end

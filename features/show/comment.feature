@@ -1,23 +1,24 @@
 Feature: Showing comments
-  Background:
-    Given a card exists
-    And a member exists
 
   @show
   Scenario: Showing comments for a card with ID
     Given a comment exists
-    When I run `troo show comments 1`
-    Then the output should contain "My Test Comment"
+    When I run `troo show comments 200`
+    Then the output should contain:
+      """
+      My Test Comment
+      """
 
   @show
   Scenario: Showing comments for a card with ID; no comments
-    When I run `troo show comments 1`
+    Given a card exists
+    When I run `troo show comments 200`
     Then the output should contain "No comments"
 
   @show
   Scenario: Cannot show comments; card not found
-    Given the Trello API is stubbed with "fetch_card_by_id"
-    When I run `troo show comments 69`
+    Given the Trello API is stubbed with "400_card_by_id"
+    When I run `troo show comments 400`
     Then the output should contain "Card cannot be found."
 
   @show

@@ -14,8 +14,18 @@ module Troo
 
     index :external_member_id
 
-    def self.remote(id, options = { mode: :member })
-      External::Member.fetch(id, options).first
+    class << self
+      def by_external_id(id)
+        first(external_member_id: id)
+      end
+
+      def fetch(id, options = { mode: :member })
+        Remote::Retrieval::Member.fetch(id, options)
+      end
+
+      def retrieve(id = nil, options = {})
+        Retrieval::Member.retrieve(id, options = {})
+      end
     end
 
     def decorator(options = {})
@@ -24,6 +34,10 @@ module Troo
 
     def presenter(options = {})
       Presenters::Member.new(self, options)
+    end
+
+    def default?
+      false
     end
   end
 end

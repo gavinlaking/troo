@@ -5,20 +5,24 @@ module Troo
     module Add
       describe Comment do
         let(:described_class) { Comment }
-        let(:value) { 'Add Comment Test' }
-        let(:id)    {}
+        let(:value)           { 'Add Comment Test' }
+        let(:id)              {}
+        let(:outcome)         { false }
 
         before do
-          Retrieval::Card.stubs(:retrieve)
-          CreateComment.stubs(:for).returns(false)
+          API::Client.stubs(:perform)
+          Troo::Card.stubs(:retrieve).returns(resource)
+          CreateComment.stubs(:with).returns(outcome)
         end
 
         describe '#add' do
           subject { described_class.new(value, id).add }
 
           context 'when the parent resource exists' do
+            let(:resource) { Troo::Card.new }
+
             context 'and the comment was created' do
-              before { CreateComment.stubs(:for).returns(true) }
+              let(:outcome) { true }
 
               it 'returns a polite message' do
                 subject.must_match(/New comment created/)
@@ -33,6 +37,8 @@ module Troo
           end
 
           context 'when the parent resource does not exist' do
+            let(:resource) {}
+
             it 'returns a polite message' do
               subject.must_match(/could not/)
             end

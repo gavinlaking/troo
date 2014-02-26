@@ -4,17 +4,13 @@ module Troo
       desc 'init',
            'Prepare to use Troo.'
       def init
-        if File.exist?(Dir.home + '/.trooconf')
+        if File.exist?(destination)
           say 'A configuration file already exists in your home ' \
               'directory.'
         else
-          say 'No `.trooconf` found in your home directory...'
-          src = File.dirname(__FILE__) + '/../.trooconf.example'
-          dst = Dir.home + '/.trooconf'
-          FileUtils.cp(src, dst)
-          say "A configuration file has been created at " \
-              "`#{Dir.home}/.trooconf`."
-          exit!
+          say 'A configuration file does not exist in your home ' \
+              'directory, creating one...'
+          FileUtils.cp(source, destination)
         end
       end
 
@@ -32,7 +28,9 @@ module Troo
       def cleanup
         if yes?('This will remove all local data, are you sure?')
           Ohm.redis.flushdb
-          say 'All local data has been removed.'
+          say "\n" + 'All local data has been removed.'
+        else
+          say "\n" + 'No local data has been removed.'
         end
       end
 
@@ -42,9 +40,9 @@ module Troo
         say "troo #{Troo::VERSION}"
       end
 
-      desc 'show [board|list|card|comments] <id>',
-           'Show the board, list, card with <id>. Also, show all ' \
-           'comments for card with <id>.'
+      desc 'show [boards|board|list|card|comments] <id>',
+           'Show all the boards or the board, list, card with ' \
+           '<id>. Also, show all comments for card with <id>.'
       subcommand :show, CLI::Show
 
       desc 'add [board|list|card|comment] <id>',
@@ -64,6 +62,16 @@ module Troo
            'optionally to another board with <board_id>.'
       def move(card_id, list_id, board_id = nil)
         say Commands::Move::Card.dispatch(card_id, list_id, board_id)
+      end
+
+      private
+
+      def source
+        File.dirname(__FILE__) + '/../.trooconf.example'
+      end
+
+      def destination
+        Dir.home + '/.trooconf'
       end
     end
   end

@@ -10,9 +10,10 @@ module Troo
         let(:retrieved) {}
 
         before do
+          API::Client.stubs(:perform)
           @card = Fabricate.build(:card)
-          Retrieval::Card.stubs(:retrieve).returns(resource)
-          External::Card.stubs(:fetch).returns(retrieved)
+          Troo::Card.stubs(:retrieve).returns(resource)
+          Troo::Card.stubs(:fetch).returns(retrieved)
         end
 
         after { database_cleanup }
@@ -52,7 +53,7 @@ module Troo
             let(:resource) {}
 
             it 'returns a polite message' do
-              subject.must_match(/Default card cannot be found/)
+              subject.must_match(/to set a default card first/)
             end
           end
         end

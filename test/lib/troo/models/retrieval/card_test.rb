@@ -6,7 +6,10 @@ module Troo
     let(:default) { true }
     let(:card_name) { 'My Test Card' }
 
-    before { @card = Fabricate(:card, default: default, name: card_name) }
+    before do
+      @card = Fabricate(:card, default: default,
+                               name: card_name)
+    end
     after  { database_cleanup }
 
     describe '.all' do
@@ -81,7 +84,7 @@ module Troo
           let(:id) { '526d_remote_card_005259' }
           let(:card_name) { 'My Remote Test Card' }
 
-          before { External::Card.stubs(:fetch).returns([@card]) }
+          before { Troo::Card.stubs(:fetch).returns([@card]) }
 
           it 'returns the correct card' do
             subject.name.must_equal('My Remote Test Card')
@@ -91,7 +94,7 @@ module Troo
         context 'when the ID cannot be found' do
           let(:id) { 'not_found_id' }
 
-          before { External::Card.stubs(:fetch).returns([]) }
+          before { Troo::Card.stubs(:fetch).returns([]) }
 
           it { subject.must_equal(nil) }
         end

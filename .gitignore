@@ -15,9 +15,12 @@ rerun.txt
 spec/reports
 test/tmp
 test/version_tmp
+test/support/.trooconf
 tmp
 
 features/support/fixtures/cassettes/*.yml
 logs/*.log
 troo.db
 tags
+test/support/fake_trello/my-server.crt
+test/support/fake_trello/my-server.key

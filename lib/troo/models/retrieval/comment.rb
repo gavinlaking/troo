@@ -14,7 +14,7 @@ module Troo
       end
 
       def by_external_id
-        Troo::Comment.first(external_comment_id: id)
+        Troo::Comment.by_external_id(id)
       end
 
       def remote

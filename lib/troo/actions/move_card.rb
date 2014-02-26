@@ -1,64 +1,81 @@
 module Troo
   class MoveCard
     class << self
-      def with(card, list, board = nil)
-        new(card, list, board).perform
+      def with(external_card_id,
+               external_list_id,
+               external_board_id = nil)
+        new(external_card_id, external_list_id, external_board_id)
+          .perform
       end
     end
 
-    def initialize(card, list, board = nil)
-      @card  = card
-      @list  = list
-      @board = board
+    def initialize(external_card_id,
+                   external_list_id,
+                   external_board_id = nil)
+      @external_card_id  = external_card_id
+      @external_list_id  = external_list_id
+      @external_board_id = external_board_id
     end
 
     def perform
-      return update_cards if move
-      false
+      update_cards
     end
 
     private
 
-    attr_reader :card, :list, :board
+    attr_reader :external_card_id,
+                :external_list_id,
+                :external_board_id
 
     def update_cards
-      #Troo::External::Card.fetch(card.external_board_id)
-    end
-
-    def move
-      if board
-        move_card
-      else
-        move_card_to_board
-      end
-    end
-
-    def move_card
-      Trello::Card.new
-        .update_fields('id' => card.external_card_id)
-        .move_to_list(list.external_list_id)
-    rescue Trello::InvalidAccessToken
-      raise Troo::InvalidAccessToken
-    rescue Trello::Error
+      return Persistence::Resource
+        .with_collection(resource).first if any?
       false
     end
 
-    def move_card_to_board
-      Trello::Card.new
-        .update_fields('id' => card.external_card_id)
-        .move_to_board(proxy_board, proxy_list)
-    rescue Trello::InvalidAccessToken
-      raise Troo::InvalidAccessToken
-    rescue Trello::Error
-      false
+    def any?
+      resource.any?
     end
 
-    def proxy_board
-      Trello::Board.new.update_fields('id' => board.external_board_id)
+    def resource
+      @resource ||= API::Client.perform(parameters)
     end
 
-    def proxy_list
-      Trello::List.new.update_fields('id' => list.external_list_id)
+    def parameters
+      {
+        verb:          :put,
+        endpoint:      endpoint,
+        interpolation: interpolation,
+        query:         query,
+        model:         Remote::Card
+      }
+    end
+
+    def endpoint
+      return :move_card_board if external_board_id
+      :move_card_list
+    end
+
+    def interpolation
+      { external_id: external_card_id }
+    end
+
+    def query
+      return board_query if external_board_id
+      list_query
+    end
+
+    def board_query
+      {
+        value:  external_board_id,
+        idList: external_list_id
+      }
+    end
+
+    def list_query
+      {
+        value: external_list_id
+      }
     end
   end
 end

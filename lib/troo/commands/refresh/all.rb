@@ -7,33 +7,45 @@ module Troo
         end
 
         def refresh_all
-          'All local data refreshed.' if refreshed?
+          return success if refreshed?
+          failure
         end
 
         private
 
+        def success
+          'All local data refreshed.'
+        end
+
+        def failure
+          'Cannot refresh all local data.'
+        end
+
         def refreshed?
-          external_board_ids.map do |external_board_id|
-            External::List.fetch(external_board_id)
-            External::Member.fetch(external_board_id)
-            External::Card.fetch(external_board_id).map do |card|
-              External::Comment.fetch(card.external_card_id,
-                                      mode: :card)
-            end
-          end
+          return false if resources.none?
+          Troo::Refresh.completed!
           true
         end
 
-        def external_board_ids
-          active_boards.map(&:external_board_id)
+        def resources
+          @resources ||= external_board_ids.map do |id|
+            Troo::Board.fetch(id, mode: :board)
+          end
         end
 
-        def active_boards
-          all_boards.delete_if { |b| b.nil? || b.closed == true }
+        def external_board_ids
+          all_boards.map(&:id)
         end
 
         def all_boards
-          @boards ||= External::Board.fetch(0,  mode: :all)
+          @boards ||= Troo::Board.fetch(0, options)
+        end
+
+        def options
+          {
+            mode:    :all,
+            persist: false
+          }
         end
       end
     end

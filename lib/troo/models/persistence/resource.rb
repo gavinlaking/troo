@@ -1,49 +1,62 @@
 module Troo
   module Persistence
     class Resource
-      attr_reader :resource, :options
-
       class << self
-        def for(resource, options = {})
-          new(resource, options).persist
+        def with_collection(resources = [])
+          resources.map do |resource|
+            new(resource).preprocess
+          end
         end
 
-        def with_collection(resources, options = {})
-          resources.map do |resource|
-            new(resource, options).persist
-          end
+        def persist(resource)
+          new(resource).persist
         end
       end
 
-      def initialize(resource, options = {})
+      def initialize(resource)
         @resource = resource
-        @options = options
+      end
+
+      def preprocess
+        resource.preprocess
       end
 
       def persist
-        return local   if local_identical?
-        return updated if local_exists?
-        created
+        set_default
+        delete
+        create
       end
 
       private
 
-      def updated
-        local.update(remote_data) && local
+      attr_reader :resource
+
+      def set_default
+        remote.merge!(default: true) if default?
       end
 
-      def local_identical?
-        return false unless local_exists?
-        return false if local_data != remote_data
-        true
+      def delete
+        local.delete if exists?
       end
 
-      def local_data
-        local.external_attributes
+      def create
+        resource.local_model.create(remote)
       end
 
-      def local_exists?
+      def remote
+        resource.adapted
+      end
+
+      def default?
+        exists? && local.default?
+      end
+
+      def exists?
         !!local
+      end
+
+      def local
+        resource.local
       end
     end
   end

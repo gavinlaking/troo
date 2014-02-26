@@ -6,13 +6,15 @@ module Troo
     let(:default) { true }
     let(:board_name) { 'My Test Board' }
 
-    before { @board = Fabricate(:board, default: default, name: board_name) }
+    before do
+      @board = Fabricate(:board, default: default, name: board_name)
+    end
     after  { database_cleanup }
 
     describe '.all' do
       subject { described_class.all }
 
-      it 'retrieves all locally stored lists' do
+      it 'retrieves all locally stored boards' do
         subject.size.must_equal 1
       end
     end
@@ -73,7 +75,7 @@ module Troo
           let(:id)         { '526d_remote_board_005259' }
           let(:board_name) { 'My Remote Test Board' }
 
-          before { External::Board.stubs(:fetch).returns([@board]) }
+          before { Troo::Board.stubs(:fetch).returns([@board]) }
 
           it 'returns the correct board' do
             subject.name.must_equal('My Remote Test Board')
@@ -83,7 +85,7 @@ module Troo
         context 'when the ID cannot be found' do
           let(:id) { 'not_found_id' }
 
-          before { External::Board.stubs(:fetch).returns([]) }
+          before { Troo::Board.stubs(:fetch).returns([]) }
 
           it { subject.must_equal(nil) }
         end

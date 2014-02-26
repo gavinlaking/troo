@@ -5,7 +5,11 @@ module Troo
         private
 
         def resource
-          Retrieval::List.retrieve(id)
+          @resource ||= Troo::List.retrieve(id)
+        end
+
+        def type
+          'list'
         end
       end
     end

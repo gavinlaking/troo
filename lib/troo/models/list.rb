@@ -4,9 +4,9 @@ module Troo
     include ModelHelpers
 
     attribute :name
-    attribute :position, Type::Integer
-    attribute :default, Type::Boolean
-    attribute :closed, Type::Boolean
+    attribute :position,         Type::Integer
+    attribute :default,          Type::Boolean
+    attribute :closed,           Type::Boolean
     attribute :external_board_id
     attribute :external_list_id
 
@@ -16,12 +16,22 @@ module Troo
 
     alias_method :default?, :default
 
-    def self.remote(id, options = { mode: :list })
-      External::List.fetch(id, options).first
+    class << self
+      def by_external_id(id)
+        first(external_list_id: id)
+      end
+
+      def fetch(id, options = { mode: :list })
+        Remote::Retrieval::List.fetch(id, options)
+      end
+
+      def retrieve(id = nil, options = {})
+        Retrieval::List.retrieve(id, options = {})
+      end
     end
 
     def board
-      Retrieval::Board.retrieve(external_board_id)
+      Troo::Board.retrieve(external_board_id)
     end
 
     def cards

@@ -66,6 +66,7 @@ You will need user authentication tokens to access your Trello account.
 
 - Fix multitude of sins.
 - Write cucumber integration tests.
+- Convert dates/times to Time.iso8601().
 
 ## Contributing
 

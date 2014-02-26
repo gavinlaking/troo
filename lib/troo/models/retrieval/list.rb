@@ -18,11 +18,11 @@ module Troo
       end
 
       def by_external_id
-        Troo::List.first(external_list_id: id)
+        Troo::List.by_external_id(id)
       end
 
       def remote
-        Troo::List.remote(id)
+        Troo::List.fetch(id, options).first
       end
     end
   end

@@ -2,8 +2,6 @@ module Troo
   module Commands
     module Add
       class Resource
-        include CommandHelpers
-
         attr_reader :id, :value
 
         class << self
@@ -14,6 +12,12 @@ module Troo
 
         def initialize(value, id = nil)
           @value, @id = value, id
+        end
+
+        private
+
+        def no_resource?
+          resource.nil?
         end
       end
     end

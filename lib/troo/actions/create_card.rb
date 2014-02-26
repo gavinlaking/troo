@@ -1,15 +1,15 @@
 module Troo
   class CreateCard
     class << self
-      def for(list, name = nil, description = nil)
-        new(list, name, description).perform
+      def with(external_list_id, name = nil, description = nil)
+        new(external_list_id, name, description).perform
       end
     end
 
-    def initialize(list, name = nil, description = nil)
-      @list        = list
-      @name        = name
-      @description = description
+    def initialize(external_list_id, name = nil, description = nil)
+      @external_list_id = external_list_id
+      @name             = name
+      @description      = description
     end
 
     def perform
@@ -18,25 +18,36 @@ module Troo
 
     private
 
-    attr_reader :list, :name, :description
+    attr_reader :external_list_id, :name, :description
 
     def create_local
-      return Persistence::Card.for(create_remote) if create_remote
+      return Persistence::Resource
+        .with_collection(resource).first if any?
       false
     end
 
-    def create_remote
-      @card ||= Trello::Card.create(attributes)
-    rescue Trello::InvalidAccessToken
-      raise Troo::InvalidAccessToken
-    rescue Trello::Error
-      false
+    def any?
+      resource.any?
     end
 
-    def attributes
+    def resource
+      @resource ||= API::Client.perform(parameters)
+    end
+
+    def parameters
+      {
+        verb:          :post,
+        endpoint:      :create_card,
+        interpolation: {},
+        query:         query,
+        model:         Remote::Card
+      }
+    end
+
+    def query
       {
         name:    name,
-        list_id: list.external_list_id,
+        list_id: external_list_id,
         desc:    description
       }
     end

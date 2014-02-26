@@ -4,11 +4,6 @@ require_relative 'add/card'
 require_relative 'add/comment'
 require_relative 'add/list'
 
-require_relative 'default/resource'
-require_relative 'default/board'
-require_relative 'default/card'
-require_relative 'default/list'
-
 require_relative 'move/card'
 
 require_relative 'refresh/resource'

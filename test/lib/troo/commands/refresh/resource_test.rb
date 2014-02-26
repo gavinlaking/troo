@@ -7,6 +7,8 @@ module Troo
         let(:described_class) { Resource }
         let(:id) {}
 
+        before { API::Client.stubs(:perform) }
+
         describe '#initialize' do
           subject { described_class.new(id) }
 

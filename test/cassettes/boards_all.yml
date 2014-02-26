@@ -2,9 +2,9 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.trello.com/1/members/me
+    uri: https://api.trello.com/1/members/me/boards
     body:
-      encoding: US-ASCII
+      encoding: ASCII-8BIT
       string: ''
     headers:
       Accept:
@@ -13,106 +13,38 @@ http_interactions:
       - gzip, deflate
       Authorization:
       - "<OAuth Credentials>"
+      Content-Length:
+      - '0'
       User-Agent:
       - Ruby
   response:
     status:
       code: 200
-      message: OK
+      message: 'OK '
     headers:
-      X-Powered-By:
-      - Express
-      Cache-Control:
-      - max-age=0, must-revalidate, no-cache, no-store
-      X-Content-Type-Options:
-      - nosniff
-      Strict-Transport-Security:
-      - max-age=15768000
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '898'
       X-Xss-Protection:
       - 1; mode=block
-      X-Frame-Options:
-      - DENY
-      X-Server-Time:
-      - '1389729844619'
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00
-      Content-Type:
-      - application/json
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Allow-Methods:
-      - GET, PUT, POST, DELETE
-      Etag:
-      - "\"-1309915436\""
-      Vary:
-      - Accept-Encoding
-      Date:
-      - Tue, 14 Jan 2014 20:04:04 GMT
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      string: "{\"id\":\"526d8e130a14a9d846001d96\",\"avatarHash\":\"045fd924d84699c9ba451e181bba33a3\",\"bio\":\"\",\"bioData\":null,\"confirmed\":true,\"fullName\":\"Gavin
-        Laking\",\"idPremOrgsAdmin\":[],\"initials\":\"GL\",\"memberType\":\"normal\",\"products\":[],\"status\":\"disconnected\",\"url\":\"<Trello
-        URL>\",\"username\":\"gavinlaking1\",\"avatarSource\":\"gravatar\",\"email\":null,\"gravatarHash\":\"c9c47875936bed67032a12c047b468a8\",\"idBoards\":[\"526d8e130a14a9d846001d96\"],\"idOrganizations\":[],\"idOrganizationsInvited\":[],\"loginTypes\":null,\"newEmail\":null,\"oneTimeMessagesDismissed\":[],\"prefs\":{\"timezoneInfo\":{\"timezoneNext\":\"BST\",\"dateNext\":\"2014-03-30T01:00:00.000Z\",\"offsetNext\":-60,\"timezoneCurrent\":\"GMT\",\"offsetCurrent\":0},\"sendSummaries\":true,\"minutesBetweenSummaries\":60,\"minutesBeforeDeadlineToNotify\":1440,\"colorBlind\":false},\"trophies\":[\"Android\"],\"uploadedAvatarHash\":null,\"premiumFeatures\":[]}"
-    http_version:
-  recorded_at: Tue, 14 Jan 2014 20:04:03 GMT
-- request:
-    method: get
-    uri: https://api.trello.com/1/members/gavinlaking1/boards
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      Authorization:
-      - "<OAuth Credentials>"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Powered-By:
-      - Express
-      Cache-Control:
-      - max-age=0, must-revalidate, no-cache, no-store
       X-Content-Type-Options:
       - nosniff
-      Strict-Transport-Security:
-      - max-age=15768000
-      X-Xss-Protection:
-      - 1; mode=block
       X-Frame-Options:
-      - DENY
-      X-Server-Time:
-      - '1389729845491'
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00
-      Content-Type:
-      - application/json
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Allow-Methods:
-      - GET, PUT, POST, DELETE
-      Etag:
-      - "\"751663108\""
-      Vary:
-      - Accept-Encoding
+      - SAMEORIGIN
+      Server:
+      - WEBrick/1.3.1 (Ruby/2.1.0/2013-12-25) OpenSSL/1.0.1e
       Date:
-      - Tue, 14 Jan 2014 20:04:05 GMT
-      Transfer-Encoding:
-      - chunked
+      - Fri, 21 Feb 2014 19:12:14 GMT
+      Connection:
+      - Keep-Alive
     body:
       encoding: UTF-8
-      string: "[{\"id\":\"526d8e130a14a9d846001d96\",\"name\":\"My Test Board\",\"desc\":\"\",\"descData\":null,\"closed\":true,\"idOrganization\":null,\"invited\":false,\"pinned\":true,\"url\":\"<Trello
-        URL>\",\"prefs\":{\"permissionLevel\":\"private\",\"voting\":\"disabled\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":false,\"cardCovers\":true,\"cardAging\":\"regular\",\"background\":\"blue\",\"backgroundColor\":\"#205C7E\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"unknown\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"invitations\":[],\"memberships\":[{\"id\":\"52be0f11f6a939a72e011e6b\",\"idMember\":\"5195fdb5a8c01a2318004f5d\",\"memberType\":\"admin\",\"deactivated\":false,\"unconfirmed\":false}],\"shortLink\":\"<Trello
-        URL>\",\"subscribed\":false,\"labelNames\":{\"red\":\"\",\"orange\":\"\",\"yellow\":\"\",\"green\":\"\",\"blue\":\"\",\"purple\":\"\"},\"powerUps\":[],\"dateLastActivity\":null,\"dateLastView\":\"2013-12-28T14:47:42.772Z\",\"shortUrl\":\"<Trello
-        URL>\"}]"
-    http_version:
-  recorded_at: Tue, 14 Jan 2014 20:04:04 GMT
+      string: "[{\"id\":\"526d8e130a14a9d846001d96\",\"name\":\"My Test Board\",\"desc\":\"A
+        very brief description...\",\"descData\":null,\"closed\":false,\"idOrganization\":null,\"pinned\":true,\"url\":\"<Trello
+        URL>\",\"shortUrl\":\"<Trello URL>\",\"prefs\":{\"permissionLevel\":\"private\",\"voting\":\"disabled\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":false,\"cardCovers\":true,\"cardAging\":\"regular\",\"background\":\"blue\",\"backgroundColor\":\"#23719F\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"unknown\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"labelNames\":{\"yellow\":\"Analysis
+        Complete\",\"red\":\"\",\"purple\":\"\",\"orange\":\"\",\"green\":\"Ready
+        to Pull\",\"blue\":\"\"}}]"
+    http_version: 
+  recorded_at: Fri, 21 Feb 2014 19:12:14 GMT
 recorded_with: VCR 2.8.0

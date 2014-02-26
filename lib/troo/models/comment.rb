@@ -16,24 +16,38 @@ module Troo
     index :external_comment_id
     index :external_member_id
 
-    def self.remote
-      nil
+    class << self
+      def by_external_id(id)
+        first(external_comment_id: id)
+      end
+
+      def fetch(id, options = { mode: :card })
+        Remote::Retrieval::Comment.fetch(id, options)
+      end
+
+      def retrieve(id = nil, options = {})
+        Retrieval::Comment.retrieve(id, options = {})
+      end
     end
 
     def board
-      Retrieval::Board.retrieve(external_board_id)
+      Troo::Board.retrieve(external_board_id)
     end
 
     def card
-      Retrieval::Card.retrieve(external_card_id)
+      Troo::Card.retrieve(external_card_id)
     end
 
     def member
-      Retrieval::Member.retrieve(external_member_id)
+      Troo::Member.retrieve(external_member_id)
     end
 
     def decorator(options = {})
       Decorators::Comment.new(self, options)
+    end
+
+    def default?
+      false
     end
   end
 end

@@ -2,31 +2,33 @@ require_relative '../../../test_helper'
 
 module Troo
   describe CreateList do
-    let(:described_class) { CreateList }
-    let(:board_id)  { '526d8e130a14a9d846001d96' }
-    let(:list_name) { 'My New List' }
-
-    before do
-      @board = Fabricate(:board)
-      @list = Fabricate(:list, name: list_name)
-      Persistence::List.stubs(:for).returns(@list)
+    let(:described_class)   { CreateList }
+    let(:external_board_id) { '526d8e130a14a9d846001d96' }
+    let(:resource_name)     { 'My New List' }
+    let(:list)              do
+      [Fabricate.build(:list, name: resource_name)]
     end
 
-    after { database_cleanup }
+    before { Persistence::Resource.stubs(:with_collection).returns(list) }
+    after  { database_cleanup }
 
     describe '.initialize' do
-      subject { described_class.new(@board, list_name) }
+      subject do
+        described_class.new(external_board_id, resource_name)
+      end
 
-      it 'assigns the board to an instance variable' do
-        subject.instance_variable_get('@board').must_equal(@board)
+      it 'assigns the external_board_id to an instance variable' do
+        subject.instance_variable_get('@external_board_id')
+          .must_equal(external_board_id)
       end
 
       it 'assigns the name to an instance variable' do
-        subject.instance_variable_get('@name').must_equal(list_name)
+        subject.instance_variable_get('@name')
+          .must_equal(resource_name)
       end
     end
 
-    describe '.for' do
+    describe '.with' do
       before do
         VCR.insert_cassette(:create_list,
                             decode_compressed_response: true)
@@ -34,31 +36,18 @@ module Troo
 
       after  { VCR.eject_cassette }
 
-      subject { described_class.for(@board, list_name) }
+      subject { described_class.with(@board, resource_name) }
 
       context 'when the list was created' do
         it 'returns the new list' do
-          subject.must_equal(@list)
+          subject.must_be_instance_of Troo::List
         end
       end
 
       context 'when the list was not created' do
-        before { Trello::List.stubs(:create).raises(Trello::Error) }
+        before { API::Client.stubs(:perform).returns([]) }
 
         it { subject.must_equal false }
-      end
-
-      context 'when the access token is invalid' do
-        before do
-          Trello::List.stubs(:create)
-            .raises(Trello::InvalidAccessToken)
-        end
-
-        subject { described_class.for(@board, list_name) }
-
-        it 'catches the exception and re-raises' do
-          proc { subject }.must_raise(Troo::InvalidAccessToken)
-        end
       end
     end
   end

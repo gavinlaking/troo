@@ -1,14 +1,14 @@
 module Troo
   class CreateComment
     class << self
-      def for(card, comment)
-        new(card, comment).perform
+      def with(external_card_id, comment)
+        new(external_card_id, comment).perform
       end
     end
 
-    def initialize(card, comment)
-      @card    = card
-      @comment = comment
+    def initialize(external_card_id, comment)
+      @external_card_id = external_card_id
+      @comment          = comment
     end
 
     def perform
@@ -17,30 +17,38 @@ module Troo
 
     private
 
-    attr_reader   :card, :comment
-    attr_accessor :comment_resource
+    attr_reader :external_card_id, :comment
 
     def create_local
-      return Persistence::Comment.for(resource) if create_remote
+      return Persistence::Resource
+        .with_collection(resource).first if any?
       false
+    end
+
+    def any?
+      resource.any?
     end
 
     def resource
-      Remote::Comment.create(comment_resource)
+      @resource ||= API::Client.perform(parameters)
     end
 
-    def create_remote
-      @comment_resource ||= Trello::Card.new
-                              .update_fields(attributes)
-                              .add_comment(comment)
-    rescue Trello::InvalidAccessToken
-      raise Troo::InvalidAccessToken
-    rescue Trello::Error
-      false
+    def parameters
+      {
+        verb:          :post,
+        endpoint:      :create_comment,
+        interpolation: interpolation,
+        query:         query,
+        model:         Remote::Comment
+      }
     end
 
-    def attributes
-      { 'id' => card.external_card_id }
+    def interpolation
+      { external_id: external_card_id }
+    end
+
+    def query
+      { text: comment }
     end
   end
 end

@@ -3,11 +3,8 @@ module Troo
     module Add
       class List < Resource
         def add
-          if created
-            success
-          else
-            error_trello_error
-          end
+          return success if create
+          error
         end
 
         private
@@ -16,16 +13,21 @@ module Troo
           "New list '#{value}' created."
         end
 
-        def error_trello_error
+        def error
           'List could not be created.'
         end
 
-        def created
-          @created ||= CreateList.for(resource, value)
+        def create
+          return false if no_resource?
+          @create ||= CreateList.with(external_board_id, value)
+        end
+
+        def external_board_id
+          resource.external_board_id
         end
 
         def resource
-          Retrieval::Board.retrieve(id)
+          @resource ||= Troo::Board.retrieve(id)
         end
       end
     end

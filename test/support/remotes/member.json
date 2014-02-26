@@ -1,0 +1,50 @@
+{
+  "id": "5195fdb5a8c01a2318004f5d",
+  "avatarHash": "045fd924d84699c9ba451e181bba33a3",
+  "bio": "some bio",
+  "bioData": null,
+  "confirmed": true,
+  "fullName": "Gavin Laking",
+  "idPremOrgsAdmin": [],
+  "initials": "GL",
+  "memberType": "normal",
+  "products": [],
+  "status": "disconnected",
+  "url": "<Trello URL>",
+  "username": "gavinlaking1",
+  "avatarSource": "gravatar",
+  "email": "gavinlaking@gmail.com",
+  "gravatarHash": "c9c47875936bed67032a12c047b468a8",
+  "idBoards": [
+    "526d8e130a14a9d846001d96"
+  ],
+  "idBoardsInvited": [],
+  "idBoardsPinned": [
+    "526d8e130a14a9d846001d96"
+  ],
+  "idOrganizations": [],
+  "idOrganizationsInvited": [],
+  "loginTypes": null,
+  "newEmail": null,
+  "oneTimeMessagesDismissed": [
+    "newtrelloIntro"
+  ],
+  "prefs": {
+    "timezoneInfo": {
+      "timezoneNext": "BST",
+      "dateNext": "2014-03-30T01:00:00.000Z",
+      "offsetNext": -60,
+      "timezoneCurrent": "GMT",
+      "offsetCurrent": 0
+    },
+    "sendSummaries": true,
+    "minutesBetweenSummaries": 60,
+    "minutesBeforeDeadlineToNotify": 1440,
+    "colorBlind": false
+  },
+  "trophies": [
+    "Android"
+  ],
+  "uploadedAvatarHash": null,
+  "premiumFeatures": []
+}

@@ -4,10 +4,10 @@ module Troo
   describe Configuration do
     let(:described_class) { Configuration }
 
-    subject { described_class }
+    subject { described_class.load('test/support/.trooconf', :test) }
 
     it 'configures the API url' do
-      subject.api_url.must_equal('https://api.trello.com/1')
+      subject.api_url.must_equal('http://www.example.com')
     end
 
     it 'configures the API key' do
@@ -26,12 +26,16 @@ module Troo
       subject.api_oauth_token_secret.must_equal('some_oauth_token_secret')
     end
 
-    it 'configures the main database to use' do
-      subject.main_db.must_equal(5)
+    it 'configures the database to use' do
+      subject.database.must_equal(5)
     end
 
-    it 'configures the test database to use' do
-      subject.test_db.must_equal(6)
+    it 'configures communication with the Trello API' do
+      subject.allow_remote.must_equal(true)
+    end
+
+    it 'configures log output' do
+      subject.logs.must_equal(false)
     end
   end
 end

@@ -9,11 +9,11 @@ module Troo
         end
 
         def resource
-          Retrieval::Card.retrieve(id)
+          @resource ||= Troo::Card.retrieve(id)
         end
 
-        def error_not_found
-          'Card cannot be found.'
+        def type
+          'card'
         end
       end
     end

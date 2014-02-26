@@ -73,7 +73,7 @@ module Troo
           let(:id) { '526d_remote_list_005259' }
           let(:list_name) { 'My Remote Test List' }
 
-          before { External::List.stubs(:fetch).returns([@list]) }
+          before { Troo::List.stubs(:fetch).returns([@list]) }
 
           it 'returns the correct list' do
             subject.name.must_equal('My Remote Test List')
@@ -83,7 +83,7 @@ module Troo
         context 'when the ID cannot be found' do
           let(:id) { 'not_found_id' }
 
-          before { External::List.stubs(:fetch).returns([]) }
+          before { Troo::List.stubs(:fetch).returns([]) }
 
           it { subject.must_equal(nil) }
         end

@@ -2,28 +2,31 @@ require_relative '../../../test_helper'
 
 module Troo
   describe CreateCard do
-    let(:described_class) { CreateCard }
-    let(:list_id)  { '526d8e130a14a9d846001d97' }
-    let(:card_name) { 'My New Card' }
-    let(:description) { 'A description to get us started.' }
-
-    before do
-      @list = Fabricate(:list)
-      @card = Fabricate(:card, name: card_name, desc: description)
-      Persistence::Card.stubs(:for).returns(@card)
+    let(:described_class)  { CreateCard }
+    let(:external_list_id) { '526d8e130a14a9d846001d97' }
+    let(:resource_name)    { 'My New Card' }
+    let(:description)      { 'A description to get us started.' }
+    let(:card) do
+      [Fabricate.build(:card, name: resource_name, desc: description)]
     end
 
-    after { database_cleanup }
+    before { Persistence::Resource.stubs(:with_collection).returns(card) }
+    after  { database_cleanup }
 
     describe '.initialize' do
-      subject { described_class.new(@list, card_name, description) }
+      subject do
+        described_class
+          .new(external_list_id, resource_name, description)
+      end
 
-      it 'assigns the list to an instance variable' do
-        subject.instance_variable_get('@list').must_equal(@list)
+      it 'assigns the external_list_id to an instance variable' do
+        subject.instance_variable_get('@external_list_id')
+          .must_equal(external_list_id)
       end
 
       it 'assigns the name to an instance variable' do
-        subject.instance_variable_get('@name').must_equal(card_name)
+        subject.instance_variable_get('@name')
+          .must_equal(resource_name)
       end
 
       it 'assigns the description to an instance variable' do
@@ -32,7 +35,7 @@ module Troo
       end
     end
 
-    describe '.for' do
+    describe '.with' do
       before do
         VCR.insert_cassette(:create_card,
                             decode_compressed_response: true)
@@ -40,31 +43,21 @@ module Troo
 
       after  { VCR.eject_cassette }
 
-      subject { described_class.for(@list, card_name, description) }
+      subject do
+        described_class
+          .with(external_list_id, resource_name, description)
+      end
 
       context 'when the card was created' do
         it 'returns the new card' do
-          subject.must_equal(@card)
+          subject.must_be_instance_of Troo::Card
         end
       end
 
       context 'when the card was not created' do
-        before { Trello::Card.stubs(:create).raises(Trello::Error) }
+        before { API::Client.stubs(:perform).returns([]) }
 
         it { subject.must_equal false }
-      end
-
-      context 'when the access token is invalid' do
-        before do
-          Trello::Card.stubs(:create)
-            .raises(Trello::InvalidAccessToken)
-        end
-
-        subject { described_class.for(@list, card_name, description) }
-
-        it 'catches the exception and re-raises' do
-          proc { subject }.must_raise(Troo::InvalidAccessToken)
-        end
       end
     end
   end

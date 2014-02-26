@@ -10,9 +10,10 @@ module Troo
         let(:retrieved) {}
 
         before do
+          API::Client.stubs(:perform)
           @list = Fabricate.build(:list)
-          Retrieval::List.stubs(:retrieve).returns(resource)
-          External::List.stubs(:fetch).returns(retrieved)
+          Troo::List.stubs(:retrieve).returns(resource)
+          Troo::List.stubs(:fetch).returns(retrieved)
         end
 
         after { database_cleanup }
@@ -52,7 +53,7 @@ module Troo
             let(:resource) {}
 
             it 'returns a polite message' do
-              subject.must_match(/Default list cannot be found/)
+              subject.must_match(/set a default list first/)
             end
           end
         end

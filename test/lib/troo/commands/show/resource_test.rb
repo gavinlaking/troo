@@ -8,6 +8,8 @@ module Troo
         let(:type) {}
         let(:id)   {}
 
+        before { API::Client.stubs(:perform) }
+
         describe '#initialize' do
           subject { described_class.new(type, id) }
 

@@ -12,8 +12,9 @@ module Troo
         let(:presenter) { stub }
 
         before do
+          API::Client.stubs(:perform)
           @list = Fabricate.build(:list, default: default)
-          Retrieval::List.stubs(:retrieve).returns(resource)
+          Troo::List.stubs(:retrieve).returns(resource)
           Presenters::List.stubs(:new).returns(presenter)
           presenter.stubs(:show).returns(@list.name)
         end

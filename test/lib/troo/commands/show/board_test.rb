@@ -13,8 +13,9 @@ module Troo
         let(:presenter) { stub }
 
         before do
+          API::Client.stubs(:perform)
           @board = Fabricate.build(:board, default: default)
-          Retrieval::Board.stubs(:retrieve).returns(resource)
+          Troo::Board.stubs(:retrieve).returns(resource)
           Presenters::Board.stubs(:new).returns(presenter)
           presenter.stubs(:show).returns(@board.name)
         end

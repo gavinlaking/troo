@@ -9,6 +9,7 @@ module Troo
         let(:id)    {}
 
         before do
+          API::Client.stubs(:perform)
           CreateBoard.stubs(:with).returns(false)
         end
 

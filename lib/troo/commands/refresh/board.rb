@@ -4,23 +4,22 @@ module Troo
       class Board < Resource
         private
 
-        def many_success
-          'Multiple boards refreshed.'
-        end
-
-        def error
-          return 'Default board cannot be found.' unless id
-          @type = :board
-          'Board cannot be found. ' + error_no_default
+        def type
+          'board'
         end
 
         def resource
           return [] unless local
-          @resource ||= External::Board.fetch(local.external_board_id)
+          @resource ||= Troo::Board
+            .fetch(external_board_id, mode: :board)
+        end
+
+        def external_board_id
+          local.external_board_id
         end
 
         def local
-          @local ||= Retrieval::Board.retrieve(id)
+          @local ||= Troo::Board.retrieve(id)
         end
       end
     end

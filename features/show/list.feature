@@ -1,23 +1,20 @@
 Feature: Showing a list
-  Background:
-    Given a board exists
-    And a card exists
 
   @show
   Scenario: Showing a list with ID
     Given a list exists
-    When I run `troo show list 1`
+    When I run `troo show list 200`
     Then the output should contain:
       """
        (1) My Test Board
            (1) My Test List
-           (67) My Test Card
+             No cards were found.
       """
 
   @show
   Scenario: Cannot show list; not found
-    Given the Trello API is stubbed with "fetch_list_by_id"
-    When I run `troo show list 69`
+    Given the Trello API is stubbed with "400_list_by_id"
+    When I run `troo show list 400`
     Then the output should contain "List cannot be found."
 
   @show
@@ -28,7 +25,7 @@ Feature: Showing a list
       """
        (1) My Test Board
           * (1) My Default List
-           (67) My Test Card
+             No cards were found.
       """
 
   @show

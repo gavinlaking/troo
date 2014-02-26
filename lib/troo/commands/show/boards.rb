@@ -9,17 +9,14 @@ module Troo
         end
 
         def render
-          if resources.any?
-            presenter
-          else
-            error_not_found
-          end
+          return presenter if resources.any?
+          error
         end
 
         private
 
         def type
-          :boards
+          'boards'
         end
 
         def presenter
@@ -27,7 +24,7 @@ module Troo
         end
 
         def resources
-          @resource ||= Retrieval::Board.all
+          @resources ||= Retrieval::Board.all
         end
       end
     end

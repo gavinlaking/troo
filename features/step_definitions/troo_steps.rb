@@ -1,5 +1,5 @@
 Given(/^the Trello API is stubbed with "(.*?)"$/) do |stub|
-  VCR.insert_cassette(stub)
+  VCR.insert_cassette(stub, allow_playback_repeats: true)
 end
 
 Then(/^the output should be the version number of troo$/) do
@@ -7,7 +7,8 @@ Then(/^the output should be the version number of troo$/) do
 end
 
 Before do
-  Ohm.connect(db: Troo::Configuration.test_db)
+  config = Troo::Configuration.load('test/support/.trooconf', :test)
+  Ohm.connect(db: config.database)
 end
 
 After do

@@ -24,8 +24,18 @@ module Troo
 
     alias_method :default?, :default
 
-    def self.remote(id, options = { mode: :card })
-      External::Card.fetch(id, options).first
+    class << self
+      def by_external_id(id)
+        first(external_card_id: id)
+      end
+
+      def fetch(id, options = { mode: :card })
+        Remote::Retrieval::Card.fetch(id, options)
+      end
+
+      def retrieve(id = nil, options = {})
+        Retrieval::Card.retrieve(id, options = {})
+      end
     end
 
     def external_member_ids
@@ -39,11 +49,11 @@ module Troo
     end
 
     def board
-      @board ||= Retrieval::Board.retrieve(external_board_id)
+      @board ||= Troo::Board.retrieve(external_board_id)
     end
 
     def list
-      @list ||= Retrieval::List.retrieve(external_list_id)
+      @list ||= Troo::List.retrieve(external_list_id)
     end
 
     def comments
@@ -57,7 +67,7 @@ module Troo
     def members
       return [] if external_member_ids.empty?
       @members ||= external_member_ids.map do |member_id|
-        Retrieval::Member.retrieve(member_id)
+        Troo::Member.retrieve(member_id)
       end.compact
     end
 
@@ -71,10 +81,6 @@ module Troo
 
     def comment_presenter(options = {})
       Presenters::Comment.new(self, options)
-    end
-
-    def member_presenter(options = {})
-      Presenters::Member.new(self, options)
     end
 
     def set_default!

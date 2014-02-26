@@ -1,14 +1,14 @@
 module Troo
   class CreateList
     class << self
-      def for(board, name)
-        new(board, name).perform
+      def with(external_board_id, name)
+        new(external_board_id, name).perform
       end
     end
 
-    def initialize(board, name)
-      @board = board
-      @name  = name
+    def initialize(external_board_id, name)
+      @external_board_id = external_board_id
+      @name              = name
     end
 
     def perform
@@ -17,25 +17,36 @@ module Troo
 
     private
 
-    attr_reader :board, :name
+    attr_reader :external_board_id, :name
 
     def create_local
-      return Persistence::List.for(create_remote) if create_remote
+      return Persistence::Resource
+        .with_collection(resource).first if any?
       false
     end
 
-    def create_remote
-      @list ||= Trello::List.create(attributes)
-    rescue Trello::InvalidAccessToken
-      raise Troo::InvalidAccessToken
-    rescue Trello::Error
-      false
+    def any?
+      resource.any?
     end
 
-    def attributes
+    def resource
+      @resource ||= API::Client.perform(parameters)
+    end
+
+    def parameters
+      {
+        verb:          :post,
+        endpoint:      :create_list,
+        interpolation: {},
+        query:         query,
+        model:         Remote::List
+      }
+    end
+
+    def query
       {
         name:     name,
-        board_id: board.external_board_id
+        board_id: external_board_id
       }
     end
   end

@@ -5,7 +5,11 @@ module Troo
         private
 
         def resource
-          Retrieval::Card.retrieve(id)
+          @resource ||= Troo::Card.retrieve(id)
+        end
+
+        def type
+          'card'
         end
       end
     end

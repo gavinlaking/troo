@@ -3,11 +3,8 @@ module Troo
     module Add
       class Card < Resource
         def add
-          if created
-            success
-          else
-            error_trello_error
-          end
+          return success if create
+          error
         end
 
         private
@@ -16,16 +13,21 @@ module Troo
           "New card '#{value}' created."
         end
 
-        def error_trello_error
+        def error
           'Card could not be created.'
         end
 
-        def created
-          @created ||= CreateCard.for(resource, value)
+        def create
+          return false if no_resource?
+          @create ||= CreateCard.with(external_list_id, value)
+        end
+
+        def external_list_id
+          resource.external_list_id
         end
 
         def resource
-          Retrieval::List.retrieve(id)
+          @resource ||= Troo::List.retrieve(id)
         end
       end
     end
