@@ -26,6 +26,10 @@ module Troo
       def retrieve(id = nil, options = {})
         Retrieval::Member.retrieve(id, options = {})
       end
+
+      def type
+        'member'
+      end
     end
 
     def decorator(options = {})

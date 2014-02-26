@@ -31,6 +31,8 @@ module Troo
       end
 
       describe '#status' do
+        before  { Commands::Status.stubs(:dispatch) }
+
         subject { capture_io { described_class.new.status }.join }
 
         it 'returns the output of the command' do

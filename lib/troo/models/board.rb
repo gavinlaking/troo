@@ -26,6 +26,10 @@ module Troo
       def retrieve(id = nil, options = {})
         Retrieval::Board.retrieve(id, options = {})
       end
+
+      def type
+        'board'
+      end
     end
 
     def lists

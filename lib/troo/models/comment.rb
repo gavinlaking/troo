@@ -28,6 +28,10 @@ module Troo
       def retrieve(id = nil, options = {})
         Retrieval::Comment.retrieve(id, options = {})
       end
+
+      def type
+        'comment'
+      end
     end
 
     def board

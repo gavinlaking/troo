@@ -18,8 +18,3 @@ require_relative 'show/boards'
 require_relative 'show/card'
 require_relative 'show/comments'
 require_relative 'show/list'
-
-require_relative 'status/resource'
-require_relative 'status/board'
-require_relative 'status/card'
-require_relative 'status/list'

@@ -18,9 +18,9 @@ module Troo
            'Get troo status.'
       def status
         say 'Status:'
-        say Commands::Status::Board.dispatch
-        say Commands::Status::List.dispatch
-        say Commands::Status::Card.dispatch
+        say Commands::Status.dispatch(Troo::Board)
+        say Commands::Status.dispatch(Troo::List)
+        say Commands::Status.dispatch(Troo::Card)
       end
 
       desc 'cleanup',

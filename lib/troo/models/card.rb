@@ -36,6 +36,10 @@ module Troo
       def retrieve(id = nil, options = {})
         Retrieval::Card.retrieve(id, options = {})
       end
+
+      def type
+        'card'
+      end
     end
 
     def external_member_ids
