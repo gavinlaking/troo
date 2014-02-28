@@ -12,7 +12,8 @@ module Troo
 
         before do
           API::Client.stubs(:perform).returns(resources)
-          Persistence::Resource.stubs(:with_collection).returns(persisted)
+          Troo::Persistence::Resource.stubs(:with_collection)
+            .returns(persisted)
         end
 
         describe '#initialize' do

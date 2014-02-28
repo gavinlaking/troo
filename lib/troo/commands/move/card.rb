@@ -26,18 +26,21 @@ module Troo
 
         def moved
           if board_specified?
-            @moved ||= MoveCard.with(external_card_id,
-                                     external_list_id,
-                                     external_board_id)
+            @moved ||= Remote::Persistence::MoveCard
+              .with(external_card_id,
+                    external_list_id,
+                    external_board_id)
           else
-            @moved ||= MoveCard.with(external_card_id,
-                                     external_list_id)
+            @moved ||= Remote::Persistence::MoveCard
+              .with(external_card_id,
+                    external_list_id)
           end
         end
 
         def success
           if board_specified?
-            "Card '#{card_name}' moved to '#{list_name}' on '#{board_name}'."
+            "Card '#{card_name}' moved to '#{list_name}' " \
+            "on '#{board_name}'."
           else
             "Card '#{card_name}' moved to '#{list_name}'."
           end

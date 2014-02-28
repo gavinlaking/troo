@@ -28,11 +28,11 @@ module Troo
       end
 
       def retrieve(id = nil, options = {})
-        Retrieval::Comment.retrieve(id, options = {})
+        Retrieval::Card.retrieve(id, options = {})
       end
 
       def type
-        'comment'
+        'comments'
       end
     end
 
@@ -51,6 +51,10 @@ module Troo
     def decorator(options = {})
       Decorators::Comment.new(self, options)
     end
+
+    # def presenter(options = {})
+    #   Presenters::Comment.new(self, options)
+    # end
 
     def default?
       false

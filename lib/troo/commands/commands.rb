@@ -6,15 +6,4 @@ require_relative 'add/list'
 
 require_relative 'move/card'
 
-require_relative 'refresh/resource'
 require_relative 'refresh/all'
-require_relative 'refresh/board'
-require_relative 'refresh/card'
-require_relative 'refresh/list'
-
-require_relative 'show/resource'
-require_relative 'show/board'
-require_relative 'show/boards'
-require_relative 'show/card'
-require_relative 'show/comments'
-require_relative 'show/list'

@@ -11,7 +11,7 @@ module Troo
 
         before do
           Troo::Board.stubs(:retrieve).returns(resource)
-          CreateList.stubs(:with).returns(outcome)
+          Remote::Persistence::List.stubs(:with).returns(outcome)
         end
 
         describe '#add' do
