@@ -22,7 +22,8 @@ module Troo
     index :external_list_id
     index :external_card_id
 
-    alias_method :default?, :default
+    alias_method :default?,    :default
+    alias_method :external_id, :external_card_id
 
     class << self
       def by_external_id(id)

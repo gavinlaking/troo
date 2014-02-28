@@ -12,7 +12,8 @@ module Troo
     index :default
     index :external_board_id
 
-    alias_method :default?, :default
+    alias_method :default?,    :default
+    alias_method :external_id, :external_board_id
 
     class << self
       def by_external_id(id)

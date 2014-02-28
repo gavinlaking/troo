@@ -14,6 +14,8 @@ module Troo
 
     index :external_member_id
 
+    alias_method :external_id, :external_member_id
+
     class << self
       def by_external_id(id)
         first(external_member_id: id)

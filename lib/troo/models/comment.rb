@@ -16,6 +16,8 @@ module Troo
     index :external_comment_id
     index :external_member_id
 
+    alias_method :external_id, :external_card_id
+
     class << self
       def by_external_id(id)
         first(external_comment_id: id)
