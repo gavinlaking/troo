@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "aruba",          "0.5.4"
-  spec.add_development_dependency "bundler",        "1.5.2"
+  spec.add_development_dependency "bundler",        "1.5.3"
   spec.add_development_dependency "cucumber",       "1.3.10"
   spec.add_development_dependency "fabrication",    "2.9.3"
   spec.add_development_dependency "guard",          "2.2.5"
