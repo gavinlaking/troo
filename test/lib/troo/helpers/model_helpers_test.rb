@@ -91,5 +91,9 @@ module Troo
         subject.must_equal(2)
       end
     end
+
+    describe '.retrieve' do
+      subject { described_class.retrieve(id, options) }
+    end
   end
 end

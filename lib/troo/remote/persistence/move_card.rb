@@ -30,7 +30,7 @@ module Troo
                     :external_board_id
 
         def update_cards
-          return Troo::Persistence::Resource
+          return Troo::Persistence::Local
             .with_collection(resource).first if any?
           false
         end

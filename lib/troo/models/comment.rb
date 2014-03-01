@@ -9,12 +9,14 @@ module Troo
     attribute :external_card_id
     attribute :external_comment_id
     attribute :external_member_id
+    attribute :short_id
 
     index :date
     index :external_board_id
     index :external_card_id
     index :external_comment_id
     index :external_member_id
+    index :short_id
 
     alias_method :external_id, :external_card_id
 
@@ -25,10 +27,6 @@ module Troo
 
       def fetch(id, options = { mode: :card })
         Remote::Retrieval::Comment.fetch(id, options)
-      end
-
-      def retrieve(id = nil, options = {})
-        Troo::Retrieval::Card.retrieve(id, options = {})
       end
 
       def type

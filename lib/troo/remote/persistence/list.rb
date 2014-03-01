@@ -22,7 +22,7 @@ module Troo
         attr_reader :external_board_id, :name
 
         def create_local
-          return Troo::Persistence::Resource
+          return Troo::Persistence::Local
             .with_collection(resource).first if any?
           false
         end

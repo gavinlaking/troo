@@ -71,16 +71,11 @@ require_relative 'presenters/member'
 
 require_relative 'models/behaviours/set_default'
 
-require_relative 'models/persistence/resource'
+require_relative 'persistence/local'
 
 require_relative 'remote/all'
 
-require_relative 'models/retrieval/resource'
-require_relative 'models/retrieval/board'
-require_relative 'models/retrieval/card'
-require_relative 'models/retrieval/comment'
-require_relative 'models/retrieval/list'
-require_relative 'models/retrieval/member'
+require_relative 'retrieval/local'
 
 require_relative 'models/board'
 require_relative 'models/card'
@@ -93,7 +88,16 @@ require_relative 'commands/show/show_boards'
 require_relative 'commands/show/show_comments'
 require_relative 'commands/show'
 
-require_relative 'commands/commands'
+require_relative 'commands/add/resource'
+require_relative 'commands/add/board'
+require_relative 'commands/add/card'
+require_relative 'commands/add/comment'
+require_relative 'commands/add/list'
+
+require_relative 'commands/move/card'
+
+require_relative 'commands/refresh/all'
+
 require_relative 'commands/default'
 require_relative 'commands/refresh'
 require_relative 'commands/status'

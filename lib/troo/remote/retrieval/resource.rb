@@ -32,7 +32,7 @@ module Troo
         end
 
         def persist
-          @persisted ||= Troo::Persistence::Resource
+          @persisted ||= Troo::Persistence::Local
             .with_collection(resources)
         end
 

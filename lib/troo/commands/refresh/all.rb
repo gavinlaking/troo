@@ -37,7 +37,7 @@ module Troo
       end
 
       def all_boards
-        @boards ||= Troo::Board.fetch(0, options)
+        @boards ||= Troo::Board.fetch(nil, options)
       end
 
       def options

@@ -11,8 +11,10 @@ module Troo
     attribute :bio
     attribute :url
     attribute :external_member_id
+    attribute :short_id
 
     index :external_member_id
+    index :short_id
 
     alias_method :external_id, :external_member_id
 
@@ -23,10 +25,6 @@ module Troo
 
       def fetch(id, options = { mode: :member })
         Remote::Retrieval::Member.fetch(id, options)
-      end
-
-      def retrieve(id = nil, options = {})
-        Troo::Retrieval::Member.retrieve(id, options = {})
       end
 
       def type

@@ -23,7 +23,7 @@ module Troo
         attr_reader :external_list_id, :name, :description
 
         def create_local
-          return Troo::Persistence::Resource
+          return Troo::Persistence::Local
             .with_collection(resource).first if any?
           false
         end

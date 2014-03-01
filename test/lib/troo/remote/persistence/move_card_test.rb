@@ -11,7 +11,7 @@ module Troo
         let(:card)              { [Fabricate.build(:card)] }
 
         before do
-          Troo::Persistence::Resource.stubs(:with_collection)
+          Troo::Persistence::Local.stubs(:with_collection)
             .returns(card)
         end
 

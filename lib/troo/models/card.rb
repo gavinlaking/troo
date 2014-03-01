@@ -34,10 +34,6 @@ module Troo
         Remote::Retrieval::Card.fetch(id, options)
       end
 
-      def retrieve(id = nil, options = {})
-        Troo::Retrieval::Card.retrieve(id, options = {})
-      end
-
       def type
         'card'
       end
@@ -86,10 +82,6 @@ module Troo
 
     def comment_presenter(options = {})
       Presenters::Comment.new(self, options)
-    end
-
-    def set_default!
-      Behaviours::SetDefault.for(self)
     end
   end
 end

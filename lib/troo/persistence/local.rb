@@ -1,6 +1,6 @@
 module Troo
   module Persistence
-    class Resource
+    class Local
       class << self
         def with_collection(resources = [])
           resources.map do |resource|

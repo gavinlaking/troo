@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "mocha",          "0.14.0"
   spec.add_development_dependency "rake",           "10.1.1"
   spec.add_development_dependency "rubocop",        "0.18.1"
+  spec.add_development_dependency "ruby-prof",      "0.14.2"
   spec.add_development_dependency "simplecov",      "0.8.2"
   spec.add_development_dependency "vcr",            "2.8.0"
   spec.add_development_dependency "webmock",        "1.15.2"

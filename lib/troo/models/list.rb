@@ -9,10 +9,12 @@ module Troo
     attribute :closed,           Type::Boolean
     attribute :external_board_id
     attribute :external_list_id
+    attribute :short_id
 
     index :default
     index :external_board_id
     index :external_list_id
+    index :short_id
 
     alias_method :default?,    :default
     alias_method :external_id, :external_list_id
@@ -24,10 +26,6 @@ module Troo
 
       def fetch(id, options = { mode: :list })
         Remote::Retrieval::List.fetch(id, options)
-      end
-
-      def retrieve(id = nil, options = {})
-        Troo::Retrieval::List.retrieve(id, options = {})
       end
 
       def type
@@ -49,10 +47,6 @@ module Troo
 
     def presenter(options = {})
       Presenters::List.new(self, options)
-    end
-
-    def set_default!
-      Behaviours::SetDefault.for(self)
     end
   end
 end

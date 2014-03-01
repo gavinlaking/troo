@@ -12,7 +12,7 @@ module Troo
 
         before do
           API::Client.stubs(:perform).returns(resources)
-          Troo::Persistence::Resource.stubs(:with_collection)
+          Troo::Persistence::Local.stubs(:with_collection)
             .returns(persisted)
         end
 

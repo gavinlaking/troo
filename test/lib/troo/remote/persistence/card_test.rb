@@ -14,7 +14,7 @@ module Troo
         end
 
         before do
-          Troo::Persistence::Resource.stubs(:with_collection)
+          Troo::Persistence::Local.stubs(:with_collection)
             .returns(card)
         end
         after  { database_cleanup }
