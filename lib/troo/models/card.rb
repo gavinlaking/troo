@@ -35,7 +35,7 @@ module Troo
       end
 
       def retrieve(id = nil, options = {})
-        Retrieval::Card.retrieve(id, options = {})
+        Troo::Retrieval::Card.retrieve(id, options = {})
       end
 
       def type

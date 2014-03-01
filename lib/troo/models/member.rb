@@ -26,7 +26,7 @@ module Troo
       end
 
       def retrieve(id = nil, options = {})
-        Retrieval::Member.retrieve(id, options = {})
+        Troo::Retrieval::Member.retrieve(id, options = {})
       end
 
       def type
