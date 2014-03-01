@@ -33,6 +33,35 @@ module Troo
       attribute :uploadedAvatarHash
       attribute :premiumFeatures
 
+      class << self
+        def remote_options
+          { mode: :member }
+        end
+
+        def all
+          {}
+        end
+
+        def by_board_id
+          {
+            endpoint: :members_by_board_id,
+            query:    { filter: :all }
+          }
+        end
+
+        def by_list_id
+          {}
+        end
+
+        def by_card_id
+          {}
+        end
+
+        def by_member_id
+          { endpoint: :member_by_id }
+        end
+      end
+
       def associations
         []
       end

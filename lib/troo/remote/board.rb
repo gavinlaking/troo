@@ -19,6 +19,42 @@ module Troo
       attribute :cards,         Array[Troo::Remote::Card]
       attribute :members,       Array[Troo::Remote::Member]
 
+      class << self
+        def remote_options
+          { mode: :board }
+        end
+
+        def all
+          {
+            endpoint: :boards_all,
+            query:    { filter: :open }
+          }
+        end
+
+        def by_board_id
+          {
+            endpoint: :board_by_id,
+            query:    {
+                        cards:   :open,
+                        lists:   :open,
+                        members: :all
+                      }
+          }
+        end
+
+        def by_list_id
+          {}
+        end
+
+        def by_card_id
+          {}
+        end
+
+        def by_member_id
+          {}
+        end
+      end
+
       def associations
         [:lists, :cards, :members]
       end
@@ -29,6 +65,10 @@ module Troo
 
       def adaptor
         Adaptors::Board
+      end
+
+      def remote_retrieval
+
       end
     end
   end

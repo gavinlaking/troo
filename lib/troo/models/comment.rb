@@ -25,8 +25,8 @@ module Troo
         first(external_comment_id: id)
       end
 
-      def fetch(id, options = { mode: :card })
-        Remote::Retrieval::Comment.fetch(id, options)
+      def remote
+        Remote::Comment
       end
 
       def type

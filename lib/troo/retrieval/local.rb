@@ -68,7 +68,7 @@ module Troo
       end
 
       def remote
-        klass.fetch(id, options).first
+        Retrieval::Remote.fetch(klass.remote, id, options).first
       end
     end
   end

@@ -11,6 +11,38 @@ module Troo
       attribute :date
       attribute :memberCreator,   Troo::Remote::Member
 
+      class << self
+        def remote_options
+          { mode: :card }
+        end
+
+        def all
+          {}
+        end
+
+        def by_board_id
+          {
+            endpoint: :comments_by_board_id,
+            query:    { filter: :commentCard }
+          }
+        end
+
+        def by_list_id
+          {}
+        end
+
+        def by_card_id
+          {
+            endpoint: :comments_by_card_id,
+            query:    { filter: :commentCard }
+          }
+        end
+
+        def by_member_id
+          {}
+        end
+      end
+
       def external_board_id
         data.board.id
       end

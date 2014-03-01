@@ -6,7 +6,7 @@ module Troo
       let(:described_class) { Refresh }
 
       describe '#all' do
-        before { Troo::Board.stubs(:fetch).returns([]) }
+        before { Retrieval::Remote.stubs(:fetch).returns([]) }
 
         subject { capture_io { described_class.new.all }.join }
 
