@@ -19,10 +19,21 @@ module Troo
       def count
         all.count
       end
+
+      def retrieve(id = nil, options = {})
+        Troo::Retrieval::Local.retrieve(self, id, options)
+      end
     end
 
-    def self.included(base)
-      base.extend(ClassMethods)
+    module InstanceMethods
+      def set_default!
+        Behaviours::SetDefault.for(self)
+      end
+    end
+
+    def self.included(receiver)
+      receiver.extend(ClassMethods)
+      receiver.send(:include, InstanceMethods)
     end
   end
 end

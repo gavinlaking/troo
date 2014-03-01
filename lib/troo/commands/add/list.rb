@@ -19,11 +19,8 @@ module Troo
 
         def create
           return false if no_resource?
-          @create ||= CreateList.with(external_board_id, value)
-        end
-
-        def external_board_id
-          resource.external_board_id
+          @create ||= Remote::Persistence::List
+            .with(resource.external_id, value)
         end
 
         def resource

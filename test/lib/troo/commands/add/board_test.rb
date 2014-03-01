@@ -5,12 +5,13 @@ module Troo
     module Add
       describe Board do
         let(:described_class) { Board }
-        let(:value) { 'Add Board Test' }
-        let(:id)    {}
+        let(:value)           { 'Add Board Test' }
+        let(:id)              {}
+        let(:outcome)         { false }
 
         before do
           API::Client.stubs(:perform)
-          CreateBoard.stubs(:with).returns(false)
+          Remote::Persistence::Board.stubs(:with).returns(outcome)
         end
 
         describe '#add' do
@@ -18,7 +19,7 @@ module Troo
 
           context 'when the parent resource exists' do
             context 'and the board was created' do
-              before { CreateBoard.stubs(:with).returns(true) }
+              let(:outcome) { true }
 
               it 'returns a polite message' do
                 subject.must_match(/\'Add Board Test\' created/)

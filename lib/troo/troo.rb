@@ -20,6 +20,7 @@ require 'yajl'
 require 'yaml'
 
 require_relative 'configuration'
+require_relative 'debug'
 
 require_relative 'api/endpoints'
 require_relative 'api/oauth_settings'
@@ -33,18 +34,18 @@ require_relative 'helpers/decorator_helpers'
 require_relative 'helpers/model_helpers'
 require_relative 'helpers/remote_model_helpers'
 
-require_relative 'actions/create_board'
-require_relative 'actions/create_card'
-require_relative 'actions/create_comment'
-require_relative 'actions/create_list'
-require_relative 'actions/move_card'
-
 require_relative 'remote/adaptors/resource'
 require_relative 'remote/adaptors/board'
 require_relative 'remote/adaptors/card'
 require_relative 'remote/adaptors/comment'
 require_relative 'remote/adaptors/list'
 require_relative 'remote/adaptors/member'
+
+require_relative 'remote/persistence/board'
+require_relative 'remote/persistence/card'
+require_relative 'remote/persistence/comment'
+require_relative 'remote/persistence/list'
+require_relative 'remote/persistence/move_card'
 
 require_relative 'remote/retrieval/resource'
 require_relative 'remote/retrieval/board'
@@ -70,16 +71,11 @@ require_relative 'presenters/member'
 
 require_relative 'models/behaviours/set_default'
 
-require_relative 'models/persistence/resource'
+require_relative 'persistence/local'
 
 require_relative 'remote/all'
 
-require_relative 'models/retrieval/resource'
-require_relative 'models/retrieval/board'
-require_relative 'models/retrieval/card'
-require_relative 'models/retrieval/comment'
-require_relative 'models/retrieval/list'
-require_relative 'models/retrieval/member'
+require_relative 'retrieval/local'
 
 require_relative 'models/board'
 require_relative 'models/card'
@@ -88,8 +84,23 @@ require_relative 'models/list'
 require_relative 'models/member'
 require_relative 'models/refresh'
 
-require_relative 'commands/commands'
+require_relative 'commands/show/show_boards'
+require_relative 'commands/show/show_comments'
+require_relative 'commands/show'
+
+require_relative 'commands/add/resource'
+require_relative 'commands/add/board'
+require_relative 'commands/add/card'
+require_relative 'commands/add/comment'
+require_relative 'commands/add/list'
+
+require_relative 'commands/move/card'
+
+require_relative 'commands/refresh/all'
+
 require_relative 'commands/default'
+require_relative 'commands/refresh'
+require_relative 'commands/status'
 
 require_relative 'cli/thor_fixes'
 require_relative 'cli/add'

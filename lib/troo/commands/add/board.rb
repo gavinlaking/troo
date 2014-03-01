@@ -18,7 +18,7 @@ module Troo
         end
 
         def create
-          @create ||= CreateBoard.with(value)
+          @create ||= Remote::Persistence::Board.with(value)
         end
       end
     end

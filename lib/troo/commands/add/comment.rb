@@ -19,11 +19,8 @@ module Troo
 
         def create
           return false if no_resource?
-          @create ||= CreateComment.with(external_card_id, value)
-        end
-
-        def external_card_id
-          resource.external_card_id
+          @create ||= Remote::Persistence::Comment
+            .with(resource.external_id, value)
         end
 
         def resource

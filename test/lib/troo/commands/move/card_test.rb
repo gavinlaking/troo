@@ -5,43 +5,47 @@ module Troo
     module Move
       describe Card do
         let(:described_class) { Card }
-        let(:card_id) { '1' }
-        let(:list_id) { '2' }
-        let(:board_id) {}
-        let(:outcome) { false }
-        let(:card) { @card }
-        let(:list) { @list }
-        let(:board) {}
+        let(:card_id)         { '1' }
+        let(:list_id)         { '2' }
+        let(:board_id)        {}
+        let(:outcome)         { false }
+        let(:card)            { @card }
+        let(:list)            { @list }
+        let(:board)           {}
 
         before do
-          API::Client.stubs(:perform)
           @card  = Fabricate.build(:card)
           @list  = Fabricate.build(:list, name: 'Another Test List')
           @board = Fabricate.build(:board)
           Troo::Card.stubs(:retrieve).returns(card)
           Troo::List.stubs(:retrieve).returns(list)
           Troo::Board.stubs(:retrieve).returns(board)
-          MoveCard.stubs(:with).returns(outcome)
+          Remote::Persistence::MoveCard.stubs(:with).returns(outcome)
         end
 
         describe '#initialize' do
           subject { described_class.new(card_id, list_id, board_id) }
 
           it 'assigns the card_id to an instance variable' do
-            subject.instance_variable_get('@card_id').must_equal(card_id)
+            subject.instance_variable_get('@card_id')
+              .must_equal(card_id)
           end
 
           it 'assigns the list_id to an instance variable' do
-            subject.instance_variable_get('@list_id').must_equal(list_id)
+            subject.instance_variable_get('@list_id')
+              .must_equal(list_id)
           end
 
           it 'assigns the board_id to an instance variable' do
-            subject.instance_variable_get('@board_id').must_equal(board_id)
+            subject.instance_variable_get('@board_id')
+              .must_equal(board_id)
           end
         end
 
         describe '#move' do
-          subject { described_class.dispatch(card_id, list_id, board_id) }
+          subject do
+            described_class.dispatch(card_id, list_id, board_id)
+          end
 
           context 'when the card can be moved' do
             let(:outcome) { true }

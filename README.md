@@ -29,7 +29,7 @@ CLI interface for Trello. Named after Trello's mascot 'Roo'.
 
 - A Trello account with API key/secret.
 - MacOSX/Linux (I've not tested with Windows, sorry.)
-- Ruby 2.1.0 (>= 1.9.3 should be fine.)
+- Ruby 2.1.1 (>= 1.9.3 should be fine, developed mainly in 2.1.0 so far.)
 - Redis.
 
 ## Installation

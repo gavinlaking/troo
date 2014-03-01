@@ -12,7 +12,7 @@ module Troo
         before do
           API::Client.stubs(:perform)
           Troo::Card.stubs(:retrieve).returns(resource)
-          CreateComment.stubs(:with).returns(outcome)
+          Remote::Persistence::Comment.stubs(:with).returns(outcome)
         end
 
         describe '#add' do

@@ -9,12 +9,16 @@ module Troo
     attribute :external_card_id
     attribute :external_comment_id
     attribute :external_member_id
+    attribute :short_id
 
     index :date
     index :external_board_id
     index :external_card_id
     index :external_comment_id
     index :external_member_id
+    index :short_id
+
+    alias_method :external_id, :external_card_id
 
     class << self
       def by_external_id(id)
@@ -25,8 +29,8 @@ module Troo
         Remote::Retrieval::Comment.fetch(id, options)
       end
 
-      def retrieve(id = nil, options = {})
-        Retrieval::Comment.retrieve(id, options = {})
+      def type
+        'comments'
       end
     end
 
@@ -45,6 +49,10 @@ module Troo
     def decorator(options = {})
       Decorators::Comment.new(self, options)
     end
+
+    # def presenter(options = {})
+    #   Presenters::Comment.new(self, options)
+    # end
 
     def default?
       false

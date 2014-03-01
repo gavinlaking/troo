@@ -22,7 +22,8 @@ module Troo
     index :external_list_id
     index :external_card_id
 
-    alias_method :default?, :default
+    alias_method :default?,    :default
+    alias_method :external_id, :external_card_id
 
     class << self
       def by_external_id(id)
@@ -33,8 +34,8 @@ module Troo
         Remote::Retrieval::Card.fetch(id, options)
       end
 
-      def retrieve(id = nil, options = {})
-        Retrieval::Card.retrieve(id, options = {})
+      def type
+        'card'
       end
     end
 
@@ -81,10 +82,6 @@ module Troo
 
     def comment_presenter(options = {})
       Presenters::Comment.new(self, options)
-    end
-
-    def set_default!
-      Behaviours::SetDefault.for(self)
     end
   end
 end

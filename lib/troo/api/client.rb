@@ -35,10 +35,6 @@ module Troo
         response.is_a?(Array)
       end
 
-      def log_endpoint
-        Troo.logger.debug(endpoint) if log?
-      end
-
       def empty_response?
         response.empty?
       end
@@ -57,6 +53,10 @@ module Troo
 
       def missing_parameters?
         verb.nil? || endpoint.nil? || model.nil?
+      end
+
+      def log_endpoint
+        Troo.logger.debug(endpoint) if log?
       end
 
       def log?

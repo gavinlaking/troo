@@ -3,6 +3,8 @@ require 'webrick'
 require 'webrick/https'
 require 'openssl'
 
+require_relative 'fake_response'
+
 # 1) create own SSL certificate .crt and .key files:
 # openssl req -new -x509 -nodes -out my-server.crt -keyout my-server.key
 # 2) sudo ipfw add 100 fwd 127.0.0.1,8080 tcp from any to me 80
@@ -12,6 +14,8 @@ require 'openssl'
 # remove entry from /etc/hosts
 # sudo ipfw del 100
 # sudo ipfw del 101
+
+trap('INT') { exit! }
 
 my_server_crt   = File.open(File.join('./', 'my-server.crt')).read
 my_server_key   = File.open(File.join('./', 'my-server.key')).read
@@ -26,139 +30,104 @@ webrick_options = {
   SSLCertName:     [['CN', WEBrick::Utils.getservername]]
 }
 
-class Response
-  def self.render!(resource, collection = false)
-    path = File.dirname(__FILE__)
-    file = "/../remotes/#{resource}.json"
-    json = File.read(path + file)
-    collection ? '[' + json + ']' : json
-  end
-end
-
 class MyFakeTrello < Sinatra::Base
+  helpers do
+    def fake(resource, id = nil, collection = false)
+      halt(400, 'Bad Request')  if id == '400'
+      halt(401, 'Unauthorized') if id == '401'
+
+      FakeResponse.render(resource, id, collection)
+    end
+  end
 
   # boards_all
   get '/1/members/me/boards' do
-    Response.render!('all_boards', true)
+    fake('all_boards', nil, true)
   end
 
   # board_by_id
   get '/1/boards/:id' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('board')
+    fake('board', params['id'])
   end
 
   # card_by_id
   get '/1/cards/:id' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('card_by_card_id')
+    fake('card_by_card_id', params['id'])
   end
 
   # list_by_id
   get '/1/lists/:id' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('list')
+    fake('list', params['id'])
   end
 
   # member_by_id
   get '/1/members/:id' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('member')
+    fake('member', params['id'])
   end
 
   # cards_by_board_id
   get '/1/boards/:id/cards' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('card', true)
+    fake('card', params['id'], true)
   end
 
   # cards_by_list_id
   get '/1/lists/:id/cards' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('card', true)
+    fake('card', params['id'], true)
   end
 
   # comments_by_board_id
   get '/1/boards/:id/actions' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('comment')
+    fake('comment', params['id'])
   end
 
   # comments_by_card_id
   get '/1/cards/:id/actions' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('comment')
+    fake('comment', params['id'])
   end
 
   # comments_by_list_id
   get '/1/lists/:id/actions' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('comment')
+    fake('comment', params['id'])
   end
 
   # lists_by_board_id
   get '/1/boards/:id/lists' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('list', true)
+    fake('list', params['id'], true)
   end
 
   # members_by_board_id
   get '/1/boards/:id/members' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('member', true)
+    fake('member', params['id'], true)
   end
 
   # create_board
   post '/1/boards' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('board')
+    fake('board')
   end
 
   # create_card
   post '/1/cards' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('card')
+    fake('card')
   end
 
   # create_comment
   post '/1/cards/:id/actions/comments' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('comment')
+    fake('comment')
   end
 
   # create_list
   post '/1/lists' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('list')
+    fake('list')
   end
 
   # move_card_list
   put '/1/cards/:id/idList' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('card')
+    fake('card')
   end
 
   # move_card_board
   put '/1/cards/:id/idBoard' do
-    halt(400, 'Bad Request')  if params['id'] == '400'
-    halt(401, 'Unauthorized') if params['id'] == '401'
-    Response.render!('card')
+    fake('card')
   end
 end
 

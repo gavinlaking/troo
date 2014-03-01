@@ -11,7 +11,7 @@ module Troo
 
         before do
           Troo::List.stubs(:retrieve).returns(resource)
-          CreateCard.stubs(:with).returns(outcome)
+          Remote::Persistence::Card.stubs(:with).returns(outcome)
         end
 
         describe '#add' do
