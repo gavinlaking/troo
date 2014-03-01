@@ -21,7 +21,6 @@ require 'yaml'
 
 require_relative 'configuration'
 require_relative 'debug'
-require_relative 'logger'
 
 require_relative 'api/endpoints'
 require_relative 'api/oauth_settings'
