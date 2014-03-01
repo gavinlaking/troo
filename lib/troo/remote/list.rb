@@ -15,10 +15,6 @@ module Troo
           { mode: :list }
         end
 
-        def all
-          {}
-        end
-
         def by_board_id
           {
             endpoint: :lists_by_board_id,
@@ -28,14 +24,6 @@ module Troo
 
         def by_list_id
           { endpoint: :list_by_id }
-        end
-
-        def by_card_id
-          {}
-        end
-
-        def by_member_id
-          {}
         end
       end
 

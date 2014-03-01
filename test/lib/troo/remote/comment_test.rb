@@ -12,6 +12,30 @@ module Troo
       let(:resource) { load_mock_trello_response }
       let(:described_instance) { described_class.new(resource) }
 
+      describe '.remote_options' do
+        subject { described_class.remote_options }
+
+        it 'returns the default remote options' do
+          subject.fetch(:mode).must_equal(:card)
+        end
+      end
+
+      describe '.by_board_id' do
+        subject { described_class.by_board_id }
+
+        it 'returns the resource parameters' do
+          subject.fetch(:endpoint).must_equal(:comments_by_board_id)
+        end
+      end
+
+      describe '.by_card_id' do
+        subject { described_class.by_card_id }
+
+        it 'returns the resource parameters' do
+          subject.fetch(:endpoint).must_equal(:comments_by_card_id)
+        end
+      end
+
       describe '#external_board_id' do
         subject { described_instance.external_board_id }
 

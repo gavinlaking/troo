@@ -16,10 +16,6 @@ module Troo
           { mode: :card }
         end
 
-        def all
-          {}
-        end
-
         def by_board_id
           {
             endpoint: :comments_by_board_id,
@@ -27,19 +23,11 @@ module Troo
           }
         end
 
-        def by_list_id
-          {}
-        end
-
         def by_card_id
           {
             endpoint: :comments_by_card_id,
             query:    { filter: :commentCard }
           }
-        end
-
-        def by_member_id
-          {}
         end
       end
 

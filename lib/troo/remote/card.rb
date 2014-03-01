@@ -31,10 +31,6 @@ module Troo
           { mode: :card }
         end
 
-        def all
-          {}
-        end
-
         def by_board_id
           {
             endpoint: :cards_by_board_id,
@@ -54,10 +50,6 @@ module Troo
             endpoint: :card_by_id,
             query:    { actions: :commentCard }
           }
-        end
-
-        def by_member_id
-          {}
         end
       end
 

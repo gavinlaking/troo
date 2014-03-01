@@ -4,6 +4,26 @@ module Troo
       def with_collection(resources = [])
         resources.map { |resource| new(resource) }
       end
+
+      def all
+        {}
+      end
+
+      def by_board_id
+        {}
+      end
+
+      def by_list_id
+        {}
+      end
+
+      def by_card_id
+        {}
+      end
+
+      def by_member_id
+        {}
+      end
     end
 
     module InstanceMethods

@@ -24,5 +24,45 @@ module Troo
         subject.size.must_equal(2)
       end
     end
+
+    describe '.all' do
+      subject { described_class.all }
+
+      it 'returns the resource parameters' do
+        subject.must_equal({})
+      end
+    end
+
+    describe '.by_board_id' do
+      subject { described_class.by_board_id }
+
+      it 'returns the resource parameters' do
+        subject.must_equal({})
+      end
+    end
+
+    describe '.by_list_id' do
+      subject { described_class.by_list_id }
+
+      it 'returns the resource parameters' do
+        subject.must_equal({})
+      end
+    end
+
+    describe '.by_card_id' do
+      subject { described_class.by_card_id }
+
+      it 'returns the resource parameters' do
+        subject.must_equal({})
+      end
+    end
+
+    describe '.by_member_id' do
+      subject { described_class.by_member_id }
+
+      it 'returns the resource parameters' do
+        subject.must_equal({})
+      end
+    end
   end
 end

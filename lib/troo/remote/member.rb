@@ -38,23 +38,11 @@ module Troo
           { mode: :member }
         end
 
-        def all
-          {}
-        end
-
         def by_board_id
           {
             endpoint: :members_by_board_id,
             query:    { filter: :all }
           }
-        end
-
-        def by_list_id
-          {}
-        end
-
-        def by_card_id
-          {}
         end
 
         def by_member_id
