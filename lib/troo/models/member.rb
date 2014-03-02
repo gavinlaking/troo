@@ -23,8 +23,8 @@ module Troo
         first(external_member_id: id)
       end
 
-      def fetch(id, options = { mode: :member })
-        Remote::Retrieval::Member.fetch(id, options)
+      def remote
+        Remote::Member
       end
 
       def type

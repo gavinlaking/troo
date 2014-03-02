@@ -10,6 +10,23 @@ module Troo
       attribute :idBoard
       attribute :pos,     Integer
 
+      class << self
+        def remote_options
+          { mode: :list }
+        end
+
+        def by_board_id
+          {
+            endpoint: :lists_by_board_id,
+            query:    { filter: :open }
+          }
+        end
+
+        def by_list_id
+          { endpoint: :list_by_id }
+        end
+      end
+
       def associations
         []
       end

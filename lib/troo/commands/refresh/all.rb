@@ -28,7 +28,7 @@ module Troo
 
       def resources
         @resources ||= external_board_ids.map do |id|
-          Troo::Board.fetch(id, mode: :board)
+          Retrieval::Remote.fetch(Remote::Board, id, mode: :board)
         end
       end
 
@@ -37,7 +37,8 @@ module Troo
       end
 
       def all_boards
-        @boards ||= Troo::Board.fetch(nil, options)
+        @boards ||= Retrieval::Remote
+          .fetch(Remote::Board, nil, options)
       end
 
       def options

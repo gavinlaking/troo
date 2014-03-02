@@ -63,11 +63,17 @@ module Troo
 
       def resource
         return [] unless local
-        @resource ||= klass.fetch(local.external_id)
+        remote
+      end
+
+      def remote
+        @remote ||= Retrieval::Remote
+          .fetch(klass.remote, local.external_id)
       end
 
       def local
-        @local ||= klass.retrieve(id)
+        @local ||= Retrieval::Local
+          .retrieve(klass, id, allow_remote: false)
       end
     end
   end

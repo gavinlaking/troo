@@ -26,6 +26,33 @@ module Troo
       attribute :url
       attribute :actions,               Array[Troo::Remote::Comment]
 
+      class << self
+        def remote_options
+          { mode: :card }
+        end
+
+        def by_board_id
+          {
+            endpoint: :cards_by_board_id,
+            query:    { filter: :open }
+          }
+        end
+
+        def by_list_id
+          {
+            endpoint: :cards_by_list_id,
+            query:    { filter: :open }
+          }
+        end
+
+        def by_card_id
+          {
+            endpoint: :card_by_id,
+            query:    { actions: :commentCard }
+          }
+        end
+      end
+
       def associations
         [:actions]
       end

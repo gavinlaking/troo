@@ -4,7 +4,7 @@ module Troo
   module Commands
     describe Refresh do
       let(:described_class) { Refresh }
-      let(:klass) { stub(type: 'resource_type') }
+      let(:klass) { stub(type: 'resource_type', remote: stub) }
       let(:id) {}
       let(:resource) {}
       let(:retrieved) {}
@@ -12,8 +12,8 @@ module Troo
       before do
         API::Client.stubs(:perform)
         @board = Fabricate.build(:board)
-        klass.stubs(:retrieve).returns(resource)
-        klass.stubs(:fetch).returns(retrieved)
+        Retrieval::Local.stubs(:retrieve).returns(resource)
+        Retrieval::Remote.stubs(:fetch).returns(retrieved)
       end
 
       after { database_cleanup }

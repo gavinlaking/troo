@@ -12,11 +12,12 @@ module Troo
       let(:default_resource) {}
 
       before do
+        klass.stubs(:remote).returns(stub)
         klass.stubs(:default).returns(default_resource)
         klass.stubs(:first).returns(local_resource)
         klass.stubs(:[]).returns(local_resource)
         klass.stubs(:by_external_id).returns(local_resource)
-        klass.stubs(:fetch).returns(remote_resource)
+        Retrieval::Remote.stubs(:fetch).returns(remote_resource)
       end
 
       describe '#initialize' do

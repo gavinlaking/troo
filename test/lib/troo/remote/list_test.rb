@@ -7,6 +7,30 @@ module Troo
       let(:resource)           { {} }
       let(:described_instance) { described_class.new(resource) }
 
+      describe '.remote_options' do
+        subject { described_class.remote_options }
+
+        it 'returns the default remote options' do
+          subject.fetch(:mode).must_equal(:list)
+        end
+      end
+
+      describe '.by_board_id' do
+        subject { described_class.by_board_id }
+
+        it 'returns the resource parameters' do
+          subject.fetch(:endpoint).must_equal(:lists_by_board_id)
+        end
+      end
+
+      describe '.by_list_id' do
+        subject { described_class.by_list_id }
+
+        it 'returns the resource parameters' do
+          subject.fetch(:endpoint).must_equal(:list_by_id)
+        end
+      end
+
       describe '#associations' do
         subject { described_instance.associations }
 

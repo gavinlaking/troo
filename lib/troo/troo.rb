@@ -47,13 +47,6 @@ require_relative 'remote/persistence/comment'
 require_relative 'remote/persistence/list'
 require_relative 'remote/persistence/move_card'
 
-require_relative 'remote/retrieval/resource'
-require_relative 'remote/retrieval/board'
-require_relative 'remote/retrieval/card'
-require_relative 'remote/retrieval/comment'
-require_relative 'remote/retrieval/list'
-require_relative 'remote/retrieval/member'
-
 require_relative 'decorators/board'
 require_relative 'decorators/card'
 require_relative 'decorators/comment'
@@ -75,6 +68,7 @@ require_relative 'persistence/local'
 
 require_relative 'remote/all'
 
+require_relative 'retrieval/remote'
 require_relative 'retrieval/local'
 
 require_relative 'models/board'

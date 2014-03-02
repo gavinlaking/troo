@@ -24,8 +24,8 @@ module Troo
         first(external_list_id: id)
       end
 
-      def fetch(id, options = { mode: :list })
-        Remote::Retrieval::List.fetch(id, options)
+      def remote
+        Remote::List
       end
 
       def type
