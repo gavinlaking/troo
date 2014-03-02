@@ -6,7 +6,7 @@ module Troo
       let(:described_class)  { Local }
       let(:klass)            { stub }
       let(:id)               {}
-      let(:options)          {}
+      let(:options)          { {} }
       let(:local_resource)   {}
       let(:remote_resource)  { [] }
       let(:default_resource) {}
