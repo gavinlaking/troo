@@ -68,6 +68,35 @@ You will need user authentication tokens to access your Trello account.
 - Write cucumber integration tests.
 - Convert dates/times to Time.iso8601().
 
+## Testing
+
+I've put a simple fake server together so that I'm not hitting the Trello API continuously. You can activate and use this too.
+
+1) Create own SSL certificate .crt and .key files:
+
+    openssl req -new -x509 -nodes -out my-server.crt -keyout my-server.key
+
+2) Forward all port 80 and port 443 requests to your local server.
+
+    sudo ipfw add 100 fwd 127.0.0.1,8080 tcp from any to me 80
+    sudo ipfw add 101 fwd 127.0.0.1,8443 tcp from any to me 443
+
+3) Tell your machine to be `api.trello.com` by updating the `/etc/hosts` file:
+
+    127.0.0.1 api.trello.com
+
+4) Run `server.rb`:
+
+    cd ./test/support/fake_server
+    ruby ./server.rb
+
+5) Have fun.
+
+6) When done, kill the server, revert `/etc/hosts` and remove the forwarding.
+
+    sudo ipfw del 100
+    sudo ipfw del 101
+
 ## Contributing
 
 1. Fork it
