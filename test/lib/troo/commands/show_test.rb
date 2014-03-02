@@ -7,7 +7,6 @@ module Troo
       let(:klass) { stub(type: 'resource_type') }
       let(:id)   {}
 
-
       let(:type) { :card }
       let(:id) { '1' }
       let(:default) { false }

@@ -52,7 +52,7 @@ module Troo
       end
 
       def log_request
-        Troo.logger.debug([verb, uri, query].join(" / ")) if log?
+        Troo.logger.debug([verb, uri, query].join(' / ')) if log?
       end
 
       def allow_remote?

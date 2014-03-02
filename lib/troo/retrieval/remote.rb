@@ -18,7 +18,7 @@ module Troo
       def fetch
         return []        if none?
         return persist   if persist?
-               resources
+        resources
       end
 
       private

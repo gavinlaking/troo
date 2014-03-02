@@ -13,7 +13,7 @@ module Troo
         end
 
         def retrieve(klass, id = nil, options = {})
-          new(klass, id, options = {}).retrieve
+          new(klass, id, options).retrieve
         end
       end
 

@@ -5,7 +5,7 @@ module Troo
     describe Comment do
       def load_mock_trello_response
         json = File.read('./test/support/remotes/comment.json')
-        hash = Yajl::Parser.parse(json)
+        Yajl::Parser.parse(json)
       end
 
       let(:described_class) { Comment }

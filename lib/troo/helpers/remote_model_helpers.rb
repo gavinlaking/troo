@@ -36,7 +36,7 @@ module Troo
       end
 
       def local
-        @local ||= local_model.by_external_id(self.id)
+        @local ||= local_model.by_external_id(id)
       end
 
       def adapted
@@ -46,7 +46,7 @@ module Troo
       private
 
       def associated(association)
-        Array(self.send(association))
+        Array(send(association))
       end
     end
 
