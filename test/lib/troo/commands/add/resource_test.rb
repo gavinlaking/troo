@@ -7,7 +7,7 @@ module Troo
         let(:described_class) { Resource }
         let(:value)           {}
         let(:id)              {}
-        let(:options)         {}
+        let(:options)         { {} }
 
         describe '#initialize' do
           subject { described_class.new(value, id) }

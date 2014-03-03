@@ -4,7 +4,7 @@ module Troo
   module Commands
     describe Refresh do
       let(:described_class) { Refresh }
-      let(:klass) { stub(type: 'resource_type', remote: stub) }
+      let(:klass) { stub(type: :resource_type, remote: stub) }
       let(:id) {}
       let(:resource) {}
       let(:retrieved) {}

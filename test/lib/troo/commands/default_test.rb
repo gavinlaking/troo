@@ -4,7 +4,7 @@ module Troo
   module Commands
     describe Default do
       let(:described_class) { Default }
-      let(:klass)           { stub }
+      let(:klass)           { stub(type: :resource_type) }
       let(:id)              {}
       let(:resource)        { stub }
       let(:outcome)         { true }

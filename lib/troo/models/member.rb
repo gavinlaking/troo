@@ -28,7 +28,7 @@ module Troo
       end
 
       def type
-        'member'
+        :member
       end
     end
 

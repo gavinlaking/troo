@@ -4,7 +4,7 @@ module Troo
   module Commands
     describe Show do
       let(:described_class) { Show }
-      let(:klass) { stub(type: 'resource_type') }
+      let(:klass) { stub(type: :resource_type) }
       let(:id)   {}
 
       let(:type) { :card }

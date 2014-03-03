@@ -29,7 +29,7 @@ module Troo
       end
 
       def type
-        klass.to_s
+        klass.type.to_s.capitalize
       end
 
       def name

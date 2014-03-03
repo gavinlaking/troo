@@ -35,7 +35,7 @@ module Troo
       end
 
       def type
-        'card'
+        :card
       end
     end
 

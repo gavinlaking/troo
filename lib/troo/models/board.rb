@@ -27,7 +27,7 @@ module Troo
       end
 
       def type
-        'board'
+        :board
       end
     end
 

@@ -30,7 +30,7 @@ module Troo
       end
 
       def type
-        'comments'
+        :comments
       end
     end
 
