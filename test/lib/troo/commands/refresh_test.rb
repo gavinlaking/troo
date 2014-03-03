@@ -4,10 +4,12 @@ module Troo
   module Commands
     describe Refresh do
       let(:described_class) { Refresh }
-      let(:klass) { stub(type: :resource_type, remote: stub) }
-      let(:id) {}
-      let(:resource) {}
-      let(:retrieved) {}
+      let(:id)              {}
+      let(:resource)        {}
+      let(:retrieved)       {}
+      let(:klass) do
+        stub(type: :resource_type, remote: stub)
+      end
 
       before do
         API::Client.stubs(:perform)
@@ -34,7 +36,7 @@ module Troo
         subject { described_class.dispatch(klass, id) }
 
         context 'when the resource exists' do
-          let(:resource) { @board }
+          let(:resource)  { @board }
           let(:retrieved) { [@board] }
 
           context 'and the resource is refreshed' do
@@ -53,17 +55,12 @@ module Troo
         end
 
         context 'when the resource does not exist' do
-          let(:resource) {}
-
           it 'returns a polite message' do
             subject.must_match(/cannot be found/)
           end
         end
 
         context 'and the default resource does not exist' do
-          let(:id) {}
-          let(:resource) {}
-
           it 'returns a polite message' do
             subject.must_match(/to set a default/)
           end

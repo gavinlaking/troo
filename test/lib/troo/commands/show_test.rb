@@ -4,14 +4,13 @@ module Troo
   module Commands
     describe Show do
       let(:described_class) { Show }
-      let(:klass) { stub(type: :resource_type) }
-      let(:id)   {}
-
-      let(:type) { :card }
-      let(:id) { '1' }
-      let(:default) { false }
-      let(:resource) {}
-      let(:presenter) { stub }
+      let(:klass)           { stub(type: :resource_type) }
+      let(:id)              {}
+      let(:type)            { :card }
+      let(:id)              { '1' }
+      let(:default)         { false }
+      let(:resource)        {}
+      let(:presenter)       { stub }
 
       before do
         API::Client.stubs(:perform)
