@@ -60,7 +60,7 @@ module Troo
       end
 
       def by_short_id
-        klass.first(short_id: id)
+        klass.first(short_id_criteria)
       end
 
       def by_external_id
@@ -69,6 +69,31 @@ module Troo
 
       def remote
         Retrieval::Remote.fetch(klass.remote, id, options).first
+      end
+
+      def short_id_criteria
+        return special if card? && default_board_exists?
+        normal
+      end
+
+      def normal
+        { short_id: id }
+      end
+
+      def special
+        normal.merge!(board_criteria)
+      end
+
+      def board_criteria
+        { external_board_id: Troo::Board.default.external_id }
+      end
+
+      def card?
+        klass.type.eql?(:card)
+      end
+
+      def default_board_exists?
+        !!(Troo::Board.default)
       end
     end
   end
