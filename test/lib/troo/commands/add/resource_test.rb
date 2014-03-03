@@ -5,8 +5,9 @@ module Troo
     module Add
       describe Resource do
         let(:described_class) { Resource }
-        let(:value) {}
-        let(:id)    {}
+        let(:value)           {}
+        let(:id)              {}
+        let(:options)         {}
 
         describe '#initialize' do
           subject { described_class.new(value, id) }
@@ -17,6 +18,11 @@ module Troo
 
           it 'assigns the id to an instance variable' do
             subject.instance_variable_get('@id').must_equal(id)
+          end
+
+          it 'assigns the options to an instance variable' do
+            subject.instance_variable_get('@options')
+              .must_equal(options)
           end
         end
       end
