@@ -23,6 +23,17 @@ module Troo
         say Commands::Status.dispatch(Troo::Card)
       end
 
+      desc 'config',
+           'Show the current configuration.'
+      def config
+        configuration = Troo.configuration.attributes.map do |k, v|
+          [k.to_s.rjust(23, ' '), '=', v.to_s].join(' ')
+        end.join("\n")
+
+        say [Esc.yellow, Esc.underline, "Current configuration:", Esc.reset].join
+        say configuration
+      end
+
       desc 'cleanup',
            'Removes all local data.'
       def cleanup

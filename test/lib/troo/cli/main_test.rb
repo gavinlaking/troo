@@ -40,6 +40,14 @@ module Troo
         end
       end
 
+      describe '#config' do
+        subject { capture_io { described_class.new.config }.join }
+
+        it 'returns the current configuration' do
+          subject.must_match(/Current configuration/)
+        end
+      end
+
       describe '#cleanup' do
         let(:confirm) { "y\n" }
 
