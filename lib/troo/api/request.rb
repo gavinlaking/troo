@@ -20,9 +20,9 @@ module Troo
       rescue RestClient::Exception => e
         ErrorResponse.new(body: e.http_body, code: e.http_code)
       rescue SocketError
-        ErrorResponse.new(
-          body: 'Cannot continue, no network connection.',
-          code: 0)
+        error_no_connection
+      rescue Errno::ECONNREFUSED
+        error_no_connection
       end
 
       private
@@ -61,6 +61,12 @@ module Troo
 
       def log?
         Troo.configuration.logs
+      end
+
+      def error_no_connection
+        ErrorResponse.new(
+          body: 'Cannot continue, no network connection.',
+          code: 0)
       end
     end
   end

@@ -31,6 +31,17 @@ module Troo
       describe '.make' do
         subject { described_class.make(verb, urn, query) }
 
+        context 'when Trello cannot be reached' do
+          before do
+            RestClient::Request.stubs(:execute)
+              .raises(Errno::ECONNREFUSED)
+          end
+
+          it 'returns an ErrorResponse we can process further' do
+            subject.must_be_instance_of(ErrorResponse)
+          end
+        end
+
         context 'when there is no network connection' do
           before do
             RestClient::Request.stubs(:execute).raises(SocketError)
