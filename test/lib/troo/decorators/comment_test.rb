@@ -14,20 +14,6 @@ module Troo
 
       after { database_cleanup }
 
-      describe '#initialize' do
-        subject { described_class.new(@comment, options) }
-
-        it 'assigns the comment to an instance variable' do
-          subject.instance_variable_get('@comment')
-            .must_equal(@comment)
-        end
-
-        it 'assigns the options to an instance variable' do
-          subject.instance_variable_get('@options')
-            .must_equal(options)
-        end
-      end
-
       describe '#as_view' do
         subject { described_class.new(@comment).as_view }
 
@@ -59,14 +45,6 @@ module Troo
 
         it 'returns the comment date' do
           subject.must_equal('Tue, Dec 17 at 22:01')
-        end
-      end
-
-      describe '#id' do
-        subject { described_class.new(@comment).id }
-
-        it 'returns the comment id' do
-          subject.must_equal("(#{@comment.id})")
         end
       end
     end

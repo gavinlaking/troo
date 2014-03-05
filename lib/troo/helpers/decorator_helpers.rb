@@ -4,11 +4,15 @@ module Troo
     end
 
     module InstanceMethods
-      def title
-        highlight([default, brackets(id), name].join(' '), options)
-      end
-
       private
+
+      def defaults
+        {
+          ansicolor: true,
+          colour:    nil,
+          underline: nil,
+        }
+      end
 
       def title_for(resource)
         indent { print resource.title + "\n" }
@@ -21,12 +25,14 @@ module Troo
             .strip
       end
 
-      def highlight(value, options = {})
-        if options.fetch(:ansicolor, true)
-          [options.fetch(:colour, nil),
-           options.fetch(:underline, nil),
-           value,
-           Esc.reset].join
+      def highlight(value, options = defaults)
+        if options.fetch(:ansicolor)
+          [
+            options.fetch(:colour),
+            options.fetch(:underline),
+            value,
+            Esc.reset
+          ].join
         else
           value
         end

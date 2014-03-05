@@ -30,24 +30,11 @@ module Troo
 
       after { database_cleanup }
 
-      describe '#initialize' do
-        subject { described_instance }
-
-        it 'assigns the card to an instance variable' do
-          subject.instance_variable_get('@card').must_equal(@card)
-        end
-
-        it 'assigns the options to an instance variable' do
-          subject.instance_variable_get('@options')
-            .must_equal(options)
-        end
-      end
-
       describe '#short' do
         subject { described_instance.short }
 
         it 'returns a one line overview of the card' do
-          subject.must_equal(" * \e[35m\e[4m(67) \e[0m\e[35m\e[4m" \
+          subject.must_equal(" * \e[35m\e[4m(1) \e[0m\e[35m\e[4m" \
                              "My Test Card\e[0m\n")
         end
 
@@ -55,7 +42,7 @@ module Troo
           let(:options) { { ansicolor: false } }
 
           it 'returns a one line overview of the card' do
-            subject.must_equal(" *  (67) My Test Card\n")
+            subject.must_match(/ \* \(1\) My Test Card/)
           end
         end
       end
@@ -65,56 +52,6 @@ module Troo
 
         it 'returns the formatted card name' do
           subject.must_equal("\e[35m\e[4mMy Test Card\e[0m")
-        end
-      end
-
-      describe '#default_str' do
-        subject { described_instance.default_str }
-
-        it 'returns the formatted card default indicator' do
-          subject.must_equal(' * ')
-        end
-      end
-
-      describe '#id_str' do
-        subject { described_instance.id_str }
-
-        it 'returns the formatted card id' do
-          subject.must_equal("\e[35m\e[4m(67) \e[0m")
-        end
-      end
-
-      describe '#name' do
-        subject { described_instance.name }
-
-        it 'returns the card name' do
-          subject.must_equal(@card.name)
-        end
-      end
-
-      describe '#default' do
-        subject { described_instance.default }
-
-        context 'when default' do
-          it 'return an indicator' do
-            subject.must_equal('*')
-          end
-        end
-
-        context 'when not default' do
-          let(:default) { false }
-
-          it 'returns nothing' do
-            subject.must_equal('')
-          end
-        end
-      end
-
-      describe '#id' do
-        subject { described_instance.id }
-
-        it 'returns the card id' do
-          subject.must_equal(@card.short_id)
         end
       end
 
@@ -212,24 +149,6 @@ module Troo
           it "returns 'N/A'" do
             subject.must_equal('N/A')
           end
-        end
-      end
-
-      describe '#board' do
-        subject { described_instance.board }
-
-        it 'returns the board details' do
-          subject.must_equal "   \e[35m\e[4m(1) \e[0m\e[35m\e[4mMy " \
-                             "Test Board\e[0m\n"
-        end
-      end
-
-      describe '#list' do
-        subject { described_class.new(@card).list }
-
-        it 'returns the list details' do
-          subject.must_equal "   \e[35m\e[4m(1) \e[0m\e[35m\e[4mMy " \
-                             "Test List\e[0m\n"
         end
       end
     end

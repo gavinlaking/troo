@@ -47,6 +47,7 @@ require_relative 'remote/persistence/comment'
 require_relative 'remote/persistence/list'
 require_relative 'remote/persistence/move_card'
 
+require_relative 'decorators/resource'
 require_relative 'decorators/board'
 require_relative 'decorators/card'
 require_relative 'decorators/comment'
