@@ -1,8 +1,6 @@
 module Troo
   module Decorators
     class Resource
-      #include DecoratorHelpers
-
       def initialize(klass, options = {})
         @klass, @options = klass, options
       end
