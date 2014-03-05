@@ -17,10 +17,18 @@ module Troo
       desc 'status',
            'Get troo status.'
       def status
-        say 'Status:'
+        say heading('Status:')
         say Commands::Status.dispatch(Troo::Board)
         say Commands::Status.dispatch(Troo::List)
         say Commands::Status.dispatch(Troo::Card)
+
+        say "\n" + heading('Last refreshed:')
+
+        if refresh
+          say @refresh.last_performed_at
+        else
+          say 'Unknown. Run `troo refresh all`.'
+        end
       end
 
       desc 'config',
@@ -30,7 +38,7 @@ module Troo
           [k.to_s.rjust(23, ' '), '=', v.to_s].join(' ')
         end.join("\n")
 
-        say [Esc.yellow, Esc.underline, "Current configuration:", Esc.reset].join
+        say heading('Current configuration:')
         say configuration
       end
 
@@ -83,6 +91,14 @@ module Troo
 
       def destination
         Dir.home + '/.trooconf'
+      end
+
+      def heading(text = '')
+        [Esc.yellow, Esc.underline, text, Esc.reset].join
+      end
+
+      def refresh
+        @last_performed_at = Troo::Refresh.last_performed_at?
       end
     end
   end

@@ -38,6 +38,10 @@ module Troo
         it 'returns the output of the command' do
           subject.must_match(/Status/)
         end
+
+        it 'returns the last refresh time' do
+          subject.must_match(/Last refreshed/)
+        end
       end
 
       describe '#config' do
