@@ -5,7 +5,7 @@ module Troo
     describe Request do
       let(:described_class) { Request }
       let(:verb)  { :get }
-      let(:urn)   { '' }
+      let(:uri)   { 'http://www.example.com/' }
       let(:query) { {} }
 
       before do
@@ -13,14 +13,14 @@ module Troo
       end
 
       describe '#initialize' do
-        subject { described_class.new(verb, urn, query) }
+        subject { described_class.new(verb, uri, query) }
 
         it 'assigns the verb to an instance variable' do
           subject.instance_variable_get('@verb').must_equal(verb)
         end
 
-        it 'assigns the urn to an instance variable' do
-          subject.instance_variable_get('@urn').must_equal(urn)
+        it 'assigns the uri to an instance variable' do
+          subject.instance_variable_get('@uri').must_equal(uri)
         end
 
         it 'assigns the query to an instance variable' do
@@ -29,7 +29,19 @@ module Troo
       end
 
       describe '.make' do
-        subject { described_class.make(verb, urn, query) }
+        let(:request) { Response.new }
+
+        before do
+          RestClient::Request.stubs(:execute).returns(request)
+        end
+
+        subject { described_class.make(verb, uri, query) }
+
+        context 'when Trello can be reached' do
+          it 'returns a Response we can process further' do
+            subject.must_be_instance_of(Response)
+          end
+        end
 
         context 'when Trello cannot be reached' do
           before do
