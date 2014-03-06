@@ -5,16 +5,6 @@ require 'openssl'
 
 require_relative 'fake_response'
 
-# 1) create own SSL certificate .crt and .key files:
-# openssl req -new -x509 -nodes -out my-server.crt -keyout my-server.key
-# 2) sudo ipfw add 100 fwd 127.0.0.1,8080 tcp from any to me 80
-# 3) sudo ipfw add 101 fwd 127.0.0.1,8443 tcp from any to me 443
-# 4) add 127.0.0.1 api.trello.com to /etc/hosts
-# 5) when done:
-# remove entry from /etc/hosts
-# sudo ipfw del 100
-# sudo ipfw del 101
-
 trap('INT') { exit! }
 
 my_server_crt   = File.open(File.join('./', 'my-server.crt')).read
