@@ -4,13 +4,20 @@ module Troo
   module Retrieval
     describe Remote do
       let(:described_class) { Remote }
-      let(:klass)           { stub(remote_options: {}) }
+      let(:klass)           do
+        mock('klass', all:            {},
+                      by_board_id:    {},
+                      by_list_id:     {},
+                      by_card_id:     {},
+                      by_member_id:   {})
+      end
       let(:external_id)     { '526d8e130a14a9d846001d96' }
-      let(:options)         { {} }
+      let(:options)         { { mode: :board } }
       let(:resources)       { [:not_persisted] }
       let(:persisted)       { [:persisted] }
 
       before do
+        klass.stubs(:remote_options).returns({})
         API::Client.stubs(:perform).returns(resources)
         Troo::Persistence::Local.stubs(:with_collection)
           .returns(persisted)
