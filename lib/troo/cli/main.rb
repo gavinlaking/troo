@@ -24,8 +24,8 @@ module Troo
 
         say "\n" + heading('Last refreshed:')
 
-        if refresh
-          say @refresh.last_performed_at
+        if Troo::Refresh.last_performed_at?
+          say Troo::Refresh.last_performed_at
         else
           say 'Unknown. Run `troo refresh all`.'
         end
@@ -91,10 +91,6 @@ module Troo
 
       def heading(text = '')
         [Esc.yellow, Esc.underline, text, Esc.reset].join
-      end
-
-      def refresh
-        @last_performed_at = Troo::Refresh.last_performed_at?
       end
     end
   end
