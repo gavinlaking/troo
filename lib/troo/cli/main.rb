@@ -34,12 +34,8 @@ module Troo
       desc 'config',
            'Show the current configuration.'
       def config
-        configuration = Troo.configuration.attributes.map do |k, v|
-          [k.to_s.rjust(23, ' '), '=', v.to_s].join(' ')
-        end.join("\n")
-
         say heading('Current configuration:')
-        say configuration
+        say Troo.configuration.view
       end
 
       desc 'cleanup',
