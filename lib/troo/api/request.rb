@@ -30,7 +30,7 @@ module Troo
           timeout: 10,
           method:  verb,
           url:     uri) do |response|
-            Response.new(body: response.body, code: response.code)
+            Responder.build(body: response.body, code: response.code)
         end
       end
     end
