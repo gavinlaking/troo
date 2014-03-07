@@ -5,24 +5,16 @@ module Troo
         attr_reader :id, :value
 
         class << self
-          def dispatch(value, id = nil, options = {})
-            new(value, id, options).add
+          def dispatch(value, id = nil)
+            new(value, id).add
           end
         end
 
-        def initialize(value, id = nil, options = {})
-          @value, @id, @options = value, id, options
+        def initialize(value, id = nil)
+          @value, @id = value, id
         end
 
         private
-
-        def options
-          defaults.merge!(@options)
-        end
-
-        def defaults
-          { refresh: false }
-        end
 
         def no_resource?
           resource.nil?
