@@ -16,7 +16,7 @@ module Troo
       end
 
       it 'configures the API token' do
-        subject.api_token.must_equal('some_token')
+        subject.api_token.must_equal('some_secret')
       end
 
       it 'configures the API OAuth token' do
@@ -28,7 +28,7 @@ module Troo
       end
 
       it 'configures the database to use' do
-        subject.database.must_equal(5)
+        subject.database.must_equal(2)
       end
 
       it 'configures communication with the Trello API' do
