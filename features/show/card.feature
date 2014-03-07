@@ -6,7 +6,7 @@ Feature: Showing a card
     When I run `troo show card 200`
     Then the output should contain:
       """
-       (67) My Test Card
+      (1) My Test Card
 
       Description:
       some description
@@ -18,8 +18,8 @@ Feature: Showing a card
       @gavinlaking1
 
       Metadata:
-         Board:    (1) My Test Board
-          List:    (1) My Test List
+         Board: (1) My Test Board
+          List: (1) My Test List
        Updated: Tue, Dec 17 at 21:48
       """
 
@@ -27,7 +27,10 @@ Feature: Showing a card
   Scenario: Cannot show card; not found
     Given the Trello API is stubbed with "400_card_by_id"
     When I run `troo show card 400`
-    Then the output should contain "Card cannot be found."
+    Then the output should contain:
+      """
+      Card cannot be found.
+      """
 
   @show
   Scenario: Showing the default card
@@ -35,7 +38,7 @@ Feature: Showing a card
     When I run `troo show card`
     Then the output should contain:
       """
-      * (67) My Default Card
+      * (1) My Default Card
 
       Description:
       some description
@@ -47,12 +50,15 @@ Feature: Showing a card
       @gavinlaking1
 
       Metadata:
-         Board:    (1) My Test Board
-          List:    (1) My Test List
+         Board: (1) My Test Board
+          List: (1) My Test List
        Updated: Tue, Dec 17 at 21:48
       """
 
   @show
   Scenario: Cannot show; no default card
     When I run `troo show card`
-    Then the output should contain "set a default card first"
+    Then the output should contain:
+    """
+    set a default card first
+    """

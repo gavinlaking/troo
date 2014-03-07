@@ -24,6 +24,7 @@ module Troo
 
     alias_method :default?,    :default
     alias_method :external_id, :external_card_id
+    alias_method :description, :desc
 
     class << self
       def by_external_id(id)
@@ -73,15 +74,19 @@ module Troo
     end
 
     def decorator(options = {})
-      Decorators::Card.new(self, options)
+      Decorators::Resource.new(self, options)
     end
 
     def presenter(options = {})
-      Presenters::Card.new(self, options)
+      Presenters::Card.new(self.decorator, options)
     end
 
     def comment_presenter(options = {})
       Presenters::Comment.new(self, options)
+    end
+
+    def type
+      self.class.type
     end
   end
 end

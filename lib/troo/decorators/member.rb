@@ -3,16 +3,16 @@ module Troo
     class Member < Resource
       include DecoratorHelpers
 
-      def username
-        ['@', klass.username].join
-      end
-
       def name
         klass.full_name
       end
 
       def initials
         klass.initials
+      end
+
+      def username
+        ['@', klass.username].join
       end
     end
   end

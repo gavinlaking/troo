@@ -28,10 +28,11 @@ Feature: Showing comments
     When I run `troo show comments`
     Then the output should contain:
       """
-       * (67) My Default Card
-          gavinlaking1:
-          My Test Comment
-              (Tue, Dec 17 at 22:01)
+      * (1) My Default Card
+
+      @gavinlaking1:
+        My Test Comment
+          (Tue, Dec 17 at 22:01)
       """
 
   @show

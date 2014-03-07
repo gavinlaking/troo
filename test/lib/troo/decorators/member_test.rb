@@ -7,29 +7,29 @@ module Troo
       let(:options)         { {} }
       let(:member)          { Fabricate.build(:member) }
 
-      describe '#username' do
-        subject { described_class.new(member).username }
+      # describe '#username' do
+      #   subject { described_class.new(member).username }
 
-        it "returns the member's username" do
-          subject.must_equal("@#{member.username}")
-        end
-      end
+      #   it "returns the member's username" do
+      #     subject.must_equal("@#{member.username}")
+      #   end
+      # end
 
-      describe '#name' do
-        subject { described_class.new(member).name }
+      # describe '#name' do
+      #   subject { described_class.new(member).name }
 
-        it "returns the member's full name" do
-          subject.must_equal(member.full_name)
-        end
-      end
+      #   it "returns the member's full name" do
+      #     subject.must_equal(member.full_name)
+      #   end
+      # end
 
-      describe '#initials' do
-        subject { described_class.new(member).initials }
+      # describe '#initials' do
+      #   subject { described_class.new(member).initials }
 
-        it "returns the member's initials" do
-          subject.must_equal(member.initials)
-        end
-      end
+      #   it "returns the member's initials" do
+      #     subject.must_equal(member.initials)
+      #   end
+      # end
     end
   end
 end

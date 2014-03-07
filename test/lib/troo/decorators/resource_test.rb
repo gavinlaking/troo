@@ -4,25 +4,25 @@ module Troo
   module Decorators
     describe Resource do
       let(:described_class)    { Resource }
-      let(:klass)              { stub(id: 67, name: resource_name) }
+      let(:klass) do
+        stub(id:          67,
+             name:        resource_name,
+             description: description,
+             member:      member,
+             text:        'Some text...',
+             date:        'Wed, Dec 17 at 22:01',
+             type:        :resource_type)
+      end
       let(:options)            { {} }
       let(:described_instance) { described_class.new(klass, options) }
       let(:resource_name)      { 'My Resource' }
+      let(:description)        { 'Some description' }
+      let(:member)             { stub(username: 'gavinlaking1') }
       let(:default)            { true }
 
-      before { klass.stubs(:default?).returns(default) }
-
-      describe '#initialize' do
-        subject { described_class.new(klass, options) }
-
-        it 'assigns the klass to an instance variable' do
-          subject.instance_variable_get('@klass').must_equal(klass)
-        end
-
-        it 'assigns the options to an instance variable' do
-          subject.instance_variable_get('@options')
-            .must_equal(options)
-        end
+      before do
+        klass.stubs(:default?).returns(default)
+        klass.stubs(:type).returns(:resource_type)
       end
 
       describe '#title' do
@@ -31,29 +31,37 @@ module Troo
         it { subject.must_match(/My Resource/) }
       end
 
+      describe '#description' do
+        subject { described_instance.description }
+
+        context 'when a description exists' do
+          it 'returns the description' do
+            subject.must_equal(klass.description)
+          end
+        end
+
+        context 'when a description does not exist' do
+          before { klass.stubs(:description) }
+
+          it 'returns N/A' do
+            subject.must_equal('N/A')
+          end
+        end
+      end
+
       describe '#default' do
         subject { described_instance.default }
 
         context 'when the resource is default' do
           it 'returns a marker' do
-            subject.must_equal(' * ')
+            subject.must_equal('*')
           end
         end
 
         context 'when the resource is not the default' do
           let(:default) { false }
 
-          it 'returns a space' do
-            subject.must_equal('   ')
-          end
-        end
-      end
-
-      describe '#id_str' do
-        subject { described_instance.id_str }
-
-        it 'returns the formatted id' do
-          subject.must_equal("(67) \e[0m")
+          it { subject.must_equal nil }
         end
       end
 
@@ -108,6 +116,40 @@ module Troo
 
         it 'returns the cards details' do
           skip
+        end
+      end
+
+      describe '#as_view' do
+        before { Template.stubs(:parse).returns('some output') }
+
+        subject { described_instance.as_view }
+
+        it 'returns the rendered content' do
+          subject.must_match(/some output/)
+        end
+      end
+
+      describe '#username' do
+        subject { described_instance.username }
+
+        it 'returns the comment member username' do
+          subject.must_equal('@' + klass.member.username)
+        end
+      end
+
+      describe '#text' do
+        subject { described_instance.text }
+
+        it 'returns the comment text' do
+          subject.must_equal(klass.text)
+        end
+      end
+
+      describe '#date' do
+        subject { described_instance.date }
+
+        it 'returns the comment date' do
+          subject.must_equal(klass.date)
         end
       end
     end

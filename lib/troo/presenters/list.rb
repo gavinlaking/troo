@@ -3,26 +3,20 @@ module Troo
     class List
       include DecoratorHelpers
 
-      class << self
-        def show(list, options = {})
-          new(list, options).show
-        end
-      end
-
       def initialize(list, options = {})
         @list    = list
         @options = options
       end
 
       def show
-        puts board.decorator.title
+        print list.board.title + "\n"
 
-        title_for(list.decorator)
+        print list.title
 
-        print_error 'No cards were found.' if cards.empty?
+        print error('No cards were found.') if list.cards.empty?
 
-        cards.each do |card|
-          title_for(card)
+        list.cards.each do |card|
+          print card.title
         end
 
         puts
@@ -31,14 +25,6 @@ module Troo
       private
 
       attr_reader :list
-
-      def board
-        list.board
-      end
-
-      def cards
-        list.decorator.cards
-      end
     end
   end
 end

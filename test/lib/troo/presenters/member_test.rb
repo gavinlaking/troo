@@ -16,7 +16,7 @@ module Troo
       after { database_cleanup }
 
       describe '#show' do
-        subject { described_class.show(@card, options) }
+        subject { described_class.new(@card, options).show }
 
         it 'returns the members as a sentence' do
           subject.must_equal('@gavinlaking1')

@@ -40,11 +40,15 @@ module Troo
     end
 
     def decorator(options = {})
-      Decorators::Board.new(self, options)
+      Decorators::Resource.new(self, options)
     end
 
     def presenter(options = {})
-      Presenters::Board.new(self, options)
+      Presenters::Board.new(self.decorator, options)
+    end
+
+    def type
+      self.class.type
     end
   end
 end

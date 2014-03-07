@@ -47,15 +47,19 @@ module Troo
     end
 
     def decorator(options = {})
-      Decorators::Comment.new(self, options)
+      Decorators::Resource.new(self, options)
     end
 
     # def presenter(options = {})
-    #   Presenters::Comment.new(self, options)
+    #   Presenters::Comment.new(self.decorator, options)
     # end
 
     def default?
       false
+    end
+
+    def type
+      self.class.type
     end
   end
 end

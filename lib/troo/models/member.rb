@@ -37,11 +37,15 @@ module Troo
     end
 
     def presenter(options = {})
-      Presenters::Member.new(self, options)
+      Presenters::Member.new(self.decorator, options)
     end
 
     def default?
       false
+    end
+
+    def type
+      self.class.type
     end
   end
 end

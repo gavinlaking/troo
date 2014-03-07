@@ -3,12 +3,6 @@ module Troo
     class Member
       include DecoratorHelpers
 
-      class << self
-        def show(card, options = {})
-          new(card, options).show
-        end
-      end
-
       def initialize(card, options = {})
         @card    = card
         @options = options
