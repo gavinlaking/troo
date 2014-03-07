@@ -17,19 +17,6 @@ module Troo
         end
         after { database_cleanup }
 
-        describe '.initialize' do
-          subject { described_class.new(external_card_id, text) }
-
-          it 'assigns the external_card_id to an instance variable' do
-            subject.instance_variable_get('@external_card_id')
-              .must_equal(external_card_id)
-          end
-
-          it 'assigns the comment to an instance variable' do
-            subject.instance_variable_get('@comment').must_equal(text)
-          end
-        end
-
         describe '.with' do
           before do
             VCR.insert_cassette(:create_comment,

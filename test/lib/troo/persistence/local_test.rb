@@ -9,15 +9,6 @@ module Troo
 
       before { resource.stubs(:preprocess).returns(resource) }
 
-      describe '.initialize' do
-        subject { described_class.new(resource) }
-
-        it 'assigns the resource to an instance variable' do
-          subject.instance_variable_get('@resource')
-            .must_equal(resource)
-        end
-      end
-
       describe '.with_collection' do
         subject { described_class.with_collection(resources) }
 

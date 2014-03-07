@@ -14,18 +14,6 @@ module Troo
 
       after { database_cleanup }
 
-      describe '#initialize' do
-        subject { described_class.new(@list, options) }
-
-        it 'assigns the list to an instance variable' do
-          subject.instance_variable_get('@list').must_equal(@list)
-        end
-
-        it 'assigns the options to an instance variable' do
-          subject.instance_variable_get('@options').must_equal(options)
-        end
-      end
-
       describe '#show' do
         subject { capture_io { described_class.show(@list, options) }.join }
 

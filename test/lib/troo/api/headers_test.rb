@@ -7,18 +7,6 @@ module Troo
       let(:uri)     { 'http://www.example.com/' }
       let(:headers) { {} }
 
-      describe '#initialize' do
-        subject { described_class.new(uri, headers) }
-
-        it 'assigns the uri to an instance variable' do
-          subject.instance_variable_get('@uri').must_equal(uri)
-        end
-
-        it 'assigns the headers to an instance variable' do
-          subject.instance_variable_get('@headers').must_equal(headers)
-        end
-      end
-
       describe '#build!' do
         subject do
           described_class.build!(uri, headers)['Authorization']

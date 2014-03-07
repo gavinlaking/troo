@@ -17,29 +17,6 @@ module Troo
 
         after { database_cleanup }
 
-        describe '.initialize' do
-          subject do
-            described_class.new(external_card_id,
-                                external_list_id,
-                                external_board_id)
-          end
-
-          it 'assigns the external_card_id to an instance variable' do
-            subject.instance_variable_get('@external_card_id')
-              .must_equal(external_card_id)
-          end
-
-          it 'assigns the external_list_id to an instance variable' do
-            subject.instance_variable_get('@external_list_id')
-              .must_equal(external_list_id)
-          end
-
-          it 'assigns the external_board to an instance variable' do
-            subject.instance_variable_get('@external_board_id')
-              .must_equal(external_board_id)
-          end
-        end
-
         describe '.with' do
           let(:board) {}
 

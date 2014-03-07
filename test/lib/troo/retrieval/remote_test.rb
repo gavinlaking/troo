@@ -16,24 +16,6 @@ module Troo
           .returns(persisted)
       end
 
-      describe '#initialize' do
-        subject { described_class.new(klass, external_id, options) }
-
-        it 'assigns the klass to an instance variable' do
-          subject.instance_variable_get('@klass').must_equal(klass)
-        end
-
-        it 'assigns the external_id to an instance variable' do
-          subject.instance_variable_get('@external_id')
-            .must_equal(external_id)
-        end
-
-        it 'assigns the options to an instance variable' do
-          subject.instance_variable_get('@options')
-            .must_equal(options)
-        end
-      end
-
       describe '#fetch' do
         subject { described_class.fetch(klass, external_id, options) }
 

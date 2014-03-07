@@ -19,28 +19,6 @@ module Troo
         end
         after  { database_cleanup }
 
-        describe '.initialize' do
-          subject do
-            described_class
-              .new(external_list_id, resource_name, description)
-          end
-
-          it 'assigns the external_list_id to an instance variable' do
-            subject.instance_variable_get('@external_list_id')
-              .must_equal(external_list_id)
-          end
-
-          it 'assigns the name to an instance variable' do
-            subject.instance_variable_get('@name')
-              .must_equal(resource_name)
-          end
-
-          it 'assigns the description to an instance variable' do
-            subject.instance_variable_get('@description')
-              .must_equal(description)
-          end
-        end
-
         describe '.with' do
           before do
             VCR.insert_cassette(:create_card,

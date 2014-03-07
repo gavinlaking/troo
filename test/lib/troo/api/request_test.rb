@@ -12,22 +12,6 @@ module Troo
         RestClient::Request.stubs(:execute)
       end
 
-      describe '#initialize' do
-        subject { described_class.new(verb, uri, query) }
-
-        it 'assigns the verb to an instance variable' do
-          subject.instance_variable_get('@verb').must_equal(verb)
-        end
-
-        it 'assigns the uri to an instance variable' do
-          subject.instance_variable_get('@uri').must_equal(uri)
-        end
-
-        it 'assigns the query to an instance variable' do
-          subject.instance_variable_get('@query').must_equal(query)
-        end
-      end
-
       describe '.make' do
         let(:request) { Response.new }
 

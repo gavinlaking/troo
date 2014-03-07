@@ -6,19 +6,6 @@ module Troo
     let(:object) { stub(value: 'Hello from variable!') }
     let(:template_path) { '/../../../test/support/template.erb' }
 
-    describe '#initialize' do
-      subject { described_class.new(object, template_path) }
-
-      it 'assigns the object to an instance variable' do
-        subject.instance_variable_get('@object').must_equal(object)
-      end
-
-      it 'assigns the template_path to an instance variable' do
-        subject.instance_variable_get('@template_path')
-          .must_equal(template_path)
-      end
-    end
-
     describe '#parse' do
       subject { described_class.new(object, template_path).parse }
 

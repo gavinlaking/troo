@@ -6,18 +6,6 @@ module Troo
     let(:elements)        { ['Hydrogen'] }
     let(:label)           { 'elements' }
 
-    describe '#initialize' do
-      subject { described_class.new(elements, label) }
-
-      it 'assigns the elements to an instance variable' do
-        subject.instance_variable_get('@elements').must_equal(elements)
-      end
-
-      it 'assigns the label to an instance variable' do
-        subject.instance_variable_get('@label').must_equal(label)
-      end
-    end
-
     describe '.construct' do
       subject { described_class.construct(elements, label) }
 

@@ -14,16 +14,6 @@ module Troo
   describe Behaviours::SetDefault do
     let(:described_class) { Behaviours::SetDefault }
 
-    describe '.initialize' do
-      let(:entity) { :some_model }
-
-      subject { described_class.new(entity) }
-
-      it 'assigns the entity to an instance variable' do
-        subject.instance_variable_get('@entity').must_equal(entity)
-      end
-    end
-
     describe '#set_default!' do
       before do
         @board_1 = Fabricate(:board, default: true)
