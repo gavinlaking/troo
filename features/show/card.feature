@@ -38,7 +38,7 @@ Feature: Showing a card
     When I run `troo show card`
     Then the output should contain:
       """
-      * (1) My Default Card
+      (1) My Default Card *
 
       Description:
       some description

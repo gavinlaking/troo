@@ -19,11 +19,11 @@ Feature: Showing the current status
       """
       Status:
         Boards: 1 board found.
-                * (1) My Default Board
+                (1) My Default Board *
         Lists:  1 list found.
-                * (1) My Default List
+                (1) My Default List *
         Cards:  1 card found.
-                * (1) My Default Card
+                (1) My Default Card *
       """
 
   @status
@@ -34,8 +34,8 @@ Feature: Showing the current status
       """
       Status:
         Boards: 2 boards found.
-                * (1) My Default Board
+                (1) My Default Board *
         Lists:  1 list found.
-                * (1) My Default List
+                (1) My Default List *
         Cards:  No default card set. (1)
       """

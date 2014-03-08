@@ -29,7 +29,7 @@ Feature: Showing a list
       """
       (1) My Test Board
 
-      * (1) My Default List
+      (1) My Default List *
       No cards were found.
       """
 

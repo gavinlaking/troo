@@ -6,6 +6,7 @@ module Troo
       class << self
         def all(boards, options = {})
           boards.map { |board| new(board.decorator, options).show }
+          nil
         end
       end
 
@@ -14,13 +15,11 @@ module Troo
       end
 
       def show
-        print board.title + "\n"
+        print "\n" + board.title + "\n"
 
         print error('No lists were found.') if lists.empty?
 
         print_lists_with_cards
-
-        puts
       end
 
       private
@@ -37,7 +36,7 @@ module Troo
             print card.title
           end
         end
-        puts
+        nil
       end
 
       def lists

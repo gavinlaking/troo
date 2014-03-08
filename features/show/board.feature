@@ -23,7 +23,7 @@ Feature: Showing a board
     When I run `troo show board`
     Then the output should contain:
       """
-      * (1) My Default Board
+      (1) My Default Board *
 
       No lists were found.
       """

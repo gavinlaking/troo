@@ -18,7 +18,7 @@ module Troo
       end
 
       def error(message)
-        Troo::Formatter.error(message)
+        Troo::Formatter.error(message) + "\n"
       end
 
       def label_defaults

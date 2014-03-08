@@ -18,8 +18,7 @@ module Troo
         list.cards.each do |card|
           print card.title
         end
-
-        puts
+        nil
       end
 
       private

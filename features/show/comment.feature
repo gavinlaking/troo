@@ -28,7 +28,7 @@ Feature: Showing comments
     When I run `troo show comments`
     Then the output should contain:
       """
-      * (1) My Default Card
+      (1) My Default Card *
 
       @gavinlaking1:
         My Test Comment

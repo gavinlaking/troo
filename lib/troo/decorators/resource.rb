@@ -9,9 +9,9 @@ module Troo
 
       def title
         [
-          default,
           brackets(klass.id),
-          Troo::Formatter.highlight(name, options)
+          Troo::Formatter.highlight(name, options),
+          default
         ].compact.join(' ') + "\n"
       end
 
