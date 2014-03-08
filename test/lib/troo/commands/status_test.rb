@@ -9,14 +9,6 @@ module Troo
 
       before { API::Client.stubs(:perform) }
 
-      describe '#initialize' do
-        subject { described_class.new(klass) }
-
-        it 'assigns the klass to an instance variable' do
-          subject.instance_variable_get('@klass').must_equal(klass)
-        end
-      end
-
       describe '.dispatch' do
         subject { described_class.dispatch(klass) }
 

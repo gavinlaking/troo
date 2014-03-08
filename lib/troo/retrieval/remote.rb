@@ -18,7 +18,7 @@ module Troo
       def fetch
         return []        if none?
         return persist   if persist?
-               resources
+        resources
       end
 
       private
@@ -29,13 +29,42 @@ module Troo
         resources.empty?
       end
 
+      def persist
+        @persisted ||= Troo::Persistence::Local
+          .with_collection(resources)
+      end
+
       def resources
         @resources ||= API::Client.perform(parameters)
       end
 
-      def persist
-        @persisted ||= Troo::Persistence::Local
-          .with_collection(resources)
+      def parameters
+        {
+          verb:          :get,
+          endpoint:      nil,
+          interpolation: interpolation,
+          query:         {},
+          model:         klass
+        }.merge!(resource_parameters)
+      end
+
+      def resource_parameters
+        modes.fetch(mode)
+      end
+
+      def modes
+        {
+          all:    klass.all,
+          board:  klass.by_board_id,
+          list:   klass.by_list_id,
+          card:   klass.by_card_id,
+          member: klass.by_member_id,
+          none:   {}
+        }
+      end
+
+      def mode
+        options.fetch(:mode, :none)
       end
 
       def persist?
@@ -52,28 +81,6 @@ module Troo
 
       def defaults
         { mode: :none, persist: true }
-      end
-
-      def parameters
-        {
-          verb:          :get,
-          endpoint:      nil,
-          interpolation: interpolation,
-          query:         {},
-          model:         klass
-        }.merge!(resource_parameters)
-      end
-
-      def resource_parameters
-        case options.fetch(:mode)
-        when :all    then klass.all
-        when :board  then klass.by_board_id
-        when :list   then klass.by_list_id
-        when :card   then klass.by_card_id
-        when :member then klass.by_member_id
-        else
-          {}
-        end
       end
 
       def interpolation

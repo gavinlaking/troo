@@ -1,8 +1,4 @@
 module Troo
-  class Esc
-    extend Term::ANSIColor
-  end
-
   class Template
     include DecoratorHelpers
 

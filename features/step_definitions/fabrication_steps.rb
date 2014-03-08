@@ -23,6 +23,14 @@ Given(/^a comment exists$/) do
   Fabricate(:comment, external_card_id: 200)
 end
 
+Given(/^(\d+) comments exist$/) do |count|
+  Fabricate(:card, external_card_id: 200)
+  Fabricate(:member)
+  count.to_i.times do
+    Fabricate(:comment, external_card_id: 200)
+  end
+end
+
 Given(/^a default board exists$/) do
   Fabricate(:board, default: true,
                     name: 'My Default Board',

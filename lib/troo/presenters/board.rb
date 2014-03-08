@@ -5,77 +5,42 @@ module Troo
 
       class << self
         def all(boards, options = {})
-          new(boards, options).all
-        end
-
-        def show(board, options = {})
-          new(board, options).show
+          boards.map { |board| new(board.decorator, options).show }
+          nil
         end
       end
 
-      def initialize(board_or_boards, options = {})
-        @board   = board_or_boards
-        @options = options
-      end
-
-      def all
-        boards.map do |board|
-          puts board.decorator.title
-
-          print_error 'No lists were found.' if lists(board).empty?
-
-          print_lists(board)
-        end
-        nil
+      def initialize(board, options = {})
+        @board, @options = board, options
       end
 
       def show
-        puts board.decorator.title
+        print "\n" + board.title + "\n"
 
-        print_error 'No lists were found.' if lists.empty?
+        print error('No lists were found.') if lists.empty?
 
         print_lists_with_cards
       end
 
       private
 
-      attr_reader  :board
-      alias_method :boards, :board
+      attr_reader :board
 
       def print_lists_with_cards
         lists.each do |list|
-          title_for(list)
+          print list.title
 
-          print_error 'No cards were found.' if list.cards.empty?
+          print error('No cards were found.') if list.cards.empty?
 
-          list.cards(unformatted).each do |card|
-            title_for(card)
+          list.cards.each do |card|
+            print card.title
           end
         end
-        puts
+        nil
       end
 
-      def print_lists(optional_board = nil)
-        lists(optional_board).each do |list|
-          title_for(list)
-        end
-        puts
-      end
-
-      def lists(optional_board = nil)
-        if optional_board.nil?
-          board.decorator.lists
-        else
-          optional_board.decorator.lists
-        end
-      end
-
-      def unformatted
-        {
-          ansicolor: false,
-          colour:    nil,
-          underline: nil
-        }
+      def lists
+        board.lists
       end
     end
   end

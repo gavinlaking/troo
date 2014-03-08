@@ -31,8 +31,8 @@ module Troo
       end
 
       def interpolate!(endpoint, value = {})
-        fail EndpointNotFound unless self.respond_to?(endpoint)
-        send(endpoint) % value
+        return send(endpoint) % value if respond_to?(endpoint)
+        fail EndpointNotFound
       end
     end
   end

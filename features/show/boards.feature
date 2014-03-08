@@ -6,8 +6,9 @@ Feature: Showing all boards
     When I run `troo show boards`
     Then the output should contain:
       """
-       (1) My Test Board
-             No lists were found.
+      (1) My Test Board
+
+      No lists were found.
       """
 
   @show

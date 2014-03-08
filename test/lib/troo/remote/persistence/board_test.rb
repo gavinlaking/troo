@@ -8,20 +8,6 @@ module Troo
         let(:resource_name)   { 'My New Board' }
         let(:description)     { 'A very brief description...' }
 
-        describe '.initialize' do
-          subject { described_class.new(resource_name, description) }
-
-          it 'assigns the name to an instance variable' do
-            subject.instance_variable_get('@name')
-              .must_equal(resource_name)
-          end
-
-          it 'assigns the description to an instance variable' do
-            subject.instance_variable_get('@description')
-              .must_equal(description)
-          end
-        end
-
         describe '.with' do
           subject { described_class.with(resource_name, description) }
 

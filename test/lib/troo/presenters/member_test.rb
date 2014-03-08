@@ -15,21 +15,8 @@ module Troo
 
       after { database_cleanup }
 
-      describe '#initialize' do
-        subject { described_class.new(@card, options) }
-
-        it 'assigns the card to an instance variable' do
-          subject.instance_variable_get('@card').must_equal(@card)
-        end
-
-        it 'assigns the options to an instance variable' do
-          subject.instance_variable_get('@options')
-            .must_equal(options)
-        end
-      end
-
       describe '#show' do
-        subject { described_class.show(@card, options) }
+        subject { described_class.new(@card, options).show }
 
         it 'returns the members as a sentence' do
           subject.must_equal('@gavinlaking1')

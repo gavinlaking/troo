@@ -8,6 +8,7 @@ module Troo
         let(:value)           { 'Add Board Test' }
         let(:id)              {}
         let(:outcome)         { false }
+        let(:board)           { stub(id: 12) }
 
         before do
           API::Client.stubs(:perform)
@@ -19,10 +20,14 @@ module Troo
 
           context 'when the parent resource exists' do
             context 'and the board was created' do
-              let(:outcome) { true }
+              let(:outcome) { board }
 
               it 'returns a polite message' do
                 subject.must_match(/\'Add Board Test\' created/)
+              end
+
+              it 'returns a helpful recommendation' do
+                subject.must_match(/to retrieve lists/)
               end
             end
 

@@ -71,16 +71,30 @@ module Troo
     describe '.default' do
       subject { described_class.default }
 
-      context 'when there is no default model' do
+      context 'when there is a default model' do
         it 'returns the model' do
           subject.must_equal(@dumber)
         end
       end
 
-      context 'when there is a default model' do
+      context 'when there is no default model' do
         before { @dumber.delete }
 
         it { subject.must_equal(nil) }
+      end
+    end
+
+    describe '.default?' do
+      subject { described_class.default? }
+
+      context 'when there is a default model' do
+        it { subject.must_equal true }
+      end
+
+      context 'when there is no default model' do
+        before { @dumber.delete }
+
+        it { subject.must_equal false }
       end
     end
 

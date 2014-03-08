@@ -4,37 +4,23 @@ module Troo
   module Retrieval
     describe Local do
       let(:described_class)  { Local }
-      let(:klass)            { stub }
+      let(:klass)            { stub(type: type) }
       let(:id)               {}
-      let(:options)          {}
+      let(:options)          { {} }
+      let(:type)             { :resource_type }
+      let(:default_board)    {}
       let(:local_resource)   {}
       let(:remote_resource)  { [] }
       let(:default_resource) {}
 
       before do
+        Troo::Board.stubs(:default).returns(default_board)
         klass.stubs(:remote).returns(stub)
         klass.stubs(:default).returns(default_resource)
         klass.stubs(:first).returns(local_resource)
         klass.stubs(:[]).returns(local_resource)
         klass.stubs(:by_external_id).returns(local_resource)
         Retrieval::Remote.stubs(:fetch).returns(remote_resource)
-      end
-
-      describe '#initialize' do
-        subject { described_class.new(klass, id, options) }
-
-        it 'assigns the klass to an instance variable' do
-          subject.instance_variable_get('@klass').must_equal(klass)
-        end
-
-        it 'assigns the id to an instance variable' do
-          subject.instance_variable_get('@id').must_equal(id)
-        end
-
-        it 'assigns the options to an instance variable' do
-          subject.instance_variable_get('@options')
-            .must_equal(options)
-        end
       end
 
       describe '.all' do
@@ -96,16 +82,52 @@ module Troo
           let(:id) { 67 }
 
           context 'attempts local retrieval by short_id' do
-            context 'when the resource exists' do
-              let(:local_resource) { stub }
+            context 'when the resource type is not a card' do
+              context 'when the resource exists' do
+                let(:local_resource) { stub }
 
-              it 'returns the resource' do
-                subject.must_equal(local_resource)
+                it 'returns the resource' do
+                  subject.must_equal(local_resource)
+                end
+              end
+
+              context 'when the resource does not exist' do
+                it { subject.must_equal nil }
               end
             end
 
-            context 'when the resource does not exist' do
-              it { subject.must_equal nil }
+            context 'when the resource type is a card' do
+              let(:type) { :card }
+
+              context 'and a default board exists' do
+                let(:default_board) { stub(external_id: 27) }
+
+                context 'and the resource exists' do
+                  let(:local_resource) { stub }
+
+                  it 'returns the resource' do
+                    subject.must_equal(local_resource)
+                  end
+                end
+
+                context 'but the resource does not exist' do
+                  it { subject.must_equal nil }
+                end
+              end
+
+              context 'and no default board exists' do
+                context 'and the resource exists' do
+                  let(:local_resource) { stub }
+
+                  it 'returns the resource' do
+                    subject.must_equal(local_resource)
+                  end
+                end
+
+                context 'and the resource does not exist' do
+                  it { subject.must_equal nil }
+                end
+              end
             end
           end
 

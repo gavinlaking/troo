@@ -6,6 +6,7 @@ default:
   api_oauth_token_secret: some_oauth_token_secret
   database: 1
   allow_remote: true
+  logs: true
 test:
   api_url: http://www.example.com
   api_key: some_key
@@ -14,3 +15,4 @@ test:
   api_oauth_token_secret: some_oauth_token_secret
   database: 2
   allow_remote: true
+  logs: true

@@ -53,7 +53,7 @@ module Troo
       end
 
       def type
-        klass.type
+        klass.type.to_s
       end
 
       def resource

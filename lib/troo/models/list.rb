@@ -29,7 +29,7 @@ module Troo
       end
 
       def type
-        'list'
+        :list
       end
     end
 
@@ -42,11 +42,15 @@ module Troo
     end
 
     def decorator(options = {})
-      Decorators::List.new(self, options)
+      Decorators::Resource.new(self, options)
     end
 
     def presenter(options = {})
-      Presenters::List.new(self, options)
+      Presenters::List.new(decorator, options)
+    end
+
+    def type
+      self.class.type
     end
   end
 end

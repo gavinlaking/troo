@@ -38,6 +38,18 @@ module Troo
         it 'returns the output of the command' do
           subject.must_match(/Status/)
         end
+
+        it 'returns the last refresh time' do
+          subject.must_match(/Last refreshed/)
+        end
+      end
+
+      describe '#config' do
+        subject { capture_io { described_class.new.config }.join }
+
+        it 'returns the current configuration' do
+          subject.must_match(/Current configuration/)
+        end
       end
 
       describe '#cleanup' do

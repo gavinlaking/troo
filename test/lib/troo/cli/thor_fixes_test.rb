@@ -12,7 +12,7 @@ module Troo
       describe '.banner' do
         before do
           described_class
-            .instance_variable_set("@package_name", package_name)
+            .instance_variable_set('@package_name', package_name)
         end
 
         subject do

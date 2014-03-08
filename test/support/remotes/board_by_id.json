@@ -1,0 +1,75 @@
+{
+  "id": "5314dd74bffa89560a22d520",
+  "name": "Troo Board",
+  "desc": "",
+  "descData": null,
+  "closed": false,
+  "idOrganization": null,
+  "pinned": true,
+  "url": "https://trello.com/b/cGD87Ml3/troo-board",
+  "shortUrl": "https://trello.com/b/cGD87Ml3",
+  "prefs": {
+    "permissionLevel": "private",
+    "voting": "disabled",
+    "comments": "members",
+    "invitations": "members",
+    "selfJoin": false,
+    "cardCovers": true,
+    "cardAging": "regular",
+    "background": "blue",
+    "backgroundColor": "#23719F",
+    "backgroundImage": null,
+    "backgroundImageScaled": null,
+    "backgroundTile": false,
+    "backgroundBrightness": "unknown",
+    "canBePublic": true,
+    "canBeOrg": true,
+    "canBePrivate": true,
+    "canInvite": true
+  },
+  "labelNames": {
+    "red": "",
+    "orange": "",
+    "yellow": "",
+    "green": "",
+    "blue": "",
+    "purple": ""
+  },
+  "cards": [],
+  "members": [
+    {
+      "id": "5195fdb5a8c01a2318004f5d",
+      "avatarHash": "045fd924d84699c9ba451e181bba33a3",
+      "initials": "GL",
+      "fullName": "Gavin Laking",
+      "username": "gavinlaking1",
+      "confirmed": true
+    }
+  ],
+  "lists": [
+    {
+      "id": "5314dd74bffa89560a22d521",
+      "name": "To Do",
+      "closed": false,
+      "idBoard": "5314dd74bffa89560a22d520",
+      "pos": 16384,
+      "subscribed": false
+    },
+    {
+      "id": "5314dd74bffa89560a22d522",
+      "name": "Doing",
+      "closed": false,
+      "idBoard": "5314dd74bffa89560a22d520",
+      "pos": 32768,
+      "subscribed": false
+    },
+    {
+      "id": "5314dd74bffa89560a22d523",
+      "name": "Done",
+      "closed": false,
+      "idBoard": "5314dd74bffa89560a22d520",
+      "pos": 49152,
+      "subscribed": false
+    }
+  ]
+}

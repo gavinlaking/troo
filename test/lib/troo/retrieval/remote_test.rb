@@ -4,34 +4,23 @@ module Troo
   module Retrieval
     describe Remote do
       let(:described_class) { Remote }
-      let(:klass)           { stub(remote_options: {}) }
+      let(:klass)           do
+        mock('klass', all:            {},
+                      by_board_id:    {},
+                      by_list_id:     {},
+                      by_card_id:     {},
+                      by_member_id:   {})
+      end
       let(:external_id)     { '526d8e130a14a9d846001d96' }
-      let(:options)         { {} }
+      let(:options)         { { mode: :board } }
       let(:resources)       { [:not_persisted] }
       let(:persisted)       { [:persisted] }
 
       before do
+        klass.stubs(:remote_options).returns({})
         API::Client.stubs(:perform).returns(resources)
         Troo::Persistence::Local.stubs(:with_collection)
           .returns(persisted)
-      end
-
-      describe '#initialize' do
-        subject { described_class.new(klass, external_id, options) }
-
-        it 'assigns the klass to an instance variable' do
-          subject.instance_variable_get('@klass').must_equal(klass)
-        end
-
-        it 'assigns the external_id to an instance variable' do
-          subject.instance_variable_get('@external_id')
-            .must_equal(external_id)
-        end
-
-        it 'assigns the options to an instance variable' do
-          subject.instance_variable_get('@options')
-            .must_equal(options)
-        end
       end
 
       describe '#fetch' do

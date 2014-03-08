@@ -11,16 +11,6 @@ Feature: Adding content to Trello
       New list 'My Cucumber List' created.
       """
 
-  @pending @failing @add
-  Scenario: Add a list, name not provided
-    Given the Trello API is stubbed with "add_list_interactive_success"
-    When I run `troo add list` interactively
-    And I type "My Cucumber List"
-    Then the output should contain:
-      """
-      New list 'My Cucumber List' created.
-      """
-
   @add
   Scenario: Cannot add a list as board not found
     Given the Trello API is stubbed with "400_create_list"

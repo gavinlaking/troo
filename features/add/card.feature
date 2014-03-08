@@ -20,16 +20,6 @@ Feature: Adding content to Trello
       Card could not be created.
       """
 
-  @pending @failing @add
-  Scenario: Add a card, name not provided
-    Given the Trello API is stubbed with "add_card_interactive_success"
-    When I run `troo --test add card 200`
-    And I type "My Cucumber Card"
-    Then the output should contain:
-      """
-      New card 'My Cucumber Card' created.
-      """
-
   @add
   Scenario: Cannot add a card as list not found
     Given the Trello API is stubbed with "400_create_card"

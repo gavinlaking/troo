@@ -4,15 +4,13 @@ module Troo
   module Commands
     describe Show do
       let(:described_class) { Show }
-      let(:klass) { stub(type: 'resource_type') }
-      let(:id)   {}
-
-
-      let(:type) { :card }
-      let(:id) { '1' }
-      let(:default) { false }
-      let(:resource) {}
-      let(:presenter) { stub }
+      let(:klass)           { stub(type: :resource_type) }
+      let(:id)              {}
+      let(:type)            { :card }
+      let(:id)              { '1' }
+      let(:default)         { false }
+      let(:resource)        {}
+      let(:presenter)       { stub }
 
       before do
         API::Client.stubs(:perform)
@@ -23,18 +21,6 @@ module Troo
       end
 
       after { database_cleanup }
-
-      describe '#initialize' do
-        subject { described_class.new(klass, id) }
-
-        it 'assigns the klass to an instance variable' do
-          subject.instance_variable_get('@klass').must_equal(klass)
-        end
-
-        it 'assigns the id to an instance variable' do
-          subject.instance_variable_get('@id').must_equal(id)
-        end
-      end
 
       describe '.dispatch' do
         subject { described_class.dispatch(klass, id) }

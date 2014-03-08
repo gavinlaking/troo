@@ -20,7 +20,7 @@ class FakeResponse
 
   def output
     return converted if id
-           raw
+    raw
   end
 
   def converted
@@ -28,7 +28,7 @@ class FakeResponse
   end
 
   def parsed
-    @parsed ||= Yajl::Parser.parse(raw).merge!("id" => id)
+    @parsed ||= Yajl::Parser.parse(raw).merge!('id' => id)
   end
 
   def raw

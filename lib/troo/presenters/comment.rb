@@ -3,26 +3,17 @@ module Troo
     class Comment
       include DecoratorHelpers
 
-      class << self
-        def show(card, options = {})
-          new(card, options).show
-        end
-      end
-
       def initialize(card, options = {})
-        @card    = card
-        @options = options
+        @card, @options = card, options
       end
 
       def show
-        spacing do
-          print card.decorator.short
+        title
 
-          print_error 'No comments were found.' unless comments.any?
-
-          comments.each do |comment|
-            indent { print comment.decorator.as_view }
-          end
+        if comments?
+          all_comments
+        else
+          no_comments
         end
       end
 
@@ -30,8 +21,27 @@ module Troo
 
       attr_reader :card
 
+      def all_comments
+        comments.map do |comment|
+          print comment.decorator.as_view
+        end
+        nil
+      end
+
+      def no_comments
+        print error('No comments were found.')
+      end
+
+      def comments?
+        comments.any?
+      end
+
       def comments
-        card.comments
+        @comments ||= card.comments
+      end
+
+      def title
+        print card.decorator.title + "\n"
       end
     end
   end

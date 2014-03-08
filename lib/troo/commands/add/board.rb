@@ -10,7 +10,8 @@ module Troo
         private
 
         def success
-          "New board '#{value}' created."
+          "New board '#{value}' created.\n" \
+          "Run `troo refresh board #{@create.id}` to retrieve lists."
         end
 
         def error

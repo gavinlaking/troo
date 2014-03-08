@@ -23,25 +23,6 @@ module Troo
           Remote::Persistence::MoveCard.stubs(:with).returns(outcome)
         end
 
-        describe '#initialize' do
-          subject { described_class.new(card_id, list_id, board_id) }
-
-          it 'assigns the card_id to an instance variable' do
-            subject.instance_variable_get('@card_id')
-              .must_equal(card_id)
-          end
-
-          it 'assigns the list_id to an instance variable' do
-            subject.instance_variable_get('@list_id')
-              .must_equal(list_id)
-          end
-
-          it 'assigns the board_id to an instance variable' do
-            subject.instance_variable_get('@board_id')
-              .must_equal(board_id)
-          end
-        end
-
         describe '#move' do
           subject do
             described_class.dispatch(card_id, list_id, board_id)

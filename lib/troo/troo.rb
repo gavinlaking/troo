@@ -26,7 +26,6 @@ require_relative 'api/endpoints'
 require_relative 'api/oauth_settings'
 require_relative 'api/headers'
 require_relative 'api/request'
-require_relative 'api/error_response'
 require_relative 'api/response'
 require_relative 'api/client'
 
@@ -47,12 +46,10 @@ require_relative 'remote/persistence/comment'
 require_relative 'remote/persistence/list'
 require_relative 'remote/persistence/move_card'
 
-require_relative 'decorators/board'
-require_relative 'decorators/card'
-require_relative 'decorators/comment'
-require_relative 'decorators/list'
+require_relative 'decorators/resource'
 require_relative 'decorators/member'
 
+require_relative 'presentation/formatter'
 require_relative 'presentation/sentence'
 require_relative 'presentation/template'
 

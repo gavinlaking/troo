@@ -17,19 +17,3 @@ Feature: Troo Basics
       """
       Could not find command "unknown".
       """
-
-  @pending @authentication
-  Scenario: Not authenticated with Trello
-    When I run `troo default board 401`
-    Then the output should contain ""
-
-  @pending @connectivity
-  Scenario: Trello not responding
-    When I run `troo default board 401`
-    Then the output should contain ""
-
-  @pending @connectivity
-  Scenario: No network connection
-    When I run `troo default board 401`
-    Then the output should contain ""
-

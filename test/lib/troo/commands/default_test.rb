@@ -4,7 +4,7 @@ module Troo
   module Commands
     describe Default do
       let(:described_class) { Default }
-      let(:klass)           { stub }
+      let(:klass)           { stub(type: :resource_type) }
       let(:id)              {}
       let(:resource)        { stub }
       let(:outcome)         { true }
@@ -15,18 +15,6 @@ module Troo
         klass.stubs(:retrieve).returns(resource)
         resource.stubs(:set_default!).returns(outcome)
         resource.stubs(:decorator).returns(decorator)
-      end
-
-      describe '#initialize' do
-        subject { described_class.new(klass, id) }
-
-        it 'assigns the klass to an instance variable' do
-          subject.instance_variable_get('@klass').must_equal(klass)
-        end
-
-        it 'assigns the id to an instance variable' do
-          subject.instance_variable_get('@id').must_equal(id)
-        end
       end
 
       describe '.dispatch' do

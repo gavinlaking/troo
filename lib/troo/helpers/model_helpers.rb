@@ -16,6 +16,10 @@ module Troo
         first(default: true)
       end
 
+      def default?
+        !!(default)
+      end
+
       def count
         all.count
       end

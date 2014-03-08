@@ -17,10 +17,25 @@ module Troo
       desc 'status',
            'Get troo status.'
       def status
-        say 'Status:'
+        say heading('Status:')
         say Commands::Status.dispatch(Troo::Board)
         say Commands::Status.dispatch(Troo::List)
         say Commands::Status.dispatch(Troo::Card)
+
+        say "\n" + heading('Last refreshed:')
+
+        if Troo::Refresh.last_performed_at?
+          say Troo::Refresh.last_performed_at
+        else
+          say 'Unknown. Run `troo refresh all`.'
+        end
+      end
+
+      desc 'config',
+           'Show the current configuration.'
+      def config
+        say heading('Current configuration:')
+        say Troo.configuration.view
       end
 
       desc 'cleanup',
@@ -72,6 +87,10 @@ module Troo
 
       def destination
         Dir.home + '/.trooconf'
+      end
+
+      def heading(text = '')
+        [Esc.yellow, Esc.underline, text, Esc.reset].join
       end
     end
   end

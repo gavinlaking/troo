@@ -28,7 +28,7 @@ module Troo
       end
 
       def type
-        'member'
+        :member
       end
     end
 
@@ -37,11 +37,15 @@ module Troo
     end
 
     def presenter(options = {})
-      Presenters::Member.new(self, options)
+      Presenters::Member.new(decorator, options)
     end
 
     def default?
       false
+    end
+
+    def type
+      self.class.type
     end
   end
 end

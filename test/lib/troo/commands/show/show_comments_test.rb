@@ -20,14 +20,6 @@ module Troo
 
       after { database_cleanup }
 
-      describe '#initialize' do
-        subject { described_class.new(id) }
-
-        it 'assigns the id to an instance variable' do
-          subject.instance_variable_get('@id').must_equal(id)
-        end
-      end
-
       describe '.dispatch' do
         subject { described_class.dispatch(id) }
 
