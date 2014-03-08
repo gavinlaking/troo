@@ -4,26 +4,52 @@
 
 CLI interface for Trello. Named after Trello's mascot 'Roo'.
 
-## Features
+## Commands
 
-    troo refresh
-    troo refresh --lists
-    troo refresh --cards
-    troo default board <board_id>
-    troo default card <card_id>
-    troo default list <list_id>
-    troo add board <name>
-    troo add card <list_id>
-    troo add comment <card_id>
-    troo add list <board_id>
-    troo show boards
-    troo show board (<board_id>)
-    troo show list <list_id>
-    troo show card <card_id>
-    troo show comments <card_id>
-    troo move <card_id> <list_id>
-    troo cleanup
-    troo version
+- Add board, list, card or comment.
+
+        troo add [board|list|card|comment] <id>
+
+- Remove all local data.
+
+        troo cleanup
+
+- Show the current configuration.
+
+        troo config
+
+- Set board, list or card to be default.
+
+        troo default [board|list|card] <id>
+
+- Describe available commands or one specific command
+
+        troo help [COMMAND]
+
+- Prepare to use Troo.
+
+        troo init
+
+- Move card with <card_id> to list with <list_id> optionally to another board with <board_id>.
+
+        troo move <card_id> <list_id> (<board_id>)
+
+- Refresh board, list or card with <id>.
+
+        troo refresh [board|list|card] <id>
+
+- Show all the boards or the board, list, card with <id>. Also, show all comments for card with <id>.
+
+        troo show [boards|board|list|card|comments] <id>
+
+- Get troo status.
+
+        troo status
+
+- Print the version.
+
+        troo version
+
 
 ## Requirements
 
