@@ -81,7 +81,7 @@ module Troo
         end
 
         context 'when the resource does not have a name' do
-          let(:resource_name) { }
+          let(:resource_name) {}
 
           it { subject.must_equal('N/A') }
         end

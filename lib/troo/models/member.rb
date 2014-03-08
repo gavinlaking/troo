@@ -37,7 +37,7 @@ module Troo
     end
 
     def presenter(options = {})
-      Presenters::Member.new(self.decorator, options)
+      Presenters::Member.new(decorator, options)
     end
 
     def default?

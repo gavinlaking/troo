@@ -46,7 +46,7 @@ module Troo
     end
 
     def presenter(options = {})
-      Presenters::List.new(self.decorator, options)
+      Presenters::List.new(decorator, options)
     end
 
     def type

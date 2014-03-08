@@ -69,7 +69,7 @@ module Troo
       end
 
       def as_view
-        Template.parse(self, "/../views/" + type + ".erb")
+        Template.parse(self, '/../views/' + type + '.erb')
       end
 
       def username
@@ -112,7 +112,7 @@ module Troo
         {
           ansicolor: true,
           colour:    colour.fetch(klass.type, nil),
-          underline: false,
+          underline: false
         }
       end
 

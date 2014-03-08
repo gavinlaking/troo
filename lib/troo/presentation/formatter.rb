@@ -38,17 +38,17 @@ module Troo
 
     class << self
       def highlight(value, options = {})
-        new({ value: value, options: options }).highlight
+        new(value: value, options: options).highlight
       end
 
       def error(value)
-        new({ value:   value,
-              options: { colour: Esc.red } }).error
+        new(value:   value,
+            options: { colour: Esc.red }).error
       end
 
       def wordwrap(value, width = 70)
-        new({ value:   value,
-              options: { align: { width: width } } }).wordwrap
+        new(value:   value,
+            options: { align: { width: width } }).wordwrap
       end
     end
 

@@ -51,7 +51,7 @@ module Troo
     end
 
     # def presenter(options = {})
-    #   Presenters::Comment.new(self.decorator, options)
+    #   Presenters::Comment.new(decorator, options)
     # end
 
     def default?
