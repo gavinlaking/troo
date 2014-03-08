@@ -7,8 +7,7 @@ Feature: Showing all boards
     Then the output should contain:
       """
       (1) My Test Board
-
-      No lists were found.
+          No lists were found.
       """
 
   @show

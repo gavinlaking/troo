@@ -7,8 +7,7 @@ Feature: Showing a board
     Then the output should contain:
       """
       (1) My Test Board
-
-      No lists were found.
+          No lists were found.
       """
 
   @show
@@ -24,8 +23,7 @@ Feature: Showing a board
     Then the output should contain:
       """
       (1) My Default Board *
-
-      No lists were found.
+          No lists were found.
       """
 
   @show
