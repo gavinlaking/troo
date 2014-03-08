@@ -15,25 +15,48 @@ module Troo
       end
 
       def show
-        print "\n" + board.title + "\n"
+        output.render board.title
 
-        print error('No lists were found.') if lists.empty?
-
-        print_lists_with_cards
+        output.indent do
+          if lists.empty?
+            output.render error('No lists were found.') + "\n"
+          else
+            print_lists_with_cards
+          end
+        end
       end
 
       private
 
       attr_reader :board
 
+      def output
+        @output ||= Troo::Output.new
+      end
+
+      def options
+        defaults.merge!(@options)
+      end
+
+      def defaults
+        {}
+      end
+
       def print_lists_with_cards
+        output.render "\n"
         lists.each do |list|
-          print list.title
+          output.render list.title
 
-          print error('No cards were found.') if list.cards.empty?
-
-          list.cards.each do |card|
-            print card.title
+          output.indent do
+            if list.cards.empty?
+              output.render error('No cards were found.') + "\n"
+            else
+              output.render "\n"
+              list.cards.each do |card|
+                output.render card.title
+              end
+              output.render "\n"
+            end
           end
         end
         nil

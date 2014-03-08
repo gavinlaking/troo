@@ -4,26 +4,53 @@ module Troo
       include DecoratorHelpers
 
       def initialize(list, options = {})
-        @list    = list
-        @options = options
+        @list, @options = list, options
       end
 
       def show
-        print list.board.title + "\n"
+        output.render list.board.title
+        output.render "\n"
 
-        print list.title
+        output.indent do
+          output.render list.title
 
-        print error('No cards were found.') if list.cards.empty?
-
-        list.cards.each do |card|
-          print card.title
+          output.indent do
+            if cards.empty?
+              output.render error('No cards were found.') + "\n"
+            else
+              print_list_with_cards
+            end
+          end
         end
-        nil
       end
 
       private
 
       attr_reader :list
+
+      def output
+        @output ||= Troo::Output.new
+      end
+
+      def options
+        defaults.merge!(@options)
+      end
+
+      def defaults
+        {}
+      end
+
+      def print_list_with_cards
+        output.render "\n"
+        cards.each do |card|
+          output.render card.title
+        end
+        nil
+      end
+
+      def cards
+        list.cards
+      end
     end
   end
 end
