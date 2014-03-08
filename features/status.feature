@@ -39,3 +39,13 @@ Feature: Showing the current status
                 (1) My Default List *
         Cards:  No default card set. (1)
       """
+
+  @status
+  Scenario: Reports when local data was last updated
+    Given local data exists
+    When I run `troo status`
+    Then the output should contain:
+      """
+      Last refreshed:
+      Unknown. Run `troo refresh all`.
+      """
