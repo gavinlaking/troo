@@ -16,7 +16,7 @@ module Troo
       rescue RestClient::Exception => e
         ErrorResponse.new(body: e.http_body, code: e.http_code)
       rescue SocketError, Errno::ECONNREFUSED
-        ErrorResponse.new
+        ErrorResponse.new(body: 'Cannot reach Trello.', code: 0)
       end
 
       private
