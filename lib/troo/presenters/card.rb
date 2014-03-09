@@ -18,14 +18,6 @@ module Troo
       def output
         @output ||= Troo::Output.new
       end
-
-      def options
-        defaults.merge!(@options)
-      end
-
-      def defaults
-        {}
-      end
     end
   end
 end

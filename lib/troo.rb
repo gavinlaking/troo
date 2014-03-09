@@ -47,10 +47,6 @@ module Troo
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
       pad { Troo::CLI::Main.start(@argv) }
       @kernel.exit(0)
-    rescue Troo::InvalidAccessToken
-      @stderr.puts 'Your Trello access credentials have expired ' \
-                   'or are invalid, please renew and try again.'
-      @kernel.exit(1)
     ensure
       $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
     end

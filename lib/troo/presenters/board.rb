@@ -34,14 +34,6 @@ module Troo
         @output ||= Troo::Output.new
       end
 
-      def options
-        defaults.merge!(@options)
-      end
-
-      def defaults
-        {}
-      end
-
       def print_lists_with_cards
         output.render "\n"
         lists.each do |list|
