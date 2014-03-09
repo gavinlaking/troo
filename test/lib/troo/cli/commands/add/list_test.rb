@@ -7,6 +7,7 @@ module Troo
         let(:described_class) { List }
         let(:value)           { 'Add List Test' }
         let(:id)              {}
+        let(:options)         { { type: :list } }
         let(:outcome)         { false }
 
         before do
@@ -15,7 +16,7 @@ module Troo
         end
 
         describe '#add' do
-          subject { described_class.new(value, id).add }
+          subject { described_class.new(value, id, options).add }
 
           context 'when the parent resource exists' do
             let(:resource) { Troo::List.new }

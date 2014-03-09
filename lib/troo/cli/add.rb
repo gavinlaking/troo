@@ -9,7 +9,7 @@ module Troo
       def board(name = nil)
         board_name = name.nil? ? prompt_for_name : name
 
-        say Commands::Add::Board.dispatch(board_name)
+        say Commands::Add::Board.dispatch(board_name, nil, type: :board)
       end
 
       desc 'card <list_id> (<name>)',
@@ -18,7 +18,7 @@ module Troo
       def card(id, name = nil)
         card_name = name.nil? ? prompt_for_name : name
 
-        say Commands::Add::Card.dispatch(card_name, id)
+        say Commands::Add::Card.dispatch(card_name, id, type: :card)
       end
 
       desc 'comment <card_id> (<comment>)',
@@ -27,7 +27,8 @@ module Troo
       def comment(id, comment = nil)
         comment_text = comment.nil? ? prompt_for_comment : comment
 
-        say Commands::Add::Comment.dispatch(comment_text, id)
+        say Commands::Add::Comment.dispatch(comment_text,
+                                            id, type: :comment)
       end
 
       desc 'list <board_id> (<name>)',
@@ -36,7 +37,7 @@ module Troo
       def list(id, name = nil)
         list_name = name.nil? ? prompt_for_name : name
 
-        say Commands::Add::List.dispatch(list_name, id)
+        say Commands::Add::List.dispatch(list_name, id, type: :list)
       end
 
       private

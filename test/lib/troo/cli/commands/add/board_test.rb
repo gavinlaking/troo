@@ -7,6 +7,7 @@ module Troo
         let(:described_class) { Board }
         let(:value)           { 'Add Board Test' }
         let(:id)              {}
+        let(:options)         { { type: :board } }
         let(:outcome)         { false }
         let(:board)           { stub(id: 12) }
 
@@ -16,7 +17,7 @@ module Troo
         end
 
         describe '#add' do
-          subject { described_class.new(value, id).add }
+          subject { described_class.new(value, id, options).add }
 
           context 'when the parent resource exists' do
             context 'and the board was created' do
@@ -24,10 +25,6 @@ module Troo
 
               it 'returns a polite message' do
                 subject.must_match(/\'Add Board Test\' created/)
-              end
-
-              it 'returns a helpful recommendation' do
-                subject.must_match(/to retrieve lists/)
               end
             end
 
