@@ -102,4 +102,31 @@ module Troo
       options.align.char
     end
   end
+
+  class Output
+    attr_accessor :count
+
+    def initialize
+      @count = 0
+    end
+
+    def render(lines)
+      Array(lines).each { |line| print indentation + line }
+      nil
+    end
+
+    def indent(&block)
+      @count += 1
+
+      yield
+    ensure
+      @count -= 1
+    end
+
+    private
+
+    def indentation
+      ' ' * @count * 4
+    end
+  end
 end

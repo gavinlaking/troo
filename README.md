@@ -113,7 +113,7 @@ I've put a simple fake server together so that I'm not hitting the Trello API co
 
 4) Run `server.rb`:
 
-    cd ./test/support/fake_server
+    cd ./test/support/fake_trello
     ruby ./server.rb
 
 5) Have fun.

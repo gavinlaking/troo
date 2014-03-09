@@ -4,8 +4,7 @@ module Troo
       include DecoratorHelpers
 
       def initialize(card, options = {})
-        @card    = card
-        @options = options
+        @card, @options = card, options
       end
 
       def show
@@ -15,6 +14,18 @@ module Troo
       private
 
       attr_reader :card, :options
+
+      def output
+        @output ||= Troo::Output.new
+      end
+
+      def options
+        defaults.merge!(@options)
+      end
+
+      def defaults
+        {}
+      end
 
       def members
         @members ||= card.members.map do |member|

@@ -30,19 +30,19 @@ module Troo
       end
 
       def board
-        klass.board.decorator(options)
+        klass.board.decorator
       end
 
       def list
-        klass.list.decorator(options)
+        klass.list.decorator
       end
 
-      def lists(alt_options = {})
-        klass.lists.map { |list| list.decorator(alt_options) }
+      def lists
+        klass.lists.map { |list| list.decorator }
       end
 
-      def cards(alt_options = {})
-        klass.cards.map { |card| card.decorator(alt_options) }
+      def cards
+        klass.cards.map { |card| card.decorator }
       end
 
       def comments
@@ -112,7 +112,7 @@ module Troo
         {
           ansicolor: true,
           colour:    colour.fetch(klass.type, nil),
-          underline: false
+          underline: true
         }
       end
 

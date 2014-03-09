@@ -21,15 +21,27 @@ module Troo
 
       attr_reader :card
 
+      def output
+        @output ||= Troo::Output.new
+      end
+
+      def options
+        defaults.merge!(@options)
+      end
+
+      def defaults
+        {}
+      end
+
       def all_comments
         comments.map do |comment|
-          print comment.decorator.as_view
+          output.render comment.decorator.as_view
         end
         nil
       end
 
       def no_comments
-        print error('No comments were found.')
+        output.render error('No comments were found.')
       end
 
       def comments?
@@ -41,7 +53,7 @@ module Troo
       end
 
       def title
-        print card.decorator.title + "\n"
+        output.render card.decorator.title + "\n"
       end
     end
   end
