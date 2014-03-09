@@ -1,17 +1,17 @@
-require_relative '../../../../test_helper'
+require_relative '../../../../../test_helper'
 
 module Troo
   module Commands
     module Add
-      describe Card do
-        let(:described_class) { Card }
-        let(:value)           { 'Add Card Test' }
+      describe List do
+        let(:described_class) { List }
+        let(:value)           { 'Add List Test' }
         let(:id)              {}
         let(:outcome)         { false }
 
         before do
-          Troo::List.stubs(:retrieve).returns(resource)
-          Remote::Persistence::Card.stubs(:with).returns(outcome)
+          Troo::Board.stubs(:retrieve).returns(resource)
+          Remote::Persistence::List.stubs(:with).returns(outcome)
         end
 
         describe '#add' do
@@ -20,15 +20,15 @@ module Troo
           context 'when the parent resource exists' do
             let(:resource) { Troo::List.new }
 
-            context 'and the card was created' do
+            context 'and the list was created' do
               let(:outcome) { true }
 
               it 'returns a polite message' do
-                subject.must_match(/\'Add Card Test\' created/)
+                subject.must_match(/\'Add List Test\' created/)
               end
             end
 
-            context 'and the card was not created' do
+            context 'and the list was not created' do
               it 'returns a polite message' do
                 subject.must_match(/could not/)
               end

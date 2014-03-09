@@ -1,34 +1,35 @@
-require_relative '../../../../test_helper'
+require_relative '../../../../../test_helper'
 
 module Troo
   module Commands
     module Add
-      describe List do
-        let(:described_class) { List }
-        let(:value)           { 'Add List Test' }
+      describe Comment do
+        let(:described_class) { Comment }
+        let(:value)           { 'Add Comment Test' }
         let(:id)              {}
         let(:outcome)         { false }
 
         before do
-          Troo::Board.stubs(:retrieve).returns(resource)
-          Remote::Persistence::List.stubs(:with).returns(outcome)
+          API::Client.stubs(:perform)
+          Troo::Card.stubs(:retrieve).returns(resource)
+          Remote::Persistence::Comment.stubs(:with).returns(outcome)
         end
 
         describe '#add' do
           subject { described_class.new(value, id).add }
 
           context 'when the parent resource exists' do
-            let(:resource) { Troo::List.new }
+            let(:resource) { Troo::Card.new }
 
-            context 'and the list was created' do
+            context 'and the comment was created' do
               let(:outcome) { true }
 
               it 'returns a polite message' do
-                subject.must_match(/\'Add List Test\' created/)
+                subject.must_match(/New comment created/)
               end
             end
 
-            context 'and the list was not created' do
+            context 'and the comment was not created' do
               it 'returns a polite message' do
                 subject.must_match(/could not/)
               end

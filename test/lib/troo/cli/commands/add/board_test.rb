@@ -1,35 +1,37 @@
-require_relative '../../../../test_helper'
+require_relative '../../../../../test_helper'
 
 module Troo
   module Commands
     module Add
-      describe Comment do
-        let(:described_class) { Comment }
-        let(:value)           { 'Add Comment Test' }
+      describe Board do
+        let(:described_class) { Board }
+        let(:value)           { 'Add Board Test' }
         let(:id)              {}
         let(:outcome)         { false }
+        let(:board)           { stub(id: 12) }
 
         before do
           API::Client.stubs(:perform)
-          Troo::Card.stubs(:retrieve).returns(resource)
-          Remote::Persistence::Comment.stubs(:with).returns(outcome)
+          Remote::Persistence::Board.stubs(:with).returns(outcome)
         end
 
         describe '#add' do
           subject { described_class.new(value, id).add }
 
           context 'when the parent resource exists' do
-            let(:resource) { Troo::Card.new }
-
-            context 'and the comment was created' do
-              let(:outcome) { true }
+            context 'and the board was created' do
+              let(:outcome) { board }
 
               it 'returns a polite message' do
-                subject.must_match(/New comment created/)
+                subject.must_match(/\'Add Board Test\' created/)
+              end
+
+              it 'returns a helpful recommendation' do
+                subject.must_match(/to retrieve lists/)
               end
             end
 
-            context 'and the comment was not created' do
+            context 'and the board was not created' do
               it 'returns a polite message' do
                 subject.must_match(/could not/)
               end
@@ -37,8 +39,6 @@ module Troo
           end
 
           context 'when the parent resource does not exist' do
-            let(:resource) {}
-
             it 'returns a polite message' do
               subject.must_match(/could not/)
             end
