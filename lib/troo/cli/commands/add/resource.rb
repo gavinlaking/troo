@@ -26,29 +26,47 @@ module Troo
         end
 
         def error
-          "#{type.to_s.capitalize} could not be created."
+          return 'Could not create resource.' if no_type?
+          "#{klass} could not be created."
         end
 
         def quoted
           type == :comment ? nil : "'#{value}'"
         end
 
-        def no_resource?
+        def create
+          return false if no_type?
+
+          if type == :board
+            @create ||= remote.with(value)
+          else
+            return false if no_local?
+            @create ||= remote.with(resource.external_id, value)
+          end
+        end
+
+        def remote
+          Object.const_get('Troo::Remote::Persistence::' + klass)
+        end
+
+        def no_local?
           resource.nil?
         end
 
         def resource
-          return nil if parent.nil?
-          parent.retrieve(id)
+          @resource ||= local.retrieve(id)
         end
 
-        def parent
-          {
-            board:   Troo::Board,
-            list:    Troo::Board,
-            card:    Troo::List,
-            comment: Troo::Card
-          }.fetch(type, nil)
+        def local
+          Object.const_get('Troo::' + mapping.fetch(type))
+        end
+
+        def klass
+          type.to_s.capitalize
+        end
+
+        def no_type?
+          type == :none
         end
 
         def type
@@ -62,6 +80,15 @@ module Troo
         def defaults
           {
             type: :none
+          }
+        end
+
+        def mapping
+          {
+            comment: 'Card',
+            board:   'Board',
+            list:    'Board',
+            card:    'List'
           }
         end
       end

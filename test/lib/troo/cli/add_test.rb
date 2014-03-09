@@ -6,13 +6,7 @@ module Troo
       let(:described_class) { Add }
 
       before do
-        Troo::Commands::Add::Board.stubs(:dispatch)
-          .returns('could not be created')
-        Troo::Commands::Add::Card.stubs(:dispatch)
-          .returns('could not be created')
-        Troo::Commands::Add::Comment.stubs(:dispatch)
-          .returns('could not be created')
-        Troo::Commands::Add::List.stubs(:dispatch)
+        Troo::Commands::Add::Resource.stubs(:dispatch)
           .returns('could not be created')
       end
 
