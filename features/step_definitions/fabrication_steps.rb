@@ -57,6 +57,7 @@ Given(/^local data exists, all defaults set$/) do
   Fabricate(:board, default: true, name: 'My Default Board')
   Fabricate(:list,  default: true, name: 'My Default List')
   Fabricate(:card,  default: true, name: 'My Default Card')
+  Troo::Refresh.completed!
 end
 
 Given(/^local data exists$/) do
@@ -64,4 +65,5 @@ Given(/^local data exists$/) do
   Fabricate(:board)
   Fabricate(:list, default: true, name: 'My Default List')
   Fabricate(:card, external_card_id: 200)
+  Troo::Refresh.completed!
 end

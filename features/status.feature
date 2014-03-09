@@ -42,9 +42,18 @@ Feature: Showing the current status
 
   @status
   Scenario: Reports when local data was last updated
-    Given local data exists
     When I run `troo status`
     Then the output should contain:
+      """
+      Last refreshed:
+      Unknown. Run `troo refresh all`.
+      """
+
+  @status
+  Scenario: Reports when local data was last updated
+    Given local data exists
+    When I run `troo status`
+    Then the output should not contain:
       """
       Last refreshed:
       Unknown. Run `troo refresh all`.
