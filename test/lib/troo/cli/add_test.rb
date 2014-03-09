@@ -6,7 +6,7 @@ module Troo
       let(:described_class) { Add }
 
       before do
-        Troo::Commands::Add::Resource.stubs(:dispatch)
+        Troo::Commands::Add.stubs(:dispatch)
           .returns('could not be created')
       end
 

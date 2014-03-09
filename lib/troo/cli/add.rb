@@ -8,7 +8,7 @@ module Troo
            'provided.'
       def board(name = nil)
         value = name.nil? ? prompt_for_name : name
-        say Commands::Add::Resource.dispatch(value, nil, type: :board)
+        say Commands::Add.dispatch(value, nil, type: :board)
       end
 
       desc 'card <list_id> (<name>)',
@@ -16,7 +16,7 @@ module Troo
            'prompts if <name> not provided.'
       def card(id, name = nil)
         value = name.nil? ? prompt_for_name : name
-        say Commands::Add::Resource.dispatch(value, id, type: :card)
+        say Commands::Add.dispatch(value, id, type: :card)
       end
 
       desc 'comment <card_id> (<comment>)',
@@ -24,7 +24,7 @@ module Troo
            '<comment>; prompts if <comment> not provided.'
       def comment(id, comment = nil)
         value = comment.nil? ? prompt_for_comment : comment
-        say Commands::Add::Resource.dispatch(value,
+        say Commands::Add.dispatch(value,
           id, type: :comment)
       end
 
@@ -33,7 +33,7 @@ module Troo
            '<name>; prompts if <name> not provided.'
       def list(id, name = nil)
         value = name.nil? ? prompt_for_name : name
-        say Commands::Add::Resource.dispatch(value, id, type: :list)
+        say Commands::Add.dispatch(value, id, type: :list)
       end
 
       private
