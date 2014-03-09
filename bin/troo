@@ -3,6 +3,14 @@
 -> { its -> { a } }
 trap('INT') { exit! }
 
-require_relative '../lib/troo'
-
-Troo::Launcher.new(ARGV.dup).execute!
+if ARGV.include?('autocomplete')
+  command = ARGV.delete_if { |a| a == 'autocomplete' }
+  %w{add cleanup config default init move refresh
+     show status version}.find_all { |e| /^#{command}/ =~ e }
+                         .map      { |c| puts c }
+elsif ARGV.include?('path')
+  puts File.expand_path File.dirname(__FILE__)
+else
+  require_relative '../lib/troo'
+  Troo::Launcher.new(ARGV.dup).execute!
+end

@@ -25,14 +25,6 @@ module Troo
         @output ||= Troo::Output.new
       end
 
-      def options
-        defaults.merge!(@options)
-      end
-
-      def defaults
-        {}
-      end
-
       def all_comments
         comments.map do |comment|
           output.render comment.decorator.as_view

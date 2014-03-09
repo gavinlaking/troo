@@ -2,39 +2,41 @@ require_relative '../../../../test_helper'
 
 module Troo
   module Commands
-    describe ShowComments do
-      let(:described_class) { ShowComments }
-      let(:type) { :comments }
-      let(:id) { '1' }
-      let(:default) { false }
-      let(:resource) {}
-      let(:presenter) { stub }
+    describe Show do
+      let(:described_class) { Show }
+      let(:klass)           { stub(type: :resource_type) }
+      let(:id)              {}
+      let(:type)            { :card }
+      let(:id)              { '1' }
+      let(:default)         { false }
+      let(:resource)        {}
+      let(:presenter)       { stub }
 
       before do
         API::Client.stubs(:perform)
         @card = Fabricate.build(:card, default: default)
-        Troo::Card.stubs(:retrieve).returns(resource)
-        Presenters::Comment.stubs(:new).returns(presenter)
+        klass.stubs(:retrieve).returns(resource)
+        Presenters::Card.stubs(:new).returns(presenter)
         presenter.stubs(:show).returns(@card.name)
       end
 
       after { database_cleanup }
 
       describe '.dispatch' do
-        subject { described_class.dispatch(id) }
+        subject { described_class.dispatch(klass, id) }
 
         context 'when a resource ID is provided' do
           context 'and the resource exists' do
             let(:resource) { @card }
 
-            it 'presents the comments' do
+            it 'presents the cards' do
               subject.must_match(/#{@card.name}/)
             end
           end
 
           context 'but the resource does not exist' do
             it 'returns a polite message' do
-              subject.must_match(/Card cannot be found/)
+              subject.must_match(/cannot be found/)
             end
           end
         end
@@ -46,14 +48,14 @@ module Troo
             let(:default) { true }
             let(:resource) { @card }
 
-            it 'presents the comments' do
+            it 'presents the cards' do
               subject.must_match(/#{@card.name}/)
             end
           end
 
           context 'and a default resource is not set' do
             it 'returns a polite message' do
-              subject.must_match(/to set a default card first/)
+              subject.must_match(/to set a default/)
             end
           end
         end

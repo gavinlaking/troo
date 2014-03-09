@@ -1,4 +1,4 @@
-require_relative '../../../../test_helper'
+require_relative '../../../../../test_helper'
 
 module Troo
   module Commands
@@ -7,6 +7,7 @@ module Troo
         let(:described_class) { Comment }
         let(:value)           { 'Add Comment Test' }
         let(:id)              {}
+        let(:options)         { { type: :comment } }
         let(:outcome)         { false }
 
         before do
@@ -16,7 +17,7 @@ module Troo
         end
 
         describe '#add' do
-          subject { described_class.new(value, id).add }
+          subject { described_class.new(value, id, options).add }
 
           context 'when the parent resource exists' do
             let(:resource) { Troo::Card.new }
