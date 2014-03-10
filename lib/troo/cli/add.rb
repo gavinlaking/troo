@@ -24,8 +24,7 @@ module Troo
            '<comment>; prompts if <comment> not provided.'
       def comment(id, comment = nil)
         value = comment.nil? ? prompt_for_comment : comment
-        say Commands::Add.dispatch(value,
-          id, type: :comment)
+        say Commands::Add.dispatch(value, id, type: :comment)
       end
 
       desc 'list <board_id> (<name>)',
