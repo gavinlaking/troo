@@ -24,8 +24,8 @@ module Troo
         subject.closed.must_equal false
       end
 
-      it 'should have an external_board_id attribute' do
-        subject.external_board_id.must_equal '526d8e130a14a9d846001d96'
+      it 'should have an external_id attribute' do
+        subject.external_id.must_equal '526d8e130a14a9d846001d96'
       end
     end
 

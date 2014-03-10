@@ -7,24 +7,18 @@ module Troo
     attribute :date
     attribute :external_board_id
     attribute :external_card_id
-    attribute :external_comment_id
+    attribute :external_id
     attribute :external_member_id
     attribute :short_id
 
     index :date
     index :external_board_id
     index :external_card_id
-    index :external_comment_id
+    index :external_id
     index :external_member_id
     index :short_id
 
-    alias_method :external_id, :external_card_id
-
     class << self
-      def by_external_id(id)
-        first(external_comment_id: id)
-      end
-
       def remote
         Remote::Comment
       end

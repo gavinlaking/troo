@@ -84,8 +84,8 @@ module Troo
         subject.external_list_id.must_equal '526d8e130a14a9d846001d97'
       end
 
-      it 'should have an external_card_id attribute' do
-        subject.external_card_id.must_equal '526d8f19ddb279532e005259'
+      it 'should have an external_id attribute' do
+        subject.external_id.must_equal '526d8f19ddb279532e005259'
       end
     end
 

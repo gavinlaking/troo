@@ -24,6 +24,10 @@ module Troo
         all.count
       end
 
+      def by_external_id(id)
+        first(external_id: id)
+      end
+
       def retrieve(id = nil, options = {})
         Troo::Retrieval::Local.retrieve(self, id, options)
       end

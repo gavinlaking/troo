@@ -72,7 +72,7 @@ module Troo
           closed:              closed,
           external_board_id:   idBoard,
           external_list_id:    idList,
-          external_card_id:    id,
+          external_id:         id,
           external_member_ids: idMembers
         }
       end

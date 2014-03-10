@@ -53,10 +53,10 @@ module Troo
 
       def adapted
         {
-          external_board_id: id,
-          name:              name,
-          description:       desc,
-          closed:            closed
+          external_id: id,
+          name:        name,
+          description: desc,
+          closed:      closed
         }
       end
     end

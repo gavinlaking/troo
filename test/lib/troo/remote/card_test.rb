@@ -64,7 +64,7 @@ module Troo
           subject.must_equal(
             external_board_id:   '526d8e130a14a9d846001d96',
             external_list_id:    '526d8e130a14a9d846001d98',
-            external_card_id:    '526d8f19ddb279532e005259',
+            external_id:         '526d8f19ddb279532e005259',
             external_member_ids: ['5195fdb5a8c01a2318004f5d'],
             short_id:            67,
             name:                'My Test Card',

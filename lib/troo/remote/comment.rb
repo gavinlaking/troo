@@ -57,12 +57,12 @@ module Troo
 
       def adapted
         {
-          external_comment_id: id,
-          external_board_id:   data.board.id,
-          external_card_id:    data.card.id,
-          external_member_id:  idMemberCreator,
-          date:                date,
-          text:                text
+          external_id:        id,
+          external_board_id:  data.board.id,
+          external_card_id:   data.card.id,
+          external_member_id: idMemberCreator,
+          date:               date,
+          text:               text
         }
       end
     end

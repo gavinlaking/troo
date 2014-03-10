@@ -38,7 +38,7 @@ module Troo
       def adapted
         {
           external_board_id: idBoard,
-          external_list_id:  id,
+          external_id:       id,
           name:              name,
           position:          pos,
           closed:            closed

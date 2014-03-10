@@ -27,12 +27,12 @@ module Troo
       end
 
       def resources
-        @resources ||= external_board_ids.map do |id|
+        @resources ||= external_ids.map do |id|
           Retrieval::Remote.fetch(Remote::Board, id, mode: :board)
         end
       end
 
-      def external_board_ids
+      def external_ids
         all_boards.map(&:id)
       end
 

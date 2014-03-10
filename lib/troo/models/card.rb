@@ -14,23 +14,18 @@ module Troo
     attribute :closed, Type::Boolean
     attribute :external_board_id
     attribute :external_list_id
-    attribute :external_card_id
+    attribute :external_id
 
     index :short_id
     index :default
     index :external_board_id
     index :external_list_id
-    index :external_card_id
+    index :external_id
 
     alias_method :default?,    :default
-    alias_method :external_id, :external_card_id
     alias_method :description, :desc
 
     class << self
-      def by_external_id(id)
-        first(external_card_id: id)
-      end
-
       def remote
         Remote::Card
       end
@@ -59,7 +54,7 @@ module Troo
     end
 
     def comments
-      Troo::Comment.find(external_card_id: external_card_id)
+      Troo::Comment.find(external_card_id: external_id)
     end
 
     def recent_comments
