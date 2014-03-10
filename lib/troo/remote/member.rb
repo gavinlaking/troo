@@ -58,8 +58,17 @@ module Troo
         Troo::Member
       end
 
-      def adaptor
-        Adaptors::Member
+      def adapted
+        {
+          external_member_id: id,
+          username:           username,
+          email:              email,
+          full_name:          fullName,
+          initials:           initials,
+          avatar_id:          avatarHash,
+          bio:                bio,
+          url:                url
+        }
       end
     end
   end

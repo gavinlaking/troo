@@ -34,13 +34,6 @@ require_relative 'helpers/decorator_helpers'
 require_relative 'helpers/model_helpers'
 require_relative 'helpers/remote_model_helpers'
 
-require_relative 'remote/adaptors/resource'
-require_relative 'remote/adaptors/board'
-require_relative 'remote/adaptors/card'
-require_relative 'remote/adaptors/comment'
-require_relative 'remote/adaptors/list'
-require_relative 'remote/adaptors/member'
-
 require_relative 'remote/persistence/board'
 require_relative 'remote/persistence/card'
 require_relative 'remote/persistence/comment'
