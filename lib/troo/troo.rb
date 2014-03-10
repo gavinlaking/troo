@@ -1,5 +1,6 @@
 require 'addressable/uri'
 require 'date'
+require 'dispel'
 require 'erb'
 require 'fileutils'
 require 'logger'

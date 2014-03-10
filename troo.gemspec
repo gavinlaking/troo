@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock"
 
   spec.add_dependency "addressable"
+  spec.add_dependency "dispel"
   spec.add_dependency "json"
   spec.add_dependency "oauth"
   spec.add_dependency "ohm"
@@ -48,4 +49,3 @@ Gem::Specification.new do |spec|
   spec.add_dependency "virtus"
   spec.add_dependency "yajl-ruby"
 end
-
