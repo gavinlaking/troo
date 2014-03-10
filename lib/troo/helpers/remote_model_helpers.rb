@@ -39,10 +39,6 @@ module Troo
         @local ||= local_model.by_external_id(id)
       end
 
-      def adapted
-        @adapted ||= adaptor.adapt(self)
-      end
-
       private
 
       def associated(association)

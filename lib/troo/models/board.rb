@@ -7,21 +7,16 @@ module Troo
     attribute :description
     attribute :default, Type::Boolean
     attribute :closed, Type::Boolean
-    attribute :external_board_id
+    attribute :external_id
     attribute :short_id
 
     index :default
-    index :external_board_id
+    index :external_id
     index :short_id
 
     alias_method :default?,    :default
-    alias_method :external_id, :external_board_id
 
     class << self
-      def by_external_id(id)
-        first(external_board_id: id)
-      end
-
       def remote
         Remote::Board
       end
@@ -32,11 +27,11 @@ module Troo
     end
 
     def lists
-      Troo::List.find(external_board_id: external_board_id)
+      Troo::List.find(external_board_id: external_id)
     end
 
     def cards
-      Troo::Card.find(external_board_id: external_board_id)
+      Troo::Card.find(external_board_id: external_id)
     end
 
     def decorator(options = {})

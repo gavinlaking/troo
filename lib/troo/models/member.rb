@@ -10,19 +10,13 @@ module Troo
     attribute :avatar_id
     attribute :bio
     attribute :url
-    attribute :external_member_id
+    attribute :external_id
     attribute :short_id
 
-    index :external_member_id
+    index :external_id
     index :short_id
 
-    alias_method :external_id, :external_member_id
-
     class << self
-      def by_external_id(id)
-        first(external_member_id: id)
-      end
-
       def remote
         Remote::Member
       end

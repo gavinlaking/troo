@@ -36,8 +36,8 @@ module Troo
         subject.url.must_equal 'http://www.gavinlaking.name/'
       end
 
-      it 'should have an external_member_id attribute' do
-        subject.external_member_id.must_equal '5195fdb5a8c01a2318004f5d'
+      it 'should have an external_id attribute' do
+        subject.external_id.must_equal '5195fdb5a8c01a2318004f5d'
       end
 
       it 'should always respond false to default?' do

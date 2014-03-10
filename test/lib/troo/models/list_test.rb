@@ -28,8 +28,8 @@ module Troo
         subject.external_board_id.must_equal '526d8e130a14a9d846001d96'
       end
 
-      it 'should have an external_list_id attribute' do
-        subject.external_list_id.must_equal '526d8e130a14a9d846001d97'
+      it 'should have an external_id attribute' do
+        subject.external_id.must_equal '526d8e130a14a9d846001d97'
       end
     end
 

@@ -3,6 +3,7 @@ PATH
   specs:
     troo (0.0.8)
       addressable
+      dispel
       json
       oauth
       ohm
@@ -46,8 +47,11 @@ GEM
       gherkin (~> 2.12)
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.0.2)
+    curses (1.0.0)
     descendants_tracker (0.0.3)
     diff-lcs (1.2.5)
+    dispel (0.0.7)
+      curses
     docile (1.1.3)
     equalizer (0.0.9)
     fabrication (2.9.8)

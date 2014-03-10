@@ -61,8 +61,20 @@ module Troo
         Troo::Card
       end
 
-      def adaptor
-        Adaptors::Card
+      def adapted
+        {
+          short_id:            idShort,
+          name:                name,
+          desc:                desc,
+          url:                 url,
+          position:            pos,
+          last_activity_date:  dateLastActivity,
+          closed:              closed,
+          external_board_id:   idBoard,
+          external_list_id:    idList,
+          external_id:         id,
+          external_member_ids: idMembers
+        }
       end
     end
   end

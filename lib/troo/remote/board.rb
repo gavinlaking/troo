@@ -51,8 +51,13 @@ module Troo
         Troo::Board
       end
 
-      def adaptor
-        Adaptors::Board
+      def adapted
+        {
+          external_id: id,
+          name:        name,
+          description: desc,
+          closed:      closed
+        }
       end
     end
   end

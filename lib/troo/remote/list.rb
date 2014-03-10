@@ -35,8 +35,14 @@ module Troo
         Troo::List
       end
 
-      def adaptor
-        Adaptors::List
+      def adapted
+        {
+          external_board_id: idBoard,
+          external_id:       id,
+          name:              name,
+          position:          pos,
+          closed:            closed
+        }
       end
     end
   end

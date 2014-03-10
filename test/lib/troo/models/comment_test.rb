@@ -24,8 +24,8 @@ module Troo
         subject.external_card_id.must_equal '526d8f19ddb279532e005259'
       end
 
-      it 'should have an external_comment_id attribute' do
-        subject.external_comment_id.must_equal '51f9277b2822b8654f0023af'
+      it 'should have an external_id attribute' do
+        subject.external_id.must_equal '51f9277b2822b8654f0023af'
       end
 
       it 'should have a external_member_id attribute' do

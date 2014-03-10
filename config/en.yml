@@ -1,0 +1,29 @@
+en:
+  cli:
+    add:
+      board: 'Add a new board with <name>; prompts if <name> not provided.'
+      card: 'Add a new card to the list with <list_id> with <name>; prompts if <name> not provided.'
+      comment: 'Add a new comment to the card with <card_id> with <comment>; prompts if <comment> not provided.'
+      list: 'Add a new list to the board with <board_id> with <name>; prompts if <name> not provided.'
+    default:
+      board: 'Set the board <id> to default.'
+      card: 'Set the card <id> to default.'
+      list: 'Set the list <id> to default.'
+    main:
+      init: 'Prepare to use Troo.'
+      status: 'Get troo status.'
+      config: 'Show the current configuration.'
+      cleanup: 'Removes all local data.'
+      version: 'Print the version.'
+      move: 'Move card with <card_id> to list with <list_id> optionally to another board with <board_id>.'
+    refresh:
+      all: 'Refresh all the local data.'
+      board: 'Refresh the default board or board with <id>.'
+      card: 'Refresh the default card or card with <id>.'
+      list: 'Refresh the default list or list with <id>.'
+    show:
+      boards: 'Show all the boards with lists.'
+      board: 'Show lists and cards for board <id> (uses default board if <id> not provided).'
+      list: 'Show all cards for list <id> (uses default list if <id> not provided).'
+      card: 'Show a card <id> including last 3 comments' (uses default card if <id> not provided).'
+      comments: 'Show all comments for card <id> (uses default card if <id> not provided).'

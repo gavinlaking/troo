@@ -60,7 +60,7 @@ module Troo
            '<id>. Also, show all comments for card with <id>.'
       subcommand :show, CLI::Show
 
-      desc 'add [board|list|card|comment] <id>',
+      desc 'add [board|list|card|comment] (<id>) (<value>)',
            'Add board, list, card or comment.'
       subcommand :add, CLI::Add
 

@@ -27,13 +27,13 @@ module Troo
         def moved
           if board_specified?
             @moved ||= Remote::Persistence::MoveCard
-              .with(external_card_id,
-                    external_list_id,
-                    external_board_id)
+              .with(card.external_id,
+                    list.external_id,
+                    board.external_id)
           else
             @moved ||= Remote::Persistence::MoveCard
-              .with(external_card_id,
-                    external_list_id)
+              .with(card.external_id,
+                    list.external_id)
           end
         end
 
@@ -54,10 +54,6 @@ module Troo
           card.decorator.name
         end
 
-        def external_card_id
-          card.external_card_id
-        end
-
         def card
           @card ||= Troo::Card.retrieve(card_id)
         end
@@ -70,10 +66,6 @@ module Troo
           list.decorator.name
         end
 
-        def external_list_id
-          list.external_list_id
-        end
-
         def list
           @list ||= Troo::List.retrieve(list_id)
         end
@@ -84,10 +76,6 @@ module Troo
 
         def board_name
           board.decorator.name
-        end
-
-        def external_board_id
-          board.external_board_id
         end
 
         def board
