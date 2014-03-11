@@ -5,7 +5,7 @@ module Troo
     describe Member do
       let(:described_class)     { Member }
       let(:options)             { {} }
-      let(:external_member_ids) { ['5195fdb5a8c01a2318004f5d'] }
+      let(:external_member_ids) { ['20050'] }
 
       before do
         @card = Fabricate(:card,

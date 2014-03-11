@@ -1,5 +1,5 @@
 {
-  "id": "5314dd74bffa89560a22d520",
+  "id": "20010",
   "name": "Troo Board",
   "desc": "",
   "descData": null,
@@ -38,8 +38,8 @@
   "cards": [],
   "members": [
     {
-      "id": "5195fdb5a8c01a2318004f5d",
-      "avatarHash": "045fd924d84699c9ba451e181bba33a3",
+      "id": "20050",
+      "avatarHash": "20001",
       "initials": "GL",
       "fullName": "Gavin Laking",
       "username": "gavinlaking1",
@@ -48,26 +48,26 @@
   ],
   "lists": [
     {
-      "id": "5314dd74bffa89560a22d521",
+      "id": "20040",
       "name": "To Do",
       "closed": false,
-      "idBoard": "5314dd74bffa89560a22d520",
+      "idBoard": "20010",
       "pos": 16384,
       "subscribed": false
     },
     {
-      "id": "5314dd74bffa89560a22d522",
+      "id": "20041",
       "name": "Doing",
       "closed": false,
-      "idBoard": "5314dd74bffa89560a22d520",
+      "idBoard": "20010",
       "pos": 32768,
       "subscribed": false
     },
     {
-      "id": "5314dd74bffa89560a22d523",
+      "id": "20042",
       "name": "Done",
       "closed": false,
-      "idBoard": "5314dd74bffa89560a22d520",
+      "idBoard": "20010",
       "pos": 49152,
       "subscribed": false
     }

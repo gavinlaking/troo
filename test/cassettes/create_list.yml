@@ -40,7 +40,7 @@ http_interactions:
       - Keep-Alive
     body:
       encoding: UTF-8
-      string: "{\"id\":\"526d8e130a14a9d846001d97\",\"name\":\"My Test List\",\"closed\":false,\"idBoard\":\"526d8e130a14a9d846001d96\",\"pos\":32768}"
-    http_version: 
+      string: "{\"id\":\"20040\",\"name\":\"My Test List\",\"closed\":false,\"idBoard\":\"20010\",\"pos\":32768}"
+    http_version:
   recorded_at: Fri, 21 Feb 2014 19:12:13 GMT
 recorded_with: VCR 2.8.0

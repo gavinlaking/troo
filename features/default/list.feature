@@ -3,7 +3,7 @@ Feature: Setting a default list
   @default
   Scenario: Set a list to default
     Given a list exists
-    When I run `troo default list 200`
+    When I run `troo default list 20040`
     Then the output should contain:
       """
       'My Test List' set as default.

@@ -4,7 +4,7 @@ Feature: Refreshing a resource
   Scenario: Refresh the list with ID
     Given the Trello API is stubbed with "200_list_by_id"
     And a list exists
-    When I run `troo refresh list 200`
+    When I run `troo refresh list 20040`
     Then the output should contain "refreshed"
 
   @refresh

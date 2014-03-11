@@ -4,7 +4,7 @@ Feature: Refreshing a card
   Scenario: Refresh the card with ID
     Given the Trello API is stubbed with "200_card_by_id"
     And a card exists
-    When I run `troo refresh card 200`
+    When I run `troo refresh card 20020`
     Then the output should contain "refreshed"
 
   @refresh

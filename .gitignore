@@ -17,7 +17,6 @@ test/version_tmp
 test/support/.trooconf
 tmp
 
-features/support/fixtures/cassettes/*.yml
 logs/*.log
 troo.db
 tags

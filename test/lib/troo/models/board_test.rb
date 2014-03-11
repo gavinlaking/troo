@@ -25,7 +25,7 @@ module Troo
       end
 
       it 'should have an external_id attribute' do
-        subject.external_id.must_equal '526d8e130a14a9d846001d96'
+        subject.external_id.must_equal '20010'
       end
     end
 

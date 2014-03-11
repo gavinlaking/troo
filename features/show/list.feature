@@ -3,7 +3,7 @@ Feature: Showing a list
   @show
   Scenario: Showing a list with ID
     Given a list exists
-    When I run `troo show list 200`
+    When I run `troo show list 20040`
     Then the output should contain:
       """
       (1) My Test Board

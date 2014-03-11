@@ -62,10 +62,10 @@ module Troo
 
         it 'returns an adapted resource for local persistence' do
           subject.must_equal(
-            external_board_id:   '526d8e130a14a9d846001d96',
-            external_list_id:    '526d8e130a14a9d846001d98',
-            external_id:         '526d8f19ddb279532e005259',
-            external_member_ids: ['5195fdb5a8c01a2318004f5d'],
+            external_board_id:   '20010',
+            external_list_id:    '20040',
+            external_id:         '20020',
+            external_member_ids: ['20050'],
             short_id:            67,
             name:                'My Test Card',
             desc:                'some description',

@@ -1,6 +1,6 @@
 {
-  "id": "5195fdb5a8c01a2318004f5d",
-  "avatarHash": "045fd924d84699c9ba451e181bba33a3",
+  "id": "20050",
+  "avatarHash": "20001",
   "bio": "some bio",
   "bioData": null,
   "confirmed": true,
@@ -16,11 +16,11 @@
   "email": "gavinlaking@gmail.com",
   "gravatarHash": "c9c47875936bed67032a12c047b468a8",
   "idBoards": [
-    "526d8e130a14a9d846001d96"
+    "20010"
   ],
   "idBoardsInvited": [],
   "idBoardsPinned": [
-    "526d8e130a14a9d846001d96"
+    "20010"
   ],
   "idOrganizations": [],
   "idOrganizationsInvited": [],

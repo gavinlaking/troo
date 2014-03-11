@@ -5,7 +5,7 @@ module Troo
     module Persistence
       describe Card do
         let(:described_class)  { Card }
-        let(:external_list_id) { '526d8e130a14a9d846001d97' }
+        let(:external_list_id) { '20040' }
         let(:resource_name)    { 'My New Card' }
         let(:description)      { 'A description to get us started.' }
         let(:card) do

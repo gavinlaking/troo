@@ -41,7 +41,7 @@ module Troo
         subject { described_instance.external_board_id }
 
         it 'delegates to the CommentData model' do
-          subject.must_equal('526d8e130a14a9d846001d96')
+          subject.must_equal('20010')
         end
       end
 
@@ -49,7 +49,7 @@ module Troo
         subject { described_instance.external_card_id }
 
         it 'delegates to the CommentData model' do
-          subject.must_equal('526d8f19ddb279532e005259')
+          subject.must_equal('20020')
         end
       end
 
@@ -57,7 +57,7 @@ module Troo
         subject { described_instance.external_comment_id }
 
         it 'returns the value of the id attribute' do
-          subject.must_equal('51f9277b2822b8654f0023af')
+          subject.must_equal('20030')
         end
       end
 
@@ -86,10 +86,10 @@ module Troo
 
         it 'returns an adapted resource for local persistence' do
           subject.must_equal(
-            external_id:        '51f9277b2822b8654f0023af',
-            external_board_id:  '526d8e130a14a9d846001d96',
-            external_card_id:   '526d8f19ddb279532e005259',
-            external_member_id: '5195fdb5a8c01a2318004f5d',
+            external_id:        '20030',
+            external_board_id:  '20010',
+            external_card_id:   '20020',
+            external_member_id: '20050',
             date:               '2014-02-07T18:02:24.297Z',
             text:               'My Test Comment'
           )

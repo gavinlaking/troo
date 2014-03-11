@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.trello.com/1/boards/526d8e130a14a9d846001d96/actions
+    uri: https://api.trello.com/1/boards/20010/actions
     body:
       encoding: UTF-8
       string: filter=commentCard
@@ -40,10 +40,10 @@ http_interactions:
       - Keep-Alive
     body:
       encoding: UTF-8
-      string: "{\"id\":\"51f9277b2822b8654f0023af\",\"idMemberCreator\":\"5195fdb5a8c01a2318004f5d\",\"data\":{\"board\":{\"shortLink\":\"a3RnYKnD\",\"name\":\"My
-        Test Board\",\"id\":\"526d8e130a14a9d846001d96\"},\"card\":{\"shortLink\":\"UJBK7pil\",\"idShort\":8,\"name\":\"My
-        Test Card\",\"id\":\"526d8f19ddb279532e005259\"},\"text\":\"My Test Comment\"},\"type\":\"commentCard\",\"date\":\"2014-02-07T18:02:24.297Z\",\"memberCreator\":{\"id\":\"5195fdb5a8c01a2318004f5d\",\"avatarHash\":\"045fd924d84699c9ba451e181bba33a3\",\"fullName\":\"Gavin
+      string: "{\"id\":\"20030\",\"idMemberCreator\":\"20050\",\"data\":{\"board\":{\"shortLink\":\"a3RnYKnD\",\"name\":\"My
+        Test Board\",\"id\":\"20010\"},\"card\":{\"shortLink\":\"UJBK7pil\",\"idShort\":8,\"name\":\"My
+        Test Card\",\"id\":\"20020\"},\"text\":\"My Test Comment\"},\"type\":\"commentCard\",\"date\":\"2014-02-07T18:02:24.297Z\",\"memberCreator\":{\"id\":\"20050\",\"avatarHash\":\"20001\",\"fullName\":\"Gavin
         Laking\",\"initials\":\"GL\",\"username\":\"gavinlaking1\"}}"
-    http_version: 
+    http_version:
   recorded_at: Fri, 21 Feb 2014 19:12:14 GMT
 recorded_with: VCR 2.8.0

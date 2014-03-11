@@ -40,11 +40,11 @@ http_interactions:
       - Keep-Alive
     body:
       encoding: UTF-8
-      string: "[{\"id\":\"526d8e130a14a9d846001d96\",\"name\":\"My Test Board\",\"desc\":\"A
+      string: "[{\"id\":\"20010\",\"name\":\"My Test Board\",\"desc\":\"A
         very brief description...\",\"descData\":null,\"closed\":false,\"idOrganization\":null,\"pinned\":true,\"url\":\"<Trello
         URL>\",\"shortUrl\":\"<Trello URL>\",\"prefs\":{\"permissionLevel\":\"private\",\"voting\":\"disabled\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":false,\"cardCovers\":true,\"cardAging\":\"regular\",\"background\":\"blue\",\"backgroundColor\":\"#23719F\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"unknown\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"labelNames\":{\"yellow\":\"Analysis
         Complete\",\"red\":\"\",\"purple\":\"\",\"orange\":\"\",\"green\":\"Ready
         to Pull\",\"blue\":\"\"}}]"
-    http_version: 
+    http_version:
   recorded_at: Fri, 21 Feb 2014 19:12:14 GMT
 recorded_with: VCR 2.8.0
