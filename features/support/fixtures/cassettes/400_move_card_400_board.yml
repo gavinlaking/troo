@@ -35,12 +35,12 @@ http_interactions:
       Server:
       - WEBrick/1.3.1 (Ruby/2.1.1/2014-02-24) OpenSSL/1.0.1f
       Date:
-      - Tue, 11 Mar 2014 21:20:07 GMT
+      - Tue, 11 Mar 2014 21:34:36 GMT
       Connection:
       - Keep-Alive
     body:
       encoding: UTF-8
       string: Bad Request
     http_version: 
-  recorded_at: Tue, 11 Mar 2014 21:20:07 GMT
+  recorded_at: Tue, 11 Mar 2014 21:34:36 GMT
 recorded_with: VCR 2.8.0

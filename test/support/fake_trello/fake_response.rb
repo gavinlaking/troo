@@ -33,6 +33,22 @@ class FakeResponse
 
   def raw
     @raw ||= File
-      .read(File.dirname(__FILE__) + "/../remotes/#{resource}.json")
+      .read(File.dirname(__FILE__) + '/../remotes/' + filename)
+  end
+
+  def filename
+    testing || reality
+  end
+
+  def testing
+    resource + '_200.json' if testing?
+  end
+
+  def testing?
+    id =~ /^200/
+  end
+
+  def reality
+    resource + '_' + id + '.json'
   end
 end

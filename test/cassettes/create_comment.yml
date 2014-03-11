@@ -25,7 +25,7 @@ http_interactions:
       Content-Type:
       - text/html;charset=utf-8
       Content-Length:
-      - '665'
+      - '543'
       X-Xss-Protection:
       - 1; mode=block
       X-Content-Type-Options:
@@ -33,17 +33,17 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       Server:
-      - WEBrick/1.3.1 (Ruby/2.1.0/2013-12-25) OpenSSL/1.0.1e
+      - WEBrick/1.3.1 (Ruby/2.1.1/2014-02-24) OpenSSL/1.0.1f
       Date:
-      - Fri, 21 Feb 2014 19:12:13 GMT
+      - Tue, 11 Mar 2014 21:34:41 GMT
       Connection:
       - Keep-Alive
     body:
       encoding: UTF-8
-      string: "{\"id\":\"20030\",\"idMemberCreator\":\"20050\",\"data\":{\"board\":{\"shortLink\":\"a3RnYKnD\",\"name\":\"My
-        Test Board\",\"id\":\"20010\"},\"card\":{\"shortLink\":\"UJBK7pil\",\"idShort\":8,\"name\":\"My
-        Test Card\",\"id\":\"20020\"},\"text\":\"My Test Comment\"},\"type\":\"commentCard\",\"date\":\"2014-02-07T18:02:24.297Z\",\"memberCreator\":{\"id\":\"20050\",\"avatarHash\":\"20001\",\"fullName\":\"Gavin
-        Laking\",\"initials\":\"GL\",\"username\":\"gavinlaking1\"}}"
-    http_version:
-  recorded_at: Fri, 21 Feb 2014 19:12:13 GMT
+      string: '{"id":"20030","idMemberCreator":"20050","data":{"board":{"shortLink":"a3RnYKnD","name":"My
+        Test Board","id":"20010"},"card":{"shortLink":"UJBK7pil","idShort":8,"name":"My
+        Test Card","id":"20020"},"text":"My Test Comment"},"type":"commentCard","date":"2014-02-07T18:02:24.297Z","memberCreator":{"id":"20050","avatarHash":"20001","fullName":"Gavin
+        Laking","initials":"GL","username":"gavinlaking1"}}'
+    http_version: 
+  recorded_at: Tue, 11 Mar 2014 21:34:41 GMT
 recorded_with: VCR 2.8.0
