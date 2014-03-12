@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    troo (0.0.8)
+    troo (0.0.9)
       addressable
       dispel
       json

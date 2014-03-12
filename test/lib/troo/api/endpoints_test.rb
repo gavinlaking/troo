@@ -22,7 +22,7 @@ module Troo
 
       describe '#interpolate!' do
         let(:endpoint) { :board_by_id }
-        let(:value)    { { id: '526d8e130a14a9d846001d96' } }
+        let(:value)    { { id: '20001' } }
 
         subject do
           described_class.new(endpoints)
@@ -31,7 +31,7 @@ module Troo
 
         context 'when the endpoint exists' do
           it 'returns the interpolated endpoint' do
-            subject.must_equal('/boards/526d8e130a14a9d846001d96')
+            subject.must_equal('/boards/20001')
           end
         end
 

@@ -54,7 +54,7 @@ module Troo
 
         it 'returns an adapted resource for local persistence' do
           subject.must_equal(
-            external_id: '526d8e130a14a9d846001d96',
+            external_id: '20010',
             name:        'My Test Board',
             description: 'A very brief description...',
             closed:      false

@@ -3,7 +3,7 @@ Feature: Setting a default card
   @default
   Scenario: Set a card to default
     Given a card exists
-    When I run `troo default card 200`
+    When I run `troo default card 20020`
     Then the output should contain:
       """
       'My Test Card' set as default.

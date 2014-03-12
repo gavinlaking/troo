@@ -1,0 +1,86 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.trello.com/1/cards
+    body:
+      encoding: UTF-8
+      string: desc&list_id=20040&name=My%20Cucumber%20Card
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - "<OAuth Credentials>"
+      Content-Length:
+      - '44'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: 'OK '
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '786'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server:
+      - WEBrick/1.3.1 (Ruby/2.1.1/2014-02-24) OpenSSL/1.0.1f
+      Date:
+      - Tue, 11 Mar 2014 21:34:35 GMT
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "20020",
+          "badges": {
+            "votes": 0,
+            "viewingMemberVoted": false,
+            "subscribed": false,
+            "fogbugz": "",
+            "checkItems": 0,
+            "checkItemsChecked": 0,
+            "comments": 10,
+            "attachments": 0,
+            "description": false,
+            "due": null
+          },
+          "checkItemStates": [],
+          "closed": false,
+          "dateLastActivity": "2014-02-13T20:12:46.612Z",
+          "desc": "some description",
+          "descData": null,
+          "due": null,
+          "idBoard": "20010",
+          "idChecklists": [],
+          "idList": "20040",
+          "idMembers": [
+            "20050"
+          ],
+          "idShort": 67,
+          "idAttachmentCover": null,
+          "manualCoverAttachment": false,
+          "labels": [
+            {
+              "color": "green",
+              "name": "Ready to Pull"
+            }
+          ],
+          "name": "My Test Card",
+          "pos": 589823,
+          "shortUrl": "<Trello URL>",
+          "url": "<Trello URL>"
+        }
+    http_version: 
+  recorded_at: Tue, 11 Mar 2014 21:34:35 GMT
+recorded_with: VCR 2.8.0

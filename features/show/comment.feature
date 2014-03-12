@@ -3,7 +3,7 @@ Feature: Showing comments
   @show
   Scenario: Showing comments for a card with ID
     Given a comment exists
-    When I run `troo show comments 200`
+    When I run `troo show comments 20020`
     Then the output should contain:
       """
       My Test Comment
@@ -12,7 +12,7 @@ Feature: Showing comments
   @show
   Scenario: Showing comments for a card with ID; no comments
     Given a card exists
-    When I run `troo show comments 200`
+    When I run `troo show comments 20020`
     Then the output should contain "No comments"
 
   @show

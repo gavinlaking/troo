@@ -5,7 +5,7 @@ Feature: Adding content to Trello
   @add
   Scenario: Add a list
     Given the Trello API is stubbed with "200_create_list"
-    When I run `troo add list 200 "My Cucumber List"`
+    When I run `troo add list 20010 "My Cucumber List"`
     Then the output should contain:
       """
       New list 'My Cucumber List' created.

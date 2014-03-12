@@ -3,7 +3,7 @@ Feature: Showing a board
   @show
   Scenario: Showing a board with ID
     Given a board exists
-    When I run `troo show board 200`
+    When I run `troo show board 20010`
     Then the output should contain:
       """
       (1) My Test Board

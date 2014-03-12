@@ -5,7 +5,7 @@ Feature: Adding content to Trello
   @add
   Scenario: Add a card
     Given the Trello API is stubbed with "200_create_card"
-    When I run `troo add card 200 "My Cucumber Card"`
+    When I run `troo add card 20040 "My Cucumber Card"`
     Then the output should contain:
       """
       New card 'My Cucumber Card' created.

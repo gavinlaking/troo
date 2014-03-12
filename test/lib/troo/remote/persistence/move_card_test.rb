@@ -5,9 +5,9 @@ module Troo
     module Persistence
       describe MoveCard do
         let(:described_class)   { MoveCard }
-        let(:external_board_id) { '526d8e130a14a9d846001d96' }
-        let(:external_card_id)  { '526d8f19ddb279532e005259' }
-        let(:external_list_id)  { '526d8e130a14a9d846001d97' }
+        let(:external_board_id) { '20010' }
+        let(:external_card_id)  { '20020' }
+        let(:external_list_id)  { '20040' }
         let(:card)              { [Fabricate.build(:card)] }
 
         before do

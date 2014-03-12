@@ -17,19 +17,19 @@ module Troo
       end
 
       it 'should have an external_board_id attribute' do
-        subject.external_board_id.must_equal '526d8e130a14a9d846001d96'
+        subject.external_board_id.must_equal '20010'
       end
 
       it 'should have an external_card_id attribute' do
-        subject.external_card_id.must_equal '526d8f19ddb279532e005259'
+        subject.external_card_id.must_equal '20020'
       end
 
       it 'should have an external_id attribute' do
-        subject.external_id.must_equal '51f9277b2822b8654f0023af'
+        subject.external_id.must_equal '20030'
       end
 
       it 'should have a external_member_id attribute' do
-        subject.external_member_id.must_equal '5195fdb5a8c01a2318004f5d'
+        subject.external_member_id.must_equal '20050'
       end
 
       it 'should always respond false to default?' do

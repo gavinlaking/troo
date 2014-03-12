@@ -4,7 +4,7 @@ Feature: Refreshing a resource
   Scenario: Refresh the board with ID
     Given the Trello API is stubbed with "200_board_by_id"
     And a board exists
-    When I run `troo refresh board 200`
+    When I run `troo refresh board 20010`
     Then the output should contain "refreshed"
 
   @refresh

@@ -29,12 +29,12 @@ module Troo
           context 'and the attribute is an array' do
             it 'returns the attribute' do
               subject.external_member_ids
-                .must_equal(['5195fdb5a8c01a2318004f5d'])
+                .must_equal(['20050'])
             end
           end
 
           context 'and the attribute is a string' do
-            let(:member_ids) { "[\"5195fdb5a8c01a2318004f5d\"]" }
+            let(:member_ids) { "[\"20050\"]" }
             let(:described_instance) do
               Fabricate.build(:card,
                               external_member_ids: member_ids)
@@ -42,7 +42,7 @@ module Troo
 
             it 'converts to an array and returns the attribute' do
               subject.external_member_ids
-                .must_equal(['5195fdb5a8c01a2318004f5d'])
+                .must_equal(['20050'])
             end
           end
         end
@@ -77,15 +77,15 @@ module Troo
 
       it 'should have an external_board_id attribute' do
         subject.external_board_id
-          .must_equal '526d8e130a14a9d846001d96'
+          .must_equal '20010'
       end
 
       it 'should have an external_list_id attribute' do
-        subject.external_list_id.must_equal '526d8e130a14a9d846001d97'
+        subject.external_list_id.must_equal '20040'
       end
 
       it 'should have an external_id attribute' do
-        subject.external_id.must_equal '526d8f19ddb279532e005259'
+        subject.external_id.must_equal '20020'
       end
     end
 

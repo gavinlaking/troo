@@ -1,11 +1,11 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://api.trello.com/1/boards
+    method: get
+    uri: https://api.trello.com/1/boards/20010
     body:
       encoding: UTF-8
-      string: desc=A%20very%20brief%20description...&name=My%20New%20Board
+      string: cards=open&lists=open&members=all
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -14,7 +14,7 @@ http_interactions:
       Authorization:
       - "<OAuth Credentials>"
       Content-Length:
-      - '60'
+      - '33'
       User-Agent:
       - Ruby
   response:
@@ -25,7 +25,7 @@ http_interactions:
       Content-Type:
       - text/html;charset=utf-8
       Content-Length:
-      - '3258'
+      - '2271'
       X-Xss-Protection:
       - 1; mode=block
       X-Content-Type-Options:
@@ -35,7 +35,7 @@ http_interactions:
       Server:
       - WEBrick/1.3.1 (Ruby/2.1.1/2014-02-24) OpenSSL/1.0.1f
       Date:
-      - Tue, 11 Mar 2014 21:34:41 GMT
+      - Tue, 11 Mar 2014 21:34:36 GMT
       Connection:
       - Keep-Alive
     body:
@@ -52,5 +52,5 @@ http_interactions:
         New List","closed":true,"idBoard":"20010","pos":256,"subscribed":false},{"id":"20041","name":"My
         New List","closed":true,"idBoard":"20010","pos":512,"subscribed":false}]}'
     http_version: 
-  recorded_at: Tue, 11 Mar 2014 21:34:41 GMT
+  recorded_at: Tue, 11 Mar 2014 21:34:36 GMT
 recorded_with: VCR 2.8.0

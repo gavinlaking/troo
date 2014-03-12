@@ -11,7 +11,7 @@ module Troo
                       by_card_id:     {},
                       by_member_id:   {})
       end
-      let(:external_id)     { '526d8e130a14a9d846001d96' }
+      let(:external_id)     { '20010' }
       let(:options)         { { mode: :board } }
       let(:resources)       { [:not_persisted] }
       let(:persisted)       { [:persisted] }

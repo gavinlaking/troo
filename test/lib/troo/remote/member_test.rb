@@ -54,12 +54,12 @@ module Troo
 
         it 'returns an adapted resource for local persistence' do
           subject.must_equal(
-            external_id: '5195fdb5a8c01a2318004f5d',
+            external_id: '20050',
             username:    'gavinlaking1',
             email:       'gavinlaking@gmail.com',
             full_name:   'Gavin Laking',
             initials:    'GL',
-            avatar_id:   '045fd924d84699c9ba451e181bba33a3',
+            avatar_id:   '20001',
             bio:         'some bio',
             url:         '<Trello URL>'
           )

@@ -5,7 +5,7 @@ module Troo
     module Persistence
       describe List do
         let(:described_class)   { List }
-        let(:external_board_id) { '526d8e130a14a9d846001d96' }
+        let(:external_board_id) { '20010' }
         let(:resource_name)     { 'My New List' }
         let(:list) do
           [Fabricate.build(:list, name: resource_name)]

@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.trello.com/1/lists
     body:
       encoding: UTF-8
-      string: board_id&name=My%20New%20List
+      string: board_id=20010&name=My%20Cucumber%20List
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -14,7 +14,7 @@ http_interactions:
       Authorization:
       - "<OAuth Credentials>"
       Content-Length:
-      - '29'
+      - '40'
       User-Agent:
       - Ruby
   response:
@@ -35,12 +35,19 @@ http_interactions:
       Server:
       - WEBrick/1.3.1 (Ruby/2.1.1/2014-02-24) OpenSSL/1.0.1f
       Date:
-      - Tue, 11 Mar 2014 21:34:41 GMT
+      - Tue, 11 Mar 2014 21:34:35 GMT
       Connection:
       - Keep-Alive
     body:
       encoding: UTF-8
-      string: '{"id":"20040","name":"My Test List","closed":false,"idBoard":"20010","pos":32768}'
+      string: |
+        {
+          "id": "20040",
+          "name": "My Test List",
+          "closed": false,
+          "idBoard": "20010",
+          "pos": 32768
+        }
     http_version: 
-  recorded_at: Tue, 11 Mar 2014 21:34:41 GMT
+  recorded_at: Tue, 11 Mar 2014 21:34:35 GMT
 recorded_with: VCR 2.8.0

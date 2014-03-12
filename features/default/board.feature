@@ -3,7 +3,7 @@ Feature: Setting a default board
   @default
   Scenario: Set a board to default
     Given a board exists
-    When I run `troo default board 200`
+    When I run `troo default board 20010`
     Then the output should contain:
       """
       'My Test Board' set as default.

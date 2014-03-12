@@ -3,7 +3,7 @@ Feature: Showing a card
   @show
   Scenario: Showing a card with ID
     Given a card exists
-    When I run `troo show card 200`
+    When I run `troo show card 20020`
     Then the output should contain:
       """
       (1) My Test Card
@@ -67,7 +67,7 @@ Feature: Showing a card
   Scenario: Showing a card with comments
     Given a card exists
     Given 2 comments exist
-    When I run `troo show card 200`
+    When I run `troo show card 20020`
     Then the output should contain:
       """
       (1) My Test Card
@@ -99,7 +99,7 @@ Feature: Showing a card
   Scenario: Showing a card with many comments
     Given a card exists
     Given 5 comments exist
-    When I run `troo show card 200`
+    When I run `troo show card 20020`
     Then the output should contain:
       """
       (1) My Test Card

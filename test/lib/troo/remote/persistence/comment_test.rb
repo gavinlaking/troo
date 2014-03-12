@@ -5,7 +5,7 @@ module Troo
     module Persistence
       describe Comment do
         let(:described_class)  { Comment }
-        let(:external_card_id) { '526d8f19ddb279532e005259' }
+        let(:external_card_id) { '20020' }
         let(:text)             { 'Some much needed feedback...' }
         let(:comment) do
           [Fabricate.build(:comment, text: text)]
