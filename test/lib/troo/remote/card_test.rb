@@ -4,14 +4,10 @@ module Troo
   module Remote
     describe Card do
       let(:described_class) { Card }
-      let(:resource) { load_mock_trello_response }
-      let(:described_instance) { described_class.new(resource) }
-
-      def load_mock_trello_response
-        json = File.read('./test/support/remotes/card.json')
-        hash = Yajl::Parser.parse(json)
-        Troo::Remote::Card.new(hash)
+      let(:resource) do
+        mock_trello_response('card.json', Troo::Remote::Card)
       end
+      let(:described_instance) { described_class.new(resource) }
 
       describe '.remote_options' do
         subject { described_class.remote_options }

@@ -3,13 +3,10 @@ require_relative '../../../../../test_helper'
 module Troo
   module Commands
     describe RefreshAll do
-      def load_mock_trello_response
-        json = File.read('./test/support/remotes/board.json')
-        hash = Yajl::Parser.parse(json)
-        Troo::Remote::Board.new(hash)
-      end
       let(:described_class) { RefreshAll }
-      let(:resource) { [load_mock_trello_response] }
+      let(:resource) do
+        [mock_trello_response('board.json', Troo::Remote::Board)]
+      end
 
       before do
         Retrieval::Remote.stubs(:fetch).returns(resource)

@@ -3,14 +3,10 @@ require_relative '../../../test_helper'
 module Troo
   module Remote
     describe Comment do
-      def load_mock_trello_response
-        json = File.read('./test/support/remotes/comment.json')
-        hash = Yajl::Parser.parse(json)
-        Troo::Remote::Comment.new(hash)
-      end
-
       let(:described_class) { Comment }
-      let(:resource) { load_mock_trello_response }
+      let(:resource) do
+        mock_trello_response('comment.json', Troo::Remote::Comment)
+      end
       let(:described_instance) { described_class.new(resource) }
 
       describe '.remote_options' do

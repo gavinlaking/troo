@@ -3,14 +3,10 @@ require_relative '../../../test_helper'
 module Troo
   module Remote
     describe List do
-      def load_mock_trello_response
-        json = File.read('./test/support/remotes/list.json')
-        hash = Yajl::Parser.parse(json)
-        Troo::Remote::List.new(hash)
-      end
-
       let(:described_class) { List }
-      let(:resource) { load_mock_trello_response }
+      let(:resource) do
+        mock_trello_response('list.json', Troo::Remote::List)
+      end
       let(:described_instance) { described_class.new(resource) }
 
       describe '.remote_options' do
