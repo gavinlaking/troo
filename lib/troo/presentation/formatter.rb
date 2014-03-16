@@ -70,10 +70,7 @@ module Troo
     end
 
     def wordwrap
-      formatted_value
-        .gsub(/\n/, ' ')
-        .gsub(/(.{1,#{options.align.width}})(\s+|$)/, "\\1\n")
-        .strip
+      Wordwrap.this(formatted_value, width: width)
     end
 
     private
@@ -90,6 +87,10 @@ module Troo
       }
     end
 
+    def width
+      options.align.width
+    end
+
     def position
       options.align.pos
     end
@@ -100,6 +101,66 @@ module Troo
 
     def spacer
       options.align.char
+    end
+  end
+
+  class Wordwrap
+    class << self
+      def this(value, options = {})
+        new(value, options).wordwrap
+      end
+    end
+
+    def initialize(value, options = {})
+      @value, @options = value, options
+    end
+
+    def wordwrap
+      processed = []
+      value.split(/\n/).map do |unprocessed|
+        line_length = 0
+        reformatted = []
+
+        unprocessed.split(/\s/).map do |word|
+          word_length = word.length + 1
+
+          if (line_length += word_length) >= maximum_width
+            line_length = word_length
+            processed   << reformatted
+            reformatted = []
+          end
+
+          reformatted << word
+        end
+
+        processed << reformatted
+      end
+
+      output(processed)
+    end
+
+    private
+
+    attr_reader :value, :options
+
+    def output(paragraph)
+      paragraph.inject([]) do |output, line|
+        output << line.join(' ')
+      end.join("\n")
+    end
+
+    def maximum_width
+      options.fetch(:width)
+    end
+
+    def options
+      defaults.merge!(@options)
+    end
+
+    def defaults
+      {
+        width: 70
+      }
     end
   end
 

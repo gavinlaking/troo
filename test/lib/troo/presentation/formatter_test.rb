@@ -19,8 +19,48 @@ module Troo
 end
 
 module Troo
-  describe Formatter do
-    let(:described_class) { Formatter }
+  describe Wordwrap do
+    let(:described_class) { Wordwrap }
+    let(:value) do
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '    \
+      "Curabitur aliquet turpis id dui condimentum elementum.\n"     \
+      'Pellentesque blandit vulputate imperdiet. Quisque ut arcu '   \
+      "dolor. Morbi nec vulputate purus.\n\nQuisque porta feugiat "  \
+      'egestas. Aenean ac ipsum varius, lobortis lacus at, mattis '  \
+      "est.\nQuisque viverra facilisis tortor, id convallis metus "  \
+      'laoreet quis. Curabitur auctor nunc blandit enim volutpat '   \
+      'hendrerit. Phasellus accumsan tempor iaculis. Ut in semper '  \
+      "massa. Cras quis viverra elit.\n\nInteger vitae mattis est. " \
+      'Cras id nisl porttitor lectus placerat gravida sit amet '     \
+      "quis diam.\n\nDonec mollis, nisi sit amet congue sagittis, "  \
+      'sapien magna rhoncus justo, vel molestie metus sapien eget '  \
+      "libero.\n\n\n"
+    end
+    let(:options) { {} }
+
+    describe '#wordwrap' do
+      let(:formatted_value) do
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "  \
+        "Curabitur\naliquet turpis id dui condimentum elementum.\n"  \
+        "Pellentesque blandit vulputate imperdiet. Quisque ut arcu " \
+        "dolor.\nMorbi nec vulputate purus.\n\nQuisque porta "       \
+        "feugiat egestas. Aenean ac ipsum varius, lobortis\nlacus "  \
+        "at, mattis est.\nQuisque viverra facilisis tortor, id "     \
+        "convallis metus laoreet quis.\nCurabitur auctor nunc "      \
+        "blandit enim volutpat hendrerit. Phasellus\naccumsan "      \
+        "tempor iaculis. Ut in semper massa. Cras quis viverra "     \
+        "elit.\n\nInteger vitae mattis est. Cras id nisl porttitor " \
+        "lectus placerat\ngravida sit amet quis diam.\n\nDonec "     \
+        "mollis, nisi sit amet congue sagittis, sapien magna "       \
+        "rhoncus\njusto, vel molestie metus sapien eget libero."
+      end
+
+      subject { described_class.this(value, options) }
+
+      it 'returns formatted text' do
+        subject.must_equal(formatted_value)
+      end
+    end
   end
 end
 
