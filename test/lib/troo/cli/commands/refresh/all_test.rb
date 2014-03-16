@@ -8,9 +8,7 @@ module Troo
         [mock_trello_response('board.json', Troo::Remote::Board)]
       end
 
-      before do
-        Retrieval::Remote.stubs(:fetch).returns(resource)
-      end
+      before { Retrieval::Remote.stubs(:fetch).returns(resource) }
 
       describe '.dispatch' do
         subject { described_class.dispatch }
