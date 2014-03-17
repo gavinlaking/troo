@@ -60,6 +60,18 @@ module Troo
       it 'returns formatted text' do
         subject.must_equal(formatted_value)
       end
+
+      context 'when the content should be pruned' do
+        let(:options) { { width: 70, prune: true } }
+        let(:formatted_value) do
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' \
+          " Curabitur a...\e[0m"
+        end
+
+        it 'returns formatted text' do
+          subject.must_equal(formatted_value)
+        end
+      end
     end
   end
 end

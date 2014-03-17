@@ -7,6 +7,7 @@ Feature: Showing a board
     Then the output should contain:
       """
       (1) My Test Board
+
           No lists were found.
       """
 
@@ -14,7 +15,10 @@ Feature: Showing a board
   Scenario: Cannot show board; not found
     Given the Trello API is stubbed with "400_board_by_id"
     When I run `troo show board 400`
-    Then the output should contain "Board cannot be found."
+    Then the output should contain:
+      """
+      Board cannot be found.
+      """
 
   @show
   Scenario: Showing the default board
@@ -23,10 +27,14 @@ Feature: Showing a board
     Then the output should contain:
       """
       (1) My Default Board *
+
           No lists were found.
       """
 
   @show
   Scenario: Cannot show; no default board
     When I run `troo show board`
-    Then the output should contain "set a default board first"
+    Then the output should contain:
+      """
+      set a default board first
+      """

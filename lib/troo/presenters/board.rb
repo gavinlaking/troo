@@ -18,12 +18,24 @@ module Troo
         output.render board.title
 
         output.indent do
-          if lists.empty?
-            output.render error('No lists were found.') + "\n"
+          if board.lists.empty?
+            output.spacer do
+              output.render error('No lists were found.')
+            end
           else
-            print_lists_with_cards
+            render_lists
           end
         end
+      end
+
+      def render_lists
+        output.spacer
+
+        board.lists.map do |list|
+          Presenters::List.new(list, output: output).render_list
+        end
+
+        nil
       end
 
       private
@@ -31,31 +43,17 @@ module Troo
       attr_reader :board
 
       def output
-        @output ||= Troo::Output.new
+        @output ||= options.fetch(:output)
       end
 
-      def print_lists_with_cards
-        output.render "\n"
-        lists.each do |list|
-          output.render list.title
-
-          output.indent do
-            if list.cards.empty?
-              output.render error('No cards were found.') + "\n"
-            else
-              output.render "\n"
-              list.cards.each do |card|
-                output.render card.title
-              end
-              output.render "\n"
-            end
-          end
-        end
-        nil
+      def options
+        defaults.merge!(@options)
       end
 
-      def lists
-        board.lists
+      def defaults
+        {
+          output: Troo::Output.new
+        }
       end
     end
   end

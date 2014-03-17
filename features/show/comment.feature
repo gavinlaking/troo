@@ -13,13 +13,19 @@ Feature: Showing comments
   Scenario: Showing comments for a card with ID; no comments
     Given a card exists
     When I run `troo show comments 20020`
-    Then the output should contain "No comments"
+    Then the output should contain:
+      """
+      No comments
+      """
 
   @show
   Scenario: Cannot show comments; card not found
     Given the Trello API is stubbed with "400_card_by_id"
     When I run `troo show comments 400`
-    Then the output should contain "Card cannot be found."
+    Then the output should contain:
+      """
+      Card cannot be found.
+      """
 
   @show
   Scenario: Showing the comments for the default card
@@ -28,7 +34,7 @@ Feature: Showing comments
     When I run `troo show comments`
     Then the output should contain:
       """
-      (1) My Default Card *
+      (67) My Default Card *
 
       @gavinlaking1:
         My Test Comment
@@ -38,4 +44,7 @@ Feature: Showing comments
   @show
   Scenario: Cannot show comments; no default card
     When I run `troo show comments`
-    Then the output should contain "set a default card first"
+    Then the output should contain:
+      """
+      set a default card first
+      """

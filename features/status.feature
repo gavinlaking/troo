@@ -23,7 +23,7 @@ Feature: Showing the current status
         Lists:  1 list found.
                 (1) My Default List *
         Cards:  1 card found.
-                (1) My Default Card *
+                (67) My Default Card *
       """
 
   @status

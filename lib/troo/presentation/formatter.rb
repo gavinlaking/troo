@@ -11,6 +11,7 @@ module Troo
       attribute :pad,   Integer, default: 0
       attribute :char,  String,  default: ' '
       attribute :width, Integer, default: 80
+      attribute :prune, Boolean, default: false
     end
   end
 
@@ -107,7 +108,7 @@ module Troo
   class Wordwrap
     class << self
       def this(value, options = {})
-        new(value, options).wordwrap
+        new(value, options).reformat
       end
     end
 
@@ -115,7 +116,12 @@ module Troo
       @value, @options = value, options
     end
 
-    def wordwrap
+    def reformat
+      return pruned if prune?
+      wordwrapped
+    end
+
+    def wordwrapped
       processed = []
       value.split(/\n/).map do |unprocessed|
         line_length = 0
@@ -149,6 +155,23 @@ module Troo
       end.join("\n")
     end
 
+    def pruned
+      return value if value.size <= pruned_width
+      [
+        value.chomp.slice(0..pruned_width),
+        '...',
+        Esc.reset
+      ].join
+    end
+
+    def pruned_width
+      maximum_width - 3
+    end
+
+    def prune?
+      options.fetch(:prune)
+    end
+
     def maximum_width
       options.fetch(:width)
     end
@@ -159,7 +182,8 @@ module Troo
 
     def defaults
       {
-        width: 70
+        width: 70,
+        prune: false
       }
     end
   end
@@ -174,6 +198,16 @@ module Troo
     def render(lines)
       Array(lines).each { |line| print indentation + line }
       nil
+    end
+
+    def spacer(&block)
+      if block_given?
+        print "\n"
+        yield
+        print "\n"
+      else
+        print "\n"
+      end
     end
 
     def indent(&block)
