@@ -4,14 +4,10 @@ module Troo
   module Remote
     describe Member do
       let(:described_class)    { Member }
-      let(:resource)           { load_mock_trello_response }
-      let(:described_instance) { described_class.new(resource) }
-
-      def load_mock_trello_response
-        json = File.read('./test/support/remotes/member.json')
-        hash = Yajl::Parser.parse(json)
-        Troo::Remote::Member.new(hash)
+      let(:resource) do
+        mock_trello_response('member.json', Troo::Remote::Member)
       end
+      let(:described_instance) { described_class.new(resource) }
 
       describe '.remote_options' do
         subject { described_class.remote_options }

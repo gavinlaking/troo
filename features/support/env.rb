@@ -21,7 +21,7 @@ Aruba.process = Aruba::InProcess
 WebMock.disable_net_connect!
 
 VCR.configure do |c|
-  c.cassette_library_dir = 'features/support/fixtures/cassettes'
+  c.cassette_library_dir = 'features/support/cassettes'
   c.hook_into :webmock
   # c.debug_logger = File.open("logs/vcr.log", 'w')
   c.filter_sensitive_data('<OAuth Credentials>') do |interaction|

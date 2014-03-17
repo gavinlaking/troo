@@ -22,3 +22,5 @@ troo.db
 tags
 test/support/fake_trello/my-server.crt
 test/support/fake_trello/my-server.key
+
+test/support/private_remotes/*.json

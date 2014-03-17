@@ -29,3 +29,9 @@ def database_cleanup(delay = 0)
   Ohm.redis.flushdb
   sleep delay if delay > 0
 end
+
+def mock_trello_response(filename, klass)
+  json = File.read('./test/support/remotes/' + filename)
+  hash = Yajl::Parser.parse(json)
+  klass.new(hash)
+end

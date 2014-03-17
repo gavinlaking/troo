@@ -9,8 +9,9 @@ module Troo
 
       def title
         [
-          brackets(klass.id),
-          Troo::Formatter.highlight(name, options),
+          brackets(id),
+          Troo::Formatter.highlight(
+            Troo::Wordwrap.this(name, prune: true), options),
           default
         ].compact.join(' ') + "\n"
       end
@@ -19,6 +20,10 @@ module Troo
         return 'N/A' if klass.description.nil? ||
                         klass.description.empty?
         Troo::Formatter.wordwrap(klass.description)
+      end
+
+      def id
+        (klass.type == :card) ? klass.short_id : klass.id
       end
 
       def default
