@@ -33,6 +33,22 @@ module Troo
       end
     end
 
+    describe '.remote' do
+      subject { described_class.remote }
+
+      it 'returns the remote class for this model' do
+        subject.must_equal(Remote::List)
+      end
+    end
+
+    describe '.type' do
+      subject { described_class.type }
+
+      it 'returns the type of model' do
+        subject.must_equal(:list)
+      end
+    end
+
     context 'associations' do
       before do
         @board = Fabricate(:board)
@@ -47,6 +63,34 @@ module Troo
 
       it 'can have many cards' do
         subject.cards.size.must_equal 1
+      end
+    end
+
+    describe '#decorator' do
+      let(:options) { {} }
+
+      subject { described_class.new.decorator(options) }
+
+      it 'returns a new instance of the decorator for this model' do
+        subject.must_be_instance_of(Decorators::Resource)
+      end
+    end
+
+    describe '#presenter' do
+      let(:options) { {} }
+
+      subject { described_class.new.presenter(options) }
+
+      it 'returns a new instance of the presenter for this model' do
+        subject.must_be_instance_of(Presenters::List)
+      end
+    end
+
+    describe '#type' do
+      subject { described_class.new.type }
+
+      it 'returns the type of the model instance' do
+        subject.must_equal(:list)
       end
     end
   end

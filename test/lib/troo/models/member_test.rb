@@ -44,5 +44,55 @@ module Troo
         subject.default?.must_equal false
       end
     end
+
+    describe '.remote' do
+      subject { described_class.remote }
+
+      it 'returns the remote class for this model' do
+        subject.must_equal(Remote::Member)
+      end
+    end
+
+    describe '.type' do
+      subject { described_class.type }
+
+      it 'returns the type of model' do
+        subject.must_equal(:member)
+      end
+    end
+
+    describe '#decorator' do
+      let(:options) { {} }
+
+      subject { described_class.new.decorator(options) }
+
+      it 'returns a new instance of the decorator for this model' do
+        subject.must_be_instance_of(Decorators::Member)
+      end
+    end
+
+    describe '#presenter' do
+      let(:options) { {} }
+
+      subject { described_class.new.presenter(options) }
+
+      it 'returns a new instance of the presenter for this model' do
+        subject.must_be_instance_of(Presenters::Member)
+      end
+    end
+
+    describe '#default?' do
+      subject { described_class.new.default? }
+
+      it { subject.must_equal false }
+    end
+
+    describe '#type' do
+      subject { described_class.new.type }
+
+      it 'returns the type of the model instance' do
+        subject.must_equal(:member)
+      end
+    end
   end
 end
