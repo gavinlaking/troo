@@ -5,7 +5,7 @@ module Troo
 
       class << self
         def all(boards, options = {})
-          boards.map { |board| new(board.decorator, options).show }
+          boards.map { |board| new(board, options).show }
           nil
         end
       end
@@ -15,7 +15,7 @@ module Troo
       end
 
       def show
-        output.render board.title
+        output.render Presenters::Resource.list_view(board)
 
         output.indent do
           if board.lists.empty?

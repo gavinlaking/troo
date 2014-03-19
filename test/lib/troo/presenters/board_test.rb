@@ -4,12 +4,13 @@ module Troo
   module Presenters
     describe Board do
       let(:described_class) { Board }
-      let(:board)           { Fabricate(:board).decorator }
+      let(:board)           { Fabricate(:board) }
       let(:options)         { {} }
+
       let(:lists)           { [] }
-      let(:list)            { Fabricate(:list).decorator }
+      let(:list)            { Fabricate(:list) }
       let(:cards)           { [] }
-      let(:card)            { Fabricate(:card).decorator }
+      let(:card)            { Fabricate(:card) }
 
       before do
         board.stubs(:lists).returns(lists)

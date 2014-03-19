@@ -13,7 +13,9 @@ module Troo
 
       private
 
-      attr_reader :card
+      def card
+        Troo::Decorators::Resource.new(@card)
+      end
 
       def output
         @output ||= Troo::Output.new

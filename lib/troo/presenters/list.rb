@@ -8,19 +8,17 @@ module Troo
       end
 
       def show
-        board
+        output.render Presenters::Resource.list_view(list.board)
+
+        output.spacer
 
         output.indent do
           render_list
         end
       end
 
-      def board
-        output.render list.board.title + "\n"
-      end
-
       def render_list
-        output.render list.title
+        output.render Presenters::Resource.list_view(list)
 
         output.indent do
           if list.cards.empty?
@@ -36,7 +34,7 @@ module Troo
       def render_cards
         output.spacer do
           list.cards.map do |card|
-            output.render card.title
+            output.render Presenters::Resource.list_view(card)
           end
         end
       end
