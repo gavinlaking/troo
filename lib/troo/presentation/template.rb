@@ -3,26 +3,25 @@ module Troo
     include DecoratorHelpers
 
     class << self
-      def parse(object, template_path)
-        new(object, template_path).parse
+      def parse(object, path)
+        new(object, path).parse
       end
     end
 
-    def initialize(object, template_path)
-      @object        = object
-      @template_path = template_path
+    def initialize(object, path)
+      @object, @path = object, path
     end
 
     def parse
-      ERB.new(load_template, nil, '-').result(binding)
+      ERB.new(load, nil, '-').result(binding)
     end
 
     private
 
-    attr_reader :object, :template_path
+    attr_reader :object, :path
 
-    def load_template
-      File.read(File.dirname(__FILE__) + template_path)
+    def load
+      File.read(File.dirname(__FILE__) + path)
     end
   end
 end
