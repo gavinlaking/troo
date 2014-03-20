@@ -99,10 +99,22 @@ module Troo
     end
 
     describe '.count' do
-      subject { described_class.count }
+      let(:criteria) { {} }
 
-      it 'returns the number of this model persisted' do
-        subject.must_equal(2)
+      subject { described_class.count(criteria) }
+
+      context 'when no criteria is specified' do
+        it 'returns the number of this model persisted' do
+          subject.must_equal(2)
+        end
+      end
+
+      context 'when criteria is specified' do
+        let(:criteria) { { name: 'My Dumber Model' } }
+
+        it 'returns the number of this model persisted' do
+          subject.must_equal(1)
+        end
       end
     end
 
