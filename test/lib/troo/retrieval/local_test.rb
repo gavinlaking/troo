@@ -12,6 +12,7 @@ module Troo
       let(:local_resource)   {}
       let(:remote_resource)  { [] }
       let(:default_resource) {}
+      let(:count)            { 2 }
 
       before do
         Troo::Board.stubs(:default).returns(default_board)
@@ -21,6 +22,7 @@ module Troo
         klass.stubs(:[]).returns(local_resource)
         klass.stubs(:by_external_id).returns(local_resource)
         Retrieval::Remote.stubs(:fetch).returns(remote_resource)
+        klass.stubs(:count).returns(count)
       end
 
       describe '.all' do
@@ -102,7 +104,17 @@ module Troo
               context 'and a default board exists' do
                 let(:default_board) { stub(external_id: 27) }
 
-                context 'and the resource exists' do
+                context 'and more than 1 with this short_id' do
+                  let(:local_resource) { stub }
+
+                  it 'use the default board to return the correct ' \
+                     'resource' do
+                    subject.must_equal(local_resource)
+                  end
+                end
+
+                context 'and 0 or 1 of this resource exists' do
+                  let(:count)          { 1 }
                   let(:local_resource) { stub }
 
                   it 'returns the resource' do

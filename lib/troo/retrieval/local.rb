@@ -81,7 +81,11 @@ module Troo
       end
 
       def special
-        normal.merge!(board_criteria)
+        if klass.count(normal) > 1
+          normal.merge!(board_criteria)
+        else
+          normal
+        end
       end
 
       def board_criteria

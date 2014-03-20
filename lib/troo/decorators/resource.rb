@@ -9,21 +9,38 @@ module Troo
 
       def title
         [
-          brackets(id),
-          Troo::Formatter.highlight(
-            Troo::Wordwrap.this(name, prune: true), options),
+          resource_id,
+          resource_title,
           default
         ].compact.join(' ') + "\n"
+      end
+
+      def resource_title
+        if klass.type == :card
+          Troo::Wordwrap.this(name, prune: true)
+        else
+          Troo::Formatter.highlight(
+            Troo::Wordwrap.this(name, prune: true), options)
+        end
+      end
+
+      def resource_id
+        if klass.type == :card
+          brackets(Troo::Formatter.highlight(
+            Troo::Wordwrap.this(id), options))
+        else
+          brackets(id)
+        end
+      end
+
+      def id
+        (klass.type == :card) ? klass.short_id : klass.id
       end
 
       def description
         return 'N/A' if klass.description.nil? ||
                         klass.description.empty?
         Troo::Formatter.wordwrap(klass.description)
-      end
-
-      def id
-        (klass.type == :card) ? klass.short_id : klass.id
       end
 
       def default
@@ -40,14 +57,6 @@ module Troo
 
       def list
         klass.list.decorator
-      end
-
-      def lists
-        klass.lists.map { |list| list.decorator }
-      end
-
-      def cards
-        klass.cards.map { |card| card.decorator }
       end
 
       def comments

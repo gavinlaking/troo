@@ -20,8 +20,9 @@ module Troo
         !!(default)
       end
 
-      def count
-        all.count
+      def count(criteria = {})
+        return all.count if criteria.empty?
+        find(criteria).size
       end
 
       def by_external_id(id)

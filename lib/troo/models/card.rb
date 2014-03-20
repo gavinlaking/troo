@@ -73,7 +73,7 @@ module Troo
     end
 
     def presenter(options = {})
-      Presenters::Card.new(decorator, options)
+      Presenters::Card.new(self, options)
     end
 
     def comment_presenter(options = {})

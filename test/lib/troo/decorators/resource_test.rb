@@ -87,38 +87,6 @@ module Troo
         end
       end
 
-      describe '#board' do
-        subject { described_instance.board }
-
-        it 'returns the board details' do
-          skip
-        end
-      end
-
-      describe '#list' do
-        subject { described_instance.list }
-
-        it 'returns the list details' do
-          skip
-        end
-      end
-
-      describe '#lists' do
-        subject { described_instance.lists }
-
-        it 'returns the lists details' do
-          skip
-        end
-      end
-
-      describe '#cards' do
-        subject { described_instance.cards }
-
-        it 'returns the cards details' do
-          skip
-        end
-      end
-
       describe '#as_view' do
         before { Template.stubs(:parse).returns('some output') }
 

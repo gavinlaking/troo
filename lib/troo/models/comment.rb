@@ -44,10 +44,6 @@ module Troo
       Decorators::Resource.new(self, options)
     end
 
-    # def presenter(options = {})
-    #   Presenters::Comment.new(decorator, options)
-    # end
-
     def default?
       false
     end

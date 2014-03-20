@@ -4,11 +4,11 @@ module Troo
   module Presenters
     describe List do
       let(:described_class) { List }
-      let(:list)            { Fabricate(:list).decorator }
+      let(:list)            { Fabricate(:list) }
       let(:options)         { {} }
 
-      let(:board)           { Fabricate(:board).decorator }
-      let(:card)            { Fabricate(:card).decorator }
+      let(:board)           { Fabricate(:board) }
+      let(:card)            { Fabricate(:card) }
       let(:cards)           { [] }
 
       before do

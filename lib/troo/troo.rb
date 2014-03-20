@@ -52,6 +52,7 @@ require_relative 'presenters/card'
 require_relative 'presenters/comment'
 require_relative 'presenters/list'
 require_relative 'presenters/member'
+require_relative 'presenters/resource'
 
 require_relative 'persistence/local'
 
