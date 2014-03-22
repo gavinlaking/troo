@@ -28,6 +28,7 @@ module Troo
     include Virtus.value_object
 
     values do
+      attribute :name
       attribute :api_url
       attribute :api_key
       attribute :api_token
