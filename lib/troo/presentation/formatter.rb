@@ -150,7 +150,7 @@ module Troo
     attr_reader :value, :options
 
     def output(paragraph)
-      paragraph.inject([]) do |output, line|
+      paragraph.reduce([]) do |output, line|
         output << line.join(' ')
       end.join("\n")
     end
