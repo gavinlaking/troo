@@ -12,11 +12,11 @@ module Troo
       let(:resource)        { stub('resource', external_id: '200') }
 
       before do
-        ['Board', 'Card', 'List'].each do |type|
+        %w{Board Card List}.each do |type|
           Object.const_get("Troo::#{type}").stubs(:retrieve)
             .returns(resource)
         end
-        ['Board', 'Card', 'List', 'Comment'].each do |type|
+        %w{Board Card List Comment}.each do |type|
           Object.const_get("Troo::Remote::Persistence::#{type}")
             .stubs(:with).returns(outcome)
         end
