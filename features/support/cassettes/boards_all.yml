@@ -25,7 +25,7 @@ http_interactions:
       Content-Type:
       - text/html;charset=utf-8
       Content-Length:
-      - '926'
+      - '3260'
       X-Xss-Protection:
       - 1; mode=block
       X-Content-Type-Options:
@@ -35,7 +35,7 @@ http_interactions:
       Server:
       - WEBrick/1.3.1 (Ruby/2.1.1/2014-02-24) OpenSSL/1.0.1f
       Date:
-      - Tue, 11 Mar 2014 21:34:36 GMT
+      - Mon, 24 Mar 2014 19:05:25 GMT
       Connection:
       - Keep-Alive
     body:
@@ -78,13 +78,112 @@ http_interactions:
             "green": "Ready to Pull",
             "blue": ""
           },
-          "cards": [],
-          "members": [],
-          "lists": []
+          "cards": [
+            {
+              "id": "20020",
+              "checkItemStates": [],
+              "closed": true,
+              "dateLastActivity": "2013-10-27T22:10:19.584Z",
+              "desc": "",
+              "descData": null,
+              "idBoard": "20010",
+              "idList": "20040",
+              "idMembersVoted": [],
+              "idShort": 1,
+              "idAttachmentCover": null,
+              "manualCoverAttachment": false,
+              "name": "Command: config",
+              "pos": 327679,
+              "shortLink": "1G0cGaRV",
+              "badges": {
+                "votes": 0,
+                "viewingMemberVoted": false,
+                "subscribed": false,
+                "fogbugz": "",
+                "checkItems": 0,
+                "checkItemsChecked": 0,
+                "comments": 0,
+                "attachments": 0,
+                "description": false,
+                "due": null
+              },
+              "due": null,
+              "idChecklists": [],
+              "idMembers": [],
+              "labels": [],
+              "shortUrl": "<Trello URL>",
+              "subscribed": false,
+              "url": "<Trello URL>"
+            },
+            {
+              "id": "20021",
+              "checkItemStates": [],
+              "closed": false,
+              "dateLastActivity": "2014-02-07T19:39:15.075Z",
+              "desc": "A description to get us started.",
+              "descData": null,
+              "idBoard": "20010",
+              "idList": "20040",
+              "idMembersVoted": [],
+              "idShort": 27,
+              "idAttachmentCover": null,
+              "manualCoverAttachment": false,
+              "name": "My New Card",
+              "pos": 606207,
+              "shortLink": "OMnSslgP",
+              "badges": {
+                "votes": 0,
+                "viewingMemberVoted": false,
+                "subscribed": false,
+                "fogbugz": "",
+                "checkItems": 0,
+                "checkItemsChecked": 0,
+                "comments": 1,
+                "attachments": 0,
+                "description": true,
+                "due": null
+              },
+              "due": null,
+              "idChecklists": [],
+              "idMembers": [],
+              "labels": [],
+              "shortUrl": "<Trello URL>",
+              "subscribed": false,
+              "url": "<Trello URL>"
+            }
+          ],
+          "members": [
+            {
+              "id": "20050",
+              "avatarHash": "20001",
+              "initials": "GL",
+              "fullName": "Gavin Laking",
+              "username": "gavinlaking1",
+              "confirmed": true
+            }
+          ],
+          "lists": [
+            {
+              "id": "20040",
+              "name": "My New List",
+              "closed": true,
+              "idBoard": "20010",
+              "pos": 256,
+              "subscribed": false
+            },
+            {
+              "id": "20041",
+              "name": "My New List",
+              "closed": true,
+              "idBoard": "20010",
+              "pos": 512,
+              "subscribed": false
+            }
+          ]
         }
         ]
     http_version: 
-  recorded_at: Tue, 11 Mar 2014 21:34:36 GMT
+  recorded_at: Mon, 24 Mar 2014 19:05:25 GMT
 - request:
     method: get
     uri: https://api.trello.com/1/boards/20010
@@ -120,7 +219,7 @@ http_interactions:
       Server:
       - WEBrick/1.3.1 (Ruby/2.1.1/2014-02-24) OpenSSL/1.0.1f
       Date:
-      - Tue, 11 Mar 2014 21:34:36 GMT
+      - Mon, 24 Mar 2014 19:05:25 GMT
       Connection:
       - Keep-Alive
     body:
@@ -137,5 +236,51 @@ http_interactions:
         New List","closed":true,"idBoard":"20010","pos":256,"subscribed":false},{"id":"20041","name":"My
         New List","closed":true,"idBoard":"20010","pos":512,"subscribed":false}]}'
     http_version: 
-  recorded_at: Tue, 11 Mar 2014 21:34:36 GMT
+  recorded_at: Mon, 24 Mar 2014 19:05:25 GMT
+- request:
+    method: get
+    uri: https://api.trello.com/1/boards/20010/actions
+    body:
+      encoding: UTF-8
+      string: filter=commentCard
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - "<OAuth Credentials>"
+      Content-Length:
+      - '18'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: 'OK '
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '397'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server:
+      - WEBrick/1.3.1 (Ruby/2.1.1/2014-02-24) OpenSSL/1.0.1f
+      Date:
+      - Mon, 24 Mar 2014 19:05:25 GMT
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: '{"id":"20010","idMemberCreator":"20050","data":{"board":{"shortLink":"a3RnYKnD","name":"My
+        Test Board","id":"20010"},"card":{"shortLink":"UJBK7pil","idShort":8,"name":"My
+        Test Card","id":"20020"},"text":"My Test Comment"},"type":"commentCard","date":"2014-02-07T18:02:24.297Z","memberCreator":{"id":"20050","avatarHash":"20001","fullName":"Gavin
+        Laking","initials":"GL","username":"gavinlaking1"}}'
+    http_version: 
+  recorded_at: Mon, 24 Mar 2014 19:05:25 GMT
 recorded_with: VCR 2.8.0
