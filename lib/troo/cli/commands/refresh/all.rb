@@ -29,6 +29,8 @@ module Troo
       def resources
         @resources ||= external_ids.map do |id|
           Retrieval::Remote.fetch(Remote::Board, id, mode: :board)
+
+          Retrieval::Remote.fetch(Remote::Comment, id, mode: :board)
         end
       end
 

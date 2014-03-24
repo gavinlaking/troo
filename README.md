@@ -76,17 +76,19 @@ Or install it yourself as:
 
 You will need user authentication tokens to access your Trello account.
 
-1) Create your developer key at Trello:
+1) Sign in to Trello in the normal way.
+
+2) Create your developer key at Trello:
 
     https://trello.com/1/appKey/generate
 
-2) Go to
+3) Go to:
 
     https://trello.com/1/connect?key=your_key_here&name=troo&response_type=token&scope=read,write
 
-3) Add your authentication tokens to the configuration file `.trooconf` in your home directory. (This file will be created for you the first time you run `troo`)
+4) Add your authentication tokens to the configuration file `.trooconf` in your home directory. (This file will be created for you the first time you run `troo`)
 
-4) Have fun, and tweet me @gavinlaking if you like it.
+5) Have fun, and tweet me @gavinlaking if you like it.
 
 ## Todo
 

@@ -1,0 +1,38 @@
+{
+  "id": "20011",
+  "name": "Troo Board",
+  "desc": "",
+  "descData": null,
+  "closed": false,
+  "idOrganization": null,
+  "pinned": true,
+  "url": "https://trello.com/b/cGD87Ml3/troo-board",
+  "shortUrl": "https://trello.com/b/cGD87Ml3",
+  "prefs": {
+    "permissionLevel": "private",
+    "voting": "disabled",
+    "comments": "members",
+    "invitations": "members",
+    "selfJoin": false,
+    "cardCovers": true,
+    "cardAging": "regular",
+    "background": "blue",
+    "backgroundColor": "#23719F",
+    "backgroundImage": null,
+    "backgroundImageScaled": null,
+    "backgroundTile": false,
+    "backgroundBrightness": "unknown",
+    "canBePublic": true,
+    "canBeOrg": true,
+    "canBePrivate": true,
+    "canInvite": true
+  },
+  "labelNames": {
+    "red": "",
+    "orange": "",
+    "yellow": "",
+    "green": "",
+    "blue": "",
+    "purple": ""
+  }
+}
