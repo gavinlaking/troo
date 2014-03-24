@@ -25,5 +25,15 @@ en:
       boards: 'Show all the boards with lists.'
       board: 'Show lists and cards for board <id> (uses default board if <id> not provided).'
       list: 'Show all cards for list <id> (uses default list if <id> not provided).'
-      card: 'Show a card <id> including last 3 comments' (uses default card if <id> not provided).'
+      card: 'Show a card <id> including last 3 comments (uses default card if <id> not provided).'
       comments: 'Show all comments for card <id> (uses default card if <id> not provided).'
+  success:
+    default: "%{name} set as default."
+    many_refresh: "Multiple %{resource}s refreshed."
+    refresh_all: 'All local data refreshed.'
+    refresh: "'%{name}' refreshed."
+  failure:
+    no_default: "Specify an <id> or use 'troo default %{resource} <id>' to set a default #{type} first."
+    not_found: "%{resource} cannot be found."
+    not_moved: 'Card could not be moved.'
+    refresh_all: 'Cannot refresh all local data.'
