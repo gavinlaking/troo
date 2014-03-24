@@ -82,7 +82,7 @@ module Troo
       private
 
       def source
-        File.dirname(__FILE__) + '/../.trooconf.example'
+        File.dirname(__FILE__) + '/../config/trooconf.yml'
       end
 
       def destination

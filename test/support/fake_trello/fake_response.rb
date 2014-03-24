@@ -49,6 +49,7 @@ class FakeResponse
   end
 
   def reality
-    resource + '_' + id + '.json'
+    return [resource, '_', id, '.json'].join if id
+    [resource, '.json'].join
   end
 end

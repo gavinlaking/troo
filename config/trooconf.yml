@@ -1,5 +1,6 @@
 default:
-  api_url: http://www.example.com
+  name: My Example Configuration
+  api_url: https://api.trello.com/1
   api_key: some_key
   api_token: some_secret
   api_oauth_token: some_oauth_token
@@ -8,7 +9,8 @@ default:
   allow_remote: true
   logs: true
 test:
-  api_url: http://www.example.com
+  name: My Example Test Configuration
+  api_url: https://api.trello.com/1
   api_key: some_key
   api_token: some_secret
   api_oauth_token: some_oauth_token
