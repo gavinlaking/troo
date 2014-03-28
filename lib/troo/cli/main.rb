@@ -1,19 +1,6 @@
 module Troo
   module CLI
     class Main < ThorFixes
-      desc 'init',
-           'Prepare to use Troo.'
-      def init
-        if File.exist?(destination)
-          say 'A configuration file already exists in your home ' \
-              'directory.'
-        else
-          say 'A configuration file does not exist in your home ' \
-              'directory, creating one...'
-          FileUtils.cp(source, destination)
-        end
-      end
-
       desc 'status',
            'Get troo status.'
       def status
@@ -80,14 +67,6 @@ module Troo
       end
 
       private
-
-      def source
-        File.dirname(__FILE__) + '/../config/trooconf.yml'
-      end
-
-      def destination
-        Dir.home + '/.trooconf'
-      end
 
       def heading(text = '')
         [Esc.yellow, Esc.underline, text, Esc.reset].join

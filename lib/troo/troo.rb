@@ -21,6 +21,7 @@ require 'yajl'
 require 'yaml'
 
 require_relative 'configuration'
+require_relative 'database'
 require_relative 'debug'
 
 require_relative 'api/endpoints'
