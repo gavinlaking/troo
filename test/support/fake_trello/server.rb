@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'sinatra/base'
 require 'webrick'
 require 'webrick/https'

@@ -86,7 +86,7 @@ You will need user authentication tokens to access your Trello account.
 
     https://trello.com/1/connect?key=your_key_here&name=troo&response_type=token&scope=read,write
 
-4) Add your authentication tokens to the configuration file `.trooconf` in your home directory. (This file will be created for you the first time you run `troo`)
+4) Add your authentication tokens to the configuration file `.trooconf` in your home directory. (This file will be created for you the first time you run `troo init`)
 
 5) Have fun, and tweet me @gavinlaking if you like it.
 

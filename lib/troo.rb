@@ -4,13 +4,13 @@ require_relative 'troo/troo'
 require_relative 'troo/version'
 
 module Troo
-  InvalidAccessToken = Class.new(StandardError)
-  EndpointNotFound   = Class.new(StandardError)
+  ConfigurationNotFound = Class.new(StandardError)
+  InvalidAccessToken    = Class.new(StandardError)
+  EndpointNotFound      = Class.new(StandardError)
 
   def self.configuration(file = Dir.home + '/.trooconf', env = :default)
     @configuration ||= Troo::Configuration.load(file, env)
   end
-  configuration
 
   def self.endpoints(version = :version_1)
     @endpoints ||= Troo::API::Endpoints
@@ -29,7 +29,7 @@ module Troo
 
   # RestClient.log = File.dirname(__FILE__) + '/../logs/restclient.log'
 
-  Ohm.connect(db: Troo.configuration.database)
+  Database.connect(configuration)
 
   class Launcher
     def initialize(argv, stdin = STDIN,
@@ -47,6 +47,9 @@ module Troo
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
       pad { Troo::CLI::Main.start(@argv) }
       @kernel.exit(0)
+    rescue Redis::CannotConnectError
+      pad { puts 'Cannot connect to Redis database.' }
+      @kernel.exit(1)
     ensure
       $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
     end

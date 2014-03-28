@@ -1,0 +1,16 @@
+Troo: CLI interface for Trello.
+
+You will need user authentication tokens to access your Trello
+account.
+
+- Sign in to Trello, and then create your developer key by visiting:
+  https://trello.com/1/appKey/generate
+
+- Go to:
+  https://trello.com/1/connect?key=your_key_here&name=troo&response_type=token&scope=read,write
+
+- Add your authentication tokens to the configuration file `.trooconf`
+  in your home directory. (This file has just been created for you.)
+
+- Have fun!
+
