@@ -5,31 +5,6 @@ module Troo
     describe Main do
       let(:described_class) { Main }
 
-      describe '#init' do
-        let(:exists) { false }
-
-        before do
-          File.stubs(:exist?).returns(exists)
-          FileUtils.stubs(:cp)
-        end
-
-        subject { capture_io { described_class.new.init }.join }
-
-        context 'when a configuration file exists' do
-          let(:exists) { true }
-
-          it 'returns the output of the command' do
-            subject.must_match(/already exists/)
-          end
-        end
-
-        context 'when a configuration file does not exist' do
-          it 'returns the output of the command' do
-            subject.must_match(/does not exist/)
-          end
-        end
-      end
-
       describe '#status' do
         before  { Commands::Status.stubs(:dispatch) }
 

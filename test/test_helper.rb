@@ -20,7 +20,9 @@ require_relative './support/vcr_setup.rb'
 require_relative '../lib/troo.rb'
 require_relative './support/fabrication.rb'
 
-Troo::Database.connect(Troo::Configuration.load('config/trooconf.yml'))
+Troo::Database
+  .connect(Troo::Configuration
+    .load('config/trooconf.yml', :test))
 
 require 'mocha/setup'
 
