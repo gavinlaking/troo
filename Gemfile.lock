@@ -144,7 +144,7 @@ GEM
     tilt (1.4.1)
     timers (1.1.0)
     tins (1.0.0)
-    vcr (2.8.0)
+    vcr (2.9.0)
     virtus (1.0.1)
       axiom-types (~> 0.0.5)
       coercible (~> 1.0)
