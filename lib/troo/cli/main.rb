@@ -55,8 +55,8 @@ module Troo
            'Set board, list or card to be default.'
       subcommand :default, CLI::Default
 
-      desc 'refresh [board|list|card] <id>',
-           'Refresh board, list or card with <id>.'
+      desc 'refresh [all|board|list|card] (<id>)',
+           'Refresh all local data or board, list or card with <id>.'
       subcommand :refresh, CLI::Refresh
 
       desc 'move <card_id> <list_id> (<board_id>)',
