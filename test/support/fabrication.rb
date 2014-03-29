@@ -1,5 +1,5 @@
 Fabricator(:board, from: Troo::Board) do
-  external_id '20010'
+  external_id       '20010'
   name              'My Test Board'
   description       'A very brief description...'
   default           false
