@@ -36,11 +36,12 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock"
 
   spec.add_dependency "addressable"
+  spec.add_dependency "curses",         '1.0.0'
   spec.add_dependency "dispel"
   spec.add_dependency "json"
   spec.add_dependency "oauth"
   spec.add_dependency "ohm",            '1.3.2'
-  spec.add_dependency "ohm-contrib"
+  spec.add_dependency "ohm-contrib",    '1.2'
   spec.add_dependency "pry"
   spec.add_dependency "pry-nav"
   spec.add_dependency "rest-client"
