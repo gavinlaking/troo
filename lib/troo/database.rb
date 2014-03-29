@@ -7,8 +7,7 @@ module Troo
     end
 
     def initialize(configuration, options = {})
-      @configuration = configuration
-      @options = options
+      @configuration, @options = configuration, options
     end
 
     def connect
