@@ -26,7 +26,7 @@ module Troo
       attr_reader :card
 
       def output
-        @output ||= Troo::Output.new
+        @output ||= Troo::Compositor.new
       end
 
       def all_comments

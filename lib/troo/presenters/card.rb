@@ -22,7 +22,7 @@ module Troo
       end
 
       def output
-        @output ||= Troo::Output.new
+        @output ||= Troo::Compositor.new
       end
     end
   end

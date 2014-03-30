@@ -58,7 +58,7 @@ module Troo
 
       def defaults
         {
-          output: Troo::Output.new
+          output: Troo::Compositor.new
         }
       end
     end
