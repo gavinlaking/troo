@@ -1,38 +1,22 @@
 module Troo
   class Output
-    attr_accessor :count
-
-    def initialize
-      @count = 0
-    end
-
-    def render(lines)
-      Array(lines).each { |line| print indentation + line }
-      nil
-    end
-
-    def spacer(&block)
-      if block_given?
-        print "\n"
-        yield
-        print "\n"
-      else
-        print "\n"
+    class << self
+      def render(output)
+        new(output).render
       end
     end
 
-    def indent(&block)
-      @count += 1
+    def initialize(output)
+      @output = output
+    end
 
-      yield
-    ensure
-      @count -= 1
+    def render
+      Array(output).each { |line| print line }
+      nil
     end
 
     private
 
-    def indentation
-      ' ' * @count * 4
-    end
+    attr_reader :output
   end
 end
