@@ -125,11 +125,14 @@ I've put a simple fake server together so that I'm not hitting the Trello API co
     sudo ipfw del 100
     sudo ipfw del 101
 
-## Contributing
+## Contribute
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+1. Fork it, clone it
+2. `bundle`
+3. `rake`
+4. Create your feature branch (`git checkout -b my-new-feature`)
+5. Write some tests, write some code, have some fun
+6. Commit your changes (`git commit -am 'Add some feature'`)
+7. Push to the branch (`git push origin my-new-feature`)
+8. Create new Pull Request
 
