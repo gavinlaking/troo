@@ -3,15 +3,24 @@ module Troo
     module Move
       class Card
         class << self
+          # @param  []
+          # @param  []
+          # @param  []
+          # @return []
           def dispatch(card_id, list_id, board_id = nil)
             new(card_id, list_id, board_id).move
           end
         end
 
+        # @param  []
+        # @param  []
+        # @param  []
+        # @return []
         def initialize(card_id, list_id, board_id = nil)
           @card_id, @list_id, @board_id = card_id, list_id, board_id
         end
 
+        # @return []
         def move
           return 'Card cannot be found.'  if card_not_found?
           return 'List cannot be found.'  if list_not_found?

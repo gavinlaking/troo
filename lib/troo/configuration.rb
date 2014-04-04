@@ -15,6 +15,9 @@ module Troo
     end
 
     class << self
+      # @param  []
+      # @param  []
+      # @return []
       def load(file, env)
         new(YAML.load_file(file)[env.to_s])
       rescue Errno::ENOENT
@@ -24,6 +27,7 @@ module Troo
       end
     end
 
+    # @return []
     def view
       attributes.map do |label, value|
         Preference.view(label: label, value: value)

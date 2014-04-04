@@ -17,27 +17,35 @@ module Troo
     index :short_id
 
     class << self
+      # @return []
       def remote
         Remote::Member
       end
 
+      # @return []
       def type
         :member
       end
     end
 
+    # @param  []
+    # @return []
     def decorator(options = {})
       Decorators::Member.new(self, options)
     end
 
+    # @param  []
+    # @return []
     def presenter(options = {})
       Presenters::Member.new(decorator, options)
     end
 
+    # @return []
     def default?
       false
     end
 
+    # @return []
     def type
       self.class.type
     end

@@ -3,10 +3,14 @@ module Troo
     class Comment
       include DecoratorHelpers
 
+      # @param  []
+      # @param  []
+      # @return []
       def initialize(card, options = {})
         @card, @options = card, options
       end
 
+      # @return []
       def show
         title
 

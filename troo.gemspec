@@ -34,6 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "sinatra"
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
+  spec.add_development_dependency "yard"
 
   spec.add_dependency "addressable"
   spec.add_dependency "curses",         '1.0.0'

@@ -9,11 +9,14 @@ module Troo
       end
 
       class << self
+        # @param  []
+        # @return []
         def build(response)
           new(response).build
         end
       end
 
+      # @return []
       def build
         ok? ? Response.new(attributes) : ErrorResponse.new(attributes)
       end

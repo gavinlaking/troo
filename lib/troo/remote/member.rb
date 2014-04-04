@@ -34,10 +34,12 @@ module Troo
       attribute :premiumFeatures
 
       class << self
+        # @return []
         def remote_options
           { mode: :member }
         end
 
+        # @return []
         def by_board_id
           {
             endpoint: :members_by_board_id,
@@ -45,19 +47,23 @@ module Troo
           }
         end
 
+        # @return []
         def by_member_id
           { endpoint: :member_by_id }
         end
       end
 
+      # @return []
       def associations
         []
       end
 
+      # @return []
       def local_model
         Troo::Member
       end
 
+      # @return []
       def adapted
         {
           external_id: id,

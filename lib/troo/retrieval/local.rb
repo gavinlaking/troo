@@ -4,31 +4,47 @@ module Troo
       attr_reader :id
 
       class << self
+        # @param  []
+        # @return []
         def all(klass)
           new(klass).all
         end
 
+        # @param  []
+        # @param  []
+        # @return []
         def default(klass, options = {})
           new(klass, nil, options).default
         end
 
+        # @param  []
+        # @param  []
+        # @param  []
+        # @return []
         def retrieve(klass, id = nil, options = {})
           new(klass, id, options).retrieve
         end
       end
 
+      # @param  []
+      # @param  []
+      # @param  []
+      # @return []
       def initialize(klass, id = nil, options = {})
         @klass, @id, @options = klass, id, options
       end
 
+      # @return []
       def all
         klass.all
       end
 
+      # @return []
       def default
         klass.default
       end
 
+      # @return []
       def retrieve
         return default unless id
         by_short_id || by_id || by_external_id || optional_remote

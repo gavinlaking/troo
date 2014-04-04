@@ -2,15 +2,20 @@ module Troo
   module Commands
     class Status
       class << self
+        # @param  []
+        # @return []
         def dispatch(klass)
           new(klass).report_status
         end
       end
 
+      # @param  []
+      # @return []
       def initialize(klass)
         @klass = klass
       end
 
+      # @return []
       def report_status
         return success if resource
         error

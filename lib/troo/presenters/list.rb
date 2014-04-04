@@ -3,10 +3,14 @@ module Troo
     class List
       include DecoratorHelpers
 
+      # @param  []
+      # @param  []
+      # @return []
       def initialize(list, options = {})
         @list, @options = list, options
       end
 
+      # @return []
       def show
         output.render Presenters::Resource.list_view(list.board)
 
@@ -17,6 +21,7 @@ module Troo
         end
       end
 
+      # @return []
       def render_list
         output.render Presenters::Resource.list_view(list)
 
@@ -31,6 +36,7 @@ module Troo
         end
       end
 
+      # @return []
       def render_cards
         output.spacer do
           list.cards.map do |card|

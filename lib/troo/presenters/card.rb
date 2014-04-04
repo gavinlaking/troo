@@ -3,10 +3,14 @@ module Troo
     class Card
       include DecoratorHelpers
 
+      # @param  []
+      # @param  []
+      # @return []
       def initialize(card, options = {})
         @card, @options = card, options
       end
 
+      # @return []
       def show
         output.render Template.parse(card, '/../views/card.erb')
       end

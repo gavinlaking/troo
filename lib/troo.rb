@@ -8,6 +8,9 @@ module Troo
   InvalidAccessToken    = Class.new(StandardError)
   EndpointNotFound      = Class.new(StandardError)
 
+  # @param  []
+  # @param  []
+  # @return []
   def self.configuration(file = Dir.home + '/.trooconf', env = :default)
     unless File.exist?(file)
       warn "\nConfiguration cannot be found, please run 'troo " \
@@ -18,11 +21,14 @@ module Troo
     @configuration ||= Troo::Configuration.load(file, env)
   end
 
+  # @param  []
+  # @return []
   def self.endpoints(version = :version_1)
     @endpoints ||= Troo::API::Endpoints
       .load(File.dirname(__FILE__) + '/../config/trello_api.yml', version)
   end
 
+  # @return []
   def self.logger
     @logger ||= Logger
       .new(File.dirname(__FILE__) + '/../logs/troo.log').tap do |log|
@@ -37,6 +43,12 @@ module Troo
   Database.connect(configuration)
 
   class Launcher
+    # @param  []
+    # @param  []
+    # @param  []
+    # @param  []
+    # @param  []
+    # @return []
     def initialize(argv, stdin = STDIN,
                          stdout = STDOUT,
                          stderr = STDERR,
@@ -48,6 +60,7 @@ module Troo
       @kernel = kernel
     end
 
+    # @return []
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
       pad { Troo::CLI::Main.start(@argv) }

@@ -11,10 +11,12 @@ module Troo
       attribute :pos,     Integer
 
       class << self
+        # @return []
         def remote_options
           { mode: :list }
         end
 
+        # @return []
         def by_board_id
           {
             endpoint: :lists_by_board_id,
@@ -22,19 +24,23 @@ module Troo
           }
         end
 
+        # @return []
         def by_list_id
           { endpoint: :list_by_id }
         end
       end
 
+      # @return []
       def associations
         []
       end
 
+      # @return []
       def local_model
         Troo::List
       end
 
+      # @return []
       def adapted
         {
           external_board_id: idBoard,

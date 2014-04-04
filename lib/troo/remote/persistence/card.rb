@@ -3,17 +3,26 @@ module Troo
     module Persistence
       class Card
         class << self
+          # @param  []
+          # @param  []
+          # @param  []
+          # @return []
           def with(external_list_id, name = nil, description = nil)
             new(external_list_id, name, description).perform
           end
         end
 
+        # @param  []
+        # @param  []
+        # @param  []
+        # @return []
         def initialize(external_list_id, name = nil, description = nil)
           @external_list_id = external_list_id
           @name             = name
           @description      = description
         end
 
+        # @return []
         def perform
           create_local
         end

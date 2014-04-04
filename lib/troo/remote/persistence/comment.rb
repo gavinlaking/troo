@@ -3,16 +3,23 @@ module Troo
     module Persistence
       class Comment
         class << self
+          # @param  []
+          # @param  []
+          # @return []
           def with(external_card_id, comment)
             new(external_card_id, comment).perform
           end
         end
 
+        # @param  []
+        # @param  []
+        # @return []
         def initialize(external_card_id, comment)
           @external_card_id = external_card_id
           @comment          = comment
         end
 
+        # @return []
         def perform
           create_local
         end

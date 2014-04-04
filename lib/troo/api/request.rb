@@ -2,15 +2,24 @@ module Troo
   module API
     class Request
       class << self
+        # @param  []
+        # @param  []
+        # @param  []
+        # @return []
         def make(verb, uri, query = {})
           new(verb, uri, query).make
         end
       end
 
+      # @param  []
+      # @param  []
+      # @param  []
+      # @return []
       def initialize(verb, uri, query = {})
         @verb, @uri, @query = verb, uri, query
       end
 
+      # @return []
       def make
         @request ||= request
       rescue RestClient::Exception => e

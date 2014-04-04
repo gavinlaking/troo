@@ -1,10 +1,12 @@
 module Troo
   module Commands
     class RefreshAll
+      # @return []
       def self.dispatch
         new.refresh_all
       end
 
+      # @return []
       def refresh_all
         return success if refreshed?
         failure

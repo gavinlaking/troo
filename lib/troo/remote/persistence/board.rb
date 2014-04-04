@@ -3,16 +3,23 @@ module Troo
     module Persistence
       class Board
         class << self
+          # @param  []
+          # @param  []
+          # @return []
           def with(name, description = nil)
             new(name, description).perform
           end
         end
 
+        # @param  []
+        # @param  []
+        # @return []
         def initialize(name, description = nil)
           @name        = name
           @description = description
         end
 
+        # @return []
         def perform
           create_local
         end

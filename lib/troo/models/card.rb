@@ -26,15 +26,18 @@ module Troo
     alias_method :description, :desc
 
     class << self
+      # @return []
       def remote
         Remote::Card
       end
 
+      # @return []
       def type
         :card
       end
     end
 
+    # @return []
     def external_member_ids
       if @attributes[:external_member_ids].nil?
         []
@@ -45,22 +48,27 @@ module Troo
       end
     end
 
+    # @return []
     def board
       @board ||= Troo::Board.retrieve(external_board_id)
     end
 
+    # @return []
     def list
       @list ||= Troo::List.retrieve(external_list_id)
     end
 
+    # @return []
     def comments
       Troo::Comment.find(external_card_id: external_id)
     end
 
+    # @return []
     def recent_comments
       comments.sort(by: :date, limit: [0, 3])
     end
 
+    # @return []
     def members
       return [] if external_member_ids.empty?
       @members ||= external_member_ids.map do |member_id|
@@ -68,18 +76,22 @@ module Troo
       end.compact
     end
 
+    # @return []
     def decorator(options = {})
       Decorators::Resource.new(self, options)
     end
 
+    # @return []
     def presenter(options = {})
       Presenters::Card.new(self, options)
     end
 
+    # @return []
     def comment_presenter(options = {})
       Presenters::Comment.new(self, options)
     end
 
+    # @return []
     def type
       self.class.type
     end

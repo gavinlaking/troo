@@ -4,17 +4,26 @@ module Troo
       attr_reader :external_id
 
       class << self
+        # @param  []
+        # @param  []
+        # @param  []
+        # @return []
         def fetch(klass, external_id, options = {})
           new(klass, external_id, options).fetch
         end
       end
 
+      # @param  []
+      # @param  []
+      # @param  []
+      # @return []
       def initialize(klass, external_id, options = {})
         @klass       = klass
         @external_id = external_id
         @options     = options
       end
 
+      # @return []
       def fetch
         return []        if none?
         return persist   if persist?

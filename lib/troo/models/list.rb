@@ -19,31 +19,38 @@ module Troo
     alias_method :default?,    :default
 
     class << self
+      # @return []
       def remote
         Remote::List
       end
 
+      # @return []
       def type
         :list
       end
     end
 
+    # @return []
     def board
       Troo::Board.retrieve(external_board_id)
     end
 
+    # @return []
     def cards
       Troo::Card.find(external_list_id: external_id)
     end
 
+    # @return []
     def decorator(options = {})
       Decorators::Resource.new(self, options)
     end
 
+    # @return []
     def presenter(options = {})
       Presenters::List.new(self, options)
     end
 
+    # @return []
     def type
       self.class.type
     end
