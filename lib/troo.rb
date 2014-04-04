@@ -11,7 +11,7 @@ module Troo
   def self.configuration(file = Dir.home + '/.trooconf', env = :default)
     unless File.exist?(file)
       warn "\nConfiguration cannot be found, please run 'troo " \
-           "init' first.\n"
+           "init' or './bin/troo init' first.\n"
       file = File.dirname(__FILE__) + '/../config/trooconf.yml'
     end
 
@@ -27,7 +27,7 @@ module Troo
     @logger ||= Logger
       .new(File.dirname(__FILE__) + '/../logs/troo.log').tap do |log|
       log.formatter = proc do |mode, time, prog, msg|
-        "#{time.iso8601} #{mode}:\n#{msg}\n\n"
+        "#{time.iso8601} #{mode}:\n#{msg}\n"
       end
     end
   end
