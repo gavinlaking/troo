@@ -24,6 +24,7 @@ require_relative 'preference'
 require_relative 'configuration'
 require_relative 'database'
 require_relative 'debug'
+require_relative 'options'
 
 require_relative 'api/endpoints'
 require_relative 'api/oauth_settings'
