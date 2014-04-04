@@ -9,6 +9,12 @@ module Troo
   EndpointNotFound      = Class.new(StandardError)
 
   def self.configuration(file = Dir.home + '/.trooconf', env = :default)
+    unless File.exist?(file)
+      warn "\nConfiguration cannot be found, please run 'troo " \
+           "init' first.\n"
+      file = File.dirname(__FILE__) + '/../config/trooconf.yml'
+    end
+
     @configuration ||= Troo::Configuration.load(file, env)
   end
 
@@ -16,7 +22,6 @@ module Troo
     @endpoints ||= Troo::API::Endpoints
       .load(File.dirname(__FILE__) + '/../config/trello_api.yml', version)
   end
-  endpoints
 
   def self.logger
     @logger ||= Logger
