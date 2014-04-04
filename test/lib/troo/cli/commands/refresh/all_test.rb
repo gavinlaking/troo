@@ -4,9 +4,9 @@ module Troo
   module Commands
     describe RefreshAll do
       let(:described_class) { RefreshAll }
-      let(:resource) do
+      let(:resource)        {
         [mock_trello_response('board_200.json', Troo::Remote::Board)]
-      end
+      }
 
       before { Retrieval::Remote.stubs(:fetch).returns(resource) }
 

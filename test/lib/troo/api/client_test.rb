@@ -4,7 +4,7 @@ module Troo
   module API
     describe Client do
       let(:described_class) { Client }
-      let(:parameters) do
+      let(:parameters)      {
         {
           verb:          :get,
           endpoint:      endpoint,
@@ -12,7 +12,7 @@ module Troo
           model:         Remote::Board,
           query:         {}
         }
-      end
+      }
       let(:endpoint) { :board_by_id }
       let(:response) { Response.new }
       let(:parsed_response) { '' }
@@ -28,9 +28,9 @@ module Troo
 
         context 'when all required parameters are provided' do
           context 'and the API request returns a collection' do
-            let(:parsed_response) do
+            let(:parsed_response) {
               [{ name: 'Board 1' }, { name: 'Board 2' }]
-            end
+            }
 
             it 'builds the remote model' do
               subject.size.must_equal(2)

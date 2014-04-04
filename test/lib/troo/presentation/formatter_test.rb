@@ -21,7 +21,7 @@ end
 module Troo
   describe Wordwrap do
     let(:described_class) { Wordwrap }
-    let(:value) do
+    let(:value)           {
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '    \
       "Curabitur aliquet turpis id dui condimentum elementum.\n"     \
       'Pellentesque blandit vulputate imperdiet. Quisque ut arcu '   \
@@ -35,11 +35,11 @@ module Troo
       "quis diam.\n\nDonec mollis, nisi sit amet congue sagittis, "  \
       'sapien magna rhoncus justo, vel molestie metus sapien eget '  \
       "libero.\n\n\n"
-    end
-    let(:options) { {} }
+    }
+    let(:options)         { {} }
 
     describe '#wordwrap' do
-      let(:formatted_value) do
+      let(:formatted_value) {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "  \
         "Curabitur\naliquet turpis id dui condimentum elementum.\n"  \
         "Pellentesque blandit vulputate imperdiet. Quisque ut arcu " \
@@ -53,7 +53,7 @@ module Troo
         "lectus placerat\ngravida sit amet quis diam.\n\nDonec "     \
         "mollis, nisi sit amet congue sagittis, sapien magna "       \
         "rhoncus\njusto, vel molestie metus sapien eget libero."
-      end
+      }
 
       subject { described_class.this(value, options) }
 
@@ -62,11 +62,11 @@ module Troo
       end
 
       context 'when the content should be pruned' do
-        let(:options) { { width: 70, prune: true } }
-        let(:formatted_value) do
+        let(:options)         { { width: 70, prune: true } }
+        let(:formatted_value) {
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' \
           " Curabitur a...\e[0m"
-        end
+        }
 
         it 'returns formatted text' do
           subject.must_equal(formatted_value)

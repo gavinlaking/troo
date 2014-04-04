@@ -4,9 +4,9 @@ module Troo
   module Remote
     describe Card do
       let(:described_class) { Card }
-      let(:resource) do
+      let(:resource)        {
         mock_trello_response('card.json', Troo::Remote::Card)
-      end
+      }
       let(:described_instance) { described_class.new(resource) }
 
       describe '.remote_options' do

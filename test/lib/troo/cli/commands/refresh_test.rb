@@ -7,9 +7,9 @@ module Troo
       let(:id)              {}
       let(:resource)        {}
       let(:retrieved)       {}
-      let(:klass) do
+      let(:klass)           {
         stub(type: :resource_type, remote: stub)
-      end
+      }
 
       before do
         API::Client.stubs(:perform)

@@ -4,9 +4,9 @@ module Troo
   module Remote
     describe Comment do
       let(:described_class) { Comment }
-      let(:resource) do
+      let(:resource)        {
         mock_trello_response('comment.json', Troo::Remote::Comment)
-      end
+      }
       let(:described_instance) { described_class.new(resource) }
 
       describe '.remote_options' do
