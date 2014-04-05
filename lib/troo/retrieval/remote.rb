@@ -6,7 +6,7 @@ module Troo
       class << self
         # @param  []
         # @param  []
-        # @param  []
+        # @param  [Hash]
         # @return []
         def fetch(klass, external_id, options = {})
           new(klass, external_id, options).fetch
@@ -15,7 +15,7 @@ module Troo
 
       # @param  []
       # @param  []
-      # @param  []
+      # @param  [Hash]
       # @return []
       def initialize(klass, external_id, options = {})
         @klass       = klass

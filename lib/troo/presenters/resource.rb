@@ -5,7 +5,7 @@ module Troo
 
       class << self
         # @param  []
-        # @param  []
+        # @param  [Hash]
         # @return []
         def list_view(klass, options = {})
           new(klass, options).list_view
@@ -13,7 +13,7 @@ module Troo
       end
 
       # @param  []
-      # @param  []
+      # @param  [Hash]
       # @return []
       def initialize(klass, options = {})
         @klass, @options = klass, options

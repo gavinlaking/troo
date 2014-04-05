@@ -20,12 +20,12 @@ module Troo
       attribute :members,       Array[Troo::Remote::Member]
 
       class << self
-        # @return []
+        # @return [Hash]
         def remote_options
           { mode: :board }
         end
 
-        # @return []
+        # @return [Hash]
         def all
           {
             endpoint: :boards_all,
@@ -33,7 +33,7 @@ module Troo
           }
         end
 
-        # @return []
+        # @return [Hash]
         def by_board_id
           {
             endpoint: :board_by_id,
@@ -46,7 +46,7 @@ module Troo
         end
       end
 
-      # @return []
+      # @return [Hash]
       def associations
         [:lists, :cards, :members]
       end
@@ -56,7 +56,7 @@ module Troo
         Troo::Board
       end
 
-      # @return []
+      # @return [Hash]
       def adapted
         {
           external_id: id,

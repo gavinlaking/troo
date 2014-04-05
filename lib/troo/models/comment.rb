@@ -24,7 +24,7 @@ module Troo
         Remote::Comment
       end
 
-      # @return []
+      # @return [Symbol]
       def type
         :comments
       end
@@ -45,17 +45,18 @@ module Troo
       Troo::Member.retrieve(external_member_id)
     end
 
+    # @param  [Hash]
     # @return []
     def decorator(options = {})
       Decorators::Resource.new(self, options)
     end
 
-    # @return []
+    # @return [FalseClass]
     def default?
       false
     end
 
-    # @return []
+    # @return [Symbol]
     def type
       self.class.type
     end

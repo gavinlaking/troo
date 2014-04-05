@@ -1,14 +1,14 @@
 module Troo
   module ModelHelpers
     module ClassMethods
-      # @param  []
+      # @param  [Hash]
       # @return []
       def first(criteria = {})
         return all.first if criteria.nil? || criteria.empty?
         find(criteria).first
       end
 
-      # @param  []
+      # @param  [Hash]
       # @return []
       def update(criteria = {})
         return false if criteria.nil? || criteria.empty?
@@ -21,12 +21,12 @@ module Troo
         first(default: true)
       end
 
-      # @return []
+      # @return [Boolean]
       def default?
         !!(default)
       end
 
-      # @param  []
+      # @param  [Hash]
       # @return []
       def count(criteria = {})
         return all.count if criteria.empty?
@@ -40,7 +40,7 @@ module Troo
       end
 
       # @param  []
-      # @param  []
+      # @param  [Hash]
       # @return []
       def retrieve(id = nil, options = {})
         Troo::Retrieval::Local.retrieve(self, id, options)

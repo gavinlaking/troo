@@ -2,7 +2,7 @@ module Troo
   class Database
     class << self
       # @param  []
-      # @param  []
+      # @param  [Hash]
       # @return []
       def connect(configuration, options = {})
         new(configuration, options).connect
@@ -10,7 +10,7 @@ module Troo
     end
 
     # @param  []
-    # @param  []
+    # @param  [Hash]
     # @return []
     def initialize(configuration, options = {})
       @configuration, @options = configuration, options

@@ -3,7 +3,7 @@ require 'pry-nav'
 require 'ruby-prof'
 
 module Troo
-  # @param  []
+  # @param  [String]
   # @param  []
   # @return []
   def self.debug(filename = 'profile.html', &block)

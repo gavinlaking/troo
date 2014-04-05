@@ -12,6 +12,8 @@ module Troo
       desc 'board (<id>)',
            'Show lists and cards for board <id>' \
            ' (uses default board if <id> not provided).'
+      # @param  [String]
+      # @return [String]
       def board(id = nil)
         say Troo::Commands::Show.dispatch(Troo::Board, id)
       end
@@ -19,6 +21,8 @@ module Troo
       desc 'list (<id>)',
            'Show all cards for list <id>' \
            ' (uses default list if <id> not provided).'
+      # @param  [String]
+      # @return [String]
       def list(id = nil)
         say Troo::Commands::Show.dispatch(Troo::List, id)
       end
@@ -26,6 +30,8 @@ module Troo
       desc 'card (<id>)',
            'Show a card <id> including last 3 comments' \
            ' (uses default card if <id> not provided).'
+      # @param  [String]
+      # @return [String]
       def card(id = nil)
         say Troo::Commands::Show.dispatch(Troo::Card, id)
       end
@@ -33,6 +39,8 @@ module Troo
       desc 'comments (<id>)',
            'Show all comments for card <id>' \
            ' (uses default card if <id> not provided).'
+      # @param  [String]
+      # @return [String]
       def comments(id = nil)
         say Troo::Commands::ShowComments.dispatch(id)
       end

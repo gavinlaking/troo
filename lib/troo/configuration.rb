@@ -16,7 +16,7 @@ module Troo
 
     class << self
       # @param  []
-      # @param  []
+      # @param  [Symbol]
       # @return []
       def load(file, env)
         new(YAML.load_file(file)[env.to_s])

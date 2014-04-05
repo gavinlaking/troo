@@ -10,7 +10,7 @@ module Troo
       attribute :model
 
       class << self
-        # @param  []
+        # @param  [Hash]
         # @return []
         def perform(parameters)
           new(parameters).perform

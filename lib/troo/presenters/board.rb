@@ -5,7 +5,7 @@ module Troo
 
       class << self
         # @param  []
-        # @param  []
+        # @param  [Hash]
         # @return []
         def all(boards, options = {})
           boards.map { |board| new(board, options).show }
@@ -14,7 +14,7 @@ module Troo
       end
 
       # @param  []
-      # @param  []
+      # @param  [Hash]
       # @return []
       def initialize(board, options = {})
         @board, @options = board, options

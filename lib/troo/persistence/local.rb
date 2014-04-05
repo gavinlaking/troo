@@ -2,7 +2,7 @@ module Troo
   module Persistence
     class Local
       class << self
-        # @param  []
+        # @param  [Array]
         # @return []
         def with_collection(resources = [])
           resources.map do |resource|

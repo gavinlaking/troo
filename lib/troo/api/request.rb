@@ -4,7 +4,7 @@ module Troo
       class << self
         # @param  []
         # @param  []
-        # @param  []
+        # @param  [Hash]
         # @return []
         def make(verb, uri, query = {})
           new(verb, uri, query).make
@@ -13,7 +13,7 @@ module Troo
 
       # @param  []
       # @param  []
-      # @param  []
+      # @param  [Hash]
       # @return []
       def initialize(verb, uri, query = {})
         @verb, @uri, @query = verb, uri, query

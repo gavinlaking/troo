@@ -9,7 +9,7 @@ module Troo
   EndpointNotFound      = Class.new(StandardError)
 
   # @param  []
-  # @param  []
+  # @param  [Symbol]
   # @return []
   def self.configuration(file = Dir.home + '/.trooconf', env = :default)
     unless File.exist?(file)
@@ -21,7 +21,7 @@ module Troo
     @configuration ||= Troo::Configuration.load(file, env)
   end
 
-  # @param  []
+  # @param  [Symbol]
   # @return []
   def self.endpoints(version = :version_1)
     @endpoints ||= Troo::API::Endpoints
@@ -43,7 +43,7 @@ module Troo
   Database.connect(configuration)
 
   class Launcher
-    # @param  []
+    # @param  [Array]
     # @param  []
     # @param  []
     # @param  []

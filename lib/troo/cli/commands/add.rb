@@ -6,7 +6,7 @@ module Troo
       class << self
         # @param  []
         # @param  []
-        # @param  []
+        # @param  [Hash]
         # @return []
         def dispatch(value, id = nil, options = {})
           new(value, id, options).add
@@ -15,7 +15,7 @@ module Troo
 
       # @param  []
       # @param  []
-      # @param  []
+      # @param  [Hash]
       # @return []
       def initialize(value, id = nil, options = {})
         @value, @id, @options = value, id, options

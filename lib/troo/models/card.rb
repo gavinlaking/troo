@@ -31,7 +31,7 @@ module Troo
         Remote::Card
       end
 
-      # @return []
+      # @return [Symbol]
       def type
         :card
       end
@@ -76,22 +76,25 @@ module Troo
       end.compact
     end
 
+    # @param  [Hash]
     # @return []
     def decorator(options = {})
       Decorators::Resource.new(self, options)
     end
 
+    # @param  [Hash]
     # @return []
     def presenter(options = {})
       Presenters::Card.new(self, options)
     end
 
+    # @param  [Hash]
     # @return []
     def comment_presenter(options = {})
       Presenters::Comment.new(self, options)
     end
 
-    # @return []
+    # @return [Symbol]
     def type
       self.class.type
     end

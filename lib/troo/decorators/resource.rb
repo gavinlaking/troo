@@ -4,13 +4,13 @@ module Troo
       include DecoratorHelpers
 
       # @param  []
-      # @param  []
+      # @param  [Hash]
       # @return []
       def initialize(klass, options = {})
         @klass, @options = klass, options
       end
 
-      # @return []
+      # @return [String]
       def title
         [
           resource_id,
@@ -29,7 +29,7 @@ module Troo
         end
       end
 
-      # @return []
+      # @return [String]
       def resource_id
         if klass.type == :card
           brackets(Troo::Formatter.highlight(
@@ -102,17 +102,17 @@ module Troo
         Template.parse(self, '/../views/' + type + '.erb')
       end
 
-      # @return []
+      # @return [String]
       def username
         ['@', klass.member.username].join
       end
 
-      # @return []
+      # @return [String]
       def text
         Troo::Formatter.wordwrap(klass.text)
       end
 
-      # @return []
+      # @return [String]
       def date
         Time.parse(klass.date).strftime('%a, %b %d at %H:%M')
       end

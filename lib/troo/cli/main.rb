@@ -20,6 +20,7 @@ module Troo
 
       desc 'config',
            'Show the current configuration.'
+      # @return [String]
       def config
         say heading('Current configuration:')
         say Troo.configuration.view
@@ -27,6 +28,7 @@ module Troo
 
       desc 'cleanup',
            'Removes all local data.'
+      # @return [String]
       def cleanup
         if yes?('This will remove all local data, are you sure?')
           Ohm.redis.flushdb
@@ -38,6 +40,7 @@ module Troo
 
       desc 'version',
            'Print the version.'
+      # @return [String]
       def version
         say "troo #{Troo::VERSION}"
       end
@@ -62,6 +65,10 @@ module Troo
       desc 'move <card_id> <list_id> (<board_id>)',
            'Move card with <card_id> to list with <list_id> ' \
            'optionally to another board with <board_id>.'
+      # @param  [String]
+      # @param  [String]
+      # @param  [String]
+      # @return [String]
       def move(card_id, list_id, board_id = nil)
         say Commands::Move::Card.dispatch(card_id, list_id, board_id)
       end

@@ -12,12 +12,12 @@ module Troo
       attribute :memberCreator,   Troo::Remote::Member
 
       class << self
-        # @return []
+        # @return [Hash]
         def remote_options
           { mode: :card }
         end
 
-        # @return []
+        # @return [Hash]
         def by_board_id
           {
             endpoint: :comments_by_board_id,
@@ -25,7 +25,7 @@ module Troo
           }
         end
 
-        # @return []
+        # @return [Hash]
         def by_card_id
           {
             endpoint: :comments_by_card_id,
@@ -54,7 +54,7 @@ module Troo
         data.text
       end
 
-      # @return []
+      # @return [Array]
       def associations
         [:memberCreator]
       end
@@ -64,7 +64,7 @@ module Troo
         Troo::Comment
       end
 
-      # @return []
+      # @return [Hash]
       def adapted
         {
           external_id:        id,

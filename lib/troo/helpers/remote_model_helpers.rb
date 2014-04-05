@@ -1,33 +1,33 @@
 module Troo
   module RemoteModelHelpers
     module ClassMethods
-      # @param  []
+      # @param  [Array]
       # @return []
       def with_collection(resources = [])
         resources.map { |resource| new(resource) }
       end
 
-      # @return []
+      # @return [Hash]
       def all
         {}
       end
 
-      # @return []
+      # @return [Hash]
       def by_board_id
         {}
       end
 
-      # @return []
+      # @return [Hash]
       def by_list_id
         {}
       end
 
-      # @return []
+      # @return [Hash]
       def by_card_id
         {}
       end
 
-      # @return []
+      # @return [Hash]
       def by_member_id
         {}
       end

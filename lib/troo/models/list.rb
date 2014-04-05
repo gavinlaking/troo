@@ -24,7 +24,7 @@ module Troo
         Remote::List
       end
 
-      # @return []
+      # @return [Symbol]
       def type
         :list
       end
@@ -40,17 +40,19 @@ module Troo
       Troo::Card.find(external_list_id: external_id)
     end
 
+    # @param  [Hash]
     # @return []
     def decorator(options = {})
       Decorators::Resource.new(self, options)
     end
 
+    # @param  [Hash]
     # @return []
     def presenter(options = {})
       Presenters::List.new(self, options)
     end
 
-    # @return []
+    # @return [Symbol]
     def type
       self.class.type
     end

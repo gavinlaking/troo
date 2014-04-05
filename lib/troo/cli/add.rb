@@ -6,6 +6,8 @@ module Troo
       desc 'board (<name>)',
            'Add a new board with <name>; prompts if <name> not ' \
            'provided.'
+      # @param  [String]
+      # @return [String]
       def board(name = nil)
         value = name.nil? ? prompt_for_name : name
         say Commands::Add.dispatch(value, nil, type: :board)
@@ -14,6 +16,9 @@ module Troo
       desc 'card <list_id> (<name>)',
            'Add a new card to the list with <list_id> with <name>; ' \
            'prompts if <name> not provided.'
+      # @param  [String]
+      # @param  [String]
+      # @return [String]
       def card(id, name = nil)
         value = name.nil? ? prompt_for_name : name
         say Commands::Add.dispatch(value, id, type: :card)
@@ -22,6 +27,9 @@ module Troo
       desc 'comment <card_id> (<comment>)',
            'Add a new comment to the card with <card_id> with ' \
            '<comment>; prompts if <comment> not provided.'
+      # @param  [String]
+      # @param  [String]
+      # @return [String]
       def comment(id, comment = nil)
         value = comment.nil? ? prompt_for_comment : comment
         say Commands::Add.dispatch(value, id, type: :comment)
@@ -30,6 +38,9 @@ module Troo
       desc 'list <board_id> (<name>)',
            'Add a new list to the board with <board_id> with ' \
            '<name>; prompts if <name> not provided.'
+      # @param  [String]
+      # @param  [String]
+      # @return [String]
       def list(id, name = nil)
         value = name.nil? ? prompt_for_name : name
         say Commands::Add.dispatch(value, id, type: :list)

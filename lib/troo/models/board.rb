@@ -22,7 +22,7 @@ module Troo
         Remote::Board
       end
 
-      # @return []
+      # @return [Symbol]
       def type
         :board
       end
@@ -38,19 +38,19 @@ module Troo
       Troo::Card.find(external_board_id: external_id)
     end
 
-    # @param  []
+    # @param  [Hash]
     # @return []
     def decorator(options = {})
       Decorators::Resource.new(self, options)
     end
 
-    # @param  []
+    # @param  [Hash]
     # @return []
     def presenter(options = {})
       Presenters::Board.new(self, options)
     end
 
-    # @return []
+    # @return [Symbol]
     def type
       self.class.type
     end

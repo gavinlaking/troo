@@ -4,7 +4,7 @@ module Troo
       include DecoratorHelpers
 
       # @param  []
-      # @param  []
+      # @param  [Hash]
       # @return []
       def initialize(card, options = {})
         @card, @options = card, options

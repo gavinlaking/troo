@@ -1,7 +1,7 @@
 module Troo
   module Behaviours
     class NullEntity
-      # @return []
+      # @return [FalseClass]
       def default?
         false
       end

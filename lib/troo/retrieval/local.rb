@@ -11,7 +11,7 @@ module Troo
         end
 
         # @param  []
-        # @param  []
+        # @param  [Hash]
         # @return []
         def default(klass, options = {})
           new(klass, nil, options).default
@@ -19,7 +19,7 @@ module Troo
 
         # @param  []
         # @param  []
-        # @param  []
+        # @param  [Hash]
         # @return []
         def retrieve(klass, id = nil, options = {})
           new(klass, id, options).retrieve
@@ -28,7 +28,7 @@ module Troo
 
       # @param  []
       # @param  []
-      # @param  []
+      # @param  [Hash]
       # @return []
       def initialize(klass, id = nil, options = {})
         @klass, @id, @options = klass, id, options

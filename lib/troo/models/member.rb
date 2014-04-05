@@ -22,30 +22,30 @@ module Troo
         Remote::Member
       end
 
-      # @return []
+      # @return [Symbol]
       def type
         :member
       end
     end
 
-    # @param  []
+    # @param  [Hash]
     # @return []
     def decorator(options = {})
       Decorators::Member.new(self, options)
     end
 
-    # @param  []
+    # @param  [Hash]
     # @return []
     def presenter(options = {})
       Presenters::Member.new(decorator, options)
     end
 
-    # @return []
+    # @return [FalseClass]
     def default?
       false
     end
 
-    # @return []
+    # @return [Symbol]
     def type
       self.class.type
     end

@@ -27,12 +27,12 @@ module Troo
       attribute :actions,               Array[Troo::Remote::Comment]
 
       class << self
-        # @return []
+        # @return [Hash]
         def remote_options
           { mode: :card }
         end
 
-        # @return []
+        # @return [Hash]
         def by_board_id
           {
             endpoint: :cards_by_board_id,
@@ -40,7 +40,7 @@ module Troo
           }
         end
 
-        # @return []
+        # @return [Hash]
         def by_list_id
           {
             endpoint: :cards_by_list_id,
@@ -48,7 +48,7 @@ module Troo
           }
         end
 
-        # @return []
+        # @return [Hash]
         def by_card_id
           {
             endpoint: :card_by_id,
@@ -57,7 +57,7 @@ module Troo
         end
       end
 
-      # @return []
+      # @return [Array]
       def associations
         [:actions]
       end
@@ -67,7 +67,7 @@ module Troo
         Troo::Card
       end
 
-      # @return []
+      # @return [Hash]
       def adapted
         {
           short_id:            idShort,

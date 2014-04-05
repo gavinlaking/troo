@@ -34,7 +34,7 @@ module Troo
       end
 
       # @param  []
-      # @param  []
+      # @param  [Hash]
       # @return []
       def interpolate!(endpoint, value = {})
         return send(endpoint) % value if respond_to?(endpoint)

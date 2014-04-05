@@ -8,14 +8,14 @@ module Troo
     end
 
     class << self
-      # @param  []
+      # @param  [Hash]
       # @return []
       def view(parameters)
         new(parameters).view
       end
     end
 
-    # @return []
+    # @return [String]
     def view
       [formatted_label, value].join(' ')
     end

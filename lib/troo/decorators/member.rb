@@ -3,7 +3,7 @@ module Troo
     class Member < Resource
       include DecoratorHelpers
 
-      # @return []
+      # @return [String]
       def username
         ['@', klass.username].join
       end
