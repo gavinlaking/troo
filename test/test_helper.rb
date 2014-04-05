@@ -22,7 +22,7 @@ require_relative './support/fabrication.rb'
 
 Troo::Database
   .connect(Troo::Configuration
-    .load('config/trooconf.yml', :test))
+    .load('config/trooconf.yml', 'test'))
 
 require 'mocha/setup'
 

@@ -26,10 +26,10 @@ module Troo
 
       class << self
         # @param  []
-        # @param  []
+        # @param  [String]
         # @return []
         def load(file, version)
-          new(YAML.load_file(file)[version.to_s])
+          new(YAML.load_file(file)[version])
         end
       end
 

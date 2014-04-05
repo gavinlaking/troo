@@ -9,75 +9,46 @@ module Troo
   EndpointNotFound      = Class.new(StandardError)
 
   # @param  []
-  # @param  [Symbol]
+  # @param  [String]
   # @return []
-  def self.configuration(file = Dir.home + '/.trooconf', env = :default)
+  def self.configuration(file = Dir.home + '/.trooconf', env = 'default')
     unless File.exist?(file)
       warn "\nConfiguration cannot be found, please run 'troo " \
            "init' or './bin/troo init' first.\n"
-      file = File.dirname(__FILE__) + '/../config/trooconf.yml'
+      file = configuration_path + '/trooconf.yml'
     end
 
     @configuration ||= Troo::Configuration.load(file, env)
   end
 
-  # @param  [Symbol]
+  # @param  [String]
   # @return []
-  def self.endpoints(version = :version_1)
+  def self.endpoints(version = 'version_1')
     @endpoints ||= Troo::API::Endpoints
-      .load(File.dirname(__FILE__) + '/../config/trello_api.yml', version)
+      .load(configuration_path + '/trello_api.yml', version)
   end
 
   # @return []
   def self.logger
     @logger ||= Logger
-      .new(File.dirname(__FILE__) + '/../logs/troo.log').tap do |log|
+      .new(log_path + '/troo.log').tap do |log|
       log.formatter = proc do |mode, time, prog, msg|
         "#{time.iso8601} #{mode}:\n#{msg}\n"
       end
     end
   end
 
-  # RestClient.log = File.dirname(__FILE__) + '/../logs/restclient.log'
+  # RestClient.log = log_dir + '/restclient.log'
 
   Database.connect(configuration)
 
-  class Launcher
-    # @param  [Array]
-    # @param  []
-    # @param  []
-    # @param  []
-    # @param  []
-    # @return []
-    def initialize(argv, stdin = STDIN,
-                         stdout = STDOUT,
-                         stderr = STDERR,
-                         kernel = Kernel)
-      @argv = argv
-      @stdin = stdin
-      @stdout = stdout
-      @stderr = stderr
-      @kernel = kernel
-    end
+  private
 
-    # @return []
-    def execute!
-      $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
-      pad { Troo::CLI::Main.start(@argv) }
-      @kernel.exit(0)
-    rescue Redis::CannotConnectError
-      pad { puts 'Cannot connect to Redis database.' }
-      @kernel.exit(1)
-    ensure
-      $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
-    end
+  def self.configuration_path
+    File.dirname(__FILE__) + '/../config'
+  end
 
-    private
-
-    def pad
-      puts
-      yield
-      puts
-    end
+  def self.log_path
+    File.dirname(__FILE__) + '/../logs'
   end
 end

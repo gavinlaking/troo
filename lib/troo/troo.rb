@@ -88,3 +88,5 @@ require_relative 'cli/default'
 require_relative 'cli/refresh'
 require_relative 'cli/show'
 require_relative 'cli/main'
+
+require_relative 'launcher'
