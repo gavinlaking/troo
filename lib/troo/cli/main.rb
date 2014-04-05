@@ -1,6 +1,7 @@
 module Troo
   module CLI
     class Main < ThorFixes
+      # @return [String]
       desc 'status',
            'Get troo status.'
       def status
@@ -18,17 +19,17 @@ module Troo
         end
       end
 
+      # @return [String]
       desc 'config',
            'Show the current configuration.'
-      # @return [String]
       def config
         say heading('Current configuration:')
         say Troo.configuration.view
       end
 
+      # @return [String]
       desc 'cleanup',
            'Removes all local data.'
-      # @return [String]
       def cleanup
         if yes?('This will remove all local data, are you sure?')
           Ohm.redis.flushdb
@@ -38,9 +39,9 @@ module Troo
         end
       end
 
+      # @return [String]
       desc 'version',
            'Print the version.'
-      # @return [String]
       def version
         say "troo #{Troo::VERSION}"
       end
@@ -62,13 +63,13 @@ module Troo
            'Refresh all local data or board, list or card with <id>.'
       subcommand :refresh, CLI::Refresh
 
-      desc 'move <card_id> <list_id> (<board_id>)',
-           'Move card with <card_id> to list with <list_id> ' \
-           'optionally to another board with <board_id>.'
       # @param  [String]
       # @param  [String]
       # @param  [String]
       # @return [String]
+      desc 'move <card_id> <list_id> (<board_id>)',
+           'Move card with <card_id> to list with <list_id> ' \
+           'optionally to another board with <board_id>.'
       def move(card_id, list_id, board_id = nil)
         say Commands::Move::Card.dispatch(card_id, list_id, board_id)
       end

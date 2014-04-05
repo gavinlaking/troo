@@ -3,44 +3,44 @@ module Troo
     class Add < ThorFixes
       package_name 'add'
 
+      # @param  [String]
+      # @return [String]
       desc 'board (<name>)',
            'Add a new board with <name>; prompts if <name> not ' \
            'provided.'
-      # @param  [String]
-      # @return [String]
       def board(name = nil)
         value = name.nil? ? prompt_for_name : name
         say Commands::Add.dispatch(value, nil, type: :board)
       end
 
-      desc 'card <list_id> (<name>)',
-           'Add a new card to the list with <list_id> with <name>; ' \
-           'prompts if <name> not provided.'
       # @param  [String]
       # @param  [String]
       # @return [String]
+      desc 'card <list_id> (<name>)',
+           'Add a new card to the list with <list_id> with <name>; ' \
+           'prompts if <name> not provided.'
       def card(id, name = nil)
         value = name.nil? ? prompt_for_name : name
         say Commands::Add.dispatch(value, id, type: :card)
       end
 
-      desc 'comment <card_id> (<comment>)',
-           'Add a new comment to the card with <card_id> with ' \
-           '<comment>; prompts if <comment> not provided.'
       # @param  [String]
       # @param  [String]
       # @return [String]
+      desc 'comment <card_id> (<comment>)',
+           'Add a new comment to the card with <card_id> with ' \
+           '<comment>; prompts if <comment> not provided.'
       def comment(id, comment = nil)
         value = comment.nil? ? prompt_for_comment : comment
         say Commands::Add.dispatch(value, id, type: :comment)
       end
 
-      desc 'list <board_id> (<name>)',
-           'Add a new list to the board with <board_id> with ' \
-           '<name>; prompts if <name> not provided.'
       # @param  [String]
       # @param  [String]
       # @return [String]
+      desc 'list <board_id> (<name>)',
+           'Add a new list to the board with <board_id> with ' \
+           '<name>; prompts if <name> not provided.'
       def list(id, name = nil)
         value = name.nil? ? prompt_for_name : name
         say Commands::Add.dispatch(value, id, type: :list)
