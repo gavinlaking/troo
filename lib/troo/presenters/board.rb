@@ -35,7 +35,10 @@ module Troo
         end
       end
 
-      # @return []
+      private
+
+      attr_reader :board
+
       def render_lists
         output.spacer
 
@@ -45,10 +48,6 @@ module Troo
 
         nil
       end
-
-      private
-
-      attr_reader :board
 
       def output
         @output ||= options.fetch(:output)
