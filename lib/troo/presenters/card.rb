@@ -10,9 +10,10 @@ module Troo
         @card, @options = card, options
       end
 
-      # @return []
+      # @return [String]
       def show
-        output.render Template.parse(card, '/../views/card.erb')
+        output.build(Template.parse(card, '/../views/card.erb'))
+        output.render
       end
 
       private

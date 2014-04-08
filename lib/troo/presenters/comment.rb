@@ -10,7 +10,7 @@ module Troo
         @card, @options = card, options
       end
 
-      # @return []
+      # @return [String]
       def show
         title
 
@@ -19,6 +19,8 @@ module Troo
         else
           no_comments
         end
+
+        output.render
       end
 
       private
@@ -31,13 +33,12 @@ module Troo
 
       def all_comments
         comments.map do |comment|
-          output.render comment.decorator.as_view
+          output.build(comment.decorator.as_view)
         end
-        nil
       end
 
       def no_comments
-        output.render error('No comments were found.')
+        output.build(error('No comments were found.'))
       end
 
       def comments?
@@ -49,7 +50,7 @@ module Troo
       end
 
       def title
-        output.render card.decorator.title + "\n"
+        output.build(card.decorator.title + "\n")
       end
     end
   end

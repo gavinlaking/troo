@@ -8,8 +8,9 @@ module Troo
         # @param  [Hash]
         # @return [NilClass]
         def all(boards, options = {})
-          boards.map { |board| new(board, options).show }
-          nil
+          output = Troo::Compositor.new
+          output.build(boards.map { |board| new(board, options).show })
+          output.render
         end
       end
 
@@ -20,19 +21,21 @@ module Troo
         @board, @options = board, options
       end
 
-      # @return []
+      # @return [String]
       def show
-        output.render Presenters::Resource.list_view(board)
+        output.build(Presenters::Resource.list_view(board))
 
         output.indent do
           if board.lists.empty?
             output.spacer do
-              output.render error('No lists were found.')
+              output.build(error('No lists were found.'))
             end
           else
             render_lists
           end
         end
+
+        output.render
       end
 
       private

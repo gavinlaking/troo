@@ -11,23 +11,25 @@ module Troo
 
       # @return [String]
       def show
-        output.render Presenters::Resource.list_view(list.board)
+        output.build(Presenters::Resource.list_view(list.board))
 
         output.spacer
 
         output.indent do
           render_list
         end
+
+        output.render
       end
 
       # @return [String]
       def render_list
-        output.render Presenters::Resource.list_view(list)
+        output.build(Presenters::Resource.list_view(list))
 
         output.indent do
           if list.cards.empty?
             output.spacer do
-              output.render error('No cards were found.')
+              output.build(error("No cards were found."))
             end
           else
             render_cards
@@ -35,18 +37,17 @@ module Troo
         end
       end
 
-      # @return [String]
-      def render_cards
-        output.spacer do
-          list.cards.map do |card|
-            output.render Presenters::Resource.list_view(card)
-          end
-        end
-      end
-
       private
 
       attr_reader :list
+
+      def render_cards
+        output.build("\n")
+        list.cards.map do |card|
+          output.build(Presenters::Resource.list_view(card))
+        end
+        output.build("\n")
+      end
 
       def output
         @output ||= options.fetch(:output)

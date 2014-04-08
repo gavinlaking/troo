@@ -1,23 +1,35 @@
 module Troo
   class Compositor
     attr_accessor :count
+    attr_accessor :output
 
     def initialize
       @count = 0
+      @output = []
     end
 
-    def render(lines)
-      Array(lines).each { |line| print indentation + line }
-      nil
+    # @param  [String, Array]
+    # @return [Array]
+    def build(content)
+      Array(content).inject(output) do |out, line|
+        out << (indentation + line)
+      end
+      output
+    end
+
+    def render
+      output.flatten.join
     end
 
     def spacer(&block)
       if block_given?
-        print "\n"
-        yield
-        print "\n"
+        output << "\n"
+
+        block.call
+
+        output << "\n"
       else
-        print "\n"
+        output << "\n"
       end
     end
 
