@@ -4,18 +4,18 @@ module Troo
       include DecoratorHelpers
 
       class << self
-        # @param  []
+        # @param  [Array]
         # @param  [Hash]
-        # @return []
+        # @return [NilClass]
         def all(boards, options = {})
           boards.map { |board| new(board, options).show }
           nil
         end
       end
 
-      # @param  []
+      # @param  [Troo::Board]
       # @param  [Hash]
-      # @return []
+      # @return [Troo::Presenters::Board]
       def initialize(board, options = {})
         @board, @options = board, options
       end

@@ -6,7 +6,7 @@ module Troo
       class << self
         # @param  []
         # @param  []
-        # @return []
+        # @return [String]
         def dispatch(klass, id = nil)
           new(klass, id).render
         end
@@ -14,12 +14,12 @@ module Troo
 
       # @param  []
       # @param  []
-      # @return []
+      # @return [Troo::Commands::Show]
       def initialize(klass, id = nil)
         @klass, @id = klass, id
       end
 
-      # @return []
+      # @return [String]
       def render
         if resource
           presenter

@@ -3,9 +3,9 @@ module Troo
     class Comment
       include DecoratorHelpers
 
-      # @param  []
+      # @param  [Troo::Card]
       # @param  [Hash]
-      # @return []
+      # @return [Troo::Presenters::Comment]
       def initialize(card, options = {})
         @card, @options = card, options
       end

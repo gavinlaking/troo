@@ -3,9 +3,9 @@ module Troo
     class Card
       include DecoratorHelpers
 
-      # @param  []
+      # @param  [Troo::Card]
       # @param  [Hash]
-      # @return []
+      # @return [Troo::Presenter::Card]
       def initialize(card, options = {})
         @card, @options = card, options
       end

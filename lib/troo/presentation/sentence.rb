@@ -1,22 +1,22 @@
 module Troo
   class Sentence
     class << self
-      # @param  []
-      # @param  []
-      # @return []
+      # @param  [Array]
+      # @param  [String]
+      # @return [String]
       def construct(elements, label = 'elements')
         new(elements, label).construct
       end
     end
 
-    # @param  []
-    # @param  []
-    # @return []
+    # @param  [Array]
+    # @param  [String]
+    # @return [Troo::Sentence]
     def initialize(elements, label)
       @elements, @label = elements, label
     end
 
-    # @return []
+    # @return [String]
     def construct
       if one?
         first
