@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "yard"
 
   spec.add_dependency "addressable"
-  spec.add_dependency "curses",         '1.0.0'
+  spec.add_dependency "curses",         '1.0.1'
   spec.add_dependency "dispel"
   spec.add_dependency "json"
   spec.add_dependency "oauth"
