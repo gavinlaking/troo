@@ -20,10 +20,6 @@ module Troo
       # @return []
       def load(file, env)
         new(YAML.load_file(file)[env])
-      rescue Errno::ENOENT
-        puts "\nConfiguration cannot be found, please run 'troo init'" \
-             " first.\n\n"
-        exit(1)
       end
     end
 

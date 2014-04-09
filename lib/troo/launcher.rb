@@ -22,6 +22,10 @@ module Troo
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
       pad { Troo::CLI::Main.start(@argv) }
       @kernel.exit(0)
+    rescue Errno::ENOENT
+      pad { puts "Configuration cannot be found, please run 'troo init'" \
+                 " first." }
+      @kernel.exit(1)
     rescue Redis::CannotConnectError
       pad { puts 'Cannot connect to Redis database.' }
       @kernel.exit(1)
