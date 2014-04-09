@@ -61,7 +61,7 @@ module Troo
         context 'when the resource is not the default' do
           let(:default) { false }
 
-          it { subject.must_equal nil }
+          it { subject.must_equal('') }
         end
       end
 
