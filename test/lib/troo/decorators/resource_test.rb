@@ -61,7 +61,9 @@ module Troo
         context 'when the resource is not the default' do
           let(:default) { false }
 
-          it { subject.must_equal('') }
+          it 'returns nil so that join compacts the value away' do
+            subject.must_equal nil
+          end
         end
       end
 

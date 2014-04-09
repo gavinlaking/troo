@@ -51,9 +51,9 @@ module Troo
         Troo::Formatter.wordwrap(klass.description)
       end
 
-      # @return [String]
+      # @return [String, NilClass]
       def default
-        klass.default? ? '*' : ''
+        klass.default? ? '*' : nil
       end
 
       # @return [String]
