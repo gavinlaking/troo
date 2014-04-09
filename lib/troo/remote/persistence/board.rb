@@ -3,16 +3,16 @@ module Troo
     module Persistence
       class Board
         class << self
-          # @param  []
-          # @param  []
+          # @param  [String]
+          # @param  [String, NilClass]
           # @return []
           def with(name, description = nil)
             new(name, description).perform
           end
         end
 
-        # @param  []
-        # @param  []
+        # @param  [String]
+        # @param  [String, NilClass]
         # @return []
         def initialize(name, description = nil)
           @name        = name

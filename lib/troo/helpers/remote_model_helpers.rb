@@ -2,7 +2,7 @@ module Troo
   module RemoteModelHelpers
     module ClassMethods
       # @param  [Array]
-      # @return []
+      # @return [Array]
       def with_collection(resources = [])
         resources.map { |resource| new(resource) }
       end
@@ -43,7 +43,7 @@ module Troo
         Persistence::Local.persist(self)
       end
 
-      # @return []
+      # @return [Ohm::Model]
       def local
         @local ||= local_model.by_external_id(id)
       end

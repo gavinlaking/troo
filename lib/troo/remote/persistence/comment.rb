@@ -3,7 +3,7 @@ module Troo
     module Persistence
       class Comment
         class << self
-          # @param  []
+          # @param  [String]
           # @param  []
           # @return []
           def with(external_card_id, comment)
@@ -11,7 +11,7 @@ module Troo
           end
         end
 
-        # @param  []
+        # @param  [String]
         # @param  []
         # @return []
         def initialize(external_card_id, comment)

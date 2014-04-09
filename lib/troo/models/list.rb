@@ -19,7 +19,7 @@ module Troo
     alias_method :default?,    :default
 
     class << self
-      # @return []
+      # @return [Remote::List]
       def remote
         Remote::List
       end
@@ -35,7 +35,7 @@ module Troo
       Troo::Board.retrieve(external_board_id)
     end
 
-    # @return []
+    # @return [Ohm::Set]
     def cards
       Troo::Card.find(external_list_id: external_id)
     end
@@ -47,7 +47,7 @@ module Troo
     end
 
     # @param  [Hash]
-    # @return []
+    # @return [Troo::Presenters::List]
     def presenter(options = {})
       Presenters::List.new(self, options)
     end

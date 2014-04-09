@@ -3,7 +3,7 @@ module Troo
     class Local
       class << self
         # @param  [Array]
-        # @return []
+        # @return [Array]
         def with_collection(resources = [])
           resources.map do |resource|
             new(resource).preprocess
@@ -18,7 +18,7 @@ module Troo
       end
 
       # @param  []
-      # @return []
+      # @return [Troo::Persistence::Local]
       def initialize(resource)
         @resource = resource
       end

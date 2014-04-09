@@ -3,9 +3,9 @@ module Troo
     module Persistence
       class MoveCard
         class << self
-          # @param  []
-          # @param  []
-          # @param  []
+          # @param  [String]
+          # @param  [String]
+          # @param  [String, NilClass]
           # @return []
           def with(external_card_id,
                    external_list_id,
@@ -15,9 +15,9 @@ module Troo
           end
         end
 
-        # @param  []
-        # @param  []
-        # @param  []
+        # @param  [String]
+        # @param  [String]
+        # @param  [String, NilClass]
         # @return []
         def initialize(external_card_id,
                        external_list_id,

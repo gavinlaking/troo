@@ -2,46 +2,46 @@ module Troo
   module ModelHelpers
     module ClassMethods
       # @param  [Hash]
-      # @return []
+      # @return [Ohm::Model]
       def first(criteria = {})
         return all.first if criteria.nil? || criteria.empty?
         find(criteria).first
       end
 
       # @param  [Hash]
-      # @return []
+      # @return [TrueClass]
       def update(criteria = {})
         return false if criteria.nil? || criteria.empty?
         all.map { |record| record.update(criteria) }
         true
       end
 
-      # @return []
+      # @return [Ohm::Model]
       def default
         first(default: true)
       end
 
-      # @return [Boolean]
+      # @return [TrueClass, FalseClass]
       def default?
         !!(default)
       end
 
       # @param  [Hash]
-      # @return []
+      # @return [Integer]
       def count(criteria = {})
         return all.count if criteria.empty?
         find(criteria).size
       end
 
-      # @param  []
-      # @return []
+      # @param  [String]
+      # @return [Ohm::Model]
       def by_external_id(id)
         first(external_id: id)
       end
 
-      # @param  []
+      # @param  [String, NilClass]
       # @param  [Hash]
-      # @return []
+      # @return [Ohm::Model]
       def retrieve(id = nil, options = {})
         Troo::Retrieval::Local.retrieve(self, id, options)
       end

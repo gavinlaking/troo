@@ -19,7 +19,7 @@ module Troo
     index :short_id
 
     class << self
-      # @return []
+      # @return [Remote::Comment]
       def remote
         Remote::Comment
       end

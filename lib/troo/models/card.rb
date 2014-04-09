@@ -26,7 +26,7 @@ module Troo
     alias_method :description, :desc
 
     class << self
-      # @return []
+      # @return [Remote::Card]
       def remote
         Remote::Card
       end
@@ -37,7 +37,7 @@ module Troo
       end
     end
 
-    # @return []
+    # @return [Array, Array, String]
     def external_member_ids
       if @attributes[:external_member_ids].nil?
         []
@@ -58,7 +58,7 @@ module Troo
       @list ||= Troo::List.retrieve(external_list_id)
     end
 
-    # @return []
+    # @return [Ohm::Set]
     def comments
       Troo::Comment.find(external_card_id: external_id)
     end
@@ -83,7 +83,7 @@ module Troo
     end
 
     # @param  [Hash]
-    # @return []
+    # @return [Troo::Presenters::Card]
     def presenter(options = {})
       Presenters::Card.new(self, options)
     end

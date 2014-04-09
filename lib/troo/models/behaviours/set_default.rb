@@ -22,7 +22,7 @@ module Troo
         @entity = entity
       end
 
-      # @return []
+      # @return [TrueClass, ?]
       def set_default!
         return true if already_default?
         unset_default
