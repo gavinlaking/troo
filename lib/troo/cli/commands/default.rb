@@ -2,15 +2,22 @@ module Troo
   module Commands
     class Default
       class << self
+        # @param  []
+        # @param  []
+        # @return []
         def dispatch(klass, id)
           new(klass, id).set_default
         end
       end
 
+      # @param  []
+      # @param  []
+      # @return []
       def initialize(klass, id)
         @klass, @id = klass, id
       end
 
+      # @return []
       def set_default
         return success if resource && resource.set_default!
         error

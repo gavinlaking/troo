@@ -4,9 +4,9 @@ module Troo
   module Remote
     describe List do
       let(:described_class) { List }
-      let(:resource) do
+      let(:resource)        {
         mock_trello_response('list.json', Troo::Remote::List)
-      end
+      }
       let(:described_instance) { described_class.new(resource) }
 
       describe '.remote_options' do

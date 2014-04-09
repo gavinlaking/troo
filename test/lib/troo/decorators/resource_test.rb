@@ -4,7 +4,7 @@ module Troo
   module Decorators
     describe Resource do
       let(:described_class)    { Resource }
-      let(:klass) do
+      let(:klass)              {
         stub(id:          67,
              name:        resource_name,
              description: description,
@@ -12,7 +12,7 @@ module Troo
              text:        'Some text...',
              date:        'Wed, Dec 17 at 22:01',
              type:        :resource_type)
-      end
+      }
       let(:options)            { {} }
       let(:described_instance) { described_class.new(klass, options) }
       let(:resource_name)      { 'My Resource' }
@@ -61,7 +61,9 @@ module Troo
         context 'when the resource is not the default' do
           let(:default) { false }
 
-          it { subject.must_equal nil }
+          it 'returns nil so that join compacts the value away' do
+            subject.must_equal nil
+          end
         end
       end
 

@@ -7,7 +7,7 @@ Then(/^the output should be the version number of troo$/) do
 end
 
 Before do
-  config = Troo::Configuration.load('config/trooconf.yml', :test)
+  config = Troo::Configuration.load('config/trooconf.yml', 'test')
   Ohm.connect(db: config.database)
 end
 

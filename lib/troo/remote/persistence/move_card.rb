@@ -3,6 +3,10 @@ module Troo
     module Persistence
       class MoveCard
         class << self
+          # @param  [String]
+          # @param  [String]
+          # @param  [String, NilClass]
+          # @return []
           def with(external_card_id,
                    external_list_id,
                    external_board_id = nil)
@@ -11,6 +15,10 @@ module Troo
           end
         end
 
+        # @param  [String]
+        # @param  [String]
+        # @param  [String, NilClass]
+        # @return []
         def initialize(external_card_id,
                        external_list_id,
                        external_board_id = nil)
@@ -19,6 +27,7 @@ module Troo
           @external_board_id = external_board_id
         end
 
+        # @return []
         def perform
           update_cards
         end

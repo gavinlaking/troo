@@ -25,11 +25,17 @@ module Troo
       end
 
       class << self
+        # @param  [String]
+        # @param  [String]
+        # @return [Troo::API::Endpoints]
         def load(file, version)
-          new(YAML.load_file(file)[version.to_s])
+          new(YAML.load_file(file)[version])
         end
       end
 
+      # @param  [Symbol]
+      # @param  [Hash]
+      # @return [String, EndpointNotFound]
       def interpolate!(endpoint, value = {})
         return send(endpoint) % value if respond_to?(endpoint)
         fail EndpointNotFound

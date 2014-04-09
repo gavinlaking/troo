@@ -7,9 +7,9 @@ module Troo
         let(:described_class)   { List }
         let(:external_board_id) { '20010' }
         let(:resource_name)     { 'My New List' }
-        let(:list) do
+        let(:list)              {
           [Fabricate.build(:list, name: resource_name)]
-        end
+        }
 
         before do
           Troo::Persistence::Local.stubs(:with_collection)

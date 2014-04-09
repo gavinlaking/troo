@@ -19,35 +19,44 @@ module Troo
     index :short_id
 
     class << self
+      # @return [Remote::Comment]
       def remote
         Remote::Comment
       end
 
+      # @return [Symbol]
       def type
         :comments
       end
     end
 
+    # @return []
     def board
       Troo::Board.retrieve(external_board_id)
     end
 
+    # @return []
     def card
       Troo::Card.retrieve(external_card_id)
     end
 
+    # @return []
     def member
       Troo::Member.retrieve(external_member_id)
     end
 
+    # @param  [Hash]
+    # @return []
     def decorator(options = {})
       Decorators::Resource.new(self, options)
     end
 
+    # @return [FalseClass]
     def default?
       false
     end
 
+    # @return [Symbol]
     def type
       self.class.type
     end

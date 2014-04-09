@@ -4,10 +4,10 @@ module Troo
   module Remote
     describe Board do
       let(:described_class) { Board }
-      let(:resource) do
+      let(:resource)        {
         mock_trello_response('board_200.json',
                              Troo::Remote::Board)
-      end
+      }
       let(:described_instance) { described_class.new(resource) }
 
       describe '.remote_options' do

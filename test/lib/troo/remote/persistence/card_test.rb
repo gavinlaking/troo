@@ -8,10 +8,10 @@ module Troo
         let(:external_list_id) { '20040' }
         let(:resource_name)    { 'My New Card' }
         let(:description)      { 'A description to get us started.' }
-        let(:card) do
+        let(:card)             {
           [Fabricate.build(:card, name: resource_name,
                                   desc: description)]
-        end
+        }
 
         before do
           Troo::Persistence::Local.stubs(:with_collection)

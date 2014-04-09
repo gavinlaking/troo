@@ -26,6 +26,7 @@ module Troo
       attribute :align,     Troo::Align, default: Troo::Align.new
     end
 
+    # @return [String]
     def underline
       @underline ? Esc.underline : nil
     end
@@ -38,21 +39,30 @@ module Troo
     attribute :options, Troo::Format
 
     class << self
+      # @param  []
+      # @param  [Hash]
+      # @return []
       def highlight(value, options = {})
         new(value: value, options: options).highlight
       end
 
+      # @param  []
+      # @return []
       def error(value)
         new(value:   value,
             options: { colour: Esc.red }).error
       end
 
+      # @param  []
+      # @param  [Integer]
+      # @return []
       def wordwrap(value, width = 70)
         new(value:   value,
             options: { align: { width: width } }).wordwrap
       end
     end
 
+    # @return [String]
     def highlight
       [
         options.colour,
@@ -62,6 +72,7 @@ module Troo
       ].join
     end
 
+    # @return [String]
     def error
       [
         options.colour,
@@ -70,6 +81,7 @@ module Troo
       ].join
     end
 
+    # @return []
     def wordwrap
       Wordwrap.this(formatted_value, width: width)
     end

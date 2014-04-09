@@ -34,10 +34,12 @@ module Troo
       attribute :premiumFeatures
 
       class << self
+        # @return [Hash]
         def remote_options
           { mode: :member }
         end
 
+        # @return [Hash]
         def by_board_id
           {
             endpoint: :members_by_board_id,
@@ -45,19 +47,23 @@ module Troo
           }
         end
 
+        # @return [Hash]
         def by_member_id
           { endpoint: :member_by_id }
         end
       end
 
+      # @return [Array]
       def associations
         []
       end
 
+      # @return []
       def local_model
         Troo::Member
       end
 
+      # @return [Hash]
       def adapted
         {
           external_id: id,

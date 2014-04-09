@@ -4,15 +4,22 @@ module Troo
       attr_reader :id
 
       class << self
+        # @param  []
+        # @param  []
+        # @return []
         def dispatch(klass, id = nil)
           new(klass, id).refresh
         end
       end
 
+      # @param  []
+      # @param  []
+      # @return []
       def initialize(klass, id = nil)
         @klass, @id = klass, id
       end
 
+      # @return []
       def refresh
         return not_found    if not_found?
         return many_success if multiple_refreshed?

@@ -4,6 +4,45 @@
 
 CLI interface for Trello. Named after Trello's mascot 'Roo'.
 
+## Requirements
+
+- A Trello account with API key/secret.
+- MacOSX/Linux (I've not tested with Windows, sorry.)
+- Ruby 2.1.1 (>= 1.9.3 should be fine, developed mainly in 2.1.0 so far.)
+- Redis.
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'troo'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install troo
+
+## Usage
+
+You will need user authentication tokens to access your Trello account.
+
+1) Sign in to Trello in the normal way.
+
+2) Create your developer key at Trello:
+
+    https://trello.com/1/appKey/generate
+
+3) Go to:
+
+    https://trello.com/1/connect?key=your_key_here&name=troo&response_type=token&scope=read,write
+
+4) Add your authentication tokens to the configuration file `.trooconf` in your home directory. (This file will be created for you the first time you run `troo init`)
+
+5) Have fun, and tweet me @gavinlaking if you like it.
+
 ## Commands
 
 - Add board, list, card or comment.
@@ -49,46 +88,6 @@ CLI interface for Trello. Named after Trello's mascot 'Roo'.
 - Print the version.
 
         troo version
-
-
-## Requirements
-
-- A Trello account with API key/secret.
-- MacOSX/Linux (I've not tested with Windows, sorry.)
-- Ruby 2.1.1 (>= 1.9.3 should be fine, developed mainly in 2.1.0 so far.)
-- Redis.
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'troo'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install troo
-
-## Usage
-
-You will need user authentication tokens to access your Trello account.
-
-1) Sign in to Trello in the normal way.
-
-2) Create your developer key at Trello:
-
-    https://trello.com/1/appKey/generate
-
-3) Go to:
-
-    https://trello.com/1/connect?key=your_key_here&name=troo&response_type=token&scope=read,write
-
-4) Add your authentication tokens to the configuration file `.trooconf` in your home directory. (This file will be created for you the first time you run `troo init`)
-
-5) Have fun, and tweet me @gavinlaking if you like it.
 
 ## Todo
 

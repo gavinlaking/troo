@@ -1,6 +1,7 @@
 module Troo
   module CLI
     class Main < ThorFixes
+      # @return [String]
       desc 'status',
            'Get troo status.'
       def status
@@ -18,6 +19,7 @@ module Troo
         end
       end
 
+      # @return [String]
       desc 'config',
            'Show the current configuration.'
       def config
@@ -25,6 +27,7 @@ module Troo
         say Troo.configuration.view
       end
 
+      # @return [String]
       desc 'cleanup',
            'Removes all local data.'
       def cleanup
@@ -36,6 +39,7 @@ module Troo
         end
       end
 
+      # @return [String]
       desc 'version',
            'Print the version.'
       def version
@@ -59,6 +63,10 @@ module Troo
            'Refresh all local data or board, list or card with <id>.'
       subcommand :refresh, CLI::Refresh
 
+      # @param  [String]
+      # @param  [String]
+      # @param  [String]
+      # @return [String]
       desc 'move <card_id> <list_id> (<board_id>)',
            'Move card with <card_id> to list with <list_id> ' \
            'optionally to another board with <board_id>.'

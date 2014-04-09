@@ -4,7 +4,7 @@ module Troo
   describe Configuration do
     let(:described_class) { Configuration }
 
-    subject { described_class.load('config/trooconf.yml', :test) }
+    subject { described_class.load('config/trooconf.yml', 'test') }
 
     context 'configures' do
       it 'the name of the configuration' do

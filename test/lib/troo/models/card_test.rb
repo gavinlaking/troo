@@ -34,11 +34,11 @@ module Troo
           end
 
           context 'and the attribute is a string' do
-            let(:member_ids) { "[\"20050\"]" }
-            let(:described_instance) do
+            let(:member_ids)         { "[\"20050\"]" }
+            let(:described_instance) {
               Fabricate.build(:card,
                               external_member_ids: member_ids)
-            end
+            }
 
             it 'converts to an array and returns the attribute' do
               subject.external_member_ids
@@ -48,9 +48,9 @@ module Troo
         end
 
         context 'when the attribute is not set' do
-          let(:described_instance) do
+          let(:described_instance) {
             Fabricate.build(:card, external_member_ids: nil)
-          end
+          }
 
           it 'returns an empty collection' do
             subject.external_member_ids.must_equal([])

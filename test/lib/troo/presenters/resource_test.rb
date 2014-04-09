@@ -4,13 +4,13 @@ module Troo
   module Presenters
     describe Resource do
       let(:described_class) { Resource }
-      let(:klass) do
+      let(:klass)           {
         stub('klass', id:       '27',
                       short_id: '66',
                       name:     'My Resource',
                       type:     type,
                       default?: default)
-      end
+      }
       let(:options) { {} }
       let(:default) { false }
 

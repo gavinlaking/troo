@@ -4,16 +4,23 @@ module Troo
       include DecoratorHelpers
 
       class << self
+        # @param  [Array]
+        # @param  [Hash]
+        # @return [NilClass]
         def all(boards, options = {})
           boards.map { |board| new(board, options).show }
           nil
         end
       end
 
+      # @param  [Troo::Board]
+      # @param  [Hash]
+      # @return [Troo::Presenters::Board]
       def initialize(board, options = {})
         @board, @options = board, options
       end
 
+      # @return []
       def show
         output.render Presenters::Resource.list_view(board)
 
@@ -28,6 +35,7 @@ module Troo
         end
       end
 
+      # @return []
       def render_lists
         output.spacer
 

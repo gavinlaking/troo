@@ -7,9 +7,9 @@ module Troo
         let(:described_class)  { Comment }
         let(:external_card_id) { '20020' }
         let(:text)             { 'Some much needed feedback...' }
-        let(:comment) do
+        let(:comment)          {
           [Fabricate.build(:comment, text: text)]
-        end
+        }
 
         before do
           Troo::Persistence::Local.stubs(:with_collection)

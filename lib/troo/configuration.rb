@@ -1,29 +1,4 @@
 module Troo
-  class Preference
-    include Virtus.value_object
-
-    values do
-      attribute :label, String
-      attribute :value, String
-    end
-
-    class << self
-      def view(parameters)
-        new(parameters).view
-      end
-    end
-
-    def view
-      [formatted_label, value].join(' ')
-    end
-
-    private
-
-    def formatted_label
-      (label + ':').rjust(25, ' ')
-    end
-  end
-
   class Configuration
     include Virtus.value_object
 
@@ -40,15 +15,15 @@ module Troo
     end
 
     class << self
+      # @param  []
+      # @param  [String]
+      # @return []
       def load(file, env)
-        new(YAML.load_file(file)[env.to_s])
-      rescue Errno::ENOENT
-        puts "\nConfiguration cannot be found, please run 'troo init'" \
-             " first.\n\n"
-        exit(1)
+        new(YAML.load_file(file)[env])
       end
     end
 
+    # @return []
     def view
       attributes.map do |label, value|
         Preference.view(label: label, value: value)

@@ -8,58 +8,47 @@ module Troo
   InvalidAccessToken    = Class.new(StandardError)
   EndpointNotFound      = Class.new(StandardError)
 
-  def self.configuration(file = Dir.home + '/.trooconf', env = :default)
+  # @param  []
+  # @param  [String]
+  # @return []
+  def self.configuration(file = Dir.home + '/.trooconf', env = 'default')
+    unless File.exist?(file)
+      warn "\nConfiguration cannot be found, please run 'troo " \
+           "init' or './bin/troo init' first.\n"
+      file = configuration_path + '/trooconf.yml'
+    end
+
     @configuration ||= Troo::Configuration.load(file, env)
   end
 
-  def self.endpoints(version = :version_1)
+  # @param  [String]
+  # @return []
+  def self.endpoints(version = 'version_1')
     @endpoints ||= Troo::API::Endpoints
-      .load(File.dirname(__FILE__) + '/../config/trello_api.yml', version)
+      .load(configuration_path + '/trello_api.yml', version)
   end
-  endpoints
 
+  # @return []
   def self.logger
     @logger ||= Logger
-      .new(File.dirname(__FILE__) + '/../logs/troo.log').tap do |log|
+      .new(log_path + '/troo.log').tap do |log|
       log.formatter = proc do |mode, time, prog, msg|
-        "#{time.iso8601} #{mode}:\n#{msg}\n\n"
+        "#{time.iso8601} #{mode}:\n#{msg}\n"
       end
     end
   end
 
-  # RestClient.log = File.dirname(__FILE__) + '/../logs/restclient.log'
+  # RestClient.log = log_dir + '/restclient.log'
 
   Database.connect(configuration)
 
-  class Launcher
-    def initialize(argv, stdin = STDIN,
-                         stdout = STDOUT,
-                         stderr = STDERR,
-                         kernel = Kernel)
-      @argv = argv
-      @stdin = stdin
-      @stdout = stdout
-      @stderr = stderr
-      @kernel = kernel
-    end
+  private
 
-    def execute!
-      $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
-      pad { Troo::CLI::Main.start(@argv) }
-      @kernel.exit(0)
-    rescue Redis::CannotConnectError
-      pad { puts 'Cannot connect to Redis database.' }
-      @kernel.exit(1)
-    ensure
-      $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
-    end
+  def self.configuration_path
+    File.dirname(__FILE__) + '/../config'
+  end
 
-    private
-
-    def pad
-      puts
-      yield
-      puts
-    end
+  def self.log_path
+    File.dirname(__FILE__) + '/../logs'
   end
 end

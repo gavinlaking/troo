@@ -4,15 +4,24 @@ module Troo
       attr_reader :id, :value
 
       class << self
+        # @param  []
+        # @param  []
+        # @param  [Hash]
+        # @return []
         def dispatch(value, id = nil, options = {})
           new(value, id, options).add
         end
       end
 
+      # @param  []
+      # @param  []
+      # @param  [Hash]
+      # @return []
       def initialize(value, id = nil, options = {})
         @value, @id, @options = value, id, options
       end
 
+      # @return []
       def add
         return success if create
         error

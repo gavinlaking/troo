@@ -3,10 +3,14 @@ module Troo
     class Resource
       include DecoratorHelpers
 
+      # @param  []
+      # @param  [Hash]
+      # @return [Troo::Decorators::Resource]
       def initialize(klass, options = {})
         @klass, @options = klass, options
       end
 
+      # @return [String]
       def title
         [
           resource_id,
@@ -15,6 +19,7 @@ module Troo
         ].compact.join(' ') + "\n"
       end
 
+      # @return [String]
       def resource_title
         if klass.type == :card
           Troo::Wordwrap.this(name, prune: true)
@@ -24,6 +29,7 @@ module Troo
         end
       end
 
+      # @return [String]
       def resource_id
         if klass.type == :card
           brackets(Troo::Formatter.highlight(
@@ -33,32 +39,39 @@ module Troo
         end
       end
 
+      # @return []
       def id
         (klass.type == :card) ? klass.short_id : klass.id
       end
 
+      # @return [String]
       def description
         return 'N/A' if klass.description.nil? ||
                         klass.description.empty?
         Troo::Formatter.wordwrap(klass.description)
       end
 
+      # @return [String, NilClass]
       def default
         klass.default? ? '*' : nil
       end
 
+      # @return [String]
       def name
         (klass.name && klass.name.chomp) || 'N/A'
       end
 
+      # @return []
       def board
         klass.board.decorator
       end
 
+      # @return []
       def list
         klass.list.decorator
       end
 
+      # @return [String]
       def comments
         if klass.comments.any? && klass.comments.size > 3
           msg = '(There are more comments, use: ' \
@@ -72,28 +85,34 @@ module Troo
         end
       end
 
+      # @return [String]
       def members
         Presenters::Member.new(klass).show
       end
 
+      # @return [String]
       def last_activity_date
         return 'N/A' unless klass.last_activity_date
         Time.parse(klass.last_activity_date)
             .strftime('%a, %b %d at %H:%M')
       end
 
+      # @return [String]
       def as_view
         Template.parse(self, '/../views/' + type + '.erb')
       end
 
+      # @return [String]
       def username
         ['@', klass.member.username].join
       end
 
+      # @return [String]
       def text
         Troo::Formatter.wordwrap(klass.text)
       end
 
+      # @return [String]
       def date
         Time.parse(klass.date).strftime('%a, %b %d at %H:%M')
       end

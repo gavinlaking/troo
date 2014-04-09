@@ -3,16 +3,23 @@ module Troo
     module Persistence
       class List
         class << self
+          # @param  [String]
+          # @param  [String]
+          # @return []
           def with(external_board_id, name)
             new(external_board_id, name).perform
           end
         end
 
+        # @param  [String]
+        # @param  [String]
+        # @return []
         def initialize(external_board_id, name)
           @external_board_id = external_board_id
           @name              = name
         end
 
+        # @return []
         def perform
           create_local
         end

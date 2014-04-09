@@ -4,9 +4,9 @@ module Troo
   module Remote
     describe Member do
       let(:described_class)    { Member }
-      let(:resource) do
+      let(:resource)           {
         mock_trello_response('member.json', Troo::Remote::Member)
-      end
+      }
       let(:described_instance) { described_class.new(resource) }
 
       describe '.remote_options' do
