@@ -4,6 +4,7 @@ module Troo
       include DecoratorHelpers
 
       # @param  [Troo::List]
+      # @param  [Hash]
       # @return [Troo::Presenters::List]
       def initialize(list, options = {})
         @list, @options = list, options
@@ -11,25 +12,23 @@ module Troo
 
       # @return [String]
       def show
-        output.build(Presenters::Resource.list_view(list.board, options))
+        output.build(list_view(list.board))
 
         output.spacer
 
-        output.indent do
-          render_list
-        end
+        output.indent { render_list }
 
         output.render
       end
 
       # @return [String]
       def render_list
-        output.build(Presenters::Resource.list_view(list, options))
+        output.build(list_view(list))
 
         output.indent do
           if list.cards.empty?
             output.spacer do
-              output.build(error("No cards were found."))
+              output.build(error('No cards were found.', options))
             end
           else
             render_cards
@@ -42,11 +41,9 @@ module Troo
       attr_reader :list
 
       def render_cards
-        output.build("\n")
-        list.cards.map do |card|
-          output.build(Presenters::Resource.list_view(card, options))
+        output.spacer do
+          list.cards.map { |card| output.build(list_view(card)) }
         end
-        output.build("\n")
       end
 
       def output

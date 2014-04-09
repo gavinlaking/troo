@@ -38,7 +38,7 @@ module Troo
       attr_reader :klass
 
       def presenter
-        resource.presenter.show
+        resource.presenter(options).show
       end
 
       def error

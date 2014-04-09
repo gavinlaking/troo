@@ -23,12 +23,12 @@ module Troo
 
       # @return [String]
       def show
-        output.build(Presenters::Resource.list_view(board, options))
+        output.build(list_view(board, options))
 
         output.indent do
           if board.lists.empty?
             output.spacer do
-              output.build(error('No lists were found.'))
+              output.build(error('No lists were found.', options))
             end
           else
             render_lists
@@ -46,7 +46,7 @@ module Troo
         output.spacer
 
         board.lists.map do |list|
-          Presenters::List.new(list, output: output).render_list
+          Presenters::List.new(list, options.merge!(output: output)).render_list
         end
 
         nil

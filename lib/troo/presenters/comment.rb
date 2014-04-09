@@ -38,7 +38,7 @@ module Troo
       end
 
       def no_comments
-        output.build(error('No comments were found.'))
+        output.build(error('No comments were found.', options))
       end
 
       def comments?
@@ -51,6 +51,14 @@ module Troo
 
       def title
         output.build(card.decorator.title + "\n")
+      end
+
+      def options
+        defaults.merge!(@options)
+      end
+
+      def defaults
+        {}
       end
     end
   end

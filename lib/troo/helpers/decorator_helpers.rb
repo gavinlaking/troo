@@ -21,8 +21,8 @@ module Troo
         Troo::Formatter.highlight(value, metadata_defaults)
       end
 
-      def error(message)
-        Troo::Formatter.error(message) + "\n"
+      def error(message, options = {})
+        Troo::Formatter.error(message, options) + "\n"
       end
 
       def label_defaults
@@ -41,6 +41,10 @@ module Troo
                        pad: 9
                      }
         }
+      end
+
+      def list_view(resource, options = {})
+        Presenters::Resource.list_view(resource, options)
       end
     end
 

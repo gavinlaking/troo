@@ -14,10 +14,12 @@ module Troo
       end
 
       # @param  []
+      # @param  [Hash]
       # @return []
-      def error(value)
+      def error(value, options = {})
+        defaults = { colour: Esc.red }
         new(value:   value,
-            options: { colour: Esc.red }).error
+            options: defaults.merge!(options)).error
       end
 
       # @param  []

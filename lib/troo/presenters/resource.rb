@@ -6,7 +6,7 @@ module Troo
       class << self
         # @param  []
         # @param  [Hash]
-        # @return []
+        # @return [String]
         def list_view(klass, options = {})
           new(klass, options).list_view
         end
@@ -14,12 +14,12 @@ module Troo
 
       # @param  []
       # @param  [Hash]
-      # @return []
+      # @return [Troo::Presenters::Resource]
       def initialize(klass, options = {})
         @klass, @options = klass, options
       end
 
-      # @return []
+      # @return [String]
       def list_view
         [id, name, default].compact.join(' ') + "\n"
       end
