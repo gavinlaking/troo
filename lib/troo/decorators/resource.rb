@@ -5,7 +5,7 @@ module Troo
 
       # @param  []
       # @param  [Hash]
-      # @return []
+      # @return [Troo::Decorators::Resource]
       def initialize(klass, options = {})
         @klass, @options = klass, options
       end
@@ -19,7 +19,7 @@ module Troo
         ].compact.join(' ') + "\n"
       end
 
-      # @return []
+      # @return [String]
       def resource_title
         if klass.type == :card
           Troo::Wordwrap.this(name, prune: true)
@@ -44,19 +44,19 @@ module Troo
         (klass.type == :card) ? klass.short_id : klass.id
       end
 
-      # @return []
+      # @return [String]
       def description
         return 'N/A' if klass.description.nil? ||
                         klass.description.empty?
         Troo::Formatter.wordwrap(klass.description)
       end
 
-      # @return []
+      # @return [String]
       def default
-        klass.default? ? '*' : nil
+        klass.default? ? '*' : ''
       end
 
-      # @return []
+      # @return [String]
       def name
         (klass.name && klass.name.chomp) || 'N/A'
       end
@@ -71,7 +71,7 @@ module Troo
         klass.list.decorator
       end
 
-      # @return []
+      # @return [String]
       def comments
         if klass.comments.any? && klass.comments.size > 3
           msg = '(There are more comments, use: ' \
@@ -85,19 +85,19 @@ module Troo
         end
       end
 
-      # @return []
+      # @return [String]
       def members
         Presenters::Member.new(klass).show
       end
 
-      # @return []
+      # @return [String]
       def last_activity_date
         return 'N/A' unless klass.last_activity_date
         Time.parse(klass.last_activity_date)
             .strftime('%a, %b %d at %H:%M')
       end
 
-      # @return []
+      # @return [String]
       def as_view
         Template.parse(self, '/../views/' + type + '.erb')
       end
