@@ -12,7 +12,7 @@ module Troo
 
       # @param  [String]
       # @param  [Hash]
-      # @return []
+      # @return [Troo::API::Headers]
       def initialize(uri, headers = {})
         @uri, @headers = uri, headers
       end

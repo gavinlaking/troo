@@ -2,24 +2,24 @@ module Troo
   module API
     class Request
       class << self
-        # @param  []
-        # @param  []
+        # @param  [Symbol]
+        # @param  [String]
         # @param  [Hash]
-        # @return []
+        # @return [Response, ErrorResponse]
         def make(verb, uri, query = {})
           new(verb, uri, query).make
         end
       end
 
-      # @param  []
-      # @param  []
+      # @param  [Symbol]
+      # @param  [String]
       # @param  [Hash]
-      # @return []
+      # @return [Troo::API::Request]
       def initialize(verb, uri, query = {})
         @verb, @uri, @query = verb, uri, query
       end
 
-      # @return []
+      # @return [Response, ErrorResponse]
       def make
         @request ||= request
       rescue RestClient::Exception => e

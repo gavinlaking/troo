@@ -11,13 +11,13 @@ module Troo
 
       class << self
         # @param  [Hash]
-        # @return []
+        # @return [Array]
         def perform(parameters)
           new(parameters).perform
         end
       end
 
-      # @return []
+      # @return [Array]
       def perform
         return [] unless allow_remote?
         return [] if missing_parameters?
