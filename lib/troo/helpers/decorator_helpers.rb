@@ -17,6 +17,10 @@ module Troo
           .highlight(value, label_defaults.merge!(options))
       end
 
+      def metadata(value)
+        Troo::Formatter.highlight(value, metadata_defaults)
+      end
+
       def error(message)
         Troo::Formatter.error(message) + "\n"
       end
@@ -25,6 +29,17 @@ module Troo
         {
           colour:    Esc.yellow,
           underline: true
+        }
+      end
+
+      def metadata_defaults
+        {
+          colour:    Esc.cyan,
+          underline: false,
+          align:     {
+                       pos: :right,
+                       pad: 9
+                     }
         }
       end
     end

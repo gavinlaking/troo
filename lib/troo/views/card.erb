@@ -9,7 +9,6 @@
 <%= @object.members %>
 
 <%= label('Metadata:') %>
-<%- options = { colour: Esc.cyan, underline: false, align: { pos: :right, pad: 9 } } -%>
-<%= label('Board:', options) -%> <%= @object.board.title -%>
-<%= label('List:', options) -%> <%= @object.list.title -%>
-<%= label('Updated:', options) -%> <%= @object.last_activity_date -%>
+<%= metadata('Board:')   -%> <%= @object.board.title -%>
+<%= metadata('List:')    -%> <%= @object.list.title -%>
+<%= metadata('Updated:') -%> <%= @object.last_activity_date %>

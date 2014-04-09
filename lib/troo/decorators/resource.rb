@@ -87,7 +87,7 @@ module Troo
 
       # @return [String]
       def members
-        Presenters::Member.new(klass).show
+        Presenters::Member.new(klass, options).show
       end
 
       # @return [String]

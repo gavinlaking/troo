@@ -23,7 +23,7 @@ module Troo
 
       # @return [String]
       def show
-        output.build(Presenters::Resource.list_view(board))
+        output.build(Presenters::Resource.list_view(board, options))
 
         output.indent do
           if board.lists.empty?

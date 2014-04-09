@@ -2,17 +2,19 @@ module Troo
   module Commands
     class Status
       class << self
-        # @param  klass []
+        # @param  klass   []
+        # @param  options [Hash]
         # @return [String]
-        def dispatch(klass)
-          new(klass).report_status
+        def dispatch(klass, options = {})
+          new(klass, options = {}).report_status
         end
       end
 
-      # @param  klass []
+      # @param  klass   []
+      # @param  options [Hash]
       # @return [Troo::Commands::Status]
-      def initialize(klass)
-        @klass = klass
+      def initialize(klass, options = {})
+        @klass, @options = klass, options
       end
 
       # @return [String]
@@ -67,6 +69,14 @@ module Troo
 
       def count
         @count ||= klass.count
+      end
+
+      def options
+        defaults.merge!(@options)
+      end
+
+      def defaults
+        {}
       end
     end
   end

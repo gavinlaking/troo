@@ -4,19 +4,22 @@ module Troo
       attr_reader :id, :type
 
       class << self
-        # @param  klass []
-        # @param  id    [, NilClass]
+        # @param  klass   []
+        # @param  id      [, NilClass]
+        # @param  options [Hash]
         # @return [String]
-        def dispatch(klass, id = nil)
-          new(klass, id).render
+        def dispatch(klass, id, options = {})
+          new(klass, id, options).render
         end
       end
 
-      # @param  klass []
-      # @param  id    [, NilClass]
+
+      # @param  klass   []
+      # @param  id      [, NilClass]
+      # @param  options [Hash]
       # @return [Troo::Commands::Show]
-      def initialize(klass, id = nil)
-        @klass, @id = klass, id
+      def initialize(klass, id, options = {})
+        @klass, @id, @options = klass, id, options
       end
 
       # @return [String]
@@ -57,6 +60,14 @@ module Troo
 
       def resource
         @resource ||= klass.retrieve(id)
+      end
+
+      def options
+        defaults.merge!(@options)
+      end
+
+      def defaults
+        {}
       end
     end
   end

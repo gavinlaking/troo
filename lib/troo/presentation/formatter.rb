@@ -31,21 +31,29 @@ module Troo
 
     # @return [String]
     def highlight
-      [
-        options.colour,
-        options.underline,
-        formatted_value,
-        options.reset
-      ].join
+      if options.ansicolor
+        [
+          options.colour,
+          options.underline,
+          formatted_value,
+          options.reset
+        ].join
+      else
+        formatted_value
+      end
     end
 
     # @return [String]
     def error
-      [
-        options.colour,
-        formatted_value,
-        options.reset
-      ].join
+      if options.ansicolor
+        [
+          options.colour,
+          formatted_value,
+          options.reset
+        ].join
+      else
+        formatted_value
+      end
     end
 
     # @return []

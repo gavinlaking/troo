@@ -11,7 +11,7 @@ module Troo
 
       # @return [String]
       def show
-        output.build(Presenters::Resource.list_view(list.board))
+        output.build(Presenters::Resource.list_view(list.board, options))
 
         output.spacer
 
@@ -24,7 +24,7 @@ module Troo
 
       # @return [String]
       def render_list
-        output.build(Presenters::Resource.list_view(list))
+        output.build(Presenters::Resource.list_view(list, options))
 
         output.indent do
           if list.cards.empty?
@@ -44,7 +44,7 @@ module Troo
       def render_cards
         output.build("\n")
         list.cards.map do |card|
-          output.build(Presenters::Resource.list_view(card))
+          output.build(Presenters::Resource.list_view(card, options))
         end
         output.build("\n")
       end

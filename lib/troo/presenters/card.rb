@@ -18,8 +18,10 @@ module Troo
 
       private
 
+      attr_reader :options
+
       def card
-        Troo::Decorators::Resource.new(@card)
+        Troo::Decorators::Resource.new(@card, options)
       end
 
       def output
