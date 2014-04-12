@@ -33,7 +33,7 @@ module Troo
     @logger ||= Logger
       .new(log_path + '/troo.log').tap do |log|
       log.formatter = proc do |mode, time, prog, msg|
-        "#{time.iso8601} #{mode}:\n#{msg}\n"
+        "#{time.iso8601}: #{msg}\n"
       end
     end
   end
