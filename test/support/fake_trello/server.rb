@@ -7,6 +7,7 @@ require 'openssl'
 
 require_relative 'fake_response'
 
+-> { its -> { a } }
 trap('INT') { exit! }
 
 class MyFakeTrello < Sinatra::Base
