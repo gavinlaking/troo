@@ -9,19 +9,6 @@ require_relative 'fake_response'
 
 trap('INT') { exit! }
 
-my_server_crt   = File.open(File.join('./', 'my-server.crt')).read
-my_server_key   = File.open(File.join('./', 'my-server.key')).read
-webrick_options = {
-  Port:            8443,
-  Logger:          WEBrick::Log.new($stderr, WEBrick::Log::DEBUG),
-  DocumentRoot:    '/',
-  SSLEnable:       true,
-  SSLVerifyClient: OpenSSL::SSL::VERIFY_NONE,
-  SSLCertificate:  OpenSSL::X509::Certificate.new(my_server_crt),
-  SSLPrivateKey:   OpenSSL::PKey::RSA.new(my_server_key),
-  SSLCertName:     [['CN', WEBrick::Utils.getservername]]
-}
-
 class MyFakeTrello < Sinatra::Base
   helpers do
     def fake(resource, id = nil, collection = false)
@@ -123,4 +110,24 @@ class MyFakeTrello < Sinatra::Base
   end
 end
 
-Rack::Handler::WEBrick.run MyFakeTrello, webrick_options
+begin
+  my_server_crt   = File.open(File.dirname(__FILE__) + '/my-server.crt').read
+  my_server_key   = File.open(File.dirname(__FILE__) + '/my-server.key').read
+  webrick_options = {
+    Port:            8443,
+    Logger:          WEBrick::Log.new($stderr, WEBrick::Log::DEBUG),
+    DocumentRoot:    '/',
+    SSLEnable:       true,
+    SSLVerifyClient: OpenSSL::SSL::VERIFY_NONE,
+    SSLCertificate:  OpenSSL::X509::Certificate.new(my_server_crt),
+    SSLPrivateKey:   OpenSSL::PKey::RSA.new(my_server_key),
+    SSLCertName:     [['CN', WEBrick::Utils.getservername]]
+  }
+
+  Rack::Handler::WEBrick.run MyFakeTrello, webrick_options
+rescue Errno::ENOENT
+  puts ""
+  puts "Cannot find self-signed SSL certificates."
+  puts "Please see the README.md for more information."
+  puts ""
+end
