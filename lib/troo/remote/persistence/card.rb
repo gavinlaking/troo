@@ -8,14 +8,14 @@ module Troo
           # @param  [String, NilClass]
           # @return []
           def with(external_list_id, name = nil, description = nil)
-            new(external_list_id, name, description).perform
+            new(external_list_id, name, description).create_local
           end
         end
 
         # @param  [String]
         # @param  [String, NilClass]
         # @param  [String, NilClass]
-        # @return []
+        # @return [Troo::Remote::Persistence::Card]
         def initialize(external_list_id, name = nil, description = nil)
           @external_list_id = external_list_id
           @name             = name
@@ -23,19 +23,15 @@ module Troo
         end
 
         # @return []
-        def perform
-          create_local
-        end
-
-        private
-
-        attr_reader :external_list_id, :name, :description
-
         def create_local
           return Troo::Persistence::Local
             .with_collection(resource).first if any?
           false
         end
+
+        private
+
+        attr_reader :external_list_id, :name, :description
 
         def any?
           resource.any?

@@ -7,32 +7,28 @@ module Troo
           # @param  [String]
           # @return []
           def with(external_board_id, name)
-            new(external_board_id, name).perform
+            new(external_board_id, name).create_local
           end
         end
 
         # @param  [String]
         # @param  [String]
-        # @return []
+        # @return [Troo::Remote::Persistence::List]
         def initialize(external_board_id, name)
           @external_board_id = external_board_id
           @name              = name
         end
 
         # @return []
-        def perform
-          create_local
-        end
-
-        private
-
-        attr_reader :external_board_id, :name
-
         def create_local
           return Troo::Persistence::Local
             .with_collection(resource).first if any?
           false
         end
+
+        private
+
+        attr_reader :external_board_id, :name
 
         def any?
           resource.any?

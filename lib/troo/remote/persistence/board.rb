@@ -7,32 +7,28 @@ module Troo
           # @param  [String, NilClass]
           # @return []
           def with(name, description = nil)
-            new(name, description).perform
+            new(name, description).create_local
           end
         end
 
         # @param  [String]
         # @param  [String, NilClass]
-        # @return []
+        # @return [Troo::Remote::Persistence::Board]
         def initialize(name, description = nil)
           @name        = name
           @description = description
         end
 
         # @return []
-        def perform
-          create_local
-        end
-
-        private
-
-        attr_reader :name, :description
-
         def create_local
           return Troo::Persistence::Local
             .with_collection(resource).first if any?
           false
         end
+
+        private
+
+        attr_reader :name, :description
 
         def any?
           resource.any?

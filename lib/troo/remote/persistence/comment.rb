@@ -7,32 +7,28 @@ module Troo
           # @param  []
           # @return []
           def with(external_card_id, comment)
-            new(external_card_id, comment).perform
+            new(external_card_id, comment).create_local
           end
         end
 
         # @param  [String]
         # @param  []
-        # @return []
+        # @return [Troo::Remote::Persistence::Comment]
         def initialize(external_card_id, comment)
           @external_card_id = external_card_id
           @comment          = comment
         end
 
         # @return []
-        def perform
-          create_local
-        end
-
-        private
-
-        attr_reader :external_card_id, :comment
-
         def create_local
           return Troo::Persistence::Local
             .with_collection(resource).first if any?
           false
         end
+
+        private
+
+        attr_reader :external_card_id, :comment
 
         def any?
           resource.any?
