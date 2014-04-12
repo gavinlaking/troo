@@ -27,12 +27,12 @@ module Troo
       .load(configuration_path + '/trello_api.yml', version)
   end
 
-  # @return []
+  # @return [TrueClass]
   def self.logger
     @logger ||= Logger
       .new(log_path + '/troo.log').tap do |log|
       log.formatter = proc do |mode, time, prog, msg|
-        "#{time.iso8601}: #{msg}\n"
+        "\n" + Esc.green + "#{time.iso8601}:" + Esc.reset + " #{msg}\n"
       end
     end
   end
