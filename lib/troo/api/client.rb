@@ -40,15 +40,27 @@ module Troo
       end
 
       def empty_response?
-        parsed_response.empty?
+        return log(true) if parsed_response.empty?
+        false
       end
 
       def error_response?
-        response.is_a?(ErrorResponse)
+        return log(true) if response.is_a?(ErrorResponse)
+        false
       end
 
       def parsed_response
-        @parsed ||= Yajl::Parser.parse(response.body)
+        @parsed ||= Yajl::Parser.parse(response_body)
+      end
+
+      def response_body
+        data = response.body
+        File.write(filename, data)
+        data
+      end
+
+      def filename
+        ['./tmp/', urn.gsub(/\//, '_'), '.json'].join
       end
 
       def response
@@ -80,8 +92,9 @@ module Troo
         Troo.configuration.allow_remote
       end
 
-      def log
-        Troo.logger.debug(formatted_messages) if log?
+      def log(retval = nil)
+        Troo.logger.debug("\n" + formatted_messages) if log?
+        retval
       end
 
       def log?
