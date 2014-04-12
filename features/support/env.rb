@@ -7,10 +7,6 @@ require 'vcr'
 require 'webmock/cucumber'
 require 'mocha/api'
 
-SimpleCov.start do
-  add_filter   '/test/'
-end
-
 require_relative '../../lib/troo.rb'
 
 class CucumberError < StandardError; end
