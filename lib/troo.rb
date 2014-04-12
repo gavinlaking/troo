@@ -4,8 +4,7 @@ require_relative 'troo/troo'
 require_relative 'troo/version'
 
 module Troo
-  ConfigurationNotFound = Class.new(StandardError)
-  InvalidAccessToken    = Class.new(StandardError)
+  ExpiredAccessToken    = Class.new(StandardError)
   EndpointNotFound      = Class.new(StandardError)
 
   # @param  []

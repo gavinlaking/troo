@@ -18,10 +18,15 @@ module Troo
 
       # @return [Response, ErrorResponse]
       def build
+        raise ExpiredAccessToken if expired?
         ok? ? Response.new(attributes) : ErrorResponse.new(attributes)
       end
 
       private
+
+      def expired?
+        code == '401'
+      end
 
       def ok?
         code == '200'

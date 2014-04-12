@@ -59,10 +59,6 @@ module Troo
         data
       end
 
-      def filename
-        ['./tmp/', urn.gsub(/\//, '_'), '.json'].join
-      end
-
       def response
         @response ||= API::Request.make(verb, uri, query)
       end
@@ -127,6 +123,17 @@ module Troo
           'Status'   => response.code,
           'Response' => response.body
         }
+      end
+
+      def filename
+        filename = ['./tmp/', endpoint.to_s]
+        filename << '_' << external_id if external_id
+        filename << '.json'
+        filename.join
+      end
+
+      def external_id
+        interpolation[:external_id]
       end
     end
   end
