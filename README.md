@@ -89,12 +89,6 @@ You will need user authentication tokens to access your Trello account.
 
         troo version
 
-## Todo
-
-- Fix multitude of sins.
-- Write cucumber integration tests.
-- Convert dates/times to Time.iso8601().
-
 ## Testing
 
 I've put a simple fake server together so that I'm not hitting the Trello API continuously. You can activate and use this too.
