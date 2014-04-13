@@ -23,15 +23,13 @@ module Troo
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
       pad { Troo::CLI::Main.start(@argv) }
       exit_code = 0
-    rescue Errno::ENOENT
+    rescue ConfigurationNotFound
       pad do
         puts "Configuration cannot be found, please run 'troo init'" \
              " first."
       end
     rescue Redis::CannotConnectError
-      pad do
-        puts 'Cannot connect to Redis database.'
-      end
+      pad { puts 'Cannot connect to Redis database.' }
     rescue ExpiredAccessToken
       pad do
         puts 'Your Trello access token has expired. Please renew.'

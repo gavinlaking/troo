@@ -55,7 +55,9 @@ module Troo
 
       def response_body
         data = response.body
-        File.write(filename, data)
+        File.open(filename, 'w') do |file_handle|
+          file_handle.write(data)
+        end
         data
       end
 
@@ -126,7 +128,7 @@ module Troo
       end
 
       def filename
-        filename = ['./tmp/', endpoint.to_s]
+        filename = [Troo.root_path + '/tmp/', endpoint.to_s]
         filename << '_' << external_id if external_id
         filename << '.json'
         filename.join
