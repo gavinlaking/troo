@@ -18,7 +18,7 @@ module Troo
       @exit_code = 1
     end
 
-    # @return []
+    # @return [String, NilClass]
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
       pad { Troo::CLI::Main.start(@argv) }

@@ -15,15 +15,15 @@ module Troo
     end
 
     class << self
-      # @param  []
       # @param  [String]
-      # @return []
+      # @param  [String]
+      # @return [Troo::Configuration]
       def load(file, env)
         new(YAML.load_file(file)[env])
       end
     end
 
-    # @return []
+    # @return [String]
     def view
       attributes.map do |label, value|
         Preference.view(label: label, value: value)

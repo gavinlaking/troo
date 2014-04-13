@@ -10,8 +10,8 @@ module Troo
     attribute :external_member_ids, Type::Array
     attribute :position
     attribute :last_activity_date
-    attribute :default, Type::Boolean
-    attribute :closed, Type::Boolean
+    attribute :default,             Type::Boolean
+    attribute :closed,              Type::Boolean
     attribute :external_board_id
     attribute :external_list_id
     attribute :external_id
