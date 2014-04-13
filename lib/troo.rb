@@ -20,13 +20,6 @@ module Troo
     @configuration ||= Troo::Configuration.load(file, env)
   end
 
-  # @param  [String]
-  # @return []
-  def self.endpoints(version = 'version_1')
-    @endpoints ||= Troo::API::Endpoints
-      .load(configuration_path + '/trello_api.yml', version)
-  end
-
   # @return [TrueClass]
   def self.logger
     @logger ||= Logger

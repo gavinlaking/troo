@@ -77,7 +77,7 @@ module Troo
       end
 
       def urn
-        Troo.endpoints.interpolate!(endpoint, interpolation)
+        Troo::API::Endpoints.interpolate(endpoint, interpolation)
       end
 
       def missing_parameters?
