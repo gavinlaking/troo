@@ -44,7 +44,6 @@ require_relative 'remote/persistence/list'
 require_relative 'remote/persistence/move_card'
 
 require_relative 'decorators/resource'
-require_relative 'decorators/member'
 
 require_relative 'presentation/formatter'
 require_relative 'presentation/sentence'

@@ -104,7 +104,11 @@ module Troo
 
       # @return [String]
       def username
-        ['@', klass.member.username].join
+        if klass.type == :member
+          ['@', klass.username].join
+        else
+          ['@', klass.member.username].join
+        end
       end
 
       # @return [String]
