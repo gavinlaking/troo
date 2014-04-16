@@ -63,6 +63,9 @@ module Troo
            'Refresh all local data or board, list or card with <id>.'
       subcommand :refresh, CLI::Refresh
 
+      desc 'wizard', 'Become the wizard.'
+      subcommand :wizard, CLI::Wizard
+
       # @param  [String]
       # @param  [String]
       # @param  [String]

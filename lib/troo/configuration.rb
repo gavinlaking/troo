@@ -1,18 +1,16 @@
 module Troo
   class Configuration
-    include Virtus.value_object
+    include Virtus.model
 
-    values do
-      attribute :name
-      attribute :api_url
-      attribute :api_key
-      attribute :api_token
-      attribute :api_oauth_token
-      attribute :api_oauth_token_secret
-      attribute :database
-      attribute :allow_remote, Boolean, default: true
-      attribute :logs,         Boolean, default: false
-    end
+    attribute :api_key
+    attribute :api_token
+    attribute :api_oauth_token
+    attribute :api_oauth_token_secret
+    attribute :allow_remote, Boolean, default: true
+    attribute :logs,         Boolean, default: false
+    attribute :name,         String,  default: 'My Default Configuration'
+    attribute :api_url,      String,  default: 'https://api.trello.com/1'
+    attribute :database,     Integer, default: 1
 
     class << self
       # @param  [String]
@@ -23,11 +21,27 @@ module Troo
       end
     end
 
+    # @param  [String]
+    # @param  [String]
+    # @return [TrueClass, FalseClass]
+    def save(file, env)
+      return true if File.open(file, 'w') do |file|
+        file.write configuration_yaml(env)
+      end
+      false
+    end
+
     # @return [String]
     def view
       attributes.map do |label, value|
         Preference.view(label: label, value: value)
       end.join("\n")
+    end
+
+    private
+
+    def configuration_yaml(env = 'default')
+      { env => self.attributes }.to_yaml
     end
   end
 end

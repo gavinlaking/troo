@@ -29,6 +29,12 @@ Or install it yourself as:
 
 You will need user authentication tokens to access your Trello account.
 
+### Setup Wizard
+
+Simply run `troo wizard` and follow the on screen instructions.
+
+### Manually
+
 1) Sign in to Trello in the normal way.
 
 2) Create your developer key at Trello:
