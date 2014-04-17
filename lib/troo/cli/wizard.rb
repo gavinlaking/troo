@@ -7,20 +7,15 @@ module Troo
       # @return [String]
       desc 'start', 'Run the configuration wizard to get started.'
       def start
-        say "Welcome to Troo. This wizard will help you configure " \
-            "your API credentials for Trello."
-        say "First, you'll need to sign in to Trello in the normal " \
-            "way."
-        say "Copy the API key and paste when prompted, then do the " \
-            "same for the secret."
+        say Troo::Formatter.wordwrap(welcome_message)
 
-        proceed? && step_one!
+        proceed?
+        step_one!
 
-        say "Thank you. You must now allow this application to " \
-            "use your Trello account. Copy and paste the token " \
-            "when prompted."
+        say Troo::Formatter.wordwrap(step_one_message)
 
-        proceed? && step_two!
+        proceed?
+        step_two!
 
         say 'All done! Run `troo` for further commands.'
       end
@@ -41,19 +36,35 @@ module Troo
       end
 
       def proceed?
-        raise ConfigurationAborted unless yes?('Proceed?')
+        raise ConfigurationAborted unless yes?(user_input('Proceed?'))
       end
 
       def step_one!
         Launchy.open(generate_url)
-        config.api_key   = ask('Key:')
-        config.api_token = ask('Secret:')
+        config.api_key   = ask(user_input('Key:'))
+        config.api_token = ask(user_input('Secret:'))
       end
 
       def step_two!
         Launchy.open(connect_url(config.api_key))
-        config.api_oauth_token = ask('Token: ')
+        config.api_oauth_token = ask(user_input('Token:'))
         config.save(Dir.home + '/.trooconf', 'default')
+      end
+
+      def welcome_message
+        "Welcome to Troo. This wizard will help you configure your " \
+        "API credentials for Trello. First, you'll need to sign in " \
+        "to Trello in the normal way. Copy the API key and paste "   \
+        "when prompted, then do the same for the secret.\n"
+      end
+
+      def step_one_message
+        "Thank you. You must now allow this application to use "     \
+        "Trello account. Copy and paste the token when prompted.\n"
+      end
+
+      def user_input(value)
+        [Esc.yellow, value, Esc.reset].join
       end
     end
   end
