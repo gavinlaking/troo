@@ -22,7 +22,7 @@ module Troo
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
       pad { Troo::CLI::Main.start(@argv) }
-      exit_code = 0
+      @exit_code = 0
     rescue ConfigurationNotFound
       pad do
         puts "Configuration cannot be found, please run " \
@@ -40,12 +40,10 @@ module Troo
       end
     ensure
       $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
-      @kernel.exit(exit_code)
+      @kernel.exit(@exit_code)
     end
 
     private
-
-    attr_accessor :exit_code
 
     def pad
       puts
