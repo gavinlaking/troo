@@ -31,7 +31,7 @@ module Troo
     # @param  [Hash]
     # @return []
     def decorator(options = {})
-      Decorators::Member.new(self, options)
+      Decorators::Resource.new(self, options)
     end
 
     # @param  [Hash]

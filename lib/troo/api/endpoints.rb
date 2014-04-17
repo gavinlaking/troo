@@ -1,44 +1,56 @@
 module Troo
   module API
     class Endpoints
-      include Virtus.value_object
-
-      values do
-        attribute :board_by_id
-        attribute :boards_all
-        attribute :card_by_id
-        attribute :cards_by_board_id
-        attribute :cards_by_list_id
-        attribute :comments_by_board_id
-        attribute :comments_by_card_id
-        attribute :comments_by_list_id
-        attribute :create_board
-        attribute :create_card
-        attribute :create_comment
-        attribute :create_list
-        attribute :list_by_id
-        attribute :lists_by_board_id
-        attribute :member_by_id
-        attribute :members_by_board_id
-        attribute :move_card_board
-        attribute :move_card_list
-      end
-
       class << self
-        # @param  [String]
-        # @param  [String]
-        # @return [Troo::API::Endpoints]
-        def load(file, version)
-          new(YAML.load_file(file)[version])
+        # @param  [Symbol]
+        # @param  [Hash]
+        # @return [String, EndpointNotFound]
+        def interpolate(endpoint, value = {})
+          new(endpoint, value).interpolate
         end
       end
 
       # @param  [Symbol]
       # @param  [Hash]
+      # @return [Troo::API::Endpoints]
+      def initialize(endpoint, value = {})
+        @endpoint, @value = endpoint, value
+      end
+
+      # @param  [Symbol]
+      # @param  [Hash]
       # @return [String, EndpointNotFound]
-      def interpolate!(endpoint, value = {})
-        return send(endpoint) % value if respond_to?(endpoint)
+      def interpolate
+        endpoints.fetch(endpoint) % value
+      rescue KeyError
         fail EndpointNotFound
+      end
+
+      private
+
+      attr_reader :endpoint, :value
+
+      def endpoints
+        {
+          boards_all:           '/members/me/boards',
+          board_by_id:          '/boards/%{external_id}',
+          card_by_id:           '/cards/%{external_id}',
+          list_by_id:           '/lists/%{external_id}',
+          member_by_id:         '/members/%{external_id}',
+          cards_by_board_id:    '/boards/%{external_id}/cards',
+          cards_by_list_id:     '/lists/%{external_id}/cards',
+          comments_by_board_id: '/boards/%{external_id}/actions',
+          comments_by_card_id:  '/cards/%{external_id}/actions',
+          comments_by_list_id:  '/lists/%{external_id}/actions',
+          lists_by_board_id:    '/boards/%{external_id}/lists',
+          members_by_board_id:  '/boards/%{external_id}/members',
+          create_board:         '/boards',
+          create_card:          '/cards',
+          create_comment:       '/cards/%{external_id}/actions/comments',
+          create_list:          '/lists',
+          move_card_list:       '/cards/%{external_id}/idList',
+          move_card_board:      '/cards/%{external_id}/idBoard',
+        }
       end
     end
   end

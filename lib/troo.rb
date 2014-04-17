@@ -5,50 +5,38 @@ require_relative 'troo/version'
 
 module Troo
   ConfigurationNotFound = Class.new(StandardError)
-  InvalidAccessToken    = Class.new(StandardError)
+  ConfigurationAborted  = Class.new(StandardError)
+  ExpiredAccessToken    = Class.new(StandardError)
   EndpointNotFound      = Class.new(StandardError)
 
-  # @param  []
   # @param  [String]
-  # @return []
+  # @param  [String]
+  # @return [Troo::Configuration]
   def self.configuration(file = Dir.home + '/.trooconf', env = 'default')
     unless File.exist?(file)
-      warn "\nConfiguration cannot be found, please run 'troo " \
-           "init' or './bin/troo init' first.\n"
-      file = configuration_path + '/trooconf.yml'
+      warn "\nConfiguration cannot be found, please run `troo " \
+           "init` or `./bin/troo init` first.\n"
+      file = root_path + '/config/trooconf.yml'
     end
 
     @configuration ||= Troo::Configuration.load(file, env)
   end
 
-  # @param  [String]
-  # @return []
-  def self.endpoints(version = 'version_1')
-    @endpoints ||= Troo::API::Endpoints
-      .load(configuration_path + '/trello_api.yml', version)
-  end
-
-  # @return []
+  # @return [TrueClass]
   def self.logger
     @logger ||= Logger
-      .new(log_path + '/troo.log').tap do |log|
+      .new(root_path + '/logs/troo.log').tap do |log|
       log.formatter = proc do |mode, time, prog, msg|
-        "#{time.iso8601} #{mode}:\n#{msg}\n"
+        "\n" + Esc.green + "#{time.iso8601}:" + Esc.reset + " #{msg}\n"
       end
     end
+  end
+
+  def self.root_path
+    File.expand_path('../..', __FILE__)
   end
 
   # RestClient.log = log_dir + '/restclient.log'
 
   Database.connect(configuration)
-
-  private
-
-  def self.configuration_path
-    File.dirname(__FILE__) + '/../config'
-  end
-
-  def self.log_path
-    File.dirname(__FILE__) + '/../logs'
-  end
 end

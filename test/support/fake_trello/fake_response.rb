@@ -19,8 +19,7 @@ class FakeResponse
   attr_reader :resource, :id, :collection
 
   def output
-    return converted if id
-    raw
+    id ? converted : raw
   end
 
   def converted

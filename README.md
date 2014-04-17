@@ -29,6 +29,12 @@ Or install it yourself as:
 
 You will need user authentication tokens to access your Trello account.
 
+### Setup Wizard
+
+Simply run `troo wizard` and follow the on screen instructions.
+
+### Manually
+
 1) Sign in to Trello in the normal way.
 
 2) Create your developer key at Trello:
@@ -89,12 +95,6 @@ You will need user authentication tokens to access your Trello account.
 
         troo version
 
-## Todo
-
-- Fix multitude of sins.
-- Write cucumber integration tests.
-- Convert dates/times to Time.iso8601().
-
 ## Testing
 
 I've put a simple fake server together so that I'm not hitting the Trello API continuously. You can activate and use this too.
@@ -115,7 +115,7 @@ I've put a simple fake server together so that I'm not hitting the Trello API co
 4) Run `server.rb`:
 
     cd ./test/support/fake_trello
-    ruby ./server.rb
+    ./server.rb
 
 5) Have fun.
 

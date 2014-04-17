@@ -40,15 +40,25 @@ module Troo
       end
 
       def empty_response?
-        parsed_response.empty?
+        return log(true) if parsed_response.empty?
+        false
       end
 
       def error_response?
-        response.is_a?(ErrorResponse)
+        return log(true) if response.is_a?(ErrorResponse)
+        false
       end
 
       def parsed_response
-        @parsed ||= Yajl::Parser.parse(response.body)
+        @parsed ||= Yajl::Parser.parse(response_body)
+      end
+
+      def response_body
+        data = response.body
+        File.open(filename, 'w') do |file_handle|
+          file_handle.write(data)
+        end
+        data
       end
 
       def response
@@ -69,7 +79,7 @@ module Troo
       end
 
       def urn
-        Troo.endpoints.interpolate!(endpoint, interpolation)
+        Troo::API::Endpoints.interpolate(endpoint, interpolation)
       end
 
       def missing_parameters?
@@ -80,8 +90,9 @@ module Troo
         Troo.configuration.allow_remote
       end
 
-      def log
-        Troo.logger.debug(formatted_messages) if log?
+      def log(retval = nil)
+        Troo.logger.debug("\n" + formatted_messages) if log?
+        retval
       end
 
       def log?
@@ -114,6 +125,17 @@ module Troo
           'Status'   => response.code,
           'Response' => response.body
         }
+      end
+
+      def filename
+        filename = [Troo.root_path + '/tmp/', endpoint.to_s]
+        filename << '_' << external_id if external_id
+        filename << '.json'
+        filename.join
+      end
+
+      def external_id
+        interpolation[:external_id]
       end
     end
   end

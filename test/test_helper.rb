@@ -3,11 +3,6 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'fabrication'
 
-SimpleCov.start do
-  command_name 'MiniTest::Spec'
-  add_filter   '/test/'
-end
-
 module MiniTest
   class Spec
     class << self

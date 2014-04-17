@@ -12,7 +12,7 @@ module Troo
       describe '.dispatch' do
         subject { described_class.dispatch(klass) }
 
-        before { @board = Fabricate(:board, default: default) }
+        before { Fabricate(:board, default: default) }
         after  { database_cleanup }
 
         context 'when a default is set' do

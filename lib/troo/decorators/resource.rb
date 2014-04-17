@@ -39,7 +39,7 @@ module Troo
         end
       end
 
-      # @return []
+      # @return [String]
       def id
         (klass.type == :card) ? klass.short_id : klass.id
       end
@@ -61,12 +61,12 @@ module Troo
         (klass.name && klass.name.chomp) || 'N/A'
       end
 
-      # @return []
+      # @return [Troo::Decorators::Resource]
       def board
         klass.board.decorator
       end
 
-      # @return []
+      # @return [Troo::Decorators::Resource]
       def list
         klass.list.decorator
       end
@@ -104,7 +104,11 @@ module Troo
 
       # @return [String]
       def username
-        ['@', klass.member.username].join
+        if klass.type == :member
+          ['@', klass.username].join
+        else
+          ['@', klass.member.username].join
+        end
       end
 
       # @return [String]

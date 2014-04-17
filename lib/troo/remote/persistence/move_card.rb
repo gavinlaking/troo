@@ -11,14 +11,14 @@ module Troo
                    external_list_id,
                    external_board_id = nil)
             new(external_card_id, external_list_id, external_board_id)
-              .perform
+              .update_cards
           end
         end
 
         # @param  [String]
         # @param  [String]
         # @param  [String, NilClass]
-        # @return []
+        # @return [Troo::Remote::Persistence::MoveCard]
         def initialize(external_card_id,
                        external_list_id,
                        external_board_id = nil)
@@ -28,8 +28,10 @@ module Troo
         end
 
         # @return []
-        def perform
-          update_cards
+        def update_cards
+          return Troo::Persistence::Local
+            .with_collection(resource).first if any?
+          false
         end
 
         private
@@ -37,12 +39,6 @@ module Troo
         attr_reader :external_card_id,
                     :external_list_id,
                     :external_board_id
-
-        def update_cards
-          return Troo::Persistence::Local
-            .with_collection(resource).first if any?
-          false
-        end
 
         def any?
           resource.any?

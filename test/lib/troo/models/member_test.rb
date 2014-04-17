@@ -67,7 +67,7 @@ module Troo
       subject { described_class.new.decorator(options) }
 
       it 'returns a new instance of the decorator for this model' do
-        subject.must_be_instance_of(Decorators::Member)
+        subject.must_be_instance_of(Decorators::Resource)
       end
     end
 

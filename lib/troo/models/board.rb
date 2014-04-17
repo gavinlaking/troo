@@ -5,8 +5,8 @@ module Troo
 
     attribute :name
     attribute :description
-    attribute :default, Type::Boolean
-    attribute :closed, Type::Boolean
+    attribute :default,     Type::Boolean
+    attribute :closed,      Type::Boolean
     attribute :external_id
     attribute :short_id
 

@@ -11,7 +11,8 @@ module Troo
              member:      member,
              text:        'Some text...',
              date:        'Wed, Dec 17 at 22:01',
-             type:        :resource_type)
+             type:        :resource_type,
+             username:    'gavinlaking1')
       }
       let(:options)            { {} }
       let(:described_instance) { described_class.new(klass, options) }

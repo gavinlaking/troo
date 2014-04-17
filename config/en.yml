@@ -1,4 +1,6 @@
 en:
+  configuration:
+    not_found: 'Configuration cannot be found, please run `troo init` or `./bin/troo init` first.'
   cli:
     add:
       board: 'Add a new board with <name>; prompts if <name> not provided.'
