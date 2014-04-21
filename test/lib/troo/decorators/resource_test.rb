@@ -29,11 +29,33 @@ module Troo
       describe '#title' do
         subject { described_instance.title }
 
+        it { subject.must_be_instance_of(String) }
+
         it { subject.must_match(/My Resource/) }
+      end
+
+      describe '#resource_title' do
+        subject { described_instance.resource_title }
+
+        it { subject.must_be_instance_of(String) }
+      end
+
+      describe '#resource_id' do
+        subject { described_instance.resource_id }
+
+        it { subject.must_be_instance_of(String) }
+      end
+
+      describe '#id' do
+        subject { described_instance.id }
+
+        it { subject.must_be_instance_of(Fixnum) }
       end
 
       describe '#description' do
         subject { described_instance.description }
+
+        it { subject.must_be_instance_of(String) }
 
         context 'when a description exists' do
           it 'returns the description' do
@@ -54,6 +76,8 @@ module Troo
         subject { described_instance.default }
 
         context 'when the resource is default' do
+          it { subject.must_be_instance_of(String) }
+
           it 'returns a marker' do
             subject.must_equal('*')
           end
@@ -61,6 +85,8 @@ module Troo
 
         context 'when the resource is not the default' do
           let(:default) { false }
+
+          it { subject.must_be_instance_of(NilClass) }
 
           it 'returns nil so that join compacts the value away' do
             subject.must_equal nil
@@ -70,6 +96,8 @@ module Troo
 
       describe '#name' do
         subject { described_instance.name }
+
+        it { subject.must_be_instance_of(String) }
 
         context 'when the resource has a name' do
           let(:resource_name) { 'My Resource' }
@@ -90,10 +118,42 @@ module Troo
         end
       end
 
+      # describe '#board' do
+      #   subject { described_instance.board }
+
+      #   it { subject.must_be_instance_of(String) }
+      # end
+
+      # describe '#list' do
+      #   subject { described_instance.list }
+
+      #   it { subject.must_be_instance_of(String) }
+      # end
+
+      # describe '#comments' do
+      #   subject { described_instance.comments }
+
+      #   it { subject.must_be_instance_of(String) }
+      # end
+
+      # describe '#members' do
+      #   subject { described_instance.members }
+
+      #   it { subject.must_be_instance_of(String) }
+      # end
+
+      # describe '#last_activity_date' do
+      #   subject { described_instance.last_activity_date }
+
+      #   it { subject.must_be_instance_of(String) }
+      # end
+
       describe '#as_view' do
         before { Template.stubs(:parse).returns('some output') }
 
         subject { described_instance.as_view }
+
+        it { subject.must_be_instance_of(String) }
 
         it 'returns the rendered content' do
           subject.must_match(/some output/)
@@ -103,6 +163,8 @@ module Troo
       describe '#username' do
         subject { described_instance.username }
 
+        it { subject.must_be_instance_of(String) }
+
         it 'returns the comment member username' do
           subject.must_equal('@' + klass.member.username)
         end
@@ -111,6 +173,8 @@ module Troo
       describe '#text' do
         subject { described_instance.text }
 
+        it { subject.must_be_instance_of(String) }
+
         it 'returns the comment text' do
           subject.must_equal(klass.text)
         end
@@ -118,6 +182,8 @@ module Troo
 
       describe '#date' do
         subject { described_instance.date }
+
+        it { subject.must_be_instance_of(String) }
 
         it 'returns the comment date' do
           subject.must_equal(klass.date)

@@ -12,6 +12,8 @@ module Troo
       describe '.with_collection' do
         subject { described_class.with_collection(resources) }
 
+        it { subject.must_be_instance_of(Array) }
+
         context 'when the collection is empty' do
           it 'returns the empty collection' do
             subject.must_equal []

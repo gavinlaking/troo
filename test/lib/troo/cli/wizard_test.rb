@@ -15,6 +15,8 @@ module Troo
       describe '#start' do
         subject { capture_io { described_class.new.start }.join }
 
+        it { subject.must_be_instance_of(String) }
+
         it 'returns a welcome message' do
           subject.must_match(/Welcome/)
         end

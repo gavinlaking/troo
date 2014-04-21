@@ -12,6 +12,8 @@ module Troo
           described_class.build!(uri, headers)['Authorization']
         end
 
+        it { subject.must_be_instance_of(String) }
+
         it 'returns the built headers' do
           subject.must_match(/consumer_key/)
           subject.must_match(/nonce/)

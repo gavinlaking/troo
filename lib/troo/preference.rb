@@ -9,7 +9,7 @@ module Troo
 
     class << self
       # @param  [Hash]
-      # @return []
+      # @return [String]
       def view(parameters)
         new(parameters).view
       end

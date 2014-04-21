@@ -11,6 +11,8 @@ module Troo
 
         subject { described_class.interpolate(endpoint, value) }
 
+        it { subject.must_be_instance_of(String) }
+
         context 'when the endpoint exists' do
           it 'returns the interpolated endpoint' do
             subject.must_equal('/boards/20001')

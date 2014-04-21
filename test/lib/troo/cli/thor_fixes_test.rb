@@ -19,6 +19,8 @@ module Troo
           described_class.banner(command, namespace, subcommand)
         end
 
+        it { subject.must_be_instance_of(String) }
+
         context 'when executing a subcommand' do
           let(:package_name) { 'show' }
 

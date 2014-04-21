@@ -26,6 +26,8 @@ module Troo
       describe '#perform' do
         subject { described_class.perform(parameters) }
 
+        it { subject.must_be_instance_of(Array) }
+
         context 'when all required parameters are provided' do
           context 'and the API request returns a collection' do
             let(:parsed_response) {

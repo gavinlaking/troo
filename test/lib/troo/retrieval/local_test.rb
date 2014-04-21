@@ -26,13 +26,15 @@ module Troo
       end
 
       describe '.all' do
+        let(:collection) { [:resource, :resource] }
+
         before { klass.stubs(:all).returns(collection) }
 
         subject { described_class.all(klass) }
 
-        context 'when local resources exist' do
-          let(:collection) { [:resource, :resource] }
+        it { subject.must_be_instance_of(Array) }
 
+        context 'when local resources exist' do
           it 'returns all the local resources' do
             subject.must_equal(collection)
           end
@@ -50,6 +52,8 @@ module Troo
       describe '.default' do
         subject { described_class.default(klass, options) }
 
+        it { subject.must_be_instance_of(NilClass) }
+
         context 'when the default is set' do
           let(:default_resource) { stub }
 
@@ -65,6 +69,8 @@ module Troo
 
       describe '.retrieve' do
         subject { described_class.retrieve(klass, id, options) }
+
+        it { subject.must_be_instance_of(NilClass) }
 
         context 'without an ID' do
           context 'when the default is set' do

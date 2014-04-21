@@ -13,6 +13,8 @@ module Troo
       describe '.dispatch' do
         subject { described_class.dispatch }
 
+        it { subject.must_be_instance_of(String) }
+
         context 'when all the resources are refreshed' do
           it 'returns a polite message' do
             subject.must_match(/All local data refreshed/)

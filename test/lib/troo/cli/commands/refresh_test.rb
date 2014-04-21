@@ -23,6 +23,8 @@ module Troo
       describe '.dispatch' do
         subject { described_class.dispatch(klass, id) }
 
+        it { subject.must_be_instance_of(String) }
+
         context 'when the resource exists' do
           let(:resource)  { @board }
           let(:retrieved) { [@board] }

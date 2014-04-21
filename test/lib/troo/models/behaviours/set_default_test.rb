@@ -7,6 +7,8 @@ module Troo
     describe '#default?' do
       subject { described_class.new.default? }
 
+      it { subject.must_be_instance_of(FalseClass) }
+
       it { subject.must_equal false }
     end
   end
@@ -26,6 +28,8 @@ module Troo
 
       context 'when the entity is already the default' do
         let(:entity) { @board_1 }
+
+        it { subject.must_be_instance_of(TrueClass) }
 
         it { subject.must_equal true }
       end

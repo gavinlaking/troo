@@ -28,6 +28,8 @@ module Troo
     describe '.all' do
       subject { described_class.all }
 
+      it { subject.must_be_instance_of(Hash) }
+
       it 'returns the resource parameters' do
         subject.must_equal({})
       end
@@ -35,6 +37,8 @@ module Troo
 
     describe '.by_board_id' do
       subject { described_class.by_board_id }
+
+      it { subject.must_be_instance_of(Hash) }
 
       it 'returns the resource parameters' do
         subject.must_equal({})
@@ -44,6 +48,8 @@ module Troo
     describe '.by_list_id' do
       subject { described_class.by_list_id }
 
+      it { subject.must_be_instance_of(Hash) }
+
       it 'returns the resource parameters' do
         subject.must_equal({})
       end
@@ -51,6 +57,8 @@ module Troo
 
     describe '.by_card_id' do
       subject { described_class.by_card_id }
+
+      it { subject.must_be_instance_of(Hash) }
 
       it 'returns the resource parameters' do
         subject.must_equal({})
@@ -60,9 +68,17 @@ module Troo
     describe '.by_member_id' do
       subject { described_class.by_member_id }
 
+      it { subject.must_be_instance_of(Hash) }
+
       it 'returns the resource parameters' do
         subject.must_equal({})
       end
+    end
+
+    describe '#preprocess' do
+    end
+
+    describe '#local' do
     end
   end
 end

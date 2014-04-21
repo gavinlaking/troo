@@ -13,6 +13,8 @@ module Troo
     describe '#view' do
       subject { described_class.view(parameters) }
 
+      it { subject.must_be_instance_of(String) }
+
       it 'presents the preference' do
         subject.must_equal('           my_preference: Some value...')
       end
