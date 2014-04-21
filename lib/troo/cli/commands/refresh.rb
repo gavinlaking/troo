@@ -6,7 +6,7 @@ module Troo
       class << self
         # @param  []
         # @param  []
-        # @return []
+        # @return [String]
         def dispatch(klass, id = nil)
           new(klass, id).refresh
         end
@@ -19,7 +19,7 @@ module Troo
         @klass, @id = klass, id
       end
 
-      # @return []
+      # @return [String]
       def refresh
         return not_found    if not_found?
         return many_success if multiple_refreshed?

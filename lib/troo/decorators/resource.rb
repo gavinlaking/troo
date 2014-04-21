@@ -39,7 +39,7 @@ module Troo
         end
       end
 
-      # @return [String]
+      # @return [Fixnum]
       def id
         (klass.type == :card) ? klass.short_id : klass.id
       end

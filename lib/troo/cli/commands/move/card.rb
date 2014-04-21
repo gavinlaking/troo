@@ -6,7 +6,7 @@ module Troo
           # @param  []
           # @param  []
           # @param  []
-          # @return []
+          # @return [String]
           def dispatch(card_id, list_id, board_id = nil)
             new(card_id, list_id, board_id).move
           end
@@ -20,7 +20,7 @@ module Troo
           @card_id, @list_id, @board_id = card_id, list_id, board_id
         end
 
-        # @return []
+        # @return [String]
         def move
           return 'Card cannot be found.'  if card_not_found?
           return 'List cannot be found.'  if list_not_found?
