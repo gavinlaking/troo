@@ -28,6 +28,8 @@ module Troo
             described_class.dispatch(card_id, list_id, board_id)
           end
 
+          it { subject.must_be_instance_of(String) }
+
           context 'when the card can be moved' do
             let(:outcome) { true }
 

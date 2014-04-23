@@ -2,7 +2,7 @@ module Troo
   module Commands
     class ShowBoards
       class << self
-        # @return []
+        # @return [String]
         def dispatch
           new.render
         end
@@ -10,7 +10,7 @@ module Troo
 
       def initialize; end
 
-      # @return []
+      # @return [String]
       def render
         return presenter if resources.any?
         error

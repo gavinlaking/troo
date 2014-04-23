@@ -11,12 +11,12 @@ module Troo
 
     # @param  []
     # @param  [Hash]
-    # @return []
+    # @return [Troo::Database]
     def initialize(configuration, options = {})
       @configuration, @options = configuration, options
     end
 
-    # @return []
+    # @return [NilClass]
     def connect
       Ohm.connect(db: configuration.database)
     end

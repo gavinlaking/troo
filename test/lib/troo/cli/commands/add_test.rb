@@ -25,6 +25,8 @@ module Troo
       describe '.dispatch' do
         subject { described_class.dispatch(value, id, options) }
 
+        it { subject.must_be_instance_of(String) }
+
         [:board, :card, :list, :comment].each do |test_type|
           context "when the type is #{test_type}" do
             let(:type) { test_type }

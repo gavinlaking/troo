@@ -16,6 +16,8 @@ module Troo
       describe '.dispatch' do
         subject { described_class.dispatch }
 
+        it { subject.must_be_instance_of(String) }
+
         context 'when boards exist' do
           let(:resources) { [@board] }
 

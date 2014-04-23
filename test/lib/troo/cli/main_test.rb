@@ -10,6 +10,8 @@ module Troo
 
         subject { capture_io { described_class.new.status }.join }
 
+        it { subject.must_be_instance_of(String) }
+
         it 'returns the output of the command' do
           subject.must_match(/Status/)
         end
@@ -22,6 +24,8 @@ module Troo
       describe '#config' do
         subject { capture_io { described_class.new.config }.join }
 
+        it { subject.must_be_instance_of(String) }
+
         it 'returns the current configuration' do
           subject.must_match(/Current configuration/)
         end
@@ -33,6 +37,8 @@ module Troo
         before { $stdin.stubs(:gets).returns(confirm) }
 
         subject { capture_io { described_class.new.cleanup }.join }
+
+        it { subject.must_be_instance_of(String) }
 
         context 'when the user confirms the operation' do
           it 'returns the output of the command' do
@@ -52,6 +58,8 @@ module Troo
       describe '#version' do
         subject { capture_io { described_class.new.version }.join }
 
+        it { subject.must_be_instance_of(String) }
+
         it 'returns the output of the command' do
           subject.must_match(/#{Troo::VERSION}/)
         end
@@ -67,6 +75,8 @@ module Troo
             described_class.new.move(card_id, list_id, board_id)
           end.join
         end
+
+        it { subject.must_be_instance_of(String) }
 
         it 'returns the output of the command' do
           subject.must_match(/Card cannot be found/)

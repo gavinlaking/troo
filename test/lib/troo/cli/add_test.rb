@@ -20,6 +20,8 @@ module Troo
         context 'when a value is provided' do
           let(:value) { 'some value' }
 
+          it { subject.must_be_instance_of(String) }
+
           it 'returns the output of the command' do
             subject.must_match(/could not be created/)
           end
@@ -44,6 +46,8 @@ module Troo
 
         context 'when a value is provided' do
           let(:value) { 'some value' }
+
+          it { subject.must_be_instance_of(String) }
 
           it 'returns the output of the command' do
             subject.must_match(/could not be created/)
@@ -70,6 +74,8 @@ module Troo
         context 'when a value is provided' do
           let(:value) { 'some value' }
 
+          it { subject.must_be_instance_of(String) }
+
           it 'returns the output of the command' do
             subject.must_match(/could not be created/)
           end
@@ -94,6 +100,8 @@ module Troo
 
         context 'when a value is provided' do
           let(:value) { 'some value' }
+
+          it { subject.must_be_instance_of(String) }
 
           it 'returns the output of the command' do
             subject.must_match(/could not be created/)

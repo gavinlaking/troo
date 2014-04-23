@@ -40,6 +40,8 @@ module Troo
     describe '.type' do
       subject { described_class.type }
 
+      it { subject.must_be_instance_of(Symbol) }
+
       it 'returns the type of model' do
         subject.must_equal(:board)
       end

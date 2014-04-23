@@ -3,7 +3,7 @@ module Troo
     class Status
       class << self
         # @param  []
-        # @return []
+        # @return [String]
         def dispatch(klass)
           new(klass).report_status
         end
@@ -15,7 +15,7 @@ module Troo
         @klass = klass
       end
 
-      # @return []
+      # @return [String]
       def report_status
         return success if resource
         error

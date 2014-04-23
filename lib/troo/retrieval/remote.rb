@@ -16,14 +16,14 @@ module Troo
       # @param  []
       # @param  []
       # @param  [Hash]
-      # @return []
+      # @return [Troo::Retrieval::Remote]
       def initialize(klass, external_id, options = {})
         @klass       = klass
         @external_id = external_id
         @options     = options
       end
 
-      # @return []
+      # @return [Array]
       def fetch
         return []        if none?
         return persist   if persist?

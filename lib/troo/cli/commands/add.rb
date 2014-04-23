@@ -7,7 +7,7 @@ module Troo
         # @param  []
         # @param  []
         # @param  [Hash]
-        # @return []
+        # @return [String]
         def dispatch(value, id = nil, options = {})
           new(value, id, options).add
         end
@@ -21,7 +21,7 @@ module Troo
         @value, @id, @options = value, id, options
       end
 
-      # @return []
+      # @return [String]
       def add
         return success if create
         error

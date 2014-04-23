@@ -5,7 +5,7 @@ module Troo
     describe Remote do
       let(:described_class) { Remote }
       let(:klass)           do
-        mock('klass', all:            {},
+        stub('klass', all:            {},
                       by_board_id:    {},
                       by_list_id:     {},
                       by_card_id:     {},
@@ -23,8 +23,14 @@ module Troo
           .returns(persisted)
       end
 
+      subject { described_class.new(klass, external_id, options) }
+
+      it { subject.must_be_instance_of(Troo::Retrieval::Remote) }
+
       describe '#fetch' do
         subject { described_class.fetch(klass, external_id, options) }
+
+        it { subject.must_be_instance_of(Array) }
 
         context 'when no resources were retrieved' do
           let(:resources) { [] }

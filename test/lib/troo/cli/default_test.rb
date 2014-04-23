@@ -10,6 +10,8 @@ module Troo
 
         subject { capture_io { described_class.new.board(id) }.join }
 
+        it { subject.must_be_instance_of(String) }
+
         it 'returns the output of the command' do
           subject.must_match(/Board cannot be found/)
         end
@@ -20,6 +22,8 @@ module Troo
 
         subject { capture_io { described_class.new.card(id) }.join }
 
+        it { subject.must_be_instance_of(String) }
+
         it 'returns the output of the command' do
           subject.must_match(/Card cannot be found/)
         end
@@ -29,6 +33,8 @@ module Troo
         let(:id) {}
 
         subject { capture_io { described_class.new.list(id) }.join }
+
+        it { subject.must_be_instance_of(String) }
 
         it 'returns the output of the command' do
           subject.must_match(/List cannot be found/)

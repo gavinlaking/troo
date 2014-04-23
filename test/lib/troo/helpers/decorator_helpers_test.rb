@@ -14,5 +14,7 @@ module Troo
     let(:described_instance) { described_class.new(klass, options) }
     let(:klass)              { stub }
     let(:options)            { {} }
+
+    it { skip }
   end
 end

@@ -4,7 +4,7 @@ module Troo
       # @param  []
       # @param  []
       # @param  []
-      # @return []
+      # @return [String]
       def self.banner(command, namespace = nil, subcommand = false)
         [basename, @package_name, command.usage].compact.join(' ')
       end

@@ -4,7 +4,7 @@ module Troo
       class << self
         # @param  []
         # @param  []
-        # @return []
+        # @return [String]
         def dispatch(klass, id)
           new(klass, id).set_default
         end
@@ -17,7 +17,7 @@ module Troo
         @klass, @id = klass, id
       end
 
-      # @return []
+      # @return [String]
       def set_default
         return success if resource && resource.set_default!
         error

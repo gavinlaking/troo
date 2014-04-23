@@ -15,6 +15,8 @@ module Troo
         before { Fabricate(:board, default: default) }
         after  { database_cleanup }
 
+        it { subject.must_be_instance_of(String) }
+
         context 'when a default is set' do
           it 'returns a polite message' do
             subject.must_match(/1 board found/)

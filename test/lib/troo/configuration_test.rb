@@ -6,6 +6,8 @@ module Troo
 
     subject { described_class.load('config/trooconf.yml', 'test') }
 
+    it { subject.must_be_instance_of(Troo::Configuration) }
+
     context 'configures' do
       it 'the name of the configuration' do
         subject.name.must_equal('My Example Test Configuration')
@@ -70,6 +72,8 @@ module Troo
       subject do
         described_class.load('config/trooconf.yml', 'test').view
       end
+
+      it { subject.must_be_instance_of(String) }
 
       it 'returns the configuration' do
         subject.must_equal("                 api_key: some_key
