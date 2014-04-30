@@ -9,9 +9,6 @@ function partition() {
 
 if [ -e ./bin/troo ]
 then
-  partition "init"
-  ./bin/troo init
-
   partition "version"
   ./bin/troo version
 

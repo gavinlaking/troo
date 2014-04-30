@@ -25,3 +25,4 @@ test/support/fake_trello/my-server.key
 test/support/private_remotes/*.json
 .gemtags
 .tags
+.DS_Store

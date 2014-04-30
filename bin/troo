@@ -8,26 +8,6 @@ if ARGV.include?('autocomplete')
   %w{add cleanup config default init move refresh
      show status version}.select { |e| /^#{command}/ =~ e }
                          .map    { |c| puts c }
-elsif ARGV.include?('init')
-  require 'fileutils'
-
-  source      = File.dirname(__FILE__) + '/../config/trooconf.yml'
-  destination = Dir.home + '/.trooconf'
-
-  if File.exist?(destination)
-    puts "\nA configuration file already exists in your home " \
-         "directory.\n\n"
-  else
-    print "\nCreating a configuration file in your home directory..."
-
-    FileUtils.cp(source, destination)
-
-    sleep 1 # simulate work being done
-    print " done.\n\n"
-
-    help = File.read(File.dirname(__FILE__) + '/../config/help')
-    print help
-  end
 elsif ARGV.include?('path')
   puts File.expand_path File.dirname(__FILE__)
 else

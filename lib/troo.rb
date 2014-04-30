@@ -15,7 +15,7 @@ module Troo
   def self.configuration(file = Dir.home + '/.trooconf', env = 'default')
     unless File.exist?(file)
       warn "\nConfiguration cannot be found, please run `troo " \
-           "init` or `./bin/troo init` first.\n"
+           "wizard` or `./bin/troo wizard` first.\n"
       file = root_path + '/config/trooconf.yml'
     end
 

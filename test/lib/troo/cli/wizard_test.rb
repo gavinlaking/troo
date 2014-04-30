@@ -5,8 +5,12 @@ module Troo
     describe Wizard do
       let(:described_class)    { Wizard }
       let(:described_instance) { described_class.new }
+      let(:exists)             { true }
 
       before do
+        File.stubs(:exist?).returns(exists)
+        File.stubs(:dirname).returns('')
+        FileUtils.stubs(:cp).returns(true)
         $stdin.stubs(:gets).returns("y\n")
         Launchy.stubs(:open).returns(true)
         Dir.stubs(:home).returns('./tmp')
@@ -19,6 +23,20 @@ module Troo
 
         it 'returns a welcome message' do
           subject.must_match(/Welcome/)
+        end
+
+        context 'when a configuration file does not exist' do
+          let(:exists) { false }
+
+          it 'returns the "created" message' do
+            subject.must_match(/file was created/)
+          end
+        end
+
+        context 'when a configuration file exists' do
+          it 'returns the "already exists" message' do
+            subject.must_match(/already exists/)
+          end
         end
 
         context 'when the user proceeds to step one' do
