@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    troo (0.0.12)
+    troo (0.0.13)
       addressable
       curses (= 1.0.1)
       dispel
