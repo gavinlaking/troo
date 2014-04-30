@@ -45,7 +45,7 @@ Simply run `troo wizard` and follow the on screen instructions.
 
     https://trello.com/1/connect?key=your_key_here&name=troo&response_type=token&scope=read,write
 
-4) Add your authentication tokens to the configuration file `.trooconf` in your home directory. (This file will be created for you the first time you run `troo init`)
+4) Add your authentication tokens to the configuration file `.trooconf` in your home directory. (This file will be created for you the first time you run `troo wizard`)
 
 5) Have fun, and tweet me @gavinlaking if you like it.
 
@@ -73,7 +73,7 @@ Simply run `troo wizard` and follow the on screen instructions.
 
 - Prepare to use Troo.
 
-        troo init
+        troo wizard
 
 - Move card with <card_id> to list with <list_id> optionally to another board with <board_id>.
 

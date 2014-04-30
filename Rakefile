@@ -20,6 +20,6 @@ if File.exist?(Dir.home + '/.trooconf')
   Rake::Task['cucumber'].execute
 else
   warn "\nConfiguration cannot be found, please run `troo " \
-       "init` or `./bin/troo init` first.\n"
+       "wizard` or `./bin/troo wizard` first.\n"
   exit(1)
 end

@@ -26,8 +26,7 @@ module Troo
     rescue ConfigurationNotFound
       pad do
         puts "Configuration cannot be found, please run " \
-             "`troo wizard` for help, or 'troo init' to manually " \
-             "configure."
+             "`troo wizard` to get started."
       end
     rescue ConfigurationAborted
       pad { puts 'Configuration wizard aborted.' }
