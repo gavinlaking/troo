@@ -17,7 +17,7 @@ module Troo
       end
 
       # @param  []
-      # @return []
+      # @return [Troo::Behaviours::SetDefault]
       def initialize(entity)
         @entity = entity
       end

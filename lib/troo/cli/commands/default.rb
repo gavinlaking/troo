@@ -12,7 +12,7 @@ module Troo
 
       # @param  []
       # @param  []
-      # @return []
+      # @return [Troo::Commands::Default]
       def initialize(klass, id)
         @klass, @id = klass, id
       end

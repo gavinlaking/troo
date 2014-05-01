@@ -10,7 +10,7 @@ module Troo
       end
 
       # @param  []
-      # @return []
+      # @return [Troo::Commands::Status]
       def initialize(klass)
         @klass = klass
       end

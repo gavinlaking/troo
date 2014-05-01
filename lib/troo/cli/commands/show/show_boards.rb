@@ -8,6 +8,7 @@ module Troo
         end
       end
 
+      # @return [Troo::Commands::ShowBoards]
       def initialize; end
 
       # @return [String]

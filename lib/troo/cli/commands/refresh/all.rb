@@ -29,10 +29,10 @@ module Troo
       end
 
       def resources
-        @resources ||= external_ids.map do |id|
-          Retrieval::Remote.fetch(Remote::Board, id, mode: :board)
-
-          Retrieval::Remote.fetch(Remote::Comment, id, mode: :board)
+        @resources ||= external_ids.inject([]) do |acc, id|
+          acc << Retrieval::Remote.fetch(Remote::Board, id, mode: :board)
+          acc << Retrieval::Remote.fetch(Remote::Comment, id, mode: :board)
+          acc
         end
       end
 
