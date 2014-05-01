@@ -35,7 +35,7 @@ module Troo
         []
       end
 
-      # @return [Troo::List]
+      # @return [Class]
       def local_model
         Troo::List
       end

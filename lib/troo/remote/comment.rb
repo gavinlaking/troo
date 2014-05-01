@@ -34,22 +34,22 @@ module Troo
         end
       end
 
-      # @return []
+      # @return [String]
       def external_board_id
         data.board.id
       end
 
-      # @return []
+      # @return [String]
       def external_card_id
         data.card.id
       end
 
-      # @return []
+      # @return [String]
       def external_comment_id
         id
       end
 
-      # @return []
+      # @return [String]
       def text
         data.text
       end
@@ -59,7 +59,7 @@ module Troo
         [:memberCreator]
       end
 
-      # @return []
+      # @return [Class]
       def local_model
         Troo::Comment
       end

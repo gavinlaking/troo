@@ -62,7 +62,7 @@ module Troo
         [:actions]
       end
 
-      # @return []
+      # @return [Class]
       def local_model
         Troo::Card
       end

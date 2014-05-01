@@ -51,7 +51,7 @@ module Troo
         [:lists, :cards, :members]
       end
 
-      # @return []
+      # @return [Class]
       def local_model
         Troo::Board
       end
