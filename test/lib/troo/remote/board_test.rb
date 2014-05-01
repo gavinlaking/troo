@@ -13,6 +13,8 @@ module Troo
       describe '.remote_options' do
         subject { described_class.remote_options }
 
+        it { subject.must_be_instance_of(Hash) }
+
         it 'returns the default remote options' do
           subject.fetch(:mode).must_equal(:board)
         end
@@ -20,6 +22,8 @@ module Troo
 
       describe '.all' do
         subject { described_class.all }
+
+        it { subject.must_be_instance_of(Hash) }
 
         it 'returns the resource parameters' do
           subject.fetch(:endpoint).must_equal(:boards_all)
@@ -29,6 +33,8 @@ module Troo
       describe '.by_board_id' do
         subject { described_class.by_board_id }
 
+        it { subject.must_be_instance_of(Hash) }
+
         it 'returns the resource parameters' do
           subject.fetch(:endpoint).must_equal(:board_by_id)
         end
@@ -37,17 +43,23 @@ module Troo
       describe '#associations' do
         subject { described_instance.associations }
 
+        it { subject.must_be_instance_of(Array) }
+
         it { subject.must_equal [:lists, :cards, :members] }
       end
 
       describe '#local_model' do
         subject { described_instance.local_model }
 
+        it { subject.must_be_instance_of(Class) }
+
         it { subject.must_equal Troo::Board }
       end
 
       describe '#adapted' do
         subject { described_instance.adapted }
+
+        it { subject.must_be_instance_of(Hash) }
 
         it 'returns an adapted resource for local persistence' do
           subject.must_equal(

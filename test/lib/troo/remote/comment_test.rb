@@ -12,6 +12,8 @@ module Troo
       describe '.remote_options' do
         subject { described_class.remote_options }
 
+        it { subject.must_be_instance_of(Hash) }
+
         it 'returns the default remote options' do
           subject.fetch(:mode).must_equal(:card)
         end
@@ -19,6 +21,8 @@ module Troo
 
       describe '.by_board_id' do
         subject { described_class.by_board_id }
+
+        it { subject.must_be_instance_of(Hash) }
 
         it 'returns the resource parameters' do
           subject.fetch(:endpoint).must_equal(:comments_by_board_id)
@@ -28,6 +32,8 @@ module Troo
       describe '.by_card_id' do
         subject { described_class.by_card_id }
 
+        it { subject.must_be_instance_of(Hash) }
+
         it 'returns the resource parameters' do
           subject.fetch(:endpoint).must_equal(:comments_by_card_id)
         end
@@ -35,6 +41,8 @@ module Troo
 
       describe '#external_board_id' do
         subject { described_instance.external_board_id }
+
+        it { subject.must_be_instance_of(String) }
 
         it 'delegates to the CommentData model' do
           subject.must_equal('20010')
@@ -44,6 +52,8 @@ module Troo
       describe '#external_card_id' do
         subject { described_instance.external_card_id }
 
+        it { subject.must_be_instance_of(String) }
+
         it 'delegates to the CommentData model' do
           subject.must_equal('20020')
         end
@@ -51,6 +61,8 @@ module Troo
 
       describe '#external_comment_id' do
         subject { described_instance.external_comment_id }
+
+        it { subject.must_be_instance_of(String) }
 
         it 'returns the value of the id attribute' do
           subject.must_equal('20030')
@@ -60,6 +72,8 @@ module Troo
       describe '#text' do
         subject { described_instance.text }
 
+        it { subject.must_be_instance_of(String) }
+
         it 'delegates to the CommentData model' do
           subject.must_equal('My Test Comment')
         end
@@ -68,17 +82,23 @@ module Troo
       describe '#associations' do
         subject { described_instance.associations }
 
+        it { subject.must_be_instance_of(Array) }
+
         it { subject.must_equal [:memberCreator] }
       end
 
       describe '#local_model' do
         subject { described_instance.local_model }
 
+        it { subject.must_be_instance_of(Class) }
+
         it { subject.must_equal Troo::Comment }
       end
 
       describe '#adapted' do
         subject { described_instance.adapted }
+
+        it { subject.must_be_instance_of(Hash) }
 
         it 'returns an adapted resource for local persistence' do
           subject.must_equal(
