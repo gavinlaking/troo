@@ -37,6 +37,13 @@ module Troo
         puts "Your Trello access token has expired, please run " \
              "`troo wizard` for help, or manually renew."
       end
+    rescue EndpointNotFound
+      pad do
+        puts "An unrecoverable error has occurred due to programmer " \
+             "error. Please report this issue at:\n\n"                \
+             "https://github.com/gavinlaking/troo/issues\n\n"         \
+             "Thank you.\n"
+      end
     ensure
       $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
       @kernel.exit(@exit_code)
