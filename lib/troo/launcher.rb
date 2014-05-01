@@ -4,8 +4,8 @@ module Troo
     # @param  []
     # @param  []
     # @param  []
-    # @param  []
-    # @return []
+    # @param  [Kernel]
+    # @return [Troo::Launcher]
     def initialize(argv, stdin = STDIN,
                          stdout = STDOUT,
                          stderr = STDERR,

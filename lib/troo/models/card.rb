@@ -68,7 +68,7 @@ module Troo
       comments.sort(by: :date, limit: [0, 3])
     end
 
-    # @return []
+    # @return [Array]
     def members
       return [] if external_member_ids.empty?
       @members ||= external_member_ids.map do |member_id|

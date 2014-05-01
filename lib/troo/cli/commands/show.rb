@@ -5,7 +5,7 @@ module Troo
 
       class << self
         # @param  []
-        # @param  []
+        # @param  [, NilClass]
         # @return [String]
         def dispatch(klass, id = nil)
           new(klass, id).render
@@ -13,7 +13,7 @@ module Troo
       end
 
       # @param  []
-      # @param  []
+      # @param  [, NilClass]
       # @return [Troo::Commands::Show]
       def initialize(klass, id = nil)
         @klass, @id = klass, id
