@@ -128,7 +128,7 @@ module Troo
       end
 
       def filename
-        filename = [Troo.root_path + '/tmp/', endpoint.to_s]
+        filename = [Troo.root_path + '/logs/api/', endpoint.to_s]
         filename << '_' << external_id if external_id
         filename << '.json'
         filename.join
