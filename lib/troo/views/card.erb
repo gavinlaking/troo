@@ -3,7 +3,7 @@
 <%= @object.description %>
 
 <%= label('Comments:') %>
-<%= @object.comments %>
+<%= @object.comments -%>
 
 <%= label('Members:') %>
 <%= @object.members %>
@@ -12,4 +12,4 @@
 <%- options = { colour: Esc.cyan, underline: false, align: { pos: :right, pad: 9 } } -%>
 <%= label('Board:', options) -%> <%= @object.board.title -%>
 <%= label('List:', options) -%> <%= @object.list.title -%>
-<%= label('Updated:', options) -%> <%= @object.last_activity_date %>
+<%= label('Updated:', options) -%> <%= @object.last_activity_date -%>
