@@ -9,8 +9,8 @@ module Troo
   ExpiredAccessToken    = Class.new(StandardError)
   EndpointNotFound      = Class.new(StandardError)
 
-  # @param  [String]
-  # @param  [String]
+  # @param  file [String]
+  # @param  env  [String]
   # @return [Troo::Configuration]
   def self.configuration(file = Dir.home + '/.trooconf', env = 'default')
     unless File.exist?(file)

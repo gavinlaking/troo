@@ -4,31 +4,31 @@ module Troo
       attr_reader :id
 
       class << self
-        # @param  []
+        # @param  klass []
         # @return [Array]
         def all(klass)
           new(klass).all
         end
 
-        # @param  []
-        # @param  [Hash]
+        # @param  klass   []
+        # @param  options [Hash]
         # @return [NilClass]
         def default(klass, options = {})
           new(klass, nil, options).default
         end
 
-        # @param  []
-        # @param  []
-        # @param  [Hash]
+        # @param  klass   []
+        # @param  id      [, NilClass]
+        # @param  options [Hash]
         # @return [NilClass]
         def retrieve(klass, id = nil, options = {})
           new(klass, id, options).retrieve
         end
       end
 
-      # @param  []
-      # @param  []
-      # @param  [Hash]
+      # @param  klass   []
+      # @param  id      [, NilClass]
+      # @param  options [Hash]
       # @return [Troo::Retrieval::Local]
       def initialize(klass, id = nil, options = {})
         @klass, @id, @options = klass, id, options

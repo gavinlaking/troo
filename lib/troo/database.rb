@@ -1,16 +1,16 @@
 module Troo
   class Database
     class << self
-      # @param  []
-      # @param  [Hash]
+      # @param  configuration []
+      # @param  options       [Hash]
       # @return []
       def connect(configuration, options = {})
         new(configuration, options).connect
       end
     end
 
-    # @param  []
-    # @param  [Hash]
+    # @param  configuration []
+    # @param  options       [Hash]
     # @return [Troo::Database]
     def initialize(configuration, options = {})
       @configuration, @options = configuration, options
