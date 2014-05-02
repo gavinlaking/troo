@@ -3,16 +3,16 @@ module Troo
     include DecoratorHelpers
 
     class << self
-      # @param  []
-      # @param  []
+      # @param  object []
+      # @param  path   []
       # @return []
       def parse(object, path)
         new(object, path).parse
       end
     end
 
-    # @param  []
-    # @param  []
+    # @param  object []
+    # @param  path   []
     # @return []
     def initialize(object, path)
       @object, @path = object, path

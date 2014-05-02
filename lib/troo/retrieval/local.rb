@@ -5,14 +5,14 @@ module Troo
 
       class << self
         # @param  []
-        # @return []
+        # @return [Array]
         def all(klass)
           new(klass).all
         end
 
         # @param  []
         # @param  [Hash]
-        # @return []
+        # @return [NilClass]
         def default(klass, options = {})
           new(klass, nil, options).default
         end
@@ -20,7 +20,7 @@ module Troo
         # @param  []
         # @param  []
         # @param  [Hash]
-        # @return []
+        # @return [NilClass]
         def retrieve(klass, id = nil, options = {})
           new(klass, id, options).retrieve
         end
@@ -29,22 +29,22 @@ module Troo
       # @param  []
       # @param  []
       # @param  [Hash]
-      # @return []
+      # @return [Troo::Retrieval::Local]
       def initialize(klass, id = nil, options = {})
         @klass, @id, @options = klass, id, options
       end
 
-      # @return []
+      # @return [Array]
       def all
         klass.all
       end
 
-      # @return []
+      # @return [NilClass]
       def default
         klass.default
       end
 
-      # @return []
+      # @return [NilClass]
       def retrieve
         return default unless id
         by_short_id || by_id || by_external_id || optional_remote

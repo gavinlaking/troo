@@ -2,18 +2,18 @@ module Troo
   module API
     class Request
       class << self
-        # @param  [Symbol]
-        # @param  [String]
-        # @param  [Hash]
+        # @param  verb  [Symbol]
+        # @param  uri   [String]
+        # @param  query [Hash]
         # @return [Response, ErrorResponse]
         def make(verb, uri, query = {})
           new(verb, uri, query).make
         end
       end
 
-      # @param  [Symbol]
-      # @param  [String]
-      # @param  [Hash]
+      # @param  verb  [Symbol]
+      # @param  uri   [String]
+      # @param  query [Hash]
       # @return [Troo::API::Request]
       def initialize(verb, uri, query = {})
         @verb, @uri, @query = verb, uri, query

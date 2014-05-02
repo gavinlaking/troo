@@ -1,7 +1,7 @@
 module Troo
   module RemoteModelHelpers
     module ClassMethods
-      # @param  [Array]
+      # @param  resources [Array]
       # @return [Array]
       def with_collection(resources = [])
         resources.map { |resource| new(resource) }

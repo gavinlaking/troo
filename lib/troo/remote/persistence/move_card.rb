@@ -6,7 +6,7 @@ module Troo
           # @param  [String]
           # @param  [String]
           # @param  [String, NilClass]
-          # @return []
+          # @return [Troo::Card, FalseClass]
           def with(external_card_id,
                    external_list_id,
                    external_board_id = nil)
@@ -27,7 +27,7 @@ module Troo
           @external_board_id = external_board_id
         end
 
-        # @return []
+        # @return [Troo::Card, FalseClass]
         def update_cards
           return Troo::Persistence::Local
             .with_collection(resource).first if any?

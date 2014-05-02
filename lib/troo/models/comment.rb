@@ -30,23 +30,23 @@ module Troo
       end
     end
 
-    # @return []
+    # @return [Troo::Board]
     def board
       Troo::Board.retrieve(external_board_id)
     end
 
-    # @return []
+    # @return [Troo::Card]
     def card
       Troo::Card.retrieve(external_card_id)
     end
 
-    # @return []
+    # @return [Troo::Member]
     def member
       Troo::Member.retrieve(external_member_id)
     end
 
-    # @param  [Hash]
-    # @return []
+    # @param  options [Hash]
+    # @return [Decorators::Resource]
     def decorator(options = {})
       Decorators::Resource.new(self, options)
     end

@@ -30,7 +30,7 @@ module Troo
       end
     end
 
-    # @return []
+    # @return [Troo::Board]
     def board
       Troo::Board.retrieve(external_board_id)
     end
@@ -40,13 +40,13 @@ module Troo
       Troo::Card.find(external_list_id: external_id)
     end
 
-    # @param  [Hash]
-    # @return []
+    # @param  options [Hash]
+    # @return [Decorators::Resource]
     def decorator(options = {})
       Decorators::Resource.new(self, options)
     end
 
-    # @param  [Hash]
+    # @param  options [Hash]
     # @return [Troo::Presenters::List]
     def presenter(options = {})
       Presenters::List.new(self, options)

@@ -38,13 +38,13 @@ module Troo
       Troo::Card.find(external_board_id: external_id)
     end
 
-    # @param  [Hash]
-    # @return []
+    # @param  options [Hash]
+    # @return [Decorators::Resource]
     def decorator(options = {})
       Decorators::Resource.new(self, options)
     end
 
-    # @param  [Hash]
+    # @param  options [Hash]
     # @return [Troo::Presenters::Board]
     def presenter(options = {})
       Presenters::Board.new(self, options)

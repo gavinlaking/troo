@@ -9,14 +9,14 @@ module Troo
 
     class SetDefault
       class << self
-        # @param  []
+        # @param  entity []
         # @return []
         def for(entity)
           new(entity).set_default!
         end
       end
 
-      # @param  []
+      # @param  entity []
       # @return [Troo::Behaviours::SetDefault]
       def initialize(entity)
         @entity = entity

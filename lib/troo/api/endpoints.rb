@@ -2,23 +2,21 @@ module Troo
   module API
     class Endpoints
       class << self
-        # @param  [Symbol]
-        # @param  [Hash]
+        # @param  endpoints [Symbol]
+        # @param  value     [Hash]
         # @return [String, EndpointNotFound]
         def interpolate(endpoint, value = {})
           new(endpoint, value).interpolate
         end
       end
 
-      # @param  [Symbol]
-      # @param  [Hash]
+      # @param  endpoint [Symbol]
+      # @param  value    [Hash]
       # @return [Troo::API::Endpoints]
       def initialize(endpoint, value = {})
         @endpoint, @value = endpoint, value
       end
 
-      # @param  [Symbol]
-      # @param  [Hash]
       # @return [String, EndpointNotFound]
       def interpolate
         endpoints.fetch(endpoint) % value

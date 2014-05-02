@@ -2,16 +2,16 @@ module Troo
   module Commands
     class Default
       class << self
-        # @param  []
-        # @param  []
+        # @param  klass []
+        # @param  id    []
         # @return [String]
         def dispatch(klass, id)
           new(klass, id).set_default
         end
       end
 
-      # @param  []
-      # @param  []
+      # @param  klass []
+      # @param  id    []
       # @return [Troo::Commands::Default]
       def initialize(klass, id)
         @klass, @id = klass, id

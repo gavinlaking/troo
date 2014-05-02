@@ -17,7 +17,7 @@ module Troo
     index :short_id
 
     class << self
-      # @return []
+      # @return [Class]
       def remote
         Remote::Member
       end
@@ -28,14 +28,14 @@ module Troo
       end
     end
 
-    # @param  [Hash]
-    # @return []
+    # @param  options [Hash]
+    # @return [Decorators::Resource]
     def decorator(options = {})
       Decorators::Resource.new(self, options)
     end
 
-    # @param  [Hash]
-    # @return []
+    # @param  options [Hash]
+    # @return [Troo::Presenters::Member]
     def presenter(options = {})
       Presenters::Member.new(decorator, options)
     end

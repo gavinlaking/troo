@@ -9,7 +9,7 @@ module Troo
       end
 
       class << self
-        # @param  [Hash]
+        # @param  response [Hash]
         # @return [Response, ErrorResponse]
         def build(response)
           new(response).build

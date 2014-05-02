@@ -2,7 +2,7 @@ module Troo
   module Persistence
     class Local
       class << self
-        # @param  [Array]
+        # @param  resources [Array]
         # @return [Array]
         def with_collection(resources = [])
           resources.map do |resource|
@@ -10,25 +10,25 @@ module Troo
           end
         end
 
-        # @param  []
-        # @return []
+        # @param  resource []
+        # @return [Array]
         def persist(resource)
           new(resource).persist
         end
       end
 
-      # @param  []
+      # @param  resource []
       # @return [Troo::Persistence::Local]
       def initialize(resource)
         @resource = resource
       end
 
-      # @return []
+      # @return [Array]
       def preprocess
         resource.preprocess
       end
 
-      # @return []
+      # @return [Array]
       def persist
         set_default
         delete

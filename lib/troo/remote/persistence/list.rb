@@ -5,7 +5,7 @@ module Troo
         class << self
           # @param  [String]
           # @param  [String]
-          # @return []
+          # @return [Troo::List, FalseClass]
           def with(external_board_id, name)
             new(external_board_id, name).create_local
           end
@@ -19,7 +19,7 @@ module Troo
           @name              = name
         end
 
-        # @return []
+        # @return [Troo::List, FalseClass]
         def create_local
           return Troo::Persistence::Local
             .with_collection(resource).first if any?

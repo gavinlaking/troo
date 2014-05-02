@@ -10,7 +10,7 @@ module Troo
         say Troo::Commands::ShowBoards.dispatch
       end
 
-      # @param  [String]
+      # @param  id [String]
       # @return [String]
       desc 'board (<id>)',
            'Show lists and cards for board <id>' \
@@ -19,7 +19,7 @@ module Troo
         say Troo::Commands::Show.dispatch(Troo::Board, id)
       end
 
-      # @param  [String]
+      # @param  id [String]
       # @return [String]
       desc 'list (<id>)',
            'Show all cards for list <id>' \
@@ -28,7 +28,7 @@ module Troo
         say Troo::Commands::Show.dispatch(Troo::List, id)
       end
 
-      # @param  [String]
+      # @param  id [String]
       # @return [String]
       desc 'card (<id>)',
            'Show a card <id> including last 3 comments' \
@@ -37,7 +37,7 @@ module Troo
         say Troo::Commands::Show.dispatch(Troo::Card, id)
       end
 
-      # @param  [String]
+      # @param  id [String]
       # @return [String]
       desc 'comments (<id>)',
            'Show all comments for card <id>' \

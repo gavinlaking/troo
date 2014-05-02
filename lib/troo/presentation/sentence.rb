@@ -1,16 +1,16 @@
 module Troo
   class Sentence
     class << self
-      # @param  [Array]
-      # @param  [String]
+      # @param  elements [Array]
+      # @param  label    [String]
       # @return [String]
       def construct(elements, label = 'elements')
         new(elements, label).construct
       end
     end
 
-    # @param  [Array]
-    # @param  [String]
+    # @param  elements [Array]
+    # @param  label    [String]
     # @return [Troo::Sentence]
     def initialize(elements, label)
       @elements, @label = elements, label

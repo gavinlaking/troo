@@ -3,7 +3,7 @@ module Troo
     class Default < ThorFixes
       package_name 'default'
 
-      # @param  [String]
+      # @param  id [String]
       # @return [String]
       desc 'board <id>',
            'Set the board <id> to default.'
@@ -11,7 +11,7 @@ module Troo
         say Commands::Default.dispatch(Board, id)
       end
 
-      # @param  [String]
+      # @param  id [String]
       # @return [String]
       desc 'card <id>',
            'Set the card <id> to default.'
@@ -19,7 +19,7 @@ module Troo
         say Commands::Default.dispatch(Card, id)
       end
 
-      # @param  [String]
+      # @param  id [String]
       # @return [String]
       desc 'list <id>',
            'Set the list <id> to default.'

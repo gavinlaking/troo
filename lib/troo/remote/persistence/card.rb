@@ -6,7 +6,7 @@ module Troo
           # @param  [String]
           # @param  [String, NilClass]
           # @param  [String, NilClass]
-          # @return []
+          # @return [Troo::Card, FalseClass]
           def with(external_list_id, name = nil, description = nil)
             new(external_list_id, name, description).create_local
           end
@@ -22,7 +22,7 @@ module Troo
           @description      = description
         end
 
-        # @return []
+        # @return [Troo::Card, FalseClass]
         def create_local
           return Troo::Persistence::Local
             .with_collection(resource).first if any?

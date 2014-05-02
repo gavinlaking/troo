@@ -4,18 +4,18 @@ module Troo
       attr_reader :id, :value
 
       class << self
-        # @param  []
-        # @param  [, NilClass]
-        # @param  [Hash]
+        # @param  value   []
+        # @param  id      [, NilClass]
+        # @param  options [Hash]
         # @return [String]
         def dispatch(value, id = nil, options = {})
           new(value, id, options).add
         end
       end
 
-      # @param  []
-      # @param  [, NilClass]
-      # @param  [Hash]
+      # @param  value   []
+      # @param  id      [, NilClass]
+      # @param  options [Hash]
       # @return [Troo::Commands::Add]
       def initialize(value, id = nil, options = {})
         @value, @id, @options = value, id, options

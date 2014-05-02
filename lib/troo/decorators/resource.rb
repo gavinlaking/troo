@@ -3,8 +3,8 @@ module Troo
     class Resource
       include DecoratorHelpers
 
-      # @param  []
-      # @param  [Hash]
+      # @param  klass   []
+      # @param  options [Hash]
       # @return [Troo::Decorators::Resource]
       def initialize(klass, options = {})
         @klass, @options = klass, options

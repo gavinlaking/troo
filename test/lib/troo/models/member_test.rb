@@ -48,6 +48,8 @@ module Troo
     describe '.remote' do
       subject { described_class.remote }
 
+      it { subject.must_be_instance_of(Class) }
+
       it 'returns the remote class for this model' do
         subject.must_equal(Remote::Member)
       end

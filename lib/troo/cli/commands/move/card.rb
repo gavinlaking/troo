@@ -3,18 +3,18 @@ module Troo
     module Move
       class Card
         class << self
-          # @param  [String]
-          # @param  [String]
-          # @param  [String]
+          # @param  card_id  [String]
+          # @param  list_id  [String]
+          # @param  board_id [String]
           # @return [String]
           def dispatch(card_id, list_id, board_id = nil)
             new(card_id, list_id, board_id).move
           end
         end
 
-        # @param  [String]
-        # @param  [String]
-        # @param  [String]
+        # @param  card_id  [String]
+        # @param  list_id  [String]
+        # @param  board_id [String]
         # @return [Troo::Commands::Move::Card]
         def initialize(card_id, list_id, board_id = nil)
           @card_id, @list_id, @board_id = card_id, list_id, board_id

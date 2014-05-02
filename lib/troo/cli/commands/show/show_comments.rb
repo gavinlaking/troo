@@ -4,14 +4,14 @@ module Troo
       attr_reader :id
 
       class << self
-        # @param  [String]
+        # @param  id [String]
         # @return [String]
         def dispatch(id = nil)
           new(id).render
         end
       end
 
-      # @param  [String]
+      # @param  id [String]
       # @return [Troo::Commands::ShowComments]
       def initialize(id = nil)
         @id = id

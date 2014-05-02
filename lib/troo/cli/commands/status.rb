@@ -2,14 +2,14 @@ module Troo
   module Commands
     class Status
       class << self
-        # @param  []
+        # @param  klass []
         # @return [String]
         def dispatch(klass)
           new(klass).report_status
         end
       end
 
-      # @param  []
+      # @param  klass []
       # @return [Troo::Commands::Status]
       def initialize(klass)
         @klass = klass

@@ -3,7 +3,7 @@ module Troo
     class Add < ThorFixes
       package_name 'add'
 
-      # @param  [String]
+      # @param  name [String]
       # @return [String]
       desc 'board (<name>)',
            'Add a new board with <name>; prompts if <name> not ' \
@@ -13,8 +13,8 @@ module Troo
         say Commands::Add.dispatch(value, nil, type: :board)
       end
 
-      # @param  [String]
-      # @param  [String]
+      # @param  id   [String]
+      # @param  name [String]
       # @return [String]
       desc 'card <list_id> (<name>)',
            'Add a new card to the list with <list_id> with <name>; ' \
@@ -24,8 +24,8 @@ module Troo
         say Commands::Add.dispatch(value, id, type: :card)
       end
 
-      # @param  [String]
-      # @param  [String]
+      # @param  id      [String]
+      # @param  comment [String]
       # @return [String]
       desc 'comment <card_id> (<comment>)',
            'Add a new comment to the card with <card_id> with ' \
@@ -35,8 +35,8 @@ module Troo
         say Commands::Add.dispatch(value, id, type: :comment)
       end
 
-      # @param  [String]
-      # @param  [String]
+      # @param  id   [String]
+      # @param  name [String]
       # @return [String]
       desc 'list <board_id> (<name>)',
            'Add a new list to the board with <board_id> with ' \

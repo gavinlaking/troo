@@ -4,16 +4,16 @@ module Troo
       attr_reader :id
 
       class << self
-        # @param  []
-        # @param  [, NilClass]
+        # @param  klass []
+        # @param  id    [, NilClass]
         # @return [String]
         def dispatch(klass, id = nil)
           new(klass, id).refresh
         end
       end
 
-      # @param  []
-      # @param  [, NilClass]
+      # @param  klass []
+      # @param  id    [, NilClass]
       # @return [Troo::Commands::Refresh]
       def initialize(klass, id = nil)
         @klass, @id = klass, id

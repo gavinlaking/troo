@@ -66,9 +66,9 @@ module Troo
       desc 'wizard', 'Become the wizard.'
       subcommand :wizard, CLI::Wizard
 
-      # @param  [String]
-      # @param  [String]
-      # @param  [String]
+      # @param  card_id  [String]
+      # @param  list_id  [String]
+      # @param  board_id [String]
       # @return [String]
       desc 'move <card_id> <list_id> (<board_id>)',
            'Move card with <card_id> to list with <list_id> ' \

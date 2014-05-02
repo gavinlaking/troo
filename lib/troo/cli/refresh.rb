@@ -10,7 +10,7 @@ module Troo
         say Commands::RefreshAll.dispatch
       end
 
-      # @param  [String]
+      # @param  id [String]
       # @return [String]
       desc 'board (<id>)',
            'Refresh the default board or board with <id>.'
@@ -18,7 +18,7 @@ module Troo
         say Commands::Refresh.dispatch(Troo::Board, id)
       end
 
-      # @param  [String]
+      # @param  id [String]
       # @return [String]
       desc 'card (<id>)',
            'Refresh the default card or card with <id>.'
@@ -26,7 +26,7 @@ module Troo
         say Commands::Refresh.dispatch(Troo::Card, id)
       end
 
-      # @param  [String]
+      # @param  id [String]
       # @return [String]
       desc 'list (<id>)',
            'Refresh the default list or list with <id>.'

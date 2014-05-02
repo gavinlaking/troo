@@ -76,19 +76,19 @@ module Troo
       end.compact
     end
 
-    # @param  [Hash]
-    # @return []
+    # @param  options [Hash]
+    # @return [Decorators::Resource]
     def decorator(options = {})
       Decorators::Resource.new(self, options)
     end
 
-    # @param  [Hash]
+    # @param  options [Hash]
     # @return [Troo::Presenters::Card]
     def presenter(options = {})
       Presenters::Card.new(self, options)
     end
 
-    # @param  [Hash]
+    # @param  options [Hash]
     # @return []
     def comment_presenter(options = {})
       Presenters::Comment.new(self, options)
