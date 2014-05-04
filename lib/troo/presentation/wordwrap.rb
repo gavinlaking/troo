@@ -1,20 +1,28 @@
 module Troo
   class Wordwrap
     class << self
+      # @param value   []
+      # @param options [Hash]
+      # @return []
       def this(value, options = {})
         new(value, options).reformat
       end
     end
 
+    # @param value   []
+    # @param options [Hash]
+    # @return [Troo::Wordwrap]
     def initialize(value, options = {})
       @value, @options = value, options
     end
 
+    # @return []
     def reformat
       return pruned if prune?
       wordwrapped
     end
 
+    # @return []
     def wordwrapped
       processed = []
       value.split(/\n/).map do |unprocessed|

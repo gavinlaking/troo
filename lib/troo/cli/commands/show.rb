@@ -13,7 +13,6 @@ module Troo
         end
       end
 
-
       # @param  klass   []
       # @param  id      [, NilClass]
       # @param  options [Hash]

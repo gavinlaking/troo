@@ -19,6 +19,7 @@ module Troo
     end
   end
 
+  # @return []
   def self.trace
     trace = TracePoint.new(:call) do |tp|
       if tp.defined_class.to_s.match(/Troo/)

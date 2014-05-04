@@ -10,6 +10,7 @@ module Troo
       attribute :align,     Troo::Align, default: Troo::Align.new
     end
 
+    # @return [String]
     def underline
       @underline ? Esc.underline : nil
     end
