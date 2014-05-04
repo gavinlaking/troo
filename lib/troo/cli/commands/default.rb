@@ -13,6 +13,7 @@ module Troo
 
       def set_default
         return success if resource && resource.set_default!
+
         error
       end
 

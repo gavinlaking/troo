@@ -30,10 +30,12 @@ module Troo
               .with(card.external_id,
                     list.external_id,
                     board.external_id)
+
           else
             @moved ||= Remote::Persistence::MoveCard
               .with(card.external_id,
                     list.external_id)
+
           end
         end
 
@@ -41,8 +43,10 @@ module Troo
           if board_specified?
             "Card '#{card_name}' moved to '#{list_name}' " \
             "on '#{board_name}'."
+
           else
             "Card '#{card_name}' moved to '#{list_name}'."
+
           end
         end
 

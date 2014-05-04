@@ -27,11 +27,13 @@ module Troo
 
       def formatted_id
         return highlight(resource_id) if card?
+
         resource_id
       end
 
       def name
         return formatted_name if card?
+
         highlight(formatted_name)
       end
 
@@ -45,6 +47,7 @@ module Troo
 
       def resource_id
         return klass.short_id if card?
+
         klass.id
       end
 

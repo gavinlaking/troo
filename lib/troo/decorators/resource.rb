@@ -18,9 +18,11 @@ module Troo
       def resource_title
         if klass.type == :card
           Troo::Wordwrap.this(name, prune: true)
+
         else
           Troo::Formatter.highlight(
             Troo::Wordwrap.this(name, prune: true), options)
+
         end
       end
 
@@ -28,8 +30,10 @@ module Troo
         if klass.type == :card
           brackets(Troo::Formatter.highlight(
             Troo::Wordwrap.this(id), options))
+
         else
           brackets(id)
+
         end
       end
 
@@ -65,10 +69,13 @@ module Troo
                 "'troo show comments #{klass.short_id}' to view " \
                 ' all comments.)'
           [decorated_recent_comments, msg].join("\n")
+
         elsif klass.comments.any?
           decorated_all_comments
+
         else
           'No comments have been left.'
+
         end
       end
 
@@ -78,6 +85,7 @@ module Troo
 
       def last_activity_date
         return 'N/A' unless klass.last_activity_date
+
         Time.parse(klass.last_activity_date)
             .strftime('%a, %b %d at %H:%M')
       end
@@ -89,8 +97,10 @@ module Troo
       def username
         if klass.type == :member
           ['@', klass.username].join
+
         else
           ['@', klass.member.username].join
+
         end
       end
 

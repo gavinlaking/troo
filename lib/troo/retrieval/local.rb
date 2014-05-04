@@ -31,6 +31,7 @@ module Troo
 
       def retrieve
         return default unless id
+
         by_short_id || by_id || by_external_id || optional_remote
       end
 
@@ -73,6 +74,7 @@ module Troo
 
       def short_id_criteria
         return special if card? && default_board_exists?
+
         normal
       end
 
@@ -83,8 +85,10 @@ module Troo
       def special
         if klass.count(normal) > 1
           normal.merge!(board_criteria)
+
         else
           normal
+
         end
       end
 

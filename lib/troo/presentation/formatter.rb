@@ -30,8 +30,10 @@ module Troo
           formatted_value,
           options.reset
         ].join
+
       else
         formatted_value
+
       end
     end
 
@@ -42,8 +44,10 @@ module Troo
           formatted_value,
           options.reset
         ].join
+
       else
         formatted_value
+
       end
     end
 

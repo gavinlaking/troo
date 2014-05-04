@@ -16,6 +16,7 @@ module Troo
       def refresh
         return not_found    if not_found?
         return many_success if multiple_refreshed?
+
         success
       end
 
@@ -37,6 +38,7 @@ module Troo
 
       def not_found
         return [error, no_default].join(' ') unless id
+
         error
       end
 
@@ -63,6 +65,7 @@ module Troo
 
       def resource
         return [] unless local
+
         remote
       end
 

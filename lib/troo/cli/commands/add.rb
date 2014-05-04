@@ -15,6 +15,7 @@ module Troo
 
       def add
         return success if create
+
         error
       end
 
@@ -26,6 +27,7 @@ module Troo
 
       def error
         return 'Could not create resource.' if no_type?
+
         "#{klass} could not be created."
       end
 
@@ -38,8 +40,10 @@ module Troo
 
         if type == :board
           @create ||= remote.with(value)
+
         else
           return false if no_local?
+
           @create ||= remote.with(resource.external_id, value)
         end
       end

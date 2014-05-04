@@ -16,15 +16,17 @@ module Troo
       end
 
       def perform
-        return [] if disallow_remote?
-        return [] if missing_parameters?
-        return [] if error_response?
-        return [] if empty_response?
+        return [] if disallow_remote?    ||
+                     missing_parameters? ||
+                     error_response?     ||
+                     empty_response?
 
         if collection?
           model.with_collection(parsed_response)
+
         else
           [model.new(parsed_response)]
+
         end
       end
 

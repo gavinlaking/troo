@@ -13,6 +13,7 @@ module Troo
 
       def report_status
         return success if resource
+
         error
       end
 
@@ -27,8 +28,10 @@ module Troo
       def error
         if count > 0
           label + no_default_error + " (#{count})"
+
         else
           label + "No #{type}s found.\n"
+
         end
       end
 
@@ -47,8 +50,10 @@ module Troo
       def plural
         if count == 1
           "#{count} #{type}"
+
         else
           "#{count} #{type}s"
+
         end
       end
 

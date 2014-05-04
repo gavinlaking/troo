@@ -13,6 +13,7 @@ module Troo
 
       def render
         return presenter if resources.any?
+
         error
       end
 

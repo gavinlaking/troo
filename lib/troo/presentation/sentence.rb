@@ -13,12 +13,16 @@ module Troo
     def construct
       if one?
         first
+
       elsif two?
         elements.join(' and ')
+
       elsif many?
         [but_last, last].join(' and ')
+
       else
         "No #{label} have been assigned."
+
       end
     end
 

@@ -29,6 +29,7 @@ module Troo
     def decorator(options = {})
       Decorators::Resource.new(self, options)
     end
+
     def presenter(options = {})
       Presenters::Member.new(decorator, options)
     end

@@ -12,6 +12,7 @@ module Troo
 
     def reformat
       return pruned if prune?
+
       wordwrapped
     end
 
@@ -51,6 +52,7 @@ module Troo
 
     def pruned
       return value if value.size <= pruned_width
+
       [
         value.chomp.slice(0..pruned_width),
         '...',

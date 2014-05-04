@@ -38,10 +38,13 @@ module Troo
     def external_member_ids
       if @attributes[:external_member_ids].nil?
         []
+
       elsif @attributes[:external_member_ids].is_a?(Array)
         @attributes[:external_member_ids]
+
       else
         JSON(@attributes[:external_member_ids])
+
       end
     end
 
@@ -63,6 +66,7 @@ module Troo
 
     def members
       return [] if external_member_ids.empty?
+
       @members ||= external_member_ids.map do |member_id|
         Troo::Member.retrieve(member_id)
       end.compact

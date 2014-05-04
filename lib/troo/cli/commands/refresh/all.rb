@@ -7,6 +7,7 @@ module Troo
 
       def refresh_all
         return success if refreshed?
+
         failure
       end
 
@@ -22,6 +23,7 @@ module Troo
 
       def refreshed?
         return false if resources.none?
+
         Troo::Refresh.completed!
         true
       end

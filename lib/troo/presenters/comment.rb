@@ -12,8 +12,10 @@ module Troo
 
         if comments?
           all_comments
+
         else
           no_comments
+
         end
 
         output.render

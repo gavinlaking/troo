@@ -16,10 +16,13 @@ module Troo
       def render
         if resource
           presenter
+
         elsif no_default?
           [error, no_default].join(' ')
+
         else
           error
+
         end
       end
 

@@ -19,6 +19,7 @@ module Troo
 
       def set_default!
         return true if already_default?
+
         unset_default
         set_new_default
         entity
@@ -42,6 +43,7 @@ module Troo
 
       def entity
         return NullEntity.new if @entity.nil?
+
         @entity
       end
     end

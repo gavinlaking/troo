@@ -13,8 +13,10 @@ module Troo
 
         if Troo::Refresh.last_performed_at?
           say Troo::Refresh.last_performed_at
+
         else
           say 'Unknown. Run `troo refresh all`.'
+
         end
       end
 
@@ -31,8 +33,10 @@ module Troo
         if yes?('This will remove all local data, are you sure?')
           Ohm.redis.flushdb
           say "\n" + 'All local data has been removed.'
+
         else
           say "\n" + 'No local data has been removed.'
+
         end
       end
 

@@ -3,11 +3,13 @@ module Troo
     module ClassMethods
       def first(criteria = {})
         return all.first if criteria.nil? || criteria.empty?
+
         find(criteria).first
       end
 
       def update(criteria = {})
         return false if criteria.nil? || criteria.empty?
+
         all.map { |record| record.update(criteria) }
         true
       end
@@ -22,6 +24,7 @@ module Troo
 
       def count(criteria = {})
         return all.count if criteria.empty?
+
         find(criteria).size
       end
 

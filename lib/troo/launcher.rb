@@ -14,7 +14,16 @@ module Troo
 
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
-      pad { Troo::CLI::Main.start(@argv) }
+
+      if @argv.include?('gui')
+        @argv.delete_if { |a| a == 'gui' }
+        Troo::GUI::Main.start(@argv)
+
+      else
+        pad { Troo::CLI::Main.start(@argv) }
+
+      end
+
       @exit_code = 0
     rescue ConfigurationNotFound
       pad do

@@ -25,8 +25,10 @@ module Troo
             output.spacer do
               output.build(error('No cards were found.', options))
             end
+
           else
             render_cards
+
           end
         end
       end
