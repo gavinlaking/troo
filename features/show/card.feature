@@ -6,6 +6,7 @@ Feature: Showing a card
     When I run `troo show card 20020`
     Then the output should contain:
       """
+
       (67) My Test Card
 
       Description:
@@ -70,6 +71,7 @@ Feature: Showing a card
     When I run `troo show card 20020`
     Then the output should contain:
       """
+
       (67) My Test Card
 
       Description:
