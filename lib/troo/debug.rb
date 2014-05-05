@@ -3,9 +3,6 @@ require 'pry-nav'
 require 'ruby-prof'
 
 module Troo
-  # @param  filename [String]
-  # @param  []
-  # @return []
   def self.debug(filename = 'profile.html', &block)
     RubyProf.start
 
@@ -19,7 +16,6 @@ module Troo
     end
   end
 
-  # @return []
   def self.trace
     trace = TracePoint.new(:call) do |tp|
       if tp.defined_class.to_s.match(/Troo/)

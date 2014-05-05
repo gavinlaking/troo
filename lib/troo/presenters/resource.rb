@@ -4,22 +4,15 @@ module Troo
       include DecoratorHelpers
 
       class << self
-        # @param  []
-        # @param  [Hash]
-        # @return [String]
         def list_view(klass, options = {})
           new(klass, options).list_view
         end
       end
 
-      # @param  []
-      # @param  [Hash]
-      # @return [Troo::Presenters::Resource]
       def initialize(klass, options = {})
         @klass, @options = klass, options
       end
 
-      # @return [String]
       def list_view
         [id, name, default].compact.join(' ') + "\n"
       end

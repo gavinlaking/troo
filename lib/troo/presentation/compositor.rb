@@ -3,14 +3,11 @@ module Troo
     attr_accessor :count
     attr_accessor :output
 
-    # @return [Troo::Compositor]
     def initialize
       @count = 0
       @output = []
     end
 
-    # @param  [String, Array]
-    # @return [Array]
     def build(content)
       Array(content).inject(output) do |out, line|
         out << (indentation + line)
@@ -18,12 +15,10 @@ module Troo
       output
     end
 
-    # @return [String]
     def render
       output.flatten.join
     end
 
-    # @return [Array]
     def spacer(&block)
       if block_given?
         output << "\n"
@@ -36,7 +31,6 @@ module Troo
       end
     end
 
-    # @return []
     def indent(&block)
       @count += 1
 

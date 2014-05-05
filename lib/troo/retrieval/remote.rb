@@ -4,26 +4,17 @@ module Troo
       attr_reader :external_id
 
       class << self
-        # @param  klass       []
-        # @param  external_id []
-        # @param  options     [Hash]
-        # @return []
         def fetch(klass, external_id, options = {})
           new(klass, external_id, options).fetch
         end
       end
 
-      # @param  klass       []
-      # @param  external_id []
-      # @param  options     [Hash]
-      # @return [Troo::Retrieval::Remote]
       def initialize(klass, external_id, options = {})
         @klass       = klass
         @external_id = external_id
         @options     = options
       end
 
-      # @return [Array]
       def fetch
         return []        if none?
         return persist   if persist?

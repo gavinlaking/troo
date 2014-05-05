@@ -1,7 +1,6 @@
 module Troo
   module CLI
     class Main < ThorFixes
-      # @return [String]
       desc 'status',
            'Get troo status.'
       def status
@@ -19,7 +18,6 @@ module Troo
         end
       end
 
-      # @return [String]
       desc 'config',
            'Show the current configuration.'
       def config
@@ -27,7 +25,6 @@ module Troo
         say Troo.configuration.view
       end
 
-      # @return [String]
       desc 'cleanup',
            'Removes all local data.'
       def cleanup
@@ -39,7 +36,6 @@ module Troo
         end
       end
 
-      # @return [String]
       desc 'version',
            'Print the version.'
       def version
@@ -66,10 +62,6 @@ module Troo
       desc 'wizard', 'Become the wizard.'
       subcommand :wizard, CLI::Wizard
 
-      # @param  card_id  [String]
-      # @param  list_id  [String]
-      # @param  board_id [String]
-      # @return [String]
       desc 'move <card_id> <list_id> (<board_id>)',
            'Move card with <card_id> to list with <list_id> ' \
            'optionally to another board with <board_id>.'

@@ -3,23 +3,16 @@ module Troo
     module Persistence
       class List
         class << self
-          # @param  [String]
-          # @param  [String]
-          # @return [Troo::List, FalseClass]
           def with(external_board_id, name)
             new(external_board_id, name).create_local
           end
         end
 
-        # @param  [String]
-        # @param  [String]
-        # @return [Troo::Remote::Persistence::List]
         def initialize(external_board_id, name)
           @external_board_id = external_board_id
           @name              = name
         end
 
-        # @return [Troo::List, FalseClass]
         def create_local
           return Troo::Persistence::Local
             .with_collection(resource).first if any?

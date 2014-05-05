@@ -2,20 +2,15 @@ module Troo
   module Commands
     class ShowBoards
       class << self
-        # @param  [Hash]
-        # @return [String]
         def dispatch(options = {})
           new(options).render
         end
       end
 
-      # @param  options [Hash]
-      # @return [Troo::Commands::ShowBoards]
       def initialize(options = {})
         @options = options
       end
 
-      # @return [String]
       def render
         return presenter if resources.any?
         error

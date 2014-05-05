@@ -3,14 +3,10 @@ module Troo
     class List
       include DecoratorHelpers
 
-      # @param  [Troo::List]
-      # @param  [Hash]
-      # @return [Troo::Presenters::List]
       def initialize(list, options = {})
         @list, @options = list, options
       end
 
-      # @return [String]
       def show
         output.build(list_view(list.board))
 
@@ -21,7 +17,6 @@ module Troo
         output.render
       end
 
-      # @return [String]
       def render_list
         output.build(list_view(list))
 

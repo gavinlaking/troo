@@ -2,22 +2,15 @@ module Troo
   module Commands
     class Status
       class << self
-        # @param  klass   []
-        # @param  options [Hash]
-        # @return [String]
         def dispatch(klass, options = {})
           new(klass, options = {}).report_status
         end
       end
 
-      # @param  klass   []
-      # @param  options [Hash]
-      # @return [Troo::Commands::Status]
       def initialize(klass, options = {})
         @klass, @options = klass, options
       end
 
-      # @return [String]
       def report_status
         return success if resource
         error

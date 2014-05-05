@@ -9,14 +9,11 @@ module Troo
       end
 
       class << self
-        # @param  response [Hash]
-        # @return [Response, ErrorResponse]
         def build(response)
           new(response).build
         end
       end
 
-      # @return [Response, ErrorResponse]
       def build
         raise ExpiredAccessToken if expired?
         ok? ? Response.new(attributes) : ErrorResponse.new(attributes)

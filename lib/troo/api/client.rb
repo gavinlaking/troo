@@ -10,14 +10,11 @@ module Troo
       attribute :model
 
       class << self
-        # @param  parameters [Hash]
-        # @return [Array]
         def perform(parameters)
           new(parameters).perform
         end
       end
 
-      # @return [Array]
       def perform
         return [] if disallow_remote?
         return [] if missing_parameters?

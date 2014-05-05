@@ -4,24 +4,15 @@ module Troo
       attr_reader :id, :type
 
       class << self
-        # @param  klass   []
-        # @param  id      [, NilClass]
-        # @param  options [Hash]
-        # @return [String]
         def dispatch(klass, id, options = {})
           new(klass, id, options).render
         end
       end
 
-      # @param  klass   []
-      # @param  id      [, NilClass]
-      # @param  options [Hash]
-      # @return [Troo::Commands::Show]
       def initialize(klass, id, options = {})
         @klass, @id, @options = klass, id, options
       end
 
-      # @return [String]
       def render
         if resource
           presenter

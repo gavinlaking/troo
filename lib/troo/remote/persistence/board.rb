@@ -3,23 +3,16 @@ module Troo
     module Persistence
       class Board
         class << self
-          # @param  [String]
-          # @param  [String, NilClass]
-          # @return [Troo::Board, FalseClass]
           def with(name, description = nil)
             new(name, description).create_local
           end
         end
 
-        # @param  [String]
-        # @param  [String, NilClass]
-        # @return [Troo::Remote::Persistence::Board]
         def initialize(name, description = nil)
           @name        = name
           @description = description
         end
 
-        # @return [Troo::Board, FalseClass]
         def create_local
           return Troo::Persistence::Local
             .with_collection(resource).first if any?

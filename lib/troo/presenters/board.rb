@@ -4,9 +4,6 @@ module Troo
       include DecoratorHelpers
 
       class << self
-        # @param  [Array]
-        # @param  [Hash]
-        # @return [NilClass]
         def all(boards, options = {})
           output = Troo::Compositor.new
           output.build(boards.map { |board| new(board, options).show })
@@ -14,14 +11,10 @@ module Troo
         end
       end
 
-      # @param  [Troo::Board]
-      # @param  [Hash]
-      # @return [Troo::Presenters::Board]
       def initialize(board, options = {})
         @board, @options = board, options
       end
 
-      # @return [String]
       def show
         output.build(list_view(board, options))
 

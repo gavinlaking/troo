@@ -6,32 +6,22 @@ module Troo
     attribute :options, Troo::Format
 
     class << self
-      # @param  []
-      # @param  [Hash]
-      # @return []
       def highlight(value, options = {})
         new(value: value, options: options).highlight
       end
 
-      # @param  []
-      # @param  [Hash]
-      # @return []
       def error(value, options = {})
         defaults = { colour: Esc.red }
         new(value:   value,
             options: defaults.merge!(options)).error
       end
 
-      # @param  []
-      # @param  [Integer]
-      # @return []
       def wordwrap(value, width = 70)
         new(value:   value,
             options: { align: { width: width } }).wordwrap
       end
     end
 
-    # @return [String]
     def highlight
       if options.ansicolor
         [
@@ -45,7 +35,6 @@ module Troo
       end
     end
 
-    # @return [String]
     def error
       if options.ansicolor
         [
@@ -58,7 +47,6 @@ module Troo
       end
     end
 
-    # @return []
     def wordwrap
       Wordwrap.this(formatted_value, width: width)
     end
