@@ -10,21 +10,16 @@ module Troo
       attribute :model
 
       class << self
-        # @param  [Hash]
-        # @return [Array]
         def perform(parameters)
           new(parameters).perform
         end
       end
 
-      # @return [Array]
       def perform
-        return [] unless allow_remote?
+        return [] if disallow_remote?
         return [] if missing_parameters?
         return [] if error_response?
         return [] if empty_response?
-
-        log
 
         if collection?
           model.with_collection(parsed_response)
@@ -40,25 +35,15 @@ module Troo
       end
 
       def empty_response?
-        return log(true) if parsed_response.empty?
-        false
+        parsed_response.empty?
       end
 
       def error_response?
-        return log(true) if response.is_a?(ErrorResponse)
-        false
+        response.is_a?(ErrorResponse)
       end
 
       def parsed_response
-        @parsed ||= Yajl::Parser.parse(response_body)
-      end
-
-      def response_body
-        data = response.body
-        File.open(filename, 'w') do |file_handle|
-          file_handle.write(data)
-        end
-        data
+        @parsed ||= Yajl::Parser.parse(response.body)
       end
 
       def response
@@ -86,52 +71,8 @@ module Troo
         verb.nil? || endpoint.nil? || model.nil?
       end
 
-      def allow_remote?
-        Troo.configuration.allow_remote
-      end
-
-      def log(retval = nil)
-        Troo.logger.debug("\n" + formatted_messages) if log?
-        retval
-      end
-
-      def log?
-        Troo.configuration.logs
-      end
-
-      def formatted_messages
-        messages.map do |label, value|
-          [
-            [Esc.red, label.rjust(8, ' '), ':', Esc.reset].join, value
-          ].join(' ')
-        end.join("\n")
-      end
-
-      def messages
-        request_log.merge!(response_log)
-      end
-
-      def request_log
-        {
-          'Endpoint' => endpoint,
-          'Verb'     => verb,
-          'URI'      => uri,
-          'Query'    => query
-        }
-      end
-
-      def response_log
-        {
-          'Status'   => response.code,
-          'Response' => response.body
-        }
-      end
-
-      def filename
-        filename = [Troo.root_path + '/logs/api/', endpoint.to_s]
-        filename << '_' << external_id if external_id
-        filename << '.json'
-        filename.join
+      def disallow_remote?
+        !(Troo.configuration.allow_remote)
       end
 
       def external_id

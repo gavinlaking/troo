@@ -2,22 +2,15 @@ module Troo
   module API
     class Headers
       class << self
-        # @param  [String]
-        # @param  [Hash]
-        # @return [Hash]
         def build!(uri, headers = {})
           new(uri, headers).build!
         end
       end
 
-      # @param  [String]
-      # @param  [Hash]
-      # @return [Troo::API::Headers]
       def initialize(uri, headers = {})
         @uri, @headers = uri, headers
       end
 
-      # @return [Hash]
       def build!
         defaults.merge!(@headers)
       end

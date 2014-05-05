@@ -4,7 +4,6 @@ module Troo
       package_name 'wizard'
       default_task :start
 
-      # @return [String]
       desc 'start', 'Run the configuration wizard to get started.'
       def start
         say Troo::Formatter.wordwrap(welcome_message)

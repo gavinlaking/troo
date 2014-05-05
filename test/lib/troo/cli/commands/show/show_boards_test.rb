@@ -4,7 +4,8 @@ module Troo
   module Commands
     describe ShowBoards do
       let(:described_class) { ShowBoards }
-      let(:resources) { [] }
+      let(:resources)       { [] }
+      let(:options)         { {} }
 
       before do
         API::Client.stubs(:perform)
@@ -14,7 +15,7 @@ module Troo
       end
 
       describe '.dispatch' do
-        subject { described_class.dispatch }
+        subject { described_class.dispatch(options) }
 
         it { subject.must_be_instance_of(String) }
 

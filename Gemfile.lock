@@ -163,7 +163,6 @@ GEM
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
     yajl-ruby (1.2.0)
-    yard (0.8.7.4)
 
 PLATFORMS
   ruby
@@ -186,4 +185,3 @@ DEPENDENCIES
   troo!
   vcr
   webmock
-  yard

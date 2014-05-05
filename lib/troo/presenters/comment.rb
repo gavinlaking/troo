@@ -3,14 +3,10 @@ module Troo
     class Comment
       include DecoratorHelpers
 
-      # @param  [Troo::Card]
-      # @param  [Hash]
-      # @return [Troo::Presenters::Comment]
       def initialize(card, options = {})
         @card, @options = card, options
       end
 
-      # @return []
       def show
         title
 
@@ -19,6 +15,8 @@ module Troo
         else
           no_comments
         end
+
+        output.render
       end
 
       private
@@ -26,18 +24,17 @@ module Troo
       attr_reader :card
 
       def output
-        @output ||= Troo::Output.new
+        @output ||= Troo::Compositor.new
       end
 
       def all_comments
         comments.map do |comment|
-          output.render comment.decorator.as_view
+          output.build(comment.decorator.as_view)
         end
-        nil
       end
 
       def no_comments
-        output.render error('No comments were found.')
+        output.build(error('No comments were found.', options))
       end
 
       def comments?
@@ -49,7 +46,15 @@ module Troo
       end
 
       def title
-        output.render card.decorator.title + "\n"
+        output.build(card.decorator.title + "\n")
+      end
+
+      def options
+        defaults.merge!(@options)
+      end
+
+      def defaults
+        {}
       end
     end
   end

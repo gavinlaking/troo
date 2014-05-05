@@ -4,20 +4,15 @@ module Troo
       attr_reader :id
 
       class << self
-        # @param  [String]
-        # @return [String]
-        def dispatch(id = nil)
-          new(id).render
+        def dispatch(id = nil, options = {})
+          new(id, options).render
         end
       end
 
-      # @param  [String]
-      # @return [Troo::Commands::ShowComments]
-      def initialize(id = nil)
-        @id = id
+      def initialize(id = nil, options = {})
+        @id, @options = id, options
       end
 
-      # @return [String]
       def render
         if resource
           presenter
@@ -31,7 +26,7 @@ module Troo
       private
 
       def presenter
-        resource.comment_presenter.show
+        resource.comment_presenter(options).show
       end
 
       def error
@@ -53,6 +48,14 @@ module Troo
 
       def resource
         @resource ||= Troo::Card.retrieve(id)
+      end
+
+      def options
+        defaults.merge!(@options)
+      end
+
+      def defaults
+        {}
       end
     end
   end

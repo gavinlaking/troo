@@ -8,6 +8,10 @@ module Troo
         let(:resource_name)   { 'My New Board' }
         let(:description)     { 'A very brief description...' }
 
+        subject { described_class.new(resource_name, description) }
+
+        it { subject.must_be_instance_of(Troo::Remote::Persistence::Board) }
+
         describe '.with' do
           subject { described_class.with(resource_name, description) }
 
@@ -29,6 +33,8 @@ module Troo
 
           context 'when the board was not created' do
             before { API::Client.stubs(:perform).returns([]) }
+
+            it { subject.must_be_instance_of(FalseClass) }
 
             it { subject.must_equal false }
           end

@@ -3,22 +3,15 @@ module Troo
     include DecoratorHelpers
 
     class << self
-      # @param  []
-      # @param  []
-      # @return []
       def parse(object, path)
         new(object, path).parse
       end
     end
 
-    # @param  []
-    # @param  []
-    # @return []
     def initialize(object, path)
       @object, @path = object, path
     end
 
-    # @return []
     def parse
       ERB.new(load, nil, '-').result(binding)
     end

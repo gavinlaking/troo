@@ -46,9 +46,15 @@ require_relative 'remote/persistence/move_card'
 
 require_relative 'decorators/resource'
 
+require_relative 'presentation/align'
+require_relative 'presentation/compositor'
+require_relative 'presentation/esc'
+require_relative 'presentation/format'
 require_relative 'presentation/formatter'
+require_relative 'presentation/output'
 require_relative 'presentation/sentence'
 require_relative 'presentation/template'
+require_relative 'presentation/wordwrap'
 
 require_relative 'presenters/board'
 require_relative 'presenters/card'

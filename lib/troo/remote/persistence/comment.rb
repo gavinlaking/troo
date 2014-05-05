@@ -3,23 +3,16 @@ module Troo
     module Persistence
       class Comment
         class << self
-          # @param  [String]
-          # @param  []
-          # @return []
           def with(external_card_id, comment)
             new(external_card_id, comment).create_local
           end
         end
 
-        # @param  [String]
-        # @param  []
-        # @return [Troo::Remote::Persistence::Comment]
         def initialize(external_card_id, comment)
           @external_card_id = external_card_id
           @comment          = comment
         end
 
-        # @return []
         def create_local
           return Troo::Persistence::Local
             .with_collection(resource).first if any?

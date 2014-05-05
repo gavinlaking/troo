@@ -1,6 +1,8 @@
 require 'json'
 require 'yajl'
 
+require_relative '../../../lib/troo'
+
 class FakeResponse
   def self.render(resource, id = nil, collection = false)
     new(resource, id, collection).render
@@ -32,7 +34,7 @@ class FakeResponse
 
   def raw
     @raw ||= File
-      .read(File.dirname(__FILE__) + '/../remotes/' + filename)
+      .read(Troo.root_path + '/test/support/remotes/' + filename)
   end
 
   def filename

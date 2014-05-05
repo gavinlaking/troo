@@ -20,7 +20,7 @@ module Troo
 
       describe '#show' do
         subject do
-          capture_io { described_class.new(list, options).show }.join
+          described_class.new(list, options).show
         end
 
         it 'renders the board title for the list' do

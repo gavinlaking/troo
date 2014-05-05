@@ -36,6 +36,8 @@ module Troo
           context 'when the list was not created' do
             before { API::Client.stubs(:perform).returns([]) }
 
+            it { subject.must_be_instance_of(FalseClass) }
+
             it { subject.must_equal false }
           end
         end

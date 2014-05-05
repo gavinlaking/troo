@@ -13,17 +13,11 @@ module Troo
     attribute :database,     Integer, default: 1
 
     class << self
-      # @param  [String]
-      # @param  [String]
-      # @return [Troo::Configuration]
       def load(file, env)
         new(YAML.load_file(file)[env])
       end
     end
 
-    # @param  [String]
-    # @param  [String]
-    # @return [TrueClass, FalseClass]
     def save(file, env)
       return true if File.open(file, 'w') do |file|
         file.write configuration_yaml(env)
@@ -31,7 +25,6 @@ module Troo
       false
     end
 
-    # @return [String]
     def view
       attributes.map do |label, value|
         Preference.view(label: label, value: value)

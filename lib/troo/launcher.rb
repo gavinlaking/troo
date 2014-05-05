@@ -1,11 +1,5 @@
 module Troo
   class Launcher
-    # @param  [Array]
-    # @param  []
-    # @param  []
-    # @param  []
-    # @param  [Kernel]
-    # @return [Troo::Launcher]
     def initialize(argv, stdin = STDIN,
                          stdout = STDOUT,
                          stderr = STDERR,
@@ -18,7 +12,6 @@ module Troo
       @exit_code = 1
     end
 
-    # @return [String, NilClass]
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
       pad { Troo::CLI::Main.start(@argv) }

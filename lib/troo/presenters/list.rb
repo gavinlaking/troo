@@ -3,31 +3,27 @@ module Troo
     class List
       include DecoratorHelpers
 
-      # @param  [Troo::List]
-      # @return [Troo::Presenters::List]
       def initialize(list, options = {})
         @list, @options = list, options
       end
 
-      # @return [String]
       def show
-        output.render Presenters::Resource.list_view(list.board)
+        output.build(list_view(list.board))
 
         output.spacer
 
-        output.indent do
-          render_list
-        end
+        output.indent { render_list }
+
+        output.render
       end
 
-      # @return [String]
       def render_list
-        output.render Presenters::Resource.list_view(list)
+        output.build(list_view(list))
 
         output.indent do
           if list.cards.empty?
             output.spacer do
-              output.render error('No cards were found.')
+              output.build(error('No cards were found.', options))
             end
           else
             render_cards
@@ -35,18 +31,15 @@ module Troo
         end
       end
 
-      # @return [String]
-      def render_cards
-        output.spacer do
-          list.cards.map do |card|
-            output.render Presenters::Resource.list_view(card)
-          end
-        end
-      end
-
       private
 
       attr_reader :list
+
+      def render_cards
+        output.spacer do
+          list.cards.map { |card| output.build(list_view(card)) }
+        end
+      end
 
       def output
         @output ||= options.fetch(:output)
@@ -58,7 +51,7 @@ module Troo
 
       def defaults
         {
-          output: Troo::Output.new
+          output: Troo::Compositor.new
         }
       end
     end

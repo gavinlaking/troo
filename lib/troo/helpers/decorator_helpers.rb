@@ -17,8 +17,12 @@ module Troo
           .highlight(value, label_defaults.merge!(options))
       end
 
-      def error(message)
-        Troo::Formatter.error(message) + "\n"
+      def metadata(value)
+        Troo::Formatter.highlight(value, metadata_defaults)
+      end
+
+      def error(message, options = {})
+        Troo::Formatter.error(message, options) + "\n"
       end
 
       def label_defaults
@@ -26,6 +30,21 @@ module Troo
           colour:    Esc.yellow,
           underline: true
         }
+      end
+
+      def metadata_defaults
+        {
+          colour:    Esc.cyan,
+          underline: false,
+          align:     {
+                       pos: :right,
+                       pad: 9
+                     }
+        }
+      end
+
+      def list_view(resource, options = {})
+        Presenters::Resource.list_view(resource, options)
       end
     end
 

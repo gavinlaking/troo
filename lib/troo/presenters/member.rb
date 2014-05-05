@@ -3,14 +3,10 @@ module Troo
     class Member
       include DecoratorHelpers
 
-      # @param  [Troo::Card]
-      # @param  [Hash]
-      # @return [Troo::Presenters::Member]
       def initialize(card, options = {})
         @card, @options = card, options
       end
 
-      # @return [String]
       def show
         Sentence.construct(members, 'members')
       end
