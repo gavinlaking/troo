@@ -1,5 +1,3 @@
-require 'pry'
-require 'pry-nav'
 require 'ruby-prof'
 
 module Troo
