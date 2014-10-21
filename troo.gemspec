@@ -44,7 +44,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rest-client"
   spec.add_dependency "term-ansicolor"
   spec.add_dependency "thor",           '0.18.1'
-  spec.add_dependency "vedeu",          '0.0.32'
+  spec.add_dependency "vedeu"
   spec.add_dependency "virtus"
   spec.add_dependency "yajl-ruby"
 end
