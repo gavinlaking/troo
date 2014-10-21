@@ -3,114 +3,46 @@ module Troo
     class Main
       include Vedeu
 
-      interface :main,    {
-                  y:          1,
-                  x:          1,
-                  height:     23,
-                  colour: {
-                    foreground: '#ffffff',
-                    background: '#000000'
-                  },
-                  cursor:     false,
-                  z:          0 }
-      interface :status,  {
-                  y:          24,
-                  x:          1,
-                  height:     1,
-                  colour: {
-                    foreground: '#00ff00',
-                    background: '#003300'
-                  },
-                  cursor:     false,
-                  z:          1 }
-      interface :command, {
-                  y:          25,
-                  x:          1,
-                  height:     1,
-                  colour: {
-                    foreground: '#ffffff',
-                    background: '#000000'
-                  },
-                  cursor:     true,
-                  z:          1 }
+      event(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
-      command :move_card, {
-                entity: Commands::Move::Card,
-                keyword: '',
-                keypress: '',
-                arguments: [] }
-
-      command :refresh_all, {
-                entity: Commands::RefreshAll,
-                keyword: '',
-                keypress: '',
-                arguments: [] }
-
-      command 'show_boards', {
-                entity: Commands::ShowBoards,
-                keyword: 'boards',
-                keypress: 'b',
-                arguments: [{ gui: true }] }
-
-      command :show_comments, {
-                entity: Commands::ShowComments,
-                keyword: '',
-                keypress: '',
-                arguments: [] }
-
-      command :add, {
-                entity: Commands::Add,
-                keyword: '',
-                keypress: '',
-                arguments: [] }
-
-      command :default, {
-                entity: Commands::Default,
-                keyword: '',
-                keypress: '',
-                arguments: [] }
-
-      command :refresh, {
-                entity: Commands::Refresh,
-                keyword: '',
-                keypress: '',
-                arguments: [] }
-
-      command :show, {
-                entity: Commands::Show,
-                keyword: '',
-                keypress: '',
-                arguments: [] }
-
-      command :status, {
-                entity: Commands::Status,
-                keyword: '',
-                keypress: '',
-                arguments: [] }
-
-      command :exit, {
-                entity: Vedeu::Exit,
-                keyword: 'exit',
-                keypress: 'q',
-                arguments: [] }
-
-      class << self
-        def start(argv, options = {})
-          new(argv, options = {}).bootstrap
-        end
+      interface 'main' do
+        cursor  true
+        colour  foreground: '#ffffff', background: '#111111'
+        height  24
+        width   12.columns
+        x       1
+        y       1
       end
 
-      def initialize(argv, options = {})
-        @argv, @options = argv, options
+      interface 'status' do
+        cursor false
+        colour foreground: '#ffffff', background: '#222222'
+        height 1
+        width  12.columns
+        x      1
+        y      use('main').bottom
       end
 
-      def bootstrap
-        Vedeu::Launcher.new(argv).execute!
+      interface 'command' do
+        cursor true
+        colour foreground: '#ffffff', background: '#333333'
+        height 1
+        width  12.columns
+        x      1
+        y      use('status').bottom
       end
 
-      private
+      keys do
+        key(:up)    { Vedeu.trigger(:_cursor_up_)    }
+        key(:right) { Vedeu.trigger(:_cursor_right_) }
+        key(:down)  { Vedeu.trigger(:_cursor_down_)  }
+        key(:left)  { Vedeu.trigger(:_cursor_left_)  }
+      end
 
-      attr_reader :argv, :options
+      def self.start(argv = [])
+        Vedeu::Launcher.new(['--debug']).execute!
+      end
+
     end
   end
 end
