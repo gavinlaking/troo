@@ -36,8 +36,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock"
 
   spec.add_dependency "addressable"
-  spec.add_dependency "curses",         '1.0.1'
-  spec.add_dependency "dispel"
   spec.add_dependency "json"
   spec.add_dependency "launchy"
   spec.add_dependency "oauth"
@@ -45,7 +43,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "ohm-contrib",    '1.2'
   spec.add_dependency "rest-client"
   spec.add_dependency "term-ansicolor"
-  spec.add_dependency "thor",           '0.18.1'
+  spec.add_dependency "thor" # ,           '0.18.1'
   spec.add_dependency "virtus"
   spec.add_dependency "yajl-ruby"
 end
