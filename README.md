@@ -11,6 +11,12 @@ CLI interface for Trello. Named after Trello's mascot 'Roo'.
 - Ruby 2.1.1 (>= 1.9.3 should be fine, developed mainly in 2.1.0 so far.)
 - Redis.
 
+## Dependencies
+
+### Redis
+
+    sudo apt-get install redis-server
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -97,7 +103,16 @@ Simply run `troo wizard` and follow the on screen instructions.
 
 ## Testing
 
-I've put a simple fake server together so that I'm not hitting the Trello API continuously. You can activate and use this too.
+For continuous testing, run:
+
+    bundle exec guard
+
+or, providing you have run `troo wizard`;
+
+    rake
+
+I've also put a simple fake server together so that I'm not hitting the Trello
+API continuously. You can activate and use this too.
 
 1) Create own SSL certificate .crt and .key files:
 
