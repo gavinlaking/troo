@@ -188,7 +188,7 @@ PLATFORMS
 
 DEPENDENCIES
   aruba (= 0.6.2)
-  bundler (= 1.10.6)
+  bundler (~> 1.10)
   cucumber (= 2.0.0)
   fabrication (= 2.13.2)
   guard (= 2.12.5)
