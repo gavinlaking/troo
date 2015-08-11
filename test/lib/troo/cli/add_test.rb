@@ -11,14 +11,14 @@ module Troo
       end
 
       describe '#board' do
-        let(:value) {}
+        let(:_value) {}
 
         subject do
-          capture_io { described_class.new.board(value) }.join
+          capture_io { described_class.new.board(_value) }.join
         end
 
         context 'when a value is provided' do
-          let(:value) { 'some value' }
+          let(:_value) { 'some value' }
 
           it { subject.must_be_instance_of(String) }
 
@@ -38,14 +38,14 @@ module Troo
 
       describe '#card' do
         let(:id) {}
-        let(:value) {}
+        let(:_value) {}
 
         subject do
-          capture_io { described_class.new.card(id, value) }.join
+          capture_io { described_class.new.card(id, _value) }.join
         end
 
         context 'when a value is provided' do
-          let(:value) { 'some value' }
+          let(:_value) { 'some value' }
 
           it { subject.must_be_instance_of(String) }
 
@@ -65,14 +65,14 @@ module Troo
 
       describe '#comment' do
         let(:id) {}
-        let(:value) {}
+        let(:_value) {}
 
         subject do
-          capture_io { described_class.new.comment(id, value) }.join
+          capture_io { described_class.new.comment(id, _value) }.join
         end
 
         context 'when a value is provided' do
-          let(:value) { 'some value' }
+          let(:_value) { 'some value' }
 
           it { subject.must_be_instance_of(String) }
 
@@ -92,14 +92,14 @@ module Troo
 
       describe '#list' do
         let(:id) {}
-        let(:value) {}
+        let(:_value) {}
 
         subject do
-          capture_io { described_class.new.list(id, value) }.join
+          capture_io { described_class.new.list(id, _value) }.join
         end
 
         context 'when a value is provided' do
-          let(:value) { 'some value' }
+          let(:_value) { 'some value' }
 
           it { subject.must_be_instance_of(String) }
 

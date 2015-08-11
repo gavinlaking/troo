@@ -7,9 +7,9 @@ module Troo
 
       describe '#interpolate' do
         let(:endpoint) { :board_by_id }
-        let(:value)    { { external_id: '20001' } }
+        let(:_value)    { { external_id: '20001' } }
 
-        subject { described_class.interpolate(endpoint, value) }
+        subject { described_class.interpolate(endpoint, _value) }
 
         it { subject.must_be_instance_of(String) }
 

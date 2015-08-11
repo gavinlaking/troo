@@ -4,7 +4,7 @@ module Troo
   module Commands
     describe Add do
       let(:described_class) { Add }
-      let(:value)           {}
+      let(:_value)          {}
       let(:id)              {}
       let(:options)         { { type: type } }
       let(:type)            { :none }
@@ -23,7 +23,7 @@ module Troo
       end
 
       describe '.dispatch' do
-        subject { described_class.dispatch(value, id, options) }
+        subject { described_class.dispatch(_value, id, options) }
 
         it { subject.must_be_instance_of(String) }
 
